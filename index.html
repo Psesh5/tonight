@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tonight — every city, every night</title>
+<style>
+:root{--ink:#14201A;--gold:#E39A2D;--paper:#F7F2E9;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);
+font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.hero{background:var(--ink);color:var(--paper);text-align:center;padding:70px 24px 60px;}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:3px;text-transform:uppercase;}
+.hero h1{font-family:Georgia, 'Times New Roman', serif;font-size:64px;margin:14px 0 10px;font-weight:normal;}
+.hero h1 b{color:var(--gold);}
+.hero p{opacity:.75;font-size:16px;max-width:520px;margin:0 auto;line-height:1.6;}
+.cta-row{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-block;padding:13px 30px;border-radius:999px;text-decoration:none;font-size:15px;}
+.btn-gold{background:var(--gold);color:var(--ink);font-weight:bold;}
+.btn-ghost{border:1px solid var(--gold);color:var(--paper);}
+.cities{max-width:720px;margin:0 auto;padding:40px 20px 10px;display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.citycard{display:block;background:#fffdf6;border:1px solid var(--gold);border-radius:16px;
+padding:26px 24px;text-decoration:none;color:var(--ink);}
+.citycard:hover{box-shadow:0 6px 24px rgba(20,32,26,.12);}
+.cc-top{font-family:Georgia, 'Times New Roman', serif;font-size:26px;}
+.cc-meta{font-size:13px;color:#6b6b6b;margin-top:6px;}
+.cc-cta{margin-top:14px;color:var(--ink);font-weight:bold;font-size:14px;}
+.how{max-width:720px;margin:0 auto;padding:30px 20px 50px;}
+.how h2{font-family:Georgia, 'Times New Roman', serif;font-size:30px;font-weight:normal;text-align:center;margin-bottom:26px;}
+.step{display:flex;gap:16px;margin-bottom:20px;}
+.step .n{flex:0 0 36px;height:36px;border-radius:50%;background:var(--ink);color:var(--paper);
+display:flex;align-items:center;justify-content:center;font-weight:bold;}
+.step h3{margin:2px 0 6px;font-size:16px;}
+.step p{margin:0;font-size:14px;color:#555;line-height:1.55;}
+footer{background:var(--ink);color:var(--paper);text-align:center;padding:34px 24px;font-size:13px;}
+footer .serif{font-family:Georgia, 'Times New Roman', serif;font-size:17px;margin-bottom:8px;}
+footer p{opacity:.62;line-height:1.6;margin:0;}
+</style></head>
+<body>
+<header class="hero">
+<div class="eyebrow">Every city · Every night</div>
+<h1>Tonight<b>.</b></h1>
+<p>Hand-picked things to do, all happening today. Open your city, hit
+<b>⚡ Tonight</b> to see what's on right now, and tap the boxes —
+your picks train tomorrow's recommendations.</p>
+<div class="cta-row">
+<a class="btn btn-gold" href="nyc/2026-09-23.html#tonight">⚡ What's on tonight</a>
+<a class="btn btn-ghost" href="#cities">Pick a city</a>
+</div>
+</header>
+<main id="cities" class="cities">
+
+<a class="citycard" href="nyc/2026-09-23.html">
+<div class="cc-top">NYC Today</div>
+<div class="cc-meta">Wednesday, September 23</div>
+<div class="cc-meta">11 events · 0 free</div>
+<div class="cc-cta">See tonight →</div>
+</a>
+<a class="citycard" href="london/2026-09-23.html">
+<div class="cc-top">London Tonight</div>
+<div class="cc-meta">Wednesday, September 23</div>
+<div class="cc-meta">11 events · 4 free</div>
+<div class="cc-cta">See tonight →</div>
+</a>
+</main>
+<section class="how">
+<h2>How it works</h2>
+<div class="step"><div class="n">1</div><div><h3>Hand-picked daily</h3>
+<p>Every morning, a curated shortlist of the day's best events — not a firehose. Every link verified.</p></div></div>
+<div class="step"><div class="n">2</div><div><h3>⚡ Tonight mode</h3>
+<p>Spontaneous? One tap filters to what's happening now or starting in the next few hours.</p></div></div>
+<div class="step"><div class="n">3</div><div><h3>✨ Free tonight</h3>
+<p>Free events get their own section, always. The best things in the city shouldn't cost anything.</p></div></div>
+<div class="step"><div class="n">4</div><div><h3>Taste that learns</h3>
+<p>Tap the boxes on anything you like. Your picks shape tomorrow's recommendations — per city.</p></div></div>
+</section>
+<footer>
+<div class="serif">Tonight — every city, every night.</div>
+<p>Curated, verified, and free-first.</p>
+</footer>
+</body></html>

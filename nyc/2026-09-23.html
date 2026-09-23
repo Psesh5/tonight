@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYC Today — Wednesday, September 23</title>
+<style>
+:root{--ink:#14201A;--gold:#E39A2D;--paper:#F7F2E9;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;}
+.hero{background:var(--ink);color:var(--paper);text-align:center;padding:44px 24px 36px;}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:3px;text-transform:uppercase;}
+.hero h1{font-family:Georgia, 'Times New Roman', serif;font-size:44px;margin:12px 0 8px;font-weight:normal;}
+.hero p{opacity:.72;font-size:14px;margin:0;}
+.toolbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:20px 20px 4px;}
+.btn{display:inline-block;border:none;cursor:pointer;padding:11px 24px;border-radius:999px;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;text-decoration:none;}
+.btn-dark{background:var(--ink);color:var(--paper);}
+.btn-gold{background:var(--gold);color:var(--ink);font-weight:bold;}
+.picks{max-width:640px;margin:14px auto 0;padding:14px 20px;text-align:center;font-size:14px;}
+.picks strong{font-family:Georgia, 'Times New Roman', serif;font-size:18px;}
+.wrap{max-width:680px;margin:0 auto;padding:8px 20px 60px;}
+.cat h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;border-bottom:1px solid #d8d2c2;padding:26px 0 10px;margin:0 0 4px;}
+.cat.free h2{color:var(--ink);}
+.cat.free{background:#fffdf6;border:1px solid var(--gold);border-radius:14px;padding:0 18px 8px;margin-top:18px;}
+.event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:20px;}
+.toggle{background:none;border:none;cursor:pointer;padding:2px 0;align-self:flex-start;}
+.box{display:inline-block;width:22px;height:22px;border:2px solid var(--gold);border-radius:7px;background:#fff;position:relative;transition:background .15s;}
+.toggle[aria-pressed="true"] .box{background:var(--gold);}
+.toggle[aria-pressed="true"] .box::after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid var(--ink);border-width:0 3px 3px 0;transform:rotate(42deg);}
+.event-body{flex:1;}
+.event-body h3{font-family:Georgia, 'Times New Roman', serif;font-size:20px;margin:0 0 4px;}
+.event-body h3 a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;}
+.meta{font-size:13px;color:#6b6b6b;margin-bottom:8px;}
+.event-body p{font-size:14.5px;line-height:1.55;color:#333;margin:0 0 10px;}
+.tickets{display:inline-block;background:var(--ink);color:var(--paper);padding:8px 20px;border-radius:999px;text-decoration:none;font-size:13px;}
+.cal-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;}
+.cal-link{display:inline-block;background:#fff;border:1px solid var(--gold);color:var(--ink);padding:6px 14px;border-radius:999px;text-decoration:none;font-size:12.5px;cursor:pointer;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
+.cal-link:hover{background:var(--gold);}
+.leave-by{font-size:12.5px;color:#6b6b6b;font-style:italic;}
+.btn-active{background:var(--gold)!important;color:var(--ink)!important;font-weight:bold;}
+.badge{display:inline-block;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin:0 0 8px;}
+.badge.now{background:#1a7f37;color:#fff;}
+.badge.free{background:var(--gold);color:var(--ink);}
+#tonightWrap{display:none;}
+.tonight-head h2{font-family:Georgia, 'Times New Roman', serif;font-size:26px;margin:18px 0 2px;font-weight:normal;}
+.tonight-head p{font-size:13px;color:#6b6b6b;margin:0 0 6px;}
+.tba-div{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b6b6b;border-top:1px solid #d8d2c2;margin-top:14px;padding-top:14px;}
+#tonightEmpty{text-align:center;color:#6b6b6b;padding:30px 10px;font-size:14px;}
+footer{background:var(--ink);color:var(--paper);text-align:center;padding:34px 24px;font-size:13px;}
+footer .serif{font-family:Georgia, 'Times New Roman', serif;font-size:17px;margin-bottom:8px;}
+footer p{opacity:.62;line-height:1.6;margin:0;}
+</style><style>
+.topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
+background:#14201A;color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+.topnav .brand{font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#F7F2E9;text-decoration:none;}
+.topnav .brand b{color:#E39A2D;}
+.topnav .citylinks{display:flex;gap:6px;margin-left:auto;}
+.topnav .citylinks a{color:#F7F2E9;opacity:.75;text-decoration:none;font-size:13.5px;
+padding:6px 14px;border-radius:999px;border:1px solid transparent;}
+.topnav .citylinks a.cur{background:#E39A2D;color:#14201A;font-weight:bold;opacity:1;}
+.topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
+.topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .browselink:hover{text-decoration:underline;}
+</style></head>
+<body><nav class="topnav"><a class="brand" href="../">Tonight<b>.</b></a><span class="citylinks"><a class="cur" href="../nyc/2026-09-23.html">NYC</a> <a class="" href="../london/2026-09-23.html">London</a></span><a class="browselink" href="../browse-nyc-2026-09-23.html">Browse all →</a></nav>
+<header class="hero">
+<div class="eyebrow">Wednesday, September 23 · New York City</div>
+<h1>NYC Today</h1>
+<p>Hand-picked things to do, all happening today. Tap the boxes to track your picks.</p>
+</header>
+<div class="toolbar">
+<button class="btn btn-dark" id="shareBtn">Share →</button>
+<a class="btn btn-gold" href="https://psesh5.github.io/tonight/nyc/2026-09-23.ics" download>📥 Download .ics</a>
+<button class="btn btn-dark" id="tonightBtn" aria-pressed="false">⚡ Tonight</button>
+</div>
+<div class="picks" id="picksBar"><strong>My picks: <span id="pickCount">0</span></strong><br>
+<span style="font-size:13px;color:#6b6b6b;">Tap the boxes above, then send your picks — it shapes tomorrow's recommendations.</span><br><br>
+<button class="btn btn-dark" id="sendBtn">Send my picks →</button>
+</div>
+<main class="wrap">
+<div id="tonightWrap">
+<div class="tonight-head"><h2>⚡ Tonight</h2><p id="tonightCount"></p></div>
+<div id="tonightList"></div>
+<div id="tonightEmpty" style="display:none;">Nothing on in the next 5 hours — check back later.</div>
+</div>
+
+<section class="cat">
+<h2>Music</h2>
+
+<article class="event" id="event-0" data-idx="0" data-name="Of Monsters and Men" data-start-local="2026-09-23T19:00:00" data-cal-start="20260923T230000Z" data-cal-end="20260924T010000Z" data-loc="Capital One City Parks Foundation SummerStage, Central Park" data-url="https://cityparksfoundation.org/events/of-monsters-and-men-august-ponthier/">
+<button class="toggle" data-idx="0" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://cityparksfoundation.org/events/of-monsters-and-men-august-ponthier/">Of Monsters and Men</a></h3>
+<div class="meta">7:00 PM · Capital One City Parks Foundation SummerStage, Central Park</div>
+<p>Icelandic indie-folk singalongs under the trees at Central Park&#x27;s big outdoor stage.</p>
+<a class="tickets" href="https://cityparksfoundation.org/events/of-monsters-and-men-august-ponthier/">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Of%20Monsters%20and%20Men&dates=20260923T230000Z/20260924T010000Z&details=Icelandic%20indie-folk%20singalongs%20under%20the%20trees%20at%20Central%20Park%27s%20big%20outdoor%20stage.%20Tickets%20%26%20info%3A%20https%3A//cityparksfoundation.org/events/of-monsters-and-men-august-ponthier/&location=Capital%20One%20City%20Parks%20Foundation%20SummerStage%2C%20Central%20Park" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="0">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-1" data-idx="1" data-name="She &amp; Him: Pump Up The Volumes Tour" data-start-local="2026-09-23T20:00:00" data-cal-start="20260924T000000Z" data-cal-end="20260924T020000Z" data-loc="Town Hall, Theater District" data-url="https://www.iloveny.com/event/she-%26-him%3a-pump-up-the-volumes-tour/tm_vvg1gz_5lht37u/">
+<button class="toggle" data-idx="1" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.iloveny.com/event/she-%26-him%3a-pump-up-the-volumes-tour/tm_vvg1gz_5lht37u/">She &amp; Him: Pump Up The Volumes Tour</a></h3>
+<div class="meta">8:00 PM · Town Hall, Theater District</div>
+<p>Zooey Deschanel and M. Ward&#x27;s sunshiny vintage-pop duo at the storied Town Hall.</p>
+<a class="tickets" href="https://www.iloveny.com/event/she-%26-him%3a-pump-up-the-volumes-tour/tm_vvg1gz_5lht37u/">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=She%20%26%20Him%3A%20Pump%20Up%20The%20Volumes%20Tour&dates=20260924T000000Z/20260924T020000Z&details=Zooey%20Deschanel%20and%20M.%20Ward%27s%20sunshiny%20vintage-pop%20duo%20at%20the%20storied%20Town%20Hall.%20Tickets%20%26%20info%3A%20https%3A//www.iloveny.com/event/she-%2526-him%253a-pump-up-the-volumes-tour/tm_vvg1gz_5lht37u/&location=Town%20Hall%2C%20Theater%20District" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="1">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-2" data-idx="2" data-name="Gov&#x27;t Mule and Ziggy Marley">
+<button class="toggle" data-idx="2" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://rooftopatpier17.com/events/govt-mule-ziggy-marley-2026/">Gov&#x27;t Mule and Ziggy Marley</a></h3>
+<div class="meta">Time TBA · The Rooftop at Pier 17, Seaport</div>
+<p>Jam-rock institution meets reggae royalty on the Seaport rooftop with harbor views.</p>
+<a class="tickets" href="https://rooftopatpier17.com/events/govt-mule-ziggy-marley-2026/">Tickets &amp; info →</a>
+
+</div>
+</article>
+<article class="event" id="event-3" data-idx="3" data-name="Angus &amp; Julia Stone">
+<button class="toggle" data-idx="3" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.axs.com/events/1508220/angus-julia-stone-tickets">Angus &amp; Julia Stone</a></h3>
+<div class="meta">Time TBA · Racket NYC, Chelsea</div>
+<p>The Australian sibling duo&#x27;s dreamy folk-pop in Chelsea&#x27;s intimate room.</p>
+<a class="tickets" href="https://www.axs.com/events/1508220/angus-julia-stone-tickets">Tickets &amp; info →</a>
+
+</div>
+</article>
+<article class="event" id="event-4" data-idx="4" data-name="Talib Kweli" data-start-local="2026-09-23T20:00:00" data-cal-start="20260924T000000Z" data-cal-end="20260924T020000Z" data-loc="Blue Note Jazz Club, Greenwich Village" data-url="https://www.bluenotejazz.com/nyc/tm-event/talib-kweli-with-live-band/">
+<button class="toggle" data-idx="4" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.bluenotejazz.com/nyc/tm-event/talib-kweli-with-live-band/">Talib Kweli</a></h3>
+<div class="meta">8:00 PM · Blue Note Jazz Club, Greenwich Village</div>
+<p>The Brooklyn hip-hop legend brings his lyricist&#x27;s canon to the Village jazz room.</p>
+<a class="tickets" href="https://www.bluenotejazz.com/nyc/tm-event/talib-kweli-with-live-band/">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Talib%20Kweli&dates=20260924T000000Z/20260924T020000Z&details=The%20Brooklyn%20hip-hop%20legend%20brings%20his%20lyricist%27s%20canon%20to%20the%20Village%20jazz%20room.%20Tickets%20%26%20info%3A%20https%3A//www.bluenotejazz.com/nyc/tm-event/talib-kweli-with-live-band/&location=Blue%20Note%20Jazz%20Club%2C%20Greenwich%20Village" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="4">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-5" data-idx="5" data-name="Love Spells" data-start-local="2026-09-23T19:00:00" data-cal-start="20260923T230000Z" data-cal-end="20260924T010000Z" data-loc="Bowery Ballroom, Bowery" data-url="https://www.axs.com/artists/1122811/love-spells-tickets">
+<button class="toggle" data-idx="5" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.axs.com/artists/1122811/love-spells-tickets">Love Spells</a></h3>
+<div class="meta">7:00 PM · Bowery Ballroom, Bowery</div>
+<p>A buzzy act on the Bowery&#x27;s beloved rock-room stage.</p>
+<a class="tickets" href="https://www.axs.com/artists/1122811/love-spells-tickets">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Love%20Spells&dates=20260923T230000Z/20260924T010000Z&details=A%20buzzy%20act%20on%20the%20Bowery%27s%20beloved%20rock-room%20stage.%20Tickets%20%26%20info%3A%20https%3A//www.axs.com/artists/1122811/love-spells-tickets&location=Bowery%20Ballroom%2C%20Bowery" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="5">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-6" data-idx="6" data-name="The Bros. Landreth: Tumbling Wild Tour" data-start-local="2026-09-23T18:00:00" data-cal-start="20260923T220000Z" data-cal-end="20260924T000000Z" data-loc="Mercury Lounge, Lower East Side" data-url="https://www.axs.com/artists/1115308/the-bros-landreth-tickets">
+<button class="toggle" data-idx="6" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.axs.com/artists/1115308/the-bros-landreth-tickets">The Bros. Landreth: Tumbling Wild Tour</a></h3>
+<div class="meta">6:00 PM · Mercury Lounge, Lower East Side</div>
+<p>Canadian roots-rock siblings and their harmony-heavy Americana in a tiny room.</p>
+<a class="tickets" href="https://www.axs.com/artists/1115308/the-bros-landreth-tickets">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Bros.%20Landreth%3A%20Tumbling%20Wild%20Tour&dates=20260923T220000Z/20260924T000000Z&details=Canadian%20roots-rock%20siblings%20and%20their%20harmony-heavy%20Americana%20in%20a%20tiny%20room.%20Tickets%20%26%20info%3A%20https%3A//www.axs.com/artists/1115308/the-bros-landreth-tickets&location=Mercury%20Lounge%2C%20Lower%20East%20Side" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="6">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Comedy</h2>
+
+<article class="event" id="event-7" data-idx="7" data-name="Good Eggs ft. Mark Normand, Jessica Levin, Michael Rowland, Matt Ruby" data-start-local="2026-09-23T20:00:00" data-cal-start="20260924T000000Z" data-cal-end="20260924T020000Z" data-loc="New York Comedy Club, East Village" data-url="https://newyorkcomedyclub.com/events/good-eggs-ft-mark-normand-jessica-levin-michael-rowland-matt-ruby">
+<button class="toggle" data-idx="7" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://newyorkcomedyclub.com/events/good-eggs-ft-mark-normand-jessica-levin-michael-rowland-matt-ruby">Good Eggs ft. Mark Normand, Jessica Levin, Michael Rowland, Matt Ruby</a></h3>
+<div class="meta">8:00 PM · New York Comedy Club, East Village</div>
+<p>Mark Normand, Gary Vider and Matt Ruby&#x27;s long-running indie room, where surprise drop-ins are the norm.</p>
+<a class="tickets" href="https://newyorkcomedyclub.com/events/good-eggs-ft-mark-normand-jessica-levin-michael-rowland-matt-ruby">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Good%20Eggs%20ft.%20Mark%20Normand%2C%20Jessica%20Levin%2C%20Michael%20Rowland%2C%20Matt%20Ruby&dates=20260924T000000Z/20260924T020000Z&details=Mark%20Normand%2C%20Gary%20Vider%20and%20Matt%20Ruby%27s%20long-running%20indie%20room%2C%20where%20surprise%20drop-ins%20are%20the%20norm.%20Tickets%20%26%20info%3A%20https%3A//newyorkcomedyclub.com/events/good-eggs-ft-mark-normand-jessica-levin-michael-rowland-matt-ruby&location=New%20York%20Comedy%20Club%2C%20East%20Village" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="7">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-8" data-idx="8" data-name="Story Warz w/ Big Jay Oakerson, Luis J Gomez + Special Guests" data-start-local="2026-09-23T19:45:00" data-cal-start="20260923T234500Z" data-cal-end="20260924T014500Z" data-loc="New York Comedy Club, Midtown" data-url="https://newyorkcomedyclub.com/events/story-warz-w-big-jay-oakerson-luis-j-gomez-special-guests-2026-09-23194500">
+<button class="toggle" data-idx="8" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://newyorkcomedyclub.com/events/story-warz-w-big-jay-oakerson-luis-j-gomez-special-guests-2026-09-23194500">Story Warz w/ Big Jay Oakerson, Luis J Gomez + Special Guests</a></h3>
+<div class="meta">7:45 PM · New York Comedy Club, Midtown</div>
+<p>Big Jay Oakerson and Luis J. Gomez host a game of deceptive storytelling with big-name guests.</p>
+<a class="tickets" href="https://newyorkcomedyclub.com/events/story-warz-w-big-jay-oakerson-luis-j-gomez-special-guests-2026-09-23194500">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Story%20Warz%20w/%20Big%20Jay%20Oakerson%2C%20Luis%20J%20Gomez%20%2B%20Special%20Guests&dates=20260923T234500Z/20260924T014500Z&details=Big%20Jay%20Oakerson%20and%20Luis%20J.%20Gomez%20host%20a%20game%20of%20deceptive%20storytelling%20with%20big-name%20guests.%20Tickets%20%26%20info%3A%20https%3A//newyorkcomedyclub.com/events/story-warz-w-big-jay-oakerson-luis-j-gomez-special-guests-2026-09-23194500&location=New%20York%20Comedy%20Club%2C%20Midtown" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="8">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Talks</h2>
+
+<article class="event" id="event-9" data-idx="9" data-name="Tech Up For Women Conference East" data-start-local="2026-09-23T12:00:00" data-cal-start="20260923T160000Z" data-cal-end="20260923T180000Z" data-loc="Metropolitan Pavilion, Chelsea" data-url="https://allevents.in/new-york/tech-up-for-women-conference-east/10000574712389227">
+<button class="toggle" data-idx="9" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://allevents.in/new-york/tech-up-for-women-conference-east/10000574712389227">Tech Up For Women Conference East</a></h3>
+<div class="meta">12:00 PM · Metropolitan Pavilion, Chelsea · $75</div>
+<p>Daytime tech conference covering careers, cybersecurity and data, at Metropolitan Pavilion.</p>
+<a class="tickets" href="https://allevents.in/new-york/tech-up-for-women-conference-east/10000574712389227">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Tech%20Up%20For%20Women%20Conference%20East&dates=20260923T160000Z/20260923T180000Z&details=Daytime%20tech%20conference%20covering%20careers%2C%20cybersecurity%20and%20data%2C%20at%20Metropolitan%20Pavilion.%20Tickets%20%26%20info%3A%20https%3A//allevents.in/new-york/tech-up-for-women-conference-east/10000574712389227&location=Metropolitan%20Pavilion%2C%20Chelsea" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="9">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Arts &amp; Play</h2>
+
+<article class="event" id="event-10" data-idx="10" data-name="Jazz in the Garden" data-start-local="2026-09-23T17:00:00" data-cal-start="20260923T210000Z" data-cal-end="20260923T230000Z" data-loc="With Others, 340 Bedford Ave, Williamsburg" data-url="https://cityhappenings.substack.com/p/things-to-do-in-nyc-this-week-sept-631">
+<button class="toggle" data-idx="10" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://cityhappenings.substack.com/p/things-to-do-in-nyc-this-week-sept-631">Jazz in the Garden</a></h3>
+<div class="meta">5:00 PM · With Others, 340 Bedford Ave, Williamsburg</div>
+<p>Final Wednesdays of September: live jazz and wine in a Williamsburg backyard, dogs welcome, walk-ins held.</p>
+<a class="tickets" href="https://cityhappenings.substack.com/p/things-to-do-in-nyc-this-week-sept-631">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Jazz%20in%20the%20Garden&dates=20260923T210000Z/20260923T230000Z&details=Final%20Wednesdays%20of%20September%3A%20live%20jazz%20and%20wine%20in%20a%20Williamsburg%20backyard%2C%20dogs%20welcome%2C%20walk-ins%20held.%20Tickets%20%26%20info%3A%20https%3A//cityhappenings.substack.com/p/things-to-do-in-nyc-this-week-sept-631&location=With%20Others%2C%20340%20Bedford%20Ave%2C%20Williamsburg" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="10">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+</main>
+<footer>
+<div class="serif">Hand-picked for you by Tonight.</div>
+<p>Your picks are tracked when you send them —<br>tomorrow's digest learns what you love.</p>
+</footer>
+<script>
+const TRAVEL_MINUTES = 30;  // default buffer before an event's start time
+const CITY = "nyc";
+const DATE = "2026-09-23";
+const NAMES = ["Of Monsters and Men", "She & Him: Pump Up The Volumes Tour", "Gov't Mule and Ziggy Marley", "Angus & Julia Stone", "Talib Kweli", "Love Spells", "The Bros. Landreth: Tumbling Wild Tour", "Good Eggs ft. Mark Normand, Jessica Levin, Michael Rowland, Matt Ruby", "Story Warz w/ Big Jay Oakerson, Luis J Gomez + Special Guests", "Tech Up For Women Conference East", "Jazz in the Garden"];
+const CATS = ["Music", "Music", "Music", "Music", "Music", "Music", "Music", "Comedy", "Comedy", "Talks", "Arts & Play"];
+const FREE = [false, false, false, false, false, false, false, false, false, false, false];
+const TZ = "America/New_York";
+const STARTS = [1140, 1200, null, null, 1200, 1140, 1080, 1200, 1185, 720, 1020];   // minutes since midnight, or null
+const ENDS = [null, null, null, null, null, null, null, null, null, null, null];       // from end_time, or null (-> start + 2h)
+const KEY = "tonight-picks-" + CITY + "-" + DATE;
+let picks = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
+function render() {
+  document.querySelectorAll(".toggle").forEach(btn => {
+    const on = picks.has(btn.dataset.idx);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  document.getElementById("pickCount").textContent = picks.size;
+  localStorage.setItem(KEY, JSON.stringify([...picks]));
+  // report taps to the backend when available (real tracking)
+  if (window.__tonight_api) {
+    const USER_ID = localStorage.getItem("tonight-user-id") || null;
+    fetch(window.__tonight_api + "/tap", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({city: CITY, date: DATE, user_id: USER_ID,
+        picks: [...picks].map(i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i]}))})
+    }).catch(() => {});
+  }
+}
+document.querySelectorAll(".toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const id = btn.dataset.idx;
+    picks.has(id) ? picks.delete(id) : picks.add(id);
+    render();
+  });
+});
+document.getElementById("shareBtn").addEventListener("click", async () => {
+  const data = {title: document.title, text: "Today's picks", url: location.href};
+  if (navigator.share) { try { await navigator.share(data); } catch(e) {} }
+  else { await navigator.clipboard.writeText(location.href); alert("Link copied — paste it anywhere to share."); }
+});
+document.getElementById("sendBtn").addEventListener("click", () => {
+  if (!picks.size) { alert("Tap a few boxes first, then send your picks."); return; }
+  const list = [...picks].sort().map(i => "• " + NAMES[+i]).join("\n");
+  const subject = encodeURIComponent("Re: NYC Today — my picks");
+  const body = encodeURIComponent("My picks for " + DATE + " (" + CITY + "):\n\n" + list + "\n\n— sent from my NYC Today page");
+  location.href = "mailto:pseshadri91@gmail.com?subject=" + subject + "&body=" + body;
+});
+render();
+function fmtTime(d) {
+  let h = d.getHours(); const m = d.getMinutes();
+  const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12;
+  return h + ":" + String(m).padStart(2, "0") + " " + ap;
+}
+// "leave by" hints from each event's local start time
+document.querySelectorAll(".event[data-start-local]").forEach(a => {
+  const start = new Date(a.dataset.startLocal);
+  if (isNaN(start)) return;
+  const leave = new Date(start.getTime() - TRAVEL_MINUTES * 60000);
+  const el = a.querySelector(".leave-by");
+  if (el) el.textContent = "leave by ~" + fmtTime(leave);
+});
+// per-event .ics download built client-side
+function icsEscape(s) {
+  return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;")
+                  .replace(/,/g, "\\,").replace(/\n/g, "\n");
+}
+function icsFold(line) {
+  let out = "";
+  while (line.length > 75) { out += line.slice(0, 75) + "\r\n "; line = line.slice(75); }
+  return out + line;
+}
+document.querySelectorAll(".ics-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const a = btn.closest(".event");
+    const d = a.dataset;
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Tonight//Event//EN",
+      "BEGIN:VEVENT",
+      "UID:" + CITY + "-" + DATE + "-" + btn.dataset.idx + "@tonight",
+      "DTSTAMP:" + stamp,
+      "DTSTART:" + d.calStart, "DTEND:" + d.calEnd,
+      "SUMMARY:" + icsEscape(d.name)];
+    if (d.loc) lines.push("LOCATION:" + icsEscape(d.loc));
+    if (d.url) {
+      lines.push("URL:" + d.url);
+      lines.push("DESCRIPTION:" + icsEscape("Tickets & info: " + d.url));
+    }
+    lines.push("END:VEVENT", "END:VCALENDAR");
+    const uri = "data:text/calendar;charset=utf-8," +
+                encodeURIComponent(lines.map(icsFold).join("\r\n"));
+    const link = document.createElement("a");
+    link.href = uri;
+    link.download = d.name.replace(/[^\w\- ]+/g, "").trim()
+                         .replace(/\s+/g, "-").slice(0, 60) + ".ics";
+    document.body.appendChild(link); link.click(); link.remove();
+  });
+});
+
+// ---------------- Tonight mode ----------------
+const TONIGHT_WINDOW = 300;  // upcoming: starts within the next 5h
+const NOW_GRACE = 120;       // "happening now": started within the last 2h
+function cityNowMinutes() {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: TZ, hour: "numeric", minute: "numeric", hour12: false
+    }).formatToParts(new Date());
+    let h = 0, m = 0;
+    for (const p of parts) {
+      if (p.type === "hour") h = (+p.value) % 24;
+      if (p.type === "minute") m = +p.value;
+    }
+    return h * 60 + m;
+  } catch (e) {
+    const d = new Date();
+    return d.getHours() * 60 + d.getMinutes();
+  }
+}
+let tonightOn = false;
+const homeSpot = new Map();  // idx -> original {parent, next} for restore
+function addBadge(art, cls, text) {
+  art.querySelectorAll(".badge").forEach(b => b.remove());
+  const b = document.createElement("span");
+  b.className = "badge " + cls;
+  b.textContent = text;
+  art.querySelector(".event-body").prepend(b);
+}
+function setTonight(on) {
+  tonightOn = on;
+  const btn = document.getElementById("tonightBtn");
+  btn.classList.toggle("btn-active", on);
+  btn.setAttribute("aria-pressed", on ? "true" : "false");
+  const wrap = document.getElementById("tonightWrap");
+  const list = document.getElementById("tonightList");
+  const empty = document.getElementById("tonightEmpty");
+  const count = document.getElementById("tonightCount");
+  if (!on) {
+    homeSpot.forEach((spot, i) => {
+      const art = document.getElementById("event-" + i);
+      if (art) {
+        art.querySelectorAll(".badge").forEach(b => b.remove());
+        spot.parent.insertBefore(art, spot.next);
+      }
+    });
+    homeSpot.clear();
+    wrap.style.display = "none";
+    document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
+    return;
+  }
+  const now = cityNowMinutes();
+  const items = [];
+  document.querySelectorAll("article.event").forEach(art => {
+    const i = +art.dataset.idx;
+    if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
+    const s = STARTS[i];
+    let status = "tba", rank = 3;
+    if (s == null) { status = "tba"; rank = 3; }
+    else {
+      const e = ENDS[i] != null ? ENDS[i] : s + NOW_GRACE;
+      if (now >= s && now <= e) { status = "now"; rank = 0; }
+      else if (s > now && s - now <= TONIGHT_WINDOW) { status = "soon"; rank = FREE[i] ? 1 : 2; }
+      else { status = "past"; rank = 4; }
+    }
+    items.push({art: art, i: i, s: s, status: status, rank: rank, free: FREE[i]});
+  });
+  items.sort((a, b) => (a.rank - b.rank) || ((a.s == null ? 1440 : a.s) - (b.s == null ? 1440 : b.s)));
+  list.innerHTML = "";
+  let live = 0, tbaHeader = false;
+  items.forEach(o => {
+    if (o.status === "past") return;  // already over: not tonight
+    if (o.status === "tba" && !tbaHeader) {
+      tbaHeader = true;
+      const div = document.createElement("div");
+      div.className = "tba-div";
+      div.textContent = "Times TBA";
+      list.appendChild(div);
+    }
+    if (o.status === "now") addBadge(o.art, "now", "● Happening now");
+    else if (o.free) addBadge(o.art, "free", "Free");
+    else o.art.querySelectorAll(".badge").forEach(b => b.remove());
+    list.appendChild(o.art);
+    if (o.status !== "tba") live++;
+  });
+  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
+  wrap.style.display = "block";
+  empty.style.display = live ? "none" : "block";
+  count.textContent = live ? live + (live === 1 ? " thing" : " things") + " on now or starting soon" : "";
+  wrap.scrollIntoView({behavior: "smooth", block: "start"});
+}
+document.getElementById("tonightBtn").addEventListener("click", () => setTonight(!tonightOn));
+</script>
+<script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}</script><script>window.__tonight_api="https://20357f0b1dcdf77b-104-28-233-73.serveousercontent.com/api";</script></body></html>
