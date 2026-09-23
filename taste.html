@@ -1,40 +1,23 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tonight — every city, every night</title>
+<title>Your taste — Tonight</title>
 <style>
-:root{--ink:#14201A;--gold:#E39A2D;--paper:#F7F2E9;}
-*{box-sizing:border-box;}
-body{margin:0;background:var(--paper);color:var(--ink);
-font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
-.hero{background:var(--ink);color:var(--paper);text-align:center;padding:70px 24px 60px;}
-.eyebrow{color:var(--gold);font-size:12px;letter-spacing:3px;text-transform:uppercase;}
-.hero h1{font-family:Georgia, 'Times New Roman', serif;font-size:64px;margin:14px 0 10px;font-weight:normal;}
-.hero h1 b{color:var(--gold);}
-.hero p{opacity:.75;font-size:16px;max-width:520px;margin:0 auto;line-height:1.6;}
-.cta-row{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.btn{display:inline-block;padding:13px 30px;border-radius:999px;text-decoration:none;font-size:15px;}
-.btn-gold{background:var(--gold);color:var(--ink);font-weight:bold;}
-.btn-ghost{border:1px solid var(--gold);color:var(--paper);}
-.cities{max-width:720px;margin:0 auto;padding:40px 20px 10px;display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
-.citycard{display:block;background:#fffdf6;border:1px solid var(--gold);border-radius:16px;
-padding:26px 24px;text-decoration:none;color:var(--ink);}
-.citycard:hover{box-shadow:0 6px 24px rgba(20,32,26,.12);}
-.cc-top{font-family:Georgia, 'Times New Roman', serif;font-size:26px;}
-.cc-meta{font-size:13px;color:#6b6b6b;margin-top:6px;}
-.cc-cta{margin-top:14px;color:var(--ink);font-weight:bold;font-size:14px;}
-.how{max-width:720px;margin:0 auto;padding:30px 20px 50px;}
-.how h2{font-family:Georgia, 'Times New Roman', serif;font-size:30px;font-weight:normal;text-align:center;margin-bottom:26px;}
-.step{display:flex;gap:16px;margin-bottom:20px;}
-.step .n{flex:0 0 36px;height:36px;border-radius:50%;background:var(--ink);color:var(--paper);
-display:flex;align-items:center;justify-content:center;font-weight:bold;}
-.step h3{margin:2px 0 6px;font-size:16px;}
-.step p{margin:0;font-size:14px;color:#555;line-height:1.55;}
-footer{background:var(--ink);color:var(--paper);text-align:center;padding:34px 24px;font-size:13px;}
-footer .serif{font-family:Georgia, 'Times New Roman', serif;font-size:17px;margin-bottom:8px;}
-footer p{opacity:.62;line-height:1.6;margin:0;}
-</style><style>
+.topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
+background:#14201A;color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+.topnav .brand{font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#F7F2E9;text-decoration:none;}
+.topnav .brand b{color:#E39A2D;}
+.topnav .citylinks{display:flex;gap:6px;margin-left:auto;}
+.topnav .citylinks a{color:#F7F2E9;opacity:.75;text-decoration:none;font-size:13.5px;
+padding:6px 14px;border-radius:999px;border:1px solid transparent;}
+.topnav .citylinks a.cur{background:#E39A2D;color:#14201A;font-weight:bold;opacity:1;}
+.topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
+.topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .browselink:hover{text-decoration:underline;}
+.topnav .tastelinks{display:flex;gap:14px;align-items:center;}
+.topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .tastelink:hover{text-decoration:underline;}
+
 .quiz-veil{position:fixed;inset:0;z-index:200;background:rgba(20,32,26,.55);
 display:flex;align-items:flex-end;justify-content:center;}
 .quiz-veil[hidden]{display:none;}
@@ -55,8 +38,38 @@ font-size:14px;cursor:pointer;font-family:inherit;color:#14201A;}
 .qactions{display:flex;gap:16px;align-items:center;margin-top:4px;}
 .qlink{background:none;border:none;color:#6b6b6b;text-decoration:underline;cursor:pointer;
 font-size:13.5px;font-family:inherit;padding:0;}
+
+body{margin:0;background:#F7F2E9;color:#14201A;
+font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.bhero{background:#14201A;color:#F7F2E9;padding:40px 24px 30px;text-align:center;}
+.bhero .eyebrow{color:#E39A2D;font-size:12px;letter-spacing:3px;text-transform:uppercase;}
+.bhero h1{font-family:Georgia,'Times New Roman',serif;font-size:38px;margin:10px 0 10px;font-weight:normal;}
+.bhero p{opacity:.8;font-size:15px;max-width:560px;margin:0 auto;line-height:1.6;}
+#savedNote{font-size:12px;color:#8fd694;opacity:0;transition:opacity .3s;}
+.tsec{max-width:640px;margin:0 auto;padding:6px 20px;}
+.tsec h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;
+border-bottom:1px solid #d8d2c2;padding:24px 0 10px;margin:0 0 4px;}
+.thint{font-size:13px;color:#6b6b6b;margin:10px 0 4px;}
+.trow{display:flex;align-items:center;justify-content:space-between;gap:12px;
+padding:11px 0;border-bottom:1px solid #e7e1d2;}
+.tcat{font-family:Georgia,'Times New Roman',serif;font-size:17px;}
+.seg{display:flex;gap:6px;}
+.seg button{padding:8px 14px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
+font-size:13px;cursor:pointer;font-family:inherit;color:#14201A;}
+.seg button.on{background:#14201A;color:#F7F2E9;border-color:#14201A;font-weight:bold;}
+.fbtn{padding:9px 18px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
+font-size:13.5px;cursor:pointer;font-family:inherit;color:#14201A;}
+.fbtn[aria-pressed="true"]{background:#E39A2D;border-color:#E39A2D;font-weight:bold;}
+.tcenter{max-width:640px;margin:0 auto;padding:26px 20px 60px;text-align:center;}
+.btn{display:inline-block;border:none;cursor:pointer;padding:11px 24px;border-radius:999px;
+font-size:14px;font-family:inherit;text-decoration:none;}
+.btn-gold{background:#E39A2D;color:#14201A;font-weight:bold;}
+footer{background:#14201A;color:#F7F2E9;text-align:center;padding:34px 24px;font-size:13px;}
+footer .serif{font-family:Georgia,'Times New Roman',serif;font-size:17px;margin-bottom:8px;}
+footer p{opacity:.62;line-height:1.6;margin:0;}
 </style></head>
-<body><script>
+<body data-noquiz="1">
+<script>
 /* Tonight taste: onboarding quiz, profile, personalized ranking */
 (function(){
 "use strict";
@@ -305,45 +318,86 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 })();
 </script>
-<header class="hero">
-<div class="eyebrow">Every city · Every night</div>
-<h1>Tonight<b>.</b></h1>
-<p>Hand-picked things to do, all happening today. Open your city, hit
-<b>⚡ Tonight</b> to see what's on right now, and tap the boxes —
-your picks train tomorrow's recommendations.</p>
-<div class="cta-row">
-<a class="btn btn-gold" href="nyc/2026-09-23.html#tonight">⚡ What's on tonight</a>
-<a class="btn btn-ghost" href="#cities">Pick a city</a>
-</div>
+<nav class="topnav"><a class="brand" href="./">Tonight<b>.</b></a>
+<span class="tastelinks"><a class="tastelink" href="#" id="tuneTaste">Tune</a></span>
+<span class="citylinks"><a href="./">Home</a></span></nav>
+<header class="bhero">
+<div class="eyebrow">Your profile</div>
+<h1>Your taste</h1>
+<p><span id="tasteSummary"></span> <span id="savedNote">Saved ✓</span></p>
 </header>
-<main id="cities" class="cities">
-
-<a class="citycard" href="nyc/2026-09-23.html">
-<div class="cc-top">NYC Today</div>
-<div class="cc-meta">Wednesday, September 23</div>
-<div class="cc-meta">11 events · 0 free</div>
-<div class="cc-cta">See tonight →</div>
-</a>
-<a class="citycard" href="london/2026-09-23.html">
-<div class="cc-top">London Tonight</div>
-<div class="cc-meta">Wednesday, September 23</div>
-<div class="cc-meta">11 events · 4 free</div>
-<div class="cc-cta">See tonight →</div>
-</a>
-</main>
-<section class="how">
-<h2>How it works</h2>
-<div class="step"><div class="n">1</div><div><h3>Hand-picked daily</h3>
-<p>Every morning, a curated shortlist of the day's best events — not a firehose. Every link verified.</p></div></div>
-<div class="step"><div class="n">2</div><div><h3>⚡ Tonight mode</h3>
-<p>Spontaneous? One tap filters to what's happening now or starting in the next few hours.</p></div></div>
-<div class="step"><div class="n">3</div><div><h3>✨ Free tonight</h3>
-<p>Free events get their own section, always. The best things in the city shouldn't cost anything.</p></div></div>
-<div class="step"><div class="n">4</div><div><h3>Taste that learns</h3>
-<p>Tap the boxes on anything you like. Your picks shape tomorrow's recommendations — per city.</p></div></div>
+<main>
+<section class="tsec"><h2>Categories</h2>
+<p class="thint">Like what you love, mute what you don't. Muted stuff sinks to the
+bottom of your lists — it never disappears entirely.</p>
+<div class="trow" data-cat="Music"><span class="tcat">Music</span><div class="seg" role="group" aria-label="preference"><button type="button" data-mode="like">👍 Like</button><button type="button" data-mode="neutral" class="on">—</button><button type="button" data-mode="mute">👎 Mute</button></div></div><div class="trow" data-cat="Comedy"><span class="tcat">Comedy</span><div class="seg" role="group" aria-label="preference"><button type="button" data-mode="like">👍 Like</button><button type="button" data-mode="neutral" class="on">—</button><button type="button" data-mode="mute">👎 Mute</button></div></div><div class="trow" data-cat="Arts &amp; Play"><span class="tcat">Arts &amp; Play</span><div class="seg" role="group" aria-label="preference"><button type="button" data-mode="like">👍 Like</button><button type="button" data-mode="neutral" class="on">—</button><button type="button" data-mode="mute">👎 Mute</button></div></div><div class="trow" data-cat="Tech"><span class="tcat">Tech</span><div class="seg" role="group" aria-label="preference"><button type="button" data-mode="like">👍 Like</button><button type="button" data-mode="neutral" class="on">—</button><button type="button" data-mode="mute">👎 Mute</button></div></div><div class="trow" data-cat="Meetups &amp; Mixers"><span class="tcat">Meetups &amp; Mixers</span><div class="seg" role="group" aria-label="preference"><button type="button" data-mode="like">👍 Like</button><button type="button" data-mode="neutral" class="on">—</button><button type="button" data-mode="mute">👎 Mute</button></div></div><div class="trow" data-cat="Food &amp; Drink"><span class="tcat">Food &amp; Drink</span><div class="seg" role="group" aria-label="preference"><button type="button" data-mode="like">👍 Like</button><button type="button" data-mode="neutral" class="on">—</button><button type="button" data-mode="mute">👎 Mute</button></div></div><div class="trow" data-cat="Talks"><span class="tcat">Talks</span><div class="seg" role="group" aria-label="preference"><button type="button" data-mode="like">👍 Like</button><button type="button" data-mode="neutral" class="on">—</button><button type="button" data-mode="mute">👎 Mute</button></div></div>
 </section>
+<section class="tsec"><h2>Preferences</h2>
+<div class="trow"><span class="tcat">✨ Free-first</span>
+<button type="button" class="fbtn" id="freeOnlyBtn" aria-pressed="false">Off</button></div>
+<div class="trow"><span class="tcat">🎲 Surprises</span>
+<div class="seg" id="surpSeg">
+<button type="button" data-s="low" class="on">Just my thing</button><button type="button" data-s="med">A few</button><button type="button" data-s="high">Lots</button>
+</div></div>
+</section>
+<div class="tcenter">
+<button type="button" class="btn btn-gold" id="retakeQuiz">Retake the 30-second quiz</button>
+</div>
+</main>
 <footer>
 <div class="serif">Tonight — every city, every night.</div>
-<p>Curated, verified, and free-first.</p>
+<p>Your taste shapes your picks, on every page.</p>
 </footer>
+<script>
+window.TonightPage = {
+  refresh: null,
+  init: function(){
+    var T = window.Tonight;
+    function refresh(showSaved){
+      document.getElementById("tasteSummary").textContent = T.describe();
+      document.querySelectorAll(".trow[data-cat]").forEach(function(r){
+        var c = r.getAttribute("data-cat"), mode = "neutral";
+        if (T.taste.likes.indexOf(c) >= 0) mode = "like";
+        else if (T.taste.mutes.indexOf(c) >= 0) mode = "mute";
+        r.querySelectorAll("button[data-mode]").forEach(function(b){
+          b.classList.toggle("on", b.getAttribute("data-mode") === mode);
+        });
+      });
+      var fb = document.getElementById("freeOnlyBtn");
+      var fo = T.taste.free_only;
+      fb.setAttribute("aria-pressed", fo ? "true" : "false");
+      fb.textContent = fo ? "On \u2014 boosting free events" : "Off";
+      document.querySelectorAll("#surpSeg button").forEach(function(b){
+        b.classList.toggle("on", b.getAttribute("data-s") === T.taste.surprise);
+      });
+      if (showSaved) {
+        var sv = document.getElementById("savedNote");
+        sv.style.opacity = "1";
+        setTimeout(function(){ sv.style.opacity = "0"; }, 1400);
+      }
+    }
+    document.querySelectorAll(".trow[data-cat]").forEach(function(r){
+      r.querySelectorAll("button[data-mode]").forEach(function(b){
+        b.addEventListener("click", function(){
+          T.setCat(r.getAttribute("data-cat"), b.getAttribute("data-mode"));
+          refresh(true);
+        });
+      });
+    });
+    document.getElementById("freeOnlyBtn").addEventListener("click", function(){
+      T.taste.free_only = !T.taste.free_only; T.save(); refresh(true);
+    });
+    document.querySelectorAll("#surpSeg button").forEach(function(b){
+      b.addEventListener("click", function(){
+        T.taste.surprise = b.getAttribute("data-s"); T.save(); refresh(true);
+      });
+    });
+    document.getElementById("retakeQuiz").addEventListener("click", function(){
+      T.openQuiz();
+    });
+    this.refresh = refresh;
+    refresh(false);
+  }
+};
+</script>
 </body></html>

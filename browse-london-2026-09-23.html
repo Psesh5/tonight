@@ -14,6 +14,9 @@ padding:6px 14px;border-radius:999px;border:1px solid transparent;}
 .topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
 .topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
 .topnav .browselink:hover{text-decoration:underline;}
+.topnav .tastelinks{display:flex;gap:14px;align-items:center;}
+.topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .tastelink:hover{text-decoration:underline;}
 
 body{margin:0;background:#F7F2E9;color:#14201A;
 font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
@@ -66,9 +69,278 @@ font-size:14px;font-family:inherit;text-decoration:none;}
 footer{background:#14201A;color:#F7F2E9;text-align:center;padding:34px 24px;font-size:13px;}
 footer .serif{font-family:Georgia,'Times New Roman',serif;font-size:17px;margin-bottom:8px;}
 footer p{opacity:.62;line-height:1.6;margin:0;}
+</style><style>
+.quiz-veil{position:fixed;inset:0;z-index:200;background:rgba(20,32,26,.55);
+display:flex;align-items:flex-end;justify-content:center;}
+.quiz-veil[hidden]{display:none;}
+.quiz-card{background:#F7F2E9;color:#14201A;border-radius:20px 20px 0 0;
+padding:28px 24px 34px;max-width:560px;width:100%;max-height:88vh;overflow:auto;
+font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+animation:quizup .25s ease-out;}
+@keyframes quizup{from{transform:translateY(24px);opacity:.6;}to{transform:none;opacity:1;}}
+@media(min-width:640px){.quiz-veil{align-items:center;padding:20px;}
+.quiz-card{border-radius:20px;}}
+.quiz-eyebrow{color:#B07A1E;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;}
+.quiz-card h2{font-family:Georgia,'Times New Roman',serif;font-size:28px;margin:8px 0 6px;font-weight:normal;}
+.quiz-sub{font-size:14px;color:#6b6b6b;margin:0 0 16px;line-height:1.5;}
+.qchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.qchip{padding:10px 18px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
+font-size:14px;cursor:pointer;font-family:inherit;color:#14201A;}
+.qchip[aria-pressed="true"]{background:#E39A2D;border-color:#E39A2D;font-weight:bold;}
+.qactions{display:flex;gap:16px;align-items:center;margin-top:4px;}
+.qlink{background:none;border:none;color:#6b6b6b;text-decoration:underline;cursor:pointer;
+font-size:13.5px;font-family:inherit;padding:0;}
 </style></head>
-<body>
-<nav class="topnav"><a class="brand" href="./">Tonight<b>.</b></a><span class="citylinks"><a class="" href="./nyc/2026-09-23.html">NYC</a> <a class="cur" href="./london/2026-09-23.html">London</a></span><a class="browselink" href="./browse-london-2026-09-23.html">Browse all →</a></nav>
+<body><script>
+/* Tonight taste: onboarding quiz, profile, personalized ranking */
+(function(){
+"use strict";
+var CATS_ALL = ["Music", "Comedy", "Arts & Play", "Tech", "Meetups & Mixers", "Food & Drink", "Talks"];
+var CITY = "london";
+var CITIES_ALL = ["nyc", "london"];
+var TKEY = "tonight-taste";
+var OKEY = "tonight-onboarded";
+function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low"}; }
+function cleanList(a){
+  if (!Array.isArray(a)) return [];
+  return a.filter(function(c){ return CATS_ALL.indexOf(c) >= 0; });
+}
+function load(){
+  try {
+    var t = JSON.parse(localStorage.getItem(TKEY) || "null");
+    if (t && typeof t === "object") {
+      var b = blank();
+      b.likes = cleanList(t.likes); b.mutes = cleanList(t.mutes);
+      b.free_only = !!t.free_only;
+      b.surprise = (t.surprise === "med" || t.surprise === "high") ? t.surprise : "low";
+      return b;
+    }
+  } catch (e) {}
+  return blank();
+}
+var taste = load();
+var tapBonus = {};
+function uid(){
+  var u = null;
+  try { u = localStorage.getItem("tonight-user-id"); } catch (e) {}
+  if (!u) {
+    u = "dev-" + Math.random().toString(36).slice(2, 10);
+    try { localStorage.setItem("tonight-user-id", u); } catch (e) {}
+  }
+  return u;
+}
+function apiBase(){ return window.__tonight_api || null; }
+function save(sync){
+  try { localStorage.setItem(TKEY, JSON.stringify(taste)); } catch (e) {}
+  if (sync === false) return;
+  var base = apiBase();
+  if (!base) return;
+  var targets = CITY ? [CITY] : CITIES_ALL;
+  var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
+    free_only: taste.free_only, surprise: taste.surprise});
+  targets.forEach(function(c){
+    fetch(base + "/taste/" + encodeURIComponent(c),
+      {method: "POST", headers: {"Content-Type": "application/json"}, body: payload}
+    ).catch(function(){});
+  });
+}
+function pull(){
+  var base = apiBase();
+  if (!base || !CITY || typeof CATS === "undefined") return;
+  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()))
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if (d && d.categories) { tapBonus = d.categories; applyRanking(); } })
+    .catch(function(){});
+}
+function score(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  var cat = CATS[i], s = 0;
+  if (taste.likes.indexOf(cat) >= 0) s += 10;
+  if (taste.mutes.indexOf(cat) >= 0) s -= 20;
+  if (taste.free_only && FREE[i]) s += 6;
+  var tb = tapBonus[cat];
+  if (tb) s += Math.min(tb, 3);
+  if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
+    s += (taste.surprise === "high" ? 8 : 4);
+  return s;
+}
+function hasTaste(){
+  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only ||
+    taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
+}
+function sortChildren(container){
+  var arts = [];
+  for (var k = 0; k < container.children.length; k++) {
+    var ch = container.children[k];
+    if (ch.tagName === "ARTICLE" && ch.classList.contains("event")) arts.push(ch);
+  }
+  if (arts.length < 2) return;
+  arts.map(function(a){ return {a: a, k: score(+a.dataset.idx), n: +a.dataset.idx}; })
+    .sort(function(x, y){ return (y.k - x.k) || (x.n - y.n); })
+    .forEach(function(o){ container.appendChild(o.a); });
+}
+function applyRanking(){
+  if (!hasTaste() || typeof CATS === "undefined") return;
+  var wrap = document.querySelector("main.wrap");
+  if (!wrap) return;
+  var secs = [];
+  for (var k = 0; k < wrap.children.length; k++) {
+    var ch = wrap.children[k];
+    if (ch.tagName === "SECTION" && ch.classList.contains("cat")) secs.push(ch);
+  }
+  if (secs.length) {
+    var secCat = function(s){
+      var a = s.querySelector("article.event");
+      return a ? CATS[+a.dataset.idx] : "";
+    };
+    var secScore = function(s){
+      var c = secCat(s), v = 0;
+      if (taste.likes.indexOf(c) >= 0) v += 10;
+      if (taste.mutes.indexOf(c) >= 0) v -= 20;
+      return v;
+    };
+    secs.forEach(sortChildren);
+    var free = [], rest = [];
+    secs.forEach(function(s){ (s.classList.contains("free") ? free : rest).push(s); });
+    rest.sort(function(a, b){ return secScore(b) - secScore(a); });
+    free.concat(rest).forEach(function(s){ wrap.appendChild(s); });
+  } else {
+    sortChildren(wrap);
+  }
+}
+/* ---------------- quiz ---------------- */
+var SURP = {low: "off", med: "some", high: "lots"};
+var sheet = null, sel = {};
+function chipBtn(c){
+  var b = document.createElement("button");
+  b.className = "qchip"; b.type = "button";
+  b.dataset.cat = c; b.setAttribute("aria-pressed", "false");
+  b.textContent = c;
+  b.addEventListener("click", function(){
+    var on = b.getAttribute("aria-pressed") === "true";
+    b.setAttribute("aria-pressed", on ? "false" : "true");
+    if (on) delete sel[c]; else sel[c] = 1;
+  });
+  return b;
+}
+function buildSheet(){
+  var veil = document.createElement("div");
+  veil.className = "quiz-veil"; veil.id = "quizVeil"; veil.hidden = true;
+  var card = document.createElement("div");
+  card.className = "quiz-card"; card.setAttribute("role", "dialog");
+  card.setAttribute("aria-label", "What are you into?");
+  var eb = document.createElement("div"); eb.className = "quiz-eyebrow";
+  eb.textContent = "Tonight learns your taste";
+  var h = document.createElement("h2"); h.textContent = "What are you into?";
+  var sub = document.createElement("p"); sub.className = "quiz-sub";
+  sub.textContent = "Tap what you like. Takes 30 seconds, and your picks get personal.";
+  var chips = document.createElement("div"); chips.className = "qchips";
+  CATS_ALL.forEach(function(c){ chips.appendChild(chipBtn(c)); });
+  var prefs = document.createElement("div"); prefs.className = "qchips";
+  var freeB = document.createElement("button");
+  freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
+  freeB.setAttribute("aria-pressed", "false");
+  freeB.textContent = "\u2728 Free-first";
+  freeB.addEventListener("click", function(){
+    var on = freeB.getAttribute("aria-pressed") === "true";
+    freeB.setAttribute("aria-pressed", on ? "false" : "true");
+  });
+  var order = ["low", "med", "high"], surp = "low";
+  var surpB = document.createElement("button");
+  surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
+  var paintSurp = function(){
+    surpB.textContent = "\ud83c\udfb2 Surprise me: " + SURP[surp];
+    surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
+  };
+  paintSurp();
+  surpB.addEventListener("click", function(){
+    surp = order[(order.indexOf(surp) + 1) % 3]; paintSurp();
+  });
+  prefs.appendChild(freeB); prefs.appendChild(surpB);
+  var actions = document.createElement("div"); actions.className = "qactions";
+  var done = document.createElement("button");
+  done.className = "btn btn-gold"; done.type = "button"; done.id = "qDone";
+  done.textContent = "Done \u2192";
+  var skip = document.createElement("button");
+  skip.className = "qlink"; skip.type = "button"; skip.id = "qSkip";
+  skip.textContent = "skip for now";
+  var markSeen = function(){ try { localStorage.setItem(OKEY, "1"); } catch (e) {} };
+  done.addEventListener("click", function(){
+    taste.likes = Object.keys(sel);
+    taste.mutes = [];
+    taste.free_only = freeB.getAttribute("aria-pressed") === "true";
+    taste.surprise = surp;
+    save(); markSeen(); veil.hidden = true;
+    applyRanking();
+    if (window.TonightPage && TonightPage.refresh) TonightPage.refresh(true);
+  });
+  skip.addEventListener("click", function(){ markSeen(); veil.hidden = true; });
+  actions.appendChild(done); actions.appendChild(skip);
+  card.appendChild(eb); card.appendChild(h); card.appendChild(sub);
+  card.appendChild(chips); card.appendChild(prefs); card.appendChild(actions);
+  veil.appendChild(card);
+  document.body.appendChild(veil);
+  return {veil: veil, freeB: freeB,
+    paint: function(s){ surp = s; paintSurp(); }};
+}
+function openQuiz(){
+  if (!sheet) sheet = buildSheet();
+  sel = {};
+  taste.likes.forEach(function(c){ sel[c] = 1; });
+  sheet.veil.querySelectorAll(".qchip[data-cat]").forEach(function(b){
+    b.setAttribute("aria-pressed", sel[b.dataset.cat] ? "true" : "false");
+  });
+  sheet.freeB.setAttribute("aria-pressed", taste.free_only ? "true" : "false");
+  sheet.paint(taste.surprise);
+  sheet.veil.hidden = false;
+}
+/* ---------------- plain-language profile ---------------- */
+function joinList(a){
+  if (!a.length) return "";
+  if (a.length === 1) return a[0];
+  return a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+}
+function describe(){
+  var parts = [];
+  if (taste.likes.length) parts.push("into " + joinList(taste.likes));
+  if (taste.mutes.length) parts.push("not into " + joinList(taste.mutes));
+  var s = parts.length
+    ? "You're " + parts.join(", ") + "."
+    : "You haven't told Tonight what you like yet.";
+  var prefs = [];
+  if (taste.free_only) prefs.push("you'd rather keep it free");
+  prefs.push(taste.surprise === "low" ? "no surprises, just your thing" :
+    (taste.surprise === "med" ? "open to a few surprises" : "bring on the surprises"));
+  s += " Right now, " + prefs.join(", ") + ".";
+  var top = Object.keys(tapBonus)
+    .sort(function(a, b){ return tapBonus[b] - tapBonus[a]; }).slice(0, 2);
+  if (top.length) s += " Your taps lean " + joinList(top) + ".";
+  return s;
+}
+function setCat(cat, mode){
+  taste.likes = taste.likes.filter(function(c){ return c !== cat; });
+  taste.mutes = taste.mutes.filter(function(c){ return c !== cat; });
+  if (mode === "like") taste.likes.push(cat);
+  else if (mode === "mute") taste.mutes.push(cat);
+  save();
+}
+window.Tonight = {
+  taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
+  score: score, save: save, applyRanking: applyRanking,
+  openQuiz: openQuiz, describe: describe, setCat: setCat
+};
+document.addEventListener("DOMContentLoaded", function(){
+  var tune = document.getElementById("tuneTaste");
+  if (tune) tune.addEventListener("click", function(e){ e.preventDefault(); openQuiz(); });
+  var noquiz = document.body && document.body.getAttribute("data-noquiz") === "1";
+  try { if (!noquiz && !localStorage.getItem(OKEY)) openQuiz(); } catch (e) {}
+  applyRanking();
+  pull();
+  if (window.TonightPage && TonightPage.init) TonightPage.init();
+});
+})();
+</script>
+<nav class="topnav"><a class="brand" href="./">Tonight<b>.</b></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Your taste</a><a class="tastelink" href="#" id="tuneTaste">Tune</a></span><span class="citylinks"><a class="" href="./nyc/2026-09-23.html">NYC</a> <a class="cur" href="./london/2026-09-23.html">London</a></span><a class="browselink" href="./browse-london-2026-09-23.html">Browse all →</a></nav>
 <header class="bhero">
 <div class="eyebrow">Wednesday, September 23 · London</div>
 <h1>Browse everything</h1>
@@ -371,7 +643,10 @@ function setTonight(on) {
     }
     items.push({art: art, i: i, s: s, status: status, rank: rank, free: FREE[i]});
   });
-  items.sort((a, b) => (a.rank - b.rank) || ((a.s == null ? 1440 : a.s) - (b.s == null ? 1440 : b.s)));
+  // Taste tiebreak: provided by the taste core script (injected by the
+  // site builder). Falls back to 0 when absent.
+  const tasteTie = o => (window.Tonight && Tonight.score) ? Tonight.score(o.i) : 0;
+  items.sort((a, b) => (a.rank - b.rank) || (tasteTie(b) - tasteTie(a)) || ((a.s == null ? 1440 : a.s) - (b.s == null ? 1440 : b.s)));
   list.innerHTML = "";
   let live = 0, tbaHeader = false;
   items.forEach(o => {
