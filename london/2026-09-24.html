@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>London Tonight — Thursday, September 24</title>
+<style>
+:root{--ink:#14201A;--gold:#E39A2D;--paper:#F7F2E9;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;}
+.hero{background:var(--ink);color:var(--paper);text-align:center;padding:44px 24px 36px;}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:3px;text-transform:uppercase;}
+.hero h1{font-family:Georgia, 'Times New Roman', serif;font-size:44px;margin:12px 0 8px;font-weight:normal;}
+.hero p{opacity:.72;font-size:14px;margin:0;}
+.toolbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:20px 20px 4px;}
+.btn{display:inline-block;border:none;cursor:pointer;padding:11px 24px;border-radius:999px;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;text-decoration:none;}
+.btn-dark{background:var(--ink);color:var(--paper);}
+.btn-gold{background:var(--gold);color:var(--ink);font-weight:bold;}
+.picks{max-width:640px;margin:14px auto 0;padding:14px 20px;text-align:center;font-size:14px;}
+.picks strong{font-family:Georgia, 'Times New Roman', serif;font-size:18px;}
+.wrap{max-width:680px;margin:0 auto;padding:8px 20px 60px;}
+.cat h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;border-bottom:1px solid #d8d2c2;padding:26px 0 10px;margin:0 0 4px;}
+.cat.free h2{color:var(--ink);}
+.cat.free{background:#fffdf6;border:1px solid var(--gold);border-radius:14px;padding:0 18px 8px;margin-top:18px;}
+.event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:20px;}
+.toggle{background:none;border:none;cursor:pointer;padding:2px 0;align-self:flex-start;}
+.box{display:inline-block;width:22px;height:22px;border:2px solid var(--gold);border-radius:7px;background:#fff;position:relative;transition:background .15s;}
+.toggle[aria-pressed="true"] .box{background:var(--gold);}
+.toggle[aria-pressed="true"] .box::after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid var(--ink);border-width:0 3px 3px 0;transform:rotate(42deg);}
+.event-body{flex:1;}
+.event-body h3{font-family:Georgia, 'Times New Roman', serif;font-size:20px;margin:0 0 4px;}
+.event-body h3 a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;}
+.meta{font-size:13px;color:#6b6b6b;margin-bottom:8px;}
+.event-body p{font-size:14.5px;line-height:1.55;color:#333;margin:0 0 10px;}
+.tickets{display:inline-block;background:var(--ink);color:var(--paper);padding:8px 20px;border-radius:999px;text-decoration:none;font-size:13px;}
+.cal-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;}
+.cal-link{display:inline-block;background:#fff;border:1px solid var(--gold);color:var(--ink);padding:6px 14px;border-radius:999px;text-decoration:none;font-size:12.5px;cursor:pointer;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
+.cal-link:hover{background:var(--gold);}
+.leave-by{font-size:12.5px;color:#6b6b6b;font-style:italic;}
+.btn-active{background:var(--gold)!important;color:var(--ink)!important;font-weight:bold;}
+.badge{display:inline-block;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin:0 0 8px;}
+.badge.now{background:#1a7f37;color:#fff;}
+.badge.free{background:var(--gold);color:var(--ink);}
+#tonightWrap{display:none;}
+.tonight-head h2{font-family:Georgia, 'Times New Roman', serif;font-size:26px;margin:18px 0 2px;font-weight:normal;}
+.tonight-head p{font-size:13px;color:#6b6b6b;margin:0 0 6px;}
+.tba-div{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b6b6b;border-top:1px solid #d8d2c2;margin-top:14px;padding-top:14px;}
+#tonightEmpty{text-align:center;color:#6b6b6b;padding:30px 10px;font-size:14px;}
+footer{background:var(--ink);color:var(--paper);text-align:center;padding:34px 24px;font-size:13px;}
+footer .serif{font-family:Georgia, 'Times New Roman', serif;font-size:17px;margin-bottom:8px;}
+footer p{opacity:.62;line-height:1.6;margin:0;}
+</style><style>
+.topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
+background:#14201A;color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+.topnav .brand{font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#F7F2E9;text-decoration:none;}
+.topnav .brand b{color:#E39A2D;}
+.topnav .citylinks{display:flex;gap:6px;margin-left:auto;}
+.topnav .citylinks a{color:#F7F2E9;opacity:.75;text-decoration:none;font-size:13.5px;
+padding:6px 14px;border-radius:999px;border:1px solid transparent;}
+.topnav .citylinks a.cur{background:#E39A2D;color:#14201A;font-weight:bold;opacity:1;}
+.topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
+.topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .browselink:hover{text-decoration:underline;}
+.topnav .tastelinks{display:flex;gap:14px;align-items:center;}
+.topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .tastelink:hover{text-decoration:underline;}
+</style><style>
+.quiz-veil{position:fixed;inset:0;z-index:200;background:rgba(20,32,26,.55);
+display:flex;align-items:flex-end;justify-content:center;}
+.quiz-veil[hidden]{display:none;}
+.quiz-card{background:#F7F2E9;color:#14201A;border-radius:20px 20px 0 0;
+padding:28px 24px 34px;max-width:560px;width:100%;max-height:88vh;overflow:auto;
+font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+animation:quizup .25s ease-out;}
+@keyframes quizup{from{transform:translateY(24px);opacity:.6;}to{transform:none;opacity:1;}}
+@media(min-width:640px){.quiz-veil{align-items:center;padding:20px;}
+.quiz-card{border-radius:20px;}}
+.quiz-eyebrow{color:#B07A1E;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;}
+.quiz-card h2{font-family:Georgia,'Times New Roman',serif;font-size:28px;margin:8px 0 6px;font-weight:normal;}
+.quiz-sub{font-size:14px;color:#6b6b6b;margin:0 0 16px;line-height:1.5;}
+.qchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.qchip{padding:10px 18px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
+font-size:14px;cursor:pointer;font-family:inherit;color:#14201A;}
+.qchip[aria-pressed="true"]{background:#E39A2D;border-color:#E39A2D;font-weight:bold;}
+.qactions{display:flex;gap:16px;align-items:center;margin-top:4px;}
+.qlink{background:none;border:none;color:#6b6b6b;text-decoration:underline;cursor:pointer;
+font-size:13.5px;font-family:inherit;padding:0;}
+</style></head>
+<body><script>
+/* Tonight taste: onboarding quiz, profile, personalized ranking */
+(function(){
+"use strict";
+var CATS_ALL = ["Music", "Comedy", "Arts & Play", "Tech", "Meetups & Mixers", "Food & Drink", "Talks"];
+var CITY = "london";
+var CITIES_ALL = ["nyc", "london"];
+var TKEY = "tonight-taste";
+var OKEY = "tonight-onboarded";
+function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low"}; }
+function cleanList(a){
+  if (!Array.isArray(a)) return [];
+  return a.filter(function(c){ return CATS_ALL.indexOf(c) >= 0; });
+}
+function load(){
+  try {
+    var t = JSON.parse(localStorage.getItem(TKEY) || "null");
+    if (t && typeof t === "object") {
+      var b = blank();
+      b.likes = cleanList(t.likes); b.mutes = cleanList(t.mutes);
+      b.free_only = !!t.free_only;
+      b.surprise = (t.surprise === "med" || t.surprise === "high") ? t.surprise : "low";
+      return b;
+    }
+  } catch (e) {}
+  return blank();
+}
+var taste = load();
+var tapBonus = {};
+function uid(){
+  var u = null;
+  try { u = localStorage.getItem("tonight-user-id"); } catch (e) {}
+  if (!u) {
+    u = "dev-" + Math.random().toString(36).slice(2, 10);
+    try { localStorage.setItem("tonight-user-id", u); } catch (e) {}
+  }
+  return u;
+}
+function apiBase(){ return window.__tonight_api || null; }
+function save(sync){
+  try { localStorage.setItem(TKEY, JSON.stringify(taste)); } catch (e) {}
+  if (sync === false) return;
+  var base = apiBase();
+  if (!base) return;
+  var targets = CITY ? [CITY] : CITIES_ALL;
+  var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
+    free_only: taste.free_only, surprise: taste.surprise});
+  targets.forEach(function(c){
+    fetch(base + "/taste/" + encodeURIComponent(c),
+      {method: "POST", headers: {"Content-Type": "application/json"}, body: payload}
+    ).catch(function(){});
+  });
+}
+function pull(){
+  var base = apiBase();
+  if (!base || !CITY || typeof CATS === "undefined") return;
+  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()))
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if (d && d.categories) { tapBonus = d.categories; applyRanking(); } })
+    .catch(function(){});
+}
+function score(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  var cat = CATS[i], s = 0;
+  if (taste.likes.indexOf(cat) >= 0) s += 10;
+  if (taste.mutes.indexOf(cat) >= 0) s -= 20;
+  if (taste.free_only && FREE[i]) s += 6;
+  var tb = tapBonus[cat];
+  if (tb) s += Math.min(tb, 3);
+  if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
+    s += (taste.surprise === "high" ? 8 : 4);
+  return s;
+}
+function hasTaste(){
+  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only ||
+    taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
+}
+function sortChildren(container){
+  var arts = [];
+  for (var k = 0; k < container.children.length; k++) {
+    var ch = container.children[k];
+    if (ch.tagName === "ARTICLE" && ch.classList.contains("event")) arts.push(ch);
+  }
+  if (arts.length < 2) return;
+  arts.map(function(a){ return {a: a, k: score(+a.dataset.idx), n: +a.dataset.idx}; })
+    .sort(function(x, y){ return (y.k - x.k) || (x.n - y.n); })
+    .forEach(function(o){ container.appendChild(o.a); });
+}
+function applyRanking(){
+  if (!hasTaste() || typeof CATS === "undefined") return;
+  var wrap = document.querySelector("main.wrap");
+  if (!wrap) return;
+  var secs = [];
+  for (var k = 0; k < wrap.children.length; k++) {
+    var ch = wrap.children[k];
+    if (ch.tagName === "SECTION" && ch.classList.contains("cat")) secs.push(ch);
+  }
+  if (secs.length) {
+    var secCat = function(s){
+      var a = s.querySelector("article.event");
+      return a ? CATS[+a.dataset.idx] : "";
+    };
+    var secScore = function(s){
+      var c = secCat(s), v = 0;
+      if (taste.likes.indexOf(c) >= 0) v += 10;
+      if (taste.mutes.indexOf(c) >= 0) v -= 20;
+      return v;
+    };
+    secs.forEach(sortChildren);
+    var free = [], rest = [];
+    secs.forEach(function(s){ (s.classList.contains("free") ? free : rest).push(s); });
+    rest.sort(function(a, b){ return secScore(b) - secScore(a); });
+    free.concat(rest).forEach(function(s){ wrap.appendChild(s); });
+  } else {
+    sortChildren(wrap);
+  }
+}
+/* ---------------- quiz ---------------- */
+var SURP = {low: "off", med: "some", high: "lots"};
+var sheet = null, sel = {};
+function chipBtn(c){
+  var b = document.createElement("button");
+  b.className = "qchip"; b.type = "button";
+  b.dataset.cat = c; b.setAttribute("aria-pressed", "false");
+  b.textContent = c;
+  b.addEventListener("click", function(){
+    var on = b.getAttribute("aria-pressed") === "true";
+    b.setAttribute("aria-pressed", on ? "false" : "true");
+    if (on) delete sel[c]; else sel[c] = 1;
+  });
+  return b;
+}
+function buildSheet(){
+  var veil = document.createElement("div");
+  veil.className = "quiz-veil"; veil.id = "quizVeil"; veil.hidden = true;
+  var card = document.createElement("div");
+  card.className = "quiz-card"; card.setAttribute("role", "dialog");
+  card.setAttribute("aria-label", "What are you into?");
+  var eb = document.createElement("div"); eb.className = "quiz-eyebrow";
+  eb.textContent = "Tonight learns your taste";
+  var h = document.createElement("h2"); h.textContent = "What are you into?";
+  var sub = document.createElement("p"); sub.className = "quiz-sub";
+  sub.textContent = "Tap what you like. Takes 30 seconds, and your picks get personal.";
+  var chips = document.createElement("div"); chips.className = "qchips";
+  CATS_ALL.forEach(function(c){ chips.appendChild(chipBtn(c)); });
+  var prefs = document.createElement("div"); prefs.className = "qchips";
+  var freeB = document.createElement("button");
+  freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
+  freeB.setAttribute("aria-pressed", "false");
+  freeB.textContent = "\u2728 Free-first";
+  freeB.addEventListener("click", function(){
+    var on = freeB.getAttribute("aria-pressed") === "true";
+    freeB.setAttribute("aria-pressed", on ? "false" : "true");
+  });
+  var order = ["low", "med", "high"], surp = "low";
+  var surpB = document.createElement("button");
+  surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
+  var paintSurp = function(){
+    surpB.textContent = "\ud83c\udfb2 Surprise me: " + SURP[surp];
+    surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
+  };
+  paintSurp();
+  surpB.addEventListener("click", function(){
+    surp = order[(order.indexOf(surp) + 1) % 3]; paintSurp();
+  });
+  prefs.appendChild(freeB); prefs.appendChild(surpB);
+  var actions = document.createElement("div"); actions.className = "qactions";
+  var done = document.createElement("button");
+  done.className = "btn btn-gold"; done.type = "button"; done.id = "qDone";
+  done.textContent = "Done \u2192";
+  var skip = document.createElement("button");
+  skip.className = "qlink"; skip.type = "button"; skip.id = "qSkip";
+  skip.textContent = "skip for now";
+  var markSeen = function(){ try { localStorage.setItem(OKEY, "1"); } catch (e) {} };
+  done.addEventListener("click", function(){
+    taste.likes = Object.keys(sel);
+    taste.mutes = [];
+    taste.free_only = freeB.getAttribute("aria-pressed") === "true";
+    taste.surprise = surp;
+    save(); markSeen(); veil.hidden = true;
+    applyRanking();
+    if (window.TonightPage && TonightPage.refresh) TonightPage.refresh(true);
+  });
+  skip.addEventListener("click", function(){ markSeen(); veil.hidden = true; });
+  actions.appendChild(done); actions.appendChild(skip);
+  card.appendChild(eb); card.appendChild(h); card.appendChild(sub);
+  card.appendChild(chips); card.appendChild(prefs); card.appendChild(actions);
+  veil.appendChild(card);
+  document.body.appendChild(veil);
+  return {veil: veil, freeB: freeB,
+    paint: function(s){ surp = s; paintSurp(); }};
+}
+function openQuiz(){
+  if (!sheet) sheet = buildSheet();
+  sel = {};
+  taste.likes.forEach(function(c){ sel[c] = 1; });
+  sheet.veil.querySelectorAll(".qchip[data-cat]").forEach(function(b){
+    b.setAttribute("aria-pressed", sel[b.dataset.cat] ? "true" : "false");
+  });
+  sheet.freeB.setAttribute("aria-pressed", taste.free_only ? "true" : "false");
+  sheet.paint(taste.surprise);
+  sheet.veil.hidden = false;
+}
+/* ---------------- plain-language profile ---------------- */
+function joinList(a){
+  if (!a.length) return "";
+  if (a.length === 1) return a[0];
+  return a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+}
+function describe(){
+  var parts = [];
+  if (taste.likes.length) parts.push("into " + joinList(taste.likes));
+  if (taste.mutes.length) parts.push("not into " + joinList(taste.mutes));
+  var s = parts.length
+    ? "You're " + parts.join(", ") + "."
+    : "You haven't told Tonight what you like yet.";
+  var prefs = [];
+  if (taste.free_only) prefs.push("you'd rather keep it free");
+  prefs.push(taste.surprise === "low" ? "no surprises, just your thing" :
+    (taste.surprise === "med" ? "open to a few surprises" : "bring on the surprises"));
+  s += " Right now, " + prefs.join(", ") + ".";
+  var top = Object.keys(tapBonus)
+    .sort(function(a, b){ return tapBonus[b] - tapBonus[a]; }).slice(0, 2);
+  if (top.length) s += " Your taps lean " + joinList(top) + ".";
+  return s;
+}
+function setCat(cat, mode){
+  taste.likes = taste.likes.filter(function(c){ return c !== cat; });
+  taste.mutes = taste.mutes.filter(function(c){ return c !== cat; });
+  if (mode === "like") taste.likes.push(cat);
+  else if (mode === "mute") taste.mutes.push(cat);
+  save();
+}
+window.Tonight = {
+  taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
+  score: score, save: save, applyRanking: applyRanking,
+  openQuiz: openQuiz, describe: describe, setCat: setCat
+};
+document.addEventListener("DOMContentLoaded", function(){
+  var tune = document.getElementById("tuneTaste");
+  if (tune) tune.addEventListener("click", function(e){ e.preventDefault(); openQuiz(); });
+  var noquiz = document.body && document.body.getAttribute("data-noquiz") === "1";
+  try { if (!noquiz && !localStorage.getItem(OKEY)) openQuiz(); } catch (e) {}
+  applyRanking();
+  pull();
+  if (window.TonightPage && TonightPage.init) TonightPage.init();
+});
+})();
+</script><nav class="topnav"><a class="brand" href="../">Tonight<b>.</b></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Your taste</a><a class="tastelink" href="#" id="tuneTaste">Tune</a></span><span class="citylinks"><a class="" href="../nyc/2026-09-24.html">NYC</a> <a class="cur" href="../london/2026-09-24.html">London</a></span><a class="browselink" href="../browse-london-2026-09-24.html">Browse all →</a></nav>
+<header class="hero">
+<div class="eyebrow">Thursday, September 24 · London</div>
+<h1>London Tonight</h1>
+<p>Hand-picked things to do, all happening today. Tap the boxes to track your picks.</p>
+</header>
+<div class="toolbar">
+<button class="btn btn-dark" id="shareBtn">Share →</button>
+<a class="btn btn-gold" href="https://psesh5.github.io/tonight/london/2026-09-24.ics" download>📥 Download .ics</a>
+<button class="btn btn-dark" id="tonightBtn" aria-pressed="false">⚡ Tonight</button>
+</div>
+<div class="picks" id="picksBar"><strong>My picks: <span id="pickCount">0</span></strong><br>
+<span style="font-size:13px;color:#6b6b6b;">Tap the boxes above, then send your picks — it shapes tomorrow's recommendations.</span><br><br>
+<button class="btn btn-dark" id="sendBtn">Send my picks →</button>
+</div>
+<main class="wrap">
+<div id="tonightWrap">
+<div class="tonight-head"><h2>⚡ Tonight</h2><p id="tonightCount"></p></div>
+<div id="tonightList"></div>
+<div id="tonightEmpty" style="display:none;">Nothing on in the next 5 hours — check back later.</div>
+</div>
+
+<section class="cat free">
+<h2>✨ Free tonight</h2>
+
+<article class="event" id="event-0" data-idx="0" data-name="upperground: A.G DJ set">
+<button class="toggle" data-idx="0" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.vam.ac.uk/event/xLV00KvRwVG/upperground-august-september-2026">upperground: A.G DJ set</a></h3>
+<div class="meta">18:30 · V&amp;A East Museum, Stratford · Free</div>
+<p>Grime, garage, dance, UK drill, R&amp;B and hip-hop DJ set from A.G in V&amp;A East Museum&#x27;s Upper Ground space, part of the museum&#x27;s free upperground evening series.</p>
+<a class="tickets" href="https://www.vam.ac.uk/event/xLV00KvRwVG/upperground-august-september-2026">Tickets &amp; info →</a>
+
+</div>
+</article>
+<article class="event" id="event-4" data-idx="4" data-name="William Kentridge: A Nicely Built City">
+<button class="toggle" data-idx="4" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="http://goodman-gallery.com/exhibitions/a-nicely-built-city-william-kentridge">William Kentridge: A Nicely Built City</a></h3>
+<div class="meta">18:00 · Goodman Gallery, Mayfair · Free</div>
+<p>Opening night of William Kentridge&#x27;s solo exhibition with the world premiere of his new stop-motion film, alongside new drawings, sculptures and works on paper.</p>
+<a class="tickets" href="http://goodman-gallery.com/exhibitions/a-nicely-built-city-william-kentridge">Tickets &amp; info →</a>
+
+</div>
+</article>
+<article class="event" id="event-6" data-idx="6" data-name="Wellcome Collection Lates: The Friendship Effect">
+<button class="toggle" data-idx="6" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.eventbrite.co.uk/e/wellcome-collection-lates-the-friendship-effect-tickets-1992828447532">Wellcome Collection Lates: The Friendship Effect</a></h3>
+<div class="meta">19:00 · Wellcome Collection, Euston · Free</div>
+<p>Free late opening at the Wellcome Collection exploring friendship through conversations, performances, live music, workshops and talks, 7–10pm.</p>
+<a class="tickets" href="https://www.eventbrite.co.uk/e/wellcome-collection-lates-the-friendship-effect-tickets-1992828447532">Tickets &amp; info →</a>
+
+</div>
+</article>
+<article class="event" id="event-8" data-idx="8" data-name="Innovation and energy for a sustainable future">
+<button class="toggle" data-idx="8" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.lse.ac.uk/events/innovation-energy-technology">Innovation and energy for a sustainable future</a></h3>
+<div class="meta">18:30 · LSE, Old Theatre, Holborn · Free</div>
+<p>LSE Environment Week panel on innovation for a sustainable future with Robert Metcalfe, Dr Praveer Sinha and Professor Anna Valero. Free, in-person and online.</p>
+<a class="tickets" href="https://www.lse.ac.uk/events/innovation-energy-technology">Tickets &amp; info →</a>
+
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Music</h2>
+
+<article class="event" id="event-1" data-idx="1" data-name="Snow Patrol: Eyes Open 20th Anniversary">
+<button class="toggle" data-idx="1" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.ents24.com/london-events/royal-albert-hall/snow-patrol/7510001">Snow Patrol: Eyes Open 20th Anniversary</a></h3>
+<div class="meta">18:30 · Royal Albert Hall, Kensington · from £52.50</div>
+<p>Snow Patrol celebrate the 20th anniversary of their album Eyes Open with a full live performance at the Royal Albert Hall.</p>
+<a class="tickets" href="https://www.ents24.com/london-events/royal-albert-hall/snow-patrol/7510001">Tickets &amp; info →</a>
+
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Comedy</h2>
+
+<article class="event" id="event-2" data-idx="2" data-name="Comedy in Your Eye">
+<button class="toggle" data-idx="2" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.skiddle.com/whats-on/London/The-Camden-Eye/Comedy-in-Your-Eye---Award-Winning-Stand-Up-Comedy-for-just-3/41988245/">Comedy in Your Eye</a></h3>
+<div class="meta">19:00 · The Camden Eye, Camden · £3</div>
+<p>Award-winning stand-up night with a top-secret lineup of circuit regulars and TV comics, running 7–9pm upstairs at the Camden Eye.</p>
+<a class="tickets" href="https://www.skiddle.com/whats-on/London/The-Camden-Eye/Comedy-in-Your-Eye---Award-Winning-Stand-Up-Comedy-for-just-3/41988245/">Tickets &amp; info →</a>
+
+</div>
+</article>
+<article class="event" id="event-3" data-idx="3" data-name="Phil Wang: UH OH">
+<button class="toggle" data-idx="3" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://sohotheatre.com/events/phil-wang-uh-oh/">Phil Wang: UH OH</a></h3>
+<div class="meta">20:00 · Soho Theatre Walthamstow, Walthamstow · from £29</div>
+<p>Phil Wang brings his brand-new stand-up show UH OH to Soho Theatre&#x27;s Walthamstow stage.</p>
+<a class="tickets" href="https://sohotheatre.com/events/phil-wang-uh-oh/">Tickets &amp; info →</a>
+
+</div>
+</article>
+<article class="event" id="event-9" data-idx="9" data-name="Arabs &amp; Asians Stand-up Comedy Show">
+<button class="toggle" data-idx="9" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://www.eventbrite.co.uk/e/arabs-asians-stand-up-comedy-show-tooting-london-tickets-1992049073403">Arabs &amp; Asians Stand-up Comedy Show</a></h3>
+<div class="meta">19:00 · Royal Mahal Banqueting &amp; Events, Tooting</div>
+<p>Stand-up comedy night and fundraiser supporting Islamic Help projects in Gaza, at the Royal Mahal in Tooting, 7–10pm.</p>
+<a class="tickets" href="https://www.eventbrite.co.uk/e/arabs-asians-stand-up-comedy-show-tooting-london-tickets-1992049073403">Tickets &amp; info →</a>
+
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Tech</h2>
+
+<article class="event" id="event-5" data-idx="5" data-name="JSMonthly London September Meetup #210">
+<button class="toggle" data-idx="5" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://guild.host/events/jsmonthly-london-september-xoqmus">JSMonthly London September Meetup #210</a></h3>
+<div class="meta">18:00 · NewDay, King&#x27;s Cross</div>
+<p>London&#x27;s monthly JavaScript meetup with talks on AI workflows, emulators and Angular/Firebase AI, plus networking over sponsored food and drinks. Doors 18:00, talks from 18:30.</p>
+<a class="tickets" href="https://guild.host/events/jsmonthly-london-september-xoqmus">Tickets &amp; info →</a>
+
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Food &amp; Drink</h2>
+
+<article class="event" id="event-7" data-idx="7" data-name="ALLOCATION #002 at The Camberwell Arms">
+<button class="toggle" data-idx="7" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<div class="event-body">
+<h3><a href="https://allevents.in/london/allocation-002-at-the-camberwell-arms/100001998539076176">ALLOCATION #002 at The Camberwell Arms</a></h3>
+<div class="meta">18:30 · The Camberwell Arms, Camberwell · From £15</div>
+<p>Ryan Chetiyawardana and the Lyaness team take over the upstairs bar for the second instalment of the Allocation series — welcome cocktail, pub snacks and £10 cocktails.</p>
+<a class="tickets" href="https://allevents.in/london/allocation-002-at-the-camberwell-arms/100001998539076176">Tickets &amp; info →</a>
+
+</div>
+</article>
+</section>
+</main>
+<footer>
+<div class="serif">Hand-picked for you by Tonight.</div>
+<p>Your picks are tracked when you send them —<br>tomorrow's digest learns what you love.</p>
+</footer>
+<script>
+const TRAVEL_MINUTES = 30;  // default buffer before an event's start time
+const CITY = "london";
+const DATE = "2026-09-24";
+const NAMES = ["upperground: A.G DJ set", "Snow Patrol: Eyes Open 20th Anniversary", "Comedy in Your Eye", "Phil Wang: UH OH", "William Kentridge: A Nicely Built City", "JSMonthly London September Meetup #210", "Wellcome Collection Lates: The Friendship Effect", "ALLOCATION #002 at The Camberwell Arms", "Innovation and energy for a sustainable future", "Arabs & Asians Stand-up Comedy Show"];
+const CATS = ["Music", "Music", "Comedy", "Comedy", "Arts & Play", "Tech", "Meetups & Mixers", "Food & Drink", "Talks", "Comedy"];
+const FREE = [true, false, false, false, true, false, true, false, true, false];
+const TZ = "Europe/London";
+const STARTS = [null, null, null, null, null, null, null, null, null, null];   // minutes since midnight, or null
+const ENDS = [null, null, null, null, null, null, null, null, null, null];       // from end_time, or null (-> start + 2h)
+const KEY = "tonight-picks-" + CITY + "-" + DATE;
+let picks = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
+function render() {
+  document.querySelectorAll(".toggle").forEach(btn => {
+    const on = picks.has(btn.dataset.idx);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  document.getElementById("pickCount").textContent = picks.size;
+  localStorage.setItem(KEY, JSON.stringify([...picks]));
+  // report taps to the backend when available (real tracking)
+  if (window.__tonight_api) {
+    const USER_ID = localStorage.getItem("tonight-user-id") || null;
+    fetch(window.__tonight_api + "/tap", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({city: CITY, date: DATE, user_id: USER_ID,
+        picks: [...picks].map(i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i]}))})
+    }).catch(() => {});
+  }
+}
+document.querySelectorAll(".toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const id = btn.dataset.idx;
+    picks.has(id) ? picks.delete(id) : picks.add(id);
+    render();
+  });
+});
+document.getElementById("shareBtn").addEventListener("click", async () => {
+  const data = {title: document.title, text: "Today's picks", url: location.href};
+  if (navigator.share) { try { await navigator.share(data); } catch(e) {} }
+  else { await navigator.clipboard.writeText(location.href); alert("Link copied — paste it anywhere to share."); }
+});
+document.getElementById("sendBtn").addEventListener("click", () => {
+  if (!picks.size) { alert("Tap a few boxes first, then send your picks."); return; }
+  const list = [...picks].sort().map(i => "• " + NAMES[+i]).join("\n");
+  const subject = encodeURIComponent("Re: London Tonight — my picks");
+  const body = encodeURIComponent("My picks for " + DATE + " (" + CITY + "):\n\n" + list + "\n\n— sent from my London Tonight page");
+  location.href = "mailto:pseshadri91@gmail.com?subject=" + subject + "&body=" + body;
+});
+render();
+function fmtTime(d) {
+  let h = d.getHours(); const m = d.getMinutes();
+  const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12;
+  return h + ":" + String(m).padStart(2, "0") + " " + ap;
+}
+// "leave by" hints from each event's local start time
+document.querySelectorAll(".event[data-start-local]").forEach(a => {
+  const start = new Date(a.dataset.startLocal);
+  if (isNaN(start)) return;
+  const leave = new Date(start.getTime() - TRAVEL_MINUTES * 60000);
+  const el = a.querySelector(".leave-by");
+  if (el) el.textContent = "leave by ~" + fmtTime(leave);
+});
+// per-event .ics download built client-side
+function icsEscape(s) {
+  return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;")
+                  .replace(/,/g, "\\,").replace(/\n/g, "\n");
+}
+function icsFold(line) {
+  let out = "";
+  while (line.length > 75) { out += line.slice(0, 75) + "\r\n "; line = line.slice(75); }
+  return out + line;
+}
+document.querySelectorAll(".ics-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const a = btn.closest(".event");
+    const d = a.dataset;
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Tonight//Event//EN",
+      "BEGIN:VEVENT",
+      "UID:" + CITY + "-" + DATE + "-" + btn.dataset.idx + "@tonight",
+      "DTSTAMP:" + stamp,
+      "DTSTART:" + d.calStart, "DTEND:" + d.calEnd,
+      "SUMMARY:" + icsEscape(d.name)];
+    if (d.loc) lines.push("LOCATION:" + icsEscape(d.loc));
+    if (d.url) {
+      lines.push("URL:" + d.url);
+      lines.push("DESCRIPTION:" + icsEscape("Tickets & info: " + d.url));
+    }
+    lines.push("END:VEVENT", "END:VCALENDAR");
+    const uri = "data:text/calendar;charset=utf-8," +
+                encodeURIComponent(lines.map(icsFold).join("\r\n"));
+    const link = document.createElement("a");
+    link.href = uri;
+    link.download = d.name.replace(/[^\w\- ]+/g, "").trim()
+                         .replace(/\s+/g, "-").slice(0, 60) + ".ics";
+    document.body.appendChild(link); link.click(); link.remove();
+  });
+});
+
+// ---------------- Tonight mode ----------------
+const TONIGHT_WINDOW = 300;  // upcoming: starts within the next 5h
+const NOW_GRACE = 120;       // "happening now": started within the last 2h
+function cityNowMinutes() {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: TZ, hour: "numeric", minute: "numeric", hour12: false
+    }).formatToParts(new Date());
+    let h = 0, m = 0;
+    for (const p of parts) {
+      if (p.type === "hour") h = (+p.value) % 24;
+      if (p.type === "minute") m = +p.value;
+    }
+    return h * 60 + m;
+  } catch (e) {
+    const d = new Date();
+    return d.getHours() * 60 + d.getMinutes();
+  }
+}
+let tonightOn = false;
+const homeSpot = new Map();  // idx -> original {parent, next} for restore
+function addBadge(art, cls, text) {
+  art.querySelectorAll(".badge").forEach(b => b.remove());
+  const b = document.createElement("span");
+  b.className = "badge " + cls;
+  b.textContent = text;
+  art.querySelector(".event-body").prepend(b);
+}
+function setTonight(on) {
+  tonightOn = on;
+  const btn = document.getElementById("tonightBtn");
+  btn.classList.toggle("btn-active", on);
+  btn.setAttribute("aria-pressed", on ? "true" : "false");
+  const wrap = document.getElementById("tonightWrap");
+  const list = document.getElementById("tonightList");
+  const empty = document.getElementById("tonightEmpty");
+  const count = document.getElementById("tonightCount");
+  if (!on) {
+    homeSpot.forEach((spot, i) => {
+      const art = document.getElementById("event-" + i);
+      if (art) {
+        art.querySelectorAll(".badge").forEach(b => b.remove());
+        spot.parent.insertBefore(art, spot.next);
+      }
+    });
+    homeSpot.clear();
+    wrap.style.display = "none";
+    document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
+    return;
+  }
+  const now = cityNowMinutes();
+  const items = [];
+  document.querySelectorAll("article.event").forEach(art => {
+    const i = +art.dataset.idx;
+    if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
+    const s = STARTS[i];
+    let status = "tba", rank = 3;
+    if (s == null) { status = "tba"; rank = 3; }
+    else {
+      const e = ENDS[i] != null ? ENDS[i] : s + NOW_GRACE;
+      if (now >= s && now <= e) { status = "now"; rank = 0; }
+      else if (s > now && s - now <= TONIGHT_WINDOW) { status = "soon"; rank = FREE[i] ? 1 : 2; }
+      else { status = "past"; rank = 4; }
+    }
+    items.push({art: art, i: i, s: s, status: status, rank: rank, free: FREE[i]});
+  });
+  // Taste tiebreak: provided by the taste core script (injected by the
+  // site builder). Falls back to 0 when absent.
+  const tasteTie = o => (window.Tonight && Tonight.score) ? Tonight.score(o.i) : 0;
+  items.sort((a, b) => (a.rank - b.rank) || (tasteTie(b) - tasteTie(a)) || ((a.s == null ? 1440 : a.s) - (b.s == null ? 1440 : b.s)));
+  list.innerHTML = "";
+  let live = 0, tbaHeader = false;
+  items.forEach(o => {
+    if (o.status === "past") return;  // already over: not tonight
+    if (o.status === "tba" && !tbaHeader) {
+      tbaHeader = true;
+      const div = document.createElement("div");
+      div.className = "tba-div";
+      div.textContent = "Times TBA";
+      list.appendChild(div);
+    }
+    if (o.status === "now") addBadge(o.art, "now", "● Happening now");
+    else if (o.free) addBadge(o.art, "free", "Free");
+    else o.art.querySelectorAll(".badge").forEach(b => b.remove());
+    list.appendChild(o.art);
+    if (o.status !== "tba") live++;
+  });
+  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
+  wrap.style.display = "block";
+  empty.style.display = live ? "none" : "block";
+  count.textContent = live ? live + (live === 1 ? " thing" : " things") + " on now or starting soon" : "";
+  wrap.scrollIntoView({behavior: "smooth", block: "start"});
+}
+document.getElementById("tonightBtn").addEventListener("click", () => setTonight(!tonightOn));
+</script>
+<script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}</script><script>window.__tonight_api="https://50bfd03f6783b719-87-81-233-37.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
