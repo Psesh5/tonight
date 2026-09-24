@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign up \u2014 Tonight</title>
+<style>
+.topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
+background:var(--banner,#14201A);color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+.topnav .brand{font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#F7F2E9;text-decoration:none;display:flex;align-items:center;gap:9px;}
+.topnav .brand img{height:26px;width:26px;}
+.topnav .brand b{color:#E39A2D;}
+.topnav .citylinks{display:flex;gap:6px;margin-left:auto;}
+.topnav .citylinks a{color:#F7F2E9;opacity:.75;text-decoration:none;font-size:13.5px;
+padding:6px 14px;border-radius:999px;border:1px solid transparent;}
+.topnav .citylinks a.cur{background:#E39A2D;color:#14201A;font-weight:bold;opacity:1;}
+.topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
+.topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .browselink:hover{text-decoration:underline;}
+.topnav .tastelinks{display:flex;gap:14px;align-items:center;}
+.topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .tastelink:hover{text-decoration:underline;}
+
+.quiz-veil{position:fixed;inset:0;z-index:200;background:rgba(20,32,26,.55);
+display:flex;align-items:flex-end;justify-content:center;}
+.quiz-veil[hidden]{display:none;}
+.quiz-card{background:#F7F2E9;color:#14201A;border-radius:20px 20px 0 0;
+padding:28px 24px 34px;max-width:560px;width:100%;max-height:88vh;overflow:auto;
+font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+animation:quizup .25s ease-out;}
+@keyframes quizup{from{transform:translateY(24px);opacity:.6;}to{transform:none;opacity:1;}}
+@media(min-width:640px){.quiz-veil{align-items:center;padding:20px;}
+.quiz-card{border-radius:20px;}}
+.quiz-eyebrow{color:#B07A1E;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;}
+.quiz-card h2{font-family:Georgia,'Times New Roman',serif;font-size:28px;margin:8px 0 6px;font-weight:normal;}
+.quiz-sub{font-size:14px;color:#6b6b6b;margin:0 0 16px;line-height:1.5;}
+.qchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.qchip{padding:10px 18px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
+font-size:14px;cursor:pointer;font-family:inherit;color:#14201A;}
+.qchip[aria-pressed="true"]{background:#E39A2D;border-color:#E39A2D;font-weight:bold;}
+.qactions{display:flex;gap:16px;align-items:center;margin-top:4px;}
+.qlink{background:none;border:none;color:#6b6b6b;text-decoration:underline;cursor:pointer;
+font-size:13.5px;font-family:inherit;padding:0;}
+
+.sform{max-width:640px;margin:0 auto;padding:6px 20px 60px;}
+.sfield{margin:16px 0;}
+.sfield label{display:block;font-size:12px;letter-spacing:2px;text-transform:uppercase;
+color:#6b6b6b;margin-bottom:8px;}
+.sfield input[type=email],.sfield input[type=tel],.sfield select{width:100%;
+padding:13px 16px;border-radius:14px;border:1px solid #d8d2c2;font-size:16px;
+font-family:inherit;color:#14201A;background:#fff;box-sizing:border-box;}
+.sfield input:focus,.sfield select:focus{outline:2px solid #E39A2D;border-color:#E39A2D;}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:12px;
+padding:13px 0;border-bottom:1px solid #e7e1d2;}
+.srow .tcat{font-size:16px;}
+.srow .sub{font-size:12.5px;color:#6b6b6b;display:block;margin-top:3px;font-family:inherit;}
+.switch{position:relative;width:52px;height:30px;flex:none;cursor:pointer;}
+.switch input{opacity:0;width:0;height:0;}
+.sl{position:absolute;inset:0;background:#d8d2c2;border-radius:999px;transition:.2s;}
+.sl:before{content:"";position:absolute;height:22px;width:22px;left:4px;top:4px;
+background:#fff;border-radius:50%;transition:.2s;}
+.switch input:checked + .sl{background:#2E7D4F;}
+.switch input:checked + .sl:before{transform:translateX(22px);}
+#formMsg{max-width:640px;margin:0 auto;padding:0 20px;min-height:24px;font-size:14px;}
+#formMsg.ok{color:#2E7D4F;} #formMsg.err{color:#a33;}
+.sdone{max-width:640px;margin:0 auto;padding:30px 20px 60px;text-align:center;display:none;}
+.sdone h2{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:30px;}
+.sdone p{color:#6b6b6b;line-height:1.6;}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
+<script>(function(){try{var c=localStorage.getItem("tonight-banner");if(c){document.documentElement.style.setProperty("--banner",c);}}catch(e){}})();</script></head>
+<body>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="Tonight logo">Tonight<b>.</b></a>
+<span class="tastelinks"><a class="tastelink" href="./taste.html">Your taste</a><a class="tastelink" href="./signup.html">Sign up</a></span>
+<span class="citylinks"><a href="./">Home</a></span></nav>
+<header class="bhero">
+<div class="eyebrow">Daily digest</div>
+<h1>Tonight, in your inbox</h1>
+<p>One short email every morning with the day's best events, picked for your
+taste. Text alerts for last-minute gems, if you want them.</p>
+</header>
+<form class="sform" id="subForm">
+<section class="tsec"><h2>Your details</h2>
+<div class="sfield"><label for="email">Email</label>
+<input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+</div>
+<div class="sfield"><label for="citySel">City</label>
+<select id="citySel"><option value="nyc">Nyc</option><option value="london">London</option></select></div>
+<div class="sfield">
+<button type="button" class="btn" id="loadBtn"
+style="border:1px solid #d8d2c2;background:#fff;">Load my settings</button>
+<span class="thint">Already signed up? Load your settings to change them.</span>
+</div>
+</section>
+<section class="tsec"><h2>Your taste</h2>
+<p class="thint">Like what you love, mute what you'd skip. Your digest is built
+around this.</p>
+<div id="catRows"></div>
+<div class="srow"><span class="tcat">\u2728 Free-first<span class="sub">Only show me free events</span></span>
+<label class="switch"><input type="checkbox" id="freeTgl"><span class="sl"></span></label></div>
+<div class="srow"><span class="tcat">\U0001F3B2 Surprises<span class="sub">How adventurous should we get?</span></span>
+<div class="seg" id="surpSeg">
+<button type="button" data-s="low">Just my thing</button><button type="button" data-s="med" class="on">A few</button><button type="button" data-s="high">Lots</button>
+</div></div>
+</section>
+<section class="tsec"><h2>Delivery</h2>
+<div class="srow"><span class="tcat">\U0001F4E7 Daily email<span class="sub">Every morning at 8, with your personalized picks</span></span>
+<label class="switch"><input type="checkbox" id="emailTgl" checked><span class="sl"></span></label></div>
+<div class="srow"><span class="tcat">\U0001F4F1 Text alerts<span class="sub">A short text when something unmissable pops up. Beta — leave your number and you're in line.</span></span>
+<label class="switch"><input type="checkbox" id="smsTgl"><span class="sl"></span></label></div>
+<div class="sfield"><label for="phone">Phone (for texts)</label>
+<input type="tel" id="phone" placeholder="+1 555 123 4567" autocomplete="tel">
+</div>
+</section>
+<div id="formMsg"></div>
+<div class="tcenter" style="padding-top:10px;">
+<button type="submit" class="btn btn-gold" style="font-size:16px;padding:14px 40px;">Subscribe</button>
+</div>
+<p class="thint" style="text-align:center;">One email a day, max. Unsubscribe anytime from any email.</p>
+</form>
+<div class="sdone" id="sdone">
+<h2>You're in \u2713</h2>
+<p></p>
+<p><a href="./" style="color:#E39A2D;">Back to tonight's picks \u2192</a></p>
+</div>
+<footer>
+<div class="serif">Tonight \u2014 every city, every night.</div>
+<p>Your taste shapes your picks, on every page.</p>
+</footer>
+<script>
+var CATS = ["Music", "Comedy", "Arts & Play", "Tech", "Meetups & Mixers", "Food & Drink", "Talks"], CITIES = ["nyc", "london"];
+var state = {likes: [], mutes: [], free_only: false, surprise: "med",
+             daily_email: true, sms_opt_in: false};
+function apiBase(){ return window.__tonight_api || null; }
+function msg(t, cls){ var m = document.getElementById("formMsg");
+  m.textContent = t; m.className = cls || ""; }
+function paintCats(){
+  var host = document.getElementById("catRows"); host.innerHTML = "";
+  CATS.forEach(function(c){
+    var mode = state.likes.indexOf(c) >= 0 ? "like" :
+               (state.mutes.indexOf(c) >= 0 ? "mute" : "neutral");
+    var row = document.createElement("div"); row.className = "trow";
+    row.innerHTML = '<span class="tcat"></span><div class="seg" role="group">' +
+      '<button type="button" data-m="like">\uD83D\uDC4D Like</button>' +
+      '<button type="button" data-m="neutral">\u2014</button>' +
+      '<button type="button" data-m="mute">\uD83D\uDC4E Mute</button></div>';
+    row.querySelector(".tcat").textContent = c;
+    var btns = row.querySelectorAll("button");
+    btns.forEach(function(b){
+      if (b.getAttribute("data-m") === mode) b.classList.add("on");
+      b.addEventListener("click", function(){
+        state.likes = state.likes.filter(function(x){ return x !== c; });
+        state.mutes = state.mutes.filter(function(x){ return x !== c; });
+        var m = b.getAttribute("data-m");
+        if (m === "like") state.likes.push(c);
+        if (m === "mute") state.mutes.push(c);
+        paintCats();
+      });
+    });
+    host.appendChild(row);
+  });
+}
+function setSeg(id, val, attr){
+  document.querySelectorAll("#" + id + " button").forEach(function(b){
+    b.classList.toggle("on", b.getAttribute(attr) === val);
+  });
+}
+function applyState(s){
+  state.likes = s.likes || []; state.mutes = s.mutes || [];
+  state.free_only = !!s.free_only; state.surprise = s.surprise || "med";
+  state.daily_email = s.daily_email !== false; state.sms_opt_in = !!s.sms_opt_in;
+  document.getElementById("citySel").value = s.city || CITIES[0];
+  document.getElementById("freeTgl").checked = state.free_only;
+  document.getElementById("emailTgl").checked = state.daily_email;
+  document.getElementById("smsTgl").checked = state.sms_opt_in;
+  document.getElementById("phone").value = s.phone || "";
+  setSeg("surpSeg", state.surprise, "data-s");
+  paintCats();
+}
+document.getElementById("surpSeg").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b) return;
+  state.surprise = b.getAttribute("data-s"); setSeg("surpSeg", state.surprise, "data-s");
+});
+document.getElementById("freeTgl").addEventListener("change", function(e){
+  state.free_only = e.target.checked; });
+document.getElementById("emailTgl").addEventListener("change", function(e){
+  state.daily_email = e.target.checked; });
+document.getElementById("smsTgl").addEventListener("change", function(e){
+  state.sms_opt_in = e.target.checked; });
+document.getElementById("loadBtn").addEventListener("click", function(){
+  var email = document.getElementById("email").value.trim();
+  var base = apiBase();
+  if (!email) { msg("Enter your email first.", "err"); return; }
+  if (!base) { msg("Settings are saved on this device for now — the server is unreachable.", "err"); return; }
+  msg("Looking you up\u2026");
+  fetch(base + "/subscriptions?email=" + encodeURIComponent(email))
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (!d.found) { msg("No signup found for that email — fill in the form and hit subscribe.", ""); return; }
+      applyState(d); msg("Settings loaded — tweak and re-subscribe to update.", "ok");
+    })
+    .catch(function(){ msg("Couldn't reach the server. Try again in a bit.", "err"); });
+});
+document.getElementById("subForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var email = document.getElementById("email").value.trim();
+  var base = apiBase();
+  if (!email || email.indexOf("@") < 0) { msg("Enter a valid email.", "err"); return; }
+  if (state.sms_opt_in && !document.getElementById("phone").value.trim()) {
+    msg("Add your phone number for text alerts, or switch them off.", "err"); return; }
+  var payload = {email: email, city: document.getElementById("citySel").value,
+    likes: state.likes, mutes: state.mutes, free_only: state.free_only,
+    surprise: state.surprise, daily_email: state.daily_email,
+    phone: document.getElementById("phone").value.trim(), sms_opt_in: state.sms_opt_in};
+  if (!base) {
+    try { localStorage.setItem("tonight-sub", JSON.stringify(payload)); } catch (e2) {}
+    msg("Server unreachable — your choices are saved on this device and will sync later.", "err");
+    return;
+  }
+  msg("Subscribing\u2026");
+  fetch(base + "/subscriptions", {method: "POST",
+    headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload)})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (!d.ok) { msg(d.error || "Something went wrong.", "err"); return; }
+      document.getElementById("subForm").style.display = "none";
+      document.getElementById("formMsg").textContent = "";
+      var done = document.getElementById("sdone"); done.style.display = "block";
+      done.querySelector("p").textContent =
+        "Your first digest arrives tomorrow morning at 8. " +
+        (state.sms_opt_in ? "Text alerts are on the way — we'll confirm by text shortly." : "") +
+        " Manage or unsubscribe anytime from the link at the bottom of every email.";
+    })
+    .catch(function(){ msg("Couldn't reach the server. Try again in a bit.", "err"); });
+});
+paintCats();
+</script>
+<script>window.__tonight_api="https://012711f501fbcfa3-87-81-230-61.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
