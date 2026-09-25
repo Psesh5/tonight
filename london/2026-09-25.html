@@ -20,7 +20,18 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system
 .cat h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;border-bottom:1px solid #d8d2c2;padding:26px 0 10px;margin:0 0 4px;}
 .cat.free h2{color:var(--ink);}
 .cat.free{background:#fffdf6;border:1px solid var(--gold);border-radius:14px;padding:0 18px 8px;margin-top:18px;}
-.event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:20px;}
+.event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:20px;position:relative;}
+.hide{position:absolute;top:10px;right:0;background:none;border:none;color:#a89f8a;font-size:22px;line-height:1;cursor:pointer;padding:8px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
+.hide:hover{color:var(--ink);}
+.filters{max-width:680px;margin:0 auto;padding:16px 20px 4px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.filters input[type=search]{flex:1;min-width:170px;padding:10px 16px;border-radius:999px;border:1px solid #d8d2c2;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;background:#fff;color:var(--ink);}
+.filters select{padding:10px 14px;border-radius:999px;border:1px solid #d8d2c2;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;background:#fff;color:var(--ink);}
+.seg{display:flex;gap:6px;flex-wrap:wrap;}
+.seg button,.fbtn{padding:9px 16px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;font-size:13.5px;cursor:pointer;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;color:var(--ink);}
+.seg button.on,.fbtn[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);font-weight:bold;}
+#resCount{font-size:13px;color:#6b6b6b;margin-left:auto;}
+#hiddenBar{font-size:13px;color:#6b6b6b;display:none;}
+#hiddenBar button{background:none;border:none;padding:0;color:var(--ink);text-decoration:underline;cursor:pointer;font-size:13px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
 .toggle{background:none;border:none;cursor:pointer;padding:2px 0;align-self:flex-start;}
 .box{display:inline-block;width:22px;height:22px;border:2px solid var(--gold);border-radius:7px;background:#fff;position:relative;transition:background .15s;}
 .toggle[aria-pressed="true"] .box{background:var(--gold);}
@@ -347,6 +358,16 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="btn btn-gold" href="https://psesh5.github.io/tonight/london/2026-09-25.ics" download>📥 Download .ics</a>
 <button class="btn btn-dark" id="tonightBtn" aria-pressed="false">⚡ Tonight</button>
 </div>
+<div class="filters" id="filterBar">
+<input id="fq" type="search" placeholder="Search events, venues…" aria-label="Search events">
+<select id="fcat" aria-label="Filter by category"><option value="">All categories</option><option value="Arts &amp; Play">Arts &amp; Play</option><option value="Music">Music</option><option value="Comedy">Comedy</option></select>
+<div class="seg" id="ftod">
+<button data-t="all" class="on">Any time</button><button data-t="morning">Morning</button><button data-t="afternoon">Afternoon</button><button data-t="evening">Evening</button>
+</div>
+<button class="fbtn" id="ffree" aria-pressed="false">✨ Free only</button>
+<span id="hiddenBar"><span id="hiddenN">0</span> hidden · <button id="unhide">show them</button></span>
+<span id="resCount"></span>
+</div>
 <div class="picks" id="picksBar"><strong>My picks: <span id="pickCount">0</span></strong><br>
 <span style="font-size:13px;color:#6b6b6b;">Tap the boxes above, then send your picks — it shapes tomorrow's recommendations.</span><br><br>
 <button class="btn btn-dark" id="sendBtn">Send my picks →</button>
@@ -363,6 +384,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="event-0" data-idx="0" data-name="FRAMELESS" data-start-local="2026-09-25T12:00:00" data-cal-start="20260925T110000Z" data-cal-end="20260925T130000Z" data-loc="Marble Arch Place" data-url="https://www.universe.com/events/frameless-2026-tickets-Q8YGSX?ref=ticketmaster" data-lat="51.51366919" data-lng="-0.15964317">
 <button class="toggle" data-idx="0" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="0" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/frameless-2026-tickets-Q8YGSX?ref=ticketmaster">FRAMELESS</a></h3>
 <div class="meta">12:00 PM · Marble Arch Place</div>
@@ -378,6 +400,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-1" data-idx="1" data-name="Ramses and the Pharaoh’s Gold: The Exhibition" data-start-local="2026-09-25T12:30:00" data-cal-start="20260925T113000Z" data-cal-end="20260925T133000Z" data-loc="Neon at Battersea Power Station" data-url="https://www.universe.com/events/ramses-and-the-pharaoh-s-gold-the-exhibition-tickets-V64RDY?ref=ticketmaster" data-lat="51.48187751" data-lng="-0.14214313">
 <button class="toggle" data-idx="1" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="1" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/ramses-and-the-pharaoh-s-gold-the-exhibition-tickets-V64RDY?ref=ticketmaster">Ramses and the Pharaoh’s Gold: The Exhibition</a></h3>
 <div class="meta">12:30 PM · Neon at Battersea Power Station</div>
@@ -393,6 +416,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-2" data-idx="2" data-name="Twist Museum - London&#x27;s Home of Illusions STANDARD" data-start-local="2026-09-25T12:45:00" data-cal-start="20260925T114500Z" data-cal-end="20260925T134500Z" data-loc="Twist Museum" data-url="https://www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7?ref=ticketmaster" data-lat="51.51539505" data-lng="-0.14319582">
 <button class="toggle" data-idx="2" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="2" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7?ref=ticketmaster">Twist Museum - London&#x27;s Home of Illusions STANDARD</a></h3>
 <div class="meta">12:45 PM · Twist Museum</div>
@@ -408,6 +432,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-3" data-idx="3" data-name="Stranger Things: The First Shadow" data-start-local="2026-09-25T13:00:00" data-cal-start="20260925T120000Z" data-cal-end="20260925T140000Z" data-loc="Phoenix Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1FHDY-stranger-things-the-first-shadow/#perf=1FHDY-232&amp;date=2026-09-25&amp;time=1.00PM" data-lat="51.514387" data-lng="-0.129497">
 <button class="toggle" data-idx="3" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="3" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1FHDY-stranger-things-the-first-shadow/#perf=1FHDY-232&amp;date=2026-09-25&amp;time=1.00PM">Stranger Things: The First Shadow</a></h3>
 <div class="meta">1:00 PM · Phoenix Theatre</div>
@@ -423,6 +448,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-4" data-idx="4" data-name="The View from The Shard" data-start-local="2026-09-25T13:00:00" data-cal-start="20260925T120000Z" data-cal-end="20260925T140000Z" data-loc="The View from The Shard" data-url="https://www.universe.com/events/the-view-from-the-shard-tickets-TB3XYQ?ref=ticketmaster" data-lat="51.5045" data-lng="-0.08653">
 <button class="toggle" data-idx="4" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="4" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/the-view-from-the-shard-tickets-TB3XYQ?ref=ticketmaster">The View from The Shard</a></h3>
 <div class="meta">1:00 PM · The View from The Shard</div>
@@ -438,6 +464,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-5" data-idx="5" data-name="Shakespeare&#x27;s Globe - Much Ado About Nothing" data-start-local="2026-09-25T14:00:00" data-cal-start="20260925T130000Z" data-cal-end="20260925T150000Z" data-loc="Globe Theatre, Shakespeare&#x27;s Globe" data-url="https://theatre.ticketmaster.co.uk/book/1HM96-much-ado-about-nothing-2026/#perf=1HM96-25&amp;date=2026-09-25&amp;time=2.00PM" data-lat="51.508111" data-lng="-0.096597">
 <button class="toggle" data-idx="5" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="5" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HM96-much-ado-about-nothing-2026/#perf=1HM96-25&amp;date=2026-09-25&amp;time=2.00PM">Shakespeare&#x27;s Globe - Much Ado About Nothing</a></h3>
 <div class="meta">2:00 PM · Globe Theatre, Shakespeare&#x27;s Globe</div>
@@ -453,6 +480,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-6" data-idx="6" data-name="Come Alive! The Greatest Showman Circus Spectacular" data-start-local="2026-09-25T14:30:00" data-cal-start="20260925T133000Z" data-cal-end="20260925T153000Z" data-loc="Empress Museum" data-url="https://theatre.ticketmaster.co.uk/book/1GPNU-come-alive/#perf=1GPNU-20H&amp;date=2026-09-25&amp;time=2.30PM" data-lat="51.48850056" data-lng="-0.19846932">
 <button class="toggle" data-idx="6" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="6" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1GPNU-come-alive/#perf=1GPNU-20H&amp;date=2026-09-25&amp;time=2.30PM">Come Alive! The Greatest Showman Circus Spectacular</a></h3>
 <div class="meta">2:30 PM · Empress Museum</div>
@@ -468,6 +496,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-7" data-idx="7" data-name="The Book Of Mormon" data-start-local="2026-09-25T14:30:00" data-cal-start="20260925T133000Z" data-cal-end="20260925T153000Z" data-loc="Prince of Wales Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1GZHW-the-book-of-mormon/#perf=1GZHW-192&amp;date=2026-09-25&amp;time=2.30PM" data-lat="51.510009" data-lng="-0.131809">
 <button class="toggle" data-idx="7" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="7" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1GZHW-the-book-of-mormon/#perf=1GZHW-192&amp;date=2026-09-25&amp;time=2.30PM">The Book Of Mormon</a></h3>
 <div class="meta">2:30 PM · Prince of Wales Theatre</div>
@@ -483,6 +512,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-8" data-idx="8" data-name="Avenue Q" data-start-local="2026-09-25T14:30:00" data-cal-start="20260925T133000Z" data-cal-end="20260925T153000Z" data-loc="Shaftesbury Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1HMDJ-avenue-q/#perf=1HMDJ-5Y&amp;date=2026-09-25&amp;time=2.30PM" data-lat="51.516285" data-lng="-0.126119">
 <button class="toggle" data-idx="8" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="8" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HMDJ-avenue-q/#perf=1HMDJ-5Y&amp;date=2026-09-25&amp;time=2.30PM">Avenue Q</a></h3>
 <div class="meta">2:30 PM · Shaftesbury Theatre</div>
@@ -498,6 +528,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-9" data-idx="9" data-name="The Hunger Games On Stage" data-start-local="2026-09-25T14:30:00" data-cal-start="20260925T133000Z" data-cal-end="20260925T153000Z" data-loc="Troubadour Canary Wharf Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1HUN0-the-hunger-games-on-stage/#perf=1HUN0-78&amp;date=2026-09-25&amp;time=2.30PM" data-lat="51.5035337" data-lng="-0.0134276">
 <button class="toggle" data-idx="9" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="9" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HUN0-the-hunger-games-on-stage/#perf=1HUN0-78&amp;date=2026-09-25&amp;time=2.30PM">The Hunger Games On Stage</a></h3>
 <div class="meta">2:30 PM · Troubadour Canary Wharf Theatre</div>
@@ -513,6 +544,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-10" data-idx="10" data-name="Beetlejuice" data-start-local="2026-09-25T14:30:00" data-cal-start="20260925T133000Z" data-cal-end="20260925T153000Z" data-loc="Prince Edward Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1HM82-beetlejuice/#perf=1HM82-42&amp;date=2026-09-25&amp;time=3.00PM" data-lat="51.513763" data-lng="-0.130964">
 <button class="toggle" data-idx="10" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="10" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HM82-beetlejuice/#perf=1HM82-42&amp;date=2026-09-25&amp;time=3.00PM">Beetlejuice</a></h3>
 <div class="meta">2:30 PM · Prince Edward Theatre</div>
@@ -528,6 +560,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-11" data-idx="11" data-name="Paranormal Activity" data-start-local="2026-09-25T14:30:00" data-cal-start="20260925T133000Z" data-cal-end="20260925T153000Z" data-loc="Ambassadors Theatre" data-url="https://www.ticketmaster.co.uk/paranormal-activity-london-25-09-2026/event/Z3r9uZKbZL4Ze3Lo-ZeK" data-lat="51.513006" data-lng="-0.128026">
 <button class="toggle" data-idx="11" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="11" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/paranormal-activity-london-25-09-2026/event/Z3r9uZKbZL4Ze3Lo-ZeK">Paranormal Activity</a></h3>
 <div class="meta">2:30 PM · Ambassadors Theatre</div>
@@ -543,6 +576,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-12" data-idx="12" data-name="Laver Cup - Session Two" data-start-local="2026-09-25T17:30:00" data-cal-start="20260925T163000Z" data-cal-end="20260925T183000Z" data-loc="The O2" data-url="https://www.ticketmaster.co.uk/laver-cup-session-two-london-25-09-2026/event/350064D7E33759E7" data-lat="51.501581" data-lng="0.005519">
 <button class="toggle" data-idx="12" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="12" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/laver-cup-session-two-london-25-09-2026/event/350064D7E33759E7">Laver Cup - Session Two</a></h3>
 <div class="meta">5:30 PM · The O2</div>
@@ -558,6 +592,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-19" data-idx="19" data-name="Mamma Mia! The Party" data-start-local="2026-09-25T18:30:00" data-cal-start="20260925T173000Z" data-cal-end="20260925T193000Z" data-loc="The O2" data-url="https://theatre.ticketmaster.co.uk/book/1GY5A-mamma-mia-the-party/#perf=1GY5A-171&amp;date=2026-09-25&amp;time=6.30PM" data-lat="51.501581" data-lng="0.005519">
 <button class="toggle" data-idx="19" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="19" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1GY5A-mamma-mia-the-party/#perf=1GY5A-171&amp;date=2026-09-25&amp;time=6.30PM">Mamma Mia! The Party</a></h3>
 <div class="meta">6:30 PM · The O2</div>
@@ -573,6 +608,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-28" data-idx="28" data-name="CHAT NOIR!" data-start-local="2026-09-25T18:45:00" data-cal-start="20260925T174500Z" data-cal-end="20260925T194500Z" data-loc="The Lost Estate" data-url="https://theatre.ticketmaster.co.uk/book/1HHV2-chat-noir/#perf=1HHV2-11S&amp;date=2026-09-25&amp;time=6.45PM" data-lat="51.4905226" data-lng="-0.20485809">
 <button class="toggle" data-idx="28" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="28" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HHV2-chat-noir/#perf=1HHV2-11S&amp;date=2026-09-25&amp;time=6.45PM">CHAT NOIR!</a></h3>
 <div class="meta">6:45 PM · The Lost Estate</div>
@@ -588,6 +624,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-29" data-idx="29" data-name="Joe Herbert &quot;Blind Eyes&quot; (Downstairs)" data-start-local="2026-09-25T18:45:00" data-cal-start="20260925T174500Z" data-cal-end="20260925T194500Z" data-loc="Vortex Jazz Club" data-url="https://www.universe.com/events/joe-herbert-blind-eyes-downstairs-tickets-FMTY0R?ref=ticketmaster" data-lat="51.54879" data-lng="-0.07665">
 <button class="toggle" data-idx="29" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="29" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/joe-herbert-blind-eyes-downstairs-tickets-FMTY0R?ref=ticketmaster">Joe Herbert &quot;Blind Eyes&quot; (Downstairs)</a></h3>
 <div class="meta">6:45 PM · Vortex Jazz Club</div>
@@ -603,6 +640,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-31" data-idx="31" data-name="My Neighbour Totoro" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="Gillian Lynne Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1G7HA-my-neighbour-totoro/#perf=1G7HA-17Y&amp;date=2026-09-25&amp;time=7.00PM" data-lat="51.51429" data-lng="-0.119645">
 <button class="toggle" data-idx="31" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="31" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1G7HA-my-neighbour-totoro/#perf=1G7HA-17Y&amp;date=2026-09-25&amp;time=7.00PM">My Neighbour Totoro</a></h3>
 <div class="meta">7:00 PM · Gillian Lynne Theatre</div>
@@ -618,6 +656,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-32" data-idx="32" data-name="Magic Mike Live" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="The Theatre at the Hippodrome Casino" data-url="https://theatre.ticketmaster.co.uk/book/1FHGN-magic-mike-live#perf=1FHGN-51Y&amp;date=2026-09-25&amp;time=7.00PM" data-lat="51.511196" data-lng="-0.129629">
 <button class="toggle" data-idx="32" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="32" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1FHGN-magic-mike-live#perf=1FHGN-51Y&amp;date=2026-09-25&amp;time=7.00PM">Magic Mike Live</a></h3>
 <div class="meta">7:00 PM · The Theatre at the Hippodrome Casino</div>
@@ -633,6 +672,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-34" data-idx="34" data-name="Matilda The Musical" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="Cambridge Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1FY3Y-matilda-the-musical/#perf=1FY3Y-38Z&amp;date=2026-09-25&amp;time=7.00PM" data-lat="51.51351" data-lng="-0.126407">
 <button class="toggle" data-idx="34" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="34" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1FY3Y-matilda-the-musical/#perf=1FY3Y-38Z&amp;date=2026-09-25&amp;time=7.00PM">Matilda The Musical</a></h3>
 <div class="meta">7:00 PM · Cambridge Theatre</div>
@@ -648,6 +688,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-43" data-idx="43" data-name="Disney&#x27;s THE LION KING" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Lyceum Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1DR6R-lyceum-theatre-london-disneys-the-lion-king/#perf=1DR6R-59G&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.511718" data-lng="-0.120008">
 <button class="toggle" data-idx="43" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="43" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1DR6R-lyceum-theatre-london-disneys-the-lion-king/#perf=1DR6R-59G&amp;date=2026-09-25&amp;time=7.30PM">Disney&#x27;s THE LION KING</a></h3>
 <div class="meta">7:30 PM · Lyceum Theatre</div>
@@ -663,6 +704,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-44" data-idx="44" data-name="Les Miserables" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Sondheim Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1GWN6-les-miserables-sept-25/#perf=1GWN6-17B&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.512116" data-lng="-0.133106">
 <button class="toggle" data-idx="44" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="44" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1GWN6-les-miserables-sept-25/#perf=1GWN6-17B&amp;date=2026-09-25&amp;time=7.30PM">Les Miserables</a></h3>
 <div class="meta">7:30 PM · Sondheim Theatre</div>
@@ -678,6 +720,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-46" data-idx="46" data-name="Sinatra the Musical" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Aldwych Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1HU76-sinatra-the-musical/#perf=1HU76-3J&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.51312" data-lng="-0.118841">
 <button class="toggle" data-idx="46" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="46" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HU76-sinatra-the-musical/#perf=1HU76-3J&amp;date=2026-09-25&amp;time=7.30PM">Sinatra the Musical</a></h3>
 <div class="meta">7:30 PM · Aldwych Theatre</div>
@@ -693,6 +736,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-47" data-idx="47" data-name="I&#x27;m Every Woman: the Chaka Khan Musical" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Troubadour Wembley Park Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1J240-im-every-woman-the-chaka-khan-musical/#perf=1J240-1W&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.56178" data-lng="-0.28527">
 <button class="toggle" data-idx="47" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="47" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1J240-im-every-woman-the-chaka-khan-musical/#perf=1J240-1W&amp;date=2026-09-25&amp;time=7.30PM">I&#x27;m Every Woman: the Chaka Khan Musical</a></h3>
 <div class="meta">7:30 PM · Troubadour Wembley Park Theatre</div>
@@ -708,6 +752,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-48" data-idx="48" data-name="Million Dollar Quartet" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="The Arts at Marble Arch" data-url="https://theatre.ticketmaster.co.uk/book/1J8MU-million-dollar-quartet/#perf=1J8MU-Q&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.51329" data-lng="-0.159855">
 <button class="toggle" data-idx="48" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="48" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1J8MU-million-dollar-quartet/#perf=1J8MU-Q&amp;date=2026-09-25&amp;time=7.30PM">Million Dollar Quartet</a></h3>
 <div class="meta">7:30 PM · The Arts at Marble Arch</div>
@@ -723,6 +768,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-49" data-idx="49" data-name="Inala" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="House of Sisters Grimm" data-url="https://theatre.ticketmaster.co.uk/book/1J2CG-inala/#perf=1J2CG-62&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.51676177" data-lng="-0.13822703">
 <button class="toggle" data-idx="49" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="49" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1J2CG-inala/#perf=1J2CG-62&amp;date=2026-09-25&amp;time=7.30PM">Inala</a></h3>
 <div class="meta">7:30 PM · House of Sisters Grimm</div>
@@ -738,6 +784,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-51" data-idx="51" data-name="The Devil Wears Prada" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Dominion Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1FWNE-the-devil-wears-prada/#perf=1FWNE-22C&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.516971" data-lng="-0.129679">
 <button class="toggle" data-idx="51" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="51" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1FWNE-the-devil-wears-prada/#perf=1FWNE-22C&amp;date=2026-09-25&amp;time=7.30PM">The Devil Wears Prada</a></h3>
 <div class="meta">7:30 PM · Dominion Theatre</div>
@@ -753,6 +800,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-52" data-idx="52" data-name="Shakespeare&#x27;s Globe - As You Like It" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Globe Theatre, Shakespeare&#x27;s Globe" data-url="https://theatre.ticketmaster.co.uk/book/1HM8Y-as-you-like-it-26/#perf=1HM8Y-P&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.508111" data-lng="-0.096597">
 <button class="toggle" data-idx="52" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="52" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HM8Y-as-you-like-it-26/#perf=1HM8Y-P&amp;date=2026-09-25&amp;time=7.30PM">Shakespeare&#x27;s Globe - As You Like It</a></h3>
 <div class="meta">7:30 PM · Globe Theatre, Shakespeare&#x27;s Globe</div>
@@ -768,6 +816,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-54" data-idx="54" data-name="Sting&#x27;s the Last Ship" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Theatre Royal Drury Lane" data-url="https://theatre.ticketmaster.co.uk/book/1JAAE-stings-the-last-ship/#perf=1JAAE-6&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.513008" data-lng="-0.120258">
 <button class="toggle" data-idx="54" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="54" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1JAAE-stings-the-last-ship/#perf=1JAAE-6&amp;date=2026-09-25&amp;time=7.30PM">Sting&#x27;s the Last Ship</a></h3>
 <div class="meta">7:30 PM · Theatre Royal Drury Lane</div>
@@ -783,6 +832,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-55" data-idx="55" data-name="Moulin Rouge The Musical" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Piccadilly Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1DVRJ-piccadilly-theatre-london-moulin-rouge-the-musical/#perf=1DVRJ-56C&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.5110543" data-lng="-0.1353998">
 <button class="toggle" data-idx="55" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="55" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1DVRJ-piccadilly-theatre-london-moulin-rouge-the-musical/#perf=1DVRJ-56C&amp;date=2026-09-25&amp;time=7.30PM">Moulin Rouge The Musical</a></h3>
 <div class="meta">7:30 PM · Piccadilly Theatre</div>
@@ -798,6 +848,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-56" data-idx="56" data-name="Cabaret At The Kit Kat Club" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Playhouse Theatre" data-url="https://www.ticketmaster.co.uk/cabaret-at-the-kit-kat-club-london-25-09-2026/event/3700637BEDB8B5D5" data-lat="51.506975" data-lng="-0.123719">
 <button class="toggle" data-idx="56" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="56" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/cabaret-at-the-kit-kat-club-london-25-09-2026/event/3700637BEDB8B5D5">Cabaret At The Kit Kat Club</a></h3>
 <div class="meta">7:30 PM · Playhouse Theatre</div>
@@ -813,6 +864,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-57" data-idx="57" data-name="Mamma Mia" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Novello Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1H4KU-mamma-mia-sept-25/#perf=1H4KU-17O&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.511933" data-lng="-0.119423">
 <button class="toggle" data-idx="57" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="57" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1H4KU-mamma-mia-sept-25/#perf=1H4KU-17O&amp;date=2026-09-25&amp;time=7.30PM">Mamma Mia</a></h3>
 <div class="meta">7:30 PM · Novello Theatre</div>
@@ -828,6 +880,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-58" data-idx="58" data-name="Hamilton" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Victoria Palace Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1H1YN-hamilton/#perf=1H1YN-18C&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.497012" data-lng="-0.142382">
 <button class="toggle" data-idx="58" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="58" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1H1YN-hamilton/#perf=1H1YN-18C&amp;date=2026-09-25&amp;time=7.30PM">Hamilton</a></h3>
 <div class="meta">7:30 PM · Victoria Palace Theatre</div>
@@ -843,6 +896,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-59" data-idx="59" data-name="The Mousetrap" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="St Martin&#x27;s Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1J3DY-the-mousetrap/#perf=1J3DY-4P&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.512848" data-lng="-0.127672">
 <button class="toggle" data-idx="59" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="59" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1J3DY-the-mousetrap/#perf=1J3DY-4P&amp;date=2026-09-25&amp;time=7.30PM">The Mousetrap</a></h3>
 <div class="meta">7:30 PM · St Martin&#x27;s Theatre</div>
@@ -858,6 +912,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-60" data-idx="60" data-name="Oliver!" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Gielgud Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1H4KN-oliver/#perf=1H4KN-17J&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.512019" data-lng="-0.13324">
 <button class="toggle" data-idx="60" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="60" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1H4KN-oliver/#perf=1H4KN-17J&amp;date=2026-09-25&amp;time=7.30PM">Oliver!</a></h3>
 <div class="meta">7:30 PM · Gielgud Theatre</div>
@@ -873,6 +928,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-62" data-idx="62" data-name="Phantom of the Opera" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="His Majesty&#x27;s Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1FU7R-the-phantom-of-the-opera/#perf=1FU7R-35J&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.508133" data-lng="-0.132044">
 <button class="toggle" data-idx="62" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="62" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1FU7R-the-phantom-of-the-opera/#perf=1FU7R-35J&amp;date=2026-09-25&amp;time=7.30PM">Phantom of the Opera</a></h3>
 <div class="meta">7:30 PM · His Majesty&#x27;s Theatre</div>
@@ -888,6 +944,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-63" data-idx="63" data-name="Titanique" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Criterion Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1GTBN-titanique/#perf=1GTBN-218&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.509707" data-lng="-0.133724">
 <button class="toggle" data-idx="63" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="63" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1GTBN-titanique/#perf=1GTBN-218&amp;date=2026-09-25&amp;time=7.30PM">Titanique</a></h3>
 <div class="meta">7:30 PM · Criterion Theatre</div>
@@ -903,6 +960,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-65" data-idx="65" data-name="Witness for the Prosecution" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="County Hall" data-url="https://theatre.ticketmaster.co.uk/book/1EL6R-witness-for-the-prosecution/#perf=1EL6R-46M&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.50282" data-lng="-0.119252">
 <button class="toggle" data-idx="65" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="65" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1EL6R-witness-for-the-prosecution/#perf=1EL6R-46M&amp;date=2026-09-25&amp;time=7.30PM">Witness for the Prosecution</a></h3>
 <div class="meta">7:30 PM · County Hall</div>
@@ -918,6 +976,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-66" data-idx="66" data-name="The Best in Stand Up - Friday 25th September" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="The Comedy Store" data-url="https://www.universe.com/events/the-best-in-stand-up-friday-25th-september-tickets-HYRFBL?ref=ticketmaster" data-lat="51.50998051" data-lng="-0.13233095">
 <button class="toggle" data-idx="66" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="66" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/the-best-in-stand-up-friday-25th-september-tickets-HYRFBL?ref=ticketmaster">The Best in Stand Up - Friday 25th September</a></h3>
 <div class="meta">7:30 PM · The Comedy Store</div>
@@ -933,6 +992,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-70" data-idx="70" data-name="Hadestown" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Lyric Theatre" data-url="https://www.ticketmaster.co.uk/hadestown-london-25-09-2026/event/ZKr9uZKbZL4Ze8-4-Z7vQ" data-lat="51.511248" data-lng="-0.133935">
 <button class="toggle" data-idx="70" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="70" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/hadestown-london-25-09-2026/event/ZKr9uZKbZL4Ze8-4-Z7vQ">Hadestown</a></h3>
 <div class="meta">7:30 PM · Lyric Theatre</div>
@@ -948,6 +1008,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-71" data-idx="71" data-name="Into The Woods" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Noel Coward Theatre" data-url="https://www.ticketmaster.co.uk/into-the-woods-london-25-09-2026/event/Zor9uZKbZL4Zef7Q2Zk" data-lat="51.5142805" data-lng="-0.1284654">
 <button class="toggle" data-idx="71" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="71" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/into-the-woods-london-25-09-2026/event/Zor9uZKbZL4Zef7Q2Zk">Into The Woods</a></h3>
 <div class="meta">7:30 PM · Noel Coward Theatre</div>
@@ -963,6 +1024,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-75" data-idx="75" data-name="SIX The Musical" data-start-local="2026-09-25T20:00:00" data-cal-start="20260925T190000Z" data-cal-end="20260925T210000Z" data-loc="Vaudeville Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1DYC8-six-vau/#perf=1DYC8-676&amp;date=2026-09-25&amp;time=8.00PM" data-lat="51.510546" data-lng="-0.12265">
 <button class="toggle" data-idx="75" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="75" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1DYC8-six-vau/#perf=1DYC8-676&amp;date=2026-09-25&amp;time=8.00PM">SIX The Musical</a></h3>
 <div class="meta">8:00 PM · Vaudeville Theatre</div>
@@ -978,6 +1040,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-81" data-idx="81" data-name="Jack Sellen (Flying Mojito Bros), Janie Jones (NTS), King Goose" data-start-local="2026-09-25T22:00:00" data-cal-start="20260925T210000Z" data-cal-end="20260925T230000Z" data-loc="Fox and Firkin" data-url="https://www.universe.com/events/jack-sellen-flying-mojito-bros-janie-jones-nts-king-goose-tickets-F40NGQ?ref=ticketmaster">
 <button class="toggle" data-idx="81" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="81" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/jack-sellen-flying-mojito-bros-janie-jones-nts-king-goose-tickets-F40NGQ?ref=ticketmaster">Jack Sellen (Flying Mojito Bros), Janie Jones (NTS), King Goose</a></h3>
 <div class="meta">10:00 PM · Fox and Firkin</div>
@@ -993,6 +1056,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-84" data-idx="84" data-name="The Freshers Warehouse Rave - London Freshers 2026" data-start-local="2026-09-25T23:00:00" data-cal-start="20260925T220000Z" data-cal-end="20260926T000000Z" data-loc="E1 London" data-url="https://www.universe.com/events/the-freshers-warehouse-rave-london-freshers-2026-tickets-WY57NS?ref=ticketmaster" data-lat="51.508976" data-lng="-0.060911">
 <button class="toggle" data-idx="84" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="84" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/the-freshers-warehouse-rave-london-freshers-2026-tickets-WY57NS?ref=ticketmaster">The Freshers Warehouse Rave - London Freshers 2026</a></h3>
 <div class="meta">11:00 PM · E1 London</div>
@@ -1012,6 +1076,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="event-13" data-idx="13" data-name="Pale Waves" data-start-local="2026-09-25T18:00:00" data-cal-start="20260925T170000Z" data-cal-end="20260925T190000Z" data-loc="KOKO" data-url="https://www.ticketmaster.co.uk/pale-waves-london-25-09-2026/event/1F0064A6B1E33536" data-lat="51.535029" data-lng="-0.139335">
 <button class="toggle" data-idx="13" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="13" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/pale-waves-london-25-09-2026/event/1F0064A6B1E33536">Pale Waves</a></h3>
 <div class="meta">6:00 PM · KOKO</div>
@@ -1027,6 +1092,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-14" data-idx="14" data-name="Split Chain" data-start-local="2026-09-25T18:00:00" data-cal-start="20260925T170000Z" data-cal-end="20260925T190000Z" data-loc="Underworld" data-url="https://www.ticketmaster.co.uk/split-chain-london-25-09-2026/event/1F0064ABB861448D" data-lat="51.538624" data-lng="-0.142073">
 <button class="toggle" data-idx="14" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="14" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/split-chain-london-25-09-2026/event/1F0064ABB861448D">Split Chain</a></h3>
 <div class="meta">6:00 PM · Underworld</div>
@@ -1042,6 +1108,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-15" data-idx="15" data-name="Soulidified - Early Show" data-start-local="2026-09-25T18:00:00" data-cal-start="20260925T170000Z" data-cal-end="20260925T190000Z" data-loc="The Lower Third" data-url="https://www.universe.com/events/soulidified-early-show-tickets-XVY9G8?ref=ticketmaster" data-lat="51.515497" data-lng="-0.129112">
 <button class="toggle" data-idx="15" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="15" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/soulidified-early-show-tickets-XVY9G8?ref=ticketmaster">Soulidified - Early Show</a></h3>
 <div class="meta">6:00 PM · The Lower Third</div>
@@ -1057,6 +1124,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-17" data-idx="17" data-name="Dead Bob" data-start-local="2026-09-25T18:00:00" data-cal-start="20260925T170000Z" data-cal-end="20260925T190000Z" data-loc="New Cross Inn" data-url="https://www.universe.com/events/dead-bob-tickets-W4DFC5?ref=ticketmaster" data-lat="51.475524" data-lng="-0.03838">
 <button class="toggle" data-idx="17" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="17" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/dead-bob-tickets-W4DFC5?ref=ticketmaster">Dead Bob</a></h3>
 <div class="meta">6:00 PM · New Cross Inn</div>
@@ -1072,6 +1140,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-18" data-idx="18" data-name="Party 101" data-start-local="2026-09-25T18:30:00" data-cal-start="20260925T173000Z" data-cal-end="20260925T193000Z" data-loc="British Airways ARC" data-url="https://www.ticketmaster.co.uk/party-101-london-25-09-2026/event/370064D2B3E56921" data-lat="51.49641301" data-lng="-0.21060857">
 <button class="toggle" data-idx="18" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="18" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/party-101-london-25-09-2026/event/370064D2B3E56921">Party 101</a></h3>
 <div class="meta">6:30 PM · British Airways ARC</div>
@@ -1087,6 +1156,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-21" data-idx="21" data-name="Lucy Bedroque" data-start-local="2026-09-25T18:30:00" data-cal-start="20260925T173000Z" data-cal-end="20260925T193000Z" data-loc="EartH" data-url="https://www.ticketmaster.co.uk/lucy-bedroque-london-25-09-2026/event/35006522A87E89ED" data-lat="51.551041" data-lng="-0.075203">
 <button class="toggle" data-idx="21" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="21" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/lucy-bedroque-london-25-09-2026/event/35006522A87E89ED">Lucy Bedroque</a></h3>
 <div class="meta">6:30 PM · EartH</div>
@@ -1102,6 +1172,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-22" data-idx="22" data-name="Harold Melvins Bluenotes &#x27;Wake Up Everybody&#x27; 50th Anniversary Show" data-start-local="2026-09-25T18:30:00" data-cal-start="20260925T173000Z" data-cal-end="20260925T193000Z" data-loc="O2 Shepherds Bush Empire" data-url="https://www.ticketmaster.co.uk/harold-melvins-bluenotes-wake-up-everybody-london-25-09-2026/event/3E006388E7C97D5B" data-lat="51.503525" data-lng="-0.224435">
 <button class="toggle" data-idx="22" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="22" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/harold-melvins-bluenotes-wake-up-everybody-london-25-09-2026/event/3E006388E7C97D5B">Harold Melvins Bluenotes &#x27;Wake Up Everybody&#x27; 50th Anniversary Show</a></h3>
 <div class="meta">6:30 PM · O2 Shepherds Bush Empire</div>
@@ -1117,6 +1188,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-23" data-idx="23" data-name="I Prevail" data-start-local="2026-09-25T18:30:00" data-cal-start="20260925T173000Z" data-cal-end="20260925T193000Z" data-loc="Alexandra Palace" data-url="https://www.ticketmaster.co.uk/i-prevail-london-25-09-2026/event/1F00634139C7C441" data-lat="51.594595" data-lng="-0.130275">
 <button class="toggle" data-idx="23" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="23" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/i-prevail-london-25-09-2026/event/1F00634139C7C441">I Prevail</a></h3>
 <div class="meta">6:30 PM · Alexandra Palace</div>
@@ -1132,6 +1204,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-25" data-idx="25" data-name="Live Jazz from the Piano Bar at Red Room Studios, Soho" data-start-local="2026-09-25T18:30:00" data-cal-start="20260925T173000Z" data-cal-end="20260925T193000Z" data-loc="Piano Bar Soho" data-url="https://www.universe.com/events/live-jazz-from-the-piano-bar-at-red-room-studios-soho-tickets-ZD6FXL?ref=ticketmaster" data-lat="51.5111127" data-lng="-0.1343758">
 <button class="toggle" data-idx="25" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="25" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/live-jazz-from-the-piano-bar-at-red-room-studios-soho-tickets-ZD6FXL?ref=ticketmaster">Live Jazz from the Piano Bar at Red Room Studios, Soho</a></h3>
 <div class="meta">6:30 PM · Piano Bar Soho</div>
@@ -1147,6 +1220,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-26" data-idx="26" data-name="A Guy Called Gerald (Live)" data-start-local="2026-09-25T18:30:00" data-cal-start="20260925T173000Z" data-cal-end="20260925T193000Z" data-loc="Jazz Cafe" data-url="https://www.universe.com/events/a-guy-called-gerald-live-tickets-0KHWRC?ref=ticketmaster" data-lat="51.53859" data-lng="-0.143343">
 <button class="toggle" data-idx="26" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="26" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/a-guy-called-gerald-live-tickets-0KHWRC?ref=ticketmaster">A Guy Called Gerald (Live)</a></h3>
 <div class="meta">6:30 PM · Jazz Cafe</div>
@@ -1162,6 +1236,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-27" data-idx="27" data-name="Dele Sosimi Afrobeat Orchestra" data-start-local="2026-09-25T18:30:00" data-cal-start="20260925T173000Z" data-cal-end="20260925T193000Z" data-loc="Soul Mama Islington" data-url="https://www.universe.com/events/dele-sosimi-afrobeat-orchestra-tickets-QDCW1M?ref=ticketmaster" data-lat="51.534184" data-lng="-0.106126">
 <button class="toggle" data-idx="27" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="27" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/dele-sosimi-afrobeat-orchestra-tickets-QDCW1M?ref=ticketmaster">Dele Sosimi Afrobeat Orchestra</a></h3>
 <div class="meta">6:30 PM · Soul Mama Islington</div>
@@ -1177,6 +1252,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-30" data-idx="30" data-name="Belle Livingstone&#x27;s 58th Street Country Club" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="Belle Livingstone&#x27;s 58th Street Country Club" data-url="https://theatre.ticketmaster.co.uk/book/1HBYR-58th-street/#perf=1HBYR-14Z&amp;date=2026-09-25&amp;time=7.00PM" data-lat="51.47289512" data-lng="-0.06736413">
 <button class="toggle" data-idx="30" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="30" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HBYR-58th-street/#perf=1HBYR-14Z&amp;date=2026-09-25&amp;time=7.00PM">Belle Livingstone&#x27;s 58th Street Country Club</a></h3>
 <div class="meta">7:00 PM · Belle Livingstone&#x27;s 58th Street Country Club</div>
@@ -1192,6 +1268,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-33" data-idx="33" data-name="Alyssa Grace" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="26 Leake Street" data-url="https://www.ticketmaster.co.uk/alyssa-grace-london-25-09-2026/event/3500651B00A3DDF6" data-lat="51.5013653" data-lng="-0.1160127">
 <button class="toggle" data-idx="33" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="33" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/alyssa-grace-london-25-09-2026/event/3500651B00A3DDF6">Alyssa Grace</a></h3>
 <div class="meta">7:00 PM · 26 Leake Street</div>
@@ -1207,6 +1284,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-35" data-idx="35" data-name="Sinead Harnett" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="Blue Note London" data-url="https://www.ticketmaster.co.uk/sinead-harnett-london-25-09-2026/event/2300650EC0320D0A" data-lat="51.51046344" data-lng="-0.12670269">
 <button class="toggle" data-idx="35" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="35" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/sinead-harnett-london-25-09-2026/event/2300650EC0320D0A">Sinead Harnett</a></h3>
 <div class="meta">7:00 PM · Blue Note London</div>
@@ -1222,6 +1300,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-36" data-idx="36" data-name="Ella Mai" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="Eventim Apollo" data-url="https://www.ticketmaster.co.uk/ella-mai-london-25-09-2026/event/360064827FD42814" data-lat="51.490693" data-lng="-0.224423">
 <button class="toggle" data-idx="36" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="36" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/ella-mai-london-25-09-2026/event/360064827FD42814">Ella Mai</a></h3>
 <div class="meta">7:00 PM · Eventim Apollo</div>
@@ -1237,6 +1316,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-37" data-idx="37" data-name="Space" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="O2 Academy Islington" data-url="https://www.ticketmaster.co.uk/space-london-25-09-2026/event/3E00644390592E42" data-lat="51.534469" data-lng="-0.106613">
 <button class="toggle" data-idx="37" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="37" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/space-london-25-09-2026/event/3E00644390592E42">Space</a></h3>
 <div class="meta">7:00 PM · O2 Academy Islington</div>
@@ -1252,6 +1332,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-38" data-idx="38" data-name="Death Cab for Cutie" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="Troxy" data-url="https://www.ticketmaster.co.uk/death-cab-for-cutie-london-25-09-2026/event/3E00649DA4382725" data-lat="51.51326" data-lng="-0.043935">
 <button class="toggle" data-idx="38" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="38" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/death-cab-for-cutie-london-25-09-2026/event/3E00649DA4382725">Death Cab for Cutie</a></h3>
 <div class="meta">7:00 PM · Troxy</div>
@@ -1267,6 +1348,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-39" data-idx="39" data-name="The Molotovs" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="O2 Forum Kentish Town" data-url="https://www.ticketmaster.co.uk/the-molotovs-london-25-09-2026/event/3E006435F33B5260" data-lat="51.552039" data-lng="-0.14193">
 <button class="toggle" data-idx="39" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="39" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/the-molotovs-london-25-09-2026/event/3E006435F33B5260">The Molotovs</a></h3>
 <div class="meta">7:00 PM · O2 Forum Kentish Town</div>
@@ -1282,6 +1364,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-40" data-idx="40" data-name="I love you, but... I chose The Maine" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="Roundhouse" data-url="https://www.ticketmaster.co.uk/i-love-you-but-i-chose-london-25-09-2026/event/1F00645A3E95B861" data-lat="51.543051" data-lng="-0.151324">
 <button class="toggle" data-idx="40" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="40" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/i-love-you-but-i-chose-london-25-09-2026/event/1F00645A3E95B861">I love you, but... I chose The Maine</a></h3>
 <div class="meta">7:00 PM · Roundhouse</div>
@@ -1297,6 +1380,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-41" data-idx="41" data-name="Magnum" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="Islington Assembly Hall" data-url="https://www.ticketmaster.co.uk/magnum-london-25-09-2026/event/1F006389E3807D67" data-lat="51.541642" data-lng="-0.10196">
 <button class="toggle" data-idx="41" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="41" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/magnum-london-25-09-2026/event/1F006389E3807D67">Magnum</a></h3>
 <div class="meta">7:00 PM · Islington Assembly Hall</div>
@@ -1312,6 +1396,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-42" data-idx="42" data-name="DJ Nights: Mi-Soul Radio Fridays" data-start-local="2026-09-25T19:00:00" data-cal-start="20260925T180000Z" data-cal-end="20260925T200000Z" data-loc="Boisdale, Canary Wharf" data-url="https://www.universe.com/events/dj-nights-mi-soul-radio-fridays-tickets-V3MNJ2?ref=ticketmaster" data-lat="51.505252" data-lng="-0.022271">
 <button class="toggle" data-idx="42" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="42" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/dj-nights-mi-soul-radio-fridays-tickets-V3MNJ2?ref=ticketmaster">DJ Nights: Mi-Soul Radio Fridays</a></h3>
 <div class="meta">7:00 PM · Boisdale, Canary Wharf</div>
@@ -1327,6 +1412,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-61" data-idx="61" data-name="Young Jonn - Venue Premium Tickets" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="OVO Arena Wembley" data-url="https://www.ticketmaster.co.uk/young-jonn-venue-premium-tickets-london-25-09-2026/event/370064879D2E1537" data-lat="51.557918" data-lng="-0.283527">
 <button class="toggle" data-idx="61" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="61" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/young-jonn-venue-premium-tickets-london-25-09-2026/event/370064879D2E1537">Young Jonn - Venue Premium Tickets</a></h3>
 <div class="meta">7:30 PM · OVO Arena Wembley</div>
@@ -1342,6 +1428,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-68" data-idx="68" data-name="The Witcher by candlelight" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Kensington United Reformed Church" data-url="https://www.universe.com/events/the-witcher-by-candlelight-tickets-R8FQ79?ref=ticketmaster" data-lat="51.49884175" data-lng="-0.19510576">
 <button class="toggle" data-idx="68" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="68" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/the-witcher-by-candlelight-tickets-R8FQ79?ref=ticketmaster">The Witcher by candlelight</a></h3>
 <div class="meta">7:30 PM · Kensington United Reformed Church</div>
@@ -1357,6 +1444,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-72" data-idx="72" data-name="Abba Voyage - VIP Premium Package" data-start-local="2026-09-25T19:45:00" data-cal-start="20260925T184500Z" data-cal-end="20260925T204500Z" data-loc="ABBA Arena" data-url="https://theatre.ticketmaster.co.uk/book/1H8DJ-abba-voyage-admissions/#perf=1H8DJ-H2E&amp;date=2026-09-25&amp;time=7.45PM" data-lat="51.53327366" data-lng="-0.01362306">
 <button class="toggle" data-idx="72" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="72" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1H8DJ-abba-voyage-admissions/#perf=1H8DJ-H2E&amp;date=2026-09-25&amp;time=7.45PM">Abba Voyage - VIP Premium Package</a></h3>
 <div class="meta">7:45 PM · ABBA Arena</div>
@@ -1372,6 +1460,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-73" data-idx="73" data-name="Celebrating Songwriters in Jazz - featuring Fini Bearman, Amena &amp; Rosa Witt" data-start-local="2026-09-25T19:45:00" data-cal-start="20260925T184500Z" data-cal-end="20260925T204500Z" data-loc="Vortex Jazz Club" data-url="https://www.universe.com/events/celebrating-songwriters-in-jazz-featuring-fini-bearman-amena-rosa-witt-tickets-46QNSR?ref=ticketmaster" data-lat="51.54879" data-lng="-0.07665">
 <button class="toggle" data-idx="73" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="73" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/celebrating-songwriters-in-jazz-featuring-fini-bearman-amena-rosa-witt-tickets-46QNSR?ref=ticketmaster">Celebrating Songwriters in Jazz - featuring Fini Bearman, Amena &amp; Rosa Witt</a></h3>
 <div class="meta">7:45 PM · Vortex Jazz Club</div>
@@ -1387,6 +1476,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-76" data-idx="76" data-name="Limonata + Emma Jemima + Bridget + Kentish Collective" data-start-local="2026-09-25T20:00:00" data-cal-start="20260925T190000Z" data-cal-end="20260925T210000Z" data-loc="The Troubadour" data-url="https://www.ticketweb.uk/event/limonata-emma-jemima-troubadour-tickets/15031603?REFERRAL_ID=tmfeed" data-lat="51.488695" data-lng="-0.19197">
 <button class="toggle" data-idx="76" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="76" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.uk/event/limonata-emma-jemima-troubadour-tickets/15031603?REFERRAL_ID=tmfeed">Limonata + Emma Jemima + Bridget + Kentish Collective</a></h3>
 <div class="meta">8:00 PM · The Troubadour</div>
@@ -1402,6 +1492,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-79" data-idx="79" data-name="The RnB Collective - Live" data-start-local="2026-09-25T21:00:00" data-cal-start="20260925T200000Z" data-cal-end="20260925T220000Z" data-loc="Boisdale, Canary Wharf" data-url="https://www.universe.com/events/the-rnb-collective-live-tickets-VZ5RWM?ref=ticketmaster" data-lat="51.505252" data-lng="-0.022271">
 <button class="toggle" data-idx="79" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="79" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/the-rnb-collective-live-tickets-VZ5RWM?ref=ticketmaster">The RnB Collective - Live</a></h3>
 <div class="meta">9:00 PM · Boisdale, Canary Wharf</div>
@@ -1417,6 +1508,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-80" data-idx="80" data-name="VOODOO★LONDON &lt;Metal Emo Punk Goth Party&gt; TAKING BACK 2000s NOSTALGIA RAVE!" data-start-local="2026-09-25T22:00:00" data-cal-start="20260925T210000Z" data-cal-end="20260925T230000Z" data-loc="Raes At Omeara" data-url="https://www.universe.com/events/voodoo-london-metal-emo-punk-goth-party-taking-back-2000s-nostalgia-rave-tickets-RH9V62?ref=ticketmaster" data-lat="51.50417" data-lng="-0.09423">
 <button class="toggle" data-idx="80" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="80" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/voodoo-london-metal-emo-punk-goth-party-taking-back-2000s-nostalgia-rave-tickets-RH9V62?ref=ticketmaster">VOODOO★LONDON &lt;Metal Emo Punk Goth Party&gt; TAKING BACK 2000s NOSTALGIA RAVE!</a></h3>
 <div class="meta">10:00 PM · Raes At Omeara</div>
@@ -1432,6 +1524,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-82" data-idx="82" data-name="Sexy Lady Massive present The Massive (London)" data-start-local="2026-09-25T22:30:00" data-cal-start="20260925T213000Z" data-cal-end="20260925T233000Z" data-loc="Jazz Cafe" data-url="https://www.universe.com/events/sexy-lady-massive-present-the-massive-london-tickets-GL71YK?ref=ticketmaster" data-lat="51.53859" data-lng="-0.143343">
 <button class="toggle" data-idx="82" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="82" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/sexy-lady-massive-present-the-massive-london-tickets-GL71YK?ref=ticketmaster">Sexy Lady Massive present The Massive (London)</a></h3>
 <div class="meta">10:30 PM · Jazz Cafe</div>
@@ -1447,6 +1540,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-83" data-idx="83" data-name="James Zabiela, Henry Saiz + More" data-start-local="2026-09-25T23:00:00" data-cal-start="20260925T220000Z" data-cal-end="20260926T000000Z" data-loc="The Steelyard" data-url="https://www.universe.com/events/james-zabiela-henry-saiz-more-tickets-V1PSJD?ref=ticketmaster" data-lat="51.51097044" data-lng="-0.09049749">
 <button class="toggle" data-idx="83" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="83" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/james-zabiela-henry-saiz-more-tickets-V1PSJD?ref=ticketmaster">James Zabiela, Henry Saiz + More</a></h3>
 <div class="meta">11:00 PM · The Steelyard</div>
@@ -1466,6 +1560,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="event-16" data-idx="16" data-name="THE FRIDAY NIGHT SHOW!" data-start-local="2026-09-25T18:00:00" data-cal-start="20260925T170000Z" data-cal-end="20260925T190000Z" data-loc="Up The Creek" data-url="https://www.universe.com/events/the-friday-night-show-tickets-52BPK7?ref=ticketmaster" data-lat="51.481328" data-lng="-0.01077">
 <button class="toggle" data-idx="16" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="16" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/the-friday-night-show-tickets-52BPK7?ref=ticketmaster">THE FRIDAY NIGHT SHOW!</a></h3>
 <div class="meta">6:00 PM · Up The Creek</div>
@@ -1481,6 +1576,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-20" data-idx="20" data-name="The Prat Pack" data-start-local="2026-09-25T18:30:00" data-cal-start="20260925T173000Z" data-cal-end="20260925T193000Z" data-loc="The London Palladium" data-url="https://www.ticketmaster.co.uk/the-prat-pack-london-25-09-2026/event/3700647AA8162C48" data-lat="51.514546" data-lng="-0.140055">
 <button class="toggle" data-idx="20" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="20" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/the-prat-pack-london-25-09-2026/event/3700647AA8162C48">The Prat Pack</a></h3>
 <div class="meta">6:30 PM · The London Palladium</div>
@@ -1496,6 +1592,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-24" data-idx="24" data-name="Fri 25th Sep - 6.30pm Doors | 7pm Stand Up Comedy Show - Big Belly Comedy" data-start-local="2026-09-25T18:30:00" data-cal-start="20260925T173000Z" data-cal-end="20260925T193000Z" data-loc="Big Belly Comedy - Southbank" data-url="https://www.universe.com/events/fri-25th-sep-6-30pm-doors-7pm-stand-up-comedy-show-big-belly-comedy-tickets-4R92PQ?ref=ticketmaster">
 <button class="toggle" data-idx="24" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="24" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/fri-25th-sep-6-30pm-doors-7pm-stand-up-comedy-show-big-belly-comedy-tickets-4R92PQ?ref=ticketmaster">Fri 25th Sep - 6.30pm Doors | 7pm Stand Up Comedy Show - Big Belly Comedy</a></h3>
 <div class="meta">6:30 PM · Big Belly Comedy - Southbank</div>
@@ -1511,6 +1608,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-45" data-idx="45" data-name="Faulty Towers the Dining Experience" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="President Hotel" data-url="https://theatre.ticketmaster.co.uk/book/1GLTR-faulty-towers-the-dining-experience-in-londons-west-end-2024/#perf=1GLTR-20I&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.52226825" data-lng="-0.12395745">
 <button class="toggle" data-idx="45" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="45" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1GLTR-faulty-towers-the-dining-experience-in-londons-west-end-2024/#perf=1GLTR-20I&amp;date=2026-09-25&amp;time=7.30PM">Faulty Towers the Dining Experience</a></h3>
 <div class="meta">7:30 PM · President Hotel</div>
@@ -1526,6 +1624,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-50" data-idx="50" data-name="The Play That Goes Wrong" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Duchess Theatre" data-url="https://theatre.ticketmaster.co.uk/book/17YY4-the-play-that-goes-wrong/#perf=17YY4-812&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.512118" data-lng="-0.119732">
 <button class="toggle" data-idx="50" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="50" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/17YY4-the-play-that-goes-wrong/#perf=17YY4-812&amp;date=2026-09-25&amp;time=7.30PM">The Play That Goes Wrong</a></h3>
 <div class="meta">7:30 PM · Duchess Theatre</div>
@@ -1541,6 +1640,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-53" data-idx="53" data-name="Oh Mary!" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Trafalgar Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1HHVY-oh-mary/#perf=1HHVY-9D&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.5048" data-lng="-0.12651">
 <button class="toggle" data-idx="53" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="53" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HHVY-oh-mary/#perf=1HHVY-9D&amp;date=2026-09-25&amp;time=7.30PM">Oh Mary!</a></h3>
 <div class="meta">7:30 PM · Trafalgar Theatre</div>
@@ -1556,6 +1656,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-64" data-idx="64" data-name="Comedy At Cadogan Hall with David O&#x27;Doherty" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Cadogan Hall" data-url="https://theatre.ticketmaster.co.uk/book/1J5PJ-comedy-at-cadogan-with-david-odoherty/#perf=1J5PJ-2&amp;date=2026-09-25&amp;time=7.30PM" data-lat="51.493673" data-lng="-0.157586">
 <button class="toggle" data-idx="64" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="64" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1J5PJ-comedy-at-cadogan-with-david-odoherty/#perf=1J5PJ-2&amp;date=2026-09-25&amp;time=7.30PM">Comedy At Cadogan Hall with David O&#x27;Doherty</a></h3>
 <div class="meta">7:30 PM · Cadogan Hall</div>
@@ -1571,6 +1672,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-67" data-idx="67" data-name="Desi Central Comedy Show - Harrow" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Harrow Arts Centre" data-url="https://www.universe.com/events/desi-central-comedy-show-harrow-tickets-0PKHZF?ref=ticketmaster">
 <button class="toggle" data-idx="67" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="67" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/desi-central-comedy-show-harrow-tickets-0PKHZF?ref=ticketmaster">Desi Central Comedy Show - Harrow</a></h3>
 <div class="meta">7:30 PM · Harrow Arts Centre</div>
@@ -1586,6 +1688,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-69" data-idx="69" data-name="The Comedy About Spies" data-start-local="2026-09-25T19:30:00" data-cal-start="20260925T183000Z" data-cal-end="20260925T203000Z" data-loc="Adelphi Theatre" data-url="https://www.ticketmaster.co.uk/the-comedy-about-spies-london-25-09-2026/event/Z3r9uZKbZL4Ze3-2dZeq" data-lat="51.510676" data-lng="-0.122964">
 <button class="toggle" data-idx="69" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="69" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/the-comedy-about-spies-london-25-09-2026/event/Z3r9uZKbZL4Ze3-2dZeq">The Comedy About Spies</a></h3>
 <div class="meta">7:30 PM · Adelphi Theatre</div>
@@ -1601,6 +1704,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-74" data-idx="74" data-name="Neon Nights September with Bridget Christie" data-start-local="2026-09-25T20:00:00" data-cal-start="20260925T190000Z" data-cal-end="20260925T210000Z" data-loc="Soho Theatre Walthamstow" data-url="https://theatre.ticketmaster.co.uk/book/1J2U2-neon-nights-september-with-bridget-christie/#perf=1J2U2-2&amp;date=2026-09-25&amp;time=8.00PM" data-lat="51.58613733" data-lng="-0.02002133">
 <button class="toggle" data-idx="74" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="74" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1J2U2-neon-nights-september-with-bridget-christie/#perf=1J2U2-2&amp;date=2026-09-25&amp;time=8.00PM">Neon Nights September with Bridget Christie</a></h3>
 <div class="meta">8:00 PM · Soho Theatre Walthamstow</div>
@@ -1616,6 +1720,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-77" data-idx="77" data-name="Friday Comedy Club London | Covent Garden" data-start-local="2026-09-25T20:30:00" data-cal-start="20260925T193000Z" data-cal-end="20260925T213000Z" data-loc="Comedy Carnival Covent Garden" data-url="https://www.universe.com/events/friday-comedy-club-london-covent-garden-tickets-8GPV0L?ref=ticketmaster" data-lat="51.5137413" data-lng="-0.126866">
 <button class="toggle" data-idx="77" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="77" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/friday-comedy-club-london-covent-garden-tickets-8GPV0L?ref=ticketmaster">Friday Comedy Club London | Covent Garden</a></h3>
 <div class="meta">8:30 PM · Comedy Carnival Covent Garden</div>
@@ -1631,6 +1736,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="event-78" data-idx="78" data-name="International Stand Up Comedy, Covent Garden" data-start-local="2026-09-25T20:30:00" data-cal-start="20260925T193000Z" data-cal-end="20260925T213000Z" data-loc="Comedy Carnival Covent Garden" data-url="https://www.universe.com/events/international-stand-up-comedy-covent-garden-tickets-6SQNPD?ref=ticketmaster" data-lat="51.5137413" data-lng="-0.126866">
 <button class="toggle" data-idx="78" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="78" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/international-stand-up-comedy-covent-garden-tickets-6SQNPD?ref=ticketmaster">International Stand Up Comedy, Covent Garden</a></h3>
 <div class="meta">8:30 PM · Comedy Carnival Covent Garden</div>
@@ -1749,6 +1855,74 @@ document.querySelectorAll(".ics-btn").forEach(btn => {
   });
 });
 
+// ---------------- Filters + hide ----------------
+const F = {q: "", cat: "", free: false, tod: "all"};
+const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
+let hidden = new Set(JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
+function todOf(i) {
+  const s = STARTS[i];
+  if (s == null) return "tba";
+  if (s < 720) return "morning";      // before 12 PM
+  if (s < 1020) return "afternoon";   // 12–5 PM
+  return "evening";                   // 5 PM+
+}
+function applyFilters() {
+  const cards = document.querySelectorAll("article.event");
+  let n = 0;
+  cards.forEach(a => {
+    const i = a.dataset.idx;
+    let ok = !hidden.has(i);
+    if (ok && F.cat && CATS[+i] !== F.cat) ok = false;
+    if (ok && F.free && !FREE[+i]) ok = false;
+    if (ok && F.tod !== "all" && todOf(+i) !== F.tod) ok = false;
+    if (ok && F.q) {
+      const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
+      if (!hay.includes(F.q)) ok = false;
+    }
+    a.style.display = ok ? "" : "none";
+    if (ok) n++;
+  });
+  document.querySelectorAll("section.cat").forEach(s => {
+    const vis = [...s.querySelectorAll("article.event")]
+      .some(a => a.style.display !== "none");
+    s.style.display = vis ? "" : "none";
+  });
+  document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
+  document.getElementById("hiddenBar").style.display = hidden.size ? "" : "none";
+  document.getElementById("hiddenN").textContent = hidden.size;
+}
+document.getElementById("fq").addEventListener("input", e => {
+  F.q = e.target.value.trim().toLowerCase(); applyFilters();
+});
+document.getElementById("fcat").addEventListener("change", e => {
+  F.cat = e.target.value; applyFilters();
+});
+document.getElementById("ffree").addEventListener("click", e => {
+  F.free = !F.free;
+  e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
+  applyFilters();
+});
+document.querySelectorAll("#ftod button").forEach(b => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    F.tod = b.dataset.t; applyFilters();
+  });
+});
+document.querySelectorAll(".hide").forEach(b => b.addEventListener("click", () => {
+  const i = b.dataset.idx;
+  hidden.add(i);
+  localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden]));
+  if (picks.has(i)) { picks.delete(i); render(); }
+  applyFilters();
+}));
+document.getElementById("unhide").addEventListener("click", () => {
+  hidden.clear();
+  localStorage.setItem(HIDE_KEY, "[]");
+  applyFilters();
+});
+applyFilters();
+
 // ---------------- Tonight mode ----------------
 const TONIGHT_WINDOW = 300;  // upcoming: starts within the next 5h
 const NOW_GRACE = 120;       // "happening now": started within the last 2h
@@ -1797,6 +1971,8 @@ function setTonight(on) {
     homeSpot.clear();
     wrap.style.display = "none";
     document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
+    document.getElementById("filterBar").style.display = "";
+    applyFilters();
     return;
   }
   const now = cityNowMinutes();
@@ -1837,6 +2013,7 @@ function setTonight(on) {
     if (o.status !== "tba") live++;
   });
   document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
+  document.getElementById("filterBar").style.display = "none";
   wrap.style.display = "block";
   empty.style.display = live ? "none" : "block";
   count.textContent = live ? live + (live === 1 ? " thing" : " things") + " on now or starting soon" : "";
@@ -1844,4 +2021,4 @@ function setTonight(on) {
 }
 document.getElementById("tonightBtn").addEventListener("click", () => setTonight(!tonightOn));
 </script>
-<script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}</script><script>window.__tonight_api="https://b7a89cf0ba5a590e-104-28-240-216.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
+<script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}</script><script>window.__tonight_api="https://072a70295d9e96d6-104-28-224-252.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
