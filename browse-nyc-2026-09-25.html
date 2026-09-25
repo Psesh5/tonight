@@ -35,8 +35,14 @@ font-size:14px;font-family:inherit;background:#fff;}
 background:#fff;font-size:13.5px;cursor:pointer;font-family:inherit;color:#14201A;}
 .seg button.on,.fbtn[aria-pressed="true"]{background:#E39A2D;border-color:#E39A2D;font-weight:bold;}
 #resCount{font-size:13px;color:#6b6b6b;margin-left:auto;}
+.hide{position:absolute;top:10px;right:0;background:none;border:none;color:#a89f8a;font-size:22px;
+line-height:1;cursor:pointer;padding:8px;font-family:inherit;}
+.hide:hover{color:#14201A;}
+#hiddenBar{font-size:13px;color:#6b6b6b;display:none;}
+#hiddenBar button{background:none;border:none;padding:0;color:#14201A;text-decoration:underline;
+cursor:pointer;font-size:13px;font-family:inherit;}
 .wrap{max-width:680px;margin:0 auto;padding:8px 20px 60px;}
-.event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:70px;}
+.event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:70px;position:relative;}
 .toggle{background:none;border:none;cursor:pointer;padding:2px 0;align-self:flex-start;}
 .box{display:inline-block;width:22px;height:22px;border:2px solid #E39A2D;border-radius:7px;
 background:#fff;position:relative;transition:background .15s;}
@@ -361,6 +367,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button data-t="all" class="on">Any time</button><button data-t="morning">Morning</button><button data-t="afternoon">Afternoon</button><button data-t="evening">Evening</button>
 </div>
 <button class="fbtn" id="ffree" aria-pressed="false">✨ Free only</button>
+<span id="hiddenBar"><span id="hiddenN">0</span> hidden · <button id="unhide">show them</button></span>
 <span id="resCount"></span>
 </div>
 <div class="picks" id="picksBar"><strong>My picks: <span id="pickCount">0</span></strong><br>
@@ -2440,72 +2447,79 @@ document.querySelectorAll(".ics-btn").forEach(btn => {
 });
 
 // ---------------- Filters + hide ----------------
-const F = {q: "", cat: "", free: false, tod: "all"};
-const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
-let hidden = new Set(JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
-function todOf(i) {
-  const s = STARTS[i];
-  if (s == null) return "tba";
-  if (s < 720) return "morning";      // before 12 PM
-  if (s < 1020) return "afternoon";   // 12–5 PM
-  return "evening";                   // 5 PM+
-}
-function applyFilters() {
-  const cards = document.querySelectorAll("article.event");
-  let n = 0;
-  cards.forEach(a => {
-    const i = a.dataset.idx;
-    let ok = !hidden.has(i);
-    if (ok && F.cat && CATS[+i] !== F.cat) ok = false;
-    if (ok && F.free && !FREE[+i]) ok = false;
-    if (ok && F.tod !== "all" && todOf(+i) !== F.tod) ok = false;
-    if (ok && F.q) {
-      const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
-      if (!hay.includes(F.q)) ok = false;
-    }
-    a.style.display = ok ? "" : "none";
-    if (ok) n++;
+// Wrapped in an IIFE: the browse page reuses this whole script via
+// extraction, and its own filter code must not collide with this.
+window.__applyFilters = (function () {
+  const bar = document.getElementById("filterBar");
+  if (!bar) return null;
+  const F = {q: "", cat: "", free: false, tod: "all"};
+  const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
+  let hidden = new Set(JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
+  function todOf(i) {
+    const s = STARTS[i];
+    if (s == null) return "tba";
+    if (s < 720) return "morning";      // before 12 PM
+    if (s < 1020) return "afternoon";   // 12–5 PM
+    return "evening";                   // 5 PM+
+  }
+  function applyFilters() {
+    const cards = document.querySelectorAll("article.event");
+    let n = 0;
+    cards.forEach(a => {
+      const i = a.dataset.idx;
+      let ok = !hidden.has(i);
+      if (ok && F.cat && CATS[+i] !== F.cat) ok = false;
+      if (ok && F.free && !FREE[+i]) ok = false;
+      if (ok && F.tod !== "all" && todOf(+i) !== F.tod) ok = false;
+      if (ok && F.q) {
+        const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
+        if (!hay.includes(F.q)) ok = false;
+      }
+      a.style.display = ok ? "" : "none";
+      if (ok) n++;
+    });
+    document.querySelectorAll("section.cat").forEach(s => {
+      const vis = [...s.querySelectorAll("article.event")]
+        .some(a => a.style.display !== "none");
+      s.style.display = vis ? "" : "none";
+    });
+    document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
+    document.getElementById("hiddenBar").style.display = hidden.size ? "" : "none";
+    document.getElementById("hiddenN").textContent = hidden.size;
+  }
+  document.getElementById("fq").addEventListener("input", e => {
+    F.q = e.target.value.trim().toLowerCase(); applyFilters();
   });
-  document.querySelectorAll("section.cat").forEach(s => {
-    const vis = [...s.querySelectorAll("article.event")]
-      .some(a => a.style.display !== "none");
-    s.style.display = vis ? "" : "none";
+  document.getElementById("fcat").addEventListener("change", e => {
+    F.cat = e.target.value; applyFilters();
   });
-  document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
-  document.getElementById("hiddenBar").style.display = hidden.size ? "" : "none";
-  document.getElementById("hiddenN").textContent = hidden.size;
-}
-document.getElementById("fq").addEventListener("input", e => {
-  F.q = e.target.value.trim().toLowerCase(); applyFilters();
-});
-document.getElementById("fcat").addEventListener("change", e => {
-  F.cat = e.target.value; applyFilters();
-});
-document.getElementById("ffree").addEventListener("click", e => {
-  F.free = !F.free;
-  e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
-  applyFilters();
-});
-document.querySelectorAll("#ftod button").forEach(b => {
-  b.addEventListener("click", () => {
-    document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
-    b.classList.add("on");
-    F.tod = b.dataset.t; applyFilters();
+  document.getElementById("ffree").addEventListener("click", e => {
+    F.free = !F.free;
+    e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
+    applyFilters();
   });
-});
-document.querySelectorAll(".hide").forEach(b => b.addEventListener("click", () => {
-  const i = b.dataset.idx;
-  hidden.add(i);
-  localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden]));
-  if (picks.has(i)) { picks.delete(i); render(); }
+  document.querySelectorAll("#ftod button").forEach(b => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
+      b.classList.add("on");
+      F.tod = b.dataset.t; applyFilters();
+    });
+  });
+  document.querySelectorAll(".hide").forEach(b => b.addEventListener("click", () => {
+    const i = b.dataset.idx;
+    hidden.add(i);
+    localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden]));
+    if (picks.has(i)) { picks.delete(i); render(); }
+    applyFilters();
+  }));
+  document.getElementById("unhide").addEventListener("click", () => {
+    hidden.clear();
+    localStorage.setItem(HIDE_KEY, "[]");
+    applyFilters();
+  });
   applyFilters();
-}));
-document.getElementById("unhide").addEventListener("click", () => {
-  hidden.clear();
-  localStorage.setItem(HIDE_KEY, "[]");
-  applyFilters();
-});
-applyFilters();
+  return applyFilters;
+})();
 
 // ---------------- Tonight mode ----------------
 const TONIGHT_WINDOW = 300;  // upcoming: starts within the next 5h
@@ -2555,8 +2569,9 @@ function setTonight(on) {
     homeSpot.clear();
     wrap.style.display = "none";
     document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
-    document.getElementById("filterBar").style.display = "";
-    applyFilters();
+    const fbOff = document.getElementById("filterBar");
+    if (fbOff) fbOff.style.display = "";
+    if (window.__applyFilters) window.__applyFilters();
     return;
   }
   const now = cityNowMinutes();
@@ -2597,7 +2612,8 @@ function setTonight(on) {
     if (o.status !== "tba") live++;
   });
   document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
-  document.getElementById("filterBar").style.display = "none";
+  const fbOn = document.getElementById("filterBar");
+  if (fbOn) fbOn.style.display = "none";
   wrap.style.display = "block";
   empty.style.display = live ? "none" : "block";
   count.textContent = live ? live + (live === 1 ? " thing" : " things") + " on now or starting soon" : "";
@@ -2608,6 +2624,8 @@ const _tb=document.getElementById("tonightBtn");if(_tb)_tb.addEventListener("cli
 <script>
 // ---------------- Browse filters (discovery v1) ----------------
 const F = {q: "", cat: "", free: false, tod: "all"};
+const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
+let hidden = new Set(JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
 function todOf(i) {
   const s = STARTS[i];
   if (s == null) return "tba";
@@ -2620,11 +2638,11 @@ function applyFilters() {
   let n = 0;
   cards.forEach(a => {
     const i = +a.dataset.idx;
-    let ok = true;
-    if (F.cat && CATS[i] !== F.cat) ok = false;
-    if (F.free && !FREE[i]) ok = false;
-    if (F.tod !== "all" && todOf(i) !== F.tod) ok = false;
-    if (F.q) {
+    let ok = !hidden.has(a.dataset.idx);
+    if (ok && F.cat && CATS[i] !== F.cat) ok = false;
+    if (ok && F.free && !FREE[i]) ok = false;
+    if (ok && F.tod !== "all" && todOf(i) !== F.tod) ok = false;
+    if (ok && F.q) {
       const hay = (NAMES[i] + " " + CATS[i] + " " + a.textContent).toLowerCase();
       if (!hay.includes(F.q)) ok = false;
     }
@@ -2632,6 +2650,8 @@ function applyFilters() {
     if (ok) n++;
   });
   document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
+  document.getElementById("hiddenBar").style.display = hidden.size ? "" : "none";
+  document.getElementById("hiddenN").textContent = hidden.size;
 }
 document.getElementById("fq").addEventListener("input", e => {
   F.q = e.target.value.trim().toLowerCase(); applyFilters();
@@ -2651,6 +2671,18 @@ document.querySelectorAll("#ftod button").forEach(b => {
     F.tod = b.dataset.t; applyFilters();
   });
 });
+document.querySelectorAll(".hide").forEach(b => b.addEventListener("click", () => {
+  const i = b.dataset.idx;
+  hidden.add(i);
+  localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden]));
+  if (typeof picks !== "undefined" && picks.has(i)) { picks.delete(i); render(); }
+  applyFilters();
+}));
+document.getElementById("unhide").addEventListener("click", () => {
+  hidden.clear();
+  localStorage.setItem(HIDE_KEY, "[]");
+  applyFilters();
+});
 applyFilters();
 </script>
-<script>window.__tonight_api="https://072a70295d9e96d6-104-28-224-252.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
+<script>window.__tonight_api="https://e5fd43fdfef9a757-104-28-234-179.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
