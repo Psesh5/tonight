@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign up \u2014 Tonight</title>
+<title>Sign up — Tonight</title>
 <style>
 .topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
 background:var(--banner,#14201A);color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
@@ -40,30 +40,63 @@ font-size:14px;cursor:pointer;font-family:inherit;color:#14201A;}
 .qlink{background:none;border:none;color:#6b6b6b;text-decoration:underline;cursor:pointer;
 font-size:13.5px;font-family:inherit;padding:0;}
 
-.sform{max-width:640px;margin:0 auto;padding:6px 20px 60px;}
-.sfield{margin:16px 0;}
-.sfield label{display:block;font-size:12px;letter-spacing:2px;text-transform:uppercase;
-color:#6b6b6b;margin-bottom:8px;}
+body{margin:0;background:#F7F2E9;color:#14201A;
+font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.bhero{background:var(--banner,#14201A);color:#F7F2E9;padding:46px 24px 36px;text-align:center;}
+.bhero .eyebrow{color:#E39A2D;font-size:12px;letter-spacing:3px;text-transform:uppercase;}
+.bhero h1{font-family:Georgia,'Times New Roman',serif;font-size:38px;margin:10px 0 8px;font-weight:normal;}
+.bhero p{opacity:.75;font-size:15px;margin:0 auto;max-width:540px;line-height:1.6;}
+.sform{max-width:640px;margin:0 auto;padding:28px 20px 60px;}
+.tsec{background:#fffdf6;border:1px solid #e7e1d2;border-radius:18px;
+padding:22px 22px 10px;margin:0 0 18px;box-shadow:0 2px 14px rgba(20,32,26,.05);}
+.tsec h2{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:25px;margin:0 0 4px;}
+.thint{font-size:13.5px;color:#6b6b6b;line-height:1.55;margin:2px 0 8px;}
+.sfield{margin:14px 0;}
+.sfield label{display:block;font-size:11.5px;letter-spacing:2px;text-transform:uppercase;
+color:#6b6b6b;margin-bottom:8px;font-weight:600;}
 .sfield input[type=email],.sfield input[type=tel],.sfield select{width:100%;
 padding:13px 16px;border-radius:14px;border:1px solid #d8d2c2;font-size:16px;
 font-family:inherit;color:#14201A;background:#fff;box-sizing:border-box;}
+.sfield select{appearance:none;-webkit-appearance:none;padding-right:42px;cursor:pointer;
+background:#fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8"><path d="M1 1l5 5 5-5" stroke="%2314201A" stroke-width="2" fill="none" stroke-linecap="round"/></svg>') no-repeat right 16px center;}
 .sfield input:focus,.sfield select:focus{outline:2px solid #E39A2D;border-color:#E39A2D;}
+.loadrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:16px 0 8px;}
+.btn2{padding:11px 22px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
+font-size:14px;font-weight:600;color:#14201A;cursor:pointer;font-family:inherit;flex:none;}
+.btn2:hover{border-color:#E39A2D;}
+.trow{display:flex;align-items:center;justify-content:space-between;gap:12px;
+padding:11px 0;border-bottom:1px solid #efe9d8;}
+.trow:last-child{border-bottom:none;}
+.trow .tcat{font-size:16px;font-weight:500;}
+.seg{display:flex;gap:6px;flex:none;}
+.seg button{padding:8px 14px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
+font-size:13px;cursor:pointer;font-family:inherit;color:#14201A;white-space:nowrap;}
+.seg button.on{background:#14201A;color:#F7F2E9;border-color:#14201A;font-weight:700;}
 .srow{display:flex;align-items:center;justify-content:space-between;gap:12px;
-padding:13px 0;border-bottom:1px solid #e7e1d2;}
-.srow .tcat{font-size:16px;}
-.srow .sub{font-size:12.5px;color:#6b6b6b;display:block;margin-top:3px;font-family:inherit;}
+padding:14px 0;border-bottom:1px solid #efe9d8;}
+.srow:last-child{border-bottom:none;}
+.srow .tcat{font-size:16px;font-weight:500;}
+.srow .sub{font-size:13px;color:#6b6b6b;display:block;margin-top:3px;font-weight:400;line-height:1.45;}
 .switch{position:relative;width:52px;height:30px;flex:none;cursor:pointer;}
 .switch input{opacity:0;width:0;height:0;}
 .sl{position:absolute;inset:0;background:#d8d2c2;border-radius:999px;transition:.2s;}
 .sl:before{content:"";position:absolute;height:22px;width:22px;left:4px;top:4px;
-background:#fff;border-radius:50%;transition:.2s;}
+background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
 .switch input:checked + .sl{background:#2E7D4F;}
 .switch input:checked + .sl:before{transform:translateX(22px);}
-#formMsg{max-width:640px;margin:0 auto;padding:0 20px;min-height:24px;font-size:14px;}
+.btn-gold{display:inline-block;padding:14px 44px;border-radius:999px;border:none;
+background:#E39A2D;color:#14201A;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-gold:hover{filter:brightness(1.05);}
+.btn-gold:disabled{opacity:.6;cursor:wait;}
+.tcenter{text-align:center;}
+#formMsg{max-width:640px;margin:14px auto 0;padding:0 20px;min-height:24px;font-size:14px;text-align:center;}
 #formMsg.ok{color:#2E7D4F;} #formMsg.err{color:#a33;}
-.sdone{max-width:640px;margin:0 auto;padding:30px 20px 60px;text-align:center;display:none;}
-.sdone h2{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:30px;}
-.sdone p{color:#6b6b6b;line-height:1.6;}
+.sdone{max-width:640px;margin:0 auto;padding:40px 20px 60px;text-align:center;display:none;}
+.sdone h2{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:32px;}
+.sdone p{color:#6b6b6b;line-height:1.6;max-width:480px;margin:12px auto;}
+.sdone a{color:#B07A1E;}
+footer{max-width:640px;margin:0 auto;padding:26px 20px 60px;text-align:center;color:#6b6b6b;font-size:13px;}
+footer .serif{font-family:Georgia,'Times New Roman',serif;font-size:16px;color:#14201A;margin-bottom:6px;}
 </style>
 <link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
@@ -85,27 +118,26 @@ taste. Text alerts for last-minute gems, if you want them.</p>
 </div>
 <div class="sfield"><label for="citySel">City</label>
 <select id="citySel"><option value="nyc">Nyc</option><option value="london">London</option></select></div>
-<div class="sfield">
-<button type="button" class="btn" id="loadBtn"
-style="border:1px solid #d8d2c2;background:#fff;">Load my settings</button>
-<span class="thint">Already signed up? Load your settings to change them.</span>
+<div class="loadrow">
+<button type="button" class="btn2" id="loadBtn">Load my settings</button>
+<span class="thint" style="margin:0;">Already signed up? Load your settings to change them.</span>
 </div>
 </section>
 <section class="tsec"><h2>Your taste</h2>
 <p class="thint">Like what you love, mute what you'd skip. Your digest is built
 around this.</p>
 <div id="catRows"></div>
-<div class="srow"><span class="tcat">\u2728 Free-first<span class="sub">Only show me free events</span></span>
+<div class="srow"><span class="tcat">✨ Free-first<span class="sub">Only show me free events</span></span>
 <label class="switch"><input type="checkbox" id="freeTgl"><span class="sl"></span></label></div>
-<div class="srow"><span class="tcat">\U0001F3B2 Surprises<span class="sub">How adventurous should we get?</span></span>
+<div class="srow"><span class="tcat">🎲 Surprises<span class="sub">How adventurous should we get?</span></span>
 <div class="seg" id="surpSeg">
 <button type="button" data-s="low">Just my thing</button><button type="button" data-s="med" class="on">A few</button><button type="button" data-s="high">Lots</button>
 </div></div>
 </section>
 <section class="tsec"><h2>Delivery</h2>
-<div class="srow"><span class="tcat">\U0001F4E7 Daily email<span class="sub">Every morning at 8, with your personalized picks</span></span>
+<div class="srow"><span class="tcat">📧 Daily email<span class="sub">Every morning at 8, with your personalized picks</span></span>
 <label class="switch"><input type="checkbox" id="emailTgl" checked><span class="sl"></span></label></div>
-<div class="srow"><span class="tcat">\U0001F4F1 Text alerts<span class="sub">A short text when something unmissable pops up. Beta — leave your number and you're in line.</span></span>
+<div class="srow"><span class="tcat">📱 Text alerts<span class="sub">A short text when something unmissable pops up. Beta — leave your number and you're in line.</span></span>
 <label class="switch"><input type="checkbox" id="smsTgl"><span class="sl"></span></label></div>
 <div class="sfield"><label for="phone">Phone (for texts)</label>
 <input type="tel" id="phone" placeholder="+1 555 123 4567" autocomplete="tel">
@@ -113,17 +145,17 @@ around this.</p>
 </section>
 <div id="formMsg"></div>
 <div class="tcenter" style="padding-top:10px;">
-<button type="submit" class="btn btn-gold" style="font-size:16px;padding:14px 40px;">Subscribe</button>
+<button type="submit" class="btn-gold">Subscribe</button>
 </div>
 <p class="thint" style="text-align:center;">One email a day, max. Unsubscribe anytime from any email.</p>
 </form>
 <div class="sdone" id="sdone">
-<h2>You're in \u2713</h2>
+<h2>You're in ✓</h2>
 <p></p>
-<p><a href="./" style="color:#E39A2D;">Back to tonight's picks \u2192</a></p>
+<p><a href="./" style="color:#E39A2D;">Back to tonight's picks →</a></p>
 </div>
 <footer>
-<div class="serif">Tonight \u2014 every city, every night.</div>
+<div class="serif">Tonight — every city, every night.</div>
 <p>Your taste shapes your picks, on every page.</p>
 </footer>
 <script>
@@ -227,7 +259,7 @@ document.getElementById("subForm").addEventListener("submit", function(e){
       var done = document.getElementById("sdone"); done.style.display = "block";
       done.querySelector("p").textContent =
         "Your first digest arrives tomorrow morning at 8. " +
-        (state.sms_opt_in ? "Text alerts are on the way — we'll confirm by text shortly." : "") +
+        (state.sms_opt_in ? "Text alerts are in beta — you're on the list and we'll text you when they go live." : "") +
         " Manage or unsubscribe anytime from the link at the bottom of every email.";
     })
     .catch(function(){ msg("Couldn't reach the server. Try again in a bit.", "err"); });
