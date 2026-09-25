@@ -95,7 +95,11 @@ font-size:13px;cursor:pointer;font-family:inherit;color:#14201A;white-space:nowr
 .srow{display:flex;align-items:center;justify-content:space-between;gap:12px;
 padding:14px 0;border-bottom:1px solid #efe9d8;}
 .srow:last-child{border-bottom:none;}
-.srow .tcat{font-size:16px;font-weight:500;}
+.srow .tcat{font-size:16px;font-weight:500;display:flex;align-items:center;}
+.ric{flex:none;width:34px;height:34px;border-radius:50%;background:#f6e8cd;
+display:inline-flex;align-items:center;justify-content:center;margin-right:12px;
+border:1px solid #ecd9ac;}
+.ttxt{min-width:0;}
 .srow .sub{font-size:13px;color:#6b6b6b;display:block;margin-top:3px;font-weight:400;line-height:1.45;}
 .switch{position:relative;width:52px;height:30px;flex:none;cursor:pointer;}
 .switch input{opacity:0;width:0;height:0;}
@@ -168,17 +172,17 @@ taste. Text alerts for last-minute gems, if you want them.</p>
 <p class="thint">Like what you love, mute what you'd skip. Your digest is built
 around this.</p>
 <div id="catRows"></div>
-<div class="srow"><span class="tcat">✨ Free-first<span class="sub">Only show me free events</span></span>
+<div class="srow"><span class="tcat"><span class="ric"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#8a5a12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6 5.6 1.9-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9L12 3z" fill="#b07a1e" stroke="none"/></svg></span><span class="ttxt">Free-first<span class="sub">Only show me free events</span></span>
 <label class="switch"><input type="checkbox" id="freeTgl"><span class="sl"></span></label></div>
-<div class="srow"><span class="tcat">🎲 Surprises<span class="sub">How adventurous should we get?</span></span>
+<div class="srow"><span class="tcat"><span class="ric"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#8a5a12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="9" cy="9" r="1.3" fill="#8a5a12" stroke="none"/><circle cx="15" cy="9" r="1.3" fill="#8a5a12" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="#8a5a12" stroke="none"/><circle cx="9" cy="15" r="1.3" fill="#8a5a12" stroke="none"/><circle cx="15" cy="15" r="1.3" fill="#8a5a12" stroke="none"/></svg></span><span class="ttxt">Surprises<span class="sub">How adventurous should we get?</span></span>
 <div class="seg" id="surpSeg">
 <button type="button" data-s="low">Just my thing</button><button type="button" data-s="med" class="on">A few</button><button type="button" data-s="high">Lots</button>
 </div></div>
 </section>
 <section class="tsec"><div class="shead"><span class="snum">3</span><h2>Delivery</h2></div>
-<div class="srow"><span class="tcat">📧 Daily email<span class="sub">Every morning at 8, with your personalized picks</span></span>
+<div class="srow"><span class="tcat"><span class="ric"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#8a5a12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M4 8l8 5.5L20 8"/></svg></span><span class="ttxt">Daily email<span class="sub">Every morning at 8, with your personalized picks</span></span>
 <label class="switch"><input type="checkbox" id="emailTgl" checked><span class="sl"></span></label></div>
-<div class="srow"><span class="tcat">📱 Text alerts<span class="sub">A short text when something unmissable pops up. Beta — leave your number and you're in line.</span></span>
+<div class="srow"><span class="tcat"><span class="ric"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#8a5a12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><span class="ttxt">Text alerts<span class="sub">A short text when something unmissable pops up. Beta — leave your number and you're in line.</span></span>
 <label class="switch"><input type="checkbox" id="smsTgl"><span class="sl"></span></label></div>
 <div class="sfield"><label for="phone">Phone (for texts)</label>
 <input type="tel" id="phone" placeholder="+1 555 123 4567" autocomplete="tel">
@@ -214,7 +218,15 @@ var state = {likes: [], mutes: [], free_only: false, surprise: "med",
 function apiBase(){ return window.__tonight_api || null; }
 function msg(t, cls){ var m = document.getElementById("formMsg");
   m.textContent = t; m.className = cls || ""; }
-var CATICONS = {"Music":"\uD83C\uDFB5","Comedy":"\uD83C\uDFAD","Arts & Play":"\uD83C\uDFA8","Tech":"\uD83D\uDCA1","Meetups & Mixers":"\uD83E\uDD42","Food & Drink":"\uD83C\uDF7D️","Talks":"\uD83C\uDF99️"};
+var _SO = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#8a5a12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">';
+var CATSVGS = {
+"Music": _SO + '<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>',
+"Comedy": _SO + '<circle cx="12" cy="12" r="9"/><path d="M8.3 14.2c1 1.6 2.3 2.4 3.7 2.4s2.7-.8 3.7-2.4"/><path d="M9 9.6h.01M15 9.6h.01"/></svg>',
+"Arts & Play": _SO + '<path d="M14.5 4.5l5 5L8 20l-5 1 1-5L14.5 4.5z"/><path d="M12.5 6.5l5 5"/></svg>',
+"Tech": _SO + '<rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>',
+"Meetups & Mixers": _SO + '<path d="M4 5h16l-8 7.5L4 5z"/><path d="M12 12.5V20"/><path d="M8.5 20h7"/></svg>',
+"Food & Drink": _SO + '<path d="M3 18.5h18"/><path d="M5 18.5a7 7 0 0 1 14 0"/><path d="M12 11.5v-2"/><circle cx="12" cy="8" r="1"/></svg>',
+"Talks": _SO + '<rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/><path d="M9 21h6"/></svg>'};
 function paintCats(){
   var host = document.getElementById("catRows"); host.innerHTML = "";
   CATS.forEach(function(c){
@@ -222,10 +234,10 @@ function paintCats(){
                (state.mutes.indexOf(c) >= 0 ? "mute" : "neutral");
     var row = document.createElement("div"); row.className = "trow";
     row.innerHTML = '<span class="tcat"><span class="cico"></span><span class="cname"></span></span><div class="seg" role="group">' +
-      '<button type="button" data-m="like">\uD83D\uDC4D Like</button>' +
+      '<button type="button" data-m="like">Like</button>' +
       '<button type="button" data-m="neutral">\u2014</button>' +
-      '<button type="button" data-m="mute">\uD83D\uDC4E Mute</button></div>';
-    row.querySelector(".cico").textContent = CATICONS[c] || "✨";
+      '<button type="button" data-m="mute">Mute</button></div>';
+    row.querySelector(".cico").innerHTML = CATSVGS[c] || "";
     row.querySelector(".cname").textContent = c;
     var btns = row.querySelectorAll("button");
     btns.forEach(function(b){
