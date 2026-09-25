@@ -1893,7 +1893,7 @@ window.__applyFilters = (function () {
       s.style.display = vis ? "" : "none";
     });
     document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
-    document.getElementById("hiddenBar").style.display = hidden.size ? "" : "none";
+    document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
     document.getElementById("hiddenN").textContent = hidden.size;
   }
   document.getElementById("fq").addEventListener("input", e => {
