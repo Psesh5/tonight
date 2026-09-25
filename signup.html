@@ -42,15 +42,32 @@ font-size:13.5px;font-family:inherit;padding:0;}
 
 body{margin:0;background:#F7F2E9;color:#14201A;
 font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
-.bhero{background:var(--banner,#14201A);color:#F7F2E9;padding:46px 24px 36px;text-align:center;}
-.bhero .eyebrow{color:#E39A2D;font-size:12px;letter-spacing:3px;text-transform:uppercase;}
-.bhero h1{font-family:Georgia,'Times New Roman',serif;font-size:38px;margin:10px 0 8px;font-weight:normal;}
-.bhero p{opacity:.75;font-size:15px;margin:0 auto;max-width:540px;line-height:1.6;}
-.sform{max-width:640px;margin:0 auto;padding:28px 20px 60px;}
-.tsec{background:#fffdf6;border:1px solid #e7e1d2;border-radius:18px;
-padding:22px 22px 10px;margin:0 0 18px;box-shadow:0 2px 14px rgba(20,32,26,.05);}
-.tsec h2{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:25px;margin:0 0 4px;}
-.thint{font-size:13.5px;color:#6b6b6b;line-height:1.55;margin:2px 0 8px;}
+.bhero{background:var(--banner,#14201A);color:#F7F2E9;padding:52px 24px 40px;text-align:center;
+position:relative;overflow:hidden;}
+.bhero:before{content:"";position:absolute;left:50%;top:-140px;width:480px;height:280px;
+transform:translateX(-50%);background:radial-gradient(closest-side,rgba(227,154,45,.28),transparent);
+pointer-events:none;}
+.bhero .eyebrow{color:#E39A2D;font-size:12px;letter-spacing:3px;text-transform:uppercase;position:relative;}
+.bhero h1{font-family:Georgia,'Times New Roman',serif;font-size:42px;margin:12px 0 10px;font-weight:normal;position:relative;}
+.bhero h1 em{font-style:italic;color:#E39A2D;}
+.bhero p{opacity:.78;font-size:15px;margin:0 auto;max-width:540px;line-height:1.65;position:relative;}
+.steps{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;position:relative;flex-wrap:wrap;}
+.step{font-size:12.5px;letter-spacing:.4px;padding:8px 16px;border-radius:999px;
+border:1px solid rgba(247,242,233,.28);color:#F7F2E9;opacity:.75;}
+.step b{color:#E39A2D;font-weight:700;margin-right:6px;}
+.step.on{background:rgba(227,154,45,.16);border-color:#E39A2D;opacity:1;font-weight:600;}
+.sarr{color:#E39A2D;opacity:.6;font-size:13px;}
+.sform{max-width:660px;margin:0 auto;padding:30px 20px 60px;}
+.tsec{background:#fffdf6;border:1px solid #e9e2cf;border-radius:20px;
+padding:24px 24px 12px;margin:0 0 20px;box-shadow:0 3px 18px rgba(20,32,26,.06);
+position:relative;overflow:hidden;}
+.tsec:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+background:linear-gradient(#E39A2D,#c67f1d);}
+.shead{display:flex;align-items:center;gap:14px;margin-bottom:2px;}
+.snum{flex:none;width:32px;height:32px;border-radius:50%;background:#14201A;color:#E39A2D;
+font-family:Georgia,'Times New Roman',serif;font-size:17px;display:flex;align-items:center;justify-content:center;}
+.shead h2{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:26px;margin:0;}
+.thint{font-size:13.5px;color:#6b6b6b;line-height:1.55;margin:6px 0 8px;}
 .sfield{margin:14px 0;}
 .sfield label{display:block;font-size:11.5px;letter-spacing:2px;text-transform:uppercase;
 color:#6b6b6b;margin-bottom:8px;font-weight:600;}
@@ -67,10 +84,13 @@ font-size:14px;font-weight:600;color:#14201A;cursor:pointer;font-family:inherit;
 .trow{display:flex;align-items:center;justify-content:space-between;gap:12px;
 padding:11px 0;border-bottom:1px solid #efe9d8;}
 .trow:last-child{border-bottom:none;}
-.trow .tcat{font-size:16px;font-weight:500;}
+.trow .tcat{font-size:16px;font-weight:500;display:flex;align-items:center;}
+.cico{flex:none;width:32px;height:32px;border-radius:50%;background:#f6e8cd;
+display:inline-flex;align-items:center;justify-content:center;font-size:16px;margin-right:12px;}
 .seg{display:flex;gap:6px;flex:none;}
 .seg button{padding:8px 14px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
-font-size:13px;cursor:pointer;font-family:inherit;color:#14201A;white-space:nowrap;}
+font-size:13px;cursor:pointer;font-family:inherit;color:#14201A;white-space:nowrap;transition:all .15s;}
+.seg button:hover{border-color:#14201A;}
 .seg button.on{background:#14201A;color:#F7F2E9;border-color:#14201A;font-weight:700;}
 .srow{display:flex;align-items:center;justify-content:space-between;gap:12px;
 padding:14px 0;border-bottom:1px solid #efe9d8;}
@@ -84,19 +104,39 @@ padding:14px 0;border-bottom:1px solid #efe9d8;}
 background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
 .switch input:checked + .sl{background:#2E7D4F;}
 .switch input:checked + .sl:before{transform:translateX(22px);}
-.btn-gold{display:inline-block;padding:14px 44px;border-radius:999px;border:none;
-background:#E39A2D;color:#14201A;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;}
-.btn-gold:hover{filter:brightness(1.05);}
-.btn-gold:disabled{opacity:.6;cursor:wait;}
+.eprev{margin:16px 0 10px;border:1px solid #e9e2cf;border-radius:16px;overflow:hidden;background:#fff;}
+.eprev-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#f3ecdc;border-bottom:1px solid #e9e2cf;}
+.edot{width:10px;height:10px;border-radius:50%;background:#d8d2c2;}
+.eprev-title{margin-left:8px;font-size:13px;font-weight:600;color:#14201A;}
+.eprev-sub{font-size:11.5px;color:#8a8574;font-weight:400;}
+.eprev-row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #f1ebdb;font-size:13.5px;}
+.eprev-row:last-of-type{border-bottom:none;}
+.etag{flex:none;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+background:#14201A;color:#E39A2D;border-radius:6px;padding:4px 8px;}
+.etag.free{background:#2E7D4F;color:#fff;}
+.etitle{flex:1;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.etime{color:#8a8574;font-size:12.5px;flex:none;}
+.eprev-foot{padding:10px 14px;font-size:12.5px;color:#8a8574;background:#fbf8ef;text-align:center;font-style:italic;}
+.eplabel{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:#6b6b6b;font-weight:600;margin:18px 0 2px;}
+.btn-gold{display:inline-block;padding:15px 52px;border-radius:999px;border:none;
+background:#E39A2D;color:#14201A;font-size:16.5px;font-weight:700;cursor:pointer;font-family:inherit;
+box-shadow:0 8px 24px rgba(227,154,45,.38);transition:transform .12s;}
+.btn-gold:hover{transform:translateY(-1px);filter:brightness(1.04);}
+.btn-gold:disabled{opacity:.6;cursor:wait;transform:none;}
 .tcenter{text-align:center;}
+.reassure{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:14px;
+font-size:12.5px;color:#8a8574;}
+.reassure span:before{content:"¹3  ";color:#2E7D4F;font-weight:700;}
 #formMsg{max-width:640px;margin:14px auto 0;padding:0 20px;min-height:24px;font-size:14px;text-align:center;}
 #formMsg.ok{color:#2E7D4F;} #formMsg.err{color:#a33;}
 .sdone{max-width:640px;margin:0 auto;padding:40px 20px 60px;text-align:center;display:none;}
-.sdone h2{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:32px;}
-.sdone p{color:#6b6b6b;line-height:1.6;max-width:480px;margin:12px auto;}
+.sdone h2{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:34px;}
+.sdone h2 em{font-style:italic;color:#B07A1E;}
+.sdone p{color:#6b6b6b;line-height:1.65;max-width:480px;margin:12px auto;}
 .sdone a{color:#B07A1E;}
 footer{max-width:640px;margin:0 auto;padding:26px 20px 60px;text-align:center;color:#6b6b6b;font-size:13px;}
 footer .serif{font-family:Georgia,'Times New Roman',serif;font-size:16px;color:#14201A;margin-bottom:6px;}
+@media(max-width:520px){.bhero h1{font-size:32px;}.tsec{padding:20px 18px 8px;}.eprev-row{font-size:12.5px;}}
 </style>
 <link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
@@ -107,12 +147,13 @@ footer .serif{font-family:Georgia,'Times New Roman',serif;font-size:16px;color:#
 <span class="citylinks"><a href="./">Home</a></span></nav>
 <header class="bhero">
 <div class="eyebrow">Daily digest</div>
-<h1>Tonight, in your inbox</h1>
+<h1>Tonight, <em>in your inbox.</em></h1>
 <p>One short email every morning with the day's best events, picked for your
 taste. Text alerts for last-minute gems, if you want them.</p>
+<div class="steps"><span class="step on"><b>1</b>Details</span><span class="sarr">→</span><span class="step"><b>2</b>Taste</span><span class="sarr">→</span><span class="step"><b>3</b>Delivery</span></div>
 </header>
 <form class="sform" id="subForm">
-<section class="tsec"><h2>Your details</h2>
+<section class="tsec"><div class="shead"><span class="snum">1</span><h2>Your details</h2></div>
 <div class="sfield"><label for="email">Email</label>
 <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
 </div>
@@ -123,7 +164,7 @@ taste. Text alerts for last-minute gems, if you want them.</p>
 <span class="thint" style="margin:0;">Already signed up? Load your settings to change them.</span>
 </div>
 </section>
-<section class="tsec"><h2>Your taste</h2>
+<section class="tsec"><div class="shead"><span class="snum">2</span><h2>Your taste</h2></div>
 <p class="thint">Like what you love, mute what you'd skip. Your digest is built
 around this.</p>
 <div id="catRows"></div>
@@ -134,7 +175,7 @@ around this.</p>
 <button type="button" data-s="low">Just my thing</button><button type="button" data-s="med" class="on">A few</button><button type="button" data-s="high">Lots</button>
 </div></div>
 </section>
-<section class="tsec"><h2>Delivery</h2>
+<section class="tsec"><div class="shead"><span class="snum">3</span><h2>Delivery</h2></div>
 <div class="srow"><span class="tcat">📧 Daily email<span class="sub">Every morning at 8, with your personalized picks</span></span>
 <label class="switch"><input type="checkbox" id="emailTgl" checked><span class="sl"></span></label></div>
 <div class="srow"><span class="tcat">📱 Text alerts<span class="sub">A short text when something unmissable pops up. Beta — leave your number and you're in line.</span></span>
@@ -142,15 +183,23 @@ around this.</p>
 <div class="sfield"><label for="phone">Phone (for texts)</label>
 <input type="tel" id="phone" placeholder="+1 555 123 4567" autocomplete="tel">
 </div>
+<div class="eplabel">A taste of your inbox</div>
+<div class="eprev">
+<div class="eprev-bar"><span class="edot"></span><span class="edot"></span><span class="edot"></span><span class="eprev-title">Tomorrow in New York City <span class="eprev-sub">· your daily digest</span></span></div>
+<div class="eprev-row"><span class="etag">Music</span><span class="etitle">Late-night jazz set in the Village</span><span class="etime">9:30 PM</span></div>
+<div class="eprev-row"><span class="etag free">Free</span><span class="etitle">Rooftop cinema under the stars</span><span class="etime">8 PM</span></div>
+<div class="eprev-row"><span class="etag">Food</span><span class="etitle">Night market tasting tour</span><span class="etime">6 PM</span></div>
+<div class="eprev-foot">…and 9 more picks, chosen for your taste.</div>
+</div>
 </section>
 <div id="formMsg"></div>
-<div class="tcenter" style="padding-top:10px;">
-<button type="submit" class="btn-gold">Subscribe</button>
+<div class="tcenter" style="padding-top:14px;">
+<button type="submit" class="btn-gold">Get my daily digest</button>
+<div class="reassure"><span>One email a day, max</span><span>Unsubscribe anytime</span><span>Never spam, never sold</span></div>
 </div>
-<p class="thint" style="text-align:center;">One email a day, max. Unsubscribe anytime from any email.</p>
 </form>
 <div class="sdone" id="sdone">
-<h2>You're in ✓</h2>
+<h2>You’re in. <em>See you at 8 AM.</em></h2>
 <p></p>
 <p><a href="./" style="color:#E39A2D;">Back to tonight's picks →</a></p>
 </div>
@@ -165,17 +214,19 @@ var state = {likes: [], mutes: [], free_only: false, surprise: "med",
 function apiBase(){ return window.__tonight_api || null; }
 function msg(t, cls){ var m = document.getElementById("formMsg");
   m.textContent = t; m.className = cls || ""; }
+var CATICONS = {"Music":"\uD83C\uDFB5","Comedy":"\uD83C\uDFAD","Arts & Play":"\uD83C\uDFA8","Tech":"\uD83D\uDCA1","Meetups & Mixers":"\uD83E\uDD42","Food & Drink":"\uD83C\uDF7D️","Talks":"\uD83C\uDF99️"};
 function paintCats(){
   var host = document.getElementById("catRows"); host.innerHTML = "";
   CATS.forEach(function(c){
     var mode = state.likes.indexOf(c) >= 0 ? "like" :
                (state.mutes.indexOf(c) >= 0 ? "mute" : "neutral");
     var row = document.createElement("div"); row.className = "trow";
-    row.innerHTML = '<span class="tcat"></span><div class="seg" role="group">' +
+    row.innerHTML = '<span class="tcat"><span class="cico"></span><span class="cname"></span></span><div class="seg" role="group">' +
       '<button type="button" data-m="like">\uD83D\uDC4D Like</button>' +
       '<button type="button" data-m="neutral">\u2014</button>' +
       '<button type="button" data-m="mute">\uD83D\uDC4E Mute</button></div>';
-    row.querySelector(".tcat").textContent = c;
+    row.querySelector(".cico").textContent = CATICONS[c] || "✨";
+    row.querySelector(".cname").textContent = c;
     var btns = row.querySelectorAll("button");
     btns.forEach(function(b){
       if (b.getAttribute("data-m") === mode) b.classList.add("on");
