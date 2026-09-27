@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NYC Tonight — Sunday, September 27</title>
+<title>New York City — Sunday, September 27</title>
 <style>
 :root{--ink:#14201A;--gold:#E39A2D;--paper:#F7F2E9;}
 *{box-sizing:border-box;}
@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt="Tonight logo">Tonight<b>.</b></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Your taste</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="#" id="tuneTaste">Tune</a></span><span class="citylinks"><a class="cur" href="../nyc/2026-09-27.html">NYC</a> <a class="" href="../london/2026-09-27.html">London</a> <a class="" href="../la/2026-09-27.html">LA</a></span><a class="browselink" href="../browse-nyc-2026-09-27.html">Browse all →</a></nav>
 <header class="hero">
 <div class="eyebrow">Sunday, September 27 · New York City</div>
-<h1>NYC Tonight</h1>
+<h1>New York City</h1>
 <p>Hand-picked things to do, all happening today. Tap the boxes to track your picks.</p>
 </header>
 <div class="toolbar">
@@ -2012,8 +2012,8 @@ document.getElementById("shareBtn").addEventListener("click", async () => {
 document.getElementById("sendBtn").addEventListener("click", () => {
   if (!picks.size) { alert("Tap a few boxes first, then send your picks."); return; }
   const list = [...picks].sort().map(i => "• " + NAMES[+i]).join("\n");
-  const subject = encodeURIComponent("Re: NYC Tonight — my picks");
-  const body = encodeURIComponent("My picks for " + DATE + " (" + CITY + "):\n\n" + list + "\n\n— sent from my NYC Tonight page");
+  const subject = encodeURIComponent("Re: New York City — my picks");
+  const body = encodeURIComponent("My picks for " + DATE + " (" + CITY + "):\n\n" + list + "\n\n— sent from my New York City page");
   location.href = "mailto:pseshadri91@gmail.com?subject=" + subject + "&body=" + body;
 });
 render();
