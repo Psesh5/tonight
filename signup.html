@@ -162,7 +162,7 @@ taste. Text alerts for last-minute gems, if you want them.</p>
 <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
 </div>
 <div class="sfield"><label for="citySel">City</label>
-<select id="citySel"><option value="nyc">New York City</option><option value="london">London</option></select></div>
+<select id="citySel"><option value="nyc">New York City</option><option value="london">London</option><option value="la">Los Angeles</option></select></div>
 <div class="loadrow">
 <button type="button" class="btn2" id="loadBtn">Load my settings</button>
 <span class="thint" style="margin:0;">Already signed up? Load your settings to change them.</span>
@@ -212,7 +212,7 @@ around this.</p>
 <p>Your taste shapes your picks, on every page.</p>
 </footer>
 <script>
-var CATS = ["Music", "Comedy", "Arts & Play", "Tech", "Meetups & Mixers", "Food & Drink", "Talks"], CITIES = ["nyc", "london"];
+var CATS = ["Music", "Arts & Play", "Comedy", "Tech", "Meetups & Mixers", "Food & Drink", "Talks"], CITIES = ["nyc", "london", "la"];
 var state = {likes: [], mutes: [], free_only: false, surprise: "med",
              daily_email: true, sms_opt_in: false};
 function apiBase(){ return window.__tonight_api || null; }
