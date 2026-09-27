@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse everything — London Tonight, Sunday</title>
+<style>
+.topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
+background:var(--banner,#14201A);color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+.topnav .brand{font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#F7F2E9;text-decoration:none;display:flex;align-items:center;gap:9px;}
+.topnav .brand img{height:26px;width:26px;}
+.topnav .brand b{color:#E39A2D;}
+.topnav .citylinks{display:flex;gap:6px;margin-left:auto;}
+.topnav .citylinks a{color:#F7F2E9;opacity:.75;text-decoration:none;font-size:13.5px;
+padding:6px 14px;border-radius:999px;border:1px solid transparent;}
+.topnav .citylinks a.cur{background:#E39A2D;color:#14201A;font-weight:bold;opacity:1;}
+.topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
+.topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .browselink:hover{text-decoration:underline;}
+.topnav .tastelinks{display:flex;gap:14px;align-items:center;}
+.topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .tastelink:hover{text-decoration:underline;}
+
+body{margin:0;background:#F7F2E9;color:#14201A;
+font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.bhero{background:var(--banner,#14201A);color:#F7F2E9;padding:36px 24px 28px;text-align:center;}
+.bhero .eyebrow{color:#E39A2D;font-size:12px;letter-spacing:3px;text-transform:uppercase;}
+.bhero h1{font-family:Georgia,'Times New Roman',serif;font-size:36px;margin:10px 0 6px;font-weight:normal;}
+.bhero p{opacity:.72;font-size:14px;margin:0;}
+.filters{max-width:680px;margin:0 auto;padding:18px 20px 4px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.filters input[type=search]{flex:1;min-width:180px;padding:10px 16px;border-radius:999px;
+border:1px solid #d8d2c2;font-size:14px;font-family:inherit;background:#fff;}
+.filters select{padding:10px 14px;border-radius:999px;border:1px solid #d8d2c2;
+font-size:14px;font-family:inherit;background:#fff;}
+.seg{display:flex;gap:6px;flex-wrap:wrap;}
+.seg button,.fbtn{padding:9px 16px;border-radius:999px;border:1px solid #d8d2c2;
+background:#fff;font-size:13.5px;cursor:pointer;font-family:inherit;color:#14201A;}
+.seg button.on,.fbtn[aria-pressed="true"]{background:#E39A2D;border-color:#E39A2D;font-weight:bold;}
+#resCount{font-size:13px;color:#6b6b6b;margin-left:auto;}
+.hide{position:absolute;top:10px;right:0;background:none;border:none;color:#a89f8a;font-size:22px;
+line-height:1;cursor:pointer;padding:8px;font-family:inherit;}
+.hide:hover{color:#14201A;}
+#hiddenBar{font-size:13px;color:#6b6b6b;display:none;}
+#hiddenBar button{background:none;border:none;padding:0;color:#14201A;text-decoration:underline;
+cursor:pointer;font-size:13px;font-family:inherit;}
+.wrap{max-width:680px;margin:0 auto;padding:8px 20px 60px;}
+.event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:70px;position:relative;}
+.toggle{background:none;border:none;cursor:pointer;padding:2px 0;align-self:flex-start;}
+.box{display:inline-block;width:22px;height:22px;border:2px solid #E39A2D;border-radius:7px;
+background:#fff;position:relative;transition:background .15s;}
+.toggle[aria-pressed="true"] .box{background:#E39A2D;}
+.toggle[aria-pressed="true"] .box::after{content:"";position:absolute;left:6px;top:2px;width:6px;
+height:11px;border:solid #14201A;border-width:0 3px 3px 0;transform:rotate(42deg);}
+.event-body{flex:1;}
+.event-body h3{font-family:Georgia,'Times New Roman',serif;font-size:20px;margin:0 0 4px;}
+.event-body h3 a{color:#14201A;text-decoration:underline;text-decoration-color:#E39A2D;text-underline-offset:3px;}
+.meta{font-size:13px;color:#6b6b6b;margin-bottom:8px;}
+.event-body p{font-size:14.5px;line-height:1.55;color:#333;margin:0 0 10px;}
+.tickets{display:inline-block;background:#14201A;color:#F7F2E9;padding:8px 20px;border-radius:999px;
+text-decoration:none;font-size:13px;}
+.cal-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;}
+.cal-link{display:inline-block;background:#fff;border:1px solid #E39A2D;color:#14201A;padding:6px 14px;
+border-radius:999px;text-decoration:none;font-size:12.5px;cursor:pointer;font-family:inherit;}
+.cal-link:hover{background:#E39A2D;}
+.leave-by{font-size:12.5px;color:#6b6b6b;font-style:italic;}
+.badge{display:inline-block;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;
+padding:3px 10px;border-radius:999px;margin:0 0 8px;background:#E39A2D;color:#14201A;}
+.mlt{margin-top:10px;font-size:13px;color:#6b6b6b;}
+.mlt span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-right:6px;}
+.mlt a{color:#14201A;margin-right:10px;}
+.picks{max-width:640px;margin:14px auto 0;padding:14px 20px;text-align:center;font-size:14px;}
+.picks strong{font-family:Georgia,'Times New Roman',serif;font-size:18px;}
+.btn{display:inline-block;border:none;cursor:pointer;padding:11px 24px;border-radius:999px;
+font-size:14px;font-family:inherit;text-decoration:none;}
+.btn-dark{background:#14201A;color:#F7F2E9;}
+.btn-gold{background:#E39A2D;color:#14201A;font-weight:bold;}
+.toolbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 20px 0;}
+footer{background:#14201A;color:#F7F2E9;text-align:center;padding:34px 24px;font-size:13px;}
+footer .serif{font-family:Georgia,'Times New Roman',serif;font-size:17px;margin-bottom:8px;}
+footer p{opacity:.62;line-height:1.6;margin:0;}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
+<script>(function(){try{var c=localStorage.getItem("tonight-banner");if(c){document.documentElement.style.setProperty("--banner",c);}}catch(e){}})();</script><style>
+.quiz-veil{position:fixed;inset:0;z-index:200;background:rgba(20,32,26,.55);
+display:flex;align-items:flex-end;justify-content:center;}
+.quiz-veil[hidden]{display:none;}
+.quiz-card{background:#F7F2E9;color:#14201A;border-radius:20px 20px 0 0;
+padding:28px 24px 34px;max-width:560px;width:100%;max-height:88vh;overflow:auto;
+font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+animation:quizup .25s ease-out;}
+@keyframes quizup{from{transform:translateY(24px);opacity:.6;}to{transform:none;opacity:1;}}
+@media(min-width:640px){.quiz-veil{align-items:center;padding:20px;}
+.quiz-card{border-radius:20px;}}
+.quiz-eyebrow{color:#B07A1E;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;}
+.quiz-card h2{font-family:Georgia,'Times New Roman',serif;font-size:28px;margin:8px 0 6px;font-weight:normal;}
+.quiz-sub{font-size:14px;color:#6b6b6b;margin:0 0 16px;line-height:1.5;}
+.qchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.qchip{padding:10px 18px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
+font-size:14px;cursor:pointer;font-family:inherit;color:#14201A;}
+.qchip[aria-pressed="true"]{background:#E39A2D;border-color:#E39A2D;font-weight:bold;}
+.qactions{display:flex;gap:16px;align-items:center;margin-top:4px;}
+.qlink{background:none;border:none;color:#6b6b6b;text-decoration:underline;cursor:pointer;
+font-size:13.5px;font-family:inherit;padding:0;}
+</style></head>
+<body><script>
+/* Tonight taste: onboarding quiz, profile, personalized ranking */
+(function(){
+"use strict";
+var CATS_ALL = ["Music", "Comedy", "Arts & Play", "Tech", "Meetups & Mixers", "Food & Drink", "Talks"];
+var CITY = "london";
+var CITIES_ALL = ["nyc", "london"];
+var TKEY = "tonight-taste";
+var OKEY = "tonight-onboarded";
+function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low"}; }
+function cleanList(a){
+  if (!Array.isArray(a)) return [];
+  return a.filter(function(c){ return CATS_ALL.indexOf(c) >= 0; });
+}
+function load(){
+  try {
+    var t = JSON.parse(localStorage.getItem(TKEY) || "null");
+    if (t && typeof t === "object") {
+      var b = blank();
+      b.likes = cleanList(t.likes); b.mutes = cleanList(t.mutes);
+      b.free_only = !!t.free_only;
+      b.surprise = (t.surprise === "med" || t.surprise === "high") ? t.surprise : "low";
+      return b;
+    }
+  } catch (e) {}
+  return blank();
+}
+var taste = load();
+var tapBonus = {};
+function uid(){
+  var u = null;
+  try { u = localStorage.getItem("tonight-user-id"); } catch (e) {}
+  if (!u) {
+    u = "dev-" + Math.random().toString(36).slice(2, 10);
+    try { localStorage.setItem("tonight-user-id", u); } catch (e) {}
+  }
+  return u;
+}
+function apiBase(){ return window.__tonight_api || null; }
+function save(sync){
+  try { localStorage.setItem(TKEY, JSON.stringify(taste)); } catch (e) {}
+  if (sync === false) return;
+  var base = apiBase();
+  if (!base) return;
+  var targets = CITY ? [CITY] : CITIES_ALL;
+  var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
+    free_only: taste.free_only, surprise: taste.surprise});
+  targets.forEach(function(c){
+    fetch(base + "/taste/" + encodeURIComponent(c),
+      {method: "POST", headers: {"Content-Type": "application/json"}, body: payload}
+    ).catch(function(){});
+  });
+}
+function pull(){
+  var base = apiBase();
+  if (!base || !CITY || typeof CATS === "undefined") return;
+  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()))
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if (d && d.categories) { tapBonus = d.categories; applyRanking(); } })
+    .catch(function(){});
+}
+function score(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  var cat = CATS[i], s = 0;
+  if (taste.likes.indexOf(cat) >= 0) s += 10;
+  if (taste.mutes.indexOf(cat) >= 0) s -= 20;
+  if (taste.free_only && FREE[i]) s += 6;
+  var tb = tapBonus[cat];
+  if (tb) s += Math.min(tb, 3);
+  if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
+    s += (taste.surprise === "high" ? 8 : 4);
+  return s;
+}
+function hasTaste(){
+  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only ||
+    taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
+}
+function sortChildren(container){
+  var arts = [];
+  for (var k = 0; k < container.children.length; k++) {
+    var ch = container.children[k];
+    if (ch.tagName === "ARTICLE" && ch.classList.contains("event")) arts.push(ch);
+  }
+  if (arts.length < 2) return;
+  arts.map(function(a){ return {a: a, k: score(+a.dataset.idx), n: +a.dataset.idx}; })
+    .sort(function(x, y){ return (y.k - x.k) || (x.n - y.n); })
+    .forEach(function(o){ container.appendChild(o.a); });
+}
+function applyRanking(){
+  if (!hasTaste() || typeof CATS === "undefined") return;
+  var wrap = document.querySelector("main.wrap");
+  if (!wrap) return;
+  var secs = [];
+  for (var k = 0; k < wrap.children.length; k++) {
+    var ch = wrap.children[k];
+    if (ch.tagName === "SECTION" && ch.classList.contains("cat")) secs.push(ch);
+  }
+  if (secs.length) {
+    var secCat = function(s){
+      var a = s.querySelector("article.event");
+      return a ? CATS[+a.dataset.idx] : "";
+    };
+    var secScore = function(s){
+      var c = secCat(s), v = 0;
+      if (taste.likes.indexOf(c) >= 0) v += 10;
+      if (taste.mutes.indexOf(c) >= 0) v -= 20;
+      return v;
+    };
+    secs.forEach(sortChildren);
+    var free = [], rest = [];
+    secs.forEach(function(s){ (s.classList.contains("free") ? free : rest).push(s); });
+    rest.sort(function(a, b){ return secScore(b) - secScore(a); });
+    free.concat(rest).forEach(function(s){ wrap.appendChild(s); });
+  } else {
+    sortChildren(wrap);
+  }
+}
+/* ---------------- quiz ---------------- */
+var SURP = {low: "off", med: "some", high: "lots"};
+var sheet = null, sel = {};
+function chipBtn(c){
+  var b = document.createElement("button");
+  b.className = "qchip"; b.type = "button";
+  b.dataset.cat = c; b.setAttribute("aria-pressed", "false");
+  b.textContent = c;
+  b.addEventListener("click", function(){
+    var on = b.getAttribute("aria-pressed") === "true";
+    b.setAttribute("aria-pressed", on ? "false" : "true");
+    if (on) delete sel[c]; else sel[c] = 1;
+  });
+  return b;
+}
+function buildSheet(){
+  var veil = document.createElement("div");
+  veil.className = "quiz-veil"; veil.id = "quizVeil"; veil.hidden = true;
+  var card = document.createElement("div");
+  card.className = "quiz-card"; card.setAttribute("role", "dialog");
+  card.setAttribute("aria-label", "What are you into?");
+  var eb = document.createElement("div"); eb.className = "quiz-eyebrow";
+  eb.textContent = "Tonight learns your taste";
+  var h = document.createElement("h2"); h.textContent = "What are you into?";
+  var sub = document.createElement("p"); sub.className = "quiz-sub";
+  sub.textContent = "Tap what you like. Takes 30 seconds, and your picks get personal.";
+  var chips = document.createElement("div"); chips.className = "qchips";
+  CATS_ALL.forEach(function(c){ chips.appendChild(chipBtn(c)); });
+  var prefs = document.createElement("div"); prefs.className = "qchips";
+  var freeB = document.createElement("button");
+  freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
+  freeB.setAttribute("aria-pressed", "false");
+  freeB.textContent = "\u2728 Free-first";
+  freeB.addEventListener("click", function(){
+    var on = freeB.getAttribute("aria-pressed") === "true";
+    freeB.setAttribute("aria-pressed", on ? "false" : "true");
+  });
+  var order = ["low", "med", "high"], surp = "low";
+  var surpB = document.createElement("button");
+  surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
+  var paintSurp = function(){
+    surpB.textContent = "\ud83c\udfb2 Surprise me: " + SURP[surp];
+    surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
+  };
+  paintSurp();
+  surpB.addEventListener("click", function(){
+    surp = order[(order.indexOf(surp) + 1) % 3]; paintSurp();
+  });
+  prefs.appendChild(freeB); prefs.appendChild(surpB);
+  var actions = document.createElement("div"); actions.className = "qactions";
+  var done = document.createElement("button");
+  done.className = "btn btn-gold"; done.type = "button"; done.id = "qDone";
+  done.textContent = "Done \u2192";
+  var skip = document.createElement("button");
+  skip.className = "qlink"; skip.type = "button"; skip.id = "qSkip";
+  skip.textContent = "skip for now";
+  var markSeen = function(){ try { localStorage.setItem(OKEY, "1"); } catch (e) {} };
+  done.addEventListener("click", function(){
+    taste.likes = Object.keys(sel);
+    taste.mutes = [];
+    taste.free_only = freeB.getAttribute("aria-pressed") === "true";
+    taste.surprise = surp;
+    save(); markSeen(); veil.hidden = true;
+    applyRanking();
+    if (window.TonightPage && TonightPage.refresh) TonightPage.refresh(true);
+  });
+  skip.addEventListener("click", function(){ markSeen(); veil.hidden = true; });
+  actions.appendChild(done); actions.appendChild(skip);
+  card.appendChild(eb); card.appendChild(h); card.appendChild(sub);
+  card.appendChild(chips); card.appendChild(prefs); card.appendChild(actions);
+  veil.appendChild(card);
+  document.body.appendChild(veil);
+  return {veil: veil, freeB: freeB,
+    paint: function(s){ surp = s; paintSurp(); }};
+}
+function openQuiz(){
+  if (!sheet) sheet = buildSheet();
+  sel = {};
+  taste.likes.forEach(function(c){ sel[c] = 1; });
+  sheet.veil.querySelectorAll(".qchip[data-cat]").forEach(function(b){
+    b.setAttribute("aria-pressed", sel[b.dataset.cat] ? "true" : "false");
+  });
+  sheet.freeB.setAttribute("aria-pressed", taste.free_only ? "true" : "false");
+  sheet.paint(taste.surprise);
+  sheet.veil.hidden = false;
+}
+/* ---------------- plain-language profile ---------------- */
+function joinList(a){
+  if (!a.length) return "";
+  if (a.length === 1) return a[0];
+  return a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+}
+function describe(){
+  var parts = [];
+  if (taste.likes.length) parts.push("into " + joinList(taste.likes));
+  if (taste.mutes.length) parts.push("not into " + joinList(taste.mutes));
+  var s = parts.length
+    ? "You're " + parts.join(", ") + "."
+    : "You haven't told Tonight what you like yet.";
+  var prefs = [];
+  if (taste.free_only) prefs.push("you'd rather keep it free");
+  prefs.push(taste.surprise === "low" ? "no surprises, just your thing" :
+    (taste.surprise === "med" ? "open to a few surprises" : "bring on the surprises"));
+  s += " Right now, " + prefs.join(", ") + ".";
+  var top = Object.keys(tapBonus)
+    .sort(function(a, b){ return tapBonus[b] - tapBonus[a]; }).slice(0, 2);
+  if (top.length) s += " Your taps lean " + joinList(top) + ".";
+  return s;
+}
+function setCat(cat, mode){
+  taste.likes = taste.likes.filter(function(c){ return c !== cat; });
+  taste.mutes = taste.mutes.filter(function(c){ return c !== cat; });
+  if (mode === "like") taste.likes.push(cat);
+  else if (mode === "mute") taste.mutes.push(cat);
+  save();
+}
+window.Tonight = {
+  taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
+  score: score, save: save, applyRanking: applyRanking,
+  openQuiz: openQuiz, describe: describe, setCat: setCat
+};
+document.addEventListener("DOMContentLoaded", function(){
+  var tune = document.getElementById("tuneTaste");
+  if (tune) tune.addEventListener("click", function(e){ e.preventDefault(); openQuiz(); });
+  var noquiz = document.body && document.body.getAttribute("data-noquiz") === "1";
+  try { if (!noquiz && !localStorage.getItem(OKEY)) openQuiz(); } catch (e) {}
+  applyRanking();
+  pull();
+  if (window.TonightPage && TonightPage.init) TonightPage.init();
+});
+})();
+</script>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="Tonight logo">Tonight<b>.</b></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Your taste</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="#" id="tuneTaste">Tune</a></span><span class="citylinks"><a class="" href="./nyc/2026-09-27.html">NYC</a> <a class="cur" href="./london/2026-09-27.html">London</a></span><a class="browselink" href="./browse-london-2026-09-27.html">Browse all →</a></nav>
+<header class="bhero">
+<div class="eyebrow">Sunday, September 27 · London</div>
+<h1>Browse everything</h1>
+<p>The full corpus behind today's picks — search it, filter it, make it yours.</p>
+</header>
+<div class="toolbar">
+<a class="btn btn-dark" href="./london/2026-09-27.html">← Back to today's picks</a>
+<a class="btn btn-gold" href="./london/2026-09-27.ics" download>📥 Download .ics</a>
+</div>
+<div class="filters">
+<input id="fq" type="search" placeholder="Search events, venues…" aria-label="Search events">
+<select id="fcat" aria-label="Filter by category"><option value="">All categories</option><option value="Arts &amp; Play">Arts &amp; Play</option><option value="Music">Music</option><option value="Comedy">Comedy</option></select>
+<div class="seg" id="ftod">
+<button data-t="all" class="on">Any time</button><button data-t="morning">Morning</button><button data-t="afternoon">Afternoon</button><button data-t="evening">Evening</button>
+</div>
+<button class="fbtn" id="ffree" aria-pressed="false">✨ Free only</button>
+<span id="hiddenBar"><span id="hiddenN">0</span> hidden · <button id="unhide">show them</button></span>
+<span id="resCount"></span>
+</div>
+<div class="picks" id="picksBar"><strong>My picks: <span id="pickCount">0</span></strong><br>
+<span style="font-size:13px;color:#6b6b6b;">Tap the boxes — it shapes tomorrow's recommendations.</span></div>
+<main class="wrap">
+
+<article class="event" id="event-0" data-idx="0" data-name="FRAMELESS 2026" data-start-local="2026-09-27T12:00:00" data-cal-start="20260927T110000Z" data-cal-end="20260927T130000Z" data-loc="Marble Arch Place" data-url="https://www.universe.com/events/frameless-2026-tickets-Q8YGSX?ref=ticketmaster" data-lat="51.51366919" data-lng="-0.15964317">
+<button class="toggle" data-idx="0" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="0" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/frameless-2026-tickets-Q8YGSX?ref=ticketmaster">FRAMELESS 2026</a></h3>
+<div class="meta">12:00 PM · Marble Arch Place</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/frameless-2026-tickets-Q8YGSX?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=FRAMELESS%202026&dates=20260927T110000Z/20260927T130000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/frameless-2026-tickets-Q8YGSX%3Fref%3Dticketmaster&location=Marble%20Arch%20Place" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="0">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a> <a href="#event-4">Twist Museum - London&#x27;s Home of Illusions STANDARD</a></div></article>
+<article class="event" id="event-1" data-idx="1" data-name="Mama&#x27;s Rum Brunch - Nassen" data-start-local="2026-09-27T12:00:00" data-cal-start="20260927T110000Z" data-cal-end="20260927T130000Z" data-loc="Soul Mama Islington" data-url="https://www.universe.com/events/mamas-rum-brunch-nassen-tickets-7GTRMZ?ref=ticketmaster" data-lat="51.534184" data-lng="-0.106126">
+<button class="toggle" data-idx="1" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="1" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/mamas-rum-brunch-nassen-tickets-7GTRMZ?ref=ticketmaster">Mama&#x27;s Rum Brunch - Nassen</a></h3>
+<div class="meta">12:00 PM · Soul Mama Islington</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/mamas-rum-brunch-nassen-tickets-7GTRMZ?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mama%27s%20Rum%20Brunch%20-%20Nassen&dates=20260927T110000Z/20260927T130000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/mamas-rum-brunch-nassen-tickets-7GTRMZ%3Fref%3Dticketmaster&location=Soul%20Mama%20Islington" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="1">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a> <a href="#event-4">Twist Museum - London&#x27;s Home of Illusions STANDARD</a></div></article>
+<article class="event" id="event-2" data-idx="2" data-name="Ramses and the Pharaoh’s Gold: The Exhibition" data-start-local="2026-09-27T12:30:00" data-cal-start="20260927T113000Z" data-cal-end="20260927T133000Z" data-loc="Neon at Battersea Power Station" data-url="https://www.universe.com/events/ramses-and-the-pharaoh-s-gold-the-exhibition-tickets-V64RDY?ref=ticketmaster" data-lat="51.48187751" data-lng="-0.14214313">
+<button class="toggle" data-idx="2" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="2" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/ramses-and-the-pharaoh-s-gold-the-exhibition-tickets-V64RDY?ref=ticketmaster">Ramses and the Pharaoh’s Gold: The Exhibition</a></h3>
+<div class="meta">12:30 PM · Neon at Battersea Power Station</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/ramses-and-the-pharaoh-s-gold-the-exhibition-tickets-V64RDY?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ramses%20and%20the%20Pharaoh%E2%80%99s%20Gold%3A%20The%20Exhibition&dates=20260927T113000Z/20260927T133000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/ramses-and-the-pharaoh-s-gold-the-exhibition-tickets-V64RDY%3Fref%3Dticketmaster&location=Neon%20at%20Battersea%20Power%20Station" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="2">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-4">Twist Museum - London&#x27;s Home of Illusions STANDARD</a></div></article>
+<article class="event" id="event-3" data-idx="3" data-name="Sunday Soul Sessions" data-start-local="2026-09-27T12:30:00" data-cal-start="20260927T113000Z" data-cal-end="20260927T133000Z" data-loc="Boisdale, Canary Wharf" data-url="https://www.universe.com/events/sunday-soul-sessions-tickets-L9GKNJ?ref=ticketmaster" data-lat="51.505252" data-lng="-0.022271">
+<button class="toggle" data-idx="3" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="3" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/sunday-soul-sessions-tickets-L9GKNJ?ref=ticketmaster">Sunday Soul Sessions</a></h3>
+<div class="meta">12:30 PM · Boisdale, Canary Wharf</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/sunday-soul-sessions-tickets-L9GKNJ?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sunday%20Soul%20Sessions&dates=20260927T113000Z/20260927T133000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/sunday-soul-sessions-tickets-L9GKNJ%3Fref%3Dticketmaster&location=Boisdale%2C%20Canary%20Wharf" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="3">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a> <a href="#event-8">Silhouettes Project</a></div></article>
+<article class="event" id="event-4" data-idx="4" data-name="Twist Museum - London&#x27;s Home of Illusions STANDARD" data-start-local="2026-09-27T12:45:00" data-cal-start="20260927T114500Z" data-cal-end="20260927T134500Z" data-loc="Twist Museum" data-url="https://www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7?ref=ticketmaster" data-lat="51.51539505" data-lng="-0.14319582">
+<button class="toggle" data-idx="4" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="4" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7?ref=ticketmaster">Twist Museum - London&#x27;s Home of Illusions STANDARD</a></h3>
+<div class="meta">12:45 PM · Twist Museum</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Twist%20Museum%20-%20London%27s%20Home%20of%20Illusions%20STANDARD&dates=20260927T114500Z/20260927T134500Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7%3Fref%3Dticketmaster&location=Twist%20Museum" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="4">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-5" data-idx="5" data-name="Belle Livingstone&#x27;s 58th Street Country Club" data-start-local="2026-09-27T13:00:00" data-cal-start="20260927T120000Z" data-cal-end="20260927T140000Z" data-loc="Belle Livingstone&#x27;s 58th Street Country Club" data-url="https://theatre.ticketmaster.co.uk/book/1HBYR-58th-street/#perf=1HBYR-152&amp;date=2026-09-27&amp;time=1.00PM" data-lat="51.47289512" data-lng="-0.06736413">
+<button class="toggle" data-idx="5" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="5" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1HBYR-58th-street/#perf=1HBYR-152&amp;date=2026-09-27&amp;time=1.00PM">Belle Livingstone&#x27;s 58th Street Country Club</a></h3>
+<div class="meta">1:00 PM · Belle Livingstone&#x27;s 58th Street Country Club</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1HBYR-58th-street/#perf=1HBYR-152&amp;date=2026-09-27&amp;time=1.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Belle%20Livingstone%27s%2058th%20Street%20Country%20Club&dates=20260927T120000Z/20260927T140000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1HBYR-58th-street/%23perf%3D1HBYR-152%26date%3D2026-09-27%26time%3D1.00PM&location=Belle%20Livingstone%27s%2058th%20Street%20Country%20Club" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="5">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a> <a href="#event-8">Silhouettes Project</a></div></article>
+<article class="event" id="event-6" data-idx="6" data-name="Shakespeare&#x27;s Globe - As You Like It" data-start-local="2026-09-27T13:00:00" data-cal-start="20260927T120000Z" data-cal-end="20260927T140000Z" data-loc="Globe Theatre, Shakespeare&#x27;s Globe" data-url="https://theatre.ticketmaster.co.uk/book/1HM8Y-as-you-like-it-26/#perf=1HM8Y-Q&amp;date=2026-09-27&amp;time=1.00PM" data-lat="51.508111" data-lng="-0.096597">
+<button class="toggle" data-idx="6" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="6" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1HM8Y-as-you-like-it-26/#perf=1HM8Y-Q&amp;date=2026-09-27&amp;time=1.00PM">Shakespeare&#x27;s Globe - As You Like It</a></h3>
+<div class="meta">1:00 PM · Globe Theatre, Shakespeare&#x27;s Globe</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1HM8Y-as-you-like-it-26/#perf=1HM8Y-Q&amp;date=2026-09-27&amp;time=1.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shakespeare%27s%20Globe%20-%20As%20You%20Like%20It&dates=20260927T120000Z/20260927T140000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1HM8Y-as-you-like-it-26/%23perf%3D1HM8Y-Q%26date%3D2026-09-27%26time%3D1.00PM&location=Globe%20Theatre%2C%20Shakespeare%27s%20Globe" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="6">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-7" data-idx="7" data-name="Abba Voyage - VIP Premium Package" data-start-local="2026-09-27T13:00:00" data-cal-start="20260927T120000Z" data-cal-end="20260927T140000Z" data-loc="ABBA Arena" data-url="https://theatre.ticketmaster.co.uk/book/1H8DJ-abba-voyage-admissions/#perf=1H8DJ-H3K&amp;date=2026-09-27&amp;time=1.00PM" data-lat="51.53327366" data-lng="-0.01362306">
+<button class="toggle" data-idx="7" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="7" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1H8DJ-abba-voyage-admissions/#perf=1H8DJ-H3K&amp;date=2026-09-27&amp;time=1.00PM">Abba Voyage - VIP Premium Package</a></h3>
+<div class="meta">1:00 PM · ABBA Arena</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1H8DJ-abba-voyage-admissions/#perf=1H8DJ-H3K&amp;date=2026-09-27&amp;time=1.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Abba%20Voyage%20-%20VIP%20Premium%20Package&dates=20260927T120000Z/20260927T140000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1H8DJ-abba-voyage-admissions/%23perf%3D1H8DJ-H3K%26date%3D2026-09-27%26time%3D1.00PM&location=ABBA%20Arena" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="7">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-8">Silhouettes Project</a></div></article>
+<article class="event" id="event-8" data-idx="8" data-name="Silhouettes Project" data-start-local="2026-09-27T13:00:00" data-cal-start="20260927T120000Z" data-cal-end="20260927T140000Z" data-loc="Fox and Firkin" data-url="https://www.universe.com/events/silhouettes-project-tickets-DL2Y1J?ref=ticketmaster">
+<button class="toggle" data-idx="8" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="8" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/silhouettes-project-tickets-DL2Y1J?ref=ticketmaster">Silhouettes Project</a></h3>
+<div class="meta">1:00 PM · Fox and Firkin</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/silhouettes-project-tickets-DL2Y1J?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Silhouettes%20Project&dates=20260927T120000Z/20260927T140000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/silhouettes-project-tickets-DL2Y1J%3Fref%3Dticketmaster&location=Fox%20and%20Firkin" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="8">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a></div></article>
+<article class="event" id="event-9" data-idx="9" data-name="The View from The Shard" data-start-local="2026-09-27T13:00:00" data-cal-start="20260927T120000Z" data-cal-end="20260927T140000Z" data-loc="The View from The Shard" data-url="https://www.universe.com/events/the-view-from-the-shard-tickets-TB3XYQ?ref=ticketmaster" data-lat="51.5045" data-lng="-0.08653">
+<button class="toggle" data-idx="9" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="9" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/the-view-from-the-shard-tickets-TB3XYQ?ref=ticketmaster">The View from The Shard</a></h3>
+<div class="meta">1:00 PM · The View from The Shard</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/the-view-from-the-shard-tickets-TB3XYQ?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20View%20from%20The%20Shard&dates=20260927T120000Z/20260927T140000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/the-view-from-the-shard-tickets-TB3XYQ%3Fref%3Dticketmaster&location=The%20View%20from%20The%20Shard" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="9">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-10" data-idx="10" data-name="Faulty Towers the Dining Experience" data-start-local="2026-09-27T13:30:00" data-cal-start="20260927T123000Z" data-cal-end="20260927T143000Z" data-loc="President Hotel" data-url="https://theatre.ticketmaster.co.uk/book/1GLTR-faulty-towers-the-dining-experience-in-londons-west-end-2024/#perf=1GLTR-20L&amp;date=2026-09-27&amp;time=1.30PM" data-lat="51.52226825" data-lng="-0.12395745">
+<button class="toggle" data-idx="10" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="10" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1GLTR-faulty-towers-the-dining-experience-in-londons-west-end-2024/#perf=1GLTR-20L&amp;date=2026-09-27&amp;time=1.30PM">Faulty Towers the Dining Experience</a></h3>
+<div class="meta">1:30 PM · President Hotel</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1GLTR-faulty-towers-the-dining-experience-in-londons-west-end-2024/#perf=1GLTR-20L&amp;date=2026-09-27&amp;time=1.30PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Faulty%20Towers%20the%20Dining%20Experience&dates=20260927T123000Z/20260927T143000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1GLTR-faulty-towers-the-dining-experience-in-londons-west-end-2024/%23perf%3D1GLTR-20L%26date%3D2026-09-27%26time%3D1.30PM&location=President%20Hotel" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="10">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-24">The Play That Goes Wrong</a> <a href="#event-25">My Sons a Queer (But What Can You Do?)</a> <a href="#event-43">The Comedy Store Players - 27th September</a></div></article>
+<article class="event" id="event-11" data-idx="11" data-name="My Neighbour Totoro" data-start-local="2026-09-27T14:00:00" data-cal-start="20260927T130000Z" data-cal-end="20260927T150000Z" data-loc="Gillian Lynne Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1G7HA-my-neighbour-totoro/#perf=1G7HA-181&amp;date=2026-09-27&amp;time=2.00PM" data-lat="51.51429" data-lng="-0.119645">
+<button class="toggle" data-idx="11" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="11" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1G7HA-my-neighbour-totoro/#perf=1G7HA-181&amp;date=2026-09-27&amp;time=2.00PM">My Neighbour Totoro</a></h3>
+<div class="meta">2:00 PM · Gillian Lynne Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1G7HA-my-neighbour-totoro/#perf=1G7HA-181&amp;date=2026-09-27&amp;time=2.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=My%20Neighbour%20Totoro&dates=20260927T130000Z/20260927T150000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1G7HA-my-neighbour-totoro/%23perf%3D1G7HA-181%26date%3D2026-09-27%26time%3D2.00PM&location=Gillian%20Lynne%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="11">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-12" data-idx="12" data-name="Saracens Women V Sale Sharks - Next Gen Cup" data-start-local="2026-09-27T14:00:00" data-cal-start="20260927T130000Z" data-cal-end="20260927T150000Z" data-loc="StoneX Stadium" data-url="https://www.eticketing.co.uk/saracens/EDP/Event/Index/537?utm_source=Ticketmaster&amp;utm_medium=Shell-Event&amp;utm_campaign=cl:Saracens-W-chl:Shell-Event-v.Sale-Cup" data-lat="51.603253" data-lng="-0.224577">
+<button class="toggle" data-idx="12" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="12" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.eticketing.co.uk/saracens/EDP/Event/Index/537?utm_source=Ticketmaster&amp;utm_medium=Shell-Event&amp;utm_campaign=cl:Saracens-W-chl:Shell-Event-v.Sale-Cup">Saracens Women V Sale Sharks - Next Gen Cup</a></h3>
+<div class="meta">2:00 PM · StoneX Stadium</div>
+<p></p>
+<a class="tickets" href="https://www.eticketing.co.uk/saracens/EDP/Event/Index/537?utm_source=Ticketmaster&amp;utm_medium=Shell-Event&amp;utm_campaign=cl:Saracens-W-chl:Shell-Event-v.Sale-Cup">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Saracens%20Women%20V%20Sale%20Sharks%20-%20Next%20Gen%20Cup&dates=20260927T130000Z/20260927T150000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.eticketing.co.uk/saracens/EDP/Event/Index/537%3Futm_source%3DTicketmaster%26utm_medium%3DShell-Event%26utm_campaign%3Dcl%3ASaracens-W-chl%3AShell-Event-v.Sale-Cup&location=StoneX%20Stadium" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="12">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-13" data-idx="13" data-name="Matilda The Musical" data-start-local="2026-09-27T14:00:00" data-cal-start="20260927T130000Z" data-cal-end="20260927T150000Z" data-loc="Cambridge Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1FY3Y-matilda-the-musical/#perf=1FY3Y-392&amp;date=2026-09-27&amp;time=2.00PM" data-lat="51.51351" data-lng="-0.126407">
+<button class="toggle" data-idx="13" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="13" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1FY3Y-matilda-the-musical/#perf=1FY3Y-392&amp;date=2026-09-27&amp;time=2.00PM">Matilda The Musical</a></h3>
+<div class="meta">2:00 PM · Cambridge Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1FY3Y-matilda-the-musical/#perf=1FY3Y-392&amp;date=2026-09-27&amp;time=2.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Matilda%20The%20Musical&dates=20260927T130000Z/20260927T150000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1FY3Y-matilda-the-musical/%23perf%3D1FY3Y-392%26date%3D2026-09-27%26time%3D2.00PM&location=Cambridge%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="13">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-14" data-idx="14" data-name="Tottenham Hotspur Women v Aston Villa Women" data-start-local="2026-09-27T14:00:00" data-cal-start="20260927T130000Z" data-cal-end="20260927T150000Z" data-loc="Brisbane Road Stadium" data-url="https://www.eticketing.co.uk/tottenhamhotspur/EDP/Event/Index/10067?utm_source=Ticketmaster&amp;utm_medium=Shell-Event&amp;utm_campaign=cl:Tott-W-chl:Shell-Event-v.Vill" data-lat="51.56022072" data-lng="-0.01259797">
+<button class="toggle" data-idx="14" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="14" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.eticketing.co.uk/tottenhamhotspur/EDP/Event/Index/10067?utm_source=Ticketmaster&amp;utm_medium=Shell-Event&amp;utm_campaign=cl:Tott-W-chl:Shell-Event-v.Vill">Tottenham Hotspur Women v Aston Villa Women</a></h3>
+<div class="meta">2:00 PM · Brisbane Road Stadium</div>
+<p></p>
+<a class="tickets" href="https://www.eticketing.co.uk/tottenhamhotspur/EDP/Event/Index/10067?utm_source=Ticketmaster&amp;utm_medium=Shell-Event&amp;utm_campaign=cl:Tott-W-chl:Shell-Event-v.Vill">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Tottenham%20Hotspur%20Women%20v%20Aston%20Villa%20Women&dates=20260927T130000Z/20260927T150000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.eticketing.co.uk/tottenhamhotspur/EDP/Event/Index/10067%3Futm_source%3DTicketmaster%26utm_medium%3DShell-Event%26utm_campaign%3Dcl%3ATott-W-chl%3AShell-Event-v.Vill&location=Brisbane%20Road%20Stadium" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="14">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-15" data-idx="15" data-name="Women&#x27;s Season 2026-27" data-start-local="2026-09-27T14:00:00" data-cal-start="20260927T130000Z" data-cal-end="20260927T150000Z" data-loc="StoneX Stadium" data-url="https://www.eticketing.co.uk/saracens/EDP/Season/Index/506" data-lat="51.603253" data-lng="-0.224577">
+<button class="toggle" data-idx="15" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="15" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.eticketing.co.uk/saracens/EDP/Season/Index/506">Women&#x27;s Season 2026-27</a></h3>
+<div class="meta">2:00 PM · StoneX Stadium</div>
+<p></p>
+<a class="tickets" href="https://www.eticketing.co.uk/saracens/EDP/Season/Index/506">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Women%27s%20Season%202026-27&dates=20260927T130000Z/20260927T150000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.eticketing.co.uk/saracens/EDP/Season/Index/506&location=StoneX%20Stadium" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="15">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-16" data-idx="16" data-name="Disney&#x27;s THE LION KING" data-start-local="2026-09-27T14:30:00" data-cal-start="20260927T133000Z" data-cal-end="20260927T153000Z" data-loc="Lyceum Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1DR6R-lyceum-theatre-london-disneys-the-lion-king/#perf=1DR6R-59J&amp;date=2026-09-27&amp;time=2.30PM" data-lat="51.511718" data-lng="-0.120008">
+<button class="toggle" data-idx="16" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="16" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1DR6R-lyceum-theatre-london-disneys-the-lion-king/#perf=1DR6R-59J&amp;date=2026-09-27&amp;time=2.30PM">Disney&#x27;s THE LION KING</a></h3>
+<div class="meta">2:30 PM · Lyceum Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1DR6R-lyceum-theatre-london-disneys-the-lion-king/#perf=1DR6R-59J&amp;date=2026-09-27&amp;time=2.30PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Disney%27s%20THE%20LION%20KING&dates=20260927T133000Z/20260927T153000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1DR6R-lyceum-theatre-london-disneys-the-lion-king/%23perf%3D1DR6R-59J%26date%3D2026-09-27%26time%3D2.30PM&location=Lyceum%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="16">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-17" data-idx="17" data-name="Oliver!" data-start-local="2026-09-27T14:30:00" data-cal-start="20260927T133000Z" data-cal-end="20260927T153000Z" data-loc="Gielgud Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1H4KN-oliver/#perf=1H4KN-17M&amp;date=2026-09-27&amp;time=2.30PM" data-lat="51.512019" data-lng="-0.13324">
+<button class="toggle" data-idx="17" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="17" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1H4KN-oliver/#perf=1H4KN-17M&amp;date=2026-09-27&amp;time=2.30PM">Oliver!</a></h3>
+<div class="meta">2:30 PM · Gielgud Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1H4KN-oliver/#perf=1H4KN-17M&amp;date=2026-09-27&amp;time=2.30PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Oliver%21&dates=20260927T133000Z/20260927T153000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1H4KN-oliver/%23perf%3D1H4KN-17M%26date%3D2026-09-27%26time%3D2.30PM&location=Gielgud%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="17">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-18" data-idx="18" data-name="The Hunger Games On Stage" data-start-local="2026-09-27T14:30:00" data-cal-start="20260927T133000Z" data-cal-end="20260927T153000Z" data-loc="Troubadour Canary Wharf Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1HUN0-the-hunger-games-on-stage/#perf=1HUN0-7C&amp;date=2026-09-27&amp;time=2.30PM" data-lat="51.5035337" data-lng="-0.0134276">
+<button class="toggle" data-idx="18" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="18" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1HUN0-the-hunger-games-on-stage/#perf=1HUN0-7C&amp;date=2026-09-27&amp;time=2.30PM">The Hunger Games On Stage</a></h3>
+<div class="meta">2:30 PM · Troubadour Canary Wharf Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1HUN0-the-hunger-games-on-stage/#perf=1HUN0-7C&amp;date=2026-09-27&amp;time=2.30PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Hunger%20Games%20On%20Stage&dates=20260927T133000Z/20260927T153000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1HUN0-the-hunger-games-on-stage/%23perf%3D1HUN0-7C%26date%3D2026-09-27%26time%3D2.30PM&location=Troubadour%20Canary%20Wharf%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="18">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-19" data-idx="19" data-name="Come Alive! The Greatest Showman Circus Spectacular" data-start-local="2026-09-27T14:30:00" data-cal-start="20260927T133000Z" data-cal-end="20260927T153000Z" data-loc="Empress Museum" data-url="https://theatre.ticketmaster.co.uk/book/1GPNU-come-alive/#perf=1GPNU-20L&amp;date=2026-09-27&amp;time=2.30PM" data-lat="51.48850056" data-lng="-0.19846932">
+<button class="toggle" data-idx="19" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="19" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1GPNU-come-alive/#perf=1GPNU-20L&amp;date=2026-09-27&amp;time=2.30PM">Come Alive! The Greatest Showman Circus Spectacular</a></h3>
+<div class="meta">2:30 PM · Empress Museum</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1GPNU-come-alive/#perf=1GPNU-20L&amp;date=2026-09-27&amp;time=2.30PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Come%20Alive%21%20The%20Greatest%20Showman%20Circus%20Spectacular&dates=20260927T133000Z/20260927T153000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1GPNU-come-alive/%23perf%3D1GPNU-20L%26date%3D2026-09-27%26time%3D2.30PM&location=Empress%20Museum" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="19">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-20" data-idx="20" data-name="Titanique" data-start-local="2026-09-27T14:30:00" data-cal-start="20260927T133000Z" data-cal-end="20260927T153000Z" data-loc="Criterion Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1GTBN-titanique/#perf=1GTBN-21B&amp;date=2026-09-27&amp;time=2.30PM" data-lat="51.509707" data-lng="-0.133724">
+<button class="toggle" data-idx="20" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="20" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1GTBN-titanique/#perf=1GTBN-21B&amp;date=2026-09-27&amp;time=2.30PM">Titanique</a></h3>
+<div class="meta">2:30 PM · Criterion Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1GTBN-titanique/#perf=1GTBN-21B&amp;date=2026-09-27&amp;time=2.30PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Titanique&dates=20260927T133000Z/20260927T153000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1GTBN-titanique/%23perf%3D1GTBN-21B%26date%3D2026-09-27%26time%3D2.30PM&location=Criterion%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="20">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-21" data-idx="21" data-name="Stranger Things: The First Shadow" data-start-local="2026-09-27T15:00:00" data-cal-start="20260927T140000Z" data-cal-end="20260927T160000Z" data-loc="Phoenix Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1FHDY-stranger-things-the-first-shadow/#perf=1FHDY-236&amp;date=2026-09-27&amp;time=3.00PM" data-lat="51.514387" data-lng="-0.129497">
+<button class="toggle" data-idx="21" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="21" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1FHDY-stranger-things-the-first-shadow/#perf=1FHDY-236&amp;date=2026-09-27&amp;time=3.00PM">Stranger Things: The First Shadow</a></h3>
+<div class="meta">3:00 PM · Phoenix Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1FHDY-stranger-things-the-first-shadow/#perf=1FHDY-236&amp;date=2026-09-27&amp;time=3.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Stranger%20Things%3A%20The%20First%20Shadow&dates=20260927T140000Z/20260927T160000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1FHDY-stranger-things-the-first-shadow/%23perf%3D1FHDY-236%26date%3D2026-09-27%26time%3D3.00PM&location=Phoenix%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="21">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-22" data-idx="22" data-name="Million Dollar Quartet" data-start-local="2026-09-27T15:00:00" data-cal-start="20260927T140000Z" data-cal-end="20260927T160000Z" data-loc="The Arts at Marble Arch" data-url="https://theatre.ticketmaster.co.uk/book/1J8MU-million-dollar-quartet/#perf=1J8MU-T&amp;date=2026-09-27&amp;time=3.00PM" data-lat="51.51329" data-lng="-0.159855">
+<button class="toggle" data-idx="22" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="22" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1J8MU-million-dollar-quartet/#perf=1J8MU-T&amp;date=2026-09-27&amp;time=3.00PM">Million Dollar Quartet</a></h3>
+<div class="meta">3:00 PM · The Arts at Marble Arch</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1J8MU-million-dollar-quartet/#perf=1J8MU-T&amp;date=2026-09-27&amp;time=3.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Million%20Dollar%20Quartet&dates=20260927T140000Z/20260927T160000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1J8MU-million-dollar-quartet/%23perf%3D1J8MU-T%26date%3D2026-09-27%26time%3D3.00PM&location=The%20Arts%20at%20Marble%20Arch" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="22">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-23" data-idx="23" data-name="SIX The Musical" data-start-local="2026-09-27T15:00:00" data-cal-start="20260927T140000Z" data-cal-end="20260927T160000Z" data-loc="Vaudeville Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1DYC8-six-vau/#perf=1DYC8-679&amp;date=2026-09-27&amp;time=3.00PM" data-lat="51.510546" data-lng="-0.12265">
+<button class="toggle" data-idx="23" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="23" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1DYC8-six-vau/#perf=1DYC8-679&amp;date=2026-09-27&amp;time=3.00PM">SIX The Musical</a></h3>
+<div class="meta">3:00 PM · Vaudeville Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1DYC8-six-vau/#perf=1DYC8-679&amp;date=2026-09-27&amp;time=3.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SIX%20The%20Musical&dates=20260927T140000Z/20260927T160000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1DYC8-six-vau/%23perf%3D1DYC8-679%26date%3D2026-09-27%26time%3D3.00PM&location=Vaudeville%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="23">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-24" data-idx="24" data-name="The Play That Goes Wrong" data-start-local="2026-09-27T15:00:00" data-cal-start="20260927T140000Z" data-cal-end="20260927T160000Z" data-loc="Duchess Theatre" data-url="https://theatre.ticketmaster.co.uk/book/17YY4-the-play-that-goes-wrong/#perf=17YY4-815&amp;date=2026-09-27&amp;time=3.00PM" data-lat="51.512118" data-lng="-0.119732">
+<button class="toggle" data-idx="24" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="24" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/17YY4-the-play-that-goes-wrong/#perf=17YY4-815&amp;date=2026-09-27&amp;time=3.00PM">The Play That Goes Wrong</a></h3>
+<div class="meta">3:00 PM · Duchess Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/17YY4-the-play-that-goes-wrong/#perf=17YY4-815&amp;date=2026-09-27&amp;time=3.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Play%20That%20Goes%20Wrong&dates=20260927T140000Z/20260927T160000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/17YY4-the-play-that-goes-wrong/%23perf%3D17YY4-815%26date%3D2026-09-27%26time%3D3.00PM&location=Duchess%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="24">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-10">Faulty Towers the Dining Experience</a> <a href="#event-25">My Sons a Queer (But What Can You Do?)</a> <a href="#event-43">The Comedy Store Players - 27th September</a></div></article>
+<article class="event" id="event-25" data-idx="25" data-name="My Sons a Queer (But What Can You Do?)" data-start-local="2026-09-27T15:00:00" data-cal-start="20260927T140000Z" data-cal-end="20260927T160000Z" data-loc="Apollo Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1J3AG-my-sons-a-queer-but-what-can-you-do/#perf=1J3AG-E&amp;date=2026-09-27&amp;time=3.00PM" data-lat="51.511248" data-lng="-0.133935">
+<button class="toggle" data-idx="25" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="25" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1J3AG-my-sons-a-queer-but-what-can-you-do/#perf=1J3AG-E&amp;date=2026-09-27&amp;time=3.00PM">My Sons a Queer (But What Can You Do?)</a></h3>
+<div class="meta">3:00 PM · Apollo Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1J3AG-my-sons-a-queer-but-what-can-you-do/#perf=1J3AG-E&amp;date=2026-09-27&amp;time=3.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=My%20Sons%20a%20Queer%20%28But%20What%20Can%20You%20Do%3F%29&dates=20260927T140000Z/20260927T160000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1J3AG-my-sons-a-queer-but-what-can-you-do/%23perf%3D1J3AG-E%26date%3D2026-09-27%26time%3D3.00PM&location=Apollo%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="25">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-10">Faulty Towers the Dining Experience</a> <a href="#event-24">The Play That Goes Wrong</a> <a href="#event-43">The Comedy Store Players - 27th September</a></div></article>
+<article class="event" id="event-26" data-idx="26" data-name="Witness for the Prosecution" data-start-local="2026-09-27T15:00:00" data-cal-start="20260927T140000Z" data-cal-end="20260927T160000Z" data-loc="County Hall" data-url="https://theatre.ticketmaster.co.uk/book/1EL6R-witness-for-the-prosecution/#perf=1EL6R-46P&amp;date=2026-09-27&amp;time=3.00PM" data-lat="51.50282" data-lng="-0.119252">
+<button class="toggle" data-idx="26" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="26" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1EL6R-witness-for-the-prosecution/#perf=1EL6R-46P&amp;date=2026-09-27&amp;time=3.00PM">Witness for the Prosecution</a></h3>
+<div class="meta">3:00 PM · County Hall</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1EL6R-witness-for-the-prosecution/#perf=1EL6R-46P&amp;date=2026-09-27&amp;time=3.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Witness%20for%20the%20Prosecution&dates=20260927T140000Z/20260927T160000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1EL6R-witness-for-the-prosecution/%23perf%3D1EL6R-46P%26date%3D2026-09-27%26time%3D3.00PM&location=County%20Hall" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="26">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-27" data-idx="27" data-name="Hadestown" data-start-local="2026-09-27T15:00:00" data-cal-start="20260927T140000Z" data-cal-end="20260927T160000Z" data-loc="Lyric Theatre" data-url="https://www.ticketmaster.co.uk/hadestown-london-27-09-2026/event/ZKr9uZKbZL4Ze8-4-Z7vq" data-lat="51.511248" data-lng="-0.133935">
+<button class="toggle" data-idx="27" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="27" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.co.uk/hadestown-london-27-09-2026/event/ZKr9uZKbZL4Ze8-4-Z7vq">Hadestown</a></h3>
+<div class="meta">3:00 PM · Lyric Theatre</div>
+<p>(1) BSL -- Saturday 16th May -- 2:30pm, Thursday 23rd July -- 7:30pm, Thursday 8th October 2026 - 7.30pm, Saturday 14th November 2026 - 2.30pm Captioned \- Saturday 6th June -- 2:30pm, Thursday 30th July -- 7:30pm, Wednesday 21st October 2026 - 7.30pm, Saturday 5th December 2026 - 2.30pm Audio Described -- Saturday 2nd May -- 2:30pm, Thursday 16th July -- 7:30pm, Thursday 29th October 2026 - 7.30pm, Saturday 28th November 2026 - 2.30pm</p>
+<a class="tickets" href="https://www.ticketmaster.co.uk/hadestown-london-27-09-2026/event/ZKr9uZKbZL4Ze8-4-Z7vq">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hadestown&dates=20260927T140000Z/20260927T160000Z&details=%281%29%20BSL%20--%20Saturday%2016th%20May%20--%202%3A30pm%2C%20Thursday%2023rd%20July%20--%207%3A30pm%2C%20Thursday%208th%20October%202026%20-%207.30pm%2C%20Saturday%2014th%20November%202026%20-%202.30pm%20Captioned%20%5C-%20Saturday%206th%20June%20--%202%3A30pm%2C%20Thursday%2030th%20July%20--%207%3A30pm%2C%20Wednesday%2021st%20October%202026%20-%207.30pm%2C%20Saturday%205th%20December%202026%20-%202.30pm%20Audio%20Described%20--%20Saturday%202nd%20May%20--%202%3A30pm%2C%20Thursday%2016th%20July%20--%207%3A30pm%2C%20Thursday%2029th%20October%202026%20-%207.30pm%2C%20Saturday%2028th%20November%202026%20-%202.30pm%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.co.uk/hadestown-london-27-09-2026/event/ZKr9uZKbZL4Ze8-4-Z7vq&location=Lyric%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="27">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-28" data-idx="28" data-name="I&#x27;m Every Woman: the Chaka Khan Musical" data-start-local="2026-09-27T15:30:00" data-cal-start="20260927T143000Z" data-cal-end="20260927T163000Z" data-loc="Troubadour Wembley Park Theatre" data-url="https://theatre.ticketmaster.co.uk/book/1J240-im-every-woman-the-chaka-khan-musical/#perf=1J240-1Z&amp;date=2026-09-27&amp;time=3.30PM" data-lat="51.56178" data-lng="-0.28527">
+<button class="toggle" data-idx="28" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="28" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1J240-im-every-woman-the-chaka-khan-musical/#perf=1J240-1Z&amp;date=2026-09-27&amp;time=3.30PM">I&#x27;m Every Woman: the Chaka Khan Musical</a></h3>
+<div class="meta">3:30 PM · Troubadour Wembley Park Theatre</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1J240-im-every-woman-the-chaka-khan-musical/#perf=1J240-1Z&amp;date=2026-09-27&amp;time=3.30PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=I%27m%20Every%20Woman%3A%20the%20Chaka%20Khan%20Musical&dates=20260927T143000Z/20260927T163000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1J240-im-every-woman-the-chaka-khan-musical/%23perf%3D1J240-1Z%26date%3D2026-09-27%26time%3D3.30PM&location=Troubadour%20Wembley%20Park%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="28">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-29" data-idx="29" data-name="Magic Mike Live" data-start-local="2026-09-27T16:00:00" data-cal-start="20260927T150000Z" data-cal-end="20260927T170000Z" data-loc="The Theatre at the Hippodrome Casino" data-url="https://theatre.ticketmaster.co.uk/book/1FHGN-magic-mike-live#perf=1FHGN-523&amp;date=2026-09-27&amp;time=4.00PM" data-lat="51.511196" data-lng="-0.129629">
+<button class="toggle" data-idx="29" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="29" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1FHGN-magic-mike-live#perf=1FHGN-523&amp;date=2026-09-27&amp;time=4.00PM">Magic Mike Live</a></h3>
+<div class="meta">4:00 PM · The Theatre at the Hippodrome Casino</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1FHGN-magic-mike-live#perf=1FHGN-523&amp;date=2026-09-27&amp;time=4.00PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Magic%20Mike%20Live&dates=20260927T150000Z/20260927T170000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1FHGN-magic-mike-live%23perf%3D1FHGN-523%26date%3D2026-09-27%26time%3D4.00PM&location=The%20Theatre%20at%20the%20Hippodrome%20Casino" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="29">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-30" data-idx="30" data-name="SLB Championship - London Lions v Liverpool Basketball" data-start-local="2026-09-27T16:00:00" data-cal-start="20260927T150000Z" data-cal-end="20260927T170000Z" data-loc="Copper Box Arena" data-url="https://www.ticketmaster.co.uk/slb-championship-london-lions-v-liverpool-london-27-09-2026/event/35006512B57444BE" data-lat="51.526791" data-lng="-0.06343">
+<button class="toggle" data-idx="30" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="30" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.co.uk/slb-championship-london-lions-v-liverpool-london-27-09-2026/event/35006512B57444BE">SLB Championship - London Lions v Liverpool Basketball</a></h3>
+<div class="meta">4:00 PM · Copper Box Arena</div>
+<p>Doors 15:00 Tip Off 16:00</p>
+<a class="tickets" href="https://www.ticketmaster.co.uk/slb-championship-london-lions-v-liverpool-london-27-09-2026/event/35006512B57444BE">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SLB%20Championship%20-%20London%20Lions%20v%20Liverpool%20Basketball&dates=20260927T150000Z/20260927T170000Z&details=Doors%2015%3A00%20Tip%20Off%2016%3A00%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.co.uk/slb-championship-london-lions-v-liverpool-london-27-09-2026/event/35006512B57444BE&location=Copper%20Box%20Arena" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="30">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-31" data-idx="31" data-name="CHELSEA WOMEN V ARSENAL WOMEN" data-start-local="2026-09-27T16:30:00" data-cal-start="20260927T153000Z" data-cal-end="20260927T173000Z" data-loc="Stamford Bridge" data-url="https://www.eticketing.co.uk/chelseafc/EDP/Event/Index/515?utm_source=Ticketmaster&amp;utm_medium=Shell-Event&amp;utm_campaign=cl:Chelsea-W-chl:Shell-Event-v.Arsenal" data-lat="51.481124" data-lng="-0.190297">
+<button class="toggle" data-idx="31" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="31" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.eticketing.co.uk/chelseafc/EDP/Event/Index/515?utm_source=Ticketmaster&amp;utm_medium=Shell-Event&amp;utm_campaign=cl:Chelsea-W-chl:Shell-Event-v.Arsenal">CHELSEA WOMEN V ARSENAL WOMEN</a></h3>
+<div class="meta">4:30 PM · Stamford Bridge</div>
+<p></p>
+<a class="tickets" href="https://www.eticketing.co.uk/chelseafc/EDP/Event/Index/515?utm_source=Ticketmaster&amp;utm_medium=Shell-Event&amp;utm_campaign=cl:Chelsea-W-chl:Shell-Event-v.Arsenal">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=CHELSEA%20WOMEN%20V%20ARSENAL%20WOMEN&dates=20260927T153000Z/20260927T173000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.eticketing.co.uk/chelseafc/EDP/Event/Index/515%3Futm_source%3DTicketmaster%26utm_medium%3DShell-Event%26utm_campaign%3Dcl%3AChelsea-W-chl%3AShell-Event-v.Arsenal&location=Stamford%20Bridge" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="31">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-32" data-idx="32" data-name="Post-Euphoria" data-start-local="2026-09-27T17:00:00" data-cal-start="20260927T160000Z" data-cal-end="20260927T180000Z" data-loc="New Cross Inn" data-url="https://www.universe.com/events/post-euphoria-tickets-1XJL2N?ref=ticketmaster" data-lat="51.475524" data-lng="-0.03838">
+<button class="toggle" data-idx="32" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="32" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/post-euphoria-tickets-1XJL2N?ref=ticketmaster">Post-Euphoria</a></h3>
+<div class="meta">5:00 PM · New Cross Inn</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/post-euphoria-tickets-1XJL2N?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Post-Euphoria&dates=20260927T160000Z/20260927T180000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/post-euphoria-tickets-1XJL2N%3Fref%3Dticketmaster&location=New%20Cross%20Inn" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="32">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-33" data-idx="33" data-name="60 Years of Salsa" data-start-local="2026-09-27T18:00:00" data-cal-start="20260927T170000Z" data-cal-end="20260927T190000Z" data-loc="Jazz Cafe" data-url="https://www.universe.com/events/60-years-of-salsa-tickets-4RFGX1?ref=ticketmaster" data-lat="51.53859" data-lng="-0.143343">
+<button class="toggle" data-idx="33" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="33" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/60-years-of-salsa-tickets-4RFGX1?ref=ticketmaster">60 Years of Salsa</a></h3>
+<div class="meta">6:00 PM · Jazz Cafe</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/60-years-of-salsa-tickets-4RFGX1?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=60%20Years%20of%20Salsa&dates=20260927T170000Z/20260927T190000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/60-years-of-salsa-tickets-4RFGX1%3Fref%3Dticketmaster&location=Jazz%20Cafe" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="33">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a></div></article>
+<article class="event" id="event-34" data-idx="34" data-name="Kate Clover" data-start-local="2026-09-27T18:00:00" data-cal-start="20260927T170000Z" data-cal-end="20260927T190000Z" data-loc="New Cross Inn" data-url="https://www.universe.com/events/kate-clover-tickets-3H4D0X?ref=ticketmaster" data-lat="51.475524" data-lng="-0.03838">
+<button class="toggle" data-idx="34" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="34" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/kate-clover-tickets-3H4D0X?ref=ticketmaster">Kate Clover</a></h3>
+<div class="meta">6:00 PM · New Cross Inn</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/kate-clover-tickets-3H4D0X?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kate%20Clover&dates=20260927T170000Z/20260927T190000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/kate-clover-tickets-3H4D0X%3Fref%3Dticketmaster&location=New%20Cross%20Inn" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="34">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a></div></article>
+<article class="event" id="event-35" data-idx="35" data-name="Van Morrison In Concert" data-start-local="2026-09-27T18:30:00" data-cal-start="20260927T173000Z" data-cal-end="20260927T193000Z" data-loc="British Airways ARC" data-url="https://www.ticketmaster.co.uk/van-morrison-in-concert-london-27-09-2026/event/370064A8F695A619" data-lat="51.49641301" data-lng="-0.21060857">
+<button class="toggle" data-idx="35" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="35" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.co.uk/van-morrison-in-concert-london-27-09-2026/event/370064A8F695A619">Van Morrison In Concert</a></h3>
+<div class="meta">6:30 PM · British Airways ARC</div>
+<p>Over 3s only. Under 14s must be seated accompanied by an adult over 18. A max of 6 tickets per person and per household applies. Tickets in excess of 6 will be cancelled.</p>
+<a class="tickets" href="https://www.ticketmaster.co.uk/van-morrison-in-concert-london-27-09-2026/event/370064A8F695A619">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Van%20Morrison%20In%20Concert&dates=20260927T173000Z/20260927T193000Z&details=Over%203s%20only.%20Under%2014s%20must%20be%20seated%20accompanied%20by%20an%20adult%20over%2018.%20A%20max%20of%206%20tickets%20per%20person%20and%20per%20household%20applies.%20Tickets%20in%20excess%20of%206%20will%20be%20cancelled.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.co.uk/van-morrison-in-concert-london-27-09-2026/event/370064A8F695A619&location=British%20Airways%20ARC" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="35">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a></div></article>
+<article class="event" id="event-36" data-idx="36" data-name="Mamma Mia! The Party" data-start-local="2026-09-27T18:30:00" data-cal-start="20260927T173000Z" data-cal-end="20260927T193000Z" data-loc="The O2" data-url="https://theatre.ticketmaster.co.uk/book/1GY5A-mamma-mia-the-party/#perf=1GY5A-175&amp;date=2026-09-27&amp;time=6.30PM" data-lat="51.501581" data-lng="0.005519">
+<button class="toggle" data-idx="36" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="36" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://theatre.ticketmaster.co.uk/book/1GY5A-mamma-mia-the-party/#perf=1GY5A-175&amp;date=2026-09-27&amp;time=6.30PM">Mamma Mia! The Party</a></h3>
+<div class="meta">6:30 PM · The O2</div>
+<p></p>
+<a class="tickets" href="https://theatre.ticketmaster.co.uk/book/1GY5A-mamma-mia-the-party/#perf=1GY5A-175&amp;date=2026-09-27&amp;time=6.30PM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mamma%20Mia%21%20The%20Party&dates=20260927T173000Z/20260927T193000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1GY5A-mamma-mia-the-party/%23perf%3D1GY5A-175%26date%3D2026-09-27%26time%3D6.30PM&location=The%20O2" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="36">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-37" data-idx="37" data-name="The Brit Funk Association" data-start-local="2026-09-27T18:30:00" data-cal-start="20260927T173000Z" data-cal-end="20260927T193000Z" data-loc="Soul Mama Islington" data-url="https://www.universe.com/events/the-brit-funk-association-tickets-7RSDG2?ref=ticketmaster" data-lat="51.534184" data-lng="-0.106126">
+<button class="toggle" data-idx="37" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="37" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/the-brit-funk-association-tickets-7RSDG2?ref=ticketmaster">The Brit Funk Association</a></h3>
+<div class="meta">6:30 PM · Soul Mama Islington</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/the-brit-funk-association-tickets-7RSDG2?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Brit%20Funk%20Association&dates=20260927T173000Z/20260927T193000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/the-brit-funk-association-tickets-7RSDG2%3Fref%3Dticketmaster&location=Soul%20Mama%20Islington" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="37">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-38" data-idx="38" data-name="Yussef Dayes" data-start-local="2026-09-27T19:00:00" data-cal-start="20260927T180000Z" data-cal-end="20260927T200000Z" data-loc="Blue Note London" data-url="https://www.ticketmaster.co.uk/yussef-dayes-london-27-09-2026/event/230064FDAC0313C4" data-lat="51.51046344" data-lng="-0.12670269">
+<button class="toggle" data-idx="38" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="38" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.co.uk/yussef-dayes-london-27-09-2026/event/230064FDAC0313C4">Yussef Dayes</a></h3>
+<div class="meta">7:00 PM · Blue Note London</div>
+<p>Doors open at 17:00, two hours before the event starts Table seating all ages. Bar area strictly over 18s only. A max of 6 tickets per person and per household applies for the presale, rising to a max of 8 tickets per person and per household for the general sale. Tickets in excess of this will be cancelled. All seating is first come first served. Bar Area seating is limited. Once capacity is reached, the remaining Bar Area becomes standing room only.</p>
+<a class="tickets" href="https://www.ticketmaster.co.uk/yussef-dayes-london-27-09-2026/event/230064FDAC0313C4">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Yussef%20Dayes&dates=20260927T180000Z/20260927T200000Z&details=Doors%20open%20at%2017%3A00%2C%20two%20hours%20before%20the%20event%20starts%20Table%20seating%20all%20ages.%20Bar%20area%20strictly%20over%2018s%20only.%20A%20max%20of%206%20tickets%20per%20person%20and%20per%20household%20applies%20for%20the%20presale%2C%20rising%20to%20a%20max%20of%208%20tickets%20per%20person%20and%20per%20household%20for%20the%20general%20sale.%20Tickets%20in%20excess%20of%20this%20will%20be%20cancelled.%20All%20seating%20is%20first%20come%20first%20served.%20Bar%20Area%20seating%20is%20limited.%20Once%20capacity%20is%20reached%2C%20the%20remaining%20Bar%20Area%20becomes%20standing%20room%20only.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.co.uk/yussef-dayes-london-27-09-2026/event/230064FDAC0313C4&location=Blue%20Note%20London" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="38">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a></div></article>
+<article class="event" id="event-39" data-idx="39" data-name="Poets of the Fall" data-start-local="2026-09-27T19:00:00" data-cal-start="20260927T180000Z" data-cal-end="20260927T200000Z" data-loc="O2 Shepherds Bush Empire" data-url="https://www.ticketmaster.co.uk/poets-of-the-fall-london-27-09-2026/event/3E00638FBB9940EB" data-lat="51.503525" data-lng="-0.224435">
+<button class="toggle" data-idx="39" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="39" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.co.uk/poets-of-the-fall-london-27-09-2026/event/3E00638FBB9940EB">Poets of the Fall</a></h3>
+<div class="meta">7:00 PM · O2 Shepherds Bush Empire</div>
+<p>Security - Bag Policy: Large bags including rucksacks are not allowed. There are no facilities to leave large bags or luggage. If you really have to bring a bag - and it&#x27;s preferable you don&#x27;t, please make sure it&#x27;s small. Only one small bag per person is permitted and it must not be bigger than A4 size. Height: 28.7cm Width: 21cm Depth: 15cm</p>
+<a class="tickets" href="https://www.ticketmaster.co.uk/poets-of-the-fall-london-27-09-2026/event/3E00638FBB9940EB">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Poets%20of%20the%20Fall&dates=20260927T180000Z/20260927T200000Z&details=Security%20-%20Bag%20Policy%3A%20Large%20bags%20including%20rucksacks%20are%20not%20allowed.%20There%20are%20no%20facilities%20to%20leave%20large%20bags%20or%20luggage.%20If%20you%20really%20have%20to%20bring%20a%20bag%20-%20and%20it%27s%20preferable%20you%20don%27t%2C%20please%20make%20sure%20it%27s%20small.%20Only%20one%20small%20bag%20per%20person%20is%20permitted%20and%20it%20must%20not%20be%20bigger%20than%20A4%20size.%20Height%3A%2028.7cm%20Width%3A%2021cm%20Depth%3A%2015cm%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.co.uk/poets-of-the-fall-london-27-09-2026/event/3E00638FBB9940EB&location=O2%20Shepherds%20Bush%20Empire" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="39">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a></div></article>
+<article class="event" id="event-40" data-idx="40" data-name="f5ve" data-start-local="2026-09-27T19:00:00" data-cal-start="20260927T180000Z" data-cal-end="20260927T200000Z" data-loc="Outernet Live" data-url="https://www.universe.com/events/f5ve-tickets-7LCWRQ?ref=ticketmaster" data-lat="51.515741" data-lng="-0.129159">
+<button class="toggle" data-idx="40" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="40" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/f5ve-tickets-7LCWRQ?ref=ticketmaster">f5ve</a></h3>
+<div class="meta">7:00 PM · Outernet Live</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/f5ve-tickets-7LCWRQ?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=f5ve&dates=20260927T180000Z/20260927T200000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/f5ve-tickets-7LCWRQ%3Fref%3Dticketmaster&location=Outernet%20Live" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="40">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a></div></article>
+<article class="event" id="event-41" data-idx="41" data-name="The Scottish Sex Pistols + Lizzie &amp; The Banshees" data-start-local="2026-09-27T19:00:00" data-cal-start="20260927T180000Z" data-cal-end="20260927T200000Z" data-loc="100 Club" data-url="https://www.universe.com/events/the-scottish-sex-pistols-lizzie-the-banshees-tickets-JQTP03?ref=ticketmaster" data-lat="51.516225" data-lng="-0.135345">
+<button class="toggle" data-idx="41" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="41" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/the-scottish-sex-pistols-lizzie-the-banshees-tickets-JQTP03?ref=ticketmaster">The Scottish Sex Pistols + Lizzie &amp; The Banshees</a></h3>
+<div class="meta">7:00 PM · 100 Club</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/the-scottish-sex-pistols-lizzie-the-banshees-tickets-JQTP03?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Scottish%20Sex%20Pistols%20%2B%20Lizzie%20%26%20The%20Banshees&dates=20260927T180000Z/20260927T200000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/the-scottish-sex-pistols-lizzie-the-banshees-tickets-JQTP03%3Fref%3Dticketmaster&location=100%20Club" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="41">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a></div></article>
+<article class="event" id="event-42" data-idx="42" data-name="Sun 27th Sep - Stand Up Comedy Show - Big Belly Comedy Club" data-start-local="2026-09-27T19:00:00" data-cal-start="20260927T180000Z" data-cal-end="20260927T200000Z" data-loc="Big Belly Comedy - Southbank" data-url="https://www.universe.com/events/sun-27th-sep-stand-up-comedy-show-big-belly-comedy-club-tickets-JKNX87?ref=ticketmaster">
+<button class="toggle" data-idx="42" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="42" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/sun-27th-sep-stand-up-comedy-show-big-belly-comedy-club-tickets-JKNX87?ref=ticketmaster">Sun 27th Sep - Stand Up Comedy Show - Big Belly Comedy Club</a></h3>
+<div class="meta">7:00 PM · Big Belly Comedy - Southbank</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/sun-27th-sep-stand-up-comedy-show-big-belly-comedy-club-tickets-JKNX87?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sun%2027th%20Sep%20-%20Stand%20Up%20Comedy%20Show%20-%20Big%20Belly%20Comedy%20Club&dates=20260927T180000Z/20260927T200000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/sun-27th-sep-stand-up-comedy-show-big-belly-comedy-club-tickets-JKNX87%3Fref%3Dticketmaster&location=Big%20Belly%20Comedy%20-%20Southbank" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="42">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-0">FRAMELESS 2026</a> <a href="#event-1">Mama&#x27;s Rum Brunch - Nassen</a> <a href="#event-2">Ramses and the Pharaoh’s Gold: The Exhibition</a></div></article>
+<article class="event" id="event-43" data-idx="43" data-name="The Comedy Store Players - 27th September" data-start-local="2026-09-27T19:30:00" data-cal-start="20260927T183000Z" data-cal-end="20260927T203000Z" data-loc="The Comedy Store" data-url="https://www.universe.com/events/the-comedy-store-players-27th-september-tickets-5JTLX2?ref=ticketmaster" data-lat="51.50998051" data-lng="-0.13233095">
+<button class="toggle" data-idx="43" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="43" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/the-comedy-store-players-27th-september-tickets-5JTLX2?ref=ticketmaster">The Comedy Store Players - 27th September</a></h3>
+<div class="meta">7:30 PM · The Comedy Store</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/the-comedy-store-players-27th-september-tickets-5JTLX2?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Comedy%20Store%20Players%20-%2027th%20September&dates=20260927T183000Z/20260927T203000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/the-comedy-store-players-27th-september-tickets-5JTLX2%3Fref%3Dticketmaster&location=The%20Comedy%20Store" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="43">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-10">Faulty Towers the Dining Experience</a> <a href="#event-24">The Play That Goes Wrong</a> <a href="#event-25">My Sons a Queer (But What Can You Do?)</a></div></article>
+<article class="event" id="event-44" data-idx="44" data-name="Vortex Jam Session - September &amp; October" data-start-local="2026-09-27T19:45:00" data-cal-start="20260927T184500Z" data-cal-end="20260927T204500Z" data-loc="Vortex Jazz Club" data-url="https://www.universe.com/events/vortex-jam-session-september-october-tickets-R2WYBF?ref=ticketmaster" data-lat="51.54879" data-lng="-0.07665">
+<button class="toggle" data-idx="44" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="44" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/vortex-jam-session-september-october-tickets-R2WYBF?ref=ticketmaster">Vortex Jam Session - September &amp; October</a></h3>
+<div class="meta">7:45 PM · Vortex Jazz Club</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/vortex-jam-session-september-october-tickets-R2WYBF?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vortex%20Jam%20Session%20-%20September%20%26%20October&dates=20260927T184500Z/20260927T204500Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/vortex-jam-session-september-october-tickets-R2WYBF%3Fref%3Dticketmaster&location=Vortex%20Jazz%20Club" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="44">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#event-3">Sunday Soul Sessions</a> <a href="#event-5">Belle Livingstone&#x27;s 58th Street Country Club</a> <a href="#event-7">Abba Voyage - VIP Premium Package</a></div></article>
+</main>
+<footer>
+<div class="serif">Hand-picked for you by Tonight.</div>
+<p>Your picks are tracked when you send them —<br>tomorrow's digest learns what you love.</p>
+</footer>
+<script>
+const TRAVEL_MINUTES = 30;  // default buffer before an event's start time
+const CITY = "london";
+const DATE = "2026-09-27";
+const NAMES = ["FRAMELESS 2026", "Mama's Rum Brunch - Nassen", "Ramses and the Pharaoh\u2019s Gold: The Exhibition", "Sunday Soul Sessions", "Twist Museum - London's Home of Illusions STANDARD", "Belle Livingstone's 58th Street Country Club", "Shakespeare's Globe - As You Like It", "Abba Voyage - VIP Premium Package", "Silhouettes Project", "The View from The Shard", "Faulty Towers the Dining Experience", "My Neighbour Totoro", "Saracens Women V Sale Sharks - Next Gen Cup", "Matilda The Musical", "Tottenham Hotspur Women v Aston Villa Women", "Women's Season 2026-27", "Disney's THE LION KING", "Oliver!", "The Hunger Games On Stage", "Come Alive! The Greatest Showman Circus Spectacular", "Titanique", "Stranger Things: The First Shadow", "Million Dollar Quartet", "SIX The Musical", "The Play That Goes Wrong", "My Sons a Queer (But What Can You Do?)", "Witness for the Prosecution", "Hadestown", "I'm Every Woman: the Chaka Khan Musical", "Magic Mike Live", "SLB Championship - London Lions v Liverpool Basketball", "CHELSEA WOMEN V ARSENAL WOMEN", "Post-Euphoria", "60 Years of Salsa", "Kate Clover", "Van Morrison In Concert", "Mamma Mia! The Party", "The Brit Funk Association", "Yussef Dayes", "Poets of the Fall", "f5ve", "The Scottish Sex Pistols + Lizzie & The Banshees", "Sun 27th Sep - Stand Up Comedy Show - Big Belly Comedy Club", "The Comedy Store Players - 27th September", "Vortex Jam Session - September & October"];
+const CATS = ["Arts & Play", "Arts & Play", "Arts & Play", "Music", "Arts & Play", "Music", "Arts & Play", "Music", "Music", "Arts & Play", "Comedy", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Comedy", "Comedy", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Music", "Music", "Music", "Arts & Play", "Arts & Play", "Music", "Music", "Music", "Music", "Arts & Play", "Comedy", "Music"];
+const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+const TZ = "Europe/London";
+const STARTS = [720, 720, 750, 750, 765, 780, 780, 780, 780, 780, 810, 840, 840, 840, 840, 840, 870, 870, 870, 870, 870, 900, 900, 900, 900, 900, 900, 900, 930, 960, 960, 990, 1020, 1080, 1080, 1110, 1110, 1110, 1140, 1140, 1140, 1140, 1140, 1170, 1185];   // minutes since midnight, or null
+const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];       // from end_time, or null (-> start + 2h)
+const KEY = "tonight-picks-" + CITY + "-" + DATE;
+let picks = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
+function render() {
+  document.querySelectorAll(".toggle").forEach(btn => {
+    const on = picks.has(btn.dataset.idx);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  document.getElementById("pickCount").textContent = picks.size;
+  localStorage.setItem(KEY, JSON.stringify([...picks]));
+  // report taps to the backend when available (real tracking)
+  if (window.__tonight_api) {
+    const USER_ID = localStorage.getItem("tonight-user-id") || null;
+    fetch(window.__tonight_api + "/tap", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({city: CITY, date: DATE, user_id: USER_ID,
+        picks: [...picks].map(i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i]}))})
+    }).catch(() => {});
+  }
+}
+document.querySelectorAll(".toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const id = btn.dataset.idx;
+    picks.has(id) ? picks.delete(id) : picks.add(id);
+    render();
+  });
+});
+document.getElementById("shareBtn").addEventListener("click", async () => {
+  const data = {title: document.title, text: "Today's picks", url: location.href};
+  if (navigator.share) { try { await navigator.share(data); } catch(e) {} }
+  else { await navigator.clipboard.writeText(location.href); alert("Link copied — paste it anywhere to share."); }
+});
+document.getElementById("sendBtn").addEventListener("click", () => {
+  if (!picks.size) { alert("Tap a few boxes first, then send your picks."); return; }
+  const list = [...picks].sort().map(i => "• " + NAMES[+i]).join("\n");
+  const subject = encodeURIComponent("Re: London Tonight — my picks");
+  const body = encodeURIComponent("My picks for " + DATE + " (" + CITY + "):\n\n" + list + "\n\n— sent from my London Tonight page");
+  location.href = "mailto:pseshadri91@gmail.com?subject=" + subject + "&body=" + body;
+});
+render();
+function fmtTime(d) {
+  let h = d.getHours(); const m = d.getMinutes();
+  const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12;
+  return h + ":" + String(m).padStart(2, "0") + " " + ap;
+}
+// "leave by" hints from each event's local start time
+document.querySelectorAll(".event[data-start-local]").forEach(a => {
+  const start = new Date(a.dataset.startLocal);
+  if (isNaN(start)) return;
+  const leave = new Date(start.getTime() - TRAVEL_MINUTES * 60000);
+  const el = a.querySelector(".leave-by");
+  if (el) el.textContent = "leave by ~" + fmtTime(leave);
+});
+// per-event .ics download built client-side
+function icsEscape(s) {
+  return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;")
+                  .replace(/,/g, "\\,").replace(/\n/g, "\n");
+}
+function icsFold(line) {
+  let out = "";
+  while (line.length > 75) { out += line.slice(0, 75) + "\r\n "; line = line.slice(75); }
+  return out + line;
+}
+document.querySelectorAll(".ics-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const a = btn.closest(".event");
+    const d = a.dataset;
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Tonight//Event//EN",
+      "BEGIN:VEVENT",
+      "UID:" + CITY + "-" + DATE + "-" + btn.dataset.idx + "@tonight",
+      "DTSTAMP:" + stamp,
+      "DTSTART:" + d.calStart, "DTEND:" + d.calEnd,
+      "SUMMARY:" + icsEscape(d.name)];
+    if (d.loc) lines.push("LOCATION:" + icsEscape(d.loc));
+    if (d.url) {
+      lines.push("URL:" + d.url);
+      lines.push("DESCRIPTION:" + icsEscape("Tickets & info: " + d.url));
+    }
+    lines.push("END:VEVENT", "END:VCALENDAR");
+    const uri = "data:text/calendar;charset=utf-8," +
+                encodeURIComponent(lines.map(icsFold).join("\r\n"));
+    const link = document.createElement("a");
+    link.href = uri;
+    link.download = d.name.replace(/[^\w\- ]+/g, "").trim()
+                         .replace(/\s+/g, "-").slice(0, 60) + ".ics";
+    document.body.appendChild(link); link.click(); link.remove();
+  });
+});
+
+// ---------------- Filters + hide ----------------
+// Wrapped in an IIFE: the browse page reuses this whole script via
+// extraction, and its own filter code must not collide with this.
+window.__applyFilters = (function () {
+  const bar = document.getElementById("filterBar");
+  if (!bar) return null;
+  const F = {q: "", cat: "", free: false, tod: "all"};
+  const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
+  let hidden = new Set(JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
+  function todOf(i) {
+    const s = STARTS[i];
+    if (s == null) return "tba";
+    if (s < 720) return "morning";      // before 12 PM
+    if (s < 1020) return "afternoon";   // 12–5 PM
+    return "evening";                   // 5 PM+
+  }
+  function applyFilters() {
+    const cards = document.querySelectorAll("article.event");
+    let n = 0;
+    cards.forEach(a => {
+      const i = a.dataset.idx;
+      let ok = !hidden.has(i);
+      if (ok && F.cat && CATS[+i] !== F.cat) ok = false;
+      if (ok && F.free && !FREE[+i]) ok = false;
+      if (ok && F.tod !== "all" && todOf(+i) !== F.tod) ok = false;
+      if (ok && F.q) {
+        const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
+        if (!hay.includes(F.q)) ok = false;
+      }
+      a.style.display = ok ? "" : "none";
+      if (ok) n++;
+    });
+    document.querySelectorAll("section.cat").forEach(s => {
+      const vis = [...s.querySelectorAll("article.event")]
+        .some(a => a.style.display !== "none");
+      s.style.display = vis ? "" : "none";
+    });
+    document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
+    document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
+    document.getElementById("hiddenN").textContent = hidden.size;
+  }
+  document.getElementById("fq").addEventListener("input", e => {
+    F.q = e.target.value.trim().toLowerCase(); applyFilters();
+  });
+  document.getElementById("fcat").addEventListener("change", e => {
+    F.cat = e.target.value; applyFilters();
+  });
+  document.getElementById("ffree").addEventListener("click", e => {
+    F.free = !F.free;
+    e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
+    applyFilters();
+  });
+  document.querySelectorAll("#ftod button").forEach(b => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
+      b.classList.add("on");
+      F.tod = b.dataset.t; applyFilters();
+    });
+  });
+  document.querySelectorAll(".hide").forEach(b => b.addEventListener("click", () => {
+    const i = b.dataset.idx;
+    hidden.add(i);
+    localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden]));
+    if (picks.has(i)) { picks.delete(i); render(); }
+    applyFilters();
+  }));
+  document.getElementById("unhide").addEventListener("click", () => {
+    hidden.clear();
+    localStorage.setItem(HIDE_KEY, "[]");
+    applyFilters();
+  });
+  applyFilters();
+  return applyFilters;
+})();
+
+// ---------------- Tonight mode ----------------
+const TONIGHT_WINDOW = 300;  // upcoming: starts within the next 5h
+const NOW_GRACE = 120;       // "happening now": started within the last 2h
+function cityNowMinutes() {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: TZ, hour: "numeric", minute: "numeric", hour12: false
+    }).formatToParts(new Date());
+    let h = 0, m = 0;
+    for (const p of parts) {
+      if (p.type === "hour") h = (+p.value) % 24;
+      if (p.type === "minute") m = +p.value;
+    }
+    return h * 60 + m;
+  } catch (e) {
+    const d = new Date();
+    return d.getHours() * 60 + d.getMinutes();
+  }
+}
+let tonightOn = false;
+const homeSpot = new Map();  // idx -> original {parent, next} for restore
+function addBadge(art, cls, text) {
+  art.querySelectorAll(".badge").forEach(b => b.remove());
+  const b = document.createElement("span");
+  b.className = "badge " + cls;
+  b.textContent = text;
+  art.querySelector(".event-body").prepend(b);
+}
+function setTonight(on) {
+  tonightOn = on;
+  const btn = document.getElementById("tonightBtn");
+  btn.classList.toggle("btn-active", on);
+  btn.setAttribute("aria-pressed", on ? "true" : "false");
+  const wrap = document.getElementById("tonightWrap");
+  const list = document.getElementById("tonightList");
+  const empty = document.getElementById("tonightEmpty");
+  const count = document.getElementById("tonightCount");
+  if (!on) {
+    homeSpot.forEach((spot, i) => {
+      const art = document.getElementById("event-" + i);
+      if (art) {
+        art.querySelectorAll(".badge").forEach(b => b.remove());
+        spot.parent.insertBefore(art, spot.next);
+      }
+    });
+    homeSpot.clear();
+    wrap.style.display = "none";
+    document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
+    const fbOff = document.getElementById("filterBar");
+    if (fbOff) fbOff.style.display = "";
+    if (window.__applyFilters) window.__applyFilters();
+    return;
+  }
+  const now = cityNowMinutes();
+  const items = [];
+  document.querySelectorAll("article.event").forEach(art => {
+    const i = +art.dataset.idx;
+    if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
+    const s = STARTS[i];
+    let status = "tba", rank = 3;
+    if (s == null) { status = "tba"; rank = 3; }
+    else {
+      const e = ENDS[i] != null ? ENDS[i] : s + NOW_GRACE;
+      if (now >= s && now <= e) { status = "now"; rank = 0; }
+      else if (s > now && s - now <= TONIGHT_WINDOW) { status = "soon"; rank = FREE[i] ? 1 : 2; }
+      else { status = "past"; rank = 4; }
+    }
+    items.push({art: art, i: i, s: s, status: status, rank: rank, free: FREE[i]});
+  });
+  // Taste tiebreak: provided by the taste core script (injected by the
+  // site builder). Falls back to 0 when absent.
+  const tasteTie = o => (window.Tonight && Tonight.score) ? Tonight.score(o.i) : 0;
+  items.sort((a, b) => (a.rank - b.rank) || (tasteTie(b) - tasteTie(a)) || ((a.s == null ? 1440 : a.s) - (b.s == null ? 1440 : b.s)));
+  list.innerHTML = "";
+  let live = 0, tbaHeader = false;
+  items.forEach(o => {
+    if (o.status === "past") return;  // already over: not tonight
+    if (o.status === "tba" && !tbaHeader) {
+      tbaHeader = true;
+      const div = document.createElement("div");
+      div.className = "tba-div";
+      div.textContent = "Times TBA";
+      list.appendChild(div);
+    }
+    if (o.status === "now") addBadge(o.art, "now", "● Happening now");
+    else if (o.free) addBadge(o.art, "free", "Free");
+    else o.art.querySelectorAll(".badge").forEach(b => b.remove());
+    list.appendChild(o.art);
+    if (o.status !== "tba") live++;
+  });
+  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
+  const fbOn = document.getElementById("filterBar");
+  if (fbOn) fbOn.style.display = "none";
+  wrap.style.display = "block";
+  empty.style.display = live ? "none" : "block";
+  count.textContent = live ? live + (live === 1 ? " thing" : " things") + " on now or starting soon" : "";
+  wrap.scrollIntoView({behavior: "smooth", block: "start"});
+}
+const _tb=document.getElementById("tonightBtn");if(_tb)_tb.addEventListener("click",()=>setTonight(!tonightOn));
+</script>
+<script>
+// ---------------- Browse filters (discovery v1) ----------------
+const F = {q: "", cat: "", free: false, tod: "all"};
+const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
+let hidden = new Set(JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
+function todOf(i) {
+  const s = STARTS[i];
+  if (s == null) return "tba";
+  if (s < 720) return "morning";      // before 12 PM
+  if (s < 1020) return "afternoon";   // 12–5 PM
+  return "evening";                   // 5 PM+
+}
+function applyFilters() {
+  const cards = document.querySelectorAll("article.event");
+  let n = 0;
+  cards.forEach(a => {
+    const i = +a.dataset.idx;
+    let ok = !hidden.has(a.dataset.idx);
+    if (ok && F.cat && CATS[i] !== F.cat) ok = false;
+    if (ok && F.free && !FREE[i]) ok = false;
+    if (ok && F.tod !== "all" && todOf(i) !== F.tod) ok = false;
+    if (ok && F.q) {
+      const hay = (NAMES[i] + " " + CATS[i] + " " + a.textContent).toLowerCase();
+      if (!hay.includes(F.q)) ok = false;
+    }
+    a.style.display = ok ? "" : "none";
+    if (ok) n++;
+  });
+  document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
+  document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
+  document.getElementById("hiddenN").textContent = hidden.size;
+}
+document.getElementById("fq").addEventListener("input", e => {
+  F.q = e.target.value.trim().toLowerCase(); applyFilters();
+});
+document.getElementById("fcat").addEventListener("change", e => {
+  F.cat = e.target.value; applyFilters();
+});
+document.getElementById("ffree").addEventListener("click", e => {
+  F.free = !F.free;
+  e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
+  applyFilters();
+});
+document.querySelectorAll("#ftod button").forEach(b => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    F.tod = b.dataset.t; applyFilters();
+  });
+});
+document.querySelectorAll(".hide").forEach(b => b.addEventListener("click", () => {
+  const i = b.dataset.idx;
+  hidden.add(i);
+  localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden]));
+  if (typeof picks !== "undefined" && picks.has(i)) { picks.delete(i); render(); }
+  applyFilters();
+}));
+document.getElementById("unhide").addEventListener("click", () => {
+  hidden.clear();
+  localStorage.setItem(HIDE_KEY, "[]");
+  applyFilters();
+});
+applyFilters();
+</script>
+<script>window.__tonight_api="https://07164187121cc3b2-87-81-233-50.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
