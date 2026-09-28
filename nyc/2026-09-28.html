@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New York City — Monday, September 28</title>
+<style>
+:root{--ink:#14201A;--gold:#E39A2D;--paper:#F7F2E9;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;}
+.hero{background:var(--ink);color:var(--paper);text-align:center;padding:44px 24px 36px;}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:3px;text-transform:uppercase;}
+.hero h1{font-family:Georgia, 'Times New Roman', serif;font-size:44px;margin:12px 0 8px;font-weight:normal;}
+.hero p{opacity:.72;font-size:14px;margin:0;}
+.toolbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:20px 20px 4px;}
+.btn{display:inline-block;border:none;cursor:pointer;padding:11px 24px;border-radius:999px;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;text-decoration:none;}
+.btn-dark{background:var(--ink);color:var(--paper);}
+.btn-gold{background:var(--gold);color:var(--ink);font-weight:bold;}
+.picks{max-width:640px;margin:14px auto 0;padding:14px 20px;text-align:center;font-size:14px;}
+.picks strong{font-family:Georgia, 'Times New Roman', serif;font-size:18px;}
+.wrap{max-width:680px;margin:0 auto;padding:8px 20px 60px;}
+.cat h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;border-bottom:1px solid #d8d2c2;padding:26px 0 10px;margin:0 0 4px;}
+.cat.free h2{color:var(--ink);}
+.cat.free{background:#fffdf6;border:1px solid var(--gold);border-radius:14px;padding:0 18px 8px;margin-top:18px;}
+.event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:20px;position:relative;}
+.hide{position:absolute;top:10px;right:0;background:none;border:none;color:#a89f8a;font-size:22px;line-height:1;cursor:pointer;padding:8px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
+.hide:hover{color:var(--ink);}
+.filters{max-width:680px;margin:0 auto;padding:16px 20px 4px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.filters input[type=search]{flex:1;min-width:170px;padding:10px 16px;border-radius:999px;border:1px solid #d8d2c2;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;background:#fff;color:var(--ink);}
+.filters select{padding:10px 14px;border-radius:999px;border:1px solid #d8d2c2;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;background:#fff;color:var(--ink);}
+.seg{display:flex;gap:6px;flex-wrap:wrap;}
+.seg button,.fbtn{padding:9px 16px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;font-size:13.5px;cursor:pointer;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;color:var(--ink);}
+.seg button.on,.fbtn[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);font-weight:bold;}
+#resCount{font-size:13px;color:#6b6b6b;margin-left:auto;}
+#hiddenBar{font-size:13px;color:#6b6b6b;display:none;}
+#hiddenBar button{background:none;border:none;padding:0;color:var(--ink);text-decoration:underline;cursor:pointer;font-size:13px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
+.toggle{background:none;border:none;cursor:pointer;padding:2px 0;align-self:flex-start;}
+.box{display:inline-block;width:22px;height:22px;border:2px solid var(--gold);border-radius:7px;background:#fff;position:relative;transition:background .15s;}
+.toggle[aria-pressed="true"] .box{background:var(--gold);}
+.toggle[aria-pressed="true"] .box::after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid var(--ink);border-width:0 3px 3px 0;transform:rotate(42deg);}
+.event-body{flex:1;}
+.event-body h3{font-family:Georgia, 'Times New Roman', serif;font-size:20px;margin:0 0 4px;}
+.event-body h3 a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;}
+.meta{font-size:13px;color:#6b6b6b;margin-bottom:8px;}
+.event-body p{font-size:14.5px;line-height:1.55;color:#333;margin:0 0 10px;}
+.tickets{display:inline-block;background:var(--ink);color:var(--paper);padding:8px 20px;border-radius:999px;text-decoration:none;font-size:13px;}
+.cal-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;}
+.cal-link{display:inline-block;background:#fff;border:1px solid var(--gold);color:var(--ink);padding:6px 14px;border-radius:999px;text-decoration:none;font-size:12.5px;cursor:pointer;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
+.cal-link:hover{background:var(--gold);}
+.leave-by{font-size:12.5px;color:#6b6b6b;font-style:italic;}
+.btn-active{background:var(--gold)!important;color:var(--ink)!important;font-weight:bold;}
+.badge{display:inline-block;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin:0 0 8px;}
+.badge.now{background:#1a7f37;color:#fff;}
+.badge.free{background:var(--gold);color:var(--ink);}
+#tonightWrap{display:none;}
+.tonight-head h2{font-family:Georgia, 'Times New Roman', serif;font-size:26px;margin:18px 0 2px;font-weight:normal;}
+.tonight-head p{font-size:13px;color:#6b6b6b;margin:0 0 6px;}
+.tba-div{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b6b6b;border-top:1px solid #d8d2c2;margin-top:14px;padding-top:14px;}
+#tonightEmpty{text-align:center;color:#6b6b6b;padding:30px 10px;font-size:14px;}
+footer{background:var(--ink);color:var(--paper);text-align:center;padding:34px 24px;font-size:13px;}
+footer .serif{font-family:Georgia, 'Times New Roman', serif;font-size:17px;margin-bottom:8px;}
+footer p{opacity:.62;line-height:1.6;margin:0;}
+</style><style>
+.topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
+background:var(--banner,#14201A);color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+.topnav .brand{font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#F7F2E9;text-decoration:none;display:flex;align-items:center;gap:9px;}
+.topnav .brand img{height:26px;width:26px;}
+.topnav .brand b{color:#E39A2D;}
+.topnav .citylinks{display:flex;gap:6px;margin-left:auto;}
+.topnav .citylinks a{color:#F7F2E9;opacity:.75;text-decoration:none;font-size:13.5px;
+padding:6px 14px;border-radius:999px;border:1px solid transparent;}
+.topnav .citylinks a.cur{background:#E39A2D;color:#14201A;font-weight:bold;opacity:1;}
+.topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
+.topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .browselink:hover{text-decoration:underline;}
+.topnav .tastelinks{display:flex;gap:14px;align-items:center;}
+.topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .tastelink:hover{text-decoration:underline;}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
+<script>(function(){try{var c=localStorage.getItem("tonight-banner");if(c){document.documentElement.style.setProperty("--banner",c);}}catch(e){}})();</script><style>
+.quiz-veil{position:fixed;inset:0;z-index:200;background:rgba(20,32,26,.55);
+display:flex;align-items:flex-end;justify-content:center;}
+.quiz-veil[hidden]{display:none;}
+.quiz-card{background:#F7F2E9;color:#14201A;border-radius:20px 20px 0 0;
+padding:28px 24px 34px;max-width:560px;width:100%;max-height:88vh;overflow:auto;
+font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+animation:quizup .25s ease-out;}
+@keyframes quizup{from{transform:translateY(24px);opacity:.6;}to{transform:none;opacity:1;}}
+@media(min-width:640px){.quiz-veil{align-items:center;padding:20px;}
+.quiz-card{border-radius:20px;}}
+.quiz-eyebrow{color:#B07A1E;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;}
+.quiz-card h2{font-family:Georgia,'Times New Roman',serif;font-size:28px;margin:8px 0 6px;font-weight:normal;}
+.quiz-sub{font-size:14px;color:#6b6b6b;margin:0 0 16px;line-height:1.5;}
+.qchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.qchip{padding:10px 18px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
+font-size:14px;cursor:pointer;font-family:inherit;color:#14201A;}
+.qchip[aria-pressed="true"]{background:#E39A2D;border-color:#E39A2D;font-weight:bold;}
+.qactions{display:flex;gap:16px;align-items:center;margin-top:4px;}
+.qlink{background:none;border:none;color:#6b6b6b;text-decoration:underline;cursor:pointer;
+font-size:13.5px;font-family:inherit;padding:0;}
+</style></head>
+<body><script>
+/* Tonight taste: onboarding quiz, profile, personalized ranking */
+(function(){
+"use strict";
+var CATS_ALL = ["Music", "Arts & Play", "Comedy", "Tech", "Meetups & Mixers", "Food & Drink", "Talks"];
+var CITY = "nyc";
+var CITIES_ALL = ["nyc", "london", "la"];
+var TKEY = "tonight-taste";
+var OKEY = "tonight-onboarded";
+function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low"}; }
+function cleanList(a){
+  if (!Array.isArray(a)) return [];
+  return a.filter(function(c){ return CATS_ALL.indexOf(c) >= 0; });
+}
+function load(){
+  try {
+    var t = JSON.parse(localStorage.getItem(TKEY) || "null");
+    if (t && typeof t === "object") {
+      var b = blank();
+      b.likes = cleanList(t.likes); b.mutes = cleanList(t.mutes);
+      b.free_only = !!t.free_only;
+      b.surprise = (t.surprise === "med" || t.surprise === "high") ? t.surprise : "low";
+      return b;
+    }
+  } catch (e) {}
+  return blank();
+}
+var taste = load();
+var tapBonus = {};
+function uid(){
+  var u = null;
+  try { u = localStorage.getItem("tonight-user-id"); } catch (e) {}
+  if (!u) {
+    u = "dev-" + Math.random().toString(36).slice(2, 10);
+    try { localStorage.setItem("tonight-user-id", u); } catch (e) {}
+  }
+  return u;
+}
+function apiBase(){ return window.__tonight_api || null; }
+function save(sync){
+  try { localStorage.setItem(TKEY, JSON.stringify(taste)); } catch (e) {}
+  if (sync === false) return;
+  var base = apiBase();
+  if (!base) return;
+  var targets = CITY ? [CITY] : CITIES_ALL;
+  var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
+    free_only: taste.free_only, surprise: taste.surprise});
+  targets.forEach(function(c){
+    fetch(base + "/taste/" + encodeURIComponent(c),
+      {method: "POST", headers: {"Content-Type": "application/json"}, body: payload}
+    ).catch(function(){});
+  });
+}
+function pull(){
+  var base = apiBase();
+  if (!base || !CITY || typeof CATS === "undefined") return;
+  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()))
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if (d && d.categories) { tapBonus = d.categories; applyRanking(); } })
+    .catch(function(){});
+}
+function score(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  var cat = CATS[i], s = 0;
+  if (taste.likes.indexOf(cat) >= 0) s += 10;
+  if (taste.mutes.indexOf(cat) >= 0) s -= 20;
+  if (taste.free_only && FREE[i]) s += 6;
+  var tb = tapBonus[cat];
+  if (tb) s += Math.min(tb, 3);
+  if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
+    s += (taste.surprise === "high" ? 8 : 4);
+  return s;
+}
+function hasTaste(){
+  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only ||
+    taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
+}
+function sortChildren(container){
+  var arts = [];
+  for (var k = 0; k < container.children.length; k++) {
+    var ch = container.children[k];
+    if (ch.tagName === "ARTICLE" && ch.classList.contains("event")) arts.push(ch);
+  }
+  if (arts.length < 2) return;
+  arts.map(function(a){ return {a: a, k: score(+a.dataset.idx), n: +a.dataset.idx}; })
+    .sort(function(x, y){ return (y.k - x.k) || (x.n - y.n); })
+    .forEach(function(o){ container.appendChild(o.a); });
+}
+function applyRanking(){
+  if (!hasTaste() || typeof CATS === "undefined") return;
+  var wrap = document.querySelector("main.wrap");
+  if (!wrap) return;
+  var secs = [];
+  for (var k = 0; k < wrap.children.length; k++) {
+    var ch = wrap.children[k];
+    if (ch.tagName === "SECTION" && ch.classList.contains("cat")) secs.push(ch);
+  }
+  if (secs.length) {
+    var secCat = function(s){
+      var a = s.querySelector("article.event");
+      return a ? CATS[+a.dataset.idx] : "";
+    };
+    var secScore = function(s){
+      var c = secCat(s), v = 0;
+      if (taste.likes.indexOf(c) >= 0) v += 10;
+      if (taste.mutes.indexOf(c) >= 0) v -= 20;
+      return v;
+    };
+    secs.forEach(sortChildren);
+    var free = [], rest = [];
+    secs.forEach(function(s){ (s.classList.contains("free") ? free : rest).push(s); });
+    rest.sort(function(a, b){ return secScore(b) - secScore(a); });
+    free.concat(rest).forEach(function(s){ wrap.appendChild(s); });
+  } else {
+    sortChildren(wrap);
+  }
+}
+/* ---------------- quiz ---------------- */
+var SURP = {low: "off", med: "some", high: "lots"};
+var sheet = null, sel = {};
+function chipBtn(c){
+  var b = document.createElement("button");
+  b.className = "qchip"; b.type = "button";
+  b.dataset.cat = c; b.setAttribute("aria-pressed", "false");
+  b.textContent = c;
+  b.addEventListener("click", function(){
+    var on = b.getAttribute("aria-pressed") === "true";
+    b.setAttribute("aria-pressed", on ? "false" : "true");
+    if (on) delete sel[c]; else sel[c] = 1;
+  });
+  return b;
+}
+function buildSheet(){
+  var veil = document.createElement("div");
+  veil.className = "quiz-veil"; veil.id = "quizVeil"; veil.hidden = true;
+  var card = document.createElement("div");
+  card.className = "quiz-card"; card.setAttribute("role", "dialog");
+  card.setAttribute("aria-label", "What are you into?");
+  var eb = document.createElement("div"); eb.className = "quiz-eyebrow";
+  eb.textContent = "Tonight learns your taste";
+  var h = document.createElement("h2"); h.textContent = "What are you into?";
+  var sub = document.createElement("p"); sub.className = "quiz-sub";
+  sub.textContent = "Tap what you like. Takes 30 seconds, and your picks get personal.";
+  var chips = document.createElement("div"); chips.className = "qchips";
+  CATS_ALL.forEach(function(c){ chips.appendChild(chipBtn(c)); });
+  var prefs = document.createElement("div"); prefs.className = "qchips";
+  var freeB = document.createElement("button");
+  freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
+  freeB.setAttribute("aria-pressed", "false");
+  freeB.textContent = "\u2728 Free-first";
+  freeB.addEventListener("click", function(){
+    var on = freeB.getAttribute("aria-pressed") === "true";
+    freeB.setAttribute("aria-pressed", on ? "false" : "true");
+  });
+  var order = ["low", "med", "high"], surp = "low";
+  var surpB = document.createElement("button");
+  surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
+  var paintSurp = function(){
+    surpB.textContent = "\ud83c\udfb2 Surprise me: " + SURP[surp];
+    surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
+  };
+  paintSurp();
+  surpB.addEventListener("click", function(){
+    surp = order[(order.indexOf(surp) + 1) % 3]; paintSurp();
+  });
+  prefs.appendChild(freeB); prefs.appendChild(surpB);
+  var actions = document.createElement("div"); actions.className = "qactions";
+  var done = document.createElement("button");
+  done.className = "btn btn-gold"; done.type = "button"; done.id = "qDone";
+  done.textContent = "Done \u2192";
+  var skip = document.createElement("button");
+  skip.className = "qlink"; skip.type = "button"; skip.id = "qSkip";
+  skip.textContent = "skip for now";
+  var markSeen = function(){ try { localStorage.setItem(OKEY, "1"); } catch (e) {} };
+  done.addEventListener("click", function(){
+    taste.likes = Object.keys(sel);
+    taste.mutes = [];
+    taste.free_only = freeB.getAttribute("aria-pressed") === "true";
+    taste.surprise = surp;
+    save(); markSeen(); veil.hidden = true;
+    applyRanking();
+    if (window.TonightPage && TonightPage.refresh) TonightPage.refresh(true);
+  });
+  skip.addEventListener("click", function(){ markSeen(); veil.hidden = true; });
+  actions.appendChild(done); actions.appendChild(skip);
+  card.appendChild(eb); card.appendChild(h); card.appendChild(sub);
+  card.appendChild(chips); card.appendChild(prefs); card.appendChild(actions);
+  veil.appendChild(card);
+  document.body.appendChild(veil);
+  return {veil: veil, freeB: freeB,
+    paint: function(s){ surp = s; paintSurp(); }};
+}
+function openQuiz(){
+  if (!sheet) sheet = buildSheet();
+  sel = {};
+  taste.likes.forEach(function(c){ sel[c] = 1; });
+  sheet.veil.querySelectorAll(".qchip[data-cat]").forEach(function(b){
+    b.setAttribute("aria-pressed", sel[b.dataset.cat] ? "true" : "false");
+  });
+  sheet.freeB.setAttribute("aria-pressed", taste.free_only ? "true" : "false");
+  sheet.paint(taste.surprise);
+  sheet.veil.hidden = false;
+}
+/* ---------------- plain-language profile ---------------- */
+function joinList(a){
+  if (!a.length) return "";
+  if (a.length === 1) return a[0];
+  return a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+}
+function describe(){
+  var parts = [];
+  if (taste.likes.length) parts.push("into " + joinList(taste.likes));
+  if (taste.mutes.length) parts.push("not into " + joinList(taste.mutes));
+  var s = parts.length
+    ? "You're " + parts.join(", ") + "."
+    : "You haven't told Tonight what you like yet.";
+  var prefs = [];
+  if (taste.free_only) prefs.push("you'd rather keep it free");
+  prefs.push(taste.surprise === "low" ? "no surprises, just your thing" :
+    (taste.surprise === "med" ? "open to a few surprises" : "bring on the surprises"));
+  s += " Right now, " + prefs.join(", ") + ".";
+  var top = Object.keys(tapBonus)
+    .sort(function(a, b){ return tapBonus[b] - tapBonus[a]; }).slice(0, 2);
+  if (top.length) s += " Your taps lean " + joinList(top) + ".";
+  return s;
+}
+function setCat(cat, mode){
+  taste.likes = taste.likes.filter(function(c){ return c !== cat; });
+  taste.mutes = taste.mutes.filter(function(c){ return c !== cat; });
+  if (mode === "like") taste.likes.push(cat);
+  else if (mode === "mute") taste.mutes.push(cat);
+  save();
+}
+window.Tonight = {
+  taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
+  score: score, save: save, applyRanking: applyRanking,
+  openQuiz: openQuiz, describe: describe, setCat: setCat
+};
+document.addEventListener("DOMContentLoaded", function(){
+  var tune = document.getElementById("tuneTaste");
+  if (tune) tune.addEventListener("click", function(e){ e.preventDefault(); openQuiz(); });
+  var noquiz = document.body && document.body.getAttribute("data-noquiz") === "1";
+  try { if (!noquiz && !localStorage.getItem(OKEY)) openQuiz(); } catch (e) {}
+  applyRanking();
+  pull();
+  if (window.TonightPage && TonightPage.init) TonightPage.init();
+});
+})();
+</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt="Tonight logo">Tonight<b>.</b></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Your taste</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="#" id="tuneTaste">Tune</a></span><span class="citylinks"><a class="cur" href="../nyc/2026-09-28.html">NYC</a> <a class="" href="../london/2026-09-28.html">London</a> <a class="" href="../la/2026-09-28.html">LA</a></span><a class="browselink" href="../browse-nyc-2026-09-28.html">Browse all →</a></nav>
+<header class="hero">
+<div class="eyebrow">Monday, September 28 · New York City</div>
+<h1>New York City</h1>
+<p>Hand-picked things to do, all happening today. Tap the boxes to track your picks.</p>
+</header>
+<div class="toolbar">
+<button class="btn btn-dark" id="shareBtn">Share →</button>
+<a class="btn btn-gold" href="https://psesh5.github.io/tonight/nyc/2026-09-28.ics" download>📥 Download .ics</a>
+<button class="btn btn-dark" id="tonightBtn" aria-pressed="false">⚡ Tonight</button>
+</div>
+<div class="filters" id="filterBar">
+<input id="fq" type="search" placeholder="Search events, venues…" aria-label="Search events">
+<select id="fcat" aria-label="Filter by category"><option value="">All categories</option><option value="Arts &amp; Play">Arts &amp; Play</option><option value="Music">Music</option><option value="Comedy">Comedy</option><option value="Meetups &amp; Mixers">Meetups &amp; Mixers</option></select>
+<div class="seg" id="ftod">
+<button data-t="all" class="on">Any time</button><button data-t="morning">Morning</button><button data-t="afternoon">Afternoon</button><button data-t="evening">Evening</button>
+</div>
+<button class="fbtn" id="ffree" aria-pressed="false">✨ Free only</button>
+<span id="hiddenBar"><span id="hiddenN">0</span> hidden · <button id="unhide">show them</button></span>
+<span id="resCount"></span>
+</div>
+<div class="picks" id="picksBar"><strong>My picks: <span id="pickCount">0</span></strong><br>
+<span style="font-size:13px;color:#6b6b6b;">Tap the boxes above, then send your picks — it shapes tomorrow's recommendations.</span><br><br>
+<button class="btn btn-dark" id="sendBtn">Send my picks →</button>
+</div>
+<main class="wrap">
+<div id="tonightWrap">
+<div class="tonight-head"><h2>⚡ Tonight</h2><p id="tonightCount"></p></div>
+<div id="tonightList"></div>
+<div id="tonightEmpty" style="display:none;">Nothing on in the next 5 hours — check back later.</div>
+</div>
+
+<section class="cat free">
+<h2>✨ Free tonight</h2>
+
+<article class="event" id="event-22" data-idx="22" data-name="Nick Dunbar" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Lucinda&#x27;s" data-url="https://www.ticketweb.com/event/nick-dunbar-lucindas-tickets/14346814" data-lat="40.728329" data-lng="-73.982199">
+<button class="toggle" data-idx="22" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="22" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/nick-dunbar-lucindas-tickets/14346814">Nick Dunbar</a></h3>
+<div class="meta">7:00 PM · Lucinda&#x27;s · Free</div>
+<p>This event is 21 and over. Any ticket holder unable to present valid identification indicating that they are at least 21 years of age will not be admitted to this event, and will not be eligible for a refund.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/nick-dunbar-lucindas-tickets/14346814">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Nick%20Dunbar&dates=20260928T230000Z/20260929T010000Z&details=This%20event%20is%2021%20and%20over.%20Any%20ticket%20holder%20unable%20to%20present%20valid%20identification%20indicating%20that%20they%20are%20at%20least%2021%20years%20of%20age%20will%20not%20be%20admitted%20to%20this%20event%2C%20and%20will%20not%20be%20eligible%20for%20a%20refund.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/nick-dunbar-lucindas-tickets/14346814&location=Lucinda%27s" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="22">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-30" data-idx="30" data-name="Line Dance Fitness" data-start-local="2026-09-28T08:00:00" data-cal-start="20260928T120000Z" data-cal-end="20260928T140000Z" data-loc="Handball Court (in Betsy Head Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/line-dance-fitness" data-lat="40.662030117821" data-lng="-73.914012242472">
+<button class="toggle" data-idx="30" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="30" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/line-dance-fitness">Line Dance Fitness</a></h3>
+<div class="meta">8:00 AM · Handball Court (in Betsy Head Park) · Free</div>
+<p>Line up and get ready to move in this line dance fitness class! You&amp;#8217;ll have a blast with these low-moderate impact dance moves choreographed to your favorite songs.</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/line-dance-fitness">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Line%20Dance%20Fitness&dates=20260928T120000Z/20260928T140000Z&details=Line%20up%20and%20get%20ready%20to%20move%20in%20this%20line%20dance%20fitness%20class%21%20You%26%238217%3Bll%20have%20a%20blast%20with%20these%20low-moderate%20impact%20dance%20moves%20choreographed%20to%20your%20favorite%20songs.%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/line-dance-fitness&location=Handball%20Court%20%28in%20Betsy%20Head%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="30">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-31" data-idx="31" data-name="Cardio Sculpt" data-start-local="2026-09-28T09:00:00" data-cal-start="20260928T130000Z" data-cal-end="20260928T150000Z" data-loc="Athletic Courts (in Torsney Playground)" data-url="http://www.nycgovparks.org/events/2026/09/28/cardio-sculpt" data-lat="40.747336617996" data-lng="-73.921119214382">
+<button class="toggle" data-idx="31" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="31" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/cardio-sculpt">Cardio Sculpt</a></h3>
+<div class="meta">9:00 AM · Athletic Courts (in Torsney Playground) · Free</div>
+<p>This cardio workout consists of functional movement exercises designed to make daily activities easier to perform. Meets at the athletic courts.</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/cardio-sculpt">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cardio%20Sculpt&dates=20260928T130000Z/20260928T150000Z&details=This%20cardio%20workout%20consists%20of%20functional%20movement%20exercises%20designed%20to%20make%20daily%20activities%20easier%20to%20perform.%20Meets%20at%20the%20athletic%20courts.%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/cardio-sculpt&location=Athletic%20Courts%20%28in%20Torsney%20Playground%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="31">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-32" data-idx="32" data-name="New Dendrology at the Arsenal Gallery" data-start-local="2026-09-28T09:00:00" data-cal-start="20260928T130000Z" data-cal-end="20260928T150000Z" data-loc="Arsenal (in Central Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/new-dendrology-at-the-arsenal-gallery" data-lat="40.767200469971" data-lng="-73.971298217773">
+<button class="toggle" data-idx="32" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="32" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/new-dendrology-at-the-arsenal-gallery">New Dendrology at the Arsenal Gallery</a></h3>
+<div class="meta">9:00 AM · Arsenal (in Central Park) · Free</div>
+<p>New Dendrology is a group exhibition featuring eleven artists whose work contributes to the study of trees, offering new insight and connection between humans and their arboreal neighbors. From communing with streets trees through a reading with The New York City Street Tree Tarot deck by Matthew L&amp;</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/new-dendrology-at-the-arsenal-gallery">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=New%20Dendrology%20at%20the%20Arsenal%20Gallery&dates=20260928T130000Z/20260928T150000Z&details=New%20Dendrology%20is%20a%20group%20exhibition%20featuring%20eleven%20artists%20whose%20work%20contributes%20to%20the%20study%20of%20trees%2C%20offering%20new%20insight%20and%20connection%20between%20humans%20and%20their%20arboreal%20neighbors.%20From%20communing%20with%20streets%20trees%20through%20a%20reading%20with%20The%20New%20York%20City%20Street%20Tree%20Tarot%20deck%20by%20Matthew%20L%26%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/new-dendrology-at-the-arsenal-gallery&location=Arsenal%20%28in%20Central%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="32">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-33" data-idx="33" data-name="Yoga" data-start-local="2026-09-28T10:00:00" data-cal-start="20260928T140000Z" data-cal-end="20260928T160000Z" data-loc="Brooklyn Public Library- Gerritsen Beach" data-url="http://www.nycgovparks.org/events/2026/09/28/yoga" data-lat="40.5913411" data-lng="-73.9240055">
+<button class="toggle" data-idx="33" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="33" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/yoga">Yoga</a></h3>
+<div class="meta">10:00 AM · Brooklyn Public Library- Gerritsen Beach · Free</div>
+<p>Connect with yourself in Yoga with Nicole, a class to be enjoyed by all. Experience a fun and light-hearted, mid-intensity flow that connects breath to movement as you flow through poses, with modifications for everyone. Class will focus on mobility and stability to ensure you leave feeling challeng</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/yoga">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Yoga&dates=20260928T140000Z/20260928T160000Z&details=Connect%20with%20yourself%20in%20Yoga%20with%20Nicole%2C%20a%20class%20to%20be%20enjoyed%20by%20all.%20Experience%20a%20fun%20and%20light-hearted%2C%20mid-intensity%20flow%20that%20connects%20breath%20to%20movement%20as%20you%20flow%20through%20poses%2C%20with%20modifications%20for%20everyone.%20Class%20will%20focus%20on%20mobility%20and%20stability%20to%20ensure%20you%20leave%20feeling%20challeng%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/yoga&location=Brooklyn%20Public%20Library-%20Gerritsen%20Beach" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="33">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-34" data-idx="34" data-name="Yoga en Espa&amp;#241;ol (Yoga in Spanish)" data-start-local="2026-09-28T10:00:00" data-cal-start="20260928T140000Z" data-cal-end="20260928T160000Z" data-loc="New York Public Library - Morningside Heights Branch" data-url="http://www.nycgovparks.org/events/2026/09/28/yoga-en-espaol-yoga-in-spanish" data-lat="40.806144714355" data-lng="-73.964828491211">
+<button class="toggle" data-idx="34" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="34" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/yoga-en-espaol-yoga-in-spanish">Yoga en Espa&amp;#241;ol (Yoga in Spanish)</a></h3>
+<div class="meta">10:00 AM · New York Public Library - Morningside Heights Branch · Free</div>
+<p>Con&amp;#233;ctate, equilibra y desaf&amp;#237;ate con Yoga en espa&amp;#241;ol. Esta clase de Vinyasa Yoga incluye flujos de intensidad media que te llevar&amp;#225;n desde el saludo al sol hasta una postura m&amp;#225;xima final. Ven y conc&amp;#233;ntrate en las inversiones y la respiraci&amp;#243;n para ayudarte a mejorar </p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/yoga-en-espaol-yoga-in-spanish">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Yoga%20en%20Espa%26%23241%3Bol%20%28Yoga%20in%20Spanish%29&dates=20260928T140000Z/20260928T160000Z&details=Con%26%23233%3Bctate%2C%20equilibra%20y%20desaf%26%23237%3Bate%20con%20Yoga%20en%20espa%26%23241%3Bol.%20Esta%20clase%20de%20Vinyasa%20Yoga%20incluye%20flujos%20de%20intensidad%20media%20que%20te%20llevar%26%23225%3Bn%20desde%20el%20saludo%20al%20sol%20hasta%20una%20postura%20m%26%23225%3Bxima%20final.%20Ven%20y%20conc%26%23233%3Bntrate%20en%20las%20inversiones%20y%20la%20respiraci%26%23243%3Bn%20para%20ayudarte%20a%20mejorar%20%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/yoga-en-espaol-yoga-in-spanish&location=New%20York%20Public%20Library%20-%20Morningside%20Heights%20Branch" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="34">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-35" data-idx="35" data-name="Monday Morning Pitch In to Pick Up" data-start-local="2026-09-28T10:00:00" data-cal-start="20260928T140000Z" data-cal-end="20260928T160000Z" data-loc="Bronx River House (in Starlight Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/monday-morning-pitch-in-to-pick-up" data-lat="40.83279785876" data-lng="-73.882915616035">
+<button class="toggle" data-idx="35" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="35" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/monday-morning-pitch-in-to-pick-up">Monday Morning Pitch In to Pick Up</a></h3>
+<div class="meta">10:00 AM · Bronx River House (in Starlight Park) · Free</div>
+<p>Volunteer with us! We will be cleaning up litter to prevent it from entering the Bronx River. Your efforts not only protect wildlife &amp; the rest of the Bronx River ecosystem, but they also help us identify the sources of trash so we can stop the pollution where it starts! We will provide gloves and t</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/monday-morning-pitch-in-to-pick-up">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Monday%20Morning%20Pitch%20In%20to%20Pick%20Up&dates=20260928T140000Z/20260928T160000Z&details=Volunteer%20with%20us%21%20We%20will%20be%20cleaning%20up%20litter%20to%20prevent%20it%20from%20entering%20the%20Bronx%20River.%20Your%20efforts%20not%20only%20protect%20wildlife%20%26%20the%20rest%20of%20the%20Bronx%20River%20ecosystem%2C%20but%20they%20also%20help%20us%20identify%20the%20sources%20of%20trash%20so%20we%20can%20stop%20the%20pollution%20where%20it%20starts%21%20We%20will%20provide%20gloves%20and%20t%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/monday-morning-pitch-in-to-pick-up&location=Bronx%20River%20House%20%28in%20Starlight%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="35">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-36" data-idx="36" data-name="Ongoing Museum Exhibit: Voices of 1776" data-start-local="2026-09-28T10:00:00" data-cal-start="20260928T140000Z" data-cal-end="20260928T160000Z" data-loc="Conference House Museum (in Conference House Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/ongoing-museum-exhibit-voices-of-1776" data-lat="40.50199890136719" data-lng="-74.25140380859375">
+<button class="toggle" data-idx="36" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="36" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/ongoing-museum-exhibit-voices-of-1776">Ongoing Museum Exhibit: Voices of 1776</a></h3>
+<div class="meta">10:00 AM · Conference House Museum (in Conference House Park) · Free</div>
+<p>The Conference House Association and NYC Parks invite you to explore this America 250 Exhibit! Stop by the Lenape Gallery in the Conference House Park Visitor Center and explore &amp;#8220;Voices of 1776: The People and Events Surrounding the Historic Staten Island Peace Conference of the American Revol</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/ongoing-museum-exhibit-voices-of-1776">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ongoing%20Museum%20Exhibit%3A%20Voices%20of%201776&dates=20260928T140000Z/20260928T160000Z&details=The%20Conference%20House%20Association%20and%20NYC%20Parks%20invite%20you%20to%20explore%20this%20America%20250%20Exhibit%21%20Stop%20by%20the%20Lenape%20Gallery%20in%20the%20Conference%20House%20Park%20Visitor%20Center%20and%20explore%20%26%238220%3BVoices%20of%201776%3A%20The%20People%20and%20Events%20Surrounding%20the%20Historic%20Staten%20Island%20Peace%20Conference%20of%20the%20American%20Revol%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/ongoing-museum-exhibit-voices-of-1776&location=Conference%20House%20Museum%20%28in%20Conference%20House%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="36">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-37" data-idx="37" data-name="Senior Cardio Sculpt" data-start-local="2026-09-28T10:30:00" data-cal-start="20260928T143000Z" data-cal-end="20260928T163000Z" data-loc="Sunnyside Community Services" data-url="http://www.nycgovparks.org/events/2026/09/28/senior-cardio-sculpt" data-lat="40.7451662" data-lng="-73.9256081">
+<button class="toggle" data-idx="37" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="37" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/senior-cardio-sculpt">Senior Cardio Sculpt</a></h3>
+<div class="meta">10:30 AM · Sunnyside Community Services · Free</div>
+<p>This low impact cardio workout consists of functional movement exercises designed to make daily activities easier to perform. Participants must be 60+ to attend this class. The site requires a separate form for the Department of Aging for all participants. Please come earlier to fill out the consent</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/senior-cardio-sculpt">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Senior%20Cardio%20Sculpt&dates=20260928T143000Z/20260928T163000Z&details=This%20low%20impact%20cardio%20workout%20consists%20of%20functional%20movement%20exercises%20designed%20to%20make%20daily%20activities%20easier%20to%20perform.%20Participants%20must%20be%2060%2B%20to%20attend%20this%20class.%20The%20site%20requires%20a%20separate%20form%20for%20the%20Department%20of%20Aging%20for%20all%20participants.%20Please%20come%20earlier%20to%20fill%20out%20the%20consent%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/senior-cardio-sculpt&location=Sunnyside%20Community%20Services" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="37">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-38" data-idx="38" data-name="Ongoing Outdoor Museum Exhibit: Alice&#x27;s Terracotta Garden" data-start-local="2026-09-28T11:00:00" data-cal-start="20260928T150000Z" data-cal-end="20260928T170000Z" data-loc="H.H. Biddle House (in Conference House Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/ongoing-outdoor-museum-exhibit-alices-terracotta-garden" data-lat="40.505546147538" data-lng="-74.254193782807">
+<button class="toggle" data-idx="38" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="38" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/ongoing-outdoor-museum-exhibit-alices-terracotta-garden">Ongoing Outdoor Museum Exhibit: Alice&#x27;s Terracotta Garden</a></h3>
+<div class="meta">11:00 AM · H.H. Biddle House (in Conference House Park) · Free</div>
+<p>Terra cotta sculpture garden featuring antique architectural ornaments from Tottenville&#x27;s Atlantic Terra Cotta Company (west side lawn of Biddle House). NYC Parks and the Tottenville Historical Society invite you to visit a unique collection of terracotta artifacts that chronicle turn-of-the-twentie</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/ongoing-outdoor-museum-exhibit-alices-terracotta-garden">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ongoing%20Outdoor%20Museum%20Exhibit%3A%20Alice%27s%20Terracotta%20Garden&dates=20260928T150000Z/20260928T170000Z&details=Terra%20cotta%20sculpture%20garden%20featuring%20antique%20architectural%20ornaments%20from%20Tottenville%27s%20Atlantic%20Terra%20Cotta%20Company%20%28west%20side%20lawn%20of%20Biddle%20House%29.%20NYC%20Parks%20and%20the%20Tottenville%20Historical%20Society%20invite%20you%20to%20visit%20a%20unique%20collection%20of%20terracotta%20artifacts%20that%20chronicle%20turn-of-the-twentie%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/ongoing-outdoor-museum-exhibit-alices-terracotta-garden&location=H.H.%20Biddle%20House%20%28in%20Conference%20House%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="38">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-39" data-idx="39" data-name="Gentle Yoga" data-start-local="2026-09-28T11:30:00" data-cal-start="20260928T153000Z" data-cal-end="20260928T173000Z" data-loc="Queens Public Library - Bayside" data-url="http://www.nycgovparks.org/events/2026/09/28/gentle-yoga" data-lat="40.7601617" data-lng="-73.7683806">
+<button class="toggle" data-idx="39" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="39" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/gentle-yoga">Gentle Yoga</a></h3>
+<div class="meta">11:30 AM · Queens Public Library - Bayside · Free</div>
+<p>A therapeutic yet powerful series of balancing, stretching, easy back bending, twisting, and mild inverted postures, concluding with a guided relaxation. NOTE: Spots are limited</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/gentle-yoga">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Gentle%20Yoga&dates=20260928T153000Z/20260928T173000Z&details=A%20therapeutic%20yet%20powerful%20series%20of%20balancing%2C%20stretching%2C%20easy%20back%20bending%2C%20twisting%2C%20and%20mild%20inverted%20postures%2C%20concluding%20with%20a%20guided%20relaxation.%20NOTE%3A%20Spots%20are%20limited%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/gentle-yoga&location=Queens%20Public%20Library%20-%20Bayside" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="39">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-40" data-idx="40" data-name="Piano in Bryant Park" data-start-local="2026-09-28T12:30:00" data-cal-start="20260928T163000Z" data-cal-end="20260928T183000Z" data-loc="Upper Terrace (in Bryant Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/piano-in-bryant-park" data-lat="40.75339889526367" data-lng="-73.98269653320312">
+<button class="toggle" data-idx="40" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="40" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/piano-in-bryant-park">Piano in Bryant Park</a></h3>
+<div class="meta">12:30 PM · Upper Terrace (in Bryant Park) · Free</div>
+<p>A five, six, seven, eight&amp;#8230;come on down and swing along to the best ragtime, stride, and jazz the Big Apple has to offer. With special performances on select Thursdays and sprinkled spontaneously throughout the season.</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/piano-in-bryant-park">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Piano%20in%20Bryant%20Park&dates=20260928T163000Z/20260928T183000Z&details=A%20five%2C%20six%2C%20seven%2C%20eight%26%238230%3Bcome%20on%20down%20and%20swing%20along%20to%20the%20best%20ragtime%2C%20stride%2C%20and%20jazz%20the%20Big%20Apple%20has%20to%20offer.%20With%20special%20performances%20on%20select%20Thursdays%20and%20sprinkled%20spontaneously%20throughout%20the%20season.%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/piano-in-bryant-park&location=Upper%20Terrace%20%28in%20Bryant%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="40">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-41" data-idx="41" data-name="P&amp;#233;tanque in the Park" data-start-local="2026-09-28T13:00:00" data-cal-start="20260928T170000Z" data-cal-end="20260928T190000Z" data-loc="P&amp;#233;tanque Court (in Washington Square Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/ptanque-in-the-park" data-lat="40.730311274589" data-lng="-73.997564613819">
+<button class="toggle" data-idx="41" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="41" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/ptanque-in-the-park">P&amp;#233;tanque in the Park</a></h3>
+<div class="meta">1:00 PM · P&amp;#233;tanque Court (in Washington Square Park) · Free</div>
+<p>Never heard of P&amp;#233;tanque? Our expert friends at NYC&amp;#8217;s oldest running P&amp;#233;tanque club will teach you. This French lawn bowling game from the early 20th century is easy to learn, and we provide the boules. Just bring yourself!</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/ptanque-in-the-park">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=P%26%23233%3Btanque%20in%20the%20Park&dates=20260928T170000Z/20260928T190000Z&details=Never%20heard%20of%20P%26%23233%3Btanque%3F%20Our%20expert%20friends%20at%20NYC%26%238217%3Bs%20oldest%20running%20P%26%23233%3Btanque%20club%20will%20teach%20you.%20This%20French%20lawn%20bowling%20game%20from%20the%20early%2020th%20century%20is%20easy%20to%20learn%2C%20and%20we%20provide%20the%20boules.%20Just%20bring%20yourself%21%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/ptanque-in-the-park&location=P%26%23233%3Btanque%20Court%20%28in%20Washington%20Square%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="41">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-42" data-idx="42" data-name="iNaturalist Together Week: Inwood Hill Park Evening Plant ID Walk" data-start-local="2026-09-28T17:00:00" data-cal-start="20260928T210000Z" data-cal-end="20260928T230000Z" data-loc="Payson Playground (in Inwood Hill Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/inaturalist-together-week-inwood-hill-park-evening-plant-id" data-lat="40.8671989440918" data-lng="-73.92880249023438">
+<button class="toggle" data-idx="42" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="42" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/inaturalist-together-week-inwood-hill-park-evening-plant-id">iNaturalist Together Week: Inwood Hill Park Evening Plant ID Walk</a></h3>
+<div class="meta">5:00 PM · Payson Playground (in Inwood Hill Park) · Free</div>
+<p>Join NYC Parks and Macaulay Honors College to celebrate iNat Together Week, for an evening bioblitz at Inwood Hill Park, which is part of the Old-Growth Forest Network and accessible via subway. Tina Cuevas, natural areas outreach coordinator at NYC Parks, will discuss restoration activities within </p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/inaturalist-together-week-inwood-hill-park-evening-plant-id">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=iNaturalist%20Together%20Week%3A%20Inwood%20Hill%20Park%20Evening%20Plant%20ID%20Walk&dates=20260928T210000Z/20260928T230000Z&details=Join%20NYC%20Parks%20and%20Macaulay%20Honors%20College%20to%20celebrate%20iNat%20Together%20Week%2C%20for%20an%20evening%20bioblitz%20at%20Inwood%20Hill%20Park%2C%20which%20is%20part%20of%20the%20Old-Growth%20Forest%20Network%20and%20accessible%20via%20subway.%20Tina%20Cuevas%2C%20natural%20areas%20outreach%20coordinator%20at%20NYC%20Parks%2C%20will%20discuss%20restoration%20activities%20within%20%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/inaturalist-together-week-inwood-hill-park-evening-plant-id&location=Payson%20Playground%20%28in%20Inwood%20Hill%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="42">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-43" data-idx="43" data-name="Bodyweight Circuit Training" data-start-local="2026-09-28T17:30:00" data-cal-start="20260928T213000Z" data-cal-end="20260928T233000Z" data-loc="MVMNT Fitness and Health Studio" data-url="http://www.nycgovparks.org/events/2026/09/28/bodyweight-circuit-training" data-lat="40.661722130567" data-lng="-73.96136879921">
+<button class="toggle" data-idx="43" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="43" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/bodyweight-circuit-training">Bodyweight Circuit Training</a></h3>
+<div class="meta">5:30 PM · MVMNT Fitness and Health Studio · Free</div>
+<p>This circuit training class combines bodyweight resistance training and conditioning to provide you with a dynamic full body workout. Whether you are a beginner or looking for a challenge; this class for all fitness levels and modifications are always provided. Come engage in exercises that target a</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/bodyweight-circuit-training">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bodyweight%20Circuit%20Training&dates=20260928T213000Z/20260928T233000Z&details=This%20circuit%20training%20class%20combines%20bodyweight%20resistance%20training%20and%20conditioning%20to%20provide%20you%20with%20a%20dynamic%20full%20body%20workout.%20Whether%20you%20are%20a%20beginner%20or%20looking%20for%20a%20challenge%3B%20this%20class%20for%20all%20fitness%20levels%20and%20modifications%20are%20always%20provided.%20Come%20engage%20in%20exercises%20that%20target%20a%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/bodyweight-circuit-training&location=MVMNT%20Fitness%20and%20Health%20Studio" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="43">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-44" data-idx="44" data-name="Zumba" data-start-local="2026-09-28T17:30:00" data-cal-start="20260928T213000Z" data-cal-end="20260928T233000Z" data-loc="Our Lady of Grace Roman Catholic Church" data-url="http://www.nycgovparks.org/events/2026/09/28/zumba" data-lat="40.660504936375" data-lng="-73.832638487255">
+<button class="toggle" data-idx="44" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="44" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/zumba">Zumba</a></h3>
+<div class="meta">5:30 PM · Our Lady of Grace Roman Catholic Church · Free</div>
+<p>Zumba is a fusion of Latin, International and popular music dance themes creating a dynamic, exciting, effective fitness system! The routines feature aerobic, fitness interval training with a combination of fast and slow rhythms that tone and sculpt the body with easy to follow dance steps.</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/zumba">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Zumba&dates=20260928T213000Z/20260928T233000Z&details=Zumba%20is%20a%20fusion%20of%20Latin%2C%20International%20and%20popular%20music%20dance%20themes%20creating%20a%20dynamic%2C%20exciting%2C%20effective%20fitness%20system%21%20The%20routines%20feature%20aerobic%2C%20fitness%20interval%20training%20with%20a%20combination%20of%20fast%20and%20slow%20rhythms%20that%20tone%20and%20sculpt%20the%20body%20with%20easy%20to%20follow%20dance%20steps.%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/zumba&location=Our%20Lady%20of%20Grace%20Roman%20Catholic%20Church" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="44">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-45" data-idx="45" data-name="Yoga with Bien Good Well" data-start-local="2026-09-28T18:00:00" data-cal-start="20260928T220000Z" data-cal-end="20260929T000000Z" data-loc="Bella Abzug Park Fountains (in Bella Abzug Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/yoga-with-bien-good-well" data-lat="40.755606606614" data-lng="-74.000590222056">
+<button class="toggle" data-idx="45" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="45" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/yoga-with-bien-good-well">Yoga with Bien Good Well</a></h3>
+<div class="meta">6:00 PM · Bella Abzug Park Fountains (in Bella Abzug Park) · Free</div>
+<p>Join Bien Good Well for free yoga classes in Bella Abzug Park, bring your own mat! May&amp;#8211;September 2026 ? Mondays 6:00-6:45 PM (yoga flow) ? Wednesdays 5:00-5:45 PM (yoga flow) ? Saturdays at 10:30 AM (mat pilates) Move, breathe, and reconnect in this 45-minute outdoor yoga class&amp;#8212;offered i</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/yoga-with-bien-good-well">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Yoga%20with%20Bien%20Good%20Well&dates=20260928T220000Z/20260929T000000Z&details=Join%20Bien%20Good%20Well%20for%20free%20yoga%20classes%20in%20Bella%20Abzug%20Park%2C%20bring%20your%20own%20mat%21%20May%26%238211%3BSeptember%202026%20%3F%20Mondays%206%3A00-6%3A45%20PM%20%28yoga%20flow%29%20%3F%20Wednesdays%205%3A00-5%3A45%20PM%20%28yoga%20flow%29%20%3F%20Saturdays%20at%2010%3A30%20AM%20%28mat%20pilates%29%20Move%2C%20breathe%2C%20and%20reconnect%20in%20this%2045-minute%20outdoor%20yoga%20class%26%238212%3Boffered%20i%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/yoga-with-bien-good-well&location=Bella%20Abzug%20Park%20Fountains%20%28in%20Bella%20Abzug%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="45">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-46" data-idx="46" data-name="Low Impact Bodyweight Circuit Training" data-start-local="2026-09-28T18:00:00" data-cal-start="20260928T220000Z" data-cal-end="20260929T000000Z" data-loc="Multi-Use Room (in Asser Levy Playground)" data-url="http://www.nycgovparks.org/events/2026/09/28/low-impact-bodyweight-circuit-training" data-lat="40.73609924" data-lng="-73.97570038">
+<button class="toggle" data-idx="46" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="46" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/low-impact-bodyweight-circuit-training">Low Impact Bodyweight Circuit Training</a></h3>
+<div class="meta">6:00 PM · Multi-Use Room (in Asser Levy Playground) · Free</div>
+<p>This circuit training class combines bodyweight resistance training and conditioning to provide you with a dynamic full body workout. Whether you are a beginner or looking for a challenge- this class for you! Come engage in exercises that target all muscle groups and get your heart pumping!</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/low-impact-bodyweight-circuit-training">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Low%20Impact%20Bodyweight%20Circuit%20Training&dates=20260928T220000Z/20260929T000000Z&details=This%20circuit%20training%20class%20combines%20bodyweight%20resistance%20training%20and%20conditioning%20to%20provide%20you%20with%20a%20dynamic%20full%20body%20workout.%20Whether%20you%20are%20a%20beginner%20or%20looking%20for%20a%20challenge-%20this%20class%20for%20you%21%20Come%20engage%20in%20exercises%20that%20target%20all%20muscle%20groups%20and%20get%20your%20heart%20pumping%21%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/low-impact-bodyweight-circuit-training&location=Multi-Use%20Room%20%28in%20Asser%20Levy%20Playground%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="46">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-47" data-idx="47" data-name="Strong and Steady Circuit Training" data-start-local="2026-09-28T18:00:00" data-cal-start="20260928T220000Z" data-cal-end="20260929T000000Z" data-loc="Brownsville Neighborhood Health Action Center" data-url="http://www.nycgovparks.org/events/2026/09/28/strong-and-steady-circuit-training" data-lat="40.6646618" data-lng="-73.9111354">
+<button class="toggle" data-idx="47" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="47" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/strong-and-steady-circuit-training">Strong and Steady Circuit Training</a></h3>
+<div class="meta">6:00 PM · Brownsville Neighborhood Health Action Center · Free</div>
+<p>Strong &amp; Steady Circuit Training is a full-body workout designed for high-energy fun. This class focuses on the mind-body connection, combining steady, controlled movements with high-energy sequences to build strength. Come ready to move, breathe, and leave feeling energized.</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/strong-and-steady-circuit-training">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Strong%20and%20Steady%20Circuit%20Training&dates=20260928T220000Z/20260929T000000Z&details=Strong%20%26%20Steady%20Circuit%20Training%20is%20a%20full-body%20workout%20designed%20for%20high-energy%20fun.%20This%20class%20focuses%20on%20the%20mind-body%20connection%2C%20combining%20steady%2C%20controlled%20movements%20with%20high-energy%20sequences%20to%20build%20strength.%20Come%20ready%20to%20move%2C%20breathe%2C%20and%20leave%20feeling%20energized.%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/strong-and-steady-circuit-training&location=Brownsville%20Neighborhood%20Health%20Action%20Center" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="47">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-48" data-idx="48" data-name="Zumba Gold&amp;#174;" data-start-local="2026-09-28T18:00:00" data-cal-start="20260928T220000Z" data-cal-end="20260929T000000Z" data-loc="Ryan Health- Chelsea Clinton Community Health Center" data-url="http://www.nycgovparks.org/events/2026/09/28/zumba-gold" data-lat="40.762044859544" data-lng="-73.993928864383">
+<button class="toggle" data-idx="48" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="48" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/zumba-gold">Zumba Gold&amp;#174;</a></h3>
+<div class="meta">6:00 PM · Ryan Health- Chelsea Clinton Community Health Center · Free</div>
+<p>Zumba Gold&amp;#174; offers a low-impact workout set to a fusion of Latin, International and popular music dance themes, creating a dynamic, exciting, effective fitness system! The routines feature aerobic fitness interval training with a combination of fast and slow rhythms that challenge both the hear</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/zumba-gold">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Zumba%20Gold%26%23174%3B&dates=20260928T220000Z/20260929T000000Z&details=Zumba%20Gold%26%23174%3B%20offers%20a%20low-impact%20workout%20set%20to%20a%20fusion%20of%20Latin%2C%20International%20and%20popular%20music%20dance%20themes%2C%20creating%20a%20dynamic%2C%20exciting%2C%20effective%20fitness%20system%21%20The%20routines%20feature%20aerobic%20fitness%20interval%20training%20with%20a%20combination%20of%20fast%20and%20slow%20rhythms%20that%20challenge%20both%20the%20hear%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/zumba-gold&location=Ryan%20Health-%20Chelsea%20Clinton%20Community%20Health%20Center" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="48">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-49" data-idx="49" data-name="Hoop Jam in Herald Square Park" data-start-local="2026-09-28T18:00:00" data-cal-start="20260928T220000Z" data-cal-end="20260929T000000Z" data-loc="Herald Square" data-url="http://www.nycgovparks.org/events/2026/09/28/hoop-jam-in-herald-square-park" data-lat="40.75046368599" data-lng="-73.987603574991">
+<button class="toggle" data-idx="49" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="49" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/hoop-jam-in-herald-square-park">Hoop Jam in Herald Square Park</a></h3>
+<div class="meta">6:00 PM · Herald Square · Free</div>
+<p>We&#x27;re collaborating with Big Apple Hooping to bring hooping fun to Herald Square Park. If you&#x27;re looking to learn the fundamentals of hooping, work on refining your tricks, or meet fellow hoopers from the NYC area, this is the event for you. Hoopers of all experience levels, from beginner to advance</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/hoop-jam-in-herald-square-park">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hoop%20Jam%20in%20Herald%20Square%20Park&dates=20260928T220000Z/20260929T000000Z&details=We%27re%20collaborating%20with%20Big%20Apple%20Hooping%20to%20bring%20hooping%20fun%20to%20Herald%20Square%20Park.%20If%20you%27re%20looking%20to%20learn%20the%20fundamentals%20of%20hooping%2C%20work%20on%20refining%20your%20tricks%2C%20or%20meet%20fellow%20hoopers%20from%20the%20NYC%20area%2C%20this%20is%20the%20event%20for%20you.%20Hoopers%20of%20all%20experience%20levels%2C%20from%20beginner%20to%20advance%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/hoop-jam-in-herald-square-park&location=Herald%20Square" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="49">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-50" data-idx="50" data-name="Bodyweight Interval Training" data-start-local="2026-09-28T18:00:00" data-cal-start="20260928T220000Z" data-cal-end="20260929T000000Z" data-loc="Multi-Use Room C (in McCarren Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/bodyweight-interval-training" data-lat="40.7201004" data-lng="-73.94999695">
+<button class="toggle" data-idx="50" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="50" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/bodyweight-interval-training">Bodyweight Interval Training</a></h3>
+<div class="meta">6:00 PM · Multi-Use Room C (in McCarren Park) · Free</div>
+<p>Bodyweight Interval Training is an energetic yet low impact exercise class that will get your muscles moving! This mix of cardio and bodyweight strength exercises is a great way to get a full body workout. Whether you&#x27;re new to exercise or not, the modifications offered in this class make it open to</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/bodyweight-interval-training">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bodyweight%20Interval%20Training&dates=20260928T220000Z/20260929T000000Z&details=Bodyweight%20Interval%20Training%20is%20an%20energetic%20yet%20low%20impact%20exercise%20class%20that%20will%20get%20your%20muscles%20moving%21%20This%20mix%20of%20cardio%20and%20bodyweight%20strength%20exercises%20is%20a%20great%20way%20to%20get%20a%20full%20body%20workout.%20Whether%20you%27re%20new%20to%20exercise%20or%20not%2C%20the%20modifications%20offered%20in%20this%20class%20make%20it%20open%20to%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/bodyweight-interval-training&location=Multi-Use%20Room%20C%20%28in%20McCarren%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="50">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-51" data-idx="51" data-name="Uplifted Dance Fitness" data-start-local="2026-09-28T18:15:00" data-cal-start="20260928T221500Z" data-cal-end="20260929T001500Z" data-loc="Multi-Use Room - 2nd Fl (in Sorrentino Recreation Center)" data-url="http://www.nycgovparks.org/events/2026/09/28/uplifted-dance-fitness" data-lat="40.60240173" data-lng="-73.76249695">
+<button class="toggle" data-idx="51" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="51" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/uplifted-dance-fitness">Uplifted Dance Fitness</a></h3>
+<div class="meta">6:15 PM · Multi-Use Room - 2nd Fl (in Sorrentino Recreation Center) · Free</div>
+<p>Uplift your spirit with this dance fitness class! Come and enjoy an array of upbeat music featuring gospel. This class is a fusion of motivation, inspiration, fitness, and fun. Move your body, relax your mind, enjoy the community, and lift your spirit!</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/uplifted-dance-fitness">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Uplifted%20Dance%20Fitness&dates=20260928T221500Z/20260929T001500Z&details=Uplift%20your%20spirit%20with%20this%20dance%20fitness%20class%21%20Come%20and%20enjoy%20an%20array%20of%20upbeat%20music%20featuring%20gospel.%20This%20class%20is%20a%20fusion%20of%20motivation%2C%20inspiration%2C%20fitness%2C%20and%20fun.%20Move%20your%20body%2C%20relax%20your%20mind%2C%20enjoy%20the%20community%2C%20and%20lift%20your%20spirit%21%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/uplifted-dance-fitness&location=Multi-Use%20Room%20-%202nd%20Fl%20%28in%20Sorrentino%20Recreation%20Center%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="51">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-52" data-idx="52" data-name="Yoga" data-start-local="2026-09-28T18:15:00" data-cal-start="20260928T221500Z" data-cal-end="20260929T001500Z" data-loc="Entrance - 215th Place and 33rd Road (in Crocheron Park)" data-url="http://www.nycgovparks.org/events/2026/09/28/yoga1" data-lat="40.77209854126" data-lng="-73.769401550293">
+<button class="toggle" data-idx="52" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="52" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/yoga1">Yoga</a></h3>
+<div class="meta">6:15 PM · Entrance - 215th Place and 33rd Road (in Crocheron Park) · Free</div>
+<p>Connect with yourself in this Yoga class with Ambeka, a class to be enjoyed by all. Experience a fun and light-hearted, mid-intensity flow that will move you seamlessly from Sun Salutation to a final peak pose. We focus on inversions and breath work to ensure you leave class feeling challenged and b</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/yoga1">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Yoga&dates=20260928T221500Z/20260929T001500Z&details=Connect%20with%20yourself%20in%20this%20Yoga%20class%20with%20Ambeka%2C%20a%20class%20to%20be%20enjoyed%20by%20all.%20Experience%20a%20fun%20and%20light-hearted%2C%20mid-intensity%20flow%20that%20will%20move%20you%20seamlessly%20from%20Sun%20Salutation%20to%20a%20final%20peak%20pose.%20We%20focus%20on%20inversions%20and%20breath%20work%20to%20ensure%20you%20leave%20class%20feeling%20challenged%20and%20b%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/yoga1&location=Entrance%20-%20215th%20Place%20and%2033rd%20Road%20%28in%20Crocheron%20Park%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="52">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-53" data-idx="53" data-name="RETRO Dance Fitness" data-start-local="2026-09-28T18:30:00" data-cal-start="20260928T223000Z" data-cal-end="20260929T003000Z" data-loc="Rock Climbing Wall Room (in Gertrude Ederle Recreation Center)" data-url="http://www.nycgovparks.org/events/2026/09/28/retro-dance-fitness" data-lat="40.77149963" data-lng="-73.9885025">
+<button class="toggle" data-idx="53" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="53" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/retro-dance-fitness">RETRO Dance Fitness</a></h3>
+<div class="meta">6:30 PM · Rock Climbing Wall Room (in Gertrude Ederle Recreation Center) · Free</div>
+<p>Come dance to classic pop tunes: Top 40, Disco, Electronic and more! This class is 45 minutes of peppy beats to enhance your cardio conditioning. A low-impact and fun workout; it is open to any fitness level. Let&#x27;s dance away blue Monday!</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/retro-dance-fitness">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=RETRO%20Dance%20Fitness&dates=20260928T223000Z/20260929T003000Z&details=Come%20dance%20to%20classic%20pop%20tunes%3A%20Top%2040%2C%20Disco%2C%20Electronic%20and%20more%21%20This%20class%20is%2045%20minutes%20of%20peppy%20beats%20to%20enhance%20your%20cardio%20conditioning.%20A%20low-impact%20and%20fun%20workout%3B%20it%20is%20open%20to%20any%20fitness%20level.%20Let%27s%20dance%20away%20blue%20Monday%21%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/retro-dance-fitness&location=Rock%20Climbing%20Wall%20Room%20%28in%20Gertrude%20Ederle%20Recreation%20Center%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="53">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-54" data-idx="54" data-name="BollyX" data-start-local="2026-09-28T18:30:00" data-cal-start="20260928T223000Z" data-cal-end="20260929T003000Z" data-loc="Dance Room (in Chelsea Recreation Center)" data-url="http://www.nycgovparks.org/events/2026/09/28/bollyx" data-lat="40.74829865" data-lng="-74.00219727">
+<button class="toggle" data-idx="54" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="54" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/bollyx">BollyX</a></h3>
+<div class="meta">6:30 PM · Dance Room (in Chelsea Recreation Center) · Free</div>
+<p>BollyX is a Bollywood inspired cardio dance fitness class inspired and is driven by the heart-pumping, energetic rhythms of cultural music from all parts of India. The class embodies dynamic choreography and easy-to-follow dance aerobics. Choreography and workout routines have been set so everyone c</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/bollyx">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=BollyX&dates=20260928T223000Z/20260929T003000Z&details=BollyX%20is%20a%20Bollywood%20inspired%20cardio%20dance%20fitness%20class%20inspired%20and%20is%20driven%20by%20the%20heart-pumping%2C%20energetic%20rhythms%20of%20cultural%20music%20from%20all%20parts%20of%20India.%20The%20class%20embodies%20dynamic%20choreography%20and%20easy-to-follow%20dance%20aerobics.%20Choreography%20and%20workout%20routines%20have%20been%20set%20so%20everyone%20c%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/bollyx&location=Dance%20Room%20%28in%20Chelsea%20Recreation%20Center%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="54">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-55" data-idx="55" data-name="Chair Yoga" data-start-local="2026-09-28T18:30:00" data-cal-start="20260928T223000Z" data-cal-end="20260929T003000Z" data-loc="Bartow Community Center - Room 31" data-url="http://www.nycgovparks.org/events/2026/09/28/chair-yoga" data-lat="40.8704537" data-lng="-73.8291111">
+<button class="toggle" data-idx="55" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="55" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/chair-yoga">Chair Yoga</a></h3>
+<div class="meta">6:30 PM · Bartow Community Center - Room 31 · Free</div>
+<p>This engaging chair yoga session blends gentle stretches, mindful breathing, and light strengthening exercises to leave you feeling relaxed yet revitalized. All movements are easy on the joints while enhancing flexibility, posture, and overall well-being. Ideal for beginners, older adults, or anyone</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/chair-yoga">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Chair%20Yoga&dates=20260928T223000Z/20260929T003000Z&details=This%20engaging%20chair%20yoga%20session%20blends%20gentle%20stretches%2C%20mindful%20breathing%2C%20and%20light%20strengthening%20exercises%20to%20leave%20you%20feeling%20relaxed%20yet%20revitalized.%20All%20movements%20are%20easy%20on%20the%20joints%20while%20enhancing%20flexibility%2C%20posture%2C%20and%20overall%20well-being.%20Ideal%20for%20beginners%2C%20older%20adults%2C%20or%20anyone%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/chair-yoga&location=Bartow%20Community%20Center%20-%20Room%2031" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="55">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-56" data-idx="56" data-name="Harlem Run: Monday Night Run" data-start-local="2026-09-28T18:45:00" data-cal-start="20260928T224500Z" data-cal-end="20260929T004500Z" data-loc="Marcus Garvey Park" data-url="http://www.nycgovparks.org/events/2026/09/28/harlem-run-monday-night-run" data-lat="40.804508209229" data-lng="-73.943664550781">
+<button class="toggle" data-idx="56" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="56" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/harlem-run-monday-night-run">Harlem Run: Monday Night Run</a></h3>
+<div class="meta">6:45 PM · Marcus Garvey Park · Free</div>
+<p>Harlem Run brings free weekly and inclusive pacer-led runs and walks throughout Harlem. Join us for a different route through Harlem, beginning and ending at Marcus Garvey Park. Paces available include 7 min to 12 min, run/walk, and walk groups. Open to all ages and abilities. Bag drop available, th</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/harlem-run-monday-night-run">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Harlem%20Run%3A%20Monday%20Night%20Run&dates=20260928T224500Z/20260929T004500Z&details=Harlem%20Run%20brings%20free%20weekly%20and%20inclusive%20pacer-led%20runs%20and%20walks%20throughout%20Harlem.%20Join%20us%20for%20a%20different%20route%20through%20Harlem%2C%20beginning%20and%20ending%20at%20Marcus%20Garvey%20Park.%20Paces%20available%20include%207%20min%20to%2012%20min%2C%20run/walk%2C%20and%20walk%20groups.%20Open%20to%20all%20ages%20and%20abilities.%20Bag%20drop%20available%2C%20th%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/harlem-run-monday-night-run&location=Marcus%20Garvey%20Park" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="56">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-57" data-idx="57" data-name="Bodyweight Power Circuit" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Dance Room (in Constance Baker Motley Recreation Center)" data-url="http://www.nycgovparks.org/events/2026/09/28/bodyweight-power-circuit" data-lat="40.75646973" data-lng="-73.9651413">
+<button class="toggle" data-idx="57" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="57" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/bodyweight-power-circuit">Bodyweight Power Circuit</a></h3>
+<div class="meta">7:00 PM · Dance Room (in Constance Baker Motley Recreation Center) · Free</div>
+<p>A full-body circuit designed to build strength, power, endurance, and confidence using just your bodyweight. Expect athletic movement, scalable progressions, and high-energy intervals that challenge every fitness level.</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/bodyweight-power-circuit">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bodyweight%20Power%20Circuit&dates=20260928T230000Z/20260929T010000Z&details=A%20full-body%20circuit%20designed%20to%20build%20strength%2C%20power%2C%20endurance%2C%20and%20confidence%20using%20just%20your%20bodyweight.%20Expect%20athletic%20movement%2C%20scalable%20progressions%2C%20and%20high-energy%20intervals%20that%20challenge%20every%20fitness%20level.%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/bodyweight-power-circuit&location=Dance%20Room%20%28in%20Constance%20Baker%20Motley%20Recreation%20Center%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="57">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-58" data-idx="58" data-name="Virtual Yoga" data-start-local="2026-09-28T19:30:00" data-cal-start="20260928T233000Z" data-cal-end="20260929T013000Z" data-loc="Virtual/Online Events" data-url="http://www.nycgovparks.org/events/2026/09/28/virtual-yoga" data-lat="40.7583263" data-lng="-73.9935168">
+<button class="toggle" data-idx="58" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="58" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="http://www.nycgovparks.org/events/2026/09/28/virtual-yoga">Virtual Yoga</a></h3>
+<div class="meta">7:30 PM · Virtual/Online Events · Free</div>
+<p>Welcome to this online yoga community in Vinyasa Yoga Flow with Rika. This class encompasses a warm-up, mindful flow, balance poses, gentle inversions, and final relaxation. Discover empowerment and affirmation to embrace who you are on and off your mat. Mats and props are recommended but not requir</p>
+<a class="tickets" href="http://www.nycgovparks.org/events/2026/09/28/virtual-yoga">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Virtual%20Yoga&dates=20260928T233000Z/20260929T013000Z&details=Welcome%20to%20this%20online%20yoga%20community%20in%20Vinyasa%20Yoga%20Flow%20with%20Rika.%20This%20class%20encompasses%20a%20warm-up%2C%20mindful%20flow%2C%20balance%20poses%2C%20gentle%20inversions%2C%20and%20final%20relaxation.%20Discover%20empowerment%20and%20affirmation%20to%20embrace%20who%20you%20are%20on%20and%20off%20your%20mat.%20Mats%20and%20props%20are%20recommended%20but%20not%20requir%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/09/28/virtual-yoga&location=Virtual/Online%20Events" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="58">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Arts &amp; Play</h2>
+
+<article class="event" id="event-0" data-idx="0" data-name="Museum of Chinese in America Flex Admission" data-start-local="2026-09-28T11:00:00" data-cal-start="20260928T150000Z" data-cal-end="20260928T170000Z" data-loc="Museum of Chinese in America" data-url="https://www.universe.com/events/museum-of-chinese-in-america-flex-admission-tickets-B9N1ZL?ref=ticketmaster" data-lat="40.71953297" data-lng="-73.99902914">
+<button class="toggle" data-idx="0" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="0" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/museum-of-chinese-in-america-flex-admission-tickets-B9N1ZL?ref=ticketmaster">Museum of Chinese in America Flex Admission</a></h3>
+<div class="meta">11:00 AM · Museum of Chinese in America</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/museum-of-chinese-in-america-flex-admission-tickets-B9N1ZL?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Museum%20of%20Chinese%20in%20America%20Flex%20Admission&dates=20260928T150000Z/20260928T170000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/museum-of-chinese-in-america-flex-admission-tickets-B9N1ZL%3Fref%3Dticketmaster&location=Museum%20of%20Chinese%20in%20America" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="0">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-1" data-idx="1" data-name="Banksy Museum - Flexiticket" data-start-local="2026-09-28T10:00:00" data-cal-start="20260928T140000Z" data-cal-end="20260928T160000Z" data-loc="Banksy Museum New York" data-url="https://www.universe.com/events/banksy-museum-flexiticket-tickets-F7XJ8T?ref=ticketmaster" data-lat="40.7196025" data-lng="-74.00135811">
+<button class="toggle" data-idx="1" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="1" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/banksy-museum-flexiticket-tickets-F7XJ8T?ref=ticketmaster">Banksy Museum - Flexiticket</a></h3>
+<div class="meta">10:00 AM · Banksy Museum New York</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/banksy-museum-flexiticket-tickets-F7XJ8T?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Banksy%20Museum%20-%20Flexiticket&dates=20260928T140000Z/20260928T160000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/banksy-museum-flexiticket-tickets-F7XJ8T%3Fref%3Dticketmaster&location=Banksy%20Museum%20New%20York" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="1">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-2" data-idx="2" data-name="The Banksy Museum New York!" data-start-local="2026-09-28T10:00:00" data-cal-start="20260928T140000Z" data-cal-end="20260928T160000Z" data-loc="Banksy Museum New York" data-url="https://www.universe.com/events/the-banksy-museum-new-york-tickets-5PKNY0?ref=ticketmaster" data-lat="40.7196025" data-lng="-74.00135811">
+<button class="toggle" data-idx="2" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="2" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/the-banksy-museum-new-york-tickets-5PKNY0?ref=ticketmaster">The Banksy Museum New York!</a></h3>
+<div class="meta">10:00 AM · Banksy Museum New York</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/the-banksy-museum-new-york-tickets-5PKNY0?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Banksy%20Museum%20New%20York%21&dates=20260928T140000Z/20260928T160000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/the-banksy-museum-new-york-tickets-5PKNY0%3Fref%3Dticketmaster&location=Banksy%20Museum%20New%20York" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="2">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-3" data-idx="3" data-name="Banksy Museum NY - Monday Movie Day and Nights!" data-start-local="2026-09-28T14:00:00" data-cal-start="20260928T180000Z" data-cal-end="20260928T200000Z" data-loc="Banksy Museum New York" data-url="https://www.universe.com/events/banksy-museum-ny-monday-movie-day-and-nights-tickets-YH4WCM?ref=ticketmaster" data-lat="40.7196025" data-lng="-74.00135811">
+<button class="toggle" data-idx="3" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="3" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/banksy-museum-ny-monday-movie-day-and-nights-tickets-YH4WCM?ref=ticketmaster">Banksy Museum NY - Monday Movie Day and Nights!</a></h3>
+<div class="meta">2:00 PM · Banksy Museum New York</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/banksy-museum-ny-monday-movie-day-and-nights-tickets-YH4WCM?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Banksy%20Museum%20NY%20-%20Monday%20Movie%20Day%20and%20Nights%21&dates=20260928T180000Z/20260928T200000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/banksy-museum-ny-monday-movie-day-and-nights-tickets-YH4WCM%3Fref%3Dticketmaster&location=Banksy%20Museum%20New%20York" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="3">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-6" data-idx="6" data-name="Slam Frank" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Orpheum Theatre NYC" data-url="https://www.ticketmaster.com/slam-frank-new-york-new-york-09-28-2026/event/300064C9E1D38A7B" data-lat="40.728188" data-lng="-73.987498">
+<button class="toggle" data-idx="6" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="6" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/slam-frank-new-york-new-york-09-28-2026/event/300064C9E1D38A7B">Slam Frank</a></h3>
+<div class="meta">7:00 PM · Orpheum Theatre NYC</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/slam-frank-new-york-new-york-09-28-2026/event/300064C9E1D38A7B">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Slam%20Frank&dates=20260928T230000Z/20260929T010000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/slam-frank-new-york-new-york-09-28-2026/event/300064C9E1D38A7B&location=Orpheum%20Theatre%20NYC" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="6">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-7" data-idx="7" data-name="Six (New York, NY)" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Lena Horne Theatre" data-url="https://www.ticketmaster.com/six-new-york-ny-new-york-new-york-09-28-2026/event/Z1r9uZrrZbpZ1AvP6uS" data-lat="40.7600563" data-lng="-73.9868161">
+<button class="toggle" data-idx="7" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="7" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/six-new-york-ny-new-york-new-york-09-28-2026/event/Z1r9uZrrZbpZ1AvP6uS">Six (New York, NY)</a></h3>
+<div class="meta">7:00 PM · Lena Horne Theatre</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/six-new-york-ny-new-york-new-york-09-28-2026/event/Z1r9uZrrZbpZ1AvP6uS">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Six%20%28New%20York%2C%20NY%29&dates=20260928T230000Z/20260929T010000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/six-new-york-ny-new-york-new-york-09-28-2026/event/Z1r9uZrrZbpZ1AvP6uS&location=Lena%20Horne%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="7">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-8" data-idx="8" data-name="Chicago" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Ambassador Theatre" data-url="https://www.ticketmaster.com/chicago-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ17J_jP" data-lat="40.76136801" data-lng="-73.98502357">
+<button class="toggle" data-idx="8" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="8" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/chicago-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ17J_jP">Chicago</a></h3>
+<div class="meta">7:00 PM · Ambassador Theatre</div>
+<p>(1) Children under 4 years old will not be admitted. (2) Herbal cigarettes are used on stage. (3) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (4) Tickets are on a delayed delivery.</p>
+<a class="tickets" href="https://www.ticketmaster.com/chicago-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ17J_jP">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Chicago&dates=20260928T230000Z/20260929T010000Z&details=%281%29%20Children%20under%204%20years%20old%20will%20not%20be%20admitted.%20%282%29%20Herbal%20cigarettes%20are%20used%20on%20stage.%20%283%29%20No%20weapons%20permitted%20on%20the%20premises.%20No%20outside%20food%20or%20beverages%2C%20electric%20scooters%2C%20e-bikes%2C%20or%20battery-powered%20transportation%20devices%2C%20except%20when%20medically%20necessary.%20All%20items%20are%20subject%20to%20inspection.%20Anything%20brought%20into%20the%20theatre%20must%20fit%20on%20your%20lap%20or%20completely%20under%20your%20seat%20without%20blocking%20any%20aisles.%20Avoid%20bringing%20packages%2C%20luggage%2C%20and%20backpacks.%20Some%20items%20must%20be%20checked.%20%284%29%20Tickets%20are%20on%20a%20delayed%20delivery.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/chicago-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ17J_jP&location=Ambassador%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="8">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-9" data-idx="9" data-name="The Great Gatsby" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Broadway Theatre" data-url="https://www.ticketmaster.com/the-great-gatsby-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ17Je0K" data-lat="40.76351799" data-lng="-73.98299113">
+<button class="toggle" data-idx="9" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="9" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/the-great-gatsby-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ17Je0K">The Great Gatsby</a></h3>
+<div class="meta">7:00 PM · Broadway Theatre</div>
+<p>(1) Children under 4 years old will not be admitted. (2) Herbal cigarettes are used on stage. (3) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (4) Pyrotechnics are use in this production. (5) Strobe or flashing lights are used in this production. (6) This production uses a gunshot sound effect. (7) This production uses theatrical haze and smoke. (8) Tickets are on a delayed delivery.</p>
+<a class="tickets" href="https://www.ticketmaster.com/the-great-gatsby-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ17Je0K">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Great%20Gatsby&dates=20260928T230000Z/20260929T010000Z&details=%281%29%20Children%20under%204%20years%20old%20will%20not%20be%20admitted.%20%282%29%20Herbal%20cigarettes%20are%20used%20on%20stage.%20%283%29%20No%20weapons%20permitted%20on%20the%20premises.%20No%20outside%20food%20or%20beverages%2C%20electric%20scooters%2C%20e-bikes%2C%20or%20battery-powered%20transportation%20devices%2C%20except%20when%20medically%20necessary.%20All%20items%20are%20subject%20to%20inspection.%20Anything%20brought%20into%20the%20theatre%20must%20fit%20on%20your%20lap%20or%20completely%20under%20your%20seat%20without%20blocking%20any%20aisles.%20Avoid%20bringing%20packages%2C%20luggage%2C%20and%20backpacks.%20Some%20items%20must%20be%20checked.%20%284%29%20Pyrotechnics%20are%20use%20in%20this%20production.%20%285%29%20Strobe%20or%20flashing%20lights%20are%20used%20in%20this%20production.%20%286%29%20This%20production%20uses%20a%20gunshot%20sound%20effect.%20%287%29%20This%20production%20uses%20theatrical%20haze%20and%20smoke.%20%288%29%20Tickets%20are%20on%20a%20delayed%20delivery.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/the-great-gatsby-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ17Je0K&location=Broadway%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="9">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-10" data-idx="10" data-name="The 25th Annual Putnam County Spelling Bee" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="New World Stages - Stage 3" data-url="https://www.ticketmaster.com/the-25th-annual-putnam-county-spelling-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZ8O7" data-lat="40.76301415" data-lng="-73.9876273">
+<button class="toggle" data-idx="10" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="10" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/the-25th-annual-putnam-county-spelling-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZ8O7">The 25th Annual Putnam County Spelling Bee</a></h3>
+<div class="meta">7:00 PM · New World Stages - Stage 3</div>
+<p>(1) Children under 4 years old will not be admitted. (2) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (3) Tickets are on a delayed delivery.</p>
+<a class="tickets" href="https://www.ticketmaster.com/the-25th-annual-putnam-county-spelling-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZ8O7">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%2025th%20Annual%20Putnam%20County%20Spelling%20Bee&dates=20260928T230000Z/20260929T010000Z&details=%281%29%20Children%20under%204%20years%20old%20will%20not%20be%20admitted.%20%282%29%20No%20weapons%20permitted%20on%20the%20premises.%20No%20outside%20food%20or%20beverages%2C%20electric%20scooters%2C%20e-bikes%2C%20or%20battery-powered%20transportation%20devices%2C%20except%20when%20medically%20necessary.%20All%20items%20are%20subject%20to%20inspection.%20Anything%20brought%20into%20the%20theatre%20must%20fit%20on%20your%20lap%20or%20completely%20under%20your%20seat%20without%20blocking%20any%20aisles.%20Avoid%20bringing%20packages%2C%20luggage%2C%20and%20backpacks.%20Some%20items%20must%20be%20checked.%20%283%29%20Tickets%20are%20on%20a%20delayed%20delivery.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/the-25th-annual-putnam-county-spelling-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZ8O7&location=New%20World%20Stages%20-%20Stage%203" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="10">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-11" data-idx="11" data-name="Heathers: The Musical" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="New World Stages - Stage 1" data-url="https://www.ticketmaster.com/heathers-the-musical-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZa1b" data-lat="40.76301415" data-lng="-73.9876273">
+<button class="toggle" data-idx="11" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="11" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/heathers-the-musical-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZa1b">Heathers: The Musical</a></h3>
+<div class="meta">7:00 PM · New World Stages - Stage 1</div>
+<p>(1) Children under 4 years old will not be admitted. (2) Heathers contains strong language and mature themes including murder, suicide, sexual violence and references to eating disorders. Audience discretion is advised. (3) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (4) Strobe or flashing lights are used in this production. (5) This production uses a gunshot sound effect. (6) This production uses theatrical haze and smoke. (7) Tickets are on a delayed delivery.</p>
+<a class="tickets" href="https://www.ticketmaster.com/heathers-the-musical-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZa1b">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Heathers%3A%20The%20Musical&dates=20260928T230000Z/20260929T010000Z&details=%281%29%20Children%20under%204%20years%20old%20will%20not%20be%20admitted.%20%282%29%20Heathers%20contains%20strong%20language%20and%20mature%20themes%20including%20murder%2C%20suicide%2C%20sexual%20violence%20and%20references%20to%20eating%20disorders.%20Audience%20discretion%20is%20advised.%20%283%29%20No%20weapons%20permitted%20on%20the%20premises.%20No%20outside%20food%20or%20beverages%2C%20electric%20scooters%2C%20e-bikes%2C%20or%20battery-powered%20transportation%20devices%2C%20except%20when%20medically%20necessary.%20All%20items%20are%20subject%20to%20inspection.%20Anything%20brought%20into%20the%20theatre%20must%20fit%20on%20your%20lap%20or%20completely%20under%20your%20seat%20without%20blocking%20any%20aisles.%20Avoid%20bringing%20packages%2C%20luggage%2C%20and%20backpacks.%20Some%20items%20must%20be%20checked.%20%284%29%20Strobe%20or%20flashing%20lights%20are%20used%20in%20this%20production.%20%285%29%20This%20production%20uses%20a%20gunshot%20sound%20effect.%20%286%29%20This%20production%20uses%20theatrical%20haze%20and%20smoke.%20%287%29%20Tickets%20are%20on%20a%20delayed%20delivery.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/heathers-the-musical-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZa1b&location=New%20World%20Stages%20-%20Stage%201" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="11">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-13" data-idx="13" data-name="Jamie Allan&#x27;s Amaze" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="New World Stages - Stage 5" data-url="https://www.ticketmaster.com/jamie-allans-amaze-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZk-Y" data-lat="40.76301415" data-lng="-73.9876273">
+<button class="toggle" data-idx="13" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="13" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/jamie-allans-amaze-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZk-Y">Jamie Allan&#x27;s Amaze</a></h3>
+<div class="meta">7:00 PM · New World Stages - Stage 5</div>
+<p>(1) A bright light effect is used in this production. (2) Children under 4 years old will not be admitted. (3) Latecomers will be seated at the discretion of management. (4) Strobe or flashing lights are used in this production. (5) This production uses theatrical haze and smoke. (6) Tickets are on a delayed delivery.</p>
+<a class="tickets" href="https://www.ticketmaster.com/jamie-allans-amaze-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZk-Y">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Jamie%20Allan%27s%20Amaze&dates=20260928T230000Z/20260929T010000Z&details=%281%29%20A%20bright%20light%20effect%20is%20used%20in%20this%20production.%20%282%29%20Children%20under%204%20years%20old%20will%20not%20be%20admitted.%20%283%29%20Latecomers%20will%20be%20seated%20at%20the%20discretion%20of%20management.%20%284%29%20Strobe%20or%20flashing%20lights%20are%20used%20in%20this%20production.%20%285%29%20This%20production%20uses%20theatrical%20haze%20and%20smoke.%20%286%29%20Tickets%20are%20on%20a%20delayed%20delivery.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/jamie-allans-amaze-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZk-Y&location=New%20World%20Stages%20-%20Stage%205" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="13">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-14" data-idx="14" data-name="Six: The Musical" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Lena Horne Theatre" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A70OA0" data-lat="40.7593" data-lng="-73.990196">
+<button class="toggle" data-idx="14" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="14" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A70OA0">Six: The Musical</a></h3>
+<div class="meta">7:00 PM · Lena Horne Theatre</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A70OA0">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Six%3A%20The%20Musical&dates=20260928T230000Z/20260929T010000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A70OA0&location=Lena%20Horne%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="14">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-15" data-idx="15" data-name="Music City" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="St. Luke&#x27;s Theatre" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A7PKGM" data-lat="40.7593" data-lng="-73.990196">
+<button class="toggle" data-idx="15" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="15" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7PKGM">Music City</a></h3>
+<div class="meta">7:00 PM · St. Luke&#x27;s Theatre</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A7PKGM">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Music%20City&dates=20260928T230000Z/20260929T010000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A7PKGM&location=St.%20Luke%27s%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="15">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-16" data-idx="16" data-name="Pre-Existing Condition" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Greenwich House Theater" data-url="https://www.ticketmaster.com/event/Z7r9jZ1AAZAGb" data-lat="40.7034" data-lng="-74.013199">
+<button class="toggle" data-idx="16" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="16" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAZAGb">Pre-Existing Condition</a></h3>
+<div class="meta">7:00 PM · Greenwich House Theater</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZAGb">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pre-Existing%20Condition&dates=20260928T230000Z/20260929T010000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1AAZAGb&location=Greenwich%20House%20Theater" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="16">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-17" data-idx="17" data-name="The Welsh Twins" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Gramercy Theatre" data-url="https://www.ticketmaster.com/the-welsh-twins-new-york-new-york-09-28-2026/event/000064ACE4195A30" data-lat="40.73975368" data-lng="-73.98501292">
+<button class="toggle" data-idx="17" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="17" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/the-welsh-twins-new-york-new-york-09-28-2026/event/000064ACE4195A30">The Welsh Twins</a></h3>
+<div class="meta">7:00 PM · Gramercy Theatre</div>
+<p>DOORS - 7:00PM SHOW - 8:00PM Showtime is subject to change **Will Call tickets cannot be picked up before the doors open on the night of the show** Age Restriction: 16+ Unless Accompanied by a Guardian</p>
+<a class="tickets" href="https://www.ticketmaster.com/the-welsh-twins-new-york-new-york-09-28-2026/event/000064ACE4195A30">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Welsh%20Twins&dates=20260928T230000Z/20260929T010000Z&details=DOORS%20-%207%3A00PM%20SHOW%20-%208%3A00PM%20Showtime%20is%20subject%20to%20change%20%2A%2AWill%20Call%20tickets%20cannot%20be%20picked%20up%20before%20the%20doors%20open%20on%20the%20night%20of%20the%20show%2A%2A%20Age%20Restriction%3A%2016%2B%20Unless%20Accompanied%20by%20a%20Guardian%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/the-welsh-twins-new-york-new-york-09-28-2026/event/000064ACE4195A30&location=Gramercy%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="17">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-21" data-idx="21" data-name="Karen Mason: Birthday Bash at Birdland" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Birdland Jazz Club" data-url="https://www.ticketweb.com/event/karen-mason-birthday-bash-at-birdland-jazz-club-tickets/14278844" data-lat="40.7590167" data-lng="-73.9896861">
+<button class="toggle" data-idx="21" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="21" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/karen-mason-birthday-bash-at-birdland-jazz-club-tickets/14278844">Karen Mason: Birthday Bash at Birdland</a></h3>
+<div class="meta">7:00 PM · Birdland Jazz Club · $45.76</div>
+<p>Album Release Celebration at Birdland September 28, 2026 NEW YORK, NY Broadway, concert and recording artist Karen Mason will celebrate the release of her 10th album, Karen Mason: Birthday Bash at Birdland, on Monday, September 28 at 7pm at Birdland. Recorded live during Masons sold-out Birdland performance on her birthday last year, Birthday Bash at Birdland captures the powerhouse vocalist in an evening of music, stories and celebration. Following sold-out engagements in London, San Francisco and Puerto Vallarta, Mason returns to one of her favorite New York stages to celebrate the new recording with a special album release performance. Sassy, brassy and deeply personal, the show features songs spanning the decades of Masons life and career, along with longtime audience favorites including Somethings Coming, But the World Goes Round, Hurry! Its Lovely Up Here and South of the Coconut Line. The evening is directed by Barry Kleinbort, with Christopher Denny as music director and pianist, Tom Hubbard on bass and Rocky Noel on lights. There are many jewels in the cabaret world, but Karen Mason is the diamond that sparkles the brightest, wrote Cabaret Scenes, which also praised the singer for a performance that was profound and conveyed the wisdom that comes with age. Masons Broadway credits include originating Tanya in Mamma Mia!, for which she received a Drama Desk Award nomination; Norma Desmond in Sunset Boulevard; Velma von Tussle in Hairspray; Mazeppa in Jerome Robbins Broadway; and The Queen of Hearts in Wonderland. She toured North America as Madame Giry in Andrew Lloyd Webbers Love Never Dies and appeared as Mrs. Marsh in Ryan Murphys Halston for Netflix. Off-Broadway, Mason received the Outer Critics Circle Award for her performance in And the World Goes Round. She is a 14-time MAC Award winner, recipient of the 2019 MAC Lifetime Achievement Award, and a three-time Bistro Award winner. Birthday Bash at Birdland marks Masons 10th solo album, following recordings including Karen Mason and All That Jazz!, Its About Time, Let the Music Play, Right Here/Right Now, The Sweetest of Nights, When the Sun Comes Out, Christmas! Christmas! Christmas!, Better Days and Not So Simply Broadway.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/karen-mason-birthday-bash-at-birdland-jazz-club-tickets/14278844">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Karen%20Mason%3A%20Birthday%20Bash%20at%20Birdland&dates=20260928T230000Z/20260929T010000Z&details=Album%20Release%20Celebration%20at%20Birdland%20September%2028%2C%202026%20NEW%20YORK%2C%20NY%20Broadway%2C%20concert%20and%20recording%20artist%20Karen%20Mason%20will%20celebrate%20the%20release%20of%20her%2010th%20album%2C%20Karen%20Mason%3A%20Birthday%20Bash%20at%20Birdland%2C%20on%20Monday%2C%20September%2028%20at%207pm%20at%20Birdland.%20Recorded%20live%20during%20Masons%20sold-out%20Birdland%20performance%20on%20her%20birthday%20last%20year%2C%20Birthday%20Bash%20at%20Birdland%20captures%20the%20powerhouse%20vocalist%20in%20an%20evening%20of%20music%2C%20stories%20and%20celebration.%20Following%20sold-out%20engagements%20in%20London%2C%20San%20Francisco%20and%20Puerto%20Vallarta%2C%20Mason%20returns%20to%20one%20of%20her%20favorite%20New%20York%20stages%20to%20celebrate%20the%20new%20recording%20with%20a%20special%20album%20release%20performance.%20Sassy%2C%20brassy%20and%20deeply%20personal%2C%20the%20show%20features%20songs%20spanning%20the%20decades%20of%20Masons%20life%20and%20career%2C%20along%20with%20longtime%20audience%20favorites%20including%20Somethings%20Coming%2C%20But%20the%20World%20Goes%20Round%2C%20Hurry%21%20Its%20Lovely%20Up%20Here%20and%20South%20of%20the%20Coconut%20Line.%20The%20evening%20is%20directed%20by%20Barry%20Kleinbort%2C%20with%20Christopher%20Denny%20as%20music%20director%20and%20pianist%2C%20Tom%20Hubbard%20on%20bass%20and%20Rocky%20Noel%20on%20lights.%20There%20are%20many%20jewels%20in%20the%20cabaret%20world%2C%20but%20Karen%20Mason%20is%20the%20diamond%20that%20sparkles%20the%20brightest%2C%20wrote%20Cabaret%20Scenes%2C%20which%20also%20praised%20the%20singer%20for%20a%20performance%20that%20was%20profound%20and%20conveyed%20the%20wisdom%20that%20comes%20with%20age.%20Masons%20Broadway%20credits%20include%20originating%20Tanya%20in%20Mamma%20Mia%21%2C%20for%20which%20she%20received%20a%20Drama%20Desk%20Award%20nomination%3B%20Norma%20Desmond%20in%20Sunset%20Boulevard%3B%20Velma%20von%20Tussle%20in%20Hairspray%3B%20Mazeppa%20in%20Jerome%20Robbins%20Broadway%3B%20and%20The%20Queen%20of%20Hearts%20in%20Wonderland.%20She%20toured%20North%20America%20as%20Madame%20Giry%20in%20Andrew%20Lloyd%20Webbers%20Love%20Never%20Dies%20and%20appeared%20as%20Mrs.%20Marsh%20in%20Ryan%20Murphys%20Halston%20for%20Netflix.%20Off-Broadway%2C%20Mason%20received%20the%20Outer%20Critics%20Circle%20Award%20for%20her%20performance%20in%20And%20the%20World%20Goes%20Round.%20She%20is%20a%2014-time%20MAC%20Award%20winner%2C%20recipient%20of%20the%202019%20MAC%20Lifetime%20Achievement%20Award%2C%20and%20a%20three-time%20Bistro%20Award%20winner.%20Birthday%20Bash%20at%20Birdland%20marks%20Masons%2010th%20solo%20album%2C%20following%20recordings%20including%20Karen%20Mason%20and%20All%20That%20Jazz%21%2C%20Its%20About%20Time%2C%20Let%20the%20Music%20Play%2C%20Right%20Here/Right%20Now%2C%20The%20Sweetest%20of%20Nights%2C%20When%20the%20Sun%20Comes%20Out%2C%20Christmas%21%20Christmas%21%20Christmas%21%2C%20Better%20Days%20and%20Not%20So%20Simply%20Broadway.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/karen-mason-birthday-bash-at-birdland-jazz-club-tickets/14278844&location=Birdland%20Jazz%20Club" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="21">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-26" data-idx="26" data-name="Perfect Crime" data-start-local="2026-09-28T20:00:00" data-cal-start="20260929T000000Z" data-cal-end="20260929T020000Z" data-loc="The Theater Center" data-url="https://www.ticketmaster.com/perfect-crime-new-york-new-york-09-28-2026/event/300064F792F3355C" data-lat="40.761604" data-lng="-73.9846">
+<button class="toggle" data-idx="26" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="26" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/perfect-crime-new-york-new-york-09-28-2026/event/300064F792F3355C">Perfect Crime</a></h3>
+<div class="meta">8:00 PM · The Theater Center</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/perfect-crime-new-york-new-york-09-28-2026/event/300064F792F3355C">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Perfect%20Crime&dates=20260929T000000Z/20260929T020000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/perfect-crime-new-york-new-york-09-28-2026/event/300064F792F3355C&location=The%20Theater%20Center" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="26">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-27" data-idx="27" data-name="Public Image Ltd. (16 and Over)" data-start-local="2026-09-28T20:00:00" data-cal-start="20260929T000000Z" data-cal-end="20260929T020000Z" data-loc="Webster Hall" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A7-zvU" data-lat="40.731602" data-lng="-73.989098">
+<button class="toggle" data-idx="27" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="27" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7-zvU">Public Image Ltd. (16 and Over)</a></h3>
+<div class="meta">8:00 PM · Webster Hall</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A7-zvU">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Public%20Image%20Ltd.%20%2816%20and%20Over%29&dates=20260929T000000Z/20260929T020000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A7-zvU&location=Webster%20Hall" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="27">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-29" data-idx="29" data-name="The Cabaret Burlesque presents: Code Red" data-start-local="2026-09-28T20:00:00" data-cal-start="20260929T000000Z" data-cal-end="20260929T020000Z" data-loc="Berlin" data-url="https://www.ticketweb.com/event/the-cabaret-burlesque-presents-code-berlin-tickets/14285474" data-lat="40.722974" data-lng="-73.98608">
+<button class="toggle" data-idx="29" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="29" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/the-cabaret-burlesque-presents-code-berlin-tickets/14285474">The Cabaret Burlesque presents: Code Red</a></h3>
+<div class="meta">8:00 PM · Berlin · $42.71</div>
+<p>VIP experience includes: meet and greet and champagne TCB presents: CODE RED Code Red: Industry Night Weekly on Monday Doors 7:30pm Iris Rodrigo 8pm Main Show featuring The Cabaret Burlesque 8:30 - 10:30pm Music and Bar until 1am Contact @thecabaretburlesque on instagram to APPLY to perform as an Opening Act An Industry Night where your wildest fantasies just might come true. Welcome to CODE RED---an electrifying world where Parisian cabaret meets Amsterdam&#x27;s edge, Moscow&#x27;s mystique, and the unapologetic glamour of Studio 54. Fashion is as much a part of the performance as the artists themselves, with striking couture, bold silhouettes, and runway-worthy style setting the scene for an unforgettable night. Expect dazzling performances, intoxicating music, provocative artistry, and immersive moments that blur the line between audience and spectacle. Inspired by the golden age of nightlife, where icons, artists, and dreamers came to see and be seen, CODE RED celebrates fearless self-expression, decadent entertainment, and the thrill of the unexpected. Dress boldly. Stay curious. Bring your calling card. Welcome to the show where fantasy, fashion, and nightlife collide.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/the-cabaret-burlesque-presents-code-berlin-tickets/14285474">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Cabaret%20Burlesque%20presents%3A%20Code%20Red&dates=20260929T000000Z/20260929T020000Z&details=VIP%20experience%20includes%3A%20meet%20and%20greet%20and%20champagne%20TCB%20presents%3A%20CODE%20RED%20Code%20Red%3A%20Industry%20Night%20Weekly%20on%20Monday%20Doors%207%3A30pm%20Iris%20Rodrigo%208pm%20Main%20Show%20featuring%20The%20Cabaret%20Burlesque%208%3A30%20-%2010%3A30pm%20Music%20and%20Bar%20until%201am%20Contact%20%40thecabaretburlesque%20on%20instagram%20to%20APPLY%20to%20perform%20as%20an%20Opening%20Act%20An%20Industry%20Night%20where%20your%20wildest%20fantasies%20just%20might%20come%20true.%20Welcome%20to%20CODE%20RED---an%20electrifying%20world%20where%20Parisian%20cabaret%20meets%20Amsterdam%27s%20edge%2C%20Moscow%27s%20mystique%2C%20and%20the%20unapologetic%20glamour%20of%20Studio%2054.%20Fashion%20is%20as%20much%20a%20part%20of%20the%20performance%20as%20the%20artists%20themselves%2C%20with%20striking%20couture%2C%20bold%20silhouettes%2C%20and%20runway-worthy%20style%20setting%20the%20scene%20for%20an%20unforgettable%20night.%20Expect%20dazzling%20performances%2C%20intoxicating%20music%2C%20provocative%20artistry%2C%20and%20immersive%20moments%20that%20blur%20the%20line%20between%20audience%20and%20spectacle.%20Inspired%20by%20the%20golden%20age%20of%20nightlife%2C%20where%20icons%2C%20artists%2C%20and%20dreamers%20came%20to%20see%20and%20be%20seen%2C%20CODE%20RED%20celebrates%20fearless%20self-expression%2C%20decadent%20entertainment%2C%20and%20the%20thrill%20of%20the%20unexpected.%20Dress%20boldly.%20Stay%20curious.%20Bring%20your%20calling%20card.%20Welcome%20to%20the%20show%20where%20fantasy%2C%20fashion%2C%20and%20nightlife%20collide.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/the-cabaret-burlesque-presents-code-berlin-tickets/14285474&location=Berlin" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="29">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Music</h2>
+
+<article class="event" id="event-4" data-idx="4" data-name="Vince Giordano and the Nighthawks" data-start-local="2026-09-28T17:30:00" data-cal-start="20260928T213000Z" data-cal-end="20260928T233000Z" data-loc="Birdland Theater" data-url="https://www.ticketweb.com/event/vince-giordano-and-the-nighthawks-birdland-theater-tickets/14881203" data-lat="40.7590167" data-lng="-73.9896861">
+<button class="toggle" data-idx="4" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="4" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/vince-giordano-and-the-nighthawks-birdland-theater-tickets/14881203">Vince Giordano and the Nighthawks</a></h3>
+<div class="meta">5:30 PM · Birdland Theater · $24.91</div>
+<p>In his Birdland Theater residency, GRAMMY Award winner, New York native, and multi-instrumentalist Vince Giordano leads The Nighthawks -- an 11-piece band who have set the standard for recreating authentic jazz sounds of the 1920s and beyond. In addition to club and concert appearances around the world, the band has provided period soundtracks for film and television productions including The Cotton Club, The Aviator, Finding Forrester, Revolutionary Road, Cafe Society, HBOs Boardwalk Empire, The Marvelous Mrs. Maisel, the upcoming Martin Scorsese film Killers of The Flower Moon, and many more.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/vince-giordano-and-the-nighthawks-birdland-theater-tickets/14881203">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vince%20Giordano%20and%20the%20Nighthawks&dates=20260928T213000Z/20260928T233000Z&details=In%20his%20Birdland%20Theater%20residency%2C%20GRAMMY%20Award%20winner%2C%20New%20York%20native%2C%20and%20multi-instrumentalist%20Vince%20Giordano%20leads%20The%20Nighthawks%20--%20an%2011-piece%20band%20who%20have%20set%20the%20standard%20for%20recreating%20authentic%20jazz%20sounds%20of%20the%201920s%20and%20beyond.%20In%20addition%20to%20club%20and%20concert%20appearances%20around%20the%20world%2C%20the%20band%20has%20provided%20period%20soundtracks%20for%20film%20and%20television%20productions%20including%20The%20Cotton%20Club%2C%20The%20Aviator%2C%20Finding%20Forrester%2C%20Revolutionary%20Road%2C%20Cafe%20Society%2C%20HBOs%20Boardwalk%20Empire%2C%20The%20Marvelous%20Mrs.%20Maisel%2C%20the%20upcoming%20Martin%20Scorsese%20film%20Killers%20of%20The%20Flower%20Moon%2C%20and%20many%20more.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/vince-giordano-and-the-nighthawks-birdland-theater-tickets/14881203&location=Birdland%20Theater" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="4">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-5" data-idx="5" data-name="Anna Moon + The Stars" data-start-local="2026-09-28T18:00:00" data-cal-start="20260928T220000Z" data-cal-end="20260929T000000Z" data-loc="Mercury Lounge" data-url="https://www.ticketmaster.com/anna-moon-the-stars-new-york-new-york-09-28-2026/event/000064E7EC72546A" data-lat="40.722036" data-lng="-73.986806">
+<button class="toggle" data-idx="5" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="5" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/anna-moon-the-stars-new-york-new-york-09-28-2026/event/000064E7EC72546A">Anna Moon + The Stars</a></h3>
+<div class="meta">6:00 PM · Mercury Lounge</div>
+<p>Anna Moon + The Stars w/ Gold Child [Ages 21+, Doors Open 6pm, $15 Advance, $20 Day of Show]</p>
+<a class="tickets" href="https://www.ticketmaster.com/anna-moon-the-stars-new-york-new-york-09-28-2026/event/000064E7EC72546A">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Anna%20Moon%20%2B%20The%20Stars&dates=20260928T220000Z/20260929T000000Z&details=Anna%20Moon%20%2B%20The%20Stars%20w/%20Gold%20Child%20%5BAges%2021%2B%2C%20Doors%20Open%206pm%2C%20%2415%20Advance%2C%20%2420%20Day%20of%20Show%5D%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/anna-moon-the-stars-new-york-new-york-09-28-2026/event/000064E7EC72546A&location=Mercury%20Lounge" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="5">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-18" data-idx="18" data-name="Towa Bird" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Irving Plaza Powered By Verizon 5G" data-url="https://www.ticketmaster.com/towa-bird-new-york-new-york-09-28-2026/event/000064C52CD25AFD" data-lat="40.734917" data-lng="-73.9884469">
+<button class="toggle" data-idx="18" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="18" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/towa-bird-new-york-new-york-09-28-2026/event/000064C52CD25AFD">Towa Bird</a></h3>
+<div class="meta">7:00 PM · Irving Plaza Powered By Verizon 5G</div>
+<p>Accessible accommodations should purchase a General Admission ticket and will be taken care of at the venue day of event.</p>
+<a class="tickets" href="https://www.ticketmaster.com/towa-bird-new-york-new-york-09-28-2026/event/000064C52CD25AFD">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Towa%20Bird&dates=20260928T230000Z/20260929T010000Z&details=Accessible%20accommodations%20should%20purchase%20a%20General%20Admission%20ticket%20and%20will%20be%20taken%20care%20of%20at%20the%20venue%20day%20of%20event.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/towa-bird-new-york-new-york-09-28-2026/event/000064C52CD25AFD&location=Irving%20Plaza%20Powered%20By%20Verizon%205G" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="18">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-19" data-idx="19" data-name="Florence Road" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Bowery Ballroom" data-url="https://www.ticketmaster.com/florence-road-new-york-new-york-09-28-2026/event/000064D2C585D2D4" data-lat="40.720364" data-lng="-73.993542">
+<button class="toggle" data-idx="19" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="19" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/florence-road-new-york-new-york-09-28-2026/event/000064D2C585D2D4">Florence Road</a></h3>
+<div class="meta">7:00 PM · Bowery Ballroom</div>
+<p>Florence Road w/ People I&#x27;ve Met [Ages 18+, Doors Open 7pm, $20 Advance, $25 Day of Show]</p>
+<a class="tickets" href="https://www.ticketmaster.com/florence-road-new-york-new-york-09-28-2026/event/000064D2C585D2D4">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Florence%20Road&dates=20260928T230000Z/20260929T010000Z&details=Florence%20Road%20w/%20People%20I%27ve%20Met%20%5BAges%2018%2B%2C%20Doors%20Open%207pm%2C%20%2420%20Advance%2C%20%2425%20Day%20of%20Show%5D%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/florence-road-new-york-new-york-09-28-2026/event/000064D2C585D2D4&location=Bowery%20Ballroom" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="19">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-20" data-idx="20" data-name="L&#x27;Rain, medium." data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Night Club 101" data-url="https://www.ticketweb.com/event/lrain-medium-night-club-101-tickets/14235284" data-lat="40.725911" data-lng="-73.984043">
+<button class="toggle" data-idx="20" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="20" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/lrain-medium-night-club-101-tickets/14235284">L&#x27;Rain, medium.</a></h3>
+<div class="meta">7:00 PM · Night Club 101 · $33.90</div>
+<p>LRain has partnered with PLUS1 so that $1 from every ticket sold goes to Sounds of Saving and their work designing and providing tools, content, resources, and curriculum to young people on how to discover and utilize music to support their mental health and wellness.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/lrain-medium-night-club-101-tickets/14235284">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=L%27Rain%2C%20medium.&dates=20260928T230000Z/20260929T010000Z&details=LRain%20has%20partnered%20with%20PLUS1%20so%20that%20%241%20from%20every%20ticket%20sold%20goes%20to%20Sounds%20of%20Saving%20and%20their%20work%20designing%20and%20providing%20tools%2C%20content%2C%20resources%2C%20and%20curriculum%20to%20young%20people%20on%20how%20to%20discover%20and%20utilize%20music%20to%20support%20their%20mental%20health%20and%20wellness.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/lrain-medium-night-club-101-tickets/14235284&location=Night%20Club%20101" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="20">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-23" data-idx="23" data-name="Stagedoor 50: A One Night Only Concert" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="Town Hall" data-url="https://www.ticketmaster.com/stagedoor-50-a-one-night-only-new-york-new-york-09-28-2026/event/030064C718F726E2" data-lat="40.75599205" data-lng="-73.98447747">
+<button class="toggle" data-idx="23" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="23" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/stagedoor-50-a-one-night-only-new-york-new-york-09-28-2026/event/030064C718F726E2">Stagedoor 50: A One Night Only Concert</a></h3>
+<div class="meta">7:00 PM · Town Hall</div>
+<p>Stagedoor Manor and the Entertainment Community Fund present Stagedoor 50: A One-Night-Only Concert celebrating 50 Years of Stagedoor Manor Benefiting the Entertainment Community Fund with appearances by Erich Bergen, Michael Ian Black, Zach Braff, Josh Charles, Jon Cryer, Sofia Hublitz, Shawn Levy, Julia Murney, Chris Olsen, Larry Owens, Adam Pascal, Amy Ryan, Shaina Taub, Jeanine Tesori* and more. This unprecedented event will celebrate the legendary performing arts training center?s past, present and future, featuring an incredible lineup of Stagedoor Manor alumni and friends coming together to honor the place they call home. 100% of the proceeds will benefit the Entertainment Community Fund?s programs that address the unique needs of people who work in performing arts and entertainment with services focused on health and wellness, career and life, and housing. *Artists subject to change</p>
+<a class="tickets" href="https://www.ticketmaster.com/stagedoor-50-a-one-night-only-new-york-new-york-09-28-2026/event/030064C718F726E2">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Stagedoor%2050%3A%20A%20One%20Night%20Only%20Concert&dates=20260928T230000Z/20260929T010000Z&details=Stagedoor%20Manor%20and%20the%20Entertainment%20Community%20Fund%20present%20Stagedoor%2050%3A%20A%20One-Night-Only%20Concert%20celebrating%2050%20Years%20of%20Stagedoor%20Manor%20Benefiting%20the%20Entertainment%20Community%20Fund%20with%20appearances%20by%20Erich%20Bergen%2C%20Michael%20Ian%20Black%2C%20Zach%20Braff%2C%20Josh%20Charles%2C%20Jon%20Cryer%2C%20Sofia%20Hublitz%2C%20Shawn%20Levy%2C%20Julia%20Murney%2C%20Chris%20Olsen%2C%20Larry%20Owens%2C%20Adam%20Pascal%2C%20Amy%20Ryan%2C%20Shaina%20Taub%2C%20Jeanine%20Tesori%2A%20and%20more.%20This%20unprecedented%20event%20will%20celebrate%20the%20legendary%20performing%20arts%20training%20center%3Fs%20past%2C%20present%20and%20future%2C%20featuring%20an%20incredible%20lineup%20of%20Stagedoor%20Manor%20alumni%20and%20friends%20coming%20together%20to%20honor%20the%20place%20they%20call%20home.%20100%25%20of%20the%20proceeds%20will%20benefit%20the%20Entertainment%20Community%20Fund%3Fs%20programs%20that%20address%20the%20unique%20needs%20of%20people%20who%20work%20in%20performing%20arts%20and%20entertainment%20with%20services%20focused%20on%20health%20and%20wellness%2C%20career%20and%20life%2C%20and%20housing.%20%2AArtists%20subject%20to%20change%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/stagedoor-50-a-one-night-only-new-york-new-york-09-28-2026/event/030064C718F726E2&location=Town%20Hall" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="23">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-25" data-idx="25" data-name="A New York Evening With Kashus Culpepper" data-start-local="2026-09-28T19:30:00" data-cal-start="20260928T233000Z" data-cal-end="20260929T013000Z" data-loc="The Greene Space" data-url="https://www.universe.com/events/a-new-york-evening-with-kashus-culpepper-tickets-5DTY3Z?ref=ticketmaster" data-lat="40.72744098" data-lng="-74.00501248">
+<button class="toggle" data-idx="25" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="25" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.universe.com/events/a-new-york-evening-with-kashus-culpepper-tickets-5DTY3Z?ref=ticketmaster">A New York Evening With Kashus Culpepper</a></h3>
+<div class="meta">7:30 PM · The Greene Space</div>
+<p></p>
+<a class="tickets" href="https://www.universe.com/events/a-new-york-evening-with-kashus-culpepper-tickets-5DTY3Z?ref=ticketmaster">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=A%20New%20York%20Evening%20With%20Kashus%20Culpepper&dates=20260928T233000Z/20260929T013000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/a-new-york-evening-with-kashus-culpepper-tickets-5DTY3Z%3Fref%3Dticketmaster&location=The%20Greene%20Space" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="25">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-28" data-idx="28" data-name="The Rescues feat. guest appearances by Shoshana Bean and The Lost Boys&#x27; cast members + special guest MILCK" data-start-local="2026-09-28T20:00:00" data-cal-start="20260929T000000Z" data-cal-end="20260929T020000Z" data-loc="Le Poisson Rouge" data-url="https://www.ticketweb.com/event/the-rescues-feat-guest-appearances-le-poisson-rouge-tickets/15031793" data-lat="40.728475" data-lng="-74.000052">
+<button class="toggle" data-idx="28" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="28" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/the-rescues-feat-guest-appearances-le-poisson-rouge-tickets/15031793">The Rescues feat. guest appearances by Shoshana Bean and The Lost Boys&#x27; cast members + special guest MILCK</a></h3>
+<div class="meta">8:00 PM · Le Poisson Rouge · $32.96</div>
+<p>GUEST APPEARANCES BY THE LOST BOYS&#x27; CAST MEMBERS INCLUDING: - Tony Award Winner Shoshana Bean - LJ Benet - Maria Wirries - Brian Flores - Dean Maupin - Hank Santos -Dominic Dorset - Pierre Marais GA Advance is a standing room ticket. All ticket sales are final. No refunds or credits. Opera Box Seated Section for all shows is reserved exclusively for ticket holders who purchased &quot;Opera Box Seated Section&quot; tickets. By purchasing an , &quot;rdquo&quot; -&gt; Opera Box Seated Section&quot; ticket you agree to also purchase a minimum of two food and/or beverage items per person. Seating is first come, first seated. Please arrive early for the best choice of available seats. Seating begins when doors open. Tables are communal so you may be seated with other patrons. We do not take table reservations. All ticket sales are final. No refunds or credits.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/the-rescues-feat-guest-appearances-le-poisson-rouge-tickets/15031793">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Rescues%20feat.%20guest%20appearances%20by%20Shoshana%20Bean%20and%20The%20Lost%20Boys%27%20cast%20members%20%2B%20special%20guest%20MILCK&dates=20260929T000000Z/20260929T020000Z&details=GUEST%20APPEARANCES%20BY%20THE%20LOST%20BOYS%27%20CAST%20MEMBERS%20INCLUDING%3A%20-%20Tony%20Award%20Winner%20Shoshana%20Bean%20-%20LJ%20Benet%20-%20Maria%20Wirries%20-%20Brian%20Flores%20-%20Dean%20Maupin%20-%20Hank%20Santos%20-Dominic%20Dorset%20-%20Pierre%20Marais%20GA%20Advance%20is%20a%20standing%20room%20ticket.%20All%20ticket%20sales%20are%20final.%20No%20refunds%20or%20credits.%20Opera%20Box%20Seated%20Section%20for%20all%20shows%20is%20reserved%20exclusively%20for%20ticket%20holders%20who%20purchased%20%22Opera%20Box%20Seated%20Section%22%20tickets.%20By%20purchasing%20an%20%2C%20%22rdquo%22%20-%3E%20Opera%20Box%20Seated%20Section%22%20ticket%20you%20agree%20to%20also%20purchase%20a%20minimum%20of%20two%20food%20and/or%20beverage%20items%20per%20person.%20Seating%20is%20first%20come%2C%20first%20seated.%20Please%20arrive%20early%20for%20the%20best%20choice%20of%20available%20seats.%20Seating%20begins%20when%20doors%20open.%20Tables%20are%20communal%20so%20you%20may%20be%20seated%20with%20other%20patrons.%20We%20do%20not%20take%20table%20reservations.%20All%20ticket%20sales%20are%20final.%20No%20refunds%20or%20credits.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/the-rescues-feat-guest-appearances-le-poisson-rouge-tickets/15031793&location=Le%20Poisson%20Rouge" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="28">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Comedy</h2>
+
+<article class="event" id="event-12" data-idx="12" data-name="The Play That Goes Wrong" data-start-local="2026-09-28T19:00:00" data-cal-start="20260928T230000Z" data-cal-end="20260929T010000Z" data-loc="New World Stages - Stage 4" data-url="https://www.ticketmaster.com/the-play-that-goes-wrong-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZaeK" data-lat="40.76301415" data-lng="-73.9876273">
+<button class="toggle" data-idx="12" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="12" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/the-play-that-goes-wrong-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZaeK">The Play That Goes Wrong</a></h3>
+<div class="meta">7:00 PM · New World Stages - Stage 4</div>
+<p>(1) Children under 4 years old will not be admitted. (2) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (3) Tickets are on a delayed delivery.</p>
+<a class="tickets" href="https://www.ticketmaster.com/the-play-that-goes-wrong-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZaeK">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Play%20That%20Goes%20Wrong&dates=20260928T230000Z/20260929T010000Z&details=%281%29%20Children%20under%204%20years%20old%20will%20not%20be%20admitted.%20%282%29%20No%20weapons%20permitted%20on%20the%20premises.%20No%20outside%20food%20or%20beverages%2C%20electric%20scooters%2C%20e-bikes%2C%20or%20battery-powered%20transportation%20devices%2C%20except%20when%20medically%20necessary.%20All%20items%20are%20subject%20to%20inspection.%20Anything%20brought%20into%20the%20theatre%20must%20fit%20on%20your%20lap%20or%20completely%20under%20your%20seat%20without%20blocking%20any%20aisles.%20Avoid%20bringing%20packages%2C%20luggage%2C%20and%20backpacks.%20Some%20items%20must%20be%20checked.%20%283%29%20Tickets%20are%20on%20a%20delayed%20delivery.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/the-play-that-goes-wrong-new-york-new-york-09-28-2026/event/Z1r9uZruZqGZ1AvZaeK&location=New%20World%20Stages%20-%20Stage%204" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="12">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-24" data-idx="24" data-name="Singfeld! A Musical About Nothing!" data-start-local="2026-09-28T19:30:00" data-cal-start="20260928T233000Z" data-cal-end="20260929T013000Z" data-loc="The Theater Center" data-url="https://www.ticketmaster.com/singfeld-a-musical-about-nothing-new-york-new-york-09-28-2026/event/300064F7957939E0" data-lat="40.761604" data-lng="-73.9846">
+<button class="toggle" data-idx="24" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="24" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/singfeld-a-musical-about-nothing-new-york-new-york-09-28-2026/event/300064F7957939E0">Singfeld! A Musical About Nothing!</a></h3>
+<div class="meta">7:30 PM · The Theater Center</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/singfeld-a-musical-about-nothing-new-york-new-york-09-28-2026/event/300064F7957939E0">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Singfeld%21%20A%20Musical%20About%20Nothing%21&dates=20260928T233000Z/20260929T013000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/singfeld-a-musical-about-nothing-new-york-new-york-09-28-2026/event/300064F7957939E0&location=The%20Theater%20Center" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="24">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-59" data-idx="59" data-name="Monday Night Comedy Show" data-start-local="2026-09-28T20:00:00" data-cal-start="20260929T000000Z" data-cal-end="20260929T020000Z" data-loc="Top Secret Comedy Club, East Village" data-url="https://topsecretcomedyclub.com/events-listings/monday-stand-up-comedy-8pm-show-7/">
+<button class="toggle" data-idx="59" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="59" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://topsecretcomedyclub.com/events-listings/monday-stand-up-comedy-8pm-show-7/">Monday Night Comedy Show</a></h3>
+<div class="meta">8:00 PM · Top Secret Comedy Club, East Village · $2.00</div>
+<p>Mixed-bill stand-up in an East Village cellar — past surprise drop-ins have included big names. $2, no drink minimum, beers from $5.</p>
+<a class="tickets" href="https://topsecretcomedyclub.com/events-listings/monday-stand-up-comedy-8pm-show-7/">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Monday%20Night%20Comedy%20Show&dates=20260929T000000Z/20260929T020000Z&details=Mixed-bill%20stand-up%20in%20an%20East%20Village%20cellar%20%E2%80%94%20past%20surprise%20drop-ins%20have%20included%20big%20names.%20%242%2C%20no%20drink%20minimum%2C%20beers%20from%20%245.%20Tickets%20%26%20info%3A%20https%3A//topsecretcomedyclub.com/events-listings/monday-stand-up-comedy-8pm-show-7/&location=Top%20Secret%20Comedy%20Club%2C%20East%20Village" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="59">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-60" data-idx="60" data-name="A True York Comedy Experience" data-start-local="2026-09-28T19:30:00" data-cal-start="20260928T233000Z" data-cal-end="20260929T013000Z" data-loc="St. Marks Comedy Club, East Village" data-url="https://www.stmarkscomedy.com/shows/a-true-york-comedy-experience-2026-09-28-96d0d96c">
+<button class="toggle" data-idx="60" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="60" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.stmarkscomedy.com/shows/a-true-york-comedy-experience-2026-09-28-96d0d96c">A True York Comedy Experience</a></h3>
+<div class="meta">7:30 PM · St. Marks Comedy Club, East Village · $15.00</div>
+<p>After-work laughs at St. Marks Comedy Club — doors 7:00, show 7:30. Tickets from $15.</p>
+<a class="tickets" href="https://www.stmarkscomedy.com/shows/a-true-york-comedy-experience-2026-09-28-96d0d96c">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=A%20True%20York%20Comedy%20Experience&dates=20260928T233000Z/20260929T013000Z&details=After-work%20laughs%20at%20St.%20Marks%20Comedy%20Club%20%E2%80%94%20doors%207%3A00%2C%20show%207%3A30.%20Tickets%20from%20%2415.%20Tickets%20%26%20info%3A%20https%3A//www.stmarkscomedy.com/shows/a-true-york-comedy-experience-2026-09-28-96d0d96c&location=St.%20Marks%20Comedy%20Club%2C%20East%20Village" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="60">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+</main>
+<footer>
+<div class="serif">Hand-picked for you by Tonight.</div>
+<p>Your picks are tracked when you send them —<br>tomorrow's digest learns what you love.</p>
+</footer>
+<script>
+const TRAVEL_MINUTES = 30;  // default buffer before an event's start time
+const CITY = "nyc";
+const DATE = "2026-09-28";
+const NAMES = ["Museum of Chinese in America Flex Admission", "Banksy Museum - Flexiticket", "The Banksy Museum New York!", "Banksy Museum NY - Monday Movie Day and Nights!", "Vince Giordano and the Nighthawks", "Anna Moon + The Stars", "Slam Frank", "Six (New York, NY)", "Chicago", "The Great Gatsby", "The 25th Annual Putnam County Spelling Bee", "Heathers: The Musical", "The Play That Goes Wrong", "Jamie Allan's Amaze", "Six: The Musical", "Music City", "Pre-Existing Condition", "The Welsh Twins", "Towa Bird", "Florence Road", "L'Rain, medium.", "Karen Mason: Birthday Bash at Birdland", "Nick Dunbar", "Stagedoor 50: A One Night Only Concert", "Singfeld! A Musical About Nothing!", "A New York Evening With Kashus Culpepper", "Perfect Crime", "Public Image Ltd. (16 and Over)", "The Rescues feat. guest appearances by Shoshana Bean and The Lost Boys' cast members + special guest MILCK", "The Cabaret Burlesque presents: Code Red", "Line Dance Fitness", "Cardio Sculpt", "New Dendrology at the Arsenal Gallery", "Yoga", "Yoga en Espa&#241;ol (Yoga in Spanish)", "Monday Morning Pitch In to Pick Up", "Ongoing Museum Exhibit: Voices of 1776", "Senior Cardio Sculpt", "Ongoing Outdoor Museum Exhibit: Alice's Terracotta Garden", "Gentle Yoga", "Piano in Bryant Park", "P&#233;tanque in the Park", "iNaturalist Together Week: Inwood Hill Park Evening Plant ID Walk", "Bodyweight Circuit Training", "Zumba", "Yoga with Bien Good Well", "Low Impact Bodyweight Circuit Training", "Strong and Steady Circuit Training", "Zumba Gold&#174;", "Hoop Jam in Herald Square Park", "Bodyweight Interval Training", "Uplifted Dance Fitness", "Yoga", "RETRO Dance Fitness", "BollyX", "Chair Yoga", "Harlem Run: Monday Night Run", "Bodyweight Power Circuit", "Virtual Yoga", "Monday Night Comedy Show", "A True York Comedy Experience"];
+const CATS = ["Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Music", "Music", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Comedy", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Music", "Music", "Music", "Arts & Play", "Music", "Music", "Comedy", "Music", "Arts & Play", "Arts & Play", "Music", "Arts & Play", "Arts & Play", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Music", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Comedy", "Comedy"];
+const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false];
+const TZ = "America/New_York";
+const STARTS = [660, 600, 600, 840, 1050, 1080, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1170, 1170, 1200, 1200, 1200, 1200, 480, 540, 540, 600, 600, 600, 600, 630, 660, 690, 750, 780, 1020, 1050, 1050, 1080, 1080, 1080, 1080, 1080, 1080, 1095, 1095, 1110, 1110, 1110, 1125, 1140, 1170, 1200, 1170];   // minutes since midnight, or null
+const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 600, 600, 1020, 660, 660, 750, 900, 690, 900, 750, 870, 960, 1110, 1095, 1095, 1125, 1125, 1125, 1130, 1140, 1140, 1140, 1155, 1155, 1170, 1170, 1230, 1185, 1230, null, null];       // from end_time, or null (-> start + 2h)
+const KEY = "tonight-picks-" + CITY + "-" + DATE;
+let picks = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
+function render() {
+  document.querySelectorAll(".toggle").forEach(btn => {
+    const on = picks.has(btn.dataset.idx);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  document.getElementById("pickCount").textContent = picks.size;
+  localStorage.setItem(KEY, JSON.stringify([...picks]));
+  // report taps to the backend when available (real tracking)
+  if (window.__tonight_api) {
+    const USER_ID = localStorage.getItem("tonight-user-id") || null;
+    fetch(window.__tonight_api + "/tap", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({city: CITY, date: DATE, user_id: USER_ID,
+        picks: [...picks].map(i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i]}))})
+    }).catch(() => {});
+  }
+}
+document.querySelectorAll(".toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const id = btn.dataset.idx;
+    picks.has(id) ? picks.delete(id) : picks.add(id);
+    render();
+  });
+});
+document.getElementById("shareBtn").addEventListener("click", async () => {
+  const data = {title: document.title, text: "Today's picks", url: location.href};
+  if (navigator.share) { try { await navigator.share(data); } catch(e) {} }
+  else { await navigator.clipboard.writeText(location.href); alert("Link copied — paste it anywhere to share."); }
+});
+document.getElementById("sendBtn").addEventListener("click", () => {
+  if (!picks.size) { alert("Tap a few boxes first, then send your picks."); return; }
+  const list = [...picks].sort().map(i => "• " + NAMES[+i]).join("\n");
+  const subject = encodeURIComponent("Re: New York City — my picks");
+  const body = encodeURIComponent("My picks for " + DATE + " (" + CITY + "):\n\n" + list + "\n\n— sent from my New York City page");
+  location.href = "mailto:pseshadri91@gmail.com?subject=" + subject + "&body=" + body;
+});
+render();
+function fmtTime(d) {
+  let h = d.getHours(); const m = d.getMinutes();
+  const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12;
+  return h + ":" + String(m).padStart(2, "0") + " " + ap;
+}
+// "leave by" hints from each event's local start time
+document.querySelectorAll(".event[data-start-local]").forEach(a => {
+  const start = new Date(a.dataset.startLocal);
+  if (isNaN(start)) return;
+  const leave = new Date(start.getTime() - TRAVEL_MINUTES * 60000);
+  const el = a.querySelector(".leave-by");
+  if (el) el.textContent = "leave by ~" + fmtTime(leave);
+});
+// per-event .ics download built client-side
+function icsEscape(s) {
+  return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;")
+                  .replace(/,/g, "\\,").replace(/\n/g, "\n");
+}
+function icsFold(line) {
+  let out = "";
+  while (line.length > 75) { out += line.slice(0, 75) + "\r\n "; line = line.slice(75); }
+  return out + line;
+}
+document.querySelectorAll(".ics-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const a = btn.closest(".event");
+    const d = a.dataset;
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Tonight//Event//EN",
+      "BEGIN:VEVENT",
+      "UID:" + CITY + "-" + DATE + "-" + btn.dataset.idx + "@tonight",
+      "DTSTAMP:" + stamp,
+      "DTSTART:" + d.calStart, "DTEND:" + d.calEnd,
+      "SUMMARY:" + icsEscape(d.name)];
+    if (d.loc) lines.push("LOCATION:" + icsEscape(d.loc));
+    if (d.url) {
+      lines.push("URL:" + d.url);
+      lines.push("DESCRIPTION:" + icsEscape("Tickets & info: " + d.url));
+    }
+    lines.push("END:VEVENT", "END:VCALENDAR");
+    const uri = "data:text/calendar;charset=utf-8," +
+                encodeURIComponent(lines.map(icsFold).join("\r\n"));
+    const link = document.createElement("a");
+    link.href = uri;
+    link.download = d.name.replace(/[^\w\- ]+/g, "").trim()
+                         .replace(/\s+/g, "-").slice(0, 60) + ".ics";
+    document.body.appendChild(link); link.click(); link.remove();
+  });
+});
+
+// ---------------- Filters + hide ----------------
+// Wrapped in an IIFE: the browse page reuses this whole script via
+// extraction, and its own filter code must not collide with this.
+window.__applyFilters = (function () {
+  const bar = document.getElementById("filterBar");
+  if (!bar) return null;
+  const F = {q: "", cat: "", free: false, tod: "all"};
+  const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
+  let hidden = new Set(JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
+  function todOf(i) {
+    const s = STARTS[i];
+    if (s == null) return "tba";
+    if (s < 720) return "morning";      // before 12 PM
+    if (s < 1020) return "afternoon";   // 12–5 PM
+    return "evening";                   // 5 PM+
+  }
+  function applyFilters() {
+    const cards = document.querySelectorAll("article.event");
+    let n = 0;
+    cards.forEach(a => {
+      const i = a.dataset.idx;
+      let ok = !hidden.has(i);
+      if (ok && F.cat && CATS[+i] !== F.cat) ok = false;
+      if (ok && F.free && !FREE[+i]) ok = false;
+      if (ok && F.tod !== "all" && todOf(+i) !== F.tod) ok = false;
+      if (ok && F.q) {
+        const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
+        if (!hay.includes(F.q)) ok = false;
+      }
+      a.style.display = ok ? "" : "none";
+      if (ok) n++;
+    });
+    document.querySelectorAll("section.cat").forEach(s => {
+      const vis = [...s.querySelectorAll("article.event")]
+        .some(a => a.style.display !== "none");
+      s.style.display = vis ? "" : "none";
+    });
+    document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
+    document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
+    document.getElementById("hiddenN").textContent = hidden.size;
+  }
+  document.getElementById("fq").addEventListener("input", e => {
+    F.q = e.target.value.trim().toLowerCase(); applyFilters();
+  });
+  document.getElementById("fcat").addEventListener("change", e => {
+    F.cat = e.target.value; applyFilters();
+  });
+  document.getElementById("ffree").addEventListener("click", e => {
+    F.free = !F.free;
+    e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
+    applyFilters();
+  });
+  document.querySelectorAll("#ftod button").forEach(b => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
+      b.classList.add("on");
+      F.tod = b.dataset.t; applyFilters();
+    });
+  });
+  document.querySelectorAll(".hide").forEach(b => b.addEventListener("click", () => {
+    const i = b.dataset.idx;
+    hidden.add(i);
+    localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden]));
+    if (picks.has(i)) { picks.delete(i); render(); }
+    applyFilters();
+  }));
+  document.getElementById("unhide").addEventListener("click", () => {
+    hidden.clear();
+    localStorage.setItem(HIDE_KEY, "[]");
+    applyFilters();
+  });
+  applyFilters();
+  return applyFilters;
+})();
+
+// ---------------- Tonight mode ----------------
+const TONIGHT_WINDOW = 300;  // upcoming: starts within the next 5h
+const NOW_GRACE = 120;       // "happening now": started within the last 2h
+function cityNowMinutes() {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: TZ, hour: "numeric", minute: "numeric", hour12: false
+    }).formatToParts(new Date());
+    let h = 0, m = 0;
+    for (const p of parts) {
+      if (p.type === "hour") h = (+p.value) % 24;
+      if (p.type === "minute") m = +p.value;
+    }
+    return h * 60 + m;
+  } catch (e) {
+    const d = new Date();
+    return d.getHours() * 60 + d.getMinutes();
+  }
+}
+let tonightOn = false;
+const homeSpot = new Map();  // idx -> original {parent, next} for restore
+function addBadge(art, cls, text) {
+  art.querySelectorAll(".badge").forEach(b => b.remove());
+  const b = document.createElement("span");
+  b.className = "badge " + cls;
+  b.textContent = text;
+  art.querySelector(".event-body").prepend(b);
+}
+function setTonight(on) {
+  tonightOn = on;
+  const btn = document.getElementById("tonightBtn");
+  btn.classList.toggle("btn-active", on);
+  btn.setAttribute("aria-pressed", on ? "true" : "false");
+  const wrap = document.getElementById("tonightWrap");
+  const list = document.getElementById("tonightList");
+  const empty = document.getElementById("tonightEmpty");
+  const count = document.getElementById("tonightCount");
+  if (!on) {
+    homeSpot.forEach((spot, i) => {
+      const art = document.getElementById("event-" + i);
+      if (art) {
+        art.querySelectorAll(".badge").forEach(b => b.remove());
+        spot.parent.insertBefore(art, spot.next);
+      }
+    });
+    homeSpot.clear();
+    wrap.style.display = "none";
+    document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
+    const fbOff = document.getElementById("filterBar");
+    if (fbOff) fbOff.style.display = "";
+    if (window.__applyFilters) window.__applyFilters();
+    return;
+  }
+  const now = cityNowMinutes();
+  const items = [];
+  document.querySelectorAll("article.event").forEach(art => {
+    const i = +art.dataset.idx;
+    if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
+    const s = STARTS[i];
+    let status = "tba", rank = 3;
+    if (s == null) { status = "tba"; rank = 3; }
+    else {
+      const e = ENDS[i] != null ? ENDS[i] : s + NOW_GRACE;
+      if (now >= s && now <= e) { status = "now"; rank = 0; }
+      else if (s > now && s - now <= TONIGHT_WINDOW) { status = "soon"; rank = FREE[i] ? 1 : 2; }
+      else { status = "past"; rank = 4; }
+    }
+    items.push({art: art, i: i, s: s, status: status, rank: rank, free: FREE[i]});
+  });
+  // Taste tiebreak: provided by the taste core script (injected by the
+  // site builder). Falls back to 0 when absent.
+  const tasteTie = o => (window.Tonight && Tonight.score) ? Tonight.score(o.i) : 0;
+  items.sort((a, b) => (a.rank - b.rank) || (tasteTie(b) - tasteTie(a)) || ((a.s == null ? 1440 : a.s) - (b.s == null ? 1440 : b.s)));
+  list.innerHTML = "";
+  let live = 0, tbaHeader = false;
+  items.forEach(o => {
+    if (o.status === "past") return;  // already over: not tonight
+    if (o.status === "tba" && !tbaHeader) {
+      tbaHeader = true;
+      const div = document.createElement("div");
+      div.className = "tba-div";
+      div.textContent = "Times TBA";
+      list.appendChild(div);
+    }
+    if (o.status === "now") addBadge(o.art, "now", "● Happening now");
+    else if (o.free) addBadge(o.art, "free", "Free");
+    else o.art.querySelectorAll(".badge").forEach(b => b.remove());
+    list.appendChild(o.art);
+    if (o.status !== "tba") live++;
+  });
+  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
+  const fbOn = document.getElementById("filterBar");
+  if (fbOn) fbOn.style.display = "none";
+  wrap.style.display = "block";
+  empty.style.display = live ? "none" : "block";
+  count.textContent = live ? live + (live === 1 ? " thing" : " things") + " on now or starting soon" : "";
+  wrap.scrollIntoView({behavior: "smooth", block: "start"});
+}
+document.getElementById("tonightBtn").addEventListener("click", () => setTonight(!tonightOn));
+</script>
+<script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}</script><script>window.__tonight_api="https://b64a2200e70f6dca-87-81-228-49.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
