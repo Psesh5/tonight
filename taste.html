@@ -219,7 +219,7 @@ function applyRanking(){
   }
 }
 /* ---------------- quiz ---------------- */
-var SURP = {low: "off", med: "some", high: "lots"};
+var SURP = {low: "none", med: "a few", high: "lots"};
 var sheet = null, sel = {};
 function chipBtn(c){
   var b = document.createElement("button");
@@ -250,7 +250,7 @@ function buildSheet(){
   var freeB = document.createElement("button");
   freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
   freeB.setAttribute("aria-pressed", "false");
-  freeB.textContent = "\u2728 Free-first";
+  freeB.textContent = "Free-first";
   freeB.addEventListener("click", function(){
     var on = freeB.getAttribute("aria-pressed") === "true";
     freeB.setAttribute("aria-pressed", on ? "false" : "true");
@@ -259,7 +259,7 @@ function buildSheet(){
   var surpB = document.createElement("button");
   surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
   var paintSurp = function(){
-    surpB.textContent = "\ud83c\udfb2 Surprise me: " + SURP[surp];
+    surpB.textContent = "Surprises: " + SURP[surp];
     surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
   };
   paintSurp();

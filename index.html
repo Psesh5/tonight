@@ -180,7 +180,7 @@ function applyRanking(){
   }
 }
 /* ---------------- quiz ---------------- */
-var SURP = {low: "off", med: "some", high: "lots"};
+var SURP = {low: "none", med: "a few", high: "lots"};
 var sheet = null, sel = {};
 function chipBtn(c){
   var b = document.createElement("button");
@@ -211,7 +211,7 @@ function buildSheet(){
   var freeB = document.createElement("button");
   freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
   freeB.setAttribute("aria-pressed", "false");
-  freeB.textContent = "\u2728 Free-first";
+  freeB.textContent = "Free-first";
   freeB.addEventListener("click", function(){
     var on = freeB.getAttribute("aria-pressed") === "true";
     freeB.setAttribute("aria-pressed", on ? "false" : "true");
@@ -220,7 +220,7 @@ function buildSheet(){
   var surpB = document.createElement("button");
   surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
   var paintSurp = function(){
-    surpB.textContent = "\ud83c\udfb2 Surprise me: " + SURP[surp];
+    surpB.textContent = "Surprises: " + SURP[surp];
     surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
   };
   paintSurp();
@@ -350,7 +350,7 @@ your picks train tomorrow's recommendations.</p>
 <p>Every morning, a curated shortlist of the day's best events — not a firehose. Every link verified.</p></div></div>
 <div class="step"><div class="n">2</div><div><h3>⚡ Tonight mode</h3>
 <p>Spontaneous? One tap filters to what's happening now or starting in the next few hours.</p></div></div>
-<div class="step"><div class="n">3</div><div><h3>✨ Free tonight</h3>
+<div class="step"><div class="n">3</div><div><h3>Free tonight</h3>
 <p>Free events get their own section, always. The best things in the city shouldn't cost anything.</p></div></div>
 <div class="step"><div class="n">4</div><div><h3>Taste that learns</h3>
 <p>Tap the boxes on anything you like. Your picks shape tomorrow's recommendations — per city.</p></div></div>
