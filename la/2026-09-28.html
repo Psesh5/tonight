@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 <div class="filters" id="filterBar">
 <input id="fq" type="search" placeholder="Search events, venues…" aria-label="Search events">
-<select id="fcat" aria-label="Filter by category"><option value="">All categories</option></select>
+<select id="fcat" aria-label="Filter by category"><option value="">All categories</option><option value="Arts &amp; Play">Arts &amp; Play</option></select>
 <div class="seg" id="ftod">
 <button data-t="all" class="on">Any time</button><button data-t="morning">Morning</button><button data-t="afternoon">Afternoon</button><button data-t="evening">Evening</button>
 </div>
@@ -379,6 +379,26 @@ document.addEventListener("DOMContentLoaded", function(){
 <div id="tonightEmpty" style="display:none;">Nothing on in the next 5 hours — check back later.</div>
 </div>
 
+<section class="cat">
+<h2>Arts &amp; Play</h2>
+
+<article class="event" id="event-0" data-idx="0" data-name="SoFi Stadium Tours - No Field Access" data-start-local="2026-09-28T09:00:00" data-cal-start="20260928T160000Z" data-cal-end="20260928T180000Z" data-loc="SoFi Stadium Tours" data-url="https://www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-09-28-2026/event/0A0064C5C1AAADCD" data-lat="33.95191" data-lng="-118.33565">
+<button class="toggle" data-idx="0" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="0" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-09-28-2026/event/0A0064C5C1AAADCD">SoFi Stadium Tours - No Field Access</a></h3>
+<div class="meta">9:00 AM · SoFi Stadium Tours</div>
+<p>Book your SoFi Stadium tour experience. Join us for a behind the scenes, immersive tour of SoFi Stadium. Experience exclusive areas inside the stadium including luxury suites, clubs, locker rooms, on-field access* and more! Choose the date below and a new window will open allowing you to choose from available times. Tour schedule, route and field activities are subject to change without notice.</p>
+<a class="tickets" href="https://www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-09-28-2026/event/0A0064C5C1AAADCD">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SoFi%20Stadium%20Tours%20-%20No%20Field%20Access&dates=20260928T160000Z/20260928T180000Z&details=Book%20your%20SoFi%20Stadium%20tour%20experience.%20Join%20us%20for%20a%20behind%20the%20scenes%2C%20immersive%20tour%20of%20SoFi%20Stadium.%20Experience%20exclusive%20areas%20inside%20the%20stadium%20including%20luxury%20suites%2C%20clubs%2C%20locker%20rooms%2C%20on-field%20access%2A%20and%20more%21%20Choose%20the%20date%20below%20and%20a%20new%20window%20will%20open%20allowing%20you%20to%20choose%20from%20available%20times.%20Tour%20schedule%2C%20route%20and%20field%20activities%20are%20subject%20to%20change%20without%20notice.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-09-28-2026/event/0A0064C5C1AAADCD&location=SoFi%20Stadium%20Tours" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="0">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
 </main>
 <footer>
 <div class="serif">Hand-picked for you by Tonight.</div>
@@ -388,12 +408,12 @@ document.addEventListener("DOMContentLoaded", function(){
 const TRAVEL_MINUTES = 30;  // default buffer before an event's start time
 const CITY = "la";
 const DATE = "2026-09-28";
-const NAMES = [];
-const CATS = [];
-const FREE = [];
+const NAMES = ["SoFi Stadium Tours - No Field Access"];
+const CATS = ["Arts & Play"];
+const FREE = [false];
 const TZ = "America/Los_Angeles";
-const STARTS = [];   // minutes since midnight, or null
-const ENDS = [];       // from end_time, or null (-> start + 2h)
+const STARTS = [540];   // minutes since midnight, or null
+const ENDS = [null];       // from end_time, or null (-> start + 2h)
 const KEY = "tonight-picks-" + CITY + "-" + DATE;
 let picks = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
 function render() {
@@ -658,4 +678,4 @@ function setTonight(on) {
 }
 document.getElementById("tonightBtn").addEventListener("click", () => setTonight(!tonightOn));
 </script>
-<script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}</script><script>window.__tonight_api="https://14f7e03d83e90cb9-104-28-228-77.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
+<script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}</script><script>window.__tonight_api="https://37a183c3f287febe-104-28-224-252.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
