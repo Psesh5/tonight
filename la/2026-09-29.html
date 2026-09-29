@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Angeles — Tuesday, September 29</title>
+<style>
+:root{--ink:#14201A;--gold:#E39A2D;--paper:#F7F2E9;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;}
+.hero{background:var(--ink);color:var(--paper);text-align:center;padding:44px 24px 36px;}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:3px;text-transform:uppercase;}
+.hero h1{font-family:Georgia, 'Times New Roman', serif;font-size:44px;margin:12px 0 8px;font-weight:normal;}
+.hero p{opacity:.72;font-size:14px;margin:0;}
+.toolbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:20px 20px 4px;}
+.btn{display:inline-block;border:none;cursor:pointer;padding:11px 24px;border-radius:999px;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;text-decoration:none;}
+.btn-dark{background:var(--ink);color:var(--paper);}
+.btn-gold{background:var(--gold);color:var(--ink);font-weight:bold;}
+.picks{max-width:640px;margin:14px auto 0;padding:14px 20px;text-align:center;font-size:14px;}
+.picks strong{font-family:Georgia, 'Times New Roman', serif;font-size:18px;}
+.wrap{max-width:680px;margin:0 auto;padding:8px 20px 60px;}
+.cat h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;border-bottom:1px solid #d8d2c2;padding:26px 0 10px;margin:0 0 4px;}
+.cat.free h2{color:var(--ink);}
+.cat.free{background:#fffdf6;border:1px solid var(--gold);border-radius:14px;padding:0 18px 8px;margin-top:18px;}
+.event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:20px;position:relative;}
+.hide{position:absolute;top:10px;right:0;background:none;border:none;color:#a89f8a;font-size:22px;line-height:1;cursor:pointer;padding:8px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
+.hide:hover{color:var(--ink);}
+.filters{max-width:680px;margin:0 auto;padding:16px 20px 4px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.filters input[type=search]{flex:1;min-width:170px;padding:10px 16px;border-radius:999px;border:1px solid #d8d2c2;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;background:#fff;color:var(--ink);}
+.filters select{padding:10px 14px;border-radius:999px;border:1px solid #d8d2c2;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;background:#fff;color:var(--ink);}
+.seg{display:flex;gap:6px;flex-wrap:wrap;}
+.seg button,.fbtn{padding:9px 16px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;font-size:13.5px;cursor:pointer;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;color:var(--ink);}
+.seg button.on,.fbtn[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);font-weight:bold;}
+#resCount{font-size:13px;color:#6b6b6b;margin-left:auto;}
+#hiddenBar{font-size:13px;color:#6b6b6b;display:none;}
+#hiddenBar button{background:none;border:none;padding:0;color:var(--ink);text-decoration:underline;cursor:pointer;font-size:13px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
+.toggle{background:none;border:none;cursor:pointer;padding:2px 0;align-self:flex-start;}
+.box{display:inline-block;width:22px;height:22px;border:2px solid var(--gold);border-radius:7px;background:#fff;position:relative;transition:background .15s;}
+.toggle[aria-pressed="true"] .box{background:var(--gold);}
+.toggle[aria-pressed="true"] .box::after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid var(--ink);border-width:0 3px 3px 0;transform:rotate(42deg);}
+.event-body{flex:1;}
+.event-body h3{font-family:Georgia, 'Times New Roman', serif;font-size:20px;margin:0 0 4px;}
+.event-body h3 a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;}
+.meta{font-size:13px;color:#6b6b6b;margin-bottom:8px;}
+.event-body p{font-size:14.5px;line-height:1.55;color:#333;margin:0 0 10px;}
+.tickets{display:inline-block;background:var(--ink);color:var(--paper);padding:8px 20px;border-radius:999px;text-decoration:none;font-size:13px;}
+.cal-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;}
+.cal-link{display:inline-block;background:#fff;border:1px solid var(--gold);color:var(--ink);padding:6px 14px;border-radius:999px;text-decoration:none;font-size:12.5px;cursor:pointer;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
+.cal-link:hover{background:var(--gold);}
+.leave-by{font-size:12.5px;color:#6b6b6b;font-style:italic;}
+.btn-active{background:var(--gold)!important;color:var(--ink)!important;font-weight:bold;}
+.badge{display:inline-block;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin:0 0 8px;}
+.badge.now{background:#1a7f37;color:#fff;}
+.badge.free{background:var(--gold);color:var(--ink);}
+#tonightWrap{display:none;}
+.tonight-head h2{font-family:Georgia, 'Times New Roman', serif;font-size:26px;margin:18px 0 2px;font-weight:normal;}
+.tonight-head p{font-size:13px;color:#6b6b6b;margin:0 0 6px;}
+.tba-div{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b6b6b;border-top:1px solid #d8d2c2;margin-top:14px;padding-top:14px;}
+#tonightEmpty{text-align:center;color:#6b6b6b;padding:30px 10px;font-size:14px;}
+footer{background:var(--ink);color:var(--paper);text-align:center;padding:34px 24px;font-size:13px;}
+footer .serif{font-family:Georgia, 'Times New Roman', serif;font-size:17px;margin-bottom:8px;}
+footer p{opacity:.62;line-height:1.6;margin:0;}
+</style><style>
+.topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
+background:var(--banner,#14201A);color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+.topnav .brand{font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#F7F2E9;text-decoration:none;display:flex;align-items:center;gap:9px;}
+.topnav .brand img{height:26px;width:26px;}
+.topnav .brand b{color:#E39A2D;}
+.topnav .citylinks{display:flex;gap:6px;margin-left:auto;}
+.topnav .citylinks a{color:#F7F2E9;opacity:.75;text-decoration:none;font-size:13.5px;
+padding:6px 14px;border-radius:999px;border:1px solid transparent;}
+.topnav .citylinks a.cur{background:#E39A2D;color:#14201A;font-weight:bold;opacity:1;}
+.topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
+.topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .browselink:hover{text-decoration:underline;}
+.topnav .tastelinks{display:flex;gap:14px;align-items:center;}
+.topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
+.topnav .tastelink:hover{text-decoration:underline;}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
+<script>(function(){try{var c=localStorage.getItem("tonight-banner");if(c){document.documentElement.style.setProperty("--banner",c);}}catch(e){}})();</script><style>
+.quiz-veil{position:fixed;inset:0;z-index:200;background:rgba(20,32,26,.55);
+display:flex;align-items:flex-end;justify-content:center;}
+.quiz-veil[hidden]{display:none;}
+.quiz-card{background:#F7F2E9;color:#14201A;border-radius:20px 20px 0 0;
+padding:28px 24px 34px;max-width:560px;width:100%;max-height:88vh;overflow:auto;
+font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+animation:quizup .25s ease-out;}
+@keyframes quizup{from{transform:translateY(24px);opacity:.6;}to{transform:none;opacity:1;}}
+@media(min-width:640px){.quiz-veil{align-items:center;padding:20px;}
+.quiz-card{border-radius:20px;}}
+.quiz-eyebrow{color:#B07A1E;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;}
+.quiz-card h2{font-family:Georgia,'Times New Roman',serif;font-size:28px;margin:8px 0 6px;font-weight:normal;}
+.quiz-sub{font-size:14px;color:#6b6b6b;margin:0 0 16px;line-height:1.5;}
+.qchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.qchip{padding:10px 18px;border-radius:999px;border:1px solid #d8d2c2;background:#fff;
+font-size:14px;cursor:pointer;font-family:inherit;color:#14201A;}
+.qchip[aria-pressed="true"]{background:#E39A2D;border-color:#E39A2D;font-weight:bold;}
+.qactions{display:flex;gap:16px;align-items:center;margin-top:4px;}
+.qlink{background:none;border:none;color:#6b6b6b;text-decoration:underline;cursor:pointer;
+font-size:13.5px;font-family:inherit;padding:0;}
+</style></head>
+<body><script>
+/* Tonight taste: onboarding quiz, profile, personalized ranking */
+(function(){
+"use strict";
+var CATS_ALL = ["Music", "Arts & Play", "Comedy", "Talks", "Tech", "Meetups & Mixers", "Food & Drink"];
+var CITY = "la";
+var CITIES_ALL = ["nyc", "london", "la"];
+var TKEY = "tonight-taste";
+var OKEY = "tonight-onboarded";
+function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low"}; }
+function cleanList(a){
+  if (!Array.isArray(a)) return [];
+  return a.filter(function(c){ return CATS_ALL.indexOf(c) >= 0; });
+}
+function load(){
+  try {
+    var t = JSON.parse(localStorage.getItem(TKEY) || "null");
+    if (t && typeof t === "object") {
+      var b = blank();
+      b.likes = cleanList(t.likes); b.mutes = cleanList(t.mutes);
+      b.free_only = !!t.free_only;
+      b.surprise = (t.surprise === "med" || t.surprise === "high") ? t.surprise : "low";
+      return b;
+    }
+  } catch (e) {}
+  return blank();
+}
+var taste = load();
+var tapBonus = {};
+function uid(){
+  var u = null;
+  try { u = localStorage.getItem("tonight-user-id"); } catch (e) {}
+  if (!u) {
+    u = "dev-" + Math.random().toString(36).slice(2, 10);
+    try { localStorage.setItem("tonight-user-id", u); } catch (e) {}
+  }
+  return u;
+}
+function apiBase(){ return window.__tonight_api || null; }
+function save(sync){
+  try { localStorage.setItem(TKEY, JSON.stringify(taste)); } catch (e) {}
+  if (sync === false) return;
+  var base = apiBase();
+  if (!base) return;
+  var targets = CITY ? [CITY] : CITIES_ALL;
+  var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
+    free_only: taste.free_only, surprise: taste.surprise});
+  targets.forEach(function(c){
+    fetch(base + "/taste/" + encodeURIComponent(c),
+      {method: "POST", headers: {"Content-Type": "application/json"}, body: payload}
+    ).catch(function(){});
+  });
+}
+function pull(){
+  var base = apiBase();
+  if (!base || !CITY || typeof CATS === "undefined") return;
+  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()))
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if (d && d.categories) { tapBonus = d.categories; applyRanking(); } })
+    .catch(function(){});
+}
+function score(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  var cat = CATS[i], s = 0;
+  if (taste.likes.indexOf(cat) >= 0) s += 10;
+  if (taste.mutes.indexOf(cat) >= 0) s -= 20;
+  if (taste.free_only && FREE[i]) s += 6;
+  var tb = tapBonus[cat];
+  if (tb) s += Math.min(tb, 3);
+  if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
+    s += (taste.surprise === "high" ? 8 : 4);
+  return s;
+}
+function hasTaste(){
+  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only ||
+    taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
+}
+function sortChildren(container){
+  var arts = [];
+  for (var k = 0; k < container.children.length; k++) {
+    var ch = container.children[k];
+    if (ch.tagName === "ARTICLE" && ch.classList.contains("event")) arts.push(ch);
+  }
+  if (arts.length < 2) return;
+  arts.map(function(a){ return {a: a, k: score(+a.dataset.idx), n: +a.dataset.idx}; })
+    .sort(function(x, y){ return (y.k - x.k) || (x.n - y.n); })
+    .forEach(function(o){ container.appendChild(o.a); });
+}
+function applyRanking(){
+  if (!hasTaste() || typeof CATS === "undefined") return;
+  var wrap = document.querySelector("main.wrap");
+  if (!wrap) return;
+  var secs = [];
+  for (var k = 0; k < wrap.children.length; k++) {
+    var ch = wrap.children[k];
+    if (ch.tagName === "SECTION" && ch.classList.contains("cat")) secs.push(ch);
+  }
+  if (secs.length) {
+    var secCat = function(s){
+      var a = s.querySelector("article.event");
+      return a ? CATS[+a.dataset.idx] : "";
+    };
+    var secScore = function(s){
+      var c = secCat(s), v = 0;
+      if (taste.likes.indexOf(c) >= 0) v += 10;
+      if (taste.mutes.indexOf(c) >= 0) v -= 20;
+      return v;
+    };
+    secs.forEach(sortChildren);
+    var free = [], rest = [];
+    secs.forEach(function(s){ (s.classList.contains("free") ? free : rest).push(s); });
+    rest.sort(function(a, b){ return secScore(b) - secScore(a); });
+    free.concat(rest).forEach(function(s){ wrap.appendChild(s); });
+  } else {
+    sortChildren(wrap);
+  }
+}
+/* ---------------- quiz ---------------- */
+var SURP = {low: "none", med: "a few", high: "lots"};
+var sheet = null, sel = {};
+function chipBtn(c){
+  var b = document.createElement("button");
+  b.className = "qchip"; b.type = "button";
+  b.dataset.cat = c; b.setAttribute("aria-pressed", "false");
+  b.textContent = c;
+  b.addEventListener("click", function(){
+    var on = b.getAttribute("aria-pressed") === "true";
+    b.setAttribute("aria-pressed", on ? "false" : "true");
+    if (on) delete sel[c]; else sel[c] = 1;
+  });
+  return b;
+}
+function buildSheet(){
+  var veil = document.createElement("div");
+  veil.className = "quiz-veil"; veil.id = "quizVeil"; veil.hidden = true;
+  var card = document.createElement("div");
+  card.className = "quiz-card"; card.setAttribute("role", "dialog");
+  card.setAttribute("aria-label", "What are you into?");
+  var eb = document.createElement("div"); eb.className = "quiz-eyebrow";
+  eb.textContent = "Tonight learns your taste";
+  var h = document.createElement("h2"); h.textContent = "What are you into?";
+  var sub = document.createElement("p"); sub.className = "quiz-sub";
+  sub.textContent = "Tap what you like. Takes 30 seconds, and your picks get personal.";
+  var chips = document.createElement("div"); chips.className = "qchips";
+  CATS_ALL.forEach(function(c){ chips.appendChild(chipBtn(c)); });
+  var prefs = document.createElement("div"); prefs.className = "qchips";
+  var freeB = document.createElement("button");
+  freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
+  freeB.setAttribute("aria-pressed", "false");
+  freeB.textContent = "Free-first";
+  freeB.addEventListener("click", function(){
+    var on = freeB.getAttribute("aria-pressed") === "true";
+    freeB.setAttribute("aria-pressed", on ? "false" : "true");
+  });
+  var order = ["low", "med", "high"], surp = "low";
+  var surpB = document.createElement("button");
+  surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
+  var paintSurp = function(){
+    surpB.textContent = "Surprises: " + SURP[surp];
+    surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
+  };
+  paintSurp();
+  surpB.addEventListener("click", function(){
+    surp = order[(order.indexOf(surp) + 1) % 3]; paintSurp();
+  });
+  prefs.appendChild(freeB); prefs.appendChild(surpB);
+  var actions = document.createElement("div"); actions.className = "qactions";
+  var done = document.createElement("button");
+  done.className = "btn btn-gold"; done.type = "button"; done.id = "qDone";
+  done.textContent = "Done \u2192";
+  var skip = document.createElement("button");
+  skip.className = "qlink"; skip.type = "button"; skip.id = "qSkip";
+  skip.textContent = "skip for now";
+  var markSeen = function(){ try { localStorage.setItem(OKEY, "1"); } catch (e) {} };
+  done.addEventListener("click", function(){
+    taste.likes = Object.keys(sel);
+    taste.mutes = [];
+    taste.free_only = freeB.getAttribute("aria-pressed") === "true";
+    taste.surprise = surp;
+    save(); markSeen(); veil.hidden = true;
+    applyRanking();
+    if (window.TonightPage && TonightPage.refresh) TonightPage.refresh(true);
+  });
+  skip.addEventListener("click", function(){ markSeen(); veil.hidden = true; });
+  actions.appendChild(done); actions.appendChild(skip);
+  card.appendChild(eb); card.appendChild(h); card.appendChild(sub);
+  card.appendChild(chips); card.appendChild(prefs); card.appendChild(actions);
+  veil.appendChild(card);
+  document.body.appendChild(veil);
+  return {veil: veil, freeB: freeB,
+    paint: function(s){ surp = s; paintSurp(); }};
+}
+function openQuiz(){
+  if (!sheet) sheet = buildSheet();
+  sel = {};
+  taste.likes.forEach(function(c){ sel[c] = 1; });
+  sheet.veil.querySelectorAll(".qchip[data-cat]").forEach(function(b){
+    b.setAttribute("aria-pressed", sel[b.dataset.cat] ? "true" : "false");
+  });
+  sheet.freeB.setAttribute("aria-pressed", taste.free_only ? "true" : "false");
+  sheet.paint(taste.surprise);
+  sheet.veil.hidden = false;
+}
+/* ---------------- plain-language profile ---------------- */
+function joinList(a){
+  if (!a.length) return "";
+  if (a.length === 1) return a[0];
+  return a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+}
+function describe(){
+  var parts = [];
+  if (taste.likes.length) parts.push("into " + joinList(taste.likes));
+  if (taste.mutes.length) parts.push("not into " + joinList(taste.mutes));
+  var s = parts.length
+    ? "You're " + parts.join(", ") + "."
+    : "You haven't told Tonight what you like yet.";
+  var prefs = [];
+  if (taste.free_only) prefs.push("you'd rather keep it free");
+  prefs.push(taste.surprise === "low" ? "no surprises, just your thing" :
+    (taste.surprise === "med" ? "open to a few surprises" : "bring on the surprises"));
+  s += " Right now, " + prefs.join(", ") + ".";
+  var top = Object.keys(tapBonus)
+    .sort(function(a, b){ return tapBonus[b] - tapBonus[a]; }).slice(0, 2);
+  if (top.length) s += " Your taps lean " + joinList(top) + ".";
+  return s;
+}
+function setCat(cat, mode){
+  taste.likes = taste.likes.filter(function(c){ return c !== cat; });
+  taste.mutes = taste.mutes.filter(function(c){ return c !== cat; });
+  if (mode === "like") taste.likes.push(cat);
+  else if (mode === "mute") taste.mutes.push(cat);
+  save();
+}
+window.Tonight = {
+  taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
+  score: score, save: save, applyRanking: applyRanking,
+  openQuiz: openQuiz, describe: describe, setCat: setCat
+};
+document.addEventListener("DOMContentLoaded", function(){
+  var tune = document.getElementById("tuneTaste");
+  if (tune) tune.addEventListener("click", function(e){ e.preventDefault(); openQuiz(); });
+  var noquiz = document.body && document.body.getAttribute("data-noquiz") === "1";
+  try { if (!noquiz && !localStorage.getItem(OKEY)) openQuiz(); } catch (e) {}
+  applyRanking();
+  pull();
+  if (window.TonightPage && TonightPage.init) TonightPage.init();
+});
+})();
+</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt="Tonight logo">Tonight<b>.</b></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Your taste</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="#" id="tuneTaste">Tune</a></span><span class="citylinks"><a class="" href="../nyc/2026-09-29.html">NYC</a> <a class="" href="../london/2026-09-29.html">London</a> <a class="cur" href="../la/2026-09-29.html">LA</a></span><a class="browselink" href="../browse-la-2026-09-29.html">Browse all →</a></nav>
+<header class="hero">
+<div class="eyebrow">Tuesday, September 29 · Los Angeles</div>
+<h1>Los Angeles</h1>
+<p>Hand-picked things to do, all happening today. Tap the boxes to track your picks.</p>
+</header>
+<div class="toolbar">
+<button class="btn btn-dark" id="shareBtn">Share →</button>
+<a class="btn btn-gold" href="https://psesh5.github.io/tonight/la/2026-09-29.ics" download>📥 Download .ics</a>
+<button class="btn btn-dark" id="tonightBtn" aria-pressed="false">⚡ Tonight</button>
+</div>
+<div class="filters" id="filterBar">
+<input id="fq" type="search" placeholder="Search events, venues…" aria-label="Search events">
+<select id="fcat" aria-label="Filter by category"><option value="">All categories</option><option value="Arts &amp; Play">Arts &amp; Play</option><option value="Music">Music</option><option value="Comedy">Comedy</option><option value="Talks">Talks</option></select>
+<div class="seg" id="ftod">
+<button data-t="all" class="on">Any time</button><button data-t="morning">Morning</button><button data-t="afternoon">Afternoon</button><button data-t="evening">Evening</button>
+</div>
+<button class="fbtn" id="ffree" aria-pressed="false">✨ Free only</button>
+<span id="hiddenBar"><span id="hiddenN">0</span> hidden · <button id="unhide">show them</button></span>
+<span id="resCount"></span>
+</div>
+<div class="picks" id="picksBar"><strong>My picks: <span id="pickCount">0</span></strong><br>
+<span style="font-size:13px;color:#6b6b6b;">Tap the boxes above, then send your picks — it shapes tomorrow's recommendations.</span><br><br>
+<button class="btn btn-dark" id="sendBtn">Send my picks →</button>
+</div>
+<main class="wrap">
+<div id="tonightWrap">
+<div class="tonight-head"><h2>⚡ Tonight</h2><p id="tonightCount"></p></div>
+<div id="tonightList"></div>
+<div id="tonightEmpty" style="display:none;">Nothing on in the next 5 hours — check back later.</div>
+</div>
+
+<section class="cat free">
+<h2>✨ Free tonight</h2>
+
+<article class="event" id="event-22" data-idx="22" data-name="Eviction Response Workshop" data-start-local="2026-09-29T16:00:00" data-cal-start="20260929T230000Z" data-cal-end="20260930T010000Z" data-loc="Pico Union" data-url="https://www.lapl.org/events/eviction-response-workshop-0">
+<button class="toggle" data-idx="22" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="22" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.lapl.org/events/eviction-response-workshop-0">Eviction Response Workshop</a></h3>
+<div class="meta">4:00 PM · Pico Union · Free</div>
+<p>This in-person workshop will guide you through the Tenant Power Toolkit, an online resource that helps tenants create a legal response to their case to raise the defenses they might have against the eviction.</p>
+<a class="tickets" href="https://www.lapl.org/events/eviction-response-workshop-0">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Eviction%20Response%20Workshop&dates=20260929T230000Z/20260930T010000Z&details=This%20in-person%20workshop%20will%20guide%20you%20through%20the%20Tenant%20Power%20Toolkit%2C%20an%20online%20resource%20that%20helps%20tenants%20create%20a%20legal%20response%20to%20their%20case%20to%20raise%20the%20defenses%20they%20might%20have%20against%20the%20eviction.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/eviction-response-workshop-0&location=Pico%20Union" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="22">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-23" data-idx="23" data-name="Preschool Storytime" data-start-local="2026-09-29T10:15:00" data-cal-start="20260929T171500Z" data-cal-end="20260929T191500Z" data-loc="Mid-Valley" data-url="https://www.lapl.org/events/preschool-storytime-37">
+<button class="toggle" data-idx="23" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="23" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.lapl.org/events/preschool-storytime-37">Preschool Storytime</a></h3>
+<div class="meta">10:15 AM · Mid-Valley · Free</div>
+<p>Join us for stories, songs, and fun!</p>
+<a class="tickets" href="https://www.lapl.org/events/preschool-storytime-37">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Preschool%20Storytime&dates=20260929T171500Z/20260929T191500Z&details=Join%20us%20for%20stories%2C%20songs%2C%20and%20fun%21%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/preschool-storytime-37&location=Mid-Valley" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="23">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-24" data-idx="24" data-name="Preschool Storytime and Crafts" data-start-local="2026-09-29T10:30:00" data-cal-start="20260929T173000Z" data-cal-end="20260929T193000Z" data-loc="West Valley" data-url="https://www.lapl.org/events/preschool-storytime-and-crafts">
+<button class="toggle" data-idx="24" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="24" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.lapl.org/events/preschool-storytime-and-crafts">Preschool Storytime and Crafts</a></h3>
+<div class="meta">10:30 AM · West Valley · Free</div>
+<p>Join our children’s librarian for a fun-filled program featuring storytime, singing, dancing, and a simple craft.</p>
+<a class="tickets" href="https://www.lapl.org/events/preschool-storytime-and-crafts">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Preschool%20Storytime%20and%20Crafts&dates=20260929T173000Z/20260929T193000Z&details=Join%20our%20children%E2%80%99s%20librarian%20for%20a%20fun-filled%20program%20featuring%20storytime%2C%20singing%2C%20dancing%2C%20and%20a%20simple%20craft.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/preschool-storytime-and-crafts&location=West%20Valley" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="24">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-25" data-idx="25" data-name="Toddler Storytime" data-start-local="2026-09-29T12:30:00" data-cal-start="20260929T193000Z" data-cal-end="20260929T213000Z" data-loc="Mar Vista" data-url="https://www.lapl.org/events/toddler-storytime-47">
+<button class="toggle" data-idx="25" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="25" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.lapl.org/events/toddler-storytime-47">Toddler Storytime</a></h3>
+<div class="meta">12:30 PM · Mar Vista · Free</div>
+<p>Toddlers, babies, and caregivers are welcome to attend a half-hour storytime filled with songs, stories, and other fun playtime activities.</p>
+<a class="tickets" href="https://www.lapl.org/events/toddler-storytime-47">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Toddler%20Storytime&dates=20260929T193000Z/20260929T213000Z&details=Toddlers%2C%20babies%2C%20and%20caregivers%20are%20welcome%20to%20attend%20a%20half-hour%20storytime%20filled%20with%20songs%2C%20stories%2C%20and%20other%20fun%20playtime%20activities.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/toddler-storytime-47&location=Mar%20Vista" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="25">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-26" data-idx="26" data-name="STAR Storytime With Donna" data-start-local="2026-09-29T13:00:00" data-cal-start="20260929T200000Z" data-cal-end="20260929T220000Z" data-loc="Sherman Oaks" data-url="https://www.lapl.org/events/star-storytime-donna">
+<button class="toggle" data-idx="26" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="26" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.lapl.org/events/star-storytime-donna">STAR Storytime With Donna</a></h3>
+<div class="meta">1:00 PM · Sherman Oaks · Free</div>
+<p>Join STAR Reader Donna for stories, fingerplays, songs, and fun, followed by a craft.This program is for ages 3 years and older.</p>
+<a class="tickets" href="https://www.lapl.org/events/star-storytime-donna">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=STAR%20Storytime%20With%20Donna&dates=20260929T200000Z/20260929T220000Z&details=Join%20STAR%20Reader%20Donna%20for%20stories%2C%20fingerplays%2C%20songs%2C%20and%20fun%2C%20followed%20by%20a%20craft.This%20program%20is%20for%20ages%203%20years%20and%20older.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/star-storytime-donna&location=Sherman%20Oaks" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="26">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-27" data-idx="27" data-name="STAR Reader" data-start-local="2026-09-29T13:00:00" data-cal-start="20260929T200000Z" data-cal-end="20260929T220000Z" data-loc="Mark Twain" data-url="https://www.lapl.org/events/star-reader-22">
+<button class="toggle" data-idx="27" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="27" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.lapl.org/events/star-reader-22">STAR Reader</a></h3>
+<div class="meta">1:00 PM · Mark Twain · Free</div>
+<p>Join us in the joy of reading books with our STAR volunteer, Mrs. Judi!</p>
+<a class="tickets" href="https://www.lapl.org/events/star-reader-22">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=STAR%20Reader&dates=20260929T200000Z/20260929T220000Z&details=Join%20us%20in%20the%20joy%20of%20reading%20books%20with%20our%20STAR%20volunteer%2C%20Mrs.%20Judi%21%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/star-reader-22&location=Mark%20Twain" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="27">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-28" data-idx="28" data-name="Kids&#x27; Chapter Book Club" data-start-local="2026-09-29T16:00:00" data-cal-start="20260929T230000Z" data-cal-end="20260930T010000Z" data-loc="Fairfax" data-url="https://www.lapl.org/events/kids-chapter-book-club-2">
+<button class="toggle" data-idx="28" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="28" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.lapl.org/events/kids-chapter-book-club-2">Kids&#x27; Chapter Book Club</a></h3>
+<div class="meta">4:00 PM · Fairfax · Free</div>
+<p>Kids&#x27; chapter book club grades 2-4.</p>
+<a class="tickets" href="https://www.lapl.org/events/kids-chapter-book-club-2">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kids%27%20Chapter%20Book%20Club&dates=20260929T230000Z/20260930T010000Z&details=Kids%27%20chapter%20book%20club%20grades%202-4.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/kids-chapter-book-club-2&location=Fairfax" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="28">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-29" data-idx="29" data-name="Zoom Book Club" data-start-local="2026-09-29T17:00:00" data-cal-start="20260930T000000Z" data-cal-end="20260930T020000Z" data-loc="Venice" data-url="https://www.lapl.org/events/zoom-book-club">
+<button class="toggle" data-idx="29" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="29" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.lapl.org/events/zoom-book-club">Zoom Book Club</a></h3>
+<div class="meta">5:00 PM · Venice · Free</div>
+<p>Join us on the last Tuesday of the month for a lively discussion of our current selection.</p>
+<a class="tickets" href="https://www.lapl.org/events/zoom-book-club">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Zoom%20Book%20Club&dates=20260930T000000Z/20260930T020000Z&details=Join%20us%20on%20the%20last%20Tuesday%20of%20the%20month%20for%20a%20lively%20discussion%20of%20our%20current%20selection.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/zoom-book-club&location=Venice" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="29">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-30" data-idx="30" data-name="Author Book Talk: The Distance Between Our Names" data-start-local="2026-09-29T13:00:00" data-cal-start="20260929T200000Z" data-cal-end="20260929T220000Z" data-loc="Little Tokyo" data-url="https://www.lapl.org/events/author-book-talk-distance-between-our-names">
+<button class="toggle" data-idx="30" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="30" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.lapl.org/events/author-book-talk-distance-between-our-names">Author Book Talk: The Distance Between Our Names</a></h3>
+<div class="meta">1:00 PM · Little Tokyo · Free</div>
+<p>Join us to hear journalist Paul Richter discuss his new book, The Distance Between Our Names, about the struggles of the early Japanese immigrants to America.</p>
+<a class="tickets" href="https://www.lapl.org/events/author-book-talk-distance-between-our-names">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Author%20Book%20Talk%3A%20The%20Distance%20Between%20Our%20Names&dates=20260929T200000Z/20260929T220000Z&details=Join%20us%20to%20hear%20journalist%20Paul%20Richter%20discuss%20his%20new%20book%2C%20The%20Distance%20Between%20Our%20Names%2C%20about%20the%20struggles%20of%20the%20early%20Japanese%20immigrants%20to%20America.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/author-book-talk-distance-between-our-names&location=Little%20Tokyo" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="30">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Arts &amp; Play</h2>
+
+<article class="event" id="event-0" data-idx="0" data-name="SoFi Stadium Tours - No Field Access" data-start-local="2026-09-29T09:00:00" data-cal-start="20260929T160000Z" data-cal-end="20260929T180000Z" data-loc="SoFi Stadium Tours" data-url="https://www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-09-29-2026/event/0A0064C5C1AFADD2" data-lat="33.95191" data-lng="-118.33565">
+<button class="toggle" data-idx="0" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="0" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-09-29-2026/event/0A0064C5C1AFADD2">SoFi Stadium Tours - No Field Access</a></h3>
+<div class="meta">9:00 AM · SoFi Stadium Tours</div>
+<p>Book your SoFi Stadium tour experience. Join us for a behind the scenes, immersive tour of SoFi Stadium. Experience exclusive areas inside the stadium including luxury suites, clubs, locker rooms, on-field access* and more! Choose the date below and a new window will open allowing you to choose from available times. Tour schedule, route and field activities are subject to change without notice.</p>
+<a class="tickets" href="https://www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-09-29-2026/event/0A0064C5C1AFADD2">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SoFi%20Stadium%20Tours%20-%20No%20Field%20Access&dates=20260929T160000Z/20260929T180000Z&details=Book%20your%20SoFi%20Stadium%20tour%20experience.%20Join%20us%20for%20a%20behind%20the%20scenes%2C%20immersive%20tour%20of%20SoFi%20Stadium.%20Experience%20exclusive%20areas%20inside%20the%20stadium%20including%20luxury%20suites%2C%20clubs%2C%20locker%20rooms%2C%20on-field%20access%2A%20and%20more%21%20Choose%20the%20date%20below%20and%20a%20new%20window%20will%20open%20allowing%20you%20to%20choose%20from%20available%20times.%20Tour%20schedule%2C%20route%20and%20field%20activities%20are%20subject%20to%20change%20without%20notice.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-09-29-2026/event/0A0064C5C1AFADD2&location=SoFi%20Stadium%20Tours" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="0">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-1" data-idx="1" data-name="Dogman: The Musical" data-start-local="2026-09-29T11:00:00" data-cal-start="20260929T180000Z" data-cal-end="20260929T200000Z" data-loc="Kirk Douglas Theatre" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A7PUob" data-lat="34.018101" data-lng="-118.392197">
+<button class="toggle" data-idx="1" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="1" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7PUob">Dogman: The Musical</a></h3>
+<div class="meta">11:00 AM · Kirk Douglas Theatre</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A7PUob">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dogman%3A%20The%20Musical&dates=20260929T180000Z/20260929T200000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A7PUob&location=Kirk%20Douglas%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="1">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-14" data-idx="14" data-name="Plant Mob ft. Mike O&#x27;Brien, Willie Macc, Audrey Stewart, Ainsley Bailey, Miranda Meadows, Patrick Murray, Opey Olagbaju, Kyle Tomlin, and more TBA" data-start-local="2026-09-29T19:30:00" data-cal-start="20260930T023000Z" data-cal-end="20260930T043000Z" data-loc="Hollywood Improv (The Lab)" data-url="https://www.ticketweb.com/event/plant-mob-ft-mike-obrien-hollywood-improv-the-lab-tickets/15038833" data-lat="34.0834329" data-lng="-118.367284">
+<button class="toggle" data-idx="14" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="14" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/plant-mob-ft-mike-obrien-hollywood-improv-the-lab-tickets/15038833">Plant Mob ft. Mike O&#x27;Brien, Willie Macc, Audrey Stewart, Ainsley Bailey, Miranda Meadows, Patrick Murray, Opey Olagbaju, Kyle Tomlin, and more TBA</a></h3>
+<div class="meta">7:30 PM · Hollywood Improv (The Lab) · $19.04</div>
+<p>DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE HOLLYWOOD IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Hollywood Improv.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/plant-mob-ft-mike-obrien-hollywood-improv-the-lab-tickets/15038833">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Plant%20Mob%20ft.%20Mike%20O%27Brien%2C%20Willie%20Macc%2C%20Audrey%20Stewart%2C%20Ainsley%20Bailey%2C%20Miranda%20Meadows%2C%20Patrick%20Murray%2C%20Opey%20Olagbaju%2C%20Kyle%20Tomlin%2C%20and%20more%20TBA&dates=20260930T023000Z/20260930T043000Z&details=DO%20NOT%20PURCHASE%20TICKETS%20FROM%20ANYONE%20OR%20ANY%20OTHER%20SITE%20OTHER%20THAN%20IMPROV.COM%20TICKET%20RESALE%20IS%20STRICTLY%20PROHIBITED.%20TICKETS%20SUSPECTED%20OF%20BEING%20PURCHASED%20FOR%20THE%20SOLE%20PURPOSE%20OF%20RESELLING%20MAY%20BE%20CANCELLED%20AT%20THE%20DISCRETION%20OF%20THE%20HOLLYWOOD%20IMPROV.%20EVENT%20INFO%3A%20There%20is%20a%20two-item%20minimum%20purchase%20requirement%20in%20the%20showroom%20for%20all%20guests.%20Seating%20is%20general%20admission%2C%20first-come%2C%20first-served%2C%20with%20the%20exception%20of%20groups%20and%20premium%20booths.%20No%20cell%20phone%20use%2C%20photography%20or%20video%20recording%20is%20permitted%20during%20performances.%20All%20sales%20are%20final.%20MISCELLANOUS%3A%20For%20group%20sales%20info%2C%20e-mail%20our%20Events%20Manager%20to%20learn%20about%20special%20menu%20options%20and%20reserved%20seating.%20Additional%20questions%20may%20be%20addressed%20in%20our%20Frequently%20Asked%20Questions.%20For%20further%20assistance%2C%20contact%20Hollywood%20Improv.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/plant-mob-ft-mike-obrien-hollywood-improv-the-lab-tickets/15038833&location=Hollywood%20Improv%20%28The%20Lab%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="14">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-21" data-idx="21" data-name="Dolby Theatre Guided Tour" data-lat="34.102707" data-lng="-118.340464">
+<button class="toggle" data-idx="21" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="21" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/dolby-theatre-guided-tour-hollywood-california-09-29-2026/event/090064D696B25212">Dolby Theatre Guided Tour</a></h3>
+<div class="meta">Time TBA · Dolby Tours</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/dolby-theatre-guided-tour-hollywood-california-09-29-2026/event/090064D696B25212">Tickets &amp; info →</a>
+
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Music</h2>
+
+<article class="event" id="event-2" data-idx="2" data-name="Lo Moon" data-start-local="2026-09-29T18:30:00" data-cal-start="20260930T013000Z" data-cal-end="20260930T033000Z" data-loc="The Moroccan Lounge" data-url="https://www.ticketmaster.com/lo-moon-los-angeles-california-09-29-2026/event/090064C9007196C0" data-lat="34.04898" data-lng="-118.23365">
+<button class="toggle" data-idx="2" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="2" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/lo-moon-los-angeles-california-09-29-2026/event/090064C9007196C0">Lo Moon</a></h3>
+<div class="meta">6:30 PM · The Moroccan Lounge</div>
+<p>The Moroccan Lounge presents: Lo Moon [September 29, 2026 / Doors 6:30pm / $25 adv + &#x27;Satellite&#x27; 7&quot; Vinyl Record (limit one record per total ticket order) / $25 adv / $25 dos / 21+]</p>
+<a class="tickets" href="https://www.ticketmaster.com/lo-moon-los-angeles-california-09-29-2026/event/090064C9007196C0">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Lo%20Moon&dates=20260930T013000Z/20260930T033000Z&details=The%20Moroccan%20Lounge%20presents%3A%20Lo%20Moon%20%5BSeptember%2029%2C%202026%20/%20Doors%206%3A30pm%20/%20%2425%20adv%20%2B%20%27Satellite%27%207%22%20Vinyl%20Record%20%28limit%20one%20record%20per%20total%20ticket%20order%29%20/%20%2425%20adv%20/%20%2425%20dos%20/%2021%2B%5D%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/lo-moon-los-angeles-california-09-29-2026/event/090064C9007196C0&location=The%20Moroccan%20Lounge" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="2">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-3" data-idx="3" data-name="&quot;Comedy Tragedy Parody&quot; Dominic Fike in North America" data-start-local="2026-09-29T18:30:00" data-cal-start="20260930T013000Z" data-cal-end="20260930T033000Z" data-loc="The Wiltern" data-url="https://www.ticketmaster.com/comedy-tragedy-parody-dominic-fike-in-los-angeles-california-09-29-2026/event/0900648FC0A9933D" data-lat="34.06141494" data-lng="-118.30879207">
+<button class="toggle" data-idx="3" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="3" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/comedy-tragedy-parody-dominic-fike-in-los-angeles-california-09-29-2026/event/0900648FC0A9933D">&quot;Comedy Tragedy Parody&quot; Dominic Fike in North America</a></h3>
+<div class="meta">6:30 PM · The Wiltern</div>
+<p>All Ages Welcome. Every person must have a ticket to attend the event, regardless of age. Doors: 6:30 p.m. Show: 7:30 p.m. *All times and supporting acts are subject to change The following bag policy is in place: Bags up to 12&quot; x 6&quot; x 12&quot; are allowed in the venue. All bags will be searched prior to entry. Bags that are not clear will be subject to additional search.</p>
+<a class="tickets" href="https://www.ticketmaster.com/comedy-tragedy-parody-dominic-fike-in-los-angeles-california-09-29-2026/event/0900648FC0A9933D">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%22Comedy%20Tragedy%20Parody%22%20Dominic%20Fike%20in%20North%20America&dates=20260930T013000Z/20260930T033000Z&details=All%20Ages%20Welcome.%20Every%20person%20must%20have%20a%20ticket%20to%20attend%20the%20event%2C%20regardless%20of%20age.%20Doors%3A%206%3A30%20p.m.%20Show%3A%207%3A30%20p.m.%20%2AAll%20times%20and%20supporting%20acts%20are%20subject%20to%20change%20The%20following%20bag%20policy%20is%20in%20place%3A%20Bags%20up%20to%2012%22%20x%206%22%20x%2012%22%20are%20allowed%20in%20the%20venue.%20All%20bags%20will%20be%20searched%20prior%20to%20entry.%20Bags%20that%20are%20not%20clear%20will%20be%20subject%20to%20additional%20search.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/comedy-tragedy-parody-dominic-fike-in-los-angeles-california-09-29-2026/event/0900648FC0A9933D&location=The%20Wiltern" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="3">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-4" data-idx="4" data-name="Ecca Vandal" data-start-local="2026-09-29T19:00:00" data-cal-start="20260930T020000Z" data-cal-end="20260930T040000Z" data-loc="Teragram Ballroom" data-url="https://www.ticketmaster.com/ecca-vandal-los-angeles-california-09-29-2026/event/090064B2C36EA7BB" data-lat="34.051841" data-lng="-118.267076">
+<button class="toggle" data-idx="4" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="4" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/ecca-vandal-los-angeles-california-09-29-2026/event/090064B2C36EA7BB">Ecca Vandal</a></h3>
+<div class="meta">7:00 PM · Teragram Ballroom</div>
+<p>Teragram Ballroom presents: Ecca Vandal with support from the Speed of Light &amp; ezcodylee [September 29, 2026 / Doors 7pm / Show 7:30pm / $25 advance / $25 day of show / All Ages]</p>
+<a class="tickets" href="https://www.ticketmaster.com/ecca-vandal-los-angeles-california-09-29-2026/event/090064B2C36EA7BB">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ecca%20Vandal&dates=20260930T020000Z/20260930T040000Z&details=Teragram%20Ballroom%20presents%3A%20Ecca%20Vandal%20with%20support%20from%20the%20Speed%20of%20Light%20%26%20ezcodylee%20%5BSeptember%2029%2C%202026%20/%20Doors%207pm%20/%20Show%207%3A30pm%20/%20%2425%20advance%20/%20%2425%20day%20of%20show%20/%20All%20Ages%5D%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/ecca-vandal-los-angeles-california-09-29-2026/event/090064B2C36EA7BB&location=Teragram%20Ballroom" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="4">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-5" data-idx="5" data-name="Alyssa Grace - SOLD OUT" data-start-local="2026-09-29T19:00:00" data-cal-start="20260930T020000Z" data-cal-end="20260930T040000Z" data-loc="The Echo" data-url="https://www.ticketmaster.com/alyssa-grace-sold-out-los-angeles-california-09-29-2026/event/090064F8D40AB9C9" data-lat="34.077729" data-lng="-118.260108">
+<button class="toggle" data-idx="5" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="5" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/alyssa-grace-sold-out-los-angeles-california-09-29-2026/event/090064F8D40AB9C9">Alyssa Grace - SOLD OUT</a></h3>
+<div class="meta">7:00 PM · The Echo</div>
+<p>Keep up to date with all our upcoming events by visiting The Echo&#x27;s social media and website. @theechola theecho.com</p>
+<a class="tickets" href="https://www.ticketmaster.com/alyssa-grace-sold-out-los-angeles-california-09-29-2026/event/090064F8D40AB9C9">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Alyssa%20Grace%20-%20SOLD%20OUT&dates=20260930T020000Z/20260930T040000Z&details=Keep%20up%20to%20date%20with%20all%20our%20upcoming%20events%20by%20visiting%20The%20Echo%27s%20social%20media%20and%20website.%20%40theechola%20theecho.com%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/alyssa-grace-sold-out-los-angeles-california-09-29-2026/event/090064F8D40AB9C9&location=The%20Echo" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="5">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-6" data-idx="6" data-name="JACK WHITE LIVE 2026" data-start-local="2026-09-29T19:00:00" data-cal-start="20260930T020000Z" data-cal-end="20260930T040000Z" data-loc="Hollywood Palladium" data-url="https://www.ticketmaster.com/jack-white-live-2026-hollywood-california-09-29-2026/event/090064878E416938" data-lat="34.09850537" data-lng="-118.32421313">
+<button class="toggle" data-idx="6" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="6" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/jack-white-live-2026-hollywood-california-09-29-2026/event/090064878E416938">JACK WHITE LIVE 2026</a></h3>
+<div class="meta">7:00 PM · Hollywood Palladium</div>
+<p>All Ages Welcome Doors: 7PM Show: 8PM *All times and supporting acts are subject to change without notice. Premier Parking vouchers are valid starting two (2) hours prior to doors opening for the event. Earlier on-site parking access is not guaranteed. Vinyl Room Doors open @ 5:30PM PLEASE NOTE: THIS IS A PHONE-FREE SHOW. WHAT IS A ?PHONE-FREE SHOW?? No phones allowed in the performance space. An unplugged, real life experience. HOW DOES IT WORK? Upon arrival at the venue, staff will be available to help you put your phone in a lockable pouch which you keep throughout the night. WHAT IF I HAVE AN EMERGENCY AND NEED TO ACCESS MY PHONE? You can unlock your phone from the pouch at any time by going to the clearly-marked Phone Use Areas located in the lobby or the concourse. WHAT ABOUT CASHLESS BARS OR MERCH? We highly recommend bringing a physical credit card just in case you can?t access your phone at the bar or merch area</p>
+<a class="tickets" href="https://www.ticketmaster.com/jack-white-live-2026-hollywood-california-09-29-2026/event/090064878E416938">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=JACK%20WHITE%20LIVE%202026&dates=20260930T020000Z/20260930T040000Z&details=All%20Ages%20Welcome%20Doors%3A%207PM%20Show%3A%208PM%20%2AAll%20times%20and%20supporting%20acts%20are%20subject%20to%20change%20without%20notice.%20Premier%20Parking%20vouchers%20are%20valid%20starting%20two%20%282%29%20hours%20prior%20to%20doors%20opening%20for%20the%20event.%20Earlier%20on-site%20parking%20access%20is%20not%20guaranteed.%20Vinyl%20Room%20Doors%20open%20%40%205%3A30PM%20PLEASE%20NOTE%3A%20THIS%20IS%20A%20PHONE-FREE%20SHOW.%20WHAT%20IS%20A%20%3FPHONE-FREE%20SHOW%3F%3F%20No%20phones%20allowed%20in%20the%20performance%20space.%20An%20unplugged%2C%20real%20life%20experience.%20HOW%20DOES%20IT%20WORK%3F%20Upon%20arrival%20at%20the%20venue%2C%20staff%20will%20be%20available%20to%20help%20you%20put%20your%20phone%20in%20a%20lockable%20pouch%20which%20you%20keep%20throughout%20the%20night.%20WHAT%20IF%20I%20HAVE%20AN%20EMERGENCY%20AND%20NEED%20TO%20ACCESS%20MY%20PHONE%3F%20You%20can%20unlock%20your%20phone%20from%20the%20pouch%20at%20any%20time%20by%20going%20to%20the%20clearly-marked%20Phone%20Use%20Areas%20located%20in%20the%20lobby%20or%20the%20concourse.%20WHAT%20ABOUT%20CASHLESS%20BARS%20OR%20MERCH%3F%20We%20highly%20recommend%20bringing%20a%20physical%20credit%20card%20just%20in%20case%20you%20can%3Ft%20access%20your%20phone%20at%20the%20bar%20or%20merch%20area%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/jack-white-live-2026-hollywood-california-09-29-2026/event/090064878E416938&location=Hollywood%20Palladium" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="6">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-7" data-idx="7" data-name="BashfortheWorld Presents: Un Mundo de Musica" data-start-local="2026-09-29T19:00:00" data-cal-start="20260930T020000Z" data-cal-end="20260930T040000Z" data-loc="Blue Note Los Angeles" data-url="https://www.ticketweb.com/event/bashfortheworld-presents-un-mundo-de-blue-note-los-angeles-tickets/14814293" data-lat="34.09772" data-lng="-118.32871">
+<button class="toggle" data-idx="7" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="7" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/bashfortheworld-presents-un-mundo-de-blue-note-los-angeles-tickets/14814293">BashfortheWorld Presents: Un Mundo de Musica</a></h3>
+<div class="meta">7:00 PM · Blue Note Los Angeles · $18.80</div>
+<p>One Night Only - Performing Live with a Full Band$20 Minimum Per PersonFull Bar &amp; Dinner MenuNO REFUNDS OR EXCHANGES.All seating is first come, first served. Bar Area seating is limited and first come first served. When all available seats are occupied, the remaining bar area is standing room only.Table Seating is all ages, Bar Area is 21+. Bar Area tickets for patrons under 21 will not be honored. Group Reservations:Groups larger than 10 must purchase a group package at club@bluenotela.com, or by calling (310) 855-3750Groups larger than 10 without a group package will be subject to group surcharges added to your bill. We are not affiliated with any third-party ticket sellers. Tickets purchased directly through our official website or TicketWeb are the only authorized sources. We cannot guarantee the validity of tickets purchased through unauthorized sources. To protect against fraud and unauthorized ticket sales, management may require verification of the original purchase method, including presenting the credit card used for purchase and matching photo identification upon entry.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/bashfortheworld-presents-un-mundo-de-blue-note-los-angeles-tickets/14814293">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=BashfortheWorld%20Presents%3A%20Un%20Mundo%20de%20Musica&dates=20260930T020000Z/20260930T040000Z&details=One%20Night%20Only%20-%20Performing%20Live%20with%20a%20Full%20Band%2420%20Minimum%20Per%20PersonFull%20Bar%20%26%20Dinner%20MenuNO%20REFUNDS%20OR%20EXCHANGES.All%20seating%20is%20first%20come%2C%20first%20served.%20Bar%20Area%20seating%20is%20limited%20and%20first%20come%20first%20served.%20When%20all%20available%20seats%20are%20occupied%2C%20the%20remaining%20bar%20area%20is%20standing%20room%20only.Table%20Seating%20is%20all%20ages%2C%20Bar%20Area%20is%2021%2B.%20Bar%20Area%20tickets%20for%20patrons%20under%2021%20will%20not%20be%20honored.%20Group%20Reservations%3AGroups%20larger%20than%2010%20must%20purchase%20a%20group%20package%20at%20club%40bluenotela.com%2C%20or%20by%20calling%20%28310%29%20855-3750Groups%20larger%20than%2010%20without%20a%20group%20package%20will%20be%20subject%20to%20group%20surcharges%20added%20to%20your%20bill.%20We%20are%20not%20affiliated%20with%20any%20third-party%20ticket%20sellers.%20Tickets%20purchased%20directly%20through%20our%20official%20website%20or%20TicketWeb%20are%20the%20only%20authorized%20sources.%20We%20cannot%20guarantee%20the%20validity%20of%20tickets%20purchased%20through%20unauthorized%20sources.%20To%20protect%20against%20fraud%20and%20unauthorized%20ticket%20sales%2C%20management%20may%20require%20verification%20of%20the%20original%20purchase%20method%2C%20including%20presenting%20the%20credit%20card%20used%20for%20purchase%20and%20matching%20photo%20identification%20upon%20entry.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/bashfortheworld-presents-un-mundo-de-blue-note-los-angeles-tickets/14814293&location=Blue%20Note%20Los%20Angeles" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="7">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-8" data-idx="8" data-name="Adriana Rios - Alto Mando Tour" data-start-local="2026-09-29T19:00:00" data-cal-start="20260930T020000Z" data-cal-end="20260930T040000Z" data-loc="The Peppermint Club" data-url="https://www.ticketmaster.com/adriana-rios-alto-mando-tour-los-angeles-california-09-29-2026/event/090064F6EAC8DDDF" data-lat="34.076851" data-lng="-118.381072">
+<button class="toggle" data-idx="8" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="8" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/adriana-rios-alto-mando-tour-los-angeles-california-09-29-2026/event/090064F6EAC8DDDF">Adriana Rios - Alto Mando Tour</a></h3>
+<div class="meta">7:00 PM · The Peppermint Club</div>
+<p>Ages 21+ Welcome w/ Valid ID Doors: 7PM *All times are subject to change</p>
+<a class="tickets" href="https://www.ticketmaster.com/adriana-rios-alto-mando-tour-los-angeles-california-09-29-2026/event/090064F6EAC8DDDF">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Adriana%20Rios%20-%20Alto%20Mando%20Tour&dates=20260930T020000Z/20260930T040000Z&details=Ages%2021%2B%20Welcome%20w/%20Valid%20ID%20Doors%3A%207PM%20%2AAll%20times%20are%20subject%20to%20change%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/adriana-rios-alto-mando-tour-los-angeles-california-09-29-2026/event/090064F6EAC8DDDF&location=The%20Peppermint%20Club" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="8">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-9" data-idx="9" data-name="Cardinals" data-start-local="2026-09-29T19:00:00" data-cal-start="20260930T020000Z" data-cal-end="20260930T040000Z" data-loc="Troubadour" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A7PkZV" data-lat="34.0942" data-lng="-118.3815">
+<button class="toggle" data-idx="9" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="9" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7PkZV">Cardinals</a></h3>
+<div class="meta">7:00 PM · Troubadour</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A7PkZV">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cardinals&dates=20260930T020000Z/20260930T040000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A7PkZV&location=Troubadour" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="9">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-10" data-idx="10" data-name="vianova" data-start-local="2026-09-29T19:00:00" data-cal-start="20260930T020000Z" data-cal-end="20260930T040000Z" data-loc="The Parish at House of Blues Anaheim" data-url="https://www.ticketmaster.com/vianova-anaheim-california-09-29-2026/event/090064EFC200BE46" data-lat="33.806533" data-lng="-117.912474">
+<button class="toggle" data-idx="10" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="10" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/vianova-anaheim-california-09-29-2026/event/090064EFC200BE46">vianova</a></h3>
+<div class="meta">7:00 PM · The Parish at House of Blues Anaheim</div>
+<p>General Admission Standing Only. Age Restriction: This is an all-ages event. All guests, regardless of age, are required to have a ticket for entry. Doors: 7pm Support: Deliverance, boygrim All acts subject to change.</p>
+<a class="tickets" href="https://www.ticketmaster.com/vianova-anaheim-california-09-29-2026/event/090064EFC200BE46">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=vianova&dates=20260930T020000Z/20260930T040000Z&details=General%20Admission%20Standing%20Only.%20Age%20Restriction%3A%20This%20is%20an%20all-ages%20event.%20All%20guests%2C%20regardless%20of%20age%2C%20are%20required%20to%20have%20a%20ticket%20for%20entry.%20Doors%3A%207pm%20Support%3A%20Deliverance%2C%20boygrim%20All%20acts%20subject%20to%20change.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/vianova-anaheim-california-09-29-2026/event/090064EFC200BE46&location=The%20Parish%20at%20House%20of%20Blues%20Anaheim" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="10">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-11" data-idx="11" data-name="D.R.I. LIVE FLYWAY AT THE FOX" data-start-local="2026-09-29T19:00:00" data-cal-start="20260930T020000Z" data-cal-end="20260930T040000Z" data-loc="Flyway Night Club - Pomona " data-url="https://www.ticketweb.com/event/dri-live-flyway-at-the-flyway-night-club-tickets/14221424" data-lat="34.056436" data-lng="-117.750448">
+<button class="toggle" data-idx="11" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="11" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/dri-live-flyway-at-the-flyway-night-club-tickets/14221424">D.R.I. LIVE FLYWAY AT THE FOX</a></h3>
+<div class="meta">7:00 PM · Flyway Night Club - Pomona  · $29.36</div>
+<p>TICKETS WILL BE SENT 3 DAYS PRIOR TO EVENT AND YOUR NAME WILL ALSO APPEAR ON WILL CALL NO UNACCOMPANIED MINORS WILL BE ALLOWED ENTRY. NO REFUNDS. UNLESS OTHERWISE SPECIFIED OR ARRANGED, ADMISSION IS STANDING ROOM ONLY You must possess a valid Ticket that permits access to the Event and check in at marked locations during specified time periods. TICKET AND VALID ID REQUIRED YOUR TICKET Please be advised, the purchase and/or use of a Ticket to, and/or entry into, the Event shall constitute Your unconditional acceptance to be bound by any and all of the terms and conditions contained within this agreement (this Agreement) between You and The Venue and Sucka Punch Production or California Live (the Company) to attend all or part of the Event and For safety reasons, Company reserves the right to, without any prior notice or compensation to You: postpone, cancel, interrupt or stop the Event; provisionally keep visitors on the Event site at the end of the Event; totally or partially vacate the Event site; and deny access to the Event site regardless of the possession of a valid Ticket. You understand that the artists and/or lineup for the Event may be changed and that such occurrence shall not, under any circumstances, entitle You to any claim whatsoever, including, but not limited to, a refund for Your Ticket. You understand, acknowledge, and agree that the names of any artist, act or performer contained in any Event promotional material is intended for informational purposes only, and does not, in any way, represent the importance or headline status of any single artist, act or performer, and is subject to change without prior notice. By entering the Event, You assume any and all risk and/or danger, known and unknown, foreseeable and unforeseeable, resulting from, or incidental to, the Event, whether occurring prior to, during, or subsequent to, the Event, including, but not limited to, any death, personal injury or loss, damage or liability whatsoever. You understand that Your use of Your Ticket is contingent upon Your voluntary assumption of the risk and danger that may result from, or be incidental to, Your presence at the Event, whether occurring prior to, during or after the Event, including, but not limited to, any actions or omissions of the Company Parties (as defined herein). SECURITY CHECK Please note all ticket holders will be searched upon entering the Event site. Security guards will inspect all objects brought onto the Event site including, but not limited to, clothing, luggage and other personal items in order to detect objects that may disrupt the course of the Event, jeopardize the safety of other ticketholders, or disturb the peace. Security guards may search any persons and property on the Event site at any time, including, but not limited to, storage lockers, and confiscate any prohibited items, in their sole discretion. CONDUCT AT THE EVENT You must heed the directions of Event organizers and security personnel at all times whilst on the Event site. If You fail to comply with such directions, You will be removed from the Event site, and, if necessary, Event staff may call on the police for assistance. INDEMNIFICATION You hereby indemnify and hold harmless Transplants Brewing LLC, their related companies, and each of their respective representatives, officers, directors, owners, members, trustees, agents, attorneys, employees, successors and assigns, and any other designated ticketing agent, Event sponsors/promoters, and the performing artists, including, but not limited to, their respective management, their agents, their staff and their designees (collectively, the Company Parties) harmless from any loss, liability, damage or cost in any way arising out of, or related to, Your actions and omissions at, around, or while traveling to and from, the Event.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/dri-live-flyway-at-the-flyway-night-club-tickets/14221424">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=D.R.I.%20LIVE%20FLYWAY%20AT%20THE%20FOX&dates=20260930T020000Z/20260930T040000Z&details=TICKETS%20WILL%20BE%20SENT%203%20DAYS%20PRIOR%20TO%20EVENT%20AND%20YOUR%20NAME%20WILL%20ALSO%20APPEAR%20ON%20WILL%20CALL%20NO%20UNACCOMPANIED%20MINORS%20WILL%20BE%20ALLOWED%20ENTRY.%20NO%20REFUNDS.%20UNLESS%20OTHERWISE%20SPECIFIED%20OR%20ARRANGED%2C%20ADMISSION%20IS%20STANDING%20ROOM%20ONLY%20You%20must%20possess%20a%20valid%20Ticket%20that%20permits%20access%20to%20the%20Event%20and%20check%20in%20at%20marked%20locations%20during%20specified%20time%20periods.%20TICKET%20AND%20VALID%20ID%20REQUIRED%20YOUR%20TICKET%20Please%20be%20advised%2C%20the%20purchase%20and/or%20use%20of%20a%20Ticket%20to%2C%20and/or%20entry%20into%2C%20the%20Event%20shall%20constitute%20Your%20unconditional%20acceptance%20to%20be%20bound%20by%20any%20and%20all%20of%20the%20terms%20and%20conditions%20contained%20within%20this%20agreement%20%28this%20Agreement%29%20between%20You%20and%20The%20Venue%20and%20Sucka%20Punch%20Production%20or%20California%20Live%20%28the%20Company%29%20to%20attend%20all%20or%20part%20of%20the%20Event%20and%20For%20safety%20reasons%2C%20Company%20reserves%20the%20right%20to%2C%20without%20any%20prior%20notice%20or%20compensation%20to%20You%3A%20postpone%2C%20cancel%2C%20interrupt%20or%20stop%20the%20Event%3B%20provisionally%20keep%20visitors%20on%20the%20Event%20site%20at%20the%20end%20of%20the%20Event%3B%20totally%20or%20partially%20vacate%20the%20Event%20site%3B%20and%20deny%20access%20to%20the%20Event%20site%20regardless%20of%20the%20possession%20of%20a%20valid%20Ticket.%20You%20understand%20that%20the%20artists%20and/or%20lineup%20for%20the%20Event%20may%20be%20changed%20and%20that%20such%20occurrence%20shall%20not%2C%20under%20any%20circumstances%2C%20entitle%20You%20to%20any%20claim%20whatsoever%2C%20including%2C%20but%20not%20limited%20to%2C%20a%20refund%20for%20Your%20Ticket.%20You%20understand%2C%20acknowledge%2C%20and%20agree%20that%20the%20names%20of%20any%20artist%2C%20act%20or%20performer%20contained%20in%20any%20Event%20promotional%20material%20is%20intended%20for%20informational%20purposes%20only%2C%20and%20does%20not%2C%20in%20any%20way%2C%20represent%20the%20importance%20or%20headline%20status%20of%20any%20single%20artist%2C%20act%20or%20performer%2C%20and%20is%20subject%20to%20change%20without%20prior%20notice.%20By%20entering%20the%20Event%2C%20You%20assume%20any%20and%20all%20risk%20and/or%20danger%2C%20known%20and%20unknown%2C%20foreseeable%20and%20unforeseeable%2C%20resulting%20from%2C%20or%20incidental%20to%2C%20the%20Event%2C%20whether%20occurring%20prior%20to%2C%20during%2C%20or%20subsequent%20to%2C%20the%20Event%2C%20including%2C%20but%20not%20limited%20to%2C%20any%20death%2C%20personal%20injury%20or%20loss%2C%20damage%20or%20liability%20whatsoever.%20You%20understand%20that%20Your%20use%20of%20Your%20Ticket%20is%20contingent%20upon%20Your%20voluntary%20assumption%20of%20the%20risk%20and%20danger%20that%20may%20result%20from%2C%20or%20be%20incidental%20to%2C%20Your%20presence%20at%20the%20Event%2C%20whether%20occurring%20prior%20to%2C%20during%20or%20after%20the%20Event%2C%20including%2C%20but%20not%20limited%20to%2C%20any%20actions%20or%20omissions%20of%20the%20Company%20Parties%20%28as%20defined%20herein%29.%20SECURITY%20CHECK%20Please%20note%20all%20ticket%20holders%20will%20be%20searched%20upon%20entering%20the%20Event%20site.%20Security%20guards%20will%20inspect%20all%20objects%20brought%20onto%20the%20Event%20site%20including%2C%20but%20not%20limited%20to%2C%20clothing%2C%20luggage%20and%20other%20personal%20items%20in%20order%20to%20detect%20objects%20that%20may%20disrupt%20the%20course%20of%20the%20Event%2C%20jeopardize%20the%20safety%20of%20other%20ticketholders%2C%20or%20disturb%20the%20peace.%20Security%20guards%20may%20search%20any%20persons%20and%20property%20on%20the%20Event%20site%20at%20any%20time%2C%20including%2C%20but%20not%20limited%20to%2C%20storage%20lockers%2C%20and%20confiscate%20any%20prohibited%20items%2C%20in%20their%20sole%20discretion.%20CONDUCT%20AT%20THE%20EVENT%20You%20must%20heed%20the%20directions%20of%20Event%20organizers%20and%20security%20personnel%20at%20all%20times%20whilst%20on%20the%20Event%20site.%20If%20You%20fail%20to%20comply%20with%20such%20directions%2C%20You%20will%20be%20removed%20from%20the%20Event%20site%2C%20and%2C%20if%20necessary%2C%20Event%20staff%20may%20call%20on%20the%20police%20for%20assistance.%20INDEMNIFICATION%20You%20hereby%20indemnify%20and%20hold%20harmless%20Transplants%20Brewing%20LLC%2C%20their%20related%20companies%2C%20and%20each%20of%20their%20respective%20representatives%2C%20officers%2C%20directors%2C%20owners%2C%20members%2C%20trustees%2C%20agents%2C%20attorneys%2C%20employees%2C%20successors%20and%20assigns%2C%20and%20any%20other%20designated%20ticketing%20agent%2C%20Event%20sponsors/promoters%2C%20and%20the%20performing%20artists%2C%20including%2C%20but%20not%20limited%20to%2C%20their%20respective%20management%2C%20their%20agents%2C%20their%20staff%20and%20their%20designees%20%28collectively%2C%20the%20Company%20Parties%29%20harmless%20from%20any%20loss%2C%20liability%2C%20damage%20or%20cost%20in%20any%20way%20arising%20out%20of%2C%20or%20related%20to%2C%20Your%20actions%20and%20omissions%20at%2C%20around%2C%20or%20while%20traveling%20to%20and%20from%2C%20the%20Event.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/dri-live-flyway-at-the-flyway-night-club-tickets/14221424&location=Flyway%20Night%20Club%20-%20Pomona%20" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="11">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-12" data-idx="12" data-name="Zara Larsson" data-start-local="2026-09-29T19:30:00" data-cal-start="20260930T023000Z" data-cal-end="20260930T043000Z" data-loc="Greek Theatre-Los Angeles" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A70AbJ" data-lat="34.125198" data-lng="-118.292">
+<button class="toggle" data-idx="12" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="12" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A70AbJ">Zara Larsson</a></h3>
+<div class="meta">7:30 PM · Greek Theatre-Los Angeles</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A70AbJ">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Zara%20Larsson&dates=20260930T023000Z/20260930T043000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A70AbJ&location=Greek%20Theatre-Los%20Angeles" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="12">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-15" data-idx="15" data-name="Dogstar w/ The Backfires" data-start-local="2026-09-29T20:00:00" data-cal-start="20260930T030000Z" data-cal-end="20260930T050000Z" data-loc="The Fonda Theatre" data-url="https://www.ticketmaster.com/event/Z7r9jZ1AAZ8Gw" data-lat="34.0998" data-lng="-118.326897">
+<button class="toggle" data-idx="15" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="15" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAZ8Gw">Dogstar w/ The Backfires</a></h3>
+<div class="meta">8:00 PM · The Fonda Theatre</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZ8Gw">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dogstar%20w/%20The%20Backfires&dates=20260930T030000Z/20260930T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1AAZ8Gw&location=The%20Fonda%20Theatre" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="15">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-16" data-idx="16" data-name="Erykah Badu w/ DJ Pee .Wee" data-start-local="2026-09-29T20:00:00" data-cal-start="20260930T030000Z" data-cal-end="20260930T050000Z" data-loc="Hollywood Bowl" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A706vw" data-lat="34.100201" data-lng="-118.327301">
+<button class="toggle" data-idx="16" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="16" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A706vw">Erykah Badu w/ DJ Pee .Wee</a></h3>
+<div class="meta">8:00 PM · Hollywood Bowl</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A706vw">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Erykah%20Badu%20w/%20DJ%20Pee%20.Wee&dates=20260930T030000Z/20260930T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A706vw&location=Hollywood%20Bowl" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="16">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-17" data-idx="17" data-name="Saint Harison" data-start-local="2026-09-29T20:00:00" data-cal-start="20260930T030000Z" data-cal-end="20260930T050000Z" data-loc="Roxy Theatre-CA" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A7P3ZA" data-lat="34.0942" data-lng="-118.3815">
+<button class="toggle" data-idx="17" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="17" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7P3ZA">Saint Harison</a></h3>
+<div class="meta">8:00 PM · Roxy Theatre-CA</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A7P3ZA">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Saint%20Harison&dates=20260930T030000Z/20260930T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A7P3ZA&location=Roxy%20Theatre-CA" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="17">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-18" data-idx="18" data-name="ISAIAH RASHAD: The Anniversary Show" data-start-local="2026-09-29T20:00:00" data-cal-start="20260930T030000Z" data-cal-end="20260930T050000Z" data-loc="YouTube Theater" data-url="https://www.ticketmaster.com/isaiah-rashad-the-anniversary-show-inglewood-california-09-29-2026/event/0A0064F2085FC86E" data-lat="33.94982" data-lng="-118.3436">
+<button class="toggle" data-idx="18" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="18" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.com/isaiah-rashad-the-anniversary-show-inglewood-california-09-29-2026/event/0A0064F2085FC86E">ISAIAH RASHAD: The Anniversary Show</a></h3>
+<div class="meta">8:00 PM · YouTube Theater</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.com/isaiah-rashad-the-anniversary-show-inglewood-california-09-29-2026/event/0A0064F2085FC86E">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=ISAIAH%20RASHAD%3A%20The%20Anniversary%20Show&dates=20260930T030000Z/20260930T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/isaiah-rashad-the-anniversary-show-inglewood-california-09-29-2026/event/0A0064F2085FC86E&location=YouTube%20Theater" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="18">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+<section class="cat">
+<h2>Comedy</h2>
+
+<article class="event" id="event-13" data-idx="13" data-name="Tonight at the Improv ft. Arsenio Hall, Patton Oswalt, Christopher Titus, Adam Ray, Brian Monarch, Ksenia, and Very Special Guests" data-start-local="2026-09-29T19:30:00" data-cal-start="20260930T023000Z" data-cal-end="20260930T043000Z" data-loc="Hollywood Improv (The Main Room) " data-url="https://www.ticketweb.com/event/tonight-at-the-improv-ft-hollywood-improv-the-main-room-tickets/15014313" data-lat="34.083418" data-lng="-118.366556">
+<button class="toggle" data-idx="13" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="13" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/tonight-at-the-improv-ft-hollywood-improv-the-main-room-tickets/15014313">Tonight at the Improv ft. Arsenio Hall, Patton Oswalt, Christopher Titus, Adam Ray, Brian Monarch, Ksenia, and Very Special Guests</a></h3>
+<div class="meta">7:30 PM · Hollywood Improv (The Main Room)  · $34.49</div>
+<p>This show will be a phone-free experience. Use of cellphones, smart watches, smart accessories, cameras and recording devices will not be permitted in the performance space. Upon arrival at the venue, all phones and smart watches will be secured in Yondr cases that will be opened at the end of the event. Guests maintain possession of their phones at all times, and can access their phones throughout the show at designated Phone Use Areas in the venue. All phones will be re-secured in Yondr cases before returning to the performance space. Anyone seen using a cellphone during the performance will be escorted out of the venue. We appreciate your cooperation in creating a phone-free viewing experience. DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE HOLLYWOOD IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Hollywood Improv.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/tonight-at-the-improv-ft-hollywood-improv-the-main-room-tickets/15014313">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Tonight%20at%20the%20Improv%20ft.%20Arsenio%20Hall%2C%20Patton%20Oswalt%2C%20Christopher%20Titus%2C%20Adam%20Ray%2C%20Brian%20Monarch%2C%20Ksenia%2C%20and%20Very%20Special%20Guests&dates=20260930T023000Z/20260930T043000Z&details=This%20show%20will%20be%20a%20phone-free%20experience.%20Use%20of%20cellphones%2C%20smart%20watches%2C%20smart%20accessories%2C%20cameras%20and%20recording%20devices%20will%20not%20be%20permitted%20in%20the%20performance%20space.%20Upon%20arrival%20at%20the%20venue%2C%20all%20phones%20and%20smart%20watches%20will%20be%20secured%20in%20Yondr%20cases%20that%20will%20be%20opened%20at%20the%20end%20of%20the%20event.%20Guests%20maintain%20possession%20of%20their%20phones%20at%20all%20times%2C%20and%20can%20access%20their%20phones%20throughout%20the%20show%20at%20designated%20Phone%20Use%20Areas%20in%20the%20venue.%20All%20phones%20will%20be%20re-secured%20in%20Yondr%20cases%20before%20returning%20to%20the%20performance%20space.%20Anyone%20seen%20using%20a%20cellphone%20during%20the%20performance%20will%20be%20escorted%20out%20of%20the%20venue.%20We%20appreciate%20your%20cooperation%20in%20creating%20a%20phone-free%20viewing%20experience.%20DO%20NOT%20PURCHASE%20TICKETS%20FROM%20ANYONE%20OR%20ANY%20OTHER%20SITE%20OTHER%20THAN%20IMPROV.COM%20TICKET%20RESALE%20IS%20STRICTLY%20PROHIBITED.%20TICKETS%20SUSPECTED%20OF%20BEING%20PURCHASED%20FOR%20THE%20SOLE%20PURPOSE%20OF%20RESELLING%20MAY%20BE%20CANCELLED%20AT%20THE%20DISCRETION%20OF%20THE%20HOLLYWOOD%20IMPROV.%20EVENT%20INFO%3A%20There%20is%20a%20two-item%20minimum%20purchase%20requirement%20in%20the%20showroom%20for%20all%20guests.%20Seating%20is%20general%20admission%2C%20first-come%2C%20first-served%2C%20with%20the%20exception%20of%20groups%20and%20premium%20booths.%20No%20cell%20phone%20use%2C%20photography%20or%20video%20recording%20is%20permitted%20during%20performances.%20All%20sales%20are%20final.%20MISCELLANOUS%3A%20For%20group%20sales%20info%2C%20e-mail%20our%20Events%20Manager%20to%20learn%20about%20special%20menu%20options%20and%20reserved%20seating.%20Additional%20questions%20may%20be%20addressed%20in%20our%20Frequently%20Asked%20Questions.%20For%20further%20assistance%2C%20contact%20Hollywood%20Improv.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/tonight-at-the-improv-ft-hollywood-improv-the-main-room-tickets/15014313&location=Hollywood%20Improv%20%28The%20Main%20Room%29%20" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="13">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-19" data-idx="19" data-name="Hot Mic with Comedian CP ft. Guy Torry, Kanisha Buss, Aaron Monte, Dave Helem" data-start-local="2026-09-29T21:30:00" data-cal-start="20260930T043000Z" data-cal-end="20260930T063000Z" data-loc="Hollywood Improv (The Main Room) " data-url="https://www.ticketweb.com/event/hot-mic-with-comedian-cp-hollywood-improv-the-main-room-tickets/14279124" data-lat="34.083418" data-lng="-118.366556">
+<button class="toggle" data-idx="19" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="19" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/hot-mic-with-comedian-cp-hollywood-improv-the-main-room-tickets/14279124">Hot Mic with Comedian CP ft. Guy Torry, Kanisha Buss, Aaron Monte, Dave Helem</a></h3>
+<div class="meta">9:30 PM · Hollywood Improv (The Main Room)  · $19.04</div>
+<p>This show will be a phone-free experience. Use of cellphones, smart watches, smart accessories, cameras and recording devices will not be permitted in the performance space. Upon arrival at the venue, all phones and smart watches will be secured in Yondr cases that will be opened at the end of the event. Guests maintain possession of their phones at all times, and can access their phones throughout the show at designated Phone Use Areas in the venue. All phones will be re-secured in Yondr cases before returning to the performance space. Anyone seen using a cellphone during the performance will be escorted out of the venue. We appreciate your cooperation in creating a phone-free viewing experience. DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE HOLLYWOOD IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Hollywood Improv.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/hot-mic-with-comedian-cp-hollywood-improv-the-main-room-tickets/14279124">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hot%20Mic%20with%20Comedian%20CP%20ft.%20Guy%20Torry%2C%20Kanisha%20Buss%2C%20Aaron%20Monte%2C%20Dave%20Helem&dates=20260930T043000Z/20260930T063000Z&details=This%20show%20will%20be%20a%20phone-free%20experience.%20Use%20of%20cellphones%2C%20smart%20watches%2C%20smart%20accessories%2C%20cameras%20and%20recording%20devices%20will%20not%20be%20permitted%20in%20the%20performance%20space.%20Upon%20arrival%20at%20the%20venue%2C%20all%20phones%20and%20smart%20watches%20will%20be%20secured%20in%20Yondr%20cases%20that%20will%20be%20opened%20at%20the%20end%20of%20the%20event.%20Guests%20maintain%20possession%20of%20their%20phones%20at%20all%20times%2C%20and%20can%20access%20their%20phones%20throughout%20the%20show%20at%20designated%20Phone%20Use%20Areas%20in%20the%20venue.%20All%20phones%20will%20be%20re-secured%20in%20Yondr%20cases%20before%20returning%20to%20the%20performance%20space.%20Anyone%20seen%20using%20a%20cellphone%20during%20the%20performance%20will%20be%20escorted%20out%20of%20the%20venue.%20We%20appreciate%20your%20cooperation%20in%20creating%20a%20phone-free%20viewing%20experience.%20DO%20NOT%20PURCHASE%20TICKETS%20FROM%20ANYONE%20OR%20ANY%20OTHER%20SITE%20OTHER%20THAN%20IMPROV.COM%20TICKET%20RESALE%20IS%20STRICTLY%20PROHIBITED.%20TICKETS%20SUSPECTED%20OF%20BEING%20PURCHASED%20FOR%20THE%20SOLE%20PURPOSE%20OF%20RESELLING%20MAY%20BE%20CANCELLED%20AT%20THE%20DISCRETION%20OF%20THE%20HOLLYWOOD%20IMPROV.%20EVENT%20INFO%3A%20There%20is%20a%20two-item%20minimum%20purchase%20requirement%20in%20the%20showroom%20for%20all%20guests.%20Seating%20is%20general%20admission%2C%20first-come%2C%20first-served%2C%20with%20the%20exception%20of%20groups%20and%20premium%20booths.%20No%20cell%20phone%20use%2C%20photography%20or%20video%20recording%20is%20permitted%20during%20performances.%20All%20sales%20are%20final.%20MISCELLANOUS%3A%20For%20group%20sales%20info%2C%20e-mail%20our%20Events%20Manager%20to%20learn%20about%20special%20menu%20options%20and%20reserved%20seating.%20Additional%20questions%20may%20be%20addressed%20in%20our%20Frequently%20Asked%20Questions.%20For%20further%20assistance%2C%20contact%20Hollywood%20Improv.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/hot-mic-with-comedian-cp-hollywood-improv-the-main-room-tickets/14279124&location=Hollywood%20Improv%20%28The%20Main%20Room%29%20" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="19">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+<article class="event" id="event-20" data-idx="20" data-name="Comedy N Chill ft. Nicky Paris, Kylie Vincent, Luke Binkow, Leslie Liao, Chris Waitkus,  Rachel Scanlon, Maria Bruggere and more" data-start-local="2026-09-29T21:30:00" data-cal-start="20260930T043000Z" data-cal-end="20260930T063000Z" data-loc="Hollywood Improv (The Lab)" data-url="https://www.ticketweb.com/event/comedy-n-chill-ft-nicky-hollywood-improv-the-lab-tickets/14296444" data-lat="34.0834329" data-lng="-118.367284">
+<button class="toggle" data-idx="20" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="20" aria-label="Hide this event" title="Not interested">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketweb.com/event/comedy-n-chill-ft-nicky-hollywood-improv-the-lab-tickets/14296444">Comedy N Chill ft. Nicky Paris, Kylie Vincent, Luke Binkow, Leslie Liao, Chris Waitkus,  Rachel Scanlon, Maria Bruggere and more</a></h3>
+<div class="meta">9:30 PM · Hollywood Improv (The Lab) · $13.89</div>
+<p>DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE HOLLYWOOD IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Hollywood Improv.</p>
+<a class="tickets" href="https://www.ticketweb.com/event/comedy-n-chill-ft-nicky-hollywood-improv-the-lab-tickets/14296444">Tickets &amp; info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Comedy%20N%20Chill%20ft.%20Nicky%20Paris%2C%20Kylie%20Vincent%2C%20Luke%20Binkow%2C%20Leslie%20Liao%2C%20Chris%20Waitkus%2C%20%20Rachel%20Scanlon%2C%20Maria%20Bruggere%20and%20more&dates=20260930T043000Z/20260930T063000Z&details=DO%20NOT%20PURCHASE%20TICKETS%20FROM%20ANYONE%20OR%20ANY%20OTHER%20SITE%20OTHER%20THAN%20IMPROV.COM%20TICKET%20RESALE%20IS%20STRICTLY%20PROHIBITED.%20TICKETS%20SUSPECTED%20OF%20BEING%20PURCHASED%20FOR%20THE%20SOLE%20PURPOSE%20OF%20RESELLING%20MAY%20BE%20CANCELLED%20AT%20THE%20DISCRETION%20OF%20THE%20HOLLYWOOD%20IMPROV.%20EVENT%20INFO%3A%20There%20is%20a%20two-item%20minimum%20purchase%20requirement%20in%20the%20showroom%20for%20all%20guests.%20Seating%20is%20general%20admission%2C%20first-come%2C%20first-served%2C%20with%20the%20exception%20of%20groups%20and%20premium%20booths.%20No%20cell%20phone%20use%2C%20photography%20or%20video%20recording%20is%20permitted%20during%20performances.%20All%20sales%20are%20final.%20MISCELLANOUS%3A%20For%20group%20sales%20info%2C%20e-mail%20our%20Events%20Manager%20to%20learn%20about%20special%20menu%20options%20and%20reserved%20seating.%20Additional%20questions%20may%20be%20addressed%20in%20our%20Frequently%20Asked%20Questions.%20For%20further%20assistance%2C%20contact%20Hollywood%20Improv.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/comedy-n-chill-ft-nicky-hollywood-improv-the-lab-tickets/14296444&location=Hollywood%20Improv%20%28The%20Lab%29" target="_blank" rel="noopener">📅 Google Cal</a>
+<button class="cal-link ics-btn" data-idx="20">⬇️ .ics</button>
+<span class="leave-by"></span>
+</div>
+</div>
+</article>
+</section>
+</main>
+<footer>
+<div class="serif">Hand-picked for you by Tonight.</div>
+<p>Your picks are tracked when you send them —<br>tomorrow's digest learns what you love.</p>
+</footer>
+<script>
+const TRAVEL_MINUTES = 30;  // default buffer before an event's start time
+const CITY = "la";
+const DATE = "2026-09-29";
+const NAMES = ["SoFi Stadium Tours - No Field Access", "Dogman: The Musical", "Lo Moon", "\"Comedy Tragedy Parody\" Dominic Fike in North America", "Ecca Vandal", "Alyssa Grace - SOLD OUT", "JACK WHITE LIVE 2026", "BashfortheWorld Presents: Un Mundo de Musica", "Adriana Rios - Alto Mando Tour", "Cardinals", "vianova", "D.R.I. LIVE FLYWAY AT THE FOX", "Zara Larsson", "Tonight at the Improv ft. Arsenio Hall, Patton Oswalt, Christopher Titus, Adam Ray, Brian Monarch, Ksenia, and Very Special Guests", "Plant Mob ft. Mike O'Brien, Willie Macc, Audrey Stewart, Ainsley Bailey, Miranda Meadows, Patrick Murray, Opey Olagbaju, Kyle Tomlin, and more TBA", "Dogstar w/ The Backfires", "Erykah Badu w/ DJ Pee .Wee", "Saint Harison", "ISAIAH RASHAD: The Anniversary Show", "Hot Mic with Comedian CP ft. Guy Torry, Kanisha Buss, Aaron Monte, Dave Helem", "Comedy N Chill ft. Nicky Paris, Kylie Vincent, Luke Binkow, Leslie Liao, Chris Waitkus,  Rachel Scanlon, Maria Bruggere and more", "Dolby Theatre Guided Tour", "Eviction Response Workshop", "Preschool Storytime", "Preschool Storytime and Crafts", "Toddler Storytime", "STAR Storytime With Donna", "STAR Reader", "Kids' Chapter Book Club", "Zoom Book Club", "Author Book Talk: The Distance Between Our Names"];
+const CATS = ["Arts & Play", "Arts & Play", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Comedy", "Arts & Play", "Music", "Music", "Music", "Music", "Comedy", "Comedy", "Arts & Play", "Talks", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Talks", "Arts & Play", "Talks", "Talks"];
+const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true];
+const TZ = "America/Los_Angeles";
+const STARTS = [540, 660, 1110, 1110, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1170, 1170, 1170, 1200, 1200, 1200, 1200, 1290, 1290, null, 960, 615, 630, 750, 780, 780, 960, 1020, 780];   // minutes since midnight, or null
+const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1140, 675, 690, 780, 870, 900, 1020, null, 840];       // from end_time, or null (-> start + 2h)
+const KEY = "tonight-picks-" + CITY + "-" + DATE;
+let picks = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
+function render() {
+  document.querySelectorAll(".toggle").forEach(btn => {
+    const on = picks.has(btn.dataset.idx);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  document.getElementById("pickCount").textContent = picks.size;
+  localStorage.setItem(KEY, JSON.stringify([...picks]));
+  // report taps to the backend when available (real tracking)
+  if (window.__tonight_api) {
+    const USER_ID = localStorage.getItem("tonight-user-id") || null;
+    fetch(window.__tonight_api + "/tap", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({city: CITY, date: DATE, user_id: USER_ID,
+        picks: [...picks].map(i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i]}))})
+    }).catch(() => {});
+  }
+}
+document.querySelectorAll(".toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const id = btn.dataset.idx;
+    picks.has(id) ? picks.delete(id) : picks.add(id);
+    render();
+  });
+});
+document.getElementById("shareBtn").addEventListener("click", async () => {
+  const data = {title: document.title, text: "Today's picks", url: location.href};
+  if (navigator.share) { try { await navigator.share(data); } catch(e) {} }
+  else { await navigator.clipboard.writeText(location.href); alert("Link copied — paste it anywhere to share."); }
+});
+document.getElementById("sendBtn").addEventListener("click", () => {
+  if (!picks.size) { alert("Tap a few boxes first, then send your picks."); return; }
+  const list = [...picks].sort().map(i => "• " + NAMES[+i]).join("\n");
+  const subject = encodeURIComponent("Re: Los Angeles — my picks");
+  const body = encodeURIComponent("My picks for " + DATE + " (" + CITY + "):\n\n" + list + "\n\n— sent from my Los Angeles page");
+  location.href = "mailto:pseshadri91@gmail.com?subject=" + subject + "&body=" + body;
+});
+render();
+function fmtTime(d) {
+  let h = d.getHours(); const m = d.getMinutes();
+  const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12;
+  return h + ":" + String(m).padStart(2, "0") + " " + ap;
+}
+// "leave by" hints from each event's local start time
+document.querySelectorAll(".event[data-start-local]").forEach(a => {
+  const start = new Date(a.dataset.startLocal);
+  if (isNaN(start)) return;
+  const leave = new Date(start.getTime() - TRAVEL_MINUTES * 60000);
+  const el = a.querySelector(".leave-by");
+  if (el) el.textContent = "leave by ~" + fmtTime(leave);
+});
+// per-event .ics download built client-side
+function icsEscape(s) {
+  return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;")
+                  .replace(/,/g, "\\,").replace(/\n/g, "\n");
+}
+function icsFold(line) {
+  let out = "";
+  while (line.length > 75) { out += line.slice(0, 75) + "\r\n "; line = line.slice(75); }
+  return out + line;
+}
+document.querySelectorAll(".ics-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const a = btn.closest(".event");
+    const d = a.dataset;
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Tonight//Event//EN",
+      "BEGIN:VEVENT",
+      "UID:" + CITY + "-" + DATE + "-" + btn.dataset.idx + "@tonight",
+      "DTSTAMP:" + stamp,
+      "DTSTART:" + d.calStart, "DTEND:" + d.calEnd,
+      "SUMMARY:" + icsEscape(d.name)];
+    if (d.loc) lines.push("LOCATION:" + icsEscape(d.loc));
+    if (d.url) {
+      lines.push("URL:" + d.url);
+      lines.push("DESCRIPTION:" + icsEscape("Tickets & info: " + d.url));
+    }
+    lines.push("END:VEVENT", "END:VCALENDAR");
+    const uri = "data:text/calendar;charset=utf-8," +
+                encodeURIComponent(lines.map(icsFold).join("\r\n"));
+    const link = document.createElement("a");
+    link.href = uri;
+    link.download = d.name.replace(/[^\w\- ]+/g, "").trim()
+                         .replace(/\s+/g, "-").slice(0, 60) + ".ics";
+    document.body.appendChild(link); link.click(); link.remove();
+  });
+});
+
+// ---------------- Filters + hide ----------------
+// Wrapped in an IIFE: the browse page reuses this whole script via
+// extraction, and its own filter code must not collide with this.
+window.__applyFilters = (function () {
+  const bar = document.getElementById("filterBar");
+  if (!bar) return null;
+  const F = {q: "", cat: "", free: false, tod: "all"};
+  const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
+  let hidden = new Set(JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
+  function todOf(i) {
+    const s = STARTS[i];
+    if (s == null) return "tba";
+    if (s < 720) return "morning";      // before 12 PM
+    if (s < 1020) return "afternoon";   // 12–5 PM
+    return "evening";                   // 5 PM+
+  }
+  function applyFilters() {
+    const cards = document.querySelectorAll("article.event");
+    let n = 0;
+    cards.forEach(a => {
+      const i = a.dataset.idx;
+      let ok = !hidden.has(i);
+      if (ok && F.cat && CATS[+i] !== F.cat) ok = false;
+      if (ok && F.free && !FREE[+i]) ok = false;
+      if (ok && F.tod !== "all" && todOf(+i) !== F.tod) ok = false;
+      if (ok && F.q) {
+        const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
+        if (!hay.includes(F.q)) ok = false;
+      }
+      a.style.display = ok ? "" : "none";
+      if (ok) n++;
+    });
+    document.querySelectorAll("section.cat").forEach(s => {
+      const vis = [...s.querySelectorAll("article.event")]
+        .some(a => a.style.display !== "none");
+      s.style.display = vis ? "" : "none";
+    });
+    document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
+    document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
+    document.getElementById("hiddenN").textContent = hidden.size;
+  }
+  document.getElementById("fq").addEventListener("input", e => {
+    F.q = e.target.value.trim().toLowerCase(); applyFilters();
+  });
+  document.getElementById("fcat").addEventListener("change", e => {
+    F.cat = e.target.value; applyFilters();
+  });
+  document.getElementById("ffree").addEventListener("click", e => {
+    F.free = !F.free;
+    e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
+    applyFilters();
+  });
+  document.querySelectorAll("#ftod button").forEach(b => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
+      b.classList.add("on");
+      F.tod = b.dataset.t; applyFilters();
+    });
+  });
+  document.querySelectorAll(".hide").forEach(b => b.addEventListener("click", () => {
+    const i = b.dataset.idx;
+    hidden.add(i);
+    localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden]));
+    if (picks.has(i)) { picks.delete(i); render(); }
+    applyFilters();
+  }));
+  document.getElementById("unhide").addEventListener("click", () => {
+    hidden.clear();
+    localStorage.setItem(HIDE_KEY, "[]");
+    applyFilters();
+  });
+  applyFilters();
+  return applyFilters;
+})();
+
+// ---------------- Tonight mode ----------------
+const TONIGHT_WINDOW = 300;  // upcoming: starts within the next 5h
+const NOW_GRACE = 120;       // "happening now": started within the last 2h
+function cityNowMinutes() {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: TZ, hour: "numeric", minute: "numeric", hour12: false
+    }).formatToParts(new Date());
+    let h = 0, m = 0;
+    for (const p of parts) {
+      if (p.type === "hour") h = (+p.value) % 24;
+      if (p.type === "minute") m = +p.value;
+    }
+    return h * 60 + m;
+  } catch (e) {
+    const d = new Date();
+    return d.getHours() * 60 + d.getMinutes();
+  }
+}
+let tonightOn = false;
+const homeSpot = new Map();  // idx -> original {parent, next} for restore
+function addBadge(art, cls, text) {
+  art.querySelectorAll(".badge").forEach(b => b.remove());
+  const b = document.createElement("span");
+  b.className = "badge " + cls;
+  b.textContent = text;
+  art.querySelector(".event-body").prepend(b);
+}
+function setTonight(on) {
+  tonightOn = on;
+  const btn = document.getElementById("tonightBtn");
+  btn.classList.toggle("btn-active", on);
+  btn.setAttribute("aria-pressed", on ? "true" : "false");
+  const wrap = document.getElementById("tonightWrap");
+  const list = document.getElementById("tonightList");
+  const empty = document.getElementById("tonightEmpty");
+  const count = document.getElementById("tonightCount");
+  if (!on) {
+    homeSpot.forEach((spot, i) => {
+      const art = document.getElementById("event-" + i);
+      if (art) {
+        art.querySelectorAll(".badge").forEach(b => b.remove());
+        spot.parent.insertBefore(art, spot.next);
+      }
+    });
+    homeSpot.clear();
+    wrap.style.display = "none";
+    document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
+    const fbOff = document.getElementById("filterBar");
+    if (fbOff) fbOff.style.display = "";
+    if (window.__applyFilters) window.__applyFilters();
+    return;
+  }
+  const now = cityNowMinutes();
+  const items = [];
+  document.querySelectorAll("article.event").forEach(art => {
+    const i = +art.dataset.idx;
+    if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
+    const s = STARTS[i];
+    let status = "tba", rank = 3;
+    if (s == null) { status = "tba"; rank = 3; }
+    else {
+      const e = ENDS[i] != null ? ENDS[i] : s + NOW_GRACE;
+      if (now >= s && now <= e) { status = "now"; rank = 0; }
+      else if (s > now && s - now <= TONIGHT_WINDOW) { status = "soon"; rank = FREE[i] ? 1 : 2; }
+      else { status = "past"; rank = 4; }
+    }
+    items.push({art: art, i: i, s: s, status: status, rank: rank, free: FREE[i]});
+  });
+  // Taste tiebreak: provided by the taste core script (injected by the
+  // site builder). Falls back to 0 when absent.
+  const tasteTie = o => (window.Tonight && Tonight.score) ? Tonight.score(o.i) : 0;
+  items.sort((a, b) => (a.rank - b.rank) || (tasteTie(b) - tasteTie(a)) || ((a.s == null ? 1440 : a.s) - (b.s == null ? 1440 : b.s)));
+  list.innerHTML = "";
+  let live = 0, tbaHeader = false;
+  items.forEach(o => {
+    if (o.status === "past") return;  // already over: not tonight
+    if (o.status === "tba" && !tbaHeader) {
+      tbaHeader = true;
+      const div = document.createElement("div");
+      div.className = "tba-div";
+      div.textContent = "Times TBA";
+      list.appendChild(div);
+    }
+    if (o.status === "now") addBadge(o.art, "now", "● Happening now");
+    else if (o.free) addBadge(o.art, "free", "Free");
+    else o.art.querySelectorAll(".badge").forEach(b => b.remove());
+    list.appendChild(o.art);
+    if (o.status !== "tba") live++;
+  });
+  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
+  const fbOn = document.getElementById("filterBar");
+  if (fbOn) fbOn.style.display = "none";
+  wrap.style.display = "block";
+  empty.style.display = live ? "none" : "block";
+  count.textContent = live ? live + (live === 1 ? " thing" : " things") + " on now or starting soon" : "";
+  wrap.scrollIntoView({behavior: "smooth", block: "start"});
+}
+document.getElementById("tonightBtn").addEventListener("click", () => setTonight(!tonightOn));
+</script>
+<script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}</script><script>window.__tonight_api="https://29f0527cd085c0d2-87-81-235-35.serveousercontent.com/api"||null;(function(){try{fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
