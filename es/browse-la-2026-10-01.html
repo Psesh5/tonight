@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Browse everything — Los Angeles, Thursday</title>
+<title>Ver todo — Los Ángeles, Jueves</title>
 <style>
 .topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
 background:var(--banner,#14201A);color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
@@ -432,7 +432,7 @@ body{overflow-x:hidden;}
 .picks{margin-left:16px;margin-right:16px;}
 .wrap{padding-left:16px;padding-right:16px;}
 }
-</style></head>
+</style><script>window.CAT_LABELS={"Music": "Música", "Comedy": "Comedia", "Arts & Play": "Arte y juego", "Talks": "Charlas", "Tech": "Tecnología", "Meetups & Mixers": "Encuentros", "Food & Drink": "Comida y bebida", "Trivia & Games": "Trivia y juegos", "Sports": "Deportes", "Italian": "Italiana", "Japanese": "Japonesa", "Chinese": "China", "Mexican": "Mexicana", "Indian": "India", "Thai": "Tailandesa", "Korean": "Coreana", "French": "Francesa", "American": "Estadounidense", "Mediterranean": "Mediterránea", "Vegetarian / vegan": "Vegetariana / vegana", "Seafood": "Mariscos"};</script></head>
 <body><script>
 /* Tonight taste: onboarding quiz, profile, personalized ranking */
 (function(){
@@ -567,7 +567,7 @@ function applyRanking(){
   }
 }
 /* ---------------- quiz ---------------- */
-var SURP = {low: "none", med: "a few", high: "lots"};
+var SURP = {low: "ninguna", med: "algunas", high: "muchas"};
 var sheet = null, sel = {};
 function guessCity(){
   var saved = null;
@@ -596,19 +596,19 @@ function buildSheet(){
   veil.className = "quiz-veil"; veil.id = "quizVeil"; veil.hidden = true;
   var card = document.createElement("div");
   card.className = "quiz-card"; card.setAttribute("role", "dialog");
-  card.setAttribute("aria-label", "What are you into?");
+  card.setAttribute("aria-label", "¿Qué te gusta?");
   var eb = document.createElement("div"); eb.className = "quiz-eyebrow";
-  eb.textContent = "Tonight learns your taste";
-  var h = document.createElement("h2"); h.textContent = "What are you into?";
+  eb.textContent = "Tonight aprende tu gusto";
+  var h = document.createElement("h2"); h.textContent = "¿Qué te gusta?";
   var sub = document.createElement("p"); sub.className = "quiz-sub";
-  sub.textContent = "Tap what you like. Takes 30 seconds, and your picks get personal.";
+  sub.textContent = "Toca lo que te gusta. Toma 30 segundos y tus planes serán más personales.";
   var chips = document.createElement("div"); chips.className = "qchips";
   CATS_ALL.forEach(function(c){ chips.appendChild(chipBtn(c)); });
   var prefs = document.createElement("div"); prefs.className = "qchips";
   var freeB = document.createElement("button");
   freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
   freeB.setAttribute("aria-pressed", "false");
-  freeB.textContent = "Free-first";
+  freeB.textContent = "Primero gratis";
   freeB.addEventListener("click", function(){
     var on = freeB.getAttribute("aria-pressed") === "true";
     freeB.setAttribute("aria-pressed", on ? "false" : "true");
@@ -617,7 +617,7 @@ function buildSheet(){
   var surpB = document.createElement("button");
   surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
   var paintSurp = function(){
-    surpB.textContent = "Surprises: " + SURP[surp];
+    surpB.textContent = "Sorpresas: " + SURP[surp];
     surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
   };
   paintSurp();
@@ -630,7 +630,7 @@ function buildSheet(){
   var cards = document.querySelectorAll("a.citycard");
   if (!CITY && cards.length) {
     cityPick = guessCity();
-    var clab = document.createElement("div"); clab.className = "qlabel"; clab.textContent = "Your city";
+    var clab = document.createElement("div"); clab.className = "qlabel"; clab.textContent = "Tu ciudad";
     cityRow = document.createElement("div"); cityRow.className = "qchips"; cityRow.id = "qCity";
     cards.forEach(function(a){
       var slug = (a.getAttribute("href") || "").split("/")[0];
@@ -651,10 +651,10 @@ function buildSheet(){
   var actions = document.createElement("div"); actions.className = "qactions";
   var done = document.createElement("button");
   done.className = "btn btn-gold"; done.type = "button"; done.id = "qDone";
-  done.textContent = "Done \u2192";
+  done.textContent = "Listo →";
   var skip = document.createElement("button");
   skip.className = "qlink"; skip.type = "button"; skip.id = "qSkip";
-  skip.textContent = "skip for now";
+  skip.textContent = "omitir por ahora";
   var markSeen = function(){ try { localStorage.setItem(OKEY, "1"); } catch (e) {} };
   done.addEventListener("click", function(){
     taste.likes = Object.keys(sel);
@@ -675,7 +675,7 @@ function buildSheet(){
   actions.appendChild(done); actions.appendChild(skip);
   card.appendChild(eb); card.appendChild(h); card.appendChild(sub);
   card.appendChild(chips); card.appendChild(prefs);
-  if (cityRow) { card.appendChild(cityRow); done.textContent = "Show me tonight →"; }
+  if (cityRow) { card.appendChild(cityRow); done.textContent = "Muéstrame esta noche →"; }
   card.appendChild(actions);
   veil.appendChild(card);
   document.body.appendChild(veil);
@@ -701,19 +701,19 @@ function joinList(a){
 }
 function describe(){
   var parts = [];
-  if (taste.likes.length) parts.push("into " + joinList(taste.likes));
-  if (taste.mutes.length) parts.push("not into " + joinList(taste.mutes));
+  if (taste.likes.length) parts.push("" + joinList(taste.likes));
+  if (taste.mutes.length) parts.push("no te gusta " + joinList(taste.mutes));
   var s = parts.length
-    ? "You're " + parts.join(", ") + "."
-    : "You haven't told Tonight what you like yet.";
+    ? "Te gusta " + parts.join(", ") + "."
+    : "Todavía no le has dicho a Tonight qué te gusta.";
   var prefs = [];
-  if (taste.free_only) prefs.push("you'd rather keep it free");
-  prefs.push(taste.surprise === "low" ? "no surprises, just your thing" :
-    (taste.surprise === "med" ? "open to a few surprises" : "bring on the surprises"));
-  s += " Right now, " + prefs.join(", ") + ".";
+  if (taste.free_only) prefs.push("prefieres que sea gratis");
+  prefs.push(taste.surprise === "low" ? "sin sorpresas, solo lo tuyo" :
+    (taste.surprise === "med" ? "abierto a algunas sorpresas" : "venga con las sorpresas"));
+  s += " Por ahora, " + prefs.join(", ") + ".";
   var top = Object.keys(tapBonus)
     .sort(function(a, b){ return tapBonus[b] - tapBonus[a]; }).slice(0, 2);
-  if (top.length) s += " Your taps lean " + joinList(top) + ".";
+  if (top.length) s += " Tus marcas se inclinan por " + joinList(top) + ".";
   return s;
 }
 function setCat(cat, mode){
@@ -739,786 +739,786 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 })();
 </script>
-<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Your taste</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="#" id="tuneTaste">Tune</a><a class="tastelink" href="./account.html">Account</a><a class="tastelink langsw" id="langSwitch" href="./">ES</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-01.html">NYC</a> <a class="" href="./london/2026-10-01.html">London</a> <a class="cur" href="./la/2026-10-01.html">LA</a></span><a class="browselink" href="./browse-la-2026-10-01.html">Browse all →</a></nav>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Tu gusto</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="#" id="tuneTaste">Ajustar</a><a class="tastelink" href="./account.html">Cuenta</a><a class="tastelink langsw" id="langSwitch" href="./">ES</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-01.html">NYC</a> <a class="" href="./london/2026-10-01.html">Londres</a> <a class="cur" href="./la/2026-10-01.html">LA</a></span><a class="browselink" href="./browse-la-2026-10-01.html">Ver todo →</a></nav>
 <header class="bhero">
-<div class="eyebrow">Thursday, October 1 · Los Angeles</div>
-<h1>Browse everything</h1>
-<p>The full corpus behind today's picks — search it, filter it, make it yours.</p>
+<div class="eyebrow">Jueves, 1 de octubre · Los Ángeles</div>
+<h1>Ver todo</h1>
+<p>Todo lo que hay detrás de los planes de hoy: búscalo, fíltralo, hazlo tuyo.</p>
 </header>
 <div class="toolbar">
-<a class="btn btn-dark" href="./la/2026-10-01.html">← Back to today's picks</a>
-<a class="btn btn-gold" href="./la/2026-10-01.ics" download>📅 Add all to calendar</a>
+<a class="btn btn-dark" href="./la/2026-10-01.html">← Volver a los planes de hoy</a>
+<a class="btn btn-gold" href="./la/2026-10-01.ics" download>📅 Agregar todo al calendario</a>
 </div>
 <div class="filters">
-<input id="fq" type="search" placeholder="Search events, venues…" aria-label="Search events">
-<select id="fcat" aria-label="Filter by category"><option value="">All categories</option><option value="Arts &amp; Play">Arts &amp; Play</option><option value="Music">Music</option><option value="Comedy">Comedy</option><option value="Meetups &amp; Mixers">Meetups &amp; Mixers</option><option value="Talks">Talks</option></select>
+<input id="fq" type="search" placeholder="Busca eventos, lugares…" aria-label="Buscar eventos">
+<select id="fcat" aria-label="Filtrar por categoría"><option value="">Todas las categorías</option><option value="Arts &amp; Play">Arte y juego</option><option value="Music">Música</option><option value="Comedy">Comedia</option><option value="Meetups &amp; Mixers">Encuentros</option><option value="Talks">Charlas</option></select>
 <div class="seg" id="ftod">
-<button data-t="all" class="on">Any time</button><button data-t="morning">Morning</button><button data-t="afternoon">Afternoon</button><button data-t="evening">Evening</button>
+<button data-t="all" class="on">Cualquier hora</button><button data-t="morning">Mañana</button><button data-t="afternoon">Tarde</button><button data-t="evening">Noche</button>
 </div>
-<select id="fafter" autocomplete="off" aria-label="Starts after"><option value="">Starts after…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Starts before"><option value="">Starts before…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select>
-<button class="fbtn" id="ffree" aria-pressed="false">Free only</button>
-<span id="hiddenBar"><span id="hiddenN">0</span> hidden · <button id="unhide">show them</button></span>
+<select id="fafter" autocomplete="off" aria-label="Empieza después de"><option value="">Empieza después de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Empieza antes de"><option value="">Empieza antes de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select>
+<button class="fbtn" id="ffree" aria-pressed="false">Solo gratis</button>
+<span id="hiddenBar"><span id="hiddenN">0</span> ocultos · <button id="unhide">mostrarlos</button></span>
 <span id="resCount"></span>
 </div>
-<div class="picks" id="picksBar"><strong>My picks: <span id="pickCount">0</span></strong><br>
-<span style="font-size:13px;color:#6b6b6b;">Ticks save automatically and shape tomorrow's picks. Going with friends? Send them your list.</span><br><br>
-<button class="btn btn-dark" id="sharePicksBtn">Share my picks →</button>
+<div class="picks" id="picksBar"><strong>Mis planes: <span id="pickCount">0</span></strong><br>
+<span style="font-size:13px;color:#6b6b6b;">Las marcas se guardan solas y dan forma a lo de mañana. ¿Vas con amigos? Mándales tu lista.</span><br><br>
+<button class="btn btn-dark" id="sharePicksBtn">Compartir mis planes →</button>
 <div id="shareMsg" style="font-size:13px;margin-top:10px;min-height:18px;"></div>
 </div>
 <main class="wrap">
 
 <article class="event" id="event-0" data-idx="0" data-name="SoFi Stadium Tours - No Field Access" data-start-local="2026-10-01T09:00:00" data-cal-start="20261001T160000Z" data-cal-end="20261001T180000Z" data-loc="SoFi Stadium Tours" data-url="https://www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-10-01-2026/event/0A0064E2A5F569B4" data-lat="33.95191" data-lng="-118.33565">
-<button class="toggle" data-idx="0" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="0" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="0" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="0" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-10-01-2026/event/0A0064E2A5F569B4">SoFi Stadium Tours - No Field Access</a></h3>
 <div class="meta">9:00 AM · SoFi Stadium Tours</div>
 <p>Book your SoFi Stadium tour experience. Join us for a behind the scenes, immersive tour of SoFi Stadium. Experience exclusive areas inside the stadium including luxury suites, clubs, locker rooms, on-field access* and more! Choose the date below and a new window will open allowing you to choose from available times. Tour schedule, route and field activities are subject to change without notice.</p>
-<a class="tickets" href="https://www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-10-01-2026/event/0A0064E2A5F569B4">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-10-01-2026/event/0A0064E2A5F569B4">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SoFi%20Stadium%20Tours%20-%20No%20Field%20Access&dates=20261001T160000Z/20261001T180000Z&details=Book%20your%20SoFi%20Stadium%20tour%20experience.%20Join%20us%20for%20a%20behind%20the%20scenes%2C%20immersive%20tour%20of%20SoFi%20Stadium.%20Experience%20exclusive%20areas%20inside%20the%20stadium%20including%20luxury%20suites%2C%20clubs%2C%20locker%20rooms%2C%20on-field%20access%2A%20and%20more%21%20Choose%20the%20date%20below%20and%20a%20new%20window%20will%20open%20allowing%20you%20to%20choose%20from%20available%20times.%20Tour%20schedule%2C%20route%20and%20field%20activities%20are%20subject%20to%20change%20without%20notice.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/sofi-stadium-tours-no-field-access-inglewood-california-10-01-2026/event/0A0064E2A5F569B4&location=SoFi%20Stadium%20Tours" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="0">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="0">Share</button>
+<button class="cal-link share-ev" data-idx="0">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a> <a href="#event-5">Loyola Marymount Lions Womens Volleyball vs. St. Marys CA Gaels Womens Volleyball</a></div></article>
 <article class="event" id="event-1" data-idx="1" data-name="Latin Music Conference SINGLE DAY Ticket" data-start-local="2026-10-01T11:00:00" data-cal-start="20261001T180000Z" data-cal-end="20261001T200000Z" data-loc="Luckman Fine Arts Complex" data-url="https://www.ticketmaster.com/latin-music-conference-single-day-ticket-los-angeles-california-10-01-2026/event/0B0064D8EA555DC5" data-lat="34.0659355" data-lng="-118.1655902">
-<button class="toggle" data-idx="1" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="1" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="1" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="1" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/latin-music-conference-single-day-ticket-los-angeles-california-10-01-2026/event/0B0064D8EA555DC5">Latin Music Conference SINGLE DAY Ticket</a></h3>
 <div class="meta">11:00 AM · Luckman Fine Arts Complex</div>
 <p>Single Day Ticket for October 1st Only Latin Music Month? Conference 2026 Join us in Los Angeles for the 2nd Annual Latin Music Month? Conference, a premier gathering celebrating the richness, innovation, and global impact of Latin culture. Our mission is to unite artists, creatives, entrepreneurs, executives, and industry leaders who are shaping the future of music and entertainment. Through meaningful conversations, authentic connections, and a shared passion for culture, we&#x27;re creating a space where ideas flourish and the next generation of Latin excellence is inspired. Experience 2 full days of engaging panel discussions, LMM Talks, live artist performances, prestigious awards honoring industry trailblazers, exclusive networking opportunities, and our Official After Party to close out an unforgettable celebration. Come celebrate the movement. Build meaningful connections. Be part of the future of Latin music and culture. www.LMMconference.com</p>
-<a class="tickets" href="https://www.ticketmaster.com/latin-music-conference-single-day-ticket-los-angeles-california-10-01-2026/event/0B0064D8EA555DC5">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/latin-music-conference-single-day-ticket-los-angeles-california-10-01-2026/event/0B0064D8EA555DC5">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Latin%20Music%20Conference%20SINGLE%20DAY%20Ticket&dates=20261001T180000Z/20261001T200000Z&details=Single%20Day%20Ticket%20for%20October%201st%20Only%20Latin%20Music%20Month%3F%20Conference%202026%20Join%20us%20in%20Los%20Angeles%20for%20the%202nd%20Annual%20Latin%20Music%20Month%3F%20Conference%2C%20a%20premier%20gathering%20celebrating%20the%20richness%2C%20innovation%2C%20and%20global%20impact%20of%20Latin%20culture.%20Our%20mission%20is%20to%20unite%20artists%2C%20creatives%2C%20entrepreneurs%2C%20executives%2C%20and%20industry%20leaders%20who%20are%20shaping%20the%20future%20of%20music%20and%20entertainment.%20Through%20meaningful%20conversations%2C%20authentic%20connections%2C%20and%20a%20shared%20passion%20for%20culture%2C%20we%27re%20creating%20a%20space%20where%20ideas%20flourish%20and%20the%20next%20generation%20of%20Latin%20excellence%20is%20inspired.%20Experience%202%20full%20days%20of%20engaging%20panel%20discussions%2C%20LMM%20Talks%2C%20live%20artist%20performances%2C%20prestigious%20awards%20honoring%20industry%20trailblazers%2C%20exclusive%20networking%20opportunities%2C%20and%20our%20Official%20After%20Party%20to%20close%20out%20an%20unforgettable%20celebration.%20Come%20celebrate%20the%20movement.%20Build%20meaningful%20connections.%20Be%20part%20of%20the%20future%20of%20Latin%20music%20and%20culture.%20www.LMMconference.com%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/latin-music-conference-single-day-ticket-los-angeles-california-10-01-2026/event/0B0064D8EA555DC5&location=Luckman%20Fine%20Arts%20Complex" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="1">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="1">Share</button>
+<button class="cal-link share-ev" data-idx="1">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a> <a href="#event-7">Aaron Lee Tasjan</a></div></article>
 <article class="event" id="event-2" data-idx="2" data-name="Dogman: The Musical - Sensory Sensitive Performance" data-start-local="2026-10-01T11:00:00" data-cal-start="20261001T180000Z" data-cal-end="20261001T200000Z" data-loc="Kirk Douglas Theatre" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A7PU3K" data-lat="34.018101" data-lng="-118.392197">
-<button class="toggle" data-idx="2" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="2" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="2" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="2" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7PU3K">Dogman: The Musical - Sensory Sensitive Performance</a></h3>
 <div class="meta">11:00 AM · Kirk Douglas Theatre</div>
 <p></p>
-<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A7PU3K">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A7PU3K">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dogman%3A%20The%20Musical%20-%20Sensory%20Sensitive%20Performance&dates=20261001T180000Z/20261001T200000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A7PU3K&location=Kirk%20Douglas%20Theatre" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="2">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="2">Share</button>
+<button class="cal-link share-ev" data-idx="2">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-3">The Outsiders (Touring)</a> <a href="#event-5">Loyola Marymount Lions Womens Volleyball vs. St. Marys CA Gaels Womens Volleyball</a></div></article>
 <article class="event" id="event-3" data-idx="3" data-name="The Outsiders (Touring)" data-start-local="2026-10-01T14:00:00" data-cal-start="20261001T210000Z" data-cal-end="20261001T230000Z" data-loc="Hollywood Pantages Theatre" data-url="https://www.ticketmaster.com/the-outsiders-touring-los-angeles-california-10-01-2026/event/0B0064C3A6F955CA" data-lat="34.10200961" data-lng="-118.32586552">
-<button class="toggle" data-idx="3" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="3" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="3" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="3" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/the-outsiders-touring-los-angeles-california-10-01-2026/event/0B0064C3A6F955CA">The Outsiders (Touring)</a></h3>
 <div class="meta">2:00 PM · Hollywood Pantages Theatre</div>
 <p>Disabled seating is reserved for the exclusive use of the disabled patron and their companion. The purchase or use of disabled seating locations by non-disabled individuals is strictly prohibited and may result in ejection and/or for feiture of the ticket price.</p>
-<a class="tickets" href="https://www.ticketmaster.com/the-outsiders-touring-los-angeles-california-10-01-2026/event/0B0064C3A6F955CA">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/the-outsiders-touring-los-angeles-california-10-01-2026/event/0B0064C3A6F955CA">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Outsiders%20%28Touring%29&dates=20261001T210000Z/20261001T230000Z&details=Disabled%20seating%20is%20reserved%20for%20the%20exclusive%20use%20of%20the%20disabled%20patron%20and%20their%20companion.%20The%20purchase%20or%20use%20of%20disabled%20seating%20locations%20by%20non-disabled%20individuals%20is%20strictly%20prohibited%20and%20may%20result%20in%20ejection%20and/or%20for%20feiture%20of%20the%20ticket%20price.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/the-outsiders-touring-los-angeles-california-10-01-2026/event/0B0064C3A6F955CA&location=Hollywood%20Pantages%20Theatre" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="3">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="3">Share</button>
+<button class="cal-link share-ev" data-idx="3">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-5">Loyola Marymount Lions Womens Volleyball vs. St. Marys CA Gaels Womens Volleyball</a></div></article>
 <article class="event" id="event-4" data-idx="4" data-name="Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost" data-start-local="2026-10-01T18:00:00" data-cal-start="20261002T010000Z" data-cal-end="20261002T030000Z" data-loc="Whisky A Go Go" data-url="https://www.ticketweb.com/event/alesana-in-parallel-with-you-whisky-a-go-go-tickets/15020283" data-lat="34.090897" data-lng="-118.385693">
-<button class="toggle" data-idx="4" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="4" aria-label="Hide this event" title="Not interested">×</button>
-<div class="event-body"><span class="badge">Free</span>
+<button class="toggle" data-idx="4" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="4" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.ticketweb.com/event/alesana-in-parallel-with-you-whisky-a-go-go-tickets/15020283">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a></h3>
 <div class="meta">6:00 PM · Whisky A Go Go · Free</div>
 <p>ALL SALES ARE FINAL!!</p>
-<a class="tickets" href="https://www.ticketweb.com/event/alesana-in-parallel-with-you-whisky-a-go-go-tickets/15020283">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketweb.com/event/alesana-in-parallel-with-you-whisky-a-go-go-tickets/15020283">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Alesana%2C%20In%20Parallel%20With%20You%2C%20Deadbeat%20Nightlife%2C%20%20IWPLMFM%2C%20Halfway%20Ghost&dates=20261002T010000Z/20261002T030000Z&details=ALL%20SALES%20ARE%20FINAL%21%21%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/alesana-in-parallel-with-you-whisky-a-go-go-tickets/15020283&location=Whisky%20A%20Go%20Go" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="4">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="4">Share</button>
+<button class="cal-link share-ev" data-idx="4">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-6">From First To Last</a> <a href="#event-7">Aaron Lee Tasjan</a></div></article>
 <article class="event" id="event-5" data-idx="5" data-name="Loyola Marymount Lions Womens Volleyball vs. St. Marys CA Gaels Womens Volleyball" data-start-local="2026-10-01T18:00:00" data-cal-start="20261002T010000Z" data-cal-end="20261002T030000Z" data-loc="Albert Gersten Pavilion" data-url="https://www.ticketmaster.com/event/Z7r9jZ1AAZKOb" data-lat="33.9534" data-lng="-118.399902">
-<button class="toggle" data-idx="5" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="5" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="5" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="5" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAZKOb">Loyola Marymount Lions Womens Volleyball vs. St. Marys CA Gaels Womens Volleyball</a></h3>
 <div class="meta">6:00 PM · Albert Gersten Pavilion</div>
 <p></p>
-<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZKOb">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZKOb">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Loyola%20Marymount%20Lions%20Womens%20Volleyball%20vs.%20St.%20Marys%20CA%20Gaels%20Womens%20Volleyball&dates=20261002T010000Z/20261002T030000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1AAZKOb&location=Albert%20Gersten%20Pavilion" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="5">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="5">Share</button>
+<button class="cal-link share-ev" data-idx="5">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-6" data-idx="6" data-name="From First To Last" data-start-local="2026-10-01T18:00:00" data-cal-start="20261002T010000Z" data-cal-end="20261002T030000Z" data-loc="House of Blues Anaheim" data-url="https://www.ticketmaster.com/from-first-to-last-anaheim-california-10-01-2026/event/090065114F79530C" data-lat="33.8095868" data-lng="-117.9229975">
-<button class="toggle" data-idx="6" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="6" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="6" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="6" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/from-first-to-last-anaheim-california-10-01-2026/event/090065114F79530C">From First To Last</a></h3>
 <div class="meta">6:00 PM · House of Blues Anaheim</div>
 <p>General Admission Standing Only. Age Restriction: This is an all-ages event. All guests, regardless of age, are required to have a ticket for entry. Doors: 6 PM Support: A Year Ago Today Roman Candle I Set My Friends On Fire All acts are subject to change.</p>
-<a class="tickets" href="https://www.ticketmaster.com/from-first-to-last-anaheim-california-10-01-2026/event/090065114F79530C">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/from-first-to-last-anaheim-california-10-01-2026/event/090065114F79530C">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=From%20First%20To%20Last&dates=20261002T010000Z/20261002T030000Z&details=General%20Admission%20Standing%20Only.%20Age%20Restriction%3A%20This%20is%20an%20all-ages%20event.%20All%20guests%2C%20regardless%20of%20age%2C%20are%20required%20to%20have%20a%20ticket%20for%20entry.%20Doors%3A%206%20PM%20Support%3A%20A%20Year%20Ago%20Today%20Roman%20Candle%20I%20Set%20My%20Friends%20On%20Fire%20All%20acts%20are%20subject%20to%20change.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/from-first-to-last-anaheim-california-10-01-2026/event/090065114F79530C&location=House%20of%20Blues%20Anaheim" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="6">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="6">Share</button>
+<button class="cal-link share-ev" data-idx="6">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-7">Aaron Lee Tasjan</a></div></article>
 <article class="event" id="event-7" data-idx="7" data-name="Aaron Lee Tasjan" data-start-local="2026-10-01T18:30:00" data-cal-start="20261002T013000Z" data-cal-end="20261002T033000Z" data-loc="The Moroccan Lounge" data-url="https://www.ticketmaster.com/aaron-lee-tasjan-los-angeles-california-10-01-2026/event/09006487B212B570" data-lat="34.04898" data-lng="-118.23365">
-<button class="toggle" data-idx="7" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="7" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="7" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="7" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/aaron-lee-tasjan-los-angeles-california-10-01-2026/event/09006487B212B570">Aaron Lee Tasjan</a></h3>
 <div class="meta">6:30 PM · The Moroccan Lounge</div>
 <p>The Moroccan Lounge presents: Aaron Lee Tasjan with support from Madeleine Kelson [October 1, 2026 / Doors 6:30pm / $25 adv / $28 dos / 21+]</p>
-<a class="tickets" href="https://www.ticketmaster.com/aaron-lee-tasjan-los-angeles-california-10-01-2026/event/09006487B212B570">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/aaron-lee-tasjan-los-angeles-california-10-01-2026/event/09006487B212B570">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Aaron%20Lee%20Tasjan&dates=20261002T013000Z/20261002T033000Z&details=The%20Moroccan%20Lounge%20presents%3A%20Aaron%20Lee%20Tasjan%20with%20support%20from%20Madeleine%20Kelson%20%5BOctober%201%2C%202026%20/%20Doors%206%3A30pm%20/%20%2425%20adv%20/%20%2428%20dos%20/%2021%2B%5D%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/aaron-lee-tasjan-los-angeles-california-10-01-2026/event/09006487B212B570&location=The%20Moroccan%20Lounge" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="7">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="7">Share</button>
+<button class="cal-link share-ev" data-idx="7">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-8" data-idx="8" data-name="Castle Rat: Summon The Beasts Tour 2026" data-start-local="2026-10-01T18:30:00" data-cal-start="20261002T013000Z" data-cal-end="20261002T033000Z" data-loc="The Belasco" data-url="https://www.ticketmaster.com/castle-rat-summon-the-beasts-tour-los-angeles-california-10-01-2026/event/090064BDA84BBA9D" data-lat="34.04024506" data-lng="-118.2592392">
-<button class="toggle" data-idx="8" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="8" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="8" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="8" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/castle-rat-summon-the-beasts-tour-los-angeles-california-10-01-2026/event/090064BDA84BBA9D">Castle Rat: Summon The Beasts Tour 2026</a></h3>
 <div class="meta">6:30 PM · The Belasco</div>
 <p>THIS IS AN ALL AGES EVENT The Belasco is a STANDING ROOM ONLY venue. We have a dedicated area for guests in wheelchairs and their companions, which is available on a first-come, first-served basis. Please contact us at THEBELASCO@LIVENATION.COM or (213) 531-0580 for questions regarding accessibility at the venue and to request accommodation. TIMES AND SUPPORT ACTS SUBJECT TO CHANGE WITHOUT NOTICE EARLY ENTRY LOUNGE: 5:30PM DOORS: 6:30PM SHOW: 7:30PM</p>
-<a class="tickets" href="https://www.ticketmaster.com/castle-rat-summon-the-beasts-tour-los-angeles-california-10-01-2026/event/090064BDA84BBA9D">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/castle-rat-summon-the-beasts-tour-los-angeles-california-10-01-2026/event/090064BDA84BBA9D">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Castle%20Rat%3A%20Summon%20The%20Beasts%20Tour%202026&dates=20261002T013000Z/20261002T033000Z&details=THIS%20IS%20AN%20ALL%20AGES%20EVENT%20The%20Belasco%20is%20a%20STANDING%20ROOM%20ONLY%20venue.%20We%20have%20a%20dedicated%20area%20for%20guests%20in%20wheelchairs%20and%20their%20companions%2C%20which%20is%20available%20on%20a%20first-come%2C%20first-served%20basis.%20Please%20contact%20us%20at%20THEBELASCO%40LIVENATION.COM%20or%20%28213%29%20531-0580%20for%20questions%20regarding%20accessibility%20at%20the%20venue%20and%20to%20request%20accommodation.%20TIMES%20AND%20SUPPORT%20ACTS%20SUBJECT%20TO%20CHANGE%20WITHOUT%20NOTICE%20EARLY%20ENTRY%20LOUNGE%3A%205%3A30PM%20DOORS%3A%206%3A30PM%20SHOW%3A%207%3A30PM%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/castle-rat-summon-the-beasts-tour-los-angeles-california-10-01-2026/event/090064BDA84BBA9D&location=The%20Belasco" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="8">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="8">Share</button>
+<button class="cal-link share-ev" data-idx="8">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-9" data-idx="9" data-name="Wednesday 13" data-start-local="2026-10-01T18:30:00" data-cal-start="20261002T013000Z" data-cal-end="20261002T033000Z" data-loc="The Parish at House of Blues Anaheim" data-url="https://www.ticketmaster.com/wednesday-13-anaheim-california-10-01-2026/event/09006499FCFD1870" data-lat="33.806533" data-lng="-117.912474">
-<button class="toggle" data-idx="9" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="9" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="9" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="9" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/wednesday-13-anaheim-california-10-01-2026/event/09006499FCFD1870">Wednesday 13</a></h3>
 <div class="meta">6:30 PM · The Parish at House of Blues Anaheim</div>
 <p>General Admission Standing Only. Age Restriction: This is an all-ages event. All guests, regardless of age, are required to have a ticket for entry. Doors: 6:30pm Support: Above Snakes Dead on a Sunday All acts subject to change.</p>
-<a class="tickets" href="https://www.ticketmaster.com/wednesday-13-anaheim-california-10-01-2026/event/09006499FCFD1870">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/wednesday-13-anaheim-california-10-01-2026/event/09006499FCFD1870">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wednesday%2013&dates=20261002T013000Z/20261002T033000Z&details=General%20Admission%20Standing%20Only.%20Age%20Restriction%3A%20This%20is%20an%20all-ages%20event.%20All%20guests%2C%20regardless%20of%20age%2C%20are%20required%20to%20have%20a%20ticket%20for%20entry.%20Doors%3A%206%3A30pm%20Support%3A%20Above%20Snakes%20Dead%20on%20a%20Sunday%20All%20acts%20subject%20to%20change.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/wednesday-13-anaheim-california-10-01-2026/event/09006499FCFD1870&location=The%20Parish%20at%20House%20of%20Blues%20Anaheim" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="9">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="9">Share</button>
+<button class="cal-link share-ev" data-idx="9">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-10" data-idx="10" data-name="Tokyo Tea Room - Feel Forever Tour" data-start-local="2026-10-01T19:00:00" data-cal-start="20261002T020000Z" data-cal-end="20261002T040000Z" data-loc="Teragram Ballroom" data-url="https://www.ticketmaster.com/tokyo-tea-room-feel-forever-tour-los-angeles-california-10-01-2026/event/090064C9E9066771" data-lat="34.051841" data-lng="-118.267076">
-<button class="toggle" data-idx="10" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="10" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="10" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="10" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/tokyo-tea-room-feel-forever-tour-los-angeles-california-10-01-2026/event/090064C9E9066771">Tokyo Tea Room - Feel Forever Tour</a></h3>
 <div class="meta">7:00 PM · Teragram Ballroom</div>
 <p>Teragram Presents: Tokyo Tea Room - Feel Forever Tour with support from Beach Vacation [October 1, 2026 / Doors 7pm / Show 8pm / $25 advance / $25 day of show / All Ages]</p>
-<a class="tickets" href="https://www.ticketmaster.com/tokyo-tea-room-feel-forever-tour-los-angeles-california-10-01-2026/event/090064C9E9066771">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/tokyo-tea-room-feel-forever-tour-los-angeles-california-10-01-2026/event/090064C9E9066771">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Tokyo%20Tea%20Room%20-%20Feel%20Forever%20Tour&dates=20261002T020000Z/20261002T040000Z&details=Teragram%20Presents%3A%20Tokyo%20Tea%20Room%20-%20Feel%20Forever%20Tour%20with%20support%20from%20Beach%20Vacation%20%5BOctober%201%2C%202026%20/%20Doors%207pm%20/%20Show%208pm%20/%20%2425%20advance%20/%20%2425%20day%20of%20show%20/%20All%20Ages%5D%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/tokyo-tea-room-feel-forever-tour-los-angeles-california-10-01-2026/event/090064C9E9066771&location=Teragram%20Ballroom" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="10">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="10">Share</button>
+<button class="cal-link share-ev" data-idx="10">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-11" data-idx="11" data-name="tobi lou - Same Old Jeans Tour" data-start-local="2026-10-01T19:00:00" data-cal-start="20261002T020000Z" data-cal-end="20261002T040000Z" data-loc="The Echo" data-url="https://www.ticketmaster.com/tobi-lou-same-old-jeans-tour-los-angeles-california-10-01-2026/event/090064D1DD18FB85" data-lat="34.077729" data-lng="-118.260108">
-<button class="toggle" data-idx="11" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="11" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="11" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="11" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/tobi-lou-same-old-jeans-tour-los-angeles-california-10-01-2026/event/090064D1DD18FB85">tobi lou - Same Old Jeans Tour</a></h3>
 <div class="meta">7:00 PM · The Echo</div>
 <p>Keep up to date with all our upcoming events by visiting The Echo&#x27;s social media and website. @theechola theecho.com</p>
-<a class="tickets" href="https://www.ticketmaster.com/tobi-lou-same-old-jeans-tour-los-angeles-california-10-01-2026/event/090064D1DD18FB85">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/tobi-lou-same-old-jeans-tour-los-angeles-california-10-01-2026/event/090064D1DD18FB85">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=tobi%20lou%20-%20Same%20Old%20Jeans%20Tour&dates=20261002T020000Z/20261002T040000Z&details=Keep%20up%20to%20date%20with%20all%20our%20upcoming%20events%20by%20visiting%20The%20Echo%27s%20social%20media%20and%20website.%20%40theechola%20theecho.com%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/tobi-lou-same-old-jeans-tour-los-angeles-california-10-01-2026/event/090064D1DD18FB85&location=The%20Echo" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="11">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="11">Share</button>
+<button class="cal-link share-ev" data-idx="11">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-12" data-idx="12" data-name="In Her Own Words X Every Avenue: Perfectly Unfamiliar Tour" data-start-local="2026-10-01T19:00:00" data-cal-start="20261002T020000Z" data-cal-end="20261002T040000Z" data-loc="Echoplex" data-url="https://www.ticketmaster.com/in-her-own-words-x-every-los-angeles-california-10-01-2026/event/090064AFD8F08892" data-lat="34.0775847" data-lng="-118.2606316">
-<button class="toggle" data-idx="12" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="12" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="12" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="12" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/in-her-own-words-x-every-los-angeles-california-10-01-2026/event/090064AFD8F08892">In Her Own Words X Every Avenue: Perfectly Unfamiliar Tour</a></h3>
 <div class="meta">7:00 PM · Echoplex</div>
 <p>Keep up to date with all our upcoming events by visiting The Echo&#x27;s social media and website. @theechola theecho.com Entry for the Echoplex will be located at: 1154 Glendale Blvd, Los Angeles, CA 90026</p>
-<a class="tickets" href="https://www.ticketmaster.com/in-her-own-words-x-every-los-angeles-california-10-01-2026/event/090064AFD8F08892">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/in-her-own-words-x-every-los-angeles-california-10-01-2026/event/090064AFD8F08892">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=In%20Her%20Own%20Words%20X%20Every%20Avenue%3A%20Perfectly%20Unfamiliar%20Tour&dates=20261002T020000Z/20261002T040000Z&details=Keep%20up%20to%20date%20with%20all%20our%20upcoming%20events%20by%20visiting%20The%20Echo%27s%20social%20media%20and%20website.%20%40theechola%20theecho.com%20Entry%20for%20the%20Echoplex%20will%20be%20located%20at%3A%201154%20Glendale%20Blvd%2C%20Los%20Angeles%2C%20CA%2090026%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/in-her-own-words-x-every-los-angeles-california-10-01-2026/event/090064AFD8F08892&location=Echoplex" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="12">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="12">Share</button>
+<button class="cal-link share-ev" data-idx="12">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-13" data-idx="13" data-name="Julieta Venegas" data-start-local="2026-10-01T19:00:00" data-cal-start="20261002T020000Z" data-cal-end="20261002T040000Z" data-loc="The Wiltern" data-url="https://www.ticketmaster.com/julieta-venegas-los-angeles-california-10-01-2026/event/09006489E4EA204C" data-lat="34.06141494" data-lng="-118.30879207">
-<button class="toggle" data-idx="13" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="13" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="13" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="13" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/julieta-venegas-los-angeles-california-10-01-2026/event/09006489E4EA204C">Julieta Venegas</a></h3>
 <div class="meta">7:00 PM · The Wiltern</div>
 <p>All Ages Welcome. Every person must have a ticket to attend the event, regardless of age. Doors: 7:00 p.m. Show: 8:00 p.m. *All times and supporting acts are subject to change The following bag policy is in place: Bags up to 12&quot; x 6&quot; x 12&quot; are allowed in the venue. All bags will be searched prior to entry. Bags that are not clear will be subject to additional search.</p>
-<a class="tickets" href="https://www.ticketmaster.com/julieta-venegas-los-angeles-california-10-01-2026/event/09006489E4EA204C">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/julieta-venegas-los-angeles-california-10-01-2026/event/09006489E4EA204C">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Julieta%20Venegas&dates=20261002T020000Z/20261002T040000Z&details=All%20Ages%20Welcome.%20Every%20person%20must%20have%20a%20ticket%20to%20attend%20the%20event%2C%20regardless%20of%20age.%20Doors%3A%207%3A00%20p.m.%20Show%3A%208%3A00%20p.m.%20%2AAll%20times%20and%20supporting%20acts%20are%20subject%20to%20change%20The%20following%20bag%20policy%20is%20in%20place%3A%20Bags%20up%20to%2012%22%20x%206%22%20x%2012%22%20are%20allowed%20in%20the%20venue.%20All%20bags%20will%20be%20searched%20prior%20to%20entry.%20Bags%20that%20are%20not%20clear%20will%20be%20subject%20to%20additional%20search.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/julieta-venegas-los-angeles-california-10-01-2026/event/09006489E4EA204C&location=The%20Wiltern" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="13">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="13">Share</button>
+<button class="cal-link share-ev" data-idx="13">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-14" data-idx="14" data-name="Social Distortion" data-start-local="2026-10-01T19:00:00" data-cal-start="20261002T020000Z" data-cal-end="20261002T040000Z" data-loc="Hollywood Palladium" data-url="https://www.ticketmaster.com/social-distortion-hollywood-california-10-01-2026/event/09006455A7CEBF3A" data-lat="34.09850537" data-lng="-118.32421313">
-<button class="toggle" data-idx="14" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="14" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="14" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="14" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/social-distortion-hollywood-california-10-01-2026/event/09006455A7CEBF3A">Social Distortion</a></h3>
 <div class="meta">7:00 PM · Hollywood Palladium</div>
 <p>All Ages Welcome Doors: 7PM Show: 8PM *All times and supporting acts are subject to change without notice. Premier Parking vouchers are valid starting two (2) hours prior to doors opening for the event. Earlier on-site parking access is not guaranteed. Vinyl Room Doors open @ 5:30PM Upgrade your experience here: https://www.hollywoodpalladium.com/upgrades</p>
-<a class="tickets" href="https://www.ticketmaster.com/social-distortion-hollywood-california-10-01-2026/event/09006455A7CEBF3A">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/social-distortion-hollywood-california-10-01-2026/event/09006455A7CEBF3A">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Social%20Distortion&dates=20261002T020000Z/20261002T040000Z&details=All%20Ages%20Welcome%20Doors%3A%207PM%20Show%3A%208PM%20%2AAll%20times%20and%20supporting%20acts%20are%20subject%20to%20change%20without%20notice.%20Premier%20Parking%20vouchers%20are%20valid%20starting%20two%20%282%29%20hours%20prior%20to%20doors%20opening%20for%20the%20event.%20Earlier%20on-site%20parking%20access%20is%20not%20guaranteed.%20Vinyl%20Room%20Doors%20open%20%40%205%3A30PM%20Upgrade%20your%20experience%20here%3A%20https%3A//www.hollywoodpalladium.com/upgrades%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/social-distortion-hollywood-california-10-01-2026/event/09006455A7CEBF3A&location=Hollywood%20Palladium" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="14">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="14">Share</button>
+<button class="cal-link share-ev" data-idx="14">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-15" data-idx="15" data-name="Baby Rose" data-start-local="2026-10-01T19:00:00" data-cal-start="20261002T020000Z" data-cal-end="20261002T040000Z" data-loc="Blue Note Los Angeles" data-url="https://www.ticketweb.com/event/baby-rose-blue-note-los-angeles-tickets/14191914" data-lat="34.09772" data-lng="-118.32871">
-<button class="toggle" data-idx="15" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="15" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="15" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="15" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/baby-rose-blue-note-los-angeles-tickets/14191914">Baby Rose</a></h3>
 <div class="meta">7:00 PM · Blue Note Los Angeles · $18.80</div>
 <p>$20 Minimum Per Person Full Bar &amp; Dinner Menu NO REFUNDS OR EXCHANGES. All seating is first come, first served. Bar Area seating is limited and first come first served. When all available seats are occupied, the remaining bar area is standing room only. Table Seating is all ages, Bar Area is 21+. Bar Area tickets for patrons under 21 will not be honored. Group Reservations: Parties of 10 or more please contact us at events@bluenotela.com or (310) 855-3750. We are not affiliated with any third-party ticket sellers. Tickets purchased directly through our official website or TicketWeb are the only authorized sources. We cannot guarantee the validity of tickets purchased through unauthorized sources. To protect against fraud and unauthorized ticket sales, management may require verification of the original purchase method, including presenting the credit card used for purchase and matching photo identification upon entry.</p>
-<a class="tickets" href="https://www.ticketweb.com/event/baby-rose-blue-note-los-angeles-tickets/14191914">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketweb.com/event/baby-rose-blue-note-los-angeles-tickets/14191914">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Baby%20Rose&dates=20261002T020000Z/20261002T040000Z&details=%2420%20Minimum%20Per%20Person%20Full%20Bar%20%26%20Dinner%20Menu%20NO%20REFUNDS%20OR%20EXCHANGES.%20All%20seating%20is%20first%20come%2C%20first%20served.%20Bar%20Area%20seating%20is%20limited%20and%20first%20come%20first%20served.%20When%20all%20available%20seats%20are%20occupied%2C%20the%20remaining%20bar%20area%20is%20standing%20room%20only.%20Table%20Seating%20is%20all%20ages%2C%20Bar%20Area%20is%2021%2B.%20Bar%20Area%20tickets%20for%20patrons%20under%2021%20will%20not%20be%20honored.%20Group%20Reservations%3A%20Parties%20of%2010%20or%20more%20please%20contact%20us%20at%20events%40bluenotela.com%20or%20%28310%29%20855-3750.%20We%20are%20not%20affiliated%20with%20any%20third-party%20ticket%20sellers.%20Tickets%20purchased%20directly%20through%20our%20official%20website%20or%20TicketWeb%20are%20the%20only%20authorized%20sources.%20We%20cannot%20guarantee%20the%20validity%20of%20tickets%20purchased%20through%20unauthorized%20sources.%20To%20protect%20against%20fraud%20and%20unauthorized%20ticket%20sales%2C%20management%20may%20require%20verification%20of%20the%20original%20purchase%20method%2C%20including%20presenting%20the%20credit%20card%20used%20for%20purchase%20and%20matching%20photo%20identification%20upon%20entry.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/baby-rose-blue-note-los-angeles-tickets/14191914&location=Blue%20Note%20Los%20Angeles" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="15">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="15">Share</button>
+<button class="cal-link share-ev" data-idx="15">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-16" data-idx="16" data-name="Disney Descendants, ZOMBIES &amp; Camp Rock: Worlds Collide Concert Tour" data-start-local="2026-10-01T19:00:00" data-cal-start="20261002T020000Z" data-cal-end="20261002T040000Z" data-loc="Honda Center" data-url="https://www.ticketmaster.com/disney-descendants-zombies-camp-rock-worlds-anaheim-california-10-01-2026/event/0900646DA1FB989B" data-lat="33.80780364" data-lng="-117.87653112">
-<button class="toggle" data-idx="16" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="16" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="16" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="16" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/disney-descendants-zombies-camp-rock-worlds-anaheim-california-10-01-2026/event/0900646DA1FB989B">Disney Descendants, ZOMBIES &amp; Camp Rock: Worlds Collide Concert Tour</a></h3>
 <div class="meta">7:00 PM · Honda Center</div>
 <p>Visit Honda Center&#x27;s [Know Before You Go](https://www.hondacenter.com/arena-info/know-before-you-go/) for bag policy and more. You can also download the HONDA CENTER + DUCKS app to order food &amp; drinks for pickup directly from your seat, and manage tickets using your Ticketmaster.com account.</p>
-<a class="tickets" href="https://www.ticketmaster.com/disney-descendants-zombies-camp-rock-worlds-anaheim-california-10-01-2026/event/0900646DA1FB989B">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/disney-descendants-zombies-camp-rock-worlds-anaheim-california-10-01-2026/event/0900646DA1FB989B">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Disney%20Descendants%2C%20ZOMBIES%20%26%20Camp%20Rock%3A%20Worlds%20Collide%20Concert%20Tour&dates=20261002T020000Z/20261002T040000Z&details=Visit%20Honda%20Center%27s%20%5BKnow%20Before%20You%20Go%5D%28https%3A//www.hondacenter.com/arena-info/know-before-you-go/%29%20for%20bag%20policy%20and%20more.%20You%20can%20also%20download%20the%20HONDA%20CENTER%20%2B%20DUCKS%20app%20to%20order%20food%20%26%20drinks%20for%20pickup%20directly%20from%20your%20seat%2C%20and%20manage%20tickets%20using%20your%20Ticketmaster.com%20account.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/disney-descendants-zombies-camp-rock-worlds-anaheim-california-10-01-2026/event/0900646DA1FB989B&location=Honda%20Center" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="16">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="16">Share</button>
+<button class="cal-link share-ev" data-idx="16">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-17" data-idx="17" data-name="An Evening With Kim Petras +" data-start-local="2026-10-01T19:30:00" data-cal-start="20261002T023000Z" data-cal-end="20261002T043000Z" data-loc="Ray Charles Terrace at GRAMMY Museum L.A. Live" data-url="https://www.universe.com/events/an-evening-with-kim-petras-tickets-DSN8VH?ref=ticketmaster" data-lat="34.04449869" data-lng="-118.2653164">
-<button class="toggle" data-idx="17" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="17" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="17" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="17" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/an-evening-with-kim-petras-tickets-DSN8VH?ref=ticketmaster">An Evening With Kim Petras +</a></h3>
 <div class="meta">7:30 PM · Ray Charles Terrace at GRAMMY Museum L.A. Live</div>
 <p></p>
-<a class="tickets" href="https://www.universe.com/events/an-evening-with-kim-petras-tickets-DSN8VH?ref=ticketmaster">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.universe.com/events/an-evening-with-kim-petras-tickets-DSN8VH?ref=ticketmaster">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=An%20Evening%20With%20Kim%20Petras%20%2B&dates=20261002T023000Z/20261002T043000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/an-evening-with-kim-petras-tickets-DSN8VH%3Fref%3Dticketmaster&location=Ray%20Charles%20Terrace%20at%20GRAMMY%20Museum%20L.A.%20Live" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="17">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="17">Share</button>
+<button class="cal-link share-ev" data-idx="17">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-18" data-idx="18" data-name="Tonight at the Improv ft. Jack Whitehall, Donnell Rawlings, Melissa Villasenor, Charles Fleischer, Brian Monarch, Jeanne Whitney and VERY Special Guests" data-start-local="2026-10-01T19:30:00" data-cal-start="20261002T023000Z" data-cal-end="20261002T043000Z" data-loc="Hollywood Improv (The Main Room) " data-url="https://www.ticketweb.com/event/tonight-at-the-improv-ft-hollywood-improv-the-main-room-tickets/14300354" data-lat="34.083418" data-lng="-118.366556">
-<button class="toggle" data-idx="18" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="18" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="18" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="18" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/tonight-at-the-improv-ft-hollywood-improv-the-main-room-tickets/14300354">Tonight at the Improv ft. Jack Whitehall, Donnell Rawlings, Melissa Villasenor, Charles Fleischer, Brian Monarch, Jeanne Whitney and VERY Special Guests</a></h3>
 <div class="meta">7:30 PM · Hollywood Improv (The Main Room)  · $29.34</div>
 <p>This show will be a phone-free experience. Use of cellphones, smart watches, smart accessories, cameras and recording devices will not be permitted in the performance space. Upon arrival at the venue, all phones and smart watches will be secured in Yondr cases that will be opened at the end of the event. Guests maintain possession of their phones at all times, and can access their phones throughout the show at designated Phone Use Areas in the venue. All phones will be re-secured in Yondr cases before returning to the performance space. Anyone seen using a cellphone during the performance will be escorted out of the venue. We appreciate your cooperation in creating a phone-free viewing experience. DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE HOLLYWOOD IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Hollywood Improv.</p>
-<a class="tickets" href="https://www.ticketweb.com/event/tonight-at-the-improv-ft-hollywood-improv-the-main-room-tickets/14300354">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketweb.com/event/tonight-at-the-improv-ft-hollywood-improv-the-main-room-tickets/14300354">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Tonight%20at%20the%20Improv%20ft.%20Jack%20Whitehall%2C%20Donnell%20Rawlings%2C%20Melissa%20Villasenor%2C%20Charles%20Fleischer%2C%20Brian%20Monarch%2C%20Jeanne%20Whitney%20and%20VERY%20Special%20Guests&dates=20261002T023000Z/20261002T043000Z&details=This%20show%20will%20be%20a%20phone-free%20experience.%20Use%20of%20cellphones%2C%20smart%20watches%2C%20smart%20accessories%2C%20cameras%20and%20recording%20devices%20will%20not%20be%20permitted%20in%20the%20performance%20space.%20Upon%20arrival%20at%20the%20venue%2C%20all%20phones%20and%20smart%20watches%20will%20be%20secured%20in%20Yondr%20cases%20that%20will%20be%20opened%20at%20the%20end%20of%20the%20event.%20Guests%20maintain%20possession%20of%20their%20phones%20at%20all%20times%2C%20and%20can%20access%20their%20phones%20throughout%20the%20show%20at%20designated%20Phone%20Use%20Areas%20in%20the%20venue.%20All%20phones%20will%20be%20re-secured%20in%20Yondr%20cases%20before%20returning%20to%20the%20performance%20space.%20Anyone%20seen%20using%20a%20cellphone%20during%20the%20performance%20will%20be%20escorted%20out%20of%20the%20venue.%20We%20appreciate%20your%20cooperation%20in%20creating%20a%20phone-free%20viewing%20experience.%20DO%20NOT%20PURCHASE%20TICKETS%20FROM%20ANYONE%20OR%20ANY%20OTHER%20SITE%20OTHER%20THAN%20IMPROV.COM%20TICKET%20RESALE%20IS%20STRICTLY%20PROHIBITED.%20TICKETS%20SUSPECTED%20OF%20BEING%20PURCHASED%20FOR%20THE%20SOLE%20PURPOSE%20OF%20RESELLING%20MAY%20BE%20CANCELLED%20AT%20THE%20DISCRETION%20OF%20THE%20HOLLYWOOD%20IMPROV.%20EVENT%20INFO%3A%20There%20is%20a%20two-item%20minimum%20purchase%20requirement%20in%20the%20showroom%20for%20all%20guests.%20Seating%20is%20general%20admission%2C%20first-come%2C%20first-served%2C%20with%20the%20exception%20of%20groups%20and%20premium%20booths.%20No%20cell%20phone%20use%2C%20photography%20or%20video%20recording%20is%20permitted%20during%20performances.%20All%20sales%20are%20final.%20MISCELLANOUS%3A%20For%20group%20sales%20info%2C%20e-mail%20our%20Events%20Manager%20to%20learn%20about%20special%20menu%20options%20and%20reserved%20seating.%20Additional%20questions%20may%20be%20addressed%20in%20our%20Frequently%20Asked%20Questions.%20For%20further%20assistance%2C%20contact%20Hollywood%20Improv.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/tonight-at-the-improv-ft-hollywood-improv-the-main-room-tickets/14300354&location=Hollywood%20Improv%20%28The%20Main%20Room%29%20" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="18">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="18">Share</button>
+<button class="cal-link share-ev" data-idx="18">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-19">The Download Comedy Show ft. Kate Lav, OJ Stellar, Tessa Belle, Langston Kerman, Rachel Posner, Yadira Espinal, Jack Shaw, and more TBA</a> <a href="#event-21">Something Different Presents: Unpopular Opinions Night</a> <a href="#event-33">New Joke Night ft. J.F. Harris, Spencer Bland, Will Burkart, Willie Simon, Madi Walser, Harper Rose Drummond, and more TBA</a></div></article>
 <article class="event" id="event-19" data-idx="19" data-name="The Download Comedy Show ft. Kate Lav, OJ Stellar, Tessa Belle, Langston Kerman, Rachel Posner, Yadira Espinal, Jack Shaw, and more TBA" data-start-local="2026-10-01T19:30:00" data-cal-start="20261002T023000Z" data-cal-end="20261002T043000Z" data-loc="Hollywood Improv (The Lab)" data-url="https://www.ticketweb.com/event/the-download-comedy-show-ft-hollywood-improv-the-lab-tickets/15026163" data-lat="34.0834329" data-lng="-118.367284">
-<button class="toggle" data-idx="19" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="19" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="19" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="19" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/the-download-comedy-show-ft-hollywood-improv-the-lab-tickets/15026163">The Download Comedy Show ft. Kate Lav, OJ Stellar, Tessa Belle, Langston Kerman, Rachel Posner, Yadira Espinal, Jack Shaw, and more TBA</a></h3>
 <div class="meta">7:30 PM · Hollywood Improv (The Lab) · $13.89</div>
 <p>DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE HOLLYWOOD IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Hollywood Improv.</p>
-<a class="tickets" href="https://www.ticketweb.com/event/the-download-comedy-show-ft-hollywood-improv-the-lab-tickets/15026163">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketweb.com/event/the-download-comedy-show-ft-hollywood-improv-the-lab-tickets/15026163">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Download%20Comedy%20Show%20ft.%20Kate%20Lav%2C%20OJ%20Stellar%2C%20Tessa%20Belle%2C%20Langston%20Kerman%2C%20Rachel%20Posner%2C%20Yadira%20Espinal%2C%20Jack%20Shaw%2C%20and%20more%20TBA&dates=20261002T023000Z/20261002T043000Z&details=DO%20NOT%20PURCHASE%20TICKETS%20FROM%20ANYONE%20OR%20ANY%20OTHER%20SITE%20OTHER%20THAN%20IMPROV.COM%20TICKET%20RESALE%20IS%20STRICTLY%20PROHIBITED.%20TICKETS%20SUSPECTED%20OF%20BEING%20PURCHASED%20FOR%20THE%20SOLE%20PURPOSE%20OF%20RESELLING%20MAY%20BE%20CANCELLED%20AT%20THE%20DISCRETION%20OF%20THE%20HOLLYWOOD%20IMPROV.%20EVENT%20INFO%3A%20There%20is%20a%20two-item%20minimum%20purchase%20requirement%20in%20the%20showroom%20for%20all%20guests.%20Seating%20is%20general%20admission%2C%20first-come%2C%20first-served%2C%20with%20the%20exception%20of%20groups%20and%20premium%20booths.%20No%20cell%20phone%20use%2C%20photography%20or%20video%20recording%20is%20permitted%20during%20performances.%20All%20sales%20are%20final.%20MISCELLANOUS%3A%20For%20group%20sales%20info%2C%20e-mail%20our%20Events%20Manager%20to%20learn%20about%20special%20menu%20options%20and%20reserved%20seating.%20Additional%20questions%20may%20be%20addressed%20in%20our%20Frequently%20Asked%20Questions.%20For%20further%20assistance%2C%20contact%20Hollywood%20Improv.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/the-download-comedy-show-ft-hollywood-improv-the-lab-tickets/15026163&location=Hollywood%20Improv%20%28The%20Lab%29" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="19">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="19">Share</button>
+<button class="cal-link share-ev" data-idx="19">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-18">Tonight at the Improv ft. Jack Whitehall, Donnell Rawlings, Melissa Villasenor, Charles Fleischer, Brian Monarch, Jeanne Whitney and VERY Special Guests</a> <a href="#event-21">Something Different Presents: Unpopular Opinions Night</a> <a href="#event-33">New Joke Night ft. J.F. Harris, Spencer Bland, Will Burkart, Willie Simon, Madi Walser, Harper Rose Drummond, and more TBA</a></div></article>
 <article class="event" id="event-20" data-idx="20" data-name="Hairball" data-start-local="2026-10-01T19:30:00" data-cal-start="20261002T023000Z" data-cal-end="20261002T043000Z" data-loc="Cerritos Center for the Performing Arts" data-url="https://www.ticketmaster.com/hairball-cerritos-california-10-01-2026/event/0B006478DF3C4F9E" data-lat="33.86799" data-lng="-118.06182">
-<button class="toggle" data-idx="20" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="20" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="20" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="20" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/hairball-cerritos-california-10-01-2026/event/0B006478DF3C4F9E">Hairball</a></h3>
 <div class="meta">7:30 PM · Cerritos Center for the Performing Arts</div>
 <p>Hairball turns every show into a full-blown arena Rock spectacle, delivering over two hours of spot-on tributes to legends like Van Halen, KISS, Mötley Crüe, and Queen. With explosive pyrotechnics, lights, and nonstop energy, this isn?t just a concert - it?s a larger-than-life Rock experience that brings the glory of the ?80s roaring back to life.</p>
-<a class="tickets" href="https://www.ticketmaster.com/hairball-cerritos-california-10-01-2026/event/0B006478DF3C4F9E">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/hairball-cerritos-california-10-01-2026/event/0B006478DF3C4F9E">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hairball&dates=20261002T023000Z/20261002T043000Z&details=Hairball%20turns%20every%20show%20into%20a%20full-blown%20arena%20Rock%20spectacle%2C%20delivering%20over%20two%20hours%20of%20spot-on%20tributes%20to%20legends%20like%20Van%20Halen%2C%20KISS%2C%20M%C3%B6tley%20Cr%C3%BCe%2C%20and%20Queen.%20With%20explosive%20pyrotechnics%2C%20lights%2C%20and%20nonstop%20energy%2C%20this%20isn%3Ft%20just%20a%20concert%20-%20it%3Fs%20a%20larger-than-life%20Rock%20experience%20that%20brings%20the%20glory%20of%20the%20%3F80s%20roaring%20back%20to%20life.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/hairball-cerritos-california-10-01-2026/event/0B006478DF3C4F9E&location=Cerritos%20Center%20for%20the%20Performing%20Arts" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="20">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="20">Share</button>
+<button class="cal-link share-ev" data-idx="20">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-21" data-idx="21" data-name="Something Different Presents: Unpopular Opinions Night" data-start-local="2026-10-01T20:00:00" data-cal-start="20261002T030000Z" data-cal-end="20261002T050000Z" data-loc="The Regent Theater" data-url="https://www.ticketmaster.com/something-different-presents-unpopular-opinions-night-los-angeles-california-10-01-2026/event/09006519DE0FF1EC" data-lat="34.0473" data-lng="-118.24799">
-<button class="toggle" data-idx="21" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="21" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="21" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="21" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/something-different-presents-unpopular-opinions-night-los-angeles-california-10-01-2026/event/09006519DE0FF1EC">Something Different Presents: Unpopular Opinions Night</a></h3>
 <div class="meta">8:00 PM · The Regent Theater</div>
 <p>Doors: 7pm Show: 8pm 21+ Only Something Different Presents: Unpopular Opinions Night</p>
-<a class="tickets" href="https://www.ticketmaster.com/something-different-presents-unpopular-opinions-night-los-angeles-california-10-01-2026/event/09006519DE0FF1EC">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/something-different-presents-unpopular-opinions-night-los-angeles-california-10-01-2026/event/09006519DE0FF1EC">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Something%20Different%20Presents%3A%20Unpopular%20Opinions%20Night&dates=20261002T030000Z/20261002T050000Z&details=Doors%3A%207pm%20Show%3A%208pm%2021%2B%20Only%20Something%20Different%20Presents%3A%20Unpopular%20Opinions%20Night%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/something-different-presents-unpopular-opinions-night-los-angeles-california-10-01-2026/event/09006519DE0FF1EC&location=The%20Regent%20Theater" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="21">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="21">Share</button>
+<button class="cal-link share-ev" data-idx="21">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-18">Tonight at the Improv ft. Jack Whitehall, Donnell Rawlings, Melissa Villasenor, Charles Fleischer, Brian Monarch, Jeanne Whitney and VERY Special Guests</a> <a href="#event-19">The Download Comedy Show ft. Kate Lav, OJ Stellar, Tessa Belle, Langston Kerman, Rachel Posner, Yadira Espinal, Jack Shaw, and more TBA</a> <a href="#event-33">New Joke Night ft. J.F. Harris, Spencer Bland, Will Burkart, Willie Simon, Madi Walser, Harper Rose Drummond, and more TBA</a></div></article>
 <article class="event" id="event-22" data-idx="22" data-name="Aldous Harding" data-start-local="2026-10-01T20:00:00" data-cal-start="20261002T030000Z" data-cal-end="20261002T050000Z" data-loc="Pacific Electric" data-url="https://www.ticketmaster.com/aldous-harding-los-angeles-california-10-01-2026/event/09006425D8B4938D" data-lat="34.068986" data-lng="-118.225561">
-<button class="toggle" data-idx="22" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="22" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="22" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="22" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/aldous-harding-los-angeles-california-10-01-2026/event/09006425D8B4938D">Aldous Harding</a></h3>
 <div class="meta">8:00 PM · Pacific Electric</div>
 <p></p>
-<a class="tickets" href="https://www.ticketmaster.com/aldous-harding-los-angeles-california-10-01-2026/event/09006425D8B4938D">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/aldous-harding-los-angeles-california-10-01-2026/event/09006425D8B4938D">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Aldous%20Harding&dates=20261002T030000Z/20261002T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/aldous-harding-los-angeles-california-10-01-2026/event/09006425D8B4938D&location=Pacific%20Electric" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="22">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="22">Share</button>
+<button class="cal-link share-ev" data-idx="22">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-23" data-idx="23" data-name="Xaviersobased w/ DJ Rennessy" data-start-local="2026-10-01T20:00:00" data-cal-start="20261002T030000Z" data-cal-end="20261002T050000Z" data-loc="The Novo by Microsoft" data-url="https://www.ticketmaster.com/event/Z7r9jZ1AAZgJ7" data-lat="34.0397" data-lng="-118.266403">
-<button class="toggle" data-idx="23" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="23" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="23" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="23" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAZgJ7">Xaviersobased w/ DJ Rennessy</a></h3>
 <div class="meta">8:00 PM · The Novo by Microsoft</div>
 <p></p>
-<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZgJ7">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZgJ7">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Xaviersobased%20w/%20DJ%20Rennessy&dates=20261002T030000Z/20261002T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1AAZgJ7&location=The%20Novo%20by%20Microsoft" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="23">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="23">Share</button>
+<button class="cal-link share-ev" data-idx="23">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-24" data-idx="24" data-name="Suicidal Tendencies" data-start-local="2026-10-01T20:00:00" data-cal-start="20261002T030000Z" data-cal-end="20261002T050000Z" data-loc="The Fonda Theatre" data-url="https://www.ticketmaster.com/event/Z7r9jZ1AAvU0S" data-lat="34.0998" data-lng="-118.326897">
-<button class="toggle" data-idx="24" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="24" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="24" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="24" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAvU0S">Suicidal Tendencies</a></h3>
 <div class="meta">8:00 PM · The Fonda Theatre</div>
 <p></p>
-<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAvU0S">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAvU0S">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Suicidal%20Tendencies&dates=20261002T030000Z/20261002T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1AAvU0S&location=The%20Fonda%20Theatre" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="24">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="24">Share</button>
+<button class="cal-link share-ev" data-idx="24">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-25" data-idx="25" data-name="DJ_Dave" data-start-local="2026-10-01T20:00:00" data-cal-start="20261002T030000Z" data-cal-end="20261002T050000Z" data-loc="El Rey Theatre - Los Angeles" data-url="https://www.ticketmaster.com/event/Z7r9jZ1AAZp7O" data-lat="34.070202" data-lng="-118.349998">
-<button class="toggle" data-idx="25" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="25" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="25" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="25" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAZp7O">DJ_Dave</a></h3>
 <div class="meta">8:00 PM · El Rey Theatre - Los Angeles</div>
 <p></p>
-<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZp7O">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZp7O">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=DJ_Dave&dates=20261002T030000Z/20261002T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1AAZp7O&location=El%20Rey%20Theatre%20-%20Los%20Angeles" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="25">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="25">Share</button>
+<button class="cal-link share-ev" data-idx="25">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-26" data-idx="26" data-name="Spafford" data-start-local="2026-10-01T20:00:00" data-cal-start="20261002T030000Z" data-cal-end="20261002T050000Z" data-loc="Roxy Theatre-CA" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A70gfv" data-lat="34.0942" data-lng="-118.3815">
-<button class="toggle" data-idx="26" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="26" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="26" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="26" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A70gfv">Spafford</a></h3>
 <div class="meta">8:00 PM · Roxy Theatre-CA</div>
 <p></p>
-<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A70gfv">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A70gfv">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Spafford&dates=20261002T030000Z/20261002T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A70gfv&location=Roxy%20Theatre-CA" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="26">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="26">Share</button>
+<button class="cal-link share-ev" data-idx="26">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-27" data-idx="27" data-name="South Side Sessions: Season 3 - Dalton Mumphrey" data-start-local="2026-10-01T20:00:00" data-cal-start="20261002T030000Z" data-cal-end="20261002T050000Z" data-loc="The Miracle Theater" data-url="https://www.ticketmaster.com/south-side-sessions-season-3-dalton-inglewood-california-10-01-2026/event/0B006530DC7B37F8" data-lat="33.965252" data-lng="-118.351508">
-<button class="toggle" data-idx="27" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="27" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="27" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="27" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/south-side-sessions-season-3-dalton-inglewood-california-10-01-2026/event/0B006530DC7B37F8">South Side Sessions: Season 3 - Dalton Mumphrey</a></h3>
 <div class="meta">8:00 PM · The Miracle Theater</div>
 <p>The Miracle Theater Foundation is proud to announce the return of South Side Sessions this Fall, beginning Thursday, September 24th. Brought to us in collaboration with Dr. Marcus Norris of South Side Symphony! Featuring some of Inglewood&#x27;s most talented musicians!</p>
-<a class="tickets" href="https://www.ticketmaster.com/south-side-sessions-season-3-dalton-inglewood-california-10-01-2026/event/0B006530DC7B37F8">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/south-side-sessions-season-3-dalton-inglewood-california-10-01-2026/event/0B006530DC7B37F8">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=South%20Side%20Sessions%3A%20Season%203%20-%20Dalton%20Mumphrey&dates=20261002T030000Z/20261002T050000Z&details=The%20Miracle%20Theater%20Foundation%20is%20proud%20to%20announce%20the%20return%20of%20South%20Side%20Sessions%20this%20Fall%2C%20beginning%20Thursday%2C%20September%2024th.%20Brought%20to%20us%20in%20collaboration%20with%20Dr.%20Marcus%20Norris%20of%20South%20Side%20Symphony%21%20Featuring%20some%20of%20Inglewood%27s%20most%20talented%20musicians%21%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/south-side-sessions-season-3-dalton-inglewood-california-10-01-2026/event/0B006530DC7B37F8&location=The%20Miracle%20Theater" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="27">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="27">Share</button>
+<button class="cal-link share-ev" data-idx="27">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-28" data-idx="28" data-name="Rod Wave: Don&#x27;t Look Down Tour" data-start-local="2026-10-01T20:00:00" data-cal-start="20261002T030000Z" data-cal-end="20261002T050000Z" data-loc="Intuit Dome" data-url="https://www.ticketmaster.com/rod-wave-dont-look-down-tour-inglewood-california-10-01-2026/event/090064D1B0F2AB13" data-lat="33.94432" data-lng="-118.34285">
-<button class="toggle" data-idx="28" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="28" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="28" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="28" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/rod-wave-dont-look-down-tour-inglewood-california-10-01-2026/event/090064D1B0F2AB13">Rod Wave: Don&#x27;t Look Down Tour</a></h3>
 <div class="meta">8:00 PM · Intuit Dome</div>
 <p></p>
-<a class="tickets" href="https://www.ticketmaster.com/rod-wave-dont-look-down-tour-inglewood-california-10-01-2026/event/090064D1B0F2AB13">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/rod-wave-dont-look-down-tour-inglewood-california-10-01-2026/event/090064D1B0F2AB13">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Rod%20Wave%3A%20Don%27t%20Look%20Down%20Tour&dates=20261002T030000Z/20261002T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/rod-wave-dont-look-down-tour-inglewood-california-10-01-2026/event/090064D1B0F2AB13&location=Intuit%20Dome" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="28">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="28">Share</button>
+<button class="cal-link share-ev" data-idx="28">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-29" data-idx="29" data-name="Drag Show: “THIRSTY THURSDAYS” @ Hamburger Mary&#x27;s Long Beach" data-start-local="2026-10-01T20:00:00" data-cal-start="20261002T030000Z" data-cal-end="20261002T050000Z" data-loc="Hamburger Mary&#x27;s - Long Beach" data-url="https://www.universe.com/events/drag-show-thirsty-thursdays-hamburger-marys-long-beach-tickets-BPYR07?ref=ticketmaster" data-lat="33.77204414" data-lng="-118.1916944">
-<button class="toggle" data-idx="29" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="29" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="29" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="29" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/drag-show-thirsty-thursdays-hamburger-marys-long-beach-tickets-BPYR07?ref=ticketmaster">Drag Show: “THIRSTY THURSDAYS” @ Hamburger Mary&#x27;s Long Beach</a></h3>
 <div class="meta">8:00 PM · Hamburger Mary&#x27;s - Long Beach</div>
 <p></p>
-<a class="tickets" href="https://www.universe.com/events/drag-show-thirsty-thursdays-hamburger-marys-long-beach-tickets-BPYR07?ref=ticketmaster">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.universe.com/events/drag-show-thirsty-thursdays-hamburger-marys-long-beach-tickets-BPYR07?ref=ticketmaster">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Drag%20Show%3A%20%E2%80%9CTHIRSTY%20THURSDAYS%E2%80%9D%20%40%20Hamburger%20Mary%27s%20Long%20Beach&dates=20261002T030000Z/20261002T050000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/drag-show-thirsty-thursdays-hamburger-marys-long-beach-tickets-BPYR07%3Fref%3Dticketmaster&location=Hamburger%20Mary%27s%20-%20Long%20Beach" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="29">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="29">Share</button>
+<button class="cal-link share-ev" data-idx="29">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-30" data-idx="30" data-name="Phil Hanley" data-start-local="2026-10-01T20:00:00" data-cal-start="20261002T030000Z" data-cal-end="20261002T050000Z" data-loc="Brea Improv" data-url="https://www.ticketweb.com/event/phil-hanley-brea-improv-tickets/14808163" data-lat="33.919902" data-lng="-117.897147">
-<button class="toggle" data-idx="30" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="30" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="30" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="30" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/phil-hanley-brea-improv-tickets/14808163">Phil Hanley</a></h3>
 <div class="meta">8:00 PM · Brea Improv · $33.55</div>
 <p>There is a ticket delivery delay in place until two days prior to the event. Tickets will not be emailed until then. Tickets are only available online until the delivery delay is lifted. DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE BREA IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Brea Improv</p>
-<a class="tickets" href="https://www.ticketweb.com/event/phil-hanley-brea-improv-tickets/14808163">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketweb.com/event/phil-hanley-brea-improv-tickets/14808163">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Phil%20Hanley&dates=20261002T030000Z/20261002T050000Z&details=There%20is%20a%20ticket%20delivery%20delay%20in%20place%20until%20two%20days%20prior%20to%20the%20event.%20Tickets%20will%20not%20be%20emailed%20until%20then.%20Tickets%20are%20only%20available%20online%20until%20the%20delivery%20delay%20is%20lifted.%20DO%20NOT%20PURCHASE%20TICKETS%20FROM%20ANYONE%20OR%20ANY%20OTHER%20SITE%20OTHER%20THAN%20IMPROV.COM%20TICKET%20RESALE%20IS%20STRICTLY%20PROHIBITED.%20TICKETS%20SUSPECTED%20OF%20BEING%20PURCHASED%20FOR%20THE%20SOLE%20PURPOSE%20OF%20RESELLING%20MAY%20BE%20CANCELLED%20AT%20THE%20DISCRETION%20OF%20THE%20BREA%20IMPROV.%20EVENT%20INFO%3A%20There%20is%20a%20two-item%20minimum%20purchase%20requirement%20in%20the%20showroom%20for%20all%20guests.%20Seating%20is%20general%20admission%2C%20first-come%2C%20first-served%2C%20with%20the%20exception%20of%20groups%20and%20premium%20booths.%20No%20cell%20phone%20use%2C%20photography%20or%20video%20recording%20is%20permitted%20during%20performances.%20All%20sales%20are%20final.%20MISCELLANOUS%3A%20For%20group%20sales%20info%2C%20e-mail%20our%20Events%20Manager%20to%20learn%20about%20special%20menu%20options%20and%20reserved%20seating.%20Additional%20questions%20may%20be%20addressed%20in%20our%20Frequently%20Asked%20Questions.%20For%20further%20assistance%2C%20contact%20Brea%20Improv%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/phil-hanley-brea-improv-tickets/14808163&location=Brea%20Improv" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="30">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="30">Share</button>
+<button class="cal-link share-ev" data-idx="30">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-31" data-idx="31" data-name="Kenny G &amp; Brian Culbertson Tribute: A Smooth Jazz Night feat. Smooth &#x27;n&#x27; Groovin&#x27;" data-start-local="2026-10-01T20:30:00" data-cal-start="20261002T033000Z" data-cal-end="20261002T053000Z" data-loc="Catalina Jazz Club" data-url="https://www.ticketweb.com/event/kenny-g-brian-culbertson-catalina-jazz-club-tickets/14306224" data-lat="34.098337" data-lng="-118.337228">
-<button class="toggle" data-idx="31" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="31" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="31" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="31" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/kenny-g-brian-culbertson-catalina-jazz-club-tickets/14306224">Kenny G &amp; Brian Culbertson Tribute: A Smooth Jazz Night feat. Smooth &#x27;n&#x27; Groovin&#x27;</a></h3>
 <div class="meta">8:30 PM · Catalina Jazz Club · $41.05</div>
 <p>Kenny G and Brian Culbertson&#x27;s iconic music comes to life in this one-of-a-kind smooth jazz tribute night featuring Smooth &#x27;n&#x27; Groovin&#x27;. Get ready for an exciting evening of soulful melodies, sophisticated rhythms, and irresistible grooves honoring two contemporary jazz legends---live on one stage for one special night. Catalina Jazz Club 6725 West Sunset Blvd. Hollywood, CA 90028 *Food &amp; Beverage minimums apply for all patrons *Tickets purchased online receive priority seating.</p>
-<a class="tickets" href="https://www.ticketweb.com/event/kenny-g-brian-culbertson-catalina-jazz-club-tickets/14306224">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketweb.com/event/kenny-g-brian-culbertson-catalina-jazz-club-tickets/14306224">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kenny%20G%20%26%20Brian%20Culbertson%20Tribute%3A%20A%20Smooth%20Jazz%20Night%20feat.%20Smooth%20%27n%27%20Groovin%27&dates=20261002T033000Z/20261002T053000Z&details=Kenny%20G%20and%20Brian%20Culbertson%27s%20iconic%20music%20comes%20to%20life%20in%20this%20one-of-a-kind%20smooth%20jazz%20tribute%20night%20featuring%20Smooth%20%27n%27%20Groovin%27.%20Get%20ready%20for%20an%20exciting%20evening%20of%20soulful%20melodies%2C%20sophisticated%20rhythms%2C%20and%20irresistible%20grooves%20honoring%20two%20contemporary%20jazz%20legends---live%20on%20one%20stage%20for%20one%20special%20night.%20Catalina%20Jazz%20Club%206725%20West%20Sunset%20Blvd.%20Hollywood%2C%20CA%2090028%20%2AFood%20%26%20Beverage%20minimums%20apply%20for%20all%20patrons%20%2ATickets%20purchased%20online%20receive%20priority%20seating.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/kenny-g-brian-culbertson-catalina-jazz-club-tickets/14306224&location=Catalina%20Jazz%20Club" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="31">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="31">Share</button>
+<button class="cal-link share-ev" data-idx="31">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-32" data-idx="32" data-name="Powerhouse Presents: Smirk w/ The Stitches, Situations &amp; ¿La Pregunta?" data-start-local="2026-10-01T21:30:00" data-cal-start="20261002T043000Z" data-cal-end="20261002T063000Z" data-loc="The Moroccan Lounge" data-url="https://www.ticketmaster.com/powerhouse-presents-smirk-w-the-stitches-los-angeles-california-10-01-2026/event/09006502254E5723" data-lat="34.04898" data-lng="-118.23365">
-<button class="toggle" data-idx="32" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="32" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="32" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="32" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/powerhouse-presents-smirk-w-the-stitches-los-angeles-california-10-01-2026/event/09006502254E5723">Powerhouse Presents: Smirk w/ The Stitches, Situations &amp; ¿La Pregunta?</a></h3>
 <div class="meta">9:30 PM · The Moroccan Lounge</div>
 <p>Powerhouse Presents: Smirk w/ The Stitches, Situations &amp; ¿La Pregunta? [October 1, 2026 / Doors 9:30pm / $15 adv / $20 dos / 18+]</p>
-<a class="tickets" href="https://www.ticketmaster.com/powerhouse-presents-smirk-w-the-stitches-los-angeles-california-10-01-2026/event/09006502254E5723">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/powerhouse-presents-smirk-w-the-stitches-los-angeles-california-10-01-2026/event/09006502254E5723">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Powerhouse%20Presents%3A%20Smirk%20w/%20The%20Stitches%2C%20Situations%20%26%20%C2%BFLa%20Pregunta%3F&dates=20261002T043000Z/20261002T063000Z&details=Powerhouse%20Presents%3A%20Smirk%20w/%20The%20Stitches%2C%20Situations%20%26%20%C2%BFLa%20Pregunta%3F%20%5BOctober%201%2C%202026%20/%20Doors%209%3A30pm%20/%20%2415%20adv%20/%20%2420%20dos%20/%2018%2B%5D%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/powerhouse-presents-smirk-w-the-stitches-los-angeles-california-10-01-2026/event/09006502254E5723&location=The%20Moroccan%20Lounge" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="32">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="32">Share</button>
+<button class="cal-link share-ev" data-idx="32">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-1">Latin Music Conference SINGLE DAY Ticket</a> <a href="#event-4">Alesana, In Parallel With You, Deadbeat Nightlife,  IWPLMFM, Halfway Ghost</a> <a href="#event-6">From First To Last</a></div></article>
 <article class="event" id="event-33" data-idx="33" data-name="New Joke Night ft. J.F. Harris, Spencer Bland, Will Burkart, Willie Simon, Madi Walser, Harper Rose Drummond, and more TBA" data-start-local="2026-10-01T21:30:00" data-cal-start="20261002T043000Z" data-cal-end="20261002T063000Z" data-loc="Hollywood Improv (The Lab)" data-url="https://www.ticketweb.com/event/new-joke-night-ft-jf-hollywood-improv-the-lab-tickets/14312734" data-lat="34.0834329" data-lng="-118.367284">
-<button class="toggle" data-idx="33" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="33" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="33" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="33" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/new-joke-night-ft-jf-hollywood-improv-the-lab-tickets/14312734">New Joke Night ft. J.F. Harris, Spencer Bland, Will Burkart, Willie Simon, Madi Walser, Harper Rose Drummond, and more TBA</a></h3>
 <div class="meta">9:30 PM · Hollywood Improv (The Lab) · $8.24</div>
 <p>DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE HOLLYWOOD IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Hollywood Improv.</p>
-<a class="tickets" href="https://www.ticketweb.com/event/new-joke-night-ft-jf-hollywood-improv-the-lab-tickets/14312734">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketweb.com/event/new-joke-night-ft-jf-hollywood-improv-the-lab-tickets/14312734">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=New%20Joke%20Night%20ft.%20J.F.%20Harris%2C%20Spencer%20Bland%2C%20Will%20Burkart%2C%20Willie%20Simon%2C%20Madi%20Walser%2C%20Harper%20Rose%20Drummond%2C%20and%20more%20TBA&dates=20261002T043000Z/20261002T063000Z&details=DO%20NOT%20PURCHASE%20TICKETS%20FROM%20ANYONE%20OR%20ANY%20OTHER%20SITE%20OTHER%20THAN%20IMPROV.COM%20TICKET%20RESALE%20IS%20STRICTLY%20PROHIBITED.%20TICKETS%20SUSPECTED%20OF%20BEING%20PURCHASED%20FOR%20THE%20SOLE%20PURPOSE%20OF%20RESELLING%20MAY%20BE%20CANCELLED%20AT%20THE%20DISCRETION%20OF%20THE%20HOLLYWOOD%20IMPROV.%20EVENT%20INFO%3A%20There%20is%20a%20two-item%20minimum%20purchase%20requirement%20in%20the%20showroom%20for%20all%20guests.%20Seating%20is%20general%20admission%2C%20first-come%2C%20first-served%2C%20with%20the%20exception%20of%20groups%20and%20premium%20booths.%20No%20cell%20phone%20use%2C%20photography%20or%20video%20recording%20is%20permitted%20during%20performances.%20All%20sales%20are%20final.%20MISCELLANOUS%3A%20For%20group%20sales%20info%2C%20e-mail%20our%20Events%20Manager%20to%20learn%20about%20special%20menu%20options%20and%20reserved%20seating.%20Additional%20questions%20may%20be%20addressed%20in%20our%20Frequently%20Asked%20Questions.%20For%20further%20assistance%2C%20contact%20Hollywood%20Improv.%20Tickets%20%26%20info%3A%20https%3A//www.ticketweb.com/event/new-joke-night-ft-jf-hollywood-improv-the-lab-tickets/14312734&location=Hollywood%20Improv%20%28The%20Lab%29" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="33">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="33">Share</button>
+<button class="cal-link share-ev" data-idx="33">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-18">Tonight at the Improv ft. Jack Whitehall, Donnell Rawlings, Melissa Villasenor, Charles Fleischer, Brian Monarch, Jeanne Whitney and VERY Special Guests</a> <a href="#event-19">The Download Comedy Show ft. Kate Lav, OJ Stellar, Tessa Belle, Langston Kerman, Rachel Posner, Yadira Espinal, Jack Shaw, and more TBA</a> <a href="#event-21">Something Different Presents: Unpopular Opinions Night</a></div></article>
 <article class="event" id="event-34" data-idx="34" data-name="Kettama (18 and Over with Valid Government ID)" data-start-local="2026-10-01T22:00:00" data-cal-start="20261002T050000Z" data-cal-end="20261002T070000Z" data-loc="Shrine Expo Hall" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A70trA" data-lat="34.027599" data-lng="-118.285004">
-<button class="toggle" data-idx="34" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="34" aria-label="Hide this event" title="Not interested">×</button>
+<button class="toggle" data-idx="34" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="34" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A70trA">Kettama (18 and Over with Valid Government ID)</a></h3>
 <div class="meta">10:00 PM · Shrine Expo Hall</div>
 <p></p>
-<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A70trA">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A70trA">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kettama%20%2818%20and%20Over%20with%20Valid%20Government%20ID%29&dates=20261002T050000Z/20261002T070000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/event/Z7r9jZ1A70trA&location=Shrine%20Expo%20Hall" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="34">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="34">Share</button>
+<button class="cal-link share-ev" data-idx="34">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-35" data-idx="35" data-name="Bat Skeleton - Hosted by PS Science" data-start-local="2026-10-01T16:00:00" data-cal-start="20261001T230000Z" data-cal-end="20261002T010000Z" data-loc="Sylmar" data-url="https://www.lapl.org/events/bat-skeleton-hosted-ps-science">
-<button class="toggle" data-idx="35" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="35" aria-label="Hide this event" title="Not interested">×</button>
-<div class="event-body"><span class="badge">Free</span>
+<button class="toggle" data-idx="35" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="35" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.lapl.org/events/bat-skeleton-hosted-ps-science">Bat Skeleton - Hosted by PS Science</a></h3>
 <div class="meta">4:00 PM · Sylmar · Free</div>
 <p>Bats aren’t scary - they’re cool!</p>
-<a class="tickets" href="https://www.lapl.org/events/bat-skeleton-hosted-ps-science">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.lapl.org/events/bat-skeleton-hosted-ps-science">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bat%20Skeleton%20-%20Hosted%20by%20PS%20Science&dates=20261001T230000Z/20261002T010000Z&details=Bats%20aren%E2%80%99t%20scary%20-%20they%E2%80%99re%20cool%21%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/bat-skeleton-hosted-ps-science&location=Sylmar" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="35">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="35">Share</button>
+<button class="cal-link share-ev" data-idx="35">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 </article>
 <article class="event" id="event-36" data-idx="36" data-name="STAR Storytime With Myrtle" data-start-local="2026-10-01T10:30:00" data-cal-start="20261001T173000Z" data-cal-end="20261001T193000Z" data-loc="North Hollywood" data-url="https://www.lapl.org/events/star-storytime-myrtle-0">
-<button class="toggle" data-idx="36" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="36" aria-label="Hide this event" title="Not interested">×</button>
-<div class="event-body"><span class="badge">Free</span>
+<button class="toggle" data-idx="36" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="36" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.lapl.org/events/star-storytime-myrtle-0">STAR Storytime With Myrtle</a></h3>
 <div class="meta">10:30 AM · North Hollywood · Free</div>
 <p>Our STAR volunteers read to children one-on-one or in small groups. No sign-up is required. Take home a free book to keep after attending three STAR reading sessions at our branch.</p>
-<a class="tickets" href="https://www.lapl.org/events/star-storytime-myrtle-0">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.lapl.org/events/star-storytime-myrtle-0">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=STAR%20Storytime%20With%20Myrtle&dates=20261001T173000Z/20261001T193000Z&details=Our%20STAR%20volunteers%20read%20to%20children%20one-on-one%20or%20in%20small%20groups.%20No%20sign-up%20is%20required.%20Take%20home%20a%20free%20book%20to%20keep%20after%20attending%20three%20STAR%20reading%20sessions%20at%20our%20branch.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/star-storytime-myrtle-0&location=North%20Hollywood" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="36">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="36">Share</button>
+<button class="cal-link share-ev" data-idx="36">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-37" data-idx="37" data-name="Baby and Toddler Storytime" data-start-local="2026-10-01T10:30:00" data-cal-start="20261001T173000Z" data-cal-end="20261001T193000Z" data-loc="Arroyo Seco" data-url="https://www.lapl.org/events/baby-and-toddler-storytime-8">
-<button class="toggle" data-idx="37" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="37" aria-label="Hide this event" title="Not interested">×</button>
-<div class="event-body"><span class="badge">Free</span>
+<button class="toggle" data-idx="37" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="37" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.lapl.org/events/baby-and-toddler-storytime-8">Baby and Toddler Storytime</a></h3>
 <div class="meta">10:30 AM · Arroyo Seco · Free</div>
 <p>Join us for stories, songs, and rhymes intended to build early literacy skills for children ages 0-5. Storytime will be followed by a short playtime.</p>
-<a class="tickets" href="https://www.lapl.org/events/baby-and-toddler-storytime-8">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.lapl.org/events/baby-and-toddler-storytime-8">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Baby%20and%20Toddler%20Storytime&dates=20261001T173000Z/20261001T193000Z&details=Join%20us%20for%20stories%2C%20songs%2C%20and%20rhymes%20intended%20to%20build%20early%20literacy%20skills%20for%20children%20ages%200-5.%20Storytime%20will%20be%20followed%20by%20a%20short%20playtime.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/baby-and-toddler-storytime-8&location=Arroyo%20Seco" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="37">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="37">Share</button>
+<button class="cal-link share-ev" data-idx="37">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-38" data-idx="38" data-name="Baby and Me" data-start-local="2026-10-01T11:00:00" data-cal-start="20261001T180000Z" data-cal-end="20261001T200000Z" data-loc="Central Library" data-url="https://www.lapl.org/events/baby-and-me-0">
-<button class="toggle" data-idx="38" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="38" aria-label="Hide this event" title="Not interested">×</button>
-<div class="event-body"><span class="badge">Free</span>
+<button class="toggle" data-idx="38" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="38" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.lapl.org/events/baby-and-me-0">Baby and Me</a></h3>
 <div class="meta">11:00 AM · Central Library · Free</div>
 <p>Activities and play for babies 0-18 months and their parents/caregivers.</p>
-<a class="tickets" href="https://www.lapl.org/events/baby-and-me-0">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.lapl.org/events/baby-and-me-0">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Baby%20and%20Me&dates=20261001T180000Z/20261001T200000Z&details=Activities%20and%20play%20for%20babies%200-18%20months%20and%20their%20parents/caregivers.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/baby-and-me-0&location=Central%20Library" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="38">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="38">Share</button>
+<button class="cal-link share-ev" data-idx="38">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-39" data-idx="39" data-name="STAR Reader" data-start-local="2026-10-01T12:00:00" data-cal-start="20261001T190000Z" data-cal-end="20261001T210000Z" data-loc="Woodland Hills" data-url="https://www.lapl.org/events/star-reader-28">
-<button class="toggle" data-idx="39" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="39" aria-label="Hide this event" title="Not interested">×</button>
-<div class="event-body"><span class="badge">Free</span>
+<button class="toggle" data-idx="39" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="39" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.lapl.org/events/star-reader-28">STAR Reader</a></h3>
 <div class="meta">12:00 PM · Woodland Hills · Free</div>
 <p>All children are invited to read stories with our volunteers. Share in the joy of reading with our STAR volunteer every Thursday!</p>
-<a class="tickets" href="https://www.lapl.org/events/star-reader-28">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.lapl.org/events/star-reader-28">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=STAR%20Reader&dates=20261001T190000Z/20261001T210000Z&details=All%20children%20are%20invited%20to%20read%20stories%20with%20our%20volunteers.%20Share%20in%20the%20joy%20of%20reading%20with%20our%20STAR%20volunteer%20every%20Thursday%21%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/star-reader-28&location=Woodland%20Hills" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="39">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="39">Share</button>
+<button class="cal-link share-ev" data-idx="39">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-40" data-idx="40" data-name="Read With STAR Volunteer Cathy" data-start-local="2026-10-01T13:30:00" data-cal-start="20261001T203000Z" data-cal-end="20261001T223000Z" data-loc="Granada Hills" data-url="https://www.lapl.org/events/read-star-volunteer-cathy-0">
-<button class="toggle" data-idx="40" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="40" aria-label="Hide this event" title="Not interested">×</button>
-<div class="event-body"><span class="badge">Free</span>
+<button class="toggle" data-idx="40" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="40" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.lapl.org/events/read-star-volunteer-cathy-0">Read With STAR Volunteer Cathy</a></h3>
 <div class="meta">1:30 PM · Granada Hills · Free</div>
 <p>Children are invited to share the joy of reading with our STAR Volunteer Cathy. Take home a free book after reading with Cathy three times.</p>
-<a class="tickets" href="https://www.lapl.org/events/read-star-volunteer-cathy-0">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.lapl.org/events/read-star-volunteer-cathy-0">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Read%20With%20STAR%20Volunteer%20Cathy&dates=20261001T203000Z/20261001T223000Z&details=Children%20are%20invited%20to%20share%20the%20joy%20of%20reading%20with%20our%20STAR%20Volunteer%20Cathy.%20Take%20home%20a%20free%20book%20after%20reading%20with%20Cathy%20three%20times.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/read-star-volunteer-cathy-0&location=Granada%20Hills" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="40">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="40">Share</button>
+<button class="cal-link share-ev" data-idx="40">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-41" data-idx="41" data-name="Read With Star Volunteer Miss Zoe" data-start-local="2026-10-01T14:00:00" data-cal-start="20261001T210000Z" data-cal-end="20261001T230000Z" data-loc="West Los Angeles" data-url="https://www.lapl.org/events/read-star-volunteer-miss-zoe">
-<button class="toggle" data-idx="41" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="41" aria-label="Hide this event" title="Not interested">×</button>
-<div class="event-body"><span class="badge">Free</span>
+<button class="toggle" data-idx="41" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="41" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.lapl.org/events/read-star-volunteer-miss-zoe">Read With Star Volunteer Miss Zoe</a></h3>
 <div class="meta">2:00 PM · West Los Angeles · Free</div>
 <p>Children are welcome to join our volunteer, Miss Sandy, for story readings every Monday. After attending three STAR events at our branch, participants can take home a free book.</p>
-<a class="tickets" href="https://www.lapl.org/events/read-star-volunteer-miss-zoe">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.lapl.org/events/read-star-volunteer-miss-zoe">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Read%20With%20Star%20Volunteer%20Miss%20Zoe&dates=20261001T210000Z/20261001T230000Z&details=Children%20are%20welcome%20to%20join%20our%20volunteer%2C%20Miss%20Sandy%2C%20for%20story%20readings%20every%20Monday.%20After%20attending%20three%20STAR%20events%20at%20our%20branch%2C%20participants%20can%20take%20home%20a%20free%20book.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/read-star-volunteer-miss-zoe&location=West%20Los%20Angeles" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="41">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="41">Share</button>
+<button class="cal-link share-ev" data-idx="41">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-0">SoFi Stadium Tours - No Field Access</a> <a href="#event-2">Dogman: The Musical - Sensory Sensitive Performance</a> <a href="#event-3">The Outsiders (Touring)</a></div></article>
 <article class="event" id="event-42" data-idx="42" data-name="Aphasia Book Club" data-start-local="2026-10-01T13:00:00" data-cal-start="20261001T200000Z" data-cal-end="20261001T220000Z" data-loc="Echo Park" data-url="https://www.lapl.org/events/aphasia-book-club-0">
-<button class="toggle" data-idx="42" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="42" aria-label="Hide this event" title="Not interested">×</button>
-<div class="event-body"><span class="badge">Free</span>
+<button class="toggle" data-idx="42" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="42" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.lapl.org/events/aphasia-book-club-0">Aphasia Book Club</a></h3>
 <div class="meta">1:00 PM · Echo Park · Free</div>
 <p>Aphasia is a brain disorder. It usually results from stroke or head injury. It affects a person&#x27;s ability to read, write, speak, and understand speech. This book club is designed especially for adults with aphasia. Because everyone deserves to enjoy a good book. For more information and zoom link, c</p>
-<a class="tickets" href="https://www.lapl.org/events/aphasia-book-club-0">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.lapl.org/events/aphasia-book-club-0">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Aphasia%20Book%20Club&dates=20261001T200000Z/20261001T220000Z&details=Aphasia%20is%20a%20brain%20disorder.%20It%20usually%20results%20from%20stroke%20or%20head%20injury.%20It%20affects%20a%20person%27s%20ability%20to%20read%2C%20write%2C%20speak%2C%20and%20understand%20speech.%20This%20book%20club%20is%20designed%20especially%20for%20adults%20with%20aphasia.%20Because%20everyone%20deserves%20to%20enjoy%20a%20good%20book.%C2%A0For%20more%20information%20and%20zoom%20link%2C%20c%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/aphasia-book-club-0&location=Echo%20Park" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="42">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="42">Share</button>
+<button class="cal-link share-ev" data-idx="42">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-43">Defying Existential Dread Book Club</a></div></article>
 <article class="event" id="event-43" data-idx="43" data-name="Defying Existential Dread Book Club" data-start-local="2026-10-01T18:30:00" data-cal-start="20261002T013000Z" data-cal-end="20261002T033000Z" data-loc="Venice" data-url="https://www.lapl.org/events/defying-existential-dread-book-club">
-<button class="toggle" data-idx="43" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="43" aria-label="Hide this event" title="Not interested">×</button>
-<div class="event-body"><span class="badge">Free</span>
+<button class="toggle" data-idx="43" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="43" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.lapl.org/events/defying-existential-dread-book-club">Defying Existential Dread Book Club</a></h3>
 <div class="meta">6:30 PM · Venice · Free</div>
 <p>A book club for Gen Z and Millennials.</p>
-<a class="tickets" href="https://www.lapl.org/events/defying-existential-dread-book-club">Tickets &amp; info →</a>
+<a class="tickets" href="https://www.lapl.org/events/defying-existential-dread-book-club">Boletos e info →</a>
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Defying%20Existential%20Dread%20Book%20Club&dates=20261002T013000Z/20261002T033000Z&details=A%20book%20club%20for%20Gen%20Z%20and%20Millennials.%20Tickets%20%26%20info%3A%20https%3A//www.lapl.org/events/defying-existential-dread-book-club&location=Venice" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="43">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="43">Share</button>
+<button class="cal-link share-ev" data-idx="43">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#event-42">Aphasia Book Club</a></div></article>
 </main>
 <footer>
-<div class="serif">Hand-picked for you by Tonight.</div>
-<p>Every tick is saved —<br>tomorrow's picks learn what you love.</p>
+<div class="serif">Elegido para ti por Tonight.</div>
+<p>Cada marca se guarda:<br>lo de mañana aprende lo que te encanta.</p>
 </footer>
 <script>
 const TRAVEL_MINUTES = 30;  // default buffer before an event's start time
@@ -1573,8 +1573,8 @@ async function shareOrCopy(text, url) {
 }
 const _shareBtn = document.getElementById("shareBtn");
 if (_shareBtn) _shareBtn.addEventListener("click", async () => {
-  const r = await shareOrCopy("Things to do today in Los Angeles, hand-picked by Tonight:", location.href.split("#")[0]);
-  if (r === "copied") shareMsg("Link copied — paste it anywhere.");
+  const r = await shareOrCopy("Things to do today in Los Ángeles, hand-picked by Tonight:", location.href.split("#")[0]);
+  if (r === "copied") shareMsg("Enlace copiado: pégalo donde quieras.");
 });
 function fmtStart(i) {
   const s = STARTS[i]; if (s == null) return "";
@@ -1583,13 +1583,13 @@ function fmtStart(i) {
 }
 const _sharePicks = document.getElementById("sharePicksBtn");
 if (_sharePicks) _sharePicks.addEventListener("click", async () => {
-  if (!picks.size) { shareMsg("Tick a few events first, then share them."); return; }
+  if (!picks.size) { shareMsg("Marca algunos eventos primero y luego compártelos."); return; }
   const order = [...picks].map(Number).sort((a, b) => (STARTS[a] ?? 1440) - (STARTS[b] ?? 1440));
   const lines = order.map(i => "• " + NAMES[i] + (fmtStart(i) ? ", " + fmtStart(i) : ""));
-  const text = "My picks for Thursday in Los Angeles:\n" + lines.join("\n") + "\n\nWho's in? Details on Tonight:";
+  const text = "My picks for Jueves in Los Ángeles:\n" + lines.join("\n") + "\n\nWho's in? Details on Tonight:";
   const r = await shareOrCopy(text, location.href.split("#")[0]);
-  if (r === "copied") shareMsg("Copied — paste it into a text or group chat.");
-  else if (r === "failed") shareMsg("Couldn't open sharing on this device.");
+  if (r === "copied") shareMsg("Copiado: pégalo en un mensaje o en tu grupo.");
+  else if (r === "failed") shareMsg("No se pudo compartir desde este dispositivo.");
   else shareMsg("");
 });
 render();
@@ -1675,16 +1675,16 @@ window.__applyFilters = (function () {
         const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
         if (!hay.includes(F.q)) ok = false;
       }
-      a.style.display = ok ? "" : "none";
+      a.style.display = ok ? "" : "ninguna";
       if (ok) n++;
     });
     document.querySelectorAll("section.cat").forEach(s => {
       const vis = [...s.querySelectorAll("article.event")]
-        .some(a => a.style.display !== "none");
-      s.style.display = vis ? "" : "none";
+        .some(a => a.style.display !== "ninguna");
+      s.style.display = vis ? "" : "ninguna";
     });
     document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
-    document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
+    document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "ninguna";
     document.getElementById("hiddenN").textContent = hidden.size;
   }
   document.getElementById("fq").addEventListener("input", e => {
@@ -1725,7 +1725,7 @@ window.__applyFilters = (function () {
     localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden]));
     if (wasPick) { picks.delete(i); render(); }
     applyFilters();
-    toast("Hidden for today. ", "Undo", () => {
+    toast("Oculto por hoy. ", "Deshacer", () => {
       hidden.delete(i); localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden]));
       if (wasPick) { picks.add(i); render(); }
       applyFilters();
@@ -1739,7 +1739,7 @@ window.__applyFilters = (function () {
     const link = location.origin + location.pathname + "#event-" + i, tix = art.dataset.url || "";
     const text = name + "\n" + (day ? day + " · " : "") + meta + (tix ? "\n" + tix : "");
     const label = b.textContent;
-    const done = () => { b.textContent = "Copied ✓"; setTimeout(() => { b.textContent = label; }, 1800); };
+    const done = () => { b.textContent = "Copiado ✓"; setTimeout(() => { b.textContent = label; }, 1800); };
     if (navigator.share && matchMedia("(pointer: coarse)").matches) {
       try { await navigator.share({title: name, text: text, url: link}); return; } catch (e) { if (e.name === "AbortError") return; }
     }
@@ -1805,7 +1805,7 @@ const TONIGHT_WINDOW = 300;  // upcoming: starts within the next 5h
 const NOW_GRACE = 120;       // "happening now": started within the last 2h
 function cityNowMinutes() {
   try {
-    const parts = new Intl.DateTimeFormat("en-US", {
+    const parts = new Intl.DateTimeFormat("es-MX", {
       timeZone: TZ, hour: "numeric", minute: "numeric", hour12: false
     }).formatToParts(new Date());
     let h = 0, m = 0;
@@ -1840,7 +1840,7 @@ function markPast() {
       art.classList.add("past");
       const m = art.querySelector(".meta");
       if (m && !m.querySelector(".ended")) {
-        const t = document.createElement("span"); t.className = "ended"; t.textContent = "Ended";
+        const t = document.createElement("span"); t.className = "ended"; t.textContent = "Terminado";
         m.insertBefore(t, m.firstChild);
       }
       sec.appendChild(art);
@@ -1876,7 +1876,7 @@ function setTonight(on) {
       }
     });
     homeSpot.clear();
-    wrap.style.display = "none";
+    wrap.style.display = "ninguna";
     document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
     const fbOff = document.getElementById("filterBar");
     if (fbOff) fbOff.style.display = "";
@@ -1914,18 +1914,18 @@ function setTonight(on) {
       div.textContent = "Times TBA";
       list.appendChild(div);
     }
-    if (o.status === "now") addBadge(o.art, "now", "● Happening now");
-    else if (o.free) addBadge(o.art, "free", "Free");
+    if (o.status === "now") addBadge(o.art, "now", "● Ahora mismo");
+    else if (o.free) addBadge(o.art, "free", "Gratis");
     else o.art.querySelectorAll(".badge").forEach(b => b.remove());
     list.appendChild(o.art);
     if (o.status !== "tba") live++;
   });
-  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
+  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "ninguna"; });
   const fbOn = document.getElementById("filterBar");
-  if (fbOn) fbOn.style.display = "none";
+  if (fbOn) fbOn.style.display = "ninguna";
   wrap.style.display = "block";
-  empty.style.display = live ? "none" : "block";
-  count.textContent = live ? live + (live === 1 ? " thing" : " things") + " on now or starting soon" : "";
+  empty.style.display = live ? "ninguna" : "block";
+  count.textContent = live ? live + (live === 1 ? " plan" : " planes") + " ahora o por empezar" : "";
   wrap.scrollIntoView({behavior: "smooth", block: "start"});
 }
 const _tb=document.getElementById("tonightBtn");if(_tb)_tb.addEventListener("click",()=>setTonight(!tonightOn));
@@ -1958,11 +1958,11 @@ function applyFilters() {
       const hay = (NAMES[i] + " " + CATS[i] + " " + a.textContent).toLowerCase();
       if (!hay.includes(F.q)) ok = false;
     }
-    a.style.display = ok ? "" : "none";
+    a.style.display = ok ? "" : "ninguna";
     if (ok) n++;
   });
   document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
-  document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
+  document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "ninguna";
   document.getElementById("hiddenN").textContent = hidden.size;
 }
 document.getElementById("fq").addEventListener("input", e => {
@@ -2006,7 +2006,7 @@ applyFilters();
 <script>
 (function(){
 "use strict";
-var CITY = "la", CITY_NAMES = {"nyc": "New York City", "london": "London", "la": "Los Angeles"};
+var CITY = "la", CITY_NAMES = {"nyc": "Nueva York", "london": "Londres", "la": "Los \u00c1ngeles"};
 var DISMISS_KEY = "tonight-save-dismissed", DONE_KEY = "tonight-save-done";
 var ASK_AFTER_TICKS = 2, QUIET_DAYS = 3;
 function ls(k, v){
@@ -2048,15 +2048,15 @@ var veil, panels = {}, email = "", features = {sms: false}, subscribedNow = fals
 function build(){
   veil = el("div", "quiz-veil"); veil.hidden = true; veil.id = "saveVeil";
   var card = el("div", "quiz-card"); card.setAttribute("role", "dialog");
-  card.setAttribute("aria-label", "Save your picks");
+  card.setAttribute("aria-label", "Guarda tus planes");
   veil.appendChild(card);
 
   // 1: email
   var p1 = el("div", "sv-panel"); panels.email = p1;
-  p1.appendChild(el("div", "quiz-eyebrow", "Save your picks"));
-  p1.appendChild(el("h2", "", "Get the best of tonight, every morning"));
+  p1.appendChild(el("div", "quiz-eyebrow", "Guarda tus planes"));
+  p1.appendChild(el("h2", "", "Lo mejor de la noche, cada mañana"));
   p1.appendChild(el("p", "quiz-sub",
-    "Your taste and picks follow you to any device. No password: we email you a code."));
+    "Tu gusto y tus planes te siguen a cualquier dispositivo. Sin contraseña: te mandamos un código."));
   var em = el("input", "sv-input"); em.type = "email"; em.id = "svEmail";
   em.placeholder = "you@example.com"; em.autocomplete = "email";
   em.setAttribute("aria-label", "Email");
@@ -2064,19 +2064,19 @@ function build(){
   var chk = el("label", "sv-check");
   var cb = el("input"); cb.type = "checkbox"; cb.id = "svDaily"; cb.checked = true;
   chk.appendChild(cb);
-  chk.appendChild(el("span", "", "Send me the daily email for " + (CITY_NAMES[city()] || "my city") +
-    ": one email at 8 AM with the day's best picks"));
+  chk.appendChild(el("span", "", "Mándame el correo diario de " + (CITY_NAMES[city()] || "mi ciudad") +
+    ": un correo a las 8 a. m. con lo mejor del día"));
   p1.appendChild(chk);
   var a1 = el("div", "qactions");
   var send = el("button", "btn btn-gold", "Email me a code"); send.type = "button"; send.id = "svSend";
-  var later = el("button", "qlink", "not now"); later.type = "button";
+  var later = el("button", "qlink", "ahora no"); later.type = "button";
   a1.appendChild(send); a1.appendChild(later); p1.appendChild(a1);
   p1.appendChild(el("p", "sv-msg")).id = "svMsg1";
 
   // 2: code
   var p2 = el("div", "sv-panel"); p2.hidden = true; panels.code = p2;
-  p2.appendChild(el("div", "quiz-eyebrow", "Check your email"));
-  p2.appendChild(el("h2", "", "Enter your code"));
+  p2.appendChild(el("div", "quiz-eyebrow", "Revisa tu correo"));
+  p2.appendChild(el("h2", "", "Escribe tu código"));
   var sent = el("p", "quiz-sub"); sent.id = "svSentTo"; p2.appendChild(sent);
   var code = el("input", "sv-input"); code.id = "svCode"; code.inputMode = "numeric";
   code.autocomplete = "one-time-code"; code.maxLength = 6; code.placeholder = "000000";
@@ -2084,31 +2084,31 @@ function build(){
   p2.appendChild(code);
   var a2 = el("div", "qactions");
   var go = el("button", "btn btn-gold", "Sign in"); go.type = "button"; go.id = "svVerify";
-  var resend = el("button", "qlink", "send a new code"); resend.type = "button";
-  var back = el("button", "qlink", "use a different email"); back.type = "button";
+  var resend = el("button", "qlink", "enviar otro código"); resend.type = "button";
+  var back = el("button", "qlink", "usar otro correo"); back.type = "button";
   a2.appendChild(go); a2.appendChild(resend); a2.appendChild(back); p2.appendChild(a2);
   p2.appendChild(el("p", "sv-msg")).id = "svMsg2";
 
   // 3: you're in + optional texts + privacy
   var p3 = el("div", "sv-panel"); p3.hidden = true; panels.done = p3;
-  p3.appendChild(el("div", "quiz-eyebrow", "You're in"));
-  var hi = el("h2", "", "Saved."); hi.id = "svHello"; p3.appendChild(hi);
+  p3.appendChild(el("div", "quiz-eyebrow", "Ya estás dentro"));
+  var hi = el("h2", "", "Guardado."); hi.id = "svHello"; p3.appendChild(hi);
   var sum = el("p", "quiz-sub"); sum.id = "svSummary"; p3.appendChild(sum);
   var txt = el("div", "sv-box"); txt.id = "svTexts"; txt.hidden = true;
-  txt.appendChild(el("b", "", "Want a text when something great is on tonight?"));
-  txt.appendChild(el("span", "", "At most one a day, never after 9 PM. Reply STOP any time."));
+  txt.appendChild(el("b", "", "¿Quieres un mensaje cuando haya algo buenísimo esta noche?"));
+  txt.appendChild(el("span", "", "Máximo uno al día, nunca después de las 9 p. m. Responde STOP cuando quieras."));
   var ph = el("input", "sv-input"); ph.type = "tel"; ph.id = "svPhone";
   ph.placeholder = "+1 555 123 4567"; ph.autocomplete = "tel"; ph.setAttribute("aria-label", "Phone");
   txt.appendChild(ph);
-  var tb = el("button", "btn btn-dark", "Text me alerts"); tb.type = "button"; tb.id = "svTextBtn";
+  var tb = el("button", "btn btn-dark", "Mándame avisos"); tb.type = "button"; tb.id = "svTextBtn";
   txt.appendChild(tb);
   txt.appendChild(el("p", "sv-msg")).id = "svMsg3";
   p3.appendChild(txt);
   p3.appendChild(el("p", "sv-note",
-    "Your plans are private by default. When going-to and friends arrive, only friends see what you're going to. Change it any time in Account."));
+    "Tus planes son privados por defecto. Cuando lleguen los planes compartidos, solo tus amigos verán a qué vas. Cámbialo cuando quieras en Cuenta."));
   var a3 = el("div", "qactions");
-  var fin = el("button", "btn btn-gold", "Back to tonight's picks \u2192"); fin.type = "button";
-  var acct = el("a", "qlink", "account settings"); acct.href = "." + "/account.html";
+  var fin = el("button", "btn btn-gold", "Volver a los planes de esta noche →"); fin.type = "button";
+  var acct = el("a", "qlink", "ajustes de la cuenta"); acct.href = "." + "/account.html";
   a3.appendChild(fin); a3.appendChild(acct); p3.appendChild(a3);
 
   card.appendChild(p1); card.appendChild(p2); card.appendChild(p3);
@@ -2140,17 +2140,17 @@ function close(){ if (veil) veil.hidden = true; }
 
 function sendCode(){
   var v = document.getElementById("svEmail").value.trim().toLowerCase();
-  if (!v || v.indexOf("@") < 0) { say("svMsg1", "Enter a valid email.", "err"); return; }
+  if (!v || v.indexOf("@") < 0) { say("svMsg1", "Escribe un correo válido.", "err"); return; }
   email = v;
-  say("svMsg1", "Sending your code\u2026"); say("svMsg2", "");
+  say("svMsg1", "Enviando tu código…"); say("svMsg2", "");
   post("/auth/start", {email: email}).then(function(d){
-    if (!d.ok) { say(panels.code.hidden ? "svMsg1" : "svMsg2", d.error || "Couldn't send a code.", "err"); return; }
+    if (!d.ok) { say(panels.code.hidden ? "svMsg1" : "svMsg2", d.error || "No pudimos enviar el código.", "err"); return; }
     document.getElementById("svSentTo").textContent = d.dev_code
-      ? "Test mode: this preview can't send email, so nothing went to " + email + ". Your code is filled in below."
-      : "We sent a 6-digit code to " + email + ". It works for 10 minutes.";
+      ? "Modo de prueba: esta vista previa no envía correos, así que no mandamos nada a " + email + ". Tu código ya está escrito abajo."
+      : "Te mandamos un código de 6 dígitos a " + email + ". Sirve por 10 minutos.";
     document.getElementById("svCode").value = d.dev_code || "";
     show("code");
-  }).catch(function(){ say("svMsg1", "Couldn't reach Tonight. Try again in a bit.", "err"); });
+  }).catch(function(){ say("svMsg1", "No pudimos conectar con Tonight. Inténtalo en un rato.", "err"); });
 }
 function tasteNow(){
   var t = (window.Tonight && Tonight.taste) || {};
@@ -2158,10 +2158,10 @@ function tasteNow(){
 }
 function verify(){
   var code = document.getElementById("svCode").value.replace(/\D/g, "");
-  if (code.length !== 6) { say("svMsg2", "Enter the 6-digit code from your email.", "err"); return; }
-  say("svMsg2", "Signing you in\u2026");
+  if (code.length !== 6) { say("svMsg2", "Escribe el código de 6 dígitos de tu correo.", "err"); return; }
+  say("svMsg2", "Iniciando sesión…");
   post("/auth/verify", {email: email, code: code, anon_id: ls("tonight-user-id")}).then(function(d){
-    if (!d.ok) { say("svMsg2", d.error || "That didn't work.", "err"); return; }
+    if (!d.ok) { say("svMsg2", d.error || "No funcionó.", "err"); return; }
     TonightAuth.set(d.token, d.account);
     ls(DONE_KEY, "1");
     var steps = [];
@@ -2179,15 +2179,15 @@ function verify(){
         .then(function(r){ subscribedNow = !!r.ok; return r.ok ? {found: true, daily_email: true} : null; });
     }));
     return Promise.all(steps).then(function(res){ afterSignIn(d, res[res.length - 1]); });
-  }).catch(function(){ say("svMsg2", "Couldn't reach Tonight. Try again in a bit.", "err"); });
+  }).catch(function(){ say("svMsg2", "No pudimos conectar con Tonight. Inténtalo en un rato.", "err"); });
 }
 function afterSignIn(d, sub){
-  var name = CITY_NAMES[city()] || "your city";
-  document.getElementById("svHello").textContent = d.new_account ? "Saved. Welcome to Tonight." : "Welcome back.";
+  var name = CITY_NAMES[city()] || "tu ciudad";
+  document.getElementById("svHello").textContent = d.new_account ? "Guardado. Bienvenido a Tonight." : "Qué bueno verte de nuevo.";
   document.getElementById("svSummary").textContent =
-    subscribedNow ? "Your picks are saved to your account. Your first email for " + name + " arrives tomorrow at 8 AM."
-    : (sub && sub.found ? "Your picks are saved to your account. Your email settings are unchanged."
-       : "Your picks are saved to your account. No daily email, as you asked.");
+    subscribedNow ? "Tus planes se guardaron en tu cuenta. Tu primer correo de " + name + " llega mañana a las 8 a. m."
+    : (sub && sub.found ? "Tus planes se guardaron en tu cuenta. Tus ajustes de correo no cambiaron."
+       : "Tus planes se guardaron en tu cuenta. Sin correo diario, como pediste.");
   api("/features").then(function(f){
     features = f || {};
     var verified = sub && sub.phone_verified && sub.sms_opt_in;
@@ -2199,8 +2199,8 @@ function afterSignIn(d, sub){
 }
 function textAlerts(){
   var phone = document.getElementById("svPhone").value.trim();
-  if (!phone) { say("svMsg3", "Add your phone number.", "err"); return; }
-  say("svMsg3", "Setting up texts\u2026");
+  if (!phone) { say("svMsg3", "Agrega tu número de teléfono.", "err"); return; }
+  say("svMsg3", "Activando mensajes…");
   api("/subscriptions").then(function(sub){
     var t = tasteNow();
     var body = sub.found
@@ -2210,13 +2210,13 @@ function textAlerts(){
          surprise: t.surprise, daily_email: false, phone: phone, sms_opt_in: true};
     return post("/subscriptions", body);
   }).then(function(r){
-    if (!r.ok) { say("svMsg3", r.error || "Couldn't set up texts.", "err"); return; }
-    say("svMsg3", "We just texted you. Reply YES to turn alerts on.", "ok");
+    if (!r.ok) { say("svMsg3", r.error || "No pudimos activar los mensajes.", "err"); return; }
+    say("svMsg3", "Te acabamos de mandar un mensaje. Responde YES para activar los avisos.", "ok");
     document.getElementById("svTextBtn").hidden = true;
-  }).catch(function(){ say("svMsg3", "Couldn't reach Tonight. Try again in a bit.", "err"); });
+  }).catch(function(){ say("svMsg3", "No pudimos conectar con Tonight. Inténtalo en un rato.", "err"); });
 }
 
-// When to ask: after a couple of ticks, unless signed in or recently told "not now".
+// When to ask: after a couple of ticks, unless signed in or recently told "ahora no".
 function recentlyDismissed(){
   var t = +(ls(DISMISS_KEY) || 0);
   return t && Date.now() - t < QUIET_DAYS * 86400000;
@@ -2232,7 +2232,7 @@ document.addEventListener("DOMContentLoaded", function(){
   // a Save button next to Share, for anyone not signed in
   var share = document.getElementById("sharePicksBtn");
   if (share && !signedIn()) {
-    var b = el("button", "btn btn-gold sv-save", "Save my picks"); b.type = "button"; b.id = "savePicksBtn";
+    var b = el("button", "btn btn-gold sv-save", "Guardar mis planes"); b.type = "button"; b.id = "savePicksBtn";
     b.addEventListener("click", open);
     share.parentNode.insertBefore(b, share.nextSibling);
   }
@@ -2260,11 +2260,11 @@ function check(){
   if (!stale) { if (bar) bar.remove(); return; }
   if (bar) return;
   bar = document.createElement("div"); bar.id = "staleBar"; bar.setAttribute("role", "status");
-  var day = new Date(stale + "T12:00:00").toLocaleDateString("en-US", {weekday: "long"});
-  bar.appendChild(document.createTextNode("These are " + day + "'s picks. Today's list is ready."));
+  var day = new Date(stale + "T12:00:00").toLocaleDateString("es-MX", {weekday: "long"});
+  bar.appendChild(document.createTextNode("Estos son los planes del " + day + ". La lista de hoy ya está lista."));
   var a = document.createElement("a");
   a.href = /\/browse-/.test(location.pathname) ? "./" : (typeof DATE !== "undefined" ? "../" : location.pathname + "?fresh=" + Date.now());
-  a.textContent = "Refresh \u2192";
+  a.textContent = "Actualizar →";
   bar.appendChild(a);
   var nav = document.querySelector(".topnav");
   if (nav && nav.parentNode) nav.parentNode.insertBefore(bar, nav.nextSibling);
@@ -2305,7 +2305,7 @@ function loadHistory(){
   restoredCount = history.length;
 }
 loadHistory();
-var SUGGEST = ["Something free tonight", "Low-key, not too loud", "Plan my night", "What starts in the next hour?"];
+var SUGGEST = ["Algo gratis esta noche", "Tranqui, sin tanto ruido", "Planea mi noche", "¿Qué empieza en la próxima hora?"];
 function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
 function waitForBase(n){
   var b = window.__tonight_api || null;
@@ -2314,19 +2314,19 @@ function waitForBase(n){
 }
 var btn = el("button", "", null); btn.id = "toniBtn"; btn.type = "button";
 btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.2-4.6A8 8 0 1 1 21 12z"/></svg>';
-btn.appendChild(document.createTextNode("Ask Toni"));
+btn.appendChild(document.createTextNode("Pregúntale a Toni"));
 var panel = el("div"); panel.id = "toniPanel"; panel.hidden = true;
-panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Ask Toni");
+panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Pregúntale a Toni");
 var head = el("div", "tn-head"), hl = el("div");
-hl.appendChild(el("b", "", "Ask Toni")); hl.appendChild(el("span", "", "Your concierge for today's picks"));
-var close = el("button", "tn-close", "\u00d7"); close.type = "button"; close.setAttribute("aria-label", "Close");
-var fresh = el("button", "tn-new", "New chat"); fresh.type = "button";
+hl.appendChild(el("b", "", "Pregúntale a Toni")); hl.appendChild(el("span", "", "Tu conserje para los planes de hoy"));
+var close = el("button", "tn-close", "\u00d7"); close.type = "button"; close.setAttribute("aria-label", "Cerrar");
+var fresh = el("button", "tn-new", "Nuevo chat"); fresh.type = "button";
 var hbtns = el("div", "tn-hbtns"); hbtns.appendChild(fresh); hbtns.appendChild(close);
 head.appendChild(hl); head.appendChild(hbtns);
 var log = el("div", "tn-log"); log.setAttribute("aria-live", "polite");
 var form = el("form", "tn-form"), input = el("input"); input.id = "toniInput";
-input.placeholder = "e.g. something free after 7"; input.autocomplete = "off"; input.setAttribute("aria-label", "Ask Toni");
-var send = el("button", "", "Ask"); send.type = "submit";
+input.placeholder = "p. ej., algo gratis después de las 7"; input.autocomplete = "off"; input.setAttribute("aria-label", "Pregúntale a Toni");
+var send = el("button", "", "Preguntar"); send.type = "submit";
 form.appendChild(input); form.appendChild(send);
 panel.appendChild(head);
 if (!onPage) {
@@ -2355,7 +2355,7 @@ function cleanText(text){
 function timeCell(t){
   var box = el("div", "tn-time"), m = /^(\d{1,2}:\d{2})\s*([AP]M)$/i.exec(t || "");
   if (m) { box.appendChild(document.createTextNode(m[1].replace(/:00$/, ""))); box.appendChild(el("small", "", m[2].toUpperCase())); }
-  else { box.className += " tba"; box.textContent = "TIME TBA"; }
+  else { box.className += " tba"; box.textContent = "HORA POR CONFIRMAR"; }
   return box;
 }
 function card(c){
@@ -2364,25 +2364,25 @@ function card(c){
   body.appendChild(el("div", "n", c.name));
   var meta = el("div", "m");
   if (c.venue) meta.appendChild(el("span", "", c.venue));
-  if (c.price === "free") meta.appendChild(el("span", "tn-free", "Free"));
+  if (c.price === "free") meta.appendChild(el("span", "tn-free", "Gratis"));
   else if (c.price && c.price !== "price unknown") meta.appendChild(el("span", "", c.price));
   body.appendChild(meta);
   if (c.reason) body.appendChild(el("div", "r", c.reason));
   var a = el("div", "a");
   if (onPage) {
-    var tick = el("button", "", "Tick it"); tick.type = "button";
+    var tick = el("button", "", "Marcar"); tick.type = "button";
     var pageBox = function(){ return document.querySelector('.toggle[data-idx="' + c.id + '"]'); };
     var sync = function(){ var t = pageBox(); var on = !!t && t.getAttribute("aria-pressed") === "true";
-      tick.setAttribute("aria-pressed", on ? "true" : "false"); tick.textContent = on ? "Ticked \u2713" : "Tick it"; };
+      tick.setAttribute("aria-pressed", on ? "true" : "false"); tick.textContent = on ? "Marcado ✓" : "Marcar"; };
     tick.addEventListener("click", function(){ var t = pageBox(); if (t) { t.click(); setTimeout(sync, 50); } });
     sync(); a.appendChild(tick);
   }
-  var see = el("a", "", onPage ? "See it" : "See it on " + (cur.name || "the city page"));
+  var see = el("a", "", onPage ? "Ver" : "Ver en " + (cur.name || "la página de la ciudad"));
   see.href = (onPage ? "" : cur.href) + "#event-" + c.id;
   see.addEventListener("click", function(){ if (window.innerWidth < 560) panel.hidden = true; });
   a.appendChild(see);
   if (c.url) {
-    var tk = el("a", "", (c.price === "free" ? "RSVP / details" : "Tickets") + " \u2192");
+    var tk = el("a", "", (c.price === "free" ? "Registro / detalles" : "Boletos") + " \u2192");
     tk.href = c.url; tk.target = "_blank"; tk.rel = "noopener"; a.appendChild(tk);
   }
   body.appendChild(a);
@@ -2408,8 +2408,8 @@ function dinnerBlock(d){
   var hh = String(Math.floor(mins / 60)).padStart(2, "0"), mm = String(mins % 60).padStart(2, "0");
   var h12 = (Math.floor(mins / 60) % 12 || 12) + (mins % 60 ? ":" + mm : "") + (mins >= 720 ? " PM" : " AM");
   var box = el("div", "tn-dine");
-  box.appendChild(el("div", "t", "Dinner near " + d.venue));
-  box.appendChild(el("div", "s", h12 + (d.why ? ", " + d.why : "") + " \u00b7 " + party + " people"));
+  box.appendChild(el("div", "t", "Cena cerca de " + d.venue));
+  box.appendChild(el("div", "s", h12 + (d.why ? ", " + d.why : "") + " \u00b7 " + party + " personas"));
   // named picks from the dinner engine (OpenStreetMap data), then the general booking links
   var dt = cur.date + "T" + hh + ":" + mm;
   (d.restaurants || []).forEach(function(r){
@@ -2418,25 +2418,25 @@ function dinnerBlock(d){
     it.appendChild(el("div", "rm", [r.cuisine, r.walk, r.hours].filter(Boolean).join(" \u00b7 ")));
     var ln = el("div", "rl");
     function link(label, href){ var a = el("a", "", label); a.href = href; a.target = "_blank"; a.rel = "noopener"; ln.appendChild(a); }
-    if (cfg.ot) link("Book \u2192", cfg.ot + "/s?dateTime=" + encodeURIComponent(dt) + "&covers=" + party + "&term=" + encodeURIComponent(r.name));
-    if (r.website) link("Website \u2192", r.website);
-    link("Map \u2192", "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + (cur.name || "")));
+    if (cfg.ot) link("Reservar →", cfg.ot + "/s?dateTime=" + encodeURIComponent(dt) + "&covers=" + party + "&term=" + encodeURIComponent(r.name));
+    if (r.website) link("Sitio →", r.website);
+    link("Mapa →", "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + (cur.name || "")));
     it.appendChild(ln);
     box.appendChild(it);
   });
   if ((d.restaurants || []).length) {
-    box.appendChild(el("div", "tn-src", "Restaurant data \u00a9 OpenStreetMap contributors. Hours can be out of date; check before you go."));
-    box.appendChild(el("div", "t2", "More options"));
+    box.appendChild(el("div", "tn-src", "Datos de restaurantes © colaboradores de OpenStreetMap. Los horarios pueden estar desactualizados; revísalos antes de ir."));
+    box.appendChild(el("div", "t2", "Más opciones"));
   }
   var row = el("div", "b");
   function add(label, href){ var a = el("a", "", label); a.href = href; a.target = "_blank"; a.rel = "noopener"; row.appendChild(a); }
   if (cfg.ot) {
     var ot = cfg.ot + "/s?dateTime=" + encodeURIComponent(cur.date + "T" + hh + ":" + mm) + "&covers=" + party;
     if (d.lat != null && d.lng != null) ot += "&latitude=" + d.lat + "&longitude=" + d.lng;
-    add("OpenTable \u2192", ot);
+    add("OpenTable →", ot);
   }
-  if (cfg.resy) add("Resy \u2192", "https://resy.com/cities/" + cfg.resy + "?date=" + cur.date + "&seats=" + party);
-  add("Map \u2192", "https://www.google.com/maps/search/?api=1&query=" +
+  if (cfg.resy) add("Resy →", "https://resy.com/cities/" + cfg.resy + "?date=" + cur.date + "&seats=" + party);
+  add("Mapa →", "https://www.google.com/maps/search/?api=1&query=" +
       encodeURIComponent("restaurants near " + d.venue + (cur.name ? ", " + cur.name : "")));
   box.appendChild(row);
   return box;
@@ -2459,7 +2459,7 @@ function applyPageFilters(f){
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
   set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || "");
   var n = 0;
-  document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
+  document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "ninguna") n++; });
   return n;
 }
 function toniBlock(){
@@ -2471,18 +2471,18 @@ function render(){
     var hi = toniBlock();
     var acct = window.TonightAuth && TonightAuth.token() && TonightAuth.account();
     var fn = acct && acct.name ? String(acct.name).trim().split(/\s+/)[0].slice(0, 30) : "";
-    hi.appendChild(el("p", "tn-text", (fn ? "Hi, " + fn + ". I'm Toni." : "Hi, I'm Toni.") +
-      " Tell me your mood, budget or when you're free, and I'll pick from today's list."));
-    hi.appendChild(el("p", "tn-text small", "I only suggest events that are really on today. Tickets are bought on each event's own site."));
+    hi.appendChild(el("p", "tn-text", (fn ? "Hola, " + fn + ". Soy Toni." : "Hola, soy Toni.") +
+      " Cuéntame tu ánimo, tu presupuesto o a qué hora estás libre, y elijo de la lista de hoy."));
+    hi.appendChild(el("p", "tn-text small", "Solo sugiero eventos que de verdad son hoy. Los boletos se compran en el sitio de cada evento."));
     var chips = el("div", "tn-chips");
     SUGGEST.forEach(function(s){ var b = el("button", "", s); b.type = "button";
       b.addEventListener("click", function(){ ask(s); }); chips.appendChild(b); });
     hi.appendChild(chips);
     log.appendChild(hi);
   }
-  if (restoredCount) log.appendChild(el("div", "tn-earlier", "Earlier today"));
+  if (restoredCount) log.appendChild(el("div", "tn-earlier", "Hoy más temprano"));
   history.forEach(function(m, k){
-    if (restoredCount && k === restoredCount) log.appendChild(el("div", "tn-earlier", "Now"));
+    if (restoredCount && k === restoredCount) log.appendChild(el("div", "tn-earlier", "Ahora"));
     if (m.role === "user") { log.appendChild(el("div", "tn-you", m.display || m.content)); return; }
     var blk = toniBlock();
     if (m.error) { blk.appendChild(el("p", "tn-text err", m.content)); log.appendChild(blk); return; }
@@ -2506,14 +2506,14 @@ function render(){
     if (m.outro) blk.appendChild(el("p", "tn-text small", m.outro));
     if (m.seeAll && m.fullCount) {
       var sa = el("div", "tn-shown");
-      sa.appendChild(el("span", "", m.fullCount + " match in all"));
-      var link = el("a", "", "See the full list →"); link.href = m.seeAll;
+      sa.appendChild(el("span", "", m.fullCount + " en total"));
+      var link = el("a", "", "Ver la lista completa →"); link.href = m.seeAll;
       sa.appendChild(link); blk.appendChild(sa);
     }
     if (m.shown != null) {
       var sh = el("div", "tn-shown");
-      sh.appendChild(el("span", "", "Showing all " + m.shown + " on the page"));
-      var go = el("button", "", "Show me →"); go.type = "button";
+      sh.appendChild(el("span", "", "Mostrando los " + m.shown + " en la página"));
+      var go = el("button", "", "Muéstramelos →"); go.type = "button";
       go.addEventListener("click", function(){
         panel.hidden = true;
         var bar = document.getElementById("filterBar") || document.querySelector(".filters");
@@ -2560,7 +2560,7 @@ function ask(q, display){
   q = (q || "").trim(); if (!q || busy) return;
   busy = true; send.disabled = true; input.value = "";
   history.push(display ? {role: "user", content: q, display: display} : {role: "user", content: q}); render();
-  var thinking = toniBlock(); thinking.appendChild(el("p", "tn-text small", "Looking through today's list\u2026"));
+  var thinking = toniBlock(); thinking.appendChild(el("p", "tn-text small", "Revisando la lista de hoy…"));
   log.appendChild(thinking); log.scrollTop = log.scrollHeight;
   var taste = (window.Tonight && Tonight.taste) || {};
   var anon = null; try { anon = localStorage.getItem("tonight-user-id"); } catch (e) {}
@@ -2576,7 +2576,7 @@ function ask(q, display){
       messages: history.filter(function(m){ return !m.error; }).map(function(m){ return {role: m.role, content: m.content}; })
     })}).then(function(r){ return r.json(); });
   }).then(function(d){
-    if (!d.ok) history.push({role: "assistant", content: d.error || "Toni can't answer right now.", error: true});
+    if (!d.ok) history.push({role: "assistant", content: d.error || "Toni no puede responder ahorita.", error: true});
     else {
       var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || []};
       // the server works out when and where dinner fits the plan
@@ -2591,7 +2591,7 @@ function ask(q, display){
       history.push(msg);
     }
   }).catch(function(){
-    history.push({role: "assistant", content: "Couldn't reach Toni. Check your connection and try again.", error: true});
+    history.push({role: "assistant", content: "No pudimos contactar a Toni. Revisa tu conexión e inténtalo de nuevo.", error: true});
   }).then(function(){ busy = false; send.disabled = false; save(); render(); input.focus(); });
 }
 btn.addEventListener("click", function(){ panel.hidden = !panel.hidden; if (!panel.hidden) { render(); input.focus(); } });

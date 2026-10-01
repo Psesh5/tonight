@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your account — Tonight</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;}
+:root{--paper:oklch(.965 .005 95);--ink:oklch(.3 .14 265);--accent:oklch(.72 .19 60);
+--card:oklch(.99 .005 95);--danger:oklch(.56 .2 25);--muted:oklch(.92 .02 260);}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--paper);color:var(--ink);
+font-family:'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+.topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:16px;
+background:var(--ink);color:var(--paper);padding:12px 20px;border-bottom:3px solid var(--accent);}
+.topnav .brand{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:22px;
+color:var(--paper);text-decoration:none;display:flex;align-items:center;gap:9px;letter-spacing:.5px;}
+.topnav .brand img{height:26px;width:26px;}
+.topnav .brand b{color:var(--accent);font-weight:900;}
+.topnav .tastelinks{display:flex;gap:16px;align-items:center;}
+.topnav .tastelink{color:var(--paper);text-decoration:none;font-size:13px;font-weight:700;
+letter-spacing:1.5px;text-transform:uppercase;}
+.topnav .tastelink:hover{color:var(--accent);}
+.topnav .citylinks{display:flex;gap:6px;margin-left:auto;}
+.topnav .citylinks a{color:var(--paper);text-decoration:none;font-size:13px;font-weight:700;
+padding:7px 14px;border:2px solid transparent;text-transform:uppercase;letter-spacing:1px;}
+.topnav .citylinks a:hover{border-color:var(--accent);color:var(--accent);}
+.bhero{background:var(--accent);color:var(--on-accent);padding:56px 24px 44px;text-align:center;
+border-bottom:3px solid var(--ink);}
+.bhero .eyebrow{display:inline-block;background:var(--ink);color:var(--paper);
+font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:7px 14px;}
+.bhero h1{font-family:'Fraunces',Georgia,serif;font-weight:900;
+font-size:clamp(2.6rem,8vw,4.5rem);line-height:1.02;margin:20px 0 12px;letter-spacing:.5px;}
+.bhero p{font-size:15.5px;margin:0 auto;max-width:560px;line-height:1.6;font-weight:500;}
+.steps{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:26px;flex-wrap:wrap;}
+.step{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+padding:9px 16px;border:2px solid var(--ink);background:var(--paper);}
+.step b{margin-right:6px;}
+.step.on{background:var(--ink);color:var(--paper);}
+.sarr{font-weight:900;font-size:14px;}
+.sform{max-width:680px;margin:0 auto;padding:34px 20px 64px;}
+.tsec{background:var(--card);border:3px solid var(--ink);
+box-shadow:6px 6px 0 var(--ink);margin:0 0 28px;}
+.shead{background:var(--accent);border-bottom:3px solid var(--ink);
+display:flex;align-items:center;gap:14px;padding:12px 20px;color:var(--on-accent);}
+.snum{flex:none;width:34px;height:34px;background:var(--ink);color:var(--paper);
+font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:18px;
+display:flex;align-items:center;justify-content:center;}
+.shead h2{font-size:16px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin:0;}
+.tsec-body{padding:20px 22px 14px;}
+.thint{font-size:13.5px;color:var(--ink);opacity:.72;line-height:1.55;margin:4px 0 10px;font-weight:500;}
+.sfield{margin:14px 0;}
+.sfield label{display:block;font-size:11.5px;letter-spacing:2px;text-transform:uppercase;
+font-weight:800;margin-bottom:8px;}
+.sfield input[type=email],.sfield input[type=tel],.sfield select{width:100%;max-width:100%;
+padding:13px 16px;border:3px solid var(--ink);font-size:16px;
+font-family:inherit;color:var(--ink);background:var(--field);}
+.sfield select{appearance:none;-webkit-appearance:none;padding-right:42px;cursor:pointer;
+background:var(--field) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="9"><path d="M1 1l6 6 6-6" stroke="%231a2b5c" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>') no-repeat right 16px center;}
+.sfield input:focus,.sfield select:focus{outline:3px solid var(--accent);outline-offset:1px;}
+.loadrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:16px 0 8px;}
+.btn2{padding:11px 22px;border:3px solid var(--ink);background:var(--paper);
+font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+color:var(--ink);cursor:pointer;font-family:inherit;flex:none;box-shadow:4px 4px 0 var(--ink);}
+.btn2:hover{background:var(--accent);color:var(--on-accent);}
+.btn2:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
+.trow{display:flex;align-items:center;justify-content:space-between;gap:12px;
+padding:11px 0;border-bottom:2px solid var(--muted);}
+.trow:last-child{border-bottom:none;}
+.tcat{font-size:16px;font-weight:700;display:flex;align-items:center;min-width:0;}
+.cico{flex:none;width:34px;height:34px;background:var(--accent);border:2px solid var(--ink);
+display:inline-flex;align-items:center;justify-content:center;margin-right:12px;color:var(--on-accent);}
+.cname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.seg{display:flex;gap:6px;flex:none;flex-wrap:wrap;justify-content:flex-end;}
+.seg button{padding:8px 13px;border:2px solid var(--ink);background:var(--paper);
+font-size:12.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;
+font-family:inherit;color:var(--ink);display:inline-flex;align-items:center;gap:6px;}
+.seg button:hover{background:var(--muted);}
+.seg button.on{background:var(--ink);color:var(--paper);}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:12px;
+padding:15px 0;border-bottom:2px solid var(--muted);}
+.srow:last-child{border-bottom:none;}
+.srow .tcat{font-size:16px;font-weight:700;display:flex;align-items:center;min-width:0;}
+.ric{flex:none;width:36px;height:36px;background:var(--accent);border:2px solid var(--ink);
+display:inline-flex;align-items:center;justify-content:center;margin-right:12px;color:var(--on-accent);}
+.ttxt{min-width:0;flex:1;}
+.srow .sub{font-size:13px;color:var(--ink);opacity:.72;display:block;margin-top:4px;
+font-weight:500;line-height:1.5;}
+.srow .sub a{color:var(--ink);font-weight:700;text-decoration:underline;
+text-decoration-color:var(--accent);text-decoration-thickness:2px;}
+.switch{position:relative;width:58px;height:32px;flex:none;cursor:pointer;}
+.switch input{opacity:0;width:0;height:0;}
+.sl{position:absolute;inset:0;background:var(--muted);border:3px solid var(--ink);transition:.15s;}
+.sl:before{content:"";position:absolute;height:18px;width:18px;left:4px;top:4px;
+background:var(--paper);border:3px solid var(--ink);transition:.15s;}
+.switch input:checked + .sl{background:var(--accent);color:var(--on-accent);}
+.switch input:checked + .sl:before{transform:translateX(24px);background:var(--ink);}
+.eprev{margin:18px 0 10px;border:3px solid var(--ink);background:var(--field);box-shadow:6px 6px 0 var(--ink);}
+.eprev-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:var(--ink);
+color:var(--paper);}
+.edot{width:10px;height:10px;background:var(--paper);opacity:.5;}
+.eprev-title{margin-left:8px;font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.eprev-sub{font-size:11.5px;opacity:.7;font-weight:500;text-transform:none;letter-spacing:0;}
+.eprev-row{display:flex;align-items:center;gap:10px;padding:11px 14px;
+border-bottom:2px solid var(--muted);font-size:13.5px;}
+.eprev-row:last-of-type{border-bottom:none;}
+.etag{flex:none;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+background:var(--ink);color:var(--accent);padding:5px 9px;}
+.etag.free{background:var(--accent);color:var(--on-accent);}
+.etitle{flex:1;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+.etime{font-weight:700;font-size:12.5px;flex:none;}
+.eprev-foot{padding:10px 14px;font-size:12.5px;font-weight:600;background:var(--muted);text-align:center;}
+.eplabel{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;font-weight:800;margin:20px 0 10px;}
+.btn-gold{display:inline-block;padding:16px 48px;border:3px solid var(--ink);
+background:var(--accent);color:var(--on-accent);font-size:16px;font-weight:800;letter-spacing:1.5px;
+text-transform:uppercase;cursor:pointer;font-family:inherit;
+box-shadow:6px 6px 0 var(--ink);}
+.btn-gold:hover{transform:translate(-1px,-1px);box-shadow:7px 7px 0 var(--ink);}
+.btn-gold:active{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink);}
+.btn-gold:disabled{opacity:.6;cursor:wait;transform:none;}
+.tcenter{text-align:center;}
+.reassure{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:16px;
+font-size:12.5px;font-weight:600;}
+.reassure span:before{content:"\2713  ";font-weight:800;}
+#formMsg{max-width:640px;margin:16px auto 0;padding:0 20px;min-height:24px;font-size:14px;
+font-weight:600;text-align:center;}
+#formMsg.ok{color:#1d6b3a;} #formMsg.err{color:var(--danger);}
+.sdone{max-width:640px;margin:0 auto;padding:40px 20px 64px;text-align:center;display:none;
+border:3px solid var(--ink);background:var(--card);box-shadow:6px 6px 0 var(--ink);}
+.sdone h2{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:34px;margin:0 0 8px;}
+.sdone h2 em{font-style:normal;background:var(--accent);padding:0 8px;color:var(--on-accent);}
+.sdone p{line-height:1.65;max-width:480px;margin:12px auto;font-weight:500;}
+.sdone a{color:var(--ink);font-weight:800;text-decoration:underline;
+text-decoration-color:var(--accent);text-decoration-thickness:2px;}
+footer{background:var(--ink);color:var(--paper);text-align:center;
+padding:36px 24px;font-size:13px;border-top:3px solid var(--accent);margin-top:20px;}
+footer .serif{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:18px;margin-bottom:8px;}
+footer p{opacity:.85;line-height:1.7;margin:6px 0;font-weight:500;}
+footer a{color:var(--accent);font-weight:700;}
+@media(max-width:520px){
+.bhero{padding:40px 18px 32px;}
+.sform{padding:26px 14px 48px;}
+.tsec-body{padding:16px 16px 10px;}
+.shead{padding:10px 14px;}
+.btn-gold{padding:15px 30px;font-size:14px;}
+.seg button{padding:7px 10px;font-size:11.5px;}
+}
+
+.acct-wrap{max-width:680px;margin:0 auto;padding:34px 20px 64px;}
+.sfield input[type=text]{width:100%;max-width:100%;padding:13px 16px;border:3px solid var(--ink);
+font-size:16px;font-family:inherit;color:var(--ink);background:var(--field);}
+.sfield input[readonly]{background:var(--muted);}
+.sfield input[type=text]:focus{outline:3px solid var(--accent);outline-offset:1px;}
+.acct-wrap[hidden],.codebox[hidden],#delConfirm[hidden]{display:none;}
+.acct-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:18px 0 6px;}
+.codebox{margin-top:18px;}
+#code{letter-spacing:8px;font-size:24px;font-weight:800;text-align:center;max-width:240px;}
+.linkbtn{background:none;border:none;padding:0;color:var(--ink);font:inherit;font-size:13.5px;
+font-weight:700;text-decoration:underline;text-decoration-color:var(--accent);
+text-decoration-thickness:2px;cursor:pointer;}
+.acct-msg{min-height:22px;font-size:14px;font-weight:600;margin:12px 0 0;}
+.acct-msg.ok{color:#1d6b3a;} .acct-msg.err{color:var(--danger);}
+.soon{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:1px;
+text-transform:uppercase;background:var(--ink);color:var(--accent);padding:3px 8px;margin-left:8px;
+vertical-align:middle;}
+.dsum{font-size:14px;font-weight:600;line-height:1.7;margin:4px 0 12px;}
+.btn-danger{padding:11px 22px;border:3px solid var(--danger);background:var(--paper);
+color:var(--danger);font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+cursor:pointer;font-family:inherit;box-shadow:4px 4px 0 var(--danger);}
+.btn-danger.solid{background:var(--danger);color:#fff;}
+#savedNote{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+background:var(--accent);color:var(--on-accent);padding:4px 10px;opacity:0;transition:opacity .3s;}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
+<style>:root{--field:#fff;--on-accent:var(--ink);--on-banner:var(--paper);}
+a{text-decoration-skip-ink:none;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}.topnav .brand .wm{white-space:nowrap;}.topnav .brand .iw{position:relative;}.topnav .brand .im{position:absolute;left:50%;top:.95em;transform:translate(-50%,-82%) rotate(-18deg);font-size:.46em;line-height:1;color:var(--accent);-webkit-text-stroke:.07em var(--accent);font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-weight:400;}
+:root[data-palette="neon"]{--paper:oklch(.16 .018 285);--ink:oklch(.94 .01 100);--accent:oklch(.88 .22 126);--card:oklch(.21 .022 285);--muted:oklch(.29 .03 285);--banner:oklch(.68 .25 350);--danger:oklch(.68 .2 25);--field:oklch(.21 .022 285);--on-accent:oklch(.16 .018 285);--on-banner:oklch(.16 .018 285);color-scheme:dark}
+:root[data-palette="harbor"]{--paper:oklch(.975 .012 190);--ink:oklch(.21 .055 193);--accent:oklch(.77 .13 168);--card:oklch(.99 .008 190);--muted:oklch(.92 .03 190);--banner:oklch(.21 .055 193);--danger:oklch(.58 .2 27)}
+:root[data-palette="cherry"]{--paper:oklch(.94 .025 84);--ink:oklch(.2 .012 50);--accent:oklch(.57 .22 24);--card:oklch(.97 .018 84);--muted:oklch(.89 .03 84);--banner:oklch(.77 .105 224);--danger:oklch(.5 .2 25);--on-accent:oklch(.99 .01 84);--on-banner:oklch(.2 .012 50)}
+:root[data-palette="forest"]{--paper:oklch(.95 .035 153);--ink:oklch(.22 .06 147);--accent:oklch(.74 .15 35);--card:oklch(.975 .025 153);--muted:oklch(.9 .04 153);--banner:oklch(.22 .06 147);--danger:oklch(.54 .2 25)}
+:root[data-palette="neon"] .topnav .browselink{color:var(--on-banner);text-decoration:underline;text-decoration-thickness:2px;}</style><script>(function(){try{var r=document.documentElement,p=localStorage.getItem("tonight-palette"),l=localStorage.getItem("tonight-layout");if(p)r.setAttribute("data-palette",p);if(l)r.setAttribute("data-layout",l);}catch(e){}})();
+/* Session for signed-in accounts. Signed out, pages keep using the anonymous
+   tonight-user-id exactly as before. */
+window.TonightAuth={
+token:function(){try{return localStorage.getItem("tonight-session");}catch(e){return null;}},
+account:function(){try{return JSON.parse(localStorage.getItem("tonight-account")||"null");}catch(e){return null;}},
+headers:function(h){h=h||{};var t=this.token();if(t)h["Authorization"]="Bearer "+t;return h;},
+set:function(t,a){try{localStorage.setItem("tonight-session",t);localStorage.setItem("tonight-account",JSON.stringify(a));if(a&&a.id)localStorage.setItem("tonight-user-id",a.id);}catch(e){}},
+clear:function(){try{["tonight-session","tonight-account","tonight-user-id","tonight-taste"].forEach(function(k){localStorage.removeItem(k);});}catch(e){}}
+};</script></head>
+<body>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a>
+<span class="tastelinks"><a class="tastelink" href="./taste.html">Your taste</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span>
+<span class="citylinks"><a href="./">Home</a></span></nav>
+<header class="bhero">
+<div class="eyebrow">Tonight account</div>
+<h1 id="heroTitle">SIGN IN</h1>
+<p id="heroSub">No password. We email you a one-time code. Your taste, picks and settings
+follow you to every device.</p>
+</header>
+
+<main class="acct-wrap" id="signedOut">
+<section class="tsec"><div class="shead"><span class="snum">1</span><h2>Your email</h2></div>
+<div class="tsec-body">
+<div class="sfield"><label for="email">Email</label>
+<input type="email" id="email" placeholder="you@example.com" autocomplete="email"></div>
+<div class="acct-actions"><button type="button" class="btn-gold" id="sendCode">Email me a code</button></div>
+<div class="codebox" id="codeBox" hidden>
+<div class="sfield"><label for="code">6-digit code</label>
+<input type="text" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000"></div>
+<div class="acct-actions"><button type="button" class="btn-gold" id="verifyBtn">Sign in</button>
+<button type="button" class="linkbtn" id="resend">Send a new code</button></div>
+</div>
+<p class="acct-msg" id="inMsg"></p>
+<p class="thint">New here? Signing in creates your account. Anything you've already
+picked on this device comes with you.</p>
+</div></section>
+</main>
+
+<main class="acct-wrap" id="signedIn" hidden>
+<p class="dsum"><span id="hello"></span> Signed in as <b id="whoami"></b>. <span id="savedNote">Saved ✓</span></p>
+<p class="acct-msg" id="acctMsg"></p>
+
+<section class="tsec"><div class="shead"><span class="snum">1</span><h2>Profile</h2></div>
+<div class="tsec-body">
+<div class="sfield"><label for="name">Name</label>
+<input type="text" id="name" placeholder="What friends call you" autocomplete="name" maxlength="60"></div>
+<div class="sfield"><label for="acctEmail">Email</label>
+<input type="email" id="acctEmail" readonly></div>
+<div class="sfield"><label for="homeCity">Home city</label>
+<select id="homeCity"><option value="">Choose a city</option><option value="nyc">New York City</option><option value="london">London</option><option value="la">Los Angeles</option></select></div>
+<div class="acct-actions"><button type="button" class="btn2" id="saveProfile">Save profile</button></div>
+</div></section>
+
+<section class="tsec"><div class="shead"><span class="snum">2</span><h2>Privacy</h2></div>
+<div class="tsec-body">
+<p class="thint">Going-to, friends and squads are coming soon. Choose who sees what now,
+and it's set before they launch. Everything starts private.</p>
+<div class="srow"><span class="tcat"><span class="ttxt">Who can see events you're going to<span class="soon">Soon</span>
+<span class="sub">Only people you pick. Nobody sees your exact location.</span></span></span></div>
+<div class="seg" id="goingSeg" style="justify-content:flex-start;margin:4px 0 14px;">
+<button type="button" data-v="nobody">Nobody</button><button type="button" data-v="friends">Friends</button><button type="button" data-v="everyone">Everyone</button></div>
+<div class="srow"><span class="tcat"><span class="ttxt">Share saved events with friends<span class="soon">Soon</span>
+<span class="sub">Friends see the events you tick. Off by default.</span></span></span>
+<label class="switch"><input type="checkbox" id="shareSaves"><span class="sl"></span></label></div>
+<div class="srow"><span class="tcat"><span class="ttxt">Squad texts<span class="soon">Soon</span>
+<span class="sub">Group plans and votes by text. Only sent if your phone is confirmed,
+you haven't replied STOP, and never between 9 PM and 8 AM.</span></span></span>
+<label class="switch"><input type="checkbox" id="squadTexts"><span class="sl"></span></label></div>
+</div></section>
+
+<section class="tsec"><div class="shead"><span class="snum">3</span><h2>Email &amp; texts</h2></div>
+<div class="tsec-body">
+<p class="dsum" id="deliverySum">Loading…</p>
+<div class="acct-actions"><a class="btn2" href="./signup.html" style="text-decoration:none;">Change email &amp; text settings</a>
+<a class="btn2" href="./taste.html" style="text-decoration:none;">Edit your taste</a></div>
+</div></section>
+
+<section class="tsec"><div class="shead"><span class="snum">4</span><h2>Your data</h2></div>
+<div class="tsec-body">
+<div class="acct-actions">
+<button type="button" class="btn2" id="exportBtn">Download my data</button>
+<button type="button" class="btn2" id="signOut">Sign out</button>
+<button type="button" class="btn-danger" id="delBtn">Delete account</button></div>
+<div id="delConfirm" hidden>
+<p class="thint" style="opacity:1;font-weight:700;">This deletes your account, taste, picks, and
+email/text subscription for good. It can't be undone.</p>
+<div class="acct-actions"><button type="button" class="btn-danger solid" id="delYes">Yes, delete everything</button>
+<button type="button" class="linkbtn" id="delNo">Keep my account</button></div>
+</div>
+</div></section>
+</main>
+
+<footer>
+<div class="serif">Tonight — every city, every night.</div>
+<p><a href="./privacy.html">Privacy Policy</a> · <a href="./terms.html">Terms &amp; Conditions</a></p>
+</footer>
+<script>
+var CITIES = ["nyc", "london", "la"];
+function apiBase(){ return window.__tonight_api || null; }
+function $(id){ return document.getElementById(id); }
+function say(id, t, cls){ var m = $(id); m.textContent = t || ""; m.className = "acct-msg " + (cls || ""); }
+function waitForBase(tries){
+  // the API address is set by a script that runs after this one; give it a moment
+  var base = apiBase();
+  if (base || tries <= 0) return Promise.resolve(base);
+  return new Promise(function(res){ setTimeout(res, 100); })
+    .then(function(){ return waitForBase(tries - 1); });
+}
+function api(path, opts){
+  return waitForBase(30).then(function(base){
+    if (!base) throw new Error("offline");
+    opts = opts || {};
+    opts.headers = TonightAuth.headers(opts.headers || {});
+    return fetch(base + path, opts).then(function(r){
+      return r.json().then(function(d){ d._status = r.status; return d; });
+    });
+  });
+}
+function nextPage(){
+  var n = new URLSearchParams(location.search).get("next") || "";
+  return /^[a-z0-9-]+[.]html$/.test(n) ? "./" + n : null;
+}
+var pendingEmail = "";
+
+/* ---------- signed out: email -> code ---------- */
+function sendCode(){
+  var email = $("email").value.trim().toLowerCase();
+  if (!email || email.indexOf("@") < 0) { say("inMsg", "Enter a valid email.", "err"); return; }
+  say("inMsg", "Sending your code\u2026");
+  api("/auth/start", {method: "POST", headers: {"Content-Type": "application/json"},
+                      body: JSON.stringify({email: email})})
+    .then(function(d){
+      if (!d.ok) { say("inMsg", d.error || "Couldn't send a code.", "err"); return; }
+      pendingEmail = email;
+      $("codeBox").hidden = false; $("code").value = d.dev_code || ""; $("code").focus();
+      say("inMsg", d.dev_code
+          ? "Test mode: this preview can't send email, so nothing went to " + email + ". Your code is filled in below."
+          : "Code sent to " + email + ". It expires in 10 minutes.", "ok");
+    })
+    .catch(function(){ say("inMsg", "Couldn't reach the server. Try again in a bit.", "err"); });
+}
+function verify(){
+  var code = $("code").value.replace(/\D/g, "");
+  if (code.length !== 6) { say("inMsg", "Enter the 6-digit code from your email.", "err"); return; }
+  var anon = null;
+  try { anon = localStorage.getItem("tonight-user-id"); } catch (e) {}
+  say("inMsg", "Signing you in\u2026");
+  api("/auth/verify", {method: "POST", headers: {"Content-Type": "application/json"},
+                       body: JSON.stringify({email: pendingEmail, code: code, anon_id: anon})})
+    .then(function(d){
+      if (!d.ok) { say("inMsg", d.error || "That didn't work.", "err"); return; }
+      TonightAuth.set(d.token, d.account);
+      pullTaste(d.account);
+      var n = nextPage();
+      if (n) { location.href = n; return; }
+      showAccount(d.account, d.new_account);
+    })
+    .catch(function(){ say("inMsg", "Couldn't reach the server. Try again in a bit.", "err"); });
+}
+function pullTaste(a){
+  // bring the account's saved taste onto this device
+  var city = a.home_city || CITIES[0];
+  api("/taste/" + encodeURIComponent(city)).then(function(d){
+    if (d && d.explicit) {
+      try { localStorage.setItem("tonight-taste", JSON.stringify({likes: d.likes, mutes: d.mutes,
+        free_only: d.free_only, surprise: d.surprise})); } catch (e) {}
+    }
+  }).catch(function(){});
+}
+
+/* ---------- signed in ---------- */
+function flashSaved(){
+  var s = $("savedNote"); s.style.opacity = "1";
+  setTimeout(function(){ s.style.opacity = "0"; }, 1400);
+}
+function paint(a){
+  $("hello").textContent = a.name ? "Hi, " + a.name + "." : "You're signed in.";
+  $("whoami").textContent = a.email;
+  $("name").value = a.name || "";
+  $("acctEmail").value = a.email;
+  $("homeCity").value = a.home_city || "";
+  document.querySelectorAll("#goingSeg button").forEach(function(b){
+    b.classList.toggle("on", b.getAttribute("data-v") === a.show_going);
+  });
+  $("shareSaves").checked = !!a.share_saves;
+  $("squadTexts").checked = !!a.squad_texts;
+}
+function patch(body){
+  api("/me", {method: "PATCH", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)})
+    .then(function(d){
+      if (d._status === 401) { TonightAuth.clear(); showSignIn("Your session expired. Sign in again."); return; }
+      if (!d.ok) { say("acctMsg", d.error || "Couldn't save.", "err"); return; }
+      TonightAuth.set(TonightAuth.token(), d.account); paint(d.account); flashSaved();
+    })
+    .catch(function(){ say("acctMsg", "Couldn't reach the server. Try again in a bit.", "err"); });
+}
+function loadDelivery(){
+  api("/subscriptions").then(function(d){
+    var el = $("deliverySum");
+    if (!d.found) { el.textContent = "You're not getting the daily email yet."; return; }
+    var t = [];
+    t.push(d.daily_email ? "Daily email: on, for " + (d.city || "").toUpperCase() + "." : "Daily email: off.");
+    if (d.sms_opt_in && d.phone_verified) t.push("Text alerts: on (" + d.phone + ").");
+    else if (d.sms_opt_in) t.push("Text alerts: waiting for you to reply YES (" + d.phone + ").");
+    else t.push("Text alerts: off.");
+    el.textContent = t.join(" ");
+  }).catch(function(){});
+}
+function showAccount(a, isNew){
+  $("signedOut").hidden = true; $("signedIn").hidden = false;
+  $("heroTitle").textContent = "YOUR ACCOUNT";
+  $("heroSub").textContent = "Your profile, privacy and data. Your taste and picks follow you to every device.";
+  paint(a); loadDelivery();
+  if (isNew) say("acctMsg", "Welcome! Your account is set up, and the taste you'd already picked came with you.", "ok");
+}
+function showSignIn(note){
+  $("signedIn").hidden = true; $("signedOut").hidden = false; $("codeBox").hidden = true;
+  $("heroTitle").textContent = "SIGN IN";
+  $("heroSub").textContent = "No password. We email you a one-time code. Your taste, picks and settings follow you to every device.";
+  if (note) say("inMsg", note, "err");
+}
+
+$("sendCode").addEventListener("click", sendCode);
+$("email").addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); sendCode(); } });
+$("verifyBtn").addEventListener("click", verify);
+$("code").addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); verify(); } });
+$("resend").addEventListener("click", sendCode);
+$("saveProfile").addEventListener("click", function(){
+  patch({name: $("name").value, home_city: $("homeCity").value});
+});
+$("goingSeg").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (b) patch({show_going: b.getAttribute("data-v")});
+});
+$("shareSaves").addEventListener("change", function(e){ patch({share_saves: e.target.checked}); });
+$("squadTexts").addEventListener("change", function(e){ patch({squad_texts: e.target.checked}); });
+$("exportBtn").addEventListener("click", function(){
+  api("/me/export").then(function(d){
+    delete d._status;
+    var blob = new Blob([JSON.stringify(d, null, 2)], {type: "application/json"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = "tonight-my-data.json";
+    document.body.appendChild(a); a.click(); a.remove();
+  }).catch(function(){ say("acctMsg", "Couldn't reach the server. Try again in a bit.", "err"); });
+});
+$("signOut").addEventListener("click", function(){
+  api("/auth/logout", {method: "POST"}).catch(function(){}).then(function(){
+    TonightAuth.clear(); showSignIn(); say("inMsg", "You're signed out.", "ok");
+  });
+});
+$("delBtn").addEventListener("click", function(){ $("delConfirm").hidden = false; });
+$("delNo").addEventListener("click", function(){ $("delConfirm").hidden = true; });
+$("delYes").addEventListener("click", function(){
+  api("/me", {method: "DELETE"}).then(function(d){
+    if (!d.ok) { say("acctMsg", d.error || "Couldn't delete.", "err"); return; }
+    TonightAuth.clear(); showSignIn(); say("inMsg", "Your account and everything in it is deleted.", "ok");
+  }).catch(function(){ say("acctMsg", "Couldn't reach the server. Try again in a bit.", "err"); });
+});
+
+(function(){
+  var a = TonightAuth.account();
+  if (!TonightAuth.token() || !a) { showSignIn(); return; }
+  showAccount(a, false);
+  // refresh from the server (the saved copy may be stale or the session expired)
+  api("/me").then(function(d){
+    if (d._status === 401) { TonightAuth.clear(); showSignIn("Your session expired. Sign in again."); return; }
+    if (d.ok) { TonightAuth.set(TonightAuth.token(), d.account); paint(d.account); }
+  }).catch(function(){});
+})();
+</script>
+<script>window.__tonight_api="https://e803c46adf32f4fb-87-81-226-79.serveousercontent.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>

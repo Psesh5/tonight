@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tonight — every city, every night</title>
+<title>Tonight: cada ciudad, cada noche</title>
 <style>
 :root{--ink:#14201A;--gold:#E39A2D;--paper:#F7F2E9;--banner:#14201A;}
 *{box-sizing:border-box;}
@@ -409,7 +409,7 @@ body{overflow-x:hidden;}
 .picks{margin-left:16px;margin-right:16px;}
 .wrap{padding-left:16px;padding-right:16px;}
 }
-</style></head>
+</style><script>window.CAT_LABELS={"Music": "Música", "Comedy": "Comedia", "Arts & Play": "Arte y juego", "Talks": "Charlas", "Tech": "Tecnología", "Meetups & Mixers": "Encuentros", "Food & Drink": "Comida y bebida", "Trivia & Games": "Trivia y juegos", "Sports": "Deportes", "Italian": "Italiana", "Japanese": "Japonesa", "Chinese": "China", "Mexican": "Mexicana", "Indian": "India", "Thai": "Tailandesa", "Korean": "Coreana", "French": "Francesa", "American": "Estadounidense", "Mediterranean": "Mediterránea", "Vegetarian / vegan": "Vegetariana / vegana", "Seafood": "Mariscos"};</script></head>
 <body class="home"><script>
 /* Tonight taste: onboarding quiz, profile, personalized ranking */
 (function(){
@@ -544,7 +544,7 @@ function applyRanking(){
   }
 }
 /* ---------------- quiz ---------------- */
-var SURP = {low: "none", med: "a few", high: "lots"};
+var SURP = {low: "ninguna", med: "algunas", high: "muchas"};
 var sheet = null, sel = {};
 function guessCity(){
   var saved = null;
@@ -573,19 +573,19 @@ function buildSheet(){
   veil.className = "quiz-veil"; veil.id = "quizVeil"; veil.hidden = true;
   var card = document.createElement("div");
   card.className = "quiz-card"; card.setAttribute("role", "dialog");
-  card.setAttribute("aria-label", "What are you into?");
+  card.setAttribute("aria-label", "¿Qué te gusta?");
   var eb = document.createElement("div"); eb.className = "quiz-eyebrow";
-  eb.textContent = "Tonight learns your taste";
-  var h = document.createElement("h2"); h.textContent = "What are you into?";
+  eb.textContent = "Tonight aprende tu gusto";
+  var h = document.createElement("h2"); h.textContent = "¿Qué te gusta?";
   var sub = document.createElement("p"); sub.className = "quiz-sub";
-  sub.textContent = "Tap what you like. Takes 30 seconds, and your picks get personal.";
+  sub.textContent = "Toca lo que te gusta. Toma 30 segundos y tus planes serán más personales.";
   var chips = document.createElement("div"); chips.className = "qchips";
   CATS_ALL.forEach(function(c){ chips.appendChild(chipBtn(c)); });
   var prefs = document.createElement("div"); prefs.className = "qchips";
   var freeB = document.createElement("button");
   freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
   freeB.setAttribute("aria-pressed", "false");
-  freeB.textContent = "Free-first";
+  freeB.textContent = "Primero gratis";
   freeB.addEventListener("click", function(){
     var on = freeB.getAttribute("aria-pressed") === "true";
     freeB.setAttribute("aria-pressed", on ? "false" : "true");
@@ -594,7 +594,7 @@ function buildSheet(){
   var surpB = document.createElement("button");
   surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
   var paintSurp = function(){
-    surpB.textContent = "Surprises: " + SURP[surp];
+    surpB.textContent = "Sorpresas: " + SURP[surp];
     surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
   };
   paintSurp();
@@ -607,7 +607,7 @@ function buildSheet(){
   var cards = document.querySelectorAll("a.citycard");
   if (!CITY && cards.length) {
     cityPick = guessCity();
-    var clab = document.createElement("div"); clab.className = "qlabel"; clab.textContent = "Your city";
+    var clab = document.createElement("div"); clab.className = "qlabel"; clab.textContent = "Tu ciudad";
     cityRow = document.createElement("div"); cityRow.className = "qchips"; cityRow.id = "qCity";
     cards.forEach(function(a){
       var slug = (a.getAttribute("href") || "").split("/")[0];
@@ -628,10 +628,10 @@ function buildSheet(){
   var actions = document.createElement("div"); actions.className = "qactions";
   var done = document.createElement("button");
   done.className = "btn btn-gold"; done.type = "button"; done.id = "qDone";
-  done.textContent = "Done \u2192";
+  done.textContent = "Listo →";
   var skip = document.createElement("button");
   skip.className = "qlink"; skip.type = "button"; skip.id = "qSkip";
-  skip.textContent = "skip for now";
+  skip.textContent = "omitir por ahora";
   var markSeen = function(){ try { localStorage.setItem(OKEY, "1"); } catch (e) {} };
   done.addEventListener("click", function(){
     taste.likes = Object.keys(sel);
@@ -652,7 +652,7 @@ function buildSheet(){
   actions.appendChild(done); actions.appendChild(skip);
   card.appendChild(eb); card.appendChild(h); card.appendChild(sub);
   card.appendChild(chips); card.appendChild(prefs);
-  if (cityRow) { card.appendChild(cityRow); done.textContent = "Show me tonight →"; }
+  if (cityRow) { card.appendChild(cityRow); done.textContent = "Muéstrame esta noche →"; }
   card.appendChild(actions);
   veil.appendChild(card);
   document.body.appendChild(veil);
@@ -678,19 +678,19 @@ function joinList(a){
 }
 function describe(){
   var parts = [];
-  if (taste.likes.length) parts.push("into " + joinList(taste.likes));
-  if (taste.mutes.length) parts.push("not into " + joinList(taste.mutes));
+  if (taste.likes.length) parts.push("" + joinList(taste.likes));
+  if (taste.mutes.length) parts.push("no te gusta " + joinList(taste.mutes));
   var s = parts.length
-    ? "You're " + parts.join(", ") + "."
-    : "You haven't told Tonight what you like yet.";
+    ? "Te gusta " + parts.join(", ") + "."
+    : "Todavía no le has dicho a Tonight qué te gusta.";
   var prefs = [];
-  if (taste.free_only) prefs.push("you'd rather keep it free");
-  prefs.push(taste.surprise === "low" ? "no surprises, just your thing" :
-    (taste.surprise === "med" ? "open to a few surprises" : "bring on the surprises"));
-  s += " Right now, " + prefs.join(", ") + ".";
+  if (taste.free_only) prefs.push("prefieres que sea gratis");
+  prefs.push(taste.surprise === "low" ? "sin sorpresas, solo lo tuyo" :
+    (taste.surprise === "med" ? "abierto a algunas sorpresas" : "venga con las sorpresas"));
+  s += " Por ahora, " + prefs.join(", ") + ".";
   var top = Object.keys(tapBonus)
     .sort(function(a, b){ return tapBonus[b] - tapBonus[a]; }).slice(0, 2);
-  if (top.length) s += " Your taps lean " + joinList(top) + ".";
+  if (top.length) s += " Tus marcas se inclinan por " + joinList(top) + ".";
   return s;
 }
 function setCat(cat, mode){
@@ -715,59 +715,59 @@ document.addEventListener("DOMContentLoaded", function(){
   if (window.TonightPage && TonightPage.init) TonightPage.init();
 });
 })();
-</script><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Your taste</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="#" id="tuneTaste">Tune</a><a class="tastelink" href="./account.html">Account</a><a class="tastelink langsw" id="langSwitch" href="./">ES</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-01.html">NYC</a> <a class="" href="./london/2026-10-01.html">London</a> <a class="" href="./la/2026-10-01.html">LA</a></span></nav>
+</script><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Tu gusto</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="#" id="tuneTaste">Ajustar</a><a class="tastelink" href="./account.html">Cuenta</a><a class="tastelink langsw" id="langSwitch" href="./">ES</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-01.html">NYC</a> <a class="" href="./london/2026-10-01.html">Londres</a> <a class="" href="./la/2026-10-01.html">LA</a></span></nav>
 <header class="hero">
-<div class="eyebrow">Every city · Every night</div>
+<div class="eyebrow">Cada ciudad · Cada noche</div>
 <h1>Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></h1>
-<p>Hand-picked things to do, all happening today. Open your city, hit
-<b>⚡ Tonight</b> to see what's on right now, and tap the boxes —
+<p>Planes elegidos a mano, todos para hoy. Abre tu ciudad, toca
+<b>⚡ Esta noche</b> to see what's on right now, and tap the boxes —
 your picks train tomorrow's recommendations.</p>
 <div class="cta-row">
-<a class="btn btn-gold" href="nyc/2026-10-01.html#tonight">⚡ What's on tonight</a>
-<a class="btn btn-ghost" href="signup.html" data-save-flow>Get the daily email</a>
-<a class="btn btn-ghost" href="#cities">Pick a city</a>
+<a class="btn btn-gold" href="nyc/2026-10-01.html#tonight">⚡ Qué hay esta noche</a>
+<a class="btn btn-ghost" href="signup.html" data-save-flow>Recibe el correo diario</a>
+<a class="btn btn-ghost" href="#cities">Elige una ciudad</a>
 </div>
 </header>
 <main id="cities" class="cities">
 
 <a class="citycard" href="nyc/2026-10-01.html" data-tz="America/New_York">
-<div class="cc-top">New York City</div>
-<div class="cc-meta">Thursday, October 1</div>
-<div class="cc-meta">121 events · 47 free</div>
-<div class="cc-cta">See tonight →</div>
+<div class="cc-top">Nueva York</div>
+<div class="cc-meta">Jueves, 1 de octubre</div>
+<div class="cc-meta">121 eventos · 47 gratis</div>
+<div class="cc-cta">Ver esta noche →</div>
 </a>
 <a class="citycard" href="london/2026-10-01.html" data-tz="Europe/London">
-<div class="cc-top">London</div>
-<div class="cc-meta">Thursday, October 1</div>
-<div class="cc-meta">83 events · 5 free</div>
-<div class="cc-cta">See tonight →</div>
+<div class="cc-top">Londres</div>
+<div class="cc-meta">Jueves, 1 de octubre</div>
+<div class="cc-meta">83 eventos · 5 gratis</div>
+<div class="cc-cta">Ver esta noche →</div>
 </a>
 <a class="citycard" href="la/2026-10-01.html" data-tz="America/Los_Angeles">
-<div class="cc-top">Los Angeles</div>
-<div class="cc-meta">Thursday, October 1</div>
-<div class="cc-meta">44 events · 10 free</div>
-<div class="cc-cta">See tonight →</div>
+<div class="cc-top">Los Ángeles</div>
+<div class="cc-meta">Jueves, 1 de octubre</div>
+<div class="cc-meta">44 eventos · 10 gratis</div>
+<div class="cc-cta">Ver esta noche →</div>
 </a>
 </main>
 <section class="how">
-<h2>How it works</h2>
-<div class="step"><div class="n">1</div><div><h3>Hand-picked daily</h3>
-<p>Every morning, a curated shortlist of the day's best events — not a firehose. Every link verified.</p></div></div>
-<div class="step"><div class="n">2</div><div><h3>⚡ Tonight mode</h3>
-<p>Spontaneous? One tap filters to what's happening now or starting in the next few hours.</p></div></div>
-<div class="step"><div class="n">3</div><div><h3>Free today</h3>
-<p>Free events get their own section, always. The best things in the city shouldn't cost anything.</p></div></div>
-<div class="step"><div class="n">4</div><div><h3>Taste that learns</h3>
-<p>Tap the boxes on anything you like. Your picks shape tomorrow's recommendations — per city.</p></div></div>
+<h2>Cómo funciona</h2>
+<div class="step"><div class="n">1</div><div><h3>Elegido a mano cada día</h3>
+<p>Cada mañana, una lista corta con lo mejor del día, no una avalancha. Cada enlace verificado.</p></div></div>
+<div class="step"><div class="n">2</div><div><h3>⚡ Modo esta noche</h3>
+<p>¿Improvisas? Un toque filtra lo que pasa ahora o empieza en las próximas horas.</p></div></div>
+<div class="step"><div class="n">3</div><div><h3>Gratis hoy</h3>
+<p>Los eventos gratis siempre tienen su propia sección. Lo mejor de la ciudad no debería costar nada.</p></div></div>
+<div class="step"><div class="n">4</div><div><h3>Un gusto que aprende</h3>
+<p>Marca lo que te guste. Tus marcas dan forma a las recomendaciones de mañana, por ciudad.</p></div></div>
 </section>
 <footer>
-<div class="serif">Tonight — every city, every night.</div>
-<p>Curated, verified, and free-first.</p>
+<div class="serif">Tonight: cada ciudad, cada noche.</div>
+<p>Seleccionado, verificado y primero lo gratis.</p>
 </footer>
 <script>
 (function(){
 "use strict";
-var CITY = null, CITY_NAMES = {"nyc": "New York City", "london": "London", "la": "Los Angeles"};
+var CITY = null, CITY_NAMES = {"nyc": "Nueva York", "london": "Londres", "la": "Los \u00c1ngeles"};
 var DISMISS_KEY = "tonight-save-dismissed", DONE_KEY = "tonight-save-done";
 var ASK_AFTER_TICKS = 2, QUIET_DAYS = 3;
 function ls(k, v){
@@ -809,15 +809,15 @@ var veil, panels = {}, email = "", features = {sms: false}, subscribedNow = fals
 function build(){
   veil = el("div", "quiz-veil"); veil.hidden = true; veil.id = "saveVeil";
   var card = el("div", "quiz-card"); card.setAttribute("role", "dialog");
-  card.setAttribute("aria-label", "Save your picks");
+  card.setAttribute("aria-label", "Guarda tus planes");
   veil.appendChild(card);
 
   // 1: email
   var p1 = el("div", "sv-panel"); panels.email = p1;
-  p1.appendChild(el("div", "quiz-eyebrow", "Save your picks"));
-  p1.appendChild(el("h2", "", "Get the best of tonight, every morning"));
+  p1.appendChild(el("div", "quiz-eyebrow", "Guarda tus planes"));
+  p1.appendChild(el("h2", "", "Lo mejor de la noche, cada mañana"));
   p1.appendChild(el("p", "quiz-sub",
-    "Your taste and picks follow you to any device. No password: we email you a code."));
+    "Tu gusto y tus planes te siguen a cualquier dispositivo. Sin contraseña: te mandamos un código."));
   var em = el("input", "sv-input"); em.type = "email"; em.id = "svEmail";
   em.placeholder = "you@example.com"; em.autocomplete = "email";
   em.setAttribute("aria-label", "Email");
@@ -825,19 +825,19 @@ function build(){
   var chk = el("label", "sv-check");
   var cb = el("input"); cb.type = "checkbox"; cb.id = "svDaily"; cb.checked = true;
   chk.appendChild(cb);
-  chk.appendChild(el("span", "", "Send me the daily email for " + (CITY_NAMES[city()] || "my city") +
-    ": one email at 8 AM with the day's best picks"));
+  chk.appendChild(el("span", "", "Mándame el correo diario de " + (CITY_NAMES[city()] || "mi ciudad") +
+    ": un correo a las 8 a. m. con lo mejor del día"));
   p1.appendChild(chk);
   var a1 = el("div", "qactions");
   var send = el("button", "btn btn-gold", "Email me a code"); send.type = "button"; send.id = "svSend";
-  var later = el("button", "qlink", "not now"); later.type = "button";
+  var later = el("button", "qlink", "ahora no"); later.type = "button";
   a1.appendChild(send); a1.appendChild(later); p1.appendChild(a1);
   p1.appendChild(el("p", "sv-msg")).id = "svMsg1";
 
   // 2: code
   var p2 = el("div", "sv-panel"); p2.hidden = true; panels.code = p2;
-  p2.appendChild(el("div", "quiz-eyebrow", "Check your email"));
-  p2.appendChild(el("h2", "", "Enter your code"));
+  p2.appendChild(el("div", "quiz-eyebrow", "Revisa tu correo"));
+  p2.appendChild(el("h2", "", "Escribe tu código"));
   var sent = el("p", "quiz-sub"); sent.id = "svSentTo"; p2.appendChild(sent);
   var code = el("input", "sv-input"); code.id = "svCode"; code.inputMode = "numeric";
   code.autocomplete = "one-time-code"; code.maxLength = 6; code.placeholder = "000000";
@@ -845,31 +845,31 @@ function build(){
   p2.appendChild(code);
   var a2 = el("div", "qactions");
   var go = el("button", "btn btn-gold", "Sign in"); go.type = "button"; go.id = "svVerify";
-  var resend = el("button", "qlink", "send a new code"); resend.type = "button";
-  var back = el("button", "qlink", "use a different email"); back.type = "button";
+  var resend = el("button", "qlink", "enviar otro código"); resend.type = "button";
+  var back = el("button", "qlink", "usar otro correo"); back.type = "button";
   a2.appendChild(go); a2.appendChild(resend); a2.appendChild(back); p2.appendChild(a2);
   p2.appendChild(el("p", "sv-msg")).id = "svMsg2";
 
   // 3: you're in + optional texts + privacy
   var p3 = el("div", "sv-panel"); p3.hidden = true; panels.done = p3;
-  p3.appendChild(el("div", "quiz-eyebrow", "You're in"));
-  var hi = el("h2", "", "Saved."); hi.id = "svHello"; p3.appendChild(hi);
+  p3.appendChild(el("div", "quiz-eyebrow", "Ya estás dentro"));
+  var hi = el("h2", "", "Guardado."); hi.id = "svHello"; p3.appendChild(hi);
   var sum = el("p", "quiz-sub"); sum.id = "svSummary"; p3.appendChild(sum);
   var txt = el("div", "sv-box"); txt.id = "svTexts"; txt.hidden = true;
-  txt.appendChild(el("b", "", "Want a text when something great is on tonight?"));
-  txt.appendChild(el("span", "", "At most one a day, never after 9 PM. Reply STOP any time."));
+  txt.appendChild(el("b", "", "¿Quieres un mensaje cuando haya algo buenísimo esta noche?"));
+  txt.appendChild(el("span", "", "Máximo uno al día, nunca después de las 9 p. m. Responde STOP cuando quieras."));
   var ph = el("input", "sv-input"); ph.type = "tel"; ph.id = "svPhone";
   ph.placeholder = "+1 555 123 4567"; ph.autocomplete = "tel"; ph.setAttribute("aria-label", "Phone");
   txt.appendChild(ph);
-  var tb = el("button", "btn btn-dark", "Text me alerts"); tb.type = "button"; tb.id = "svTextBtn";
+  var tb = el("button", "btn btn-dark", "Mándame avisos"); tb.type = "button"; tb.id = "svTextBtn";
   txt.appendChild(tb);
   txt.appendChild(el("p", "sv-msg")).id = "svMsg3";
   p3.appendChild(txt);
   p3.appendChild(el("p", "sv-note",
-    "Your plans are private by default. When going-to and friends arrive, only friends see what you're going to. Change it any time in Account."));
+    "Tus planes son privados por defecto. Cuando lleguen los planes compartidos, solo tus amigos verán a qué vas. Cámbialo cuando quieras en Cuenta."));
   var a3 = el("div", "qactions");
-  var fin = el("button", "btn btn-gold", "Back to tonight's picks \u2192"); fin.type = "button";
-  var acct = el("a", "qlink", "account settings"); acct.href = "." + "/account.html";
+  var fin = el("button", "btn btn-gold", "Volver a los planes de esta noche →"); fin.type = "button";
+  var acct = el("a", "qlink", "ajustes de la cuenta"); acct.href = "." + "/account.html";
   a3.appendChild(fin); a3.appendChild(acct); p3.appendChild(a3);
 
   card.appendChild(p1); card.appendChild(p2); card.appendChild(p3);
@@ -901,17 +901,17 @@ function close(){ if (veil) veil.hidden = true; }
 
 function sendCode(){
   var v = document.getElementById("svEmail").value.trim().toLowerCase();
-  if (!v || v.indexOf("@") < 0) { say("svMsg1", "Enter a valid email.", "err"); return; }
+  if (!v || v.indexOf("@") < 0) { say("svMsg1", "Escribe un correo válido.", "err"); return; }
   email = v;
-  say("svMsg1", "Sending your code\u2026"); say("svMsg2", "");
+  say("svMsg1", "Enviando tu código…"); say("svMsg2", "");
   post("/auth/start", {email: email}).then(function(d){
-    if (!d.ok) { say(panels.code.hidden ? "svMsg1" : "svMsg2", d.error || "Couldn't send a code.", "err"); return; }
+    if (!d.ok) { say(panels.code.hidden ? "svMsg1" : "svMsg2", d.error || "No pudimos enviar el código.", "err"); return; }
     document.getElementById("svSentTo").textContent = d.dev_code
-      ? "Test mode: this preview can't send email, so nothing went to " + email + ". Your code is filled in below."
-      : "We sent a 6-digit code to " + email + ". It works for 10 minutes.";
+      ? "Modo de prueba: esta vista previa no envía correos, así que no mandamos nada a " + email + ". Tu código ya está escrito abajo."
+      : "Te mandamos un código de 6 dígitos a " + email + ". Sirve por 10 minutos.";
     document.getElementById("svCode").value = d.dev_code || "";
     show("code");
-  }).catch(function(){ say("svMsg1", "Couldn't reach Tonight. Try again in a bit.", "err"); });
+  }).catch(function(){ say("svMsg1", "No pudimos conectar con Tonight. Inténtalo en un rato.", "err"); });
 }
 function tasteNow(){
   var t = (window.Tonight && Tonight.taste) || {};
@@ -919,10 +919,10 @@ function tasteNow(){
 }
 function verify(){
   var code = document.getElementById("svCode").value.replace(/\D/g, "");
-  if (code.length !== 6) { say("svMsg2", "Enter the 6-digit code from your email.", "err"); return; }
-  say("svMsg2", "Signing you in\u2026");
+  if (code.length !== 6) { say("svMsg2", "Escribe el código de 6 dígitos de tu correo.", "err"); return; }
+  say("svMsg2", "Iniciando sesión…");
   post("/auth/verify", {email: email, code: code, anon_id: ls("tonight-user-id")}).then(function(d){
-    if (!d.ok) { say("svMsg2", d.error || "That didn't work.", "err"); return; }
+    if (!d.ok) { say("svMsg2", d.error || "No funcionó.", "err"); return; }
     TonightAuth.set(d.token, d.account);
     ls(DONE_KEY, "1");
     var steps = [];
@@ -940,15 +940,15 @@ function verify(){
         .then(function(r){ subscribedNow = !!r.ok; return r.ok ? {found: true, daily_email: true} : null; });
     }));
     return Promise.all(steps).then(function(res){ afterSignIn(d, res[res.length - 1]); });
-  }).catch(function(){ say("svMsg2", "Couldn't reach Tonight. Try again in a bit.", "err"); });
+  }).catch(function(){ say("svMsg2", "No pudimos conectar con Tonight. Inténtalo en un rato.", "err"); });
 }
 function afterSignIn(d, sub){
-  var name = CITY_NAMES[city()] || "your city";
-  document.getElementById("svHello").textContent = d.new_account ? "Saved. Welcome to Tonight." : "Welcome back.";
+  var name = CITY_NAMES[city()] || "tu ciudad";
+  document.getElementById("svHello").textContent = d.new_account ? "Guardado. Bienvenido a Tonight." : "Qué bueno verte de nuevo.";
   document.getElementById("svSummary").textContent =
-    subscribedNow ? "Your picks are saved to your account. Your first email for " + name + " arrives tomorrow at 8 AM."
-    : (sub && sub.found ? "Your picks are saved to your account. Your email settings are unchanged."
-       : "Your picks are saved to your account. No daily email, as you asked.");
+    subscribedNow ? "Tus planes se guardaron en tu cuenta. Tu primer correo de " + name + " llega mañana a las 8 a. m."
+    : (sub && sub.found ? "Tus planes se guardaron en tu cuenta. Tus ajustes de correo no cambiaron."
+       : "Tus planes se guardaron en tu cuenta. Sin correo diario, como pediste.");
   api("/features").then(function(f){
     features = f || {};
     var verified = sub && sub.phone_verified && sub.sms_opt_in;
@@ -960,8 +960,8 @@ function afterSignIn(d, sub){
 }
 function textAlerts(){
   var phone = document.getElementById("svPhone").value.trim();
-  if (!phone) { say("svMsg3", "Add your phone number.", "err"); return; }
-  say("svMsg3", "Setting up texts\u2026");
+  if (!phone) { say("svMsg3", "Agrega tu número de teléfono.", "err"); return; }
+  say("svMsg3", "Activando mensajes…");
   api("/subscriptions").then(function(sub){
     var t = tasteNow();
     var body = sub.found
@@ -971,13 +971,13 @@ function textAlerts(){
          surprise: t.surprise, daily_email: false, phone: phone, sms_opt_in: true};
     return post("/subscriptions", body);
   }).then(function(r){
-    if (!r.ok) { say("svMsg3", r.error || "Couldn't set up texts.", "err"); return; }
-    say("svMsg3", "We just texted you. Reply YES to turn alerts on.", "ok");
+    if (!r.ok) { say("svMsg3", r.error || "No pudimos activar los mensajes.", "err"); return; }
+    say("svMsg3", "Te acabamos de mandar un mensaje. Responde YES para activar los avisos.", "ok");
     document.getElementById("svTextBtn").hidden = true;
-  }).catch(function(){ say("svMsg3", "Couldn't reach Tonight. Try again in a bit.", "err"); });
+  }).catch(function(){ say("svMsg3", "No pudimos conectar con Tonight. Inténtalo en un rato.", "err"); });
 }
 
-// When to ask: after a couple of ticks, unless signed in or recently told "not now".
+// When to ask: after a couple of ticks, unless signed in or recently told "ahora no".
 function recentlyDismissed(){
   var t = +(ls(DISMISS_KEY) || 0);
   return t && Date.now() - t < QUIET_DAYS * 86400000;
@@ -993,7 +993,7 @@ document.addEventListener("DOMContentLoaded", function(){
   // a Save button next to Share, for anyone not signed in
   var share = document.getElementById("sharePicksBtn");
   if (share && !signedIn()) {
-    var b = el("button", "btn btn-gold sv-save", "Save my picks"); b.type = "button"; b.id = "savePicksBtn";
+    var b = el("button", "btn btn-gold sv-save", "Guardar mis planes"); b.type = "button"; b.id = "savePicksBtn";
     b.addEventListener("click", open);
     share.parentNode.insertBefore(b, share.nextSibling);
   }
@@ -1021,11 +1021,11 @@ function check(){
   if (!stale) { if (bar) bar.remove(); return; }
   if (bar) return;
   bar = document.createElement("div"); bar.id = "staleBar"; bar.setAttribute("role", "status");
-  var day = new Date(stale + "T12:00:00").toLocaleDateString("en-US", {weekday: "long"});
-  bar.appendChild(document.createTextNode("These are " + day + "'s picks. Today's list is ready."));
+  var day = new Date(stale + "T12:00:00").toLocaleDateString("es-MX", {weekday: "long"});
+  bar.appendChild(document.createTextNode("Estos son los planes del " + day + ". La lista de hoy ya está lista."));
   var a = document.createElement("a");
   a.href = /\/browse-/.test(location.pathname) ? "./" : (typeof DATE !== "undefined" ? "../" : location.pathname + "?fresh=" + Date.now());
-  a.textContent = "Refresh \u2192";
+  a.textContent = "Actualizar →";
   bar.appendChild(a);
   var nav = document.querySelector(".topnav");
   if (nav && nav.parentNode) nav.parentNode.insertBefore(bar, nav.nextSibling);
@@ -1066,7 +1066,7 @@ function loadHistory(){
   restoredCount = history.length;
 }
 loadHistory();
-var SUGGEST = ["Something free tonight", "Low-key, not too loud", "Plan my night", "What starts in the next hour?"];
+var SUGGEST = ["Algo gratis esta noche", "Tranqui, sin tanto ruido", "Planea mi noche", "¿Qué empieza en la próxima hora?"];
 function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
 function waitForBase(n){
   var b = window.__tonight_api || null;
@@ -1075,19 +1075,19 @@ function waitForBase(n){
 }
 var btn = el("button", "", null); btn.id = "toniBtn"; btn.type = "button";
 btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.2-4.6A8 8 0 1 1 21 12z"/></svg>';
-btn.appendChild(document.createTextNode("Ask Toni"));
+btn.appendChild(document.createTextNode("Pregúntale a Toni"));
 var panel = el("div"); panel.id = "toniPanel"; panel.hidden = true;
-panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Ask Toni");
+panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Pregúntale a Toni");
 var head = el("div", "tn-head"), hl = el("div");
-hl.appendChild(el("b", "", "Ask Toni")); hl.appendChild(el("span", "", "Your concierge for today's picks"));
-var close = el("button", "tn-close", "\u00d7"); close.type = "button"; close.setAttribute("aria-label", "Close");
-var fresh = el("button", "tn-new", "New chat"); fresh.type = "button";
+hl.appendChild(el("b", "", "Pregúntale a Toni")); hl.appendChild(el("span", "", "Tu conserje para los planes de hoy"));
+var close = el("button", "tn-close", "\u00d7"); close.type = "button"; close.setAttribute("aria-label", "Cerrar");
+var fresh = el("button", "tn-new", "Nuevo chat"); fresh.type = "button";
 var hbtns = el("div", "tn-hbtns"); hbtns.appendChild(fresh); hbtns.appendChild(close);
 head.appendChild(hl); head.appendChild(hbtns);
 var log = el("div", "tn-log"); log.setAttribute("aria-live", "polite");
 var form = el("form", "tn-form"), input = el("input"); input.id = "toniInput";
-input.placeholder = "e.g. something free after 7"; input.autocomplete = "off"; input.setAttribute("aria-label", "Ask Toni");
-var send = el("button", "", "Ask"); send.type = "submit";
+input.placeholder = "p. ej., algo gratis después de las 7"; input.autocomplete = "off"; input.setAttribute("aria-label", "Pregúntale a Toni");
+var send = el("button", "", "Preguntar"); send.type = "submit";
 form.appendChild(input); form.appendChild(send);
 panel.appendChild(head);
 if (!onPage) {
@@ -1116,7 +1116,7 @@ function cleanText(text){
 function timeCell(t){
   var box = el("div", "tn-time"), m = /^(\d{1,2}:\d{2})\s*([AP]M)$/i.exec(t || "");
   if (m) { box.appendChild(document.createTextNode(m[1].replace(/:00$/, ""))); box.appendChild(el("small", "", m[2].toUpperCase())); }
-  else { box.className += " tba"; box.textContent = "TIME TBA"; }
+  else { box.className += " tba"; box.textContent = "HORA POR CONFIRMAR"; }
   return box;
 }
 function card(c){
@@ -1125,25 +1125,25 @@ function card(c){
   body.appendChild(el("div", "n", c.name));
   var meta = el("div", "m");
   if (c.venue) meta.appendChild(el("span", "", c.venue));
-  if (c.price === "free") meta.appendChild(el("span", "tn-free", "Free"));
+  if (c.price === "free") meta.appendChild(el("span", "tn-free", "Gratis"));
   else if (c.price && c.price !== "price unknown") meta.appendChild(el("span", "", c.price));
   body.appendChild(meta);
   if (c.reason) body.appendChild(el("div", "r", c.reason));
   var a = el("div", "a");
   if (onPage) {
-    var tick = el("button", "", "Tick it"); tick.type = "button";
+    var tick = el("button", "", "Marcar"); tick.type = "button";
     var pageBox = function(){ return document.querySelector('.toggle[data-idx="' + c.id + '"]'); };
     var sync = function(){ var t = pageBox(); var on = !!t && t.getAttribute("aria-pressed") === "true";
-      tick.setAttribute("aria-pressed", on ? "true" : "false"); tick.textContent = on ? "Ticked \u2713" : "Tick it"; };
+      tick.setAttribute("aria-pressed", on ? "true" : "false"); tick.textContent = on ? "Marcado ✓" : "Marcar"; };
     tick.addEventListener("click", function(){ var t = pageBox(); if (t) { t.click(); setTimeout(sync, 50); } });
     sync(); a.appendChild(tick);
   }
-  var see = el("a", "", onPage ? "See it" : "See it on " + (cur.name || "the city page"));
+  var see = el("a", "", onPage ? "Ver" : "Ver en " + (cur.name || "la página de la ciudad"));
   see.href = (onPage ? "" : cur.href) + "#event-" + c.id;
   see.addEventListener("click", function(){ if (window.innerWidth < 560) panel.hidden = true; });
   a.appendChild(see);
   if (c.url) {
-    var tk = el("a", "", (c.price === "free" ? "RSVP / details" : "Tickets") + " \u2192");
+    var tk = el("a", "", (c.price === "free" ? "Registro / detalles" : "Boletos") + " \u2192");
     tk.href = c.url; tk.target = "_blank"; tk.rel = "noopener"; a.appendChild(tk);
   }
   body.appendChild(a);
@@ -1169,8 +1169,8 @@ function dinnerBlock(d){
   var hh = String(Math.floor(mins / 60)).padStart(2, "0"), mm = String(mins % 60).padStart(2, "0");
   var h12 = (Math.floor(mins / 60) % 12 || 12) + (mins % 60 ? ":" + mm : "") + (mins >= 720 ? " PM" : " AM");
   var box = el("div", "tn-dine");
-  box.appendChild(el("div", "t", "Dinner near " + d.venue));
-  box.appendChild(el("div", "s", h12 + (d.why ? ", " + d.why : "") + " \u00b7 " + party + " people"));
+  box.appendChild(el("div", "t", "Cena cerca de " + d.venue));
+  box.appendChild(el("div", "s", h12 + (d.why ? ", " + d.why : "") + " \u00b7 " + party + " personas"));
   // named picks from the dinner engine (OpenStreetMap data), then the general booking links
   var dt = cur.date + "T" + hh + ":" + mm;
   (d.restaurants || []).forEach(function(r){
@@ -1179,25 +1179,25 @@ function dinnerBlock(d){
     it.appendChild(el("div", "rm", [r.cuisine, r.walk, r.hours].filter(Boolean).join(" \u00b7 ")));
     var ln = el("div", "rl");
     function link(label, href){ var a = el("a", "", label); a.href = href; a.target = "_blank"; a.rel = "noopener"; ln.appendChild(a); }
-    if (cfg.ot) link("Book \u2192", cfg.ot + "/s?dateTime=" + encodeURIComponent(dt) + "&covers=" + party + "&term=" + encodeURIComponent(r.name));
-    if (r.website) link("Website \u2192", r.website);
-    link("Map \u2192", "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + (cur.name || "")));
+    if (cfg.ot) link("Reservar →", cfg.ot + "/s?dateTime=" + encodeURIComponent(dt) + "&covers=" + party + "&term=" + encodeURIComponent(r.name));
+    if (r.website) link("Sitio →", r.website);
+    link("Mapa →", "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + (cur.name || "")));
     it.appendChild(ln);
     box.appendChild(it);
   });
   if ((d.restaurants || []).length) {
-    box.appendChild(el("div", "tn-src", "Restaurant data \u00a9 OpenStreetMap contributors. Hours can be out of date; check before you go."));
-    box.appendChild(el("div", "t2", "More options"));
+    box.appendChild(el("div", "tn-src", "Datos de restaurantes © colaboradores de OpenStreetMap. Los horarios pueden estar desactualizados; revísalos antes de ir."));
+    box.appendChild(el("div", "t2", "Más opciones"));
   }
   var row = el("div", "b");
   function add(label, href){ var a = el("a", "", label); a.href = href; a.target = "_blank"; a.rel = "noopener"; row.appendChild(a); }
   if (cfg.ot) {
     var ot = cfg.ot + "/s?dateTime=" + encodeURIComponent(cur.date + "T" + hh + ":" + mm) + "&covers=" + party;
     if (d.lat != null && d.lng != null) ot += "&latitude=" + d.lat + "&longitude=" + d.lng;
-    add("OpenTable \u2192", ot);
+    add("OpenTable →", ot);
   }
-  if (cfg.resy) add("Resy \u2192", "https://resy.com/cities/" + cfg.resy + "?date=" + cur.date + "&seats=" + party);
-  add("Map \u2192", "https://www.google.com/maps/search/?api=1&query=" +
+  if (cfg.resy) add("Resy →", "https://resy.com/cities/" + cfg.resy + "?date=" + cur.date + "&seats=" + party);
+  add("Mapa →", "https://www.google.com/maps/search/?api=1&query=" +
       encodeURIComponent("restaurants near " + d.venue + (cur.name ? ", " + cur.name : "")));
   box.appendChild(row);
   return box;
@@ -1220,7 +1220,7 @@ function applyPageFilters(f){
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
   set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || "");
   var n = 0;
-  document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
+  document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "ninguna") n++; });
   return n;
 }
 function toniBlock(){
@@ -1232,18 +1232,18 @@ function render(){
     var hi = toniBlock();
     var acct = window.TonightAuth && TonightAuth.token() && TonightAuth.account();
     var fn = acct && acct.name ? String(acct.name).trim().split(/\s+/)[0].slice(0, 30) : "";
-    hi.appendChild(el("p", "tn-text", (fn ? "Hi, " + fn + ". I'm Toni." : "Hi, I'm Toni.") +
-      " Tell me your mood, budget or when you're free, and I'll pick from today's list."));
-    hi.appendChild(el("p", "tn-text small", "I only suggest events that are really on today. Tickets are bought on each event's own site."));
+    hi.appendChild(el("p", "tn-text", (fn ? "Hola, " + fn + ". Soy Toni." : "Hola, soy Toni.") +
+      " Cuéntame tu ánimo, tu presupuesto o a qué hora estás libre, y elijo de la lista de hoy."));
+    hi.appendChild(el("p", "tn-text small", "Solo sugiero eventos que de verdad son hoy. Los boletos se compran en el sitio de cada evento."));
     var chips = el("div", "tn-chips");
     SUGGEST.forEach(function(s){ var b = el("button", "", s); b.type = "button";
       b.addEventListener("click", function(){ ask(s); }); chips.appendChild(b); });
     hi.appendChild(chips);
     log.appendChild(hi);
   }
-  if (restoredCount) log.appendChild(el("div", "tn-earlier", "Earlier today"));
+  if (restoredCount) log.appendChild(el("div", "tn-earlier", "Hoy más temprano"));
   history.forEach(function(m, k){
-    if (restoredCount && k === restoredCount) log.appendChild(el("div", "tn-earlier", "Now"));
+    if (restoredCount && k === restoredCount) log.appendChild(el("div", "tn-earlier", "Ahora"));
     if (m.role === "user") { log.appendChild(el("div", "tn-you", m.display || m.content)); return; }
     var blk = toniBlock();
     if (m.error) { blk.appendChild(el("p", "tn-text err", m.content)); log.appendChild(blk); return; }
@@ -1267,14 +1267,14 @@ function render(){
     if (m.outro) blk.appendChild(el("p", "tn-text small", m.outro));
     if (m.seeAll && m.fullCount) {
       var sa = el("div", "tn-shown");
-      sa.appendChild(el("span", "", m.fullCount + " match in all"));
-      var link = el("a", "", "See the full list →"); link.href = m.seeAll;
+      sa.appendChild(el("span", "", m.fullCount + " en total"));
+      var link = el("a", "", "Ver la lista completa →"); link.href = m.seeAll;
       sa.appendChild(link); blk.appendChild(sa);
     }
     if (m.shown != null) {
       var sh = el("div", "tn-shown");
-      sh.appendChild(el("span", "", "Showing all " + m.shown + " on the page"));
-      var go = el("button", "", "Show me →"); go.type = "button";
+      sh.appendChild(el("span", "", "Mostrando los " + m.shown + " en la página"));
+      var go = el("button", "", "Muéstramelos →"); go.type = "button";
       go.addEventListener("click", function(){
         panel.hidden = true;
         var bar = document.getElementById("filterBar") || document.querySelector(".filters");
@@ -1321,7 +1321,7 @@ function ask(q, display){
   q = (q || "").trim(); if (!q || busy) return;
   busy = true; send.disabled = true; input.value = "";
   history.push(display ? {role: "user", content: q, display: display} : {role: "user", content: q}); render();
-  var thinking = toniBlock(); thinking.appendChild(el("p", "tn-text small", "Looking through today's list\u2026"));
+  var thinking = toniBlock(); thinking.appendChild(el("p", "tn-text small", "Revisando la lista de hoy…"));
   log.appendChild(thinking); log.scrollTop = log.scrollHeight;
   var taste = (window.Tonight && Tonight.taste) || {};
   var anon = null; try { anon = localStorage.getItem("tonight-user-id"); } catch (e) {}
@@ -1337,7 +1337,7 @@ function ask(q, display){
       messages: history.filter(function(m){ return !m.error; }).map(function(m){ return {role: m.role, content: m.content}; })
     })}).then(function(r){ return r.json(); });
   }).then(function(d){
-    if (!d.ok) history.push({role: "assistant", content: d.error || "Toni can't answer right now.", error: true});
+    if (!d.ok) history.push({role: "assistant", content: d.error || "Toni no puede responder ahorita.", error: true});
     else {
       var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || []};
       // the server works out when and where dinner fits the plan
@@ -1352,7 +1352,7 @@ function ask(q, display){
       history.push(msg);
     }
   }).catch(function(){
-    history.push({role: "assistant", content: "Couldn't reach Toni. Check your connection and try again.", error: true});
+    history.push({role: "assistant", content: "No pudimos contactar a Toni. Revisa tu conexión e inténtalo de nuevo.", error: true});
   }).then(function(){ busy = false; send.disabled = false; save(); render(); input.focus(); });
 }
 btn.addEventListener("click", function(){ panel.hidden = !panel.hidden; if (!panel.hidden) { render(); input.focus(); } });
