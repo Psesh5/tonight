@@ -126,6 +126,22 @@ color:var(--ink);font-size:12.5px;font-weight:700;letter-spacing:0;text-transfor
 #filterBar select{-webkit-appearance:none;appearance:none;max-width:210px;padding-right:30px;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23888' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;background-size:11px;}
 #filterBar select.on,#filterBar .fbtn[aria-pressed="true"]{background-color:var(--accent);color:var(--on-accent,var(--ink));}
+/* category menu: several at once */
+.filters .fmulti{position:relative;flex:none;}
+.filters .fmulti summary{list-style:none;display:flex;align-items:center;gap:8px;height:34px;padding:0 30px 0 12px;
+border:2px solid var(--ink);background:var(--field,#fff);color:var(--ink);font-size:12.5px;font-weight:700;cursor:pointer;
+white-space:nowrap;max-width:240px;overflow:hidden;text-overflow:ellipsis;position:relative;}
+.filters .fmulti summary::-webkit-details-marker{display:none;}
+.filters .fmulti summary::after{content:"\25BE";position:absolute;right:11px;font-size:11px;opacity:.6;}
+.filters .fmulti.on summary{background:var(--accent);color:var(--on-accent,var(--ink));}
+.filters .fmenu{position:absolute;left:0;top:calc(100% + 6px);z-index:40;min-width:230px;padding:6px 0;background:var(--card);
+border:3px solid var(--ink);box-shadow:5px 5px 0 var(--accent);display:flex;flex-direction:column;}
+.filters .fmenu label{display:flex;align-items:center;gap:9px;padding:8px 14px;font-size:14px;font-weight:600;cursor:pointer;color:var(--ink);}
+.filters .fmenu label:hover{background:var(--muted);}
+.filters .fmenu input{width:17px;height:17px;accent-color:var(--ink);margin:0;}
+.filters .fmenu .fn{margin-left:auto;font-size:12px;font-weight:800;opacity:.55;}
+.filters .fmenu .fall{text-align:left;padding:8px 14px 10px;margin-bottom:4px;border:0;border-bottom:2px solid var(--muted);
+background:none;font:800 12px 'Inter',sans-serif;letter-spacing:1px;text-transform:uppercase;color:var(--ink);cursor:pointer;}
 #filterBar .fclear{background:none;border:0;padding:0 4px;height:34px;cursor:pointer;color:var(--ink);font-size:12.5px;
 font-weight:800;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;}
 #filterBar .fclear[hidden]{display:none;}
@@ -140,6 +156,9 @@ article.event{scroll-margin-top:96px;}  /* jumps to a card land below the sticky
 article.event.past{opacity:.5;}
 article.event.past:hover,article.event.past:focus-within{opacity:.85;}
 article.event.past .leave-by{display:none;}
+article.event.onnow .leave-by{display:none;}
+.meta .nowtag{display:inline-block;margin-right:7px;padding:1px 7px;background:var(--accent);color:var(--on-accent,var(--ink));
+font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;vertical-align:1px;}
 .meta .ended{display:inline-block;margin-right:7px;padding:1px 7px;background:var(--ink);color:var(--paper);
 font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;vertical-align:1px;}
 #filterBar #hiddenBar{font-size:12px;font-weight:700;height:34px;align-items:center;padding:0 12px;
