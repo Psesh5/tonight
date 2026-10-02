@@ -175,6 +175,15 @@ color:inherit;border:2px solid currentColor;padding:4px 8px;cursor:pointer;}
 .tn-earlier{align-self:center;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.55;}
 .tn-shown{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:2px solid var(--ink);padding:9px 12px;
 background:var(--card);font-weight:700;font-size:14px;}
+.tn-party{display:inline-flex;align-items:center;gap:6px;}
+.tn-party button{width:24px;height:24px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);font:800 14px/1 'Inter',sans-serif;cursor:pointer;padding:0;}
+.tn-send{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:12px;}
+.tn-send button:not(.tn-linkish){font:800 12.5px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent,var(--ink));
+border:2px solid var(--ink);padding:8px 12px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);}
+.tn-send button:disabled{opacity:.6;cursor:wait;}
+.tn-send-msg{font-size:12.5px;font-weight:600;}
+.tn-send-msg a,.tn-linkish{font:inherit;font-weight:800;color:var(--ink);background:none;border:0;padding:0;cursor:pointer;
+text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 .tn-shown a{font:800 12.5px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent,var(--ink));
 border:2px solid var(--ink);padding:6px 10px;text-decoration:none;}
 .tn-shown button{font:800 12.5px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent,var(--ink));
@@ -235,7 +244,19 @@ text-transform:uppercase;line-height:1.02;}
 .dayhero .toolbar{padding:0;}
 .dayhero .toolbar .btn{padding:8px 14px;font-size:12px;}
 .dayhero .btn-dark{background:transparent;color:var(--on-banner);border-color:var(--on-banner);}
-.topnav .langsw{border:2px solid currentColor;padding:2px 7px;}
+.langmenu{position:relative;margin-left:14px;}
+.langmenu summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 10px;
+border:2px solid currentColor;font-size:13px;font-weight:800;letter-spacing:1px;color:var(--on-banner,var(--paper));}
+.langmenu summary::-webkit-details-marker{display:none;}
+.langmenu summary::after{content:"\25BE";font-size:11px;}
+.langlist{position:absolute;right:0;top:calc(100% + 8px);z-index:60;min-width:190px;display:flex;flex-direction:column;
+background:var(--card);color:var(--ink);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--accent);padding:6px 0;}
+.langlist a,.langlist .soon{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;font-size:14px;
+font-weight:700;text-transform:none;letter-spacing:0;color:var(--ink);text-decoration:none;}
+.langlist a:hover{background:var(--muted);}
+.langlist .soon{opacity:.5;cursor:default;}
+.langlist .soon i{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+@media (max-width:640px){.langmenu{margin-left:8px;}.langmenu summary{padding:4px 7px;}}
 /* filter panel: search on top, one row of same-height chips below */
 #filterBar{max-width:760px;margin:16px auto 0;padding:14px;display:flex;flex-direction:column;align-items:stretch;gap:10px;
 background:var(--card);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);}
@@ -261,6 +282,13 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 #filterBar .fclear{background:none;border:0;padding:0 4px;height:34px;cursor:pointer;color:var(--ink);font-size:12.5px;
 font-weight:800;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;}
 #filterBar .fclear[hidden]{display:none;}
+.more-btn{grid-column:1/-1;justify-self:start;margin:4px 0 8px;padding:9px 16px;background:var(--ink);color:var(--paper);
+border:3px solid var(--ink);box-shadow:4px 4px 0 var(--accent);font:800 12.5px 'Inter',sans-serif;letter-spacing:1px;
+text-transform:uppercase;cursor:pointer;}
+@keyframes cardflash{0%{box-shadow:0 0 0 4px var(--accent);}100%{box-shadow:0 0 0 0 transparent;}}
+article.event.flash{animation:cardflash 1.6s ease-out;}
+article.event{scroll-margin-top:96px;}  /* jumps to a card land below the sticky nav */
+@media (prefers-reduced-motion: reduce){article.event.flash{animation:none;outline:3px solid var(--accent);}}
 /* events already over: bottom of their section, quiet */
 article.event.past{opacity:.5;}
 article.event.past:hover,article.event.past:focus-within{opacity:.85;}
@@ -286,6 +314,9 @@ padding:8px 10px 8px 16px!important;text-align:left;background:transparent;borde
 #picksBar .btn{padding:7px 13px;font-size:11.5px;box-shadow:2px 2px 0 var(--ink);}
 #picksBar #shareMsg{flex-basis:100%;min-height:0!important;margin:0!important;}
 #picksBar #shareMsg:empty{display:none;}
+#picksBar #shareMsg .linkish{background:none;border:0;padding:0;font:inherit;font-weight:800;color:var(--ink);cursor:pointer;
+text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;}
+#picksBar #shareMsg a{font-weight:800;color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 @media (max-width:640px){
 #filterBar{margin-left:12px;margin-right:12px;padding:12px;}
 #filterBar .fchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -12px;padding:0 12px 3px;}
@@ -539,6 +570,7 @@ function applyRanking(){
     secs.forEach(function(s){ (s.classList.contains("free") ? free : rest).push(s); });
     rest.sort(function(a, b){ return secScore(b) - secScore(a); });
     free.concat(rest).forEach(function(s){ wrap.appendChild(s); });
+    if (window.__clamp) window.__clamp();
   } else {
     sortChildren(wrap);
   }
@@ -715,7 +747,7 @@ document.addEventListener("DOMContentLoaded", function(){
   if (window.TonightPage && TonightPage.init) TonightPage.init();
 });
 })();
-</script><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Your taste</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="#" id="tuneTaste">Tune</a><a class="tastelink" href="./account.html">Account</a><a class="tastelink langsw" id="langSwitch" href="./">ES</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-01.html">NYC</a> <a class="" href="./london/2026-10-01.html">London</a> <a class="" href="./la/2026-10-01.html">LA</a></span></nav>
+</script><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Your taste</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="#" id="tuneTaste">Tune</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-02.html">NYC</a> <a class="" href="./london/2026-10-02.html">London</a> <a class="" href="./la/2026-10-02.html">LA</a></span><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
 <header class="hero">
 <div class="eyebrow">Every city · Every night</div>
 <h1>Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></h1>
@@ -723,29 +755,29 @@ document.addEventListener("DOMContentLoaded", function(){
 <b>⚡ Tonight</b> to see what's on right now, and tap the boxes —
 your picks train tomorrow's recommendations.</p>
 <div class="cta-row">
-<a class="btn btn-gold" href="nyc/2026-10-01.html#tonight">⚡ What's on tonight</a>
+<a class="btn btn-gold" href="nyc/2026-10-02.html#tonight">⚡ What's on tonight</a>
 <a class="btn btn-ghost" href="signup.html" data-save-flow>Get the daily email</a>
 <a class="btn btn-ghost" href="#cities">Pick a city</a>
 </div>
 </header>
 <main id="cities" class="cities">
 
-<a class="citycard" href="nyc/2026-10-01.html" data-tz="America/New_York">
+<a class="citycard" href="nyc/2026-10-02.html" data-tz="America/New_York">
 <div class="cc-top">New York City</div>
-<div class="cc-meta">Thursday, October 1</div>
-<div class="cc-meta">175 events · 79 free</div>
+<div class="cc-meta">Friday, October 2</div>
+<div class="cc-meta">155 events · 56 free</div>
 <div class="cc-cta">See tonight →</div>
 </a>
 <a class="citycard" href="london/2026-10-02.html" data-tz="Europe/London">
 <div class="cc-top">London</div>
 <div class="cc-meta">Friday, October 2</div>
-<div class="cc-meta">110 events · 8 free</div>
+<div class="cc-meta">133 events · 19 free</div>
 <div class="cc-cta">See tonight →</div>
 </a>
-<a class="citycard" href="la/2026-10-01.html" data-tz="America/Los_Angeles">
+<a class="citycard" href="la/2026-10-02.html" data-tz="America/Los_Angeles">
 <div class="cc-top">Los Angeles</div>
-<div class="cc-meta">Thursday, October 1</div>
-<div class="cc-meta">87 events · 25 free</div>
+<div class="cc-meta">Friday, October 2</div>
+<div class="cc-meta">100 events · 17 free</div>
 <div class="cc-cta">See tonight →</div>
 </a>
 </main>
@@ -1006,30 +1038,46 @@ window.TonightSave = {open: open};
 })();
 </script><script>
 (function(){
+// An older day's page: go to today's page for the same city (keeping filters), unless this is a
+// shared link to one event (#e-...) or Toni is open mid-conversation; then just say so.
 function today(tz){ try { return new Intl.DateTimeFormat("en-CA", {timeZone: tz}).format(new Date()); } catch (e) { return null; } }
+var checking = false;
+function bar(text, href){
+  var b = document.getElementById("staleBar");
+  if (!b) {
+    b = document.createElement("div"); b.id = "staleBar"; b.setAttribute("role", "status");
+    var nav = document.querySelector(".topnav");
+    if (nav && nav.parentNode) nav.parentNode.insertBefore(b, nav.nextSibling);
+    else document.body.insertBefore(b, document.body.firstChild);
+  }
+  b.textContent = text;
+  if (href) { var a = document.createElement("a"); a.href = href; a.textContent = "Go to today \u2192"; b.appendChild(a); }
+}
 function check(){
-  var stale = null;
+  if (checking) return;
   if (typeof DATE !== "undefined" && typeof TZ !== "undefined") {
-    var t = today(TZ); if (t && DATE < t) stale = DATE;
+    var t = today(TZ);
+    if (!t || DATE >= t) { var old = document.getElementById("staleBar"); if (old) old.remove(); return; }
+    var target = location.pathname.replace(DATE, t) + location.search;
+    var day = new Date(DATE + "T12:00:00").toLocaleDateString(document.documentElement.lang || "en", {weekday: "long"});
+    checking = true;
+    fetch(target, {method: "HEAD", cache: "no-store"}).then(function(r){
+      checking = false;
+      if (!r.ok) { bar("These are " + day + "'s picks. Today's list comes out early each morning."); return; }
+      var panel = document.getElementById("toniPanel");
+      var busy = /^#e-/.test(location.hash) || (panel && !panel.hidden);
+      if (busy) bar("These are " + day + "'s picks.", target);
+      else location.replace(target);
+    }).catch(function(){ checking = false; });
   } else {
+    // home page: the city cards are rebuilt every morning; an old copy just needs a fresh load
+    var stale = false;
     document.querySelectorAll("a.citycard[data-tz]").forEach(function(a){
       var d = ((a.getAttribute("href") || "").match(/(\d{4}-\d{2}-\d{2})/) || [])[1], t = today(a.getAttribute("data-tz"));
-      if (d && t && d < t && !stale) stale = d;
+      if (d && t && d < t) stale = true;
     });
+    if (stale && !/[?&]fresh=/.test(location.search)) location.replace(location.pathname + "?fresh=" + Date.now());
   }
-  var bar = document.getElementById("staleBar");
-  if (!stale) { if (bar) bar.remove(); return; }
-  if (bar) return;
-  bar = document.createElement("div"); bar.id = "staleBar"; bar.setAttribute("role", "status");
-  var day = new Date(stale + "T12:00:00").toLocaleDateString("en-US", {weekday: "long"});
-  bar.appendChild(document.createTextNode("These are " + day + "'s picks. Today's list is ready."));
-  var a = document.createElement("a");
-  a.href = /\/browse-/.test(location.pathname) ? "./" : (typeof DATE !== "undefined" ? "../" : location.pathname + "?fresh=" + Date.now());
-  a.textContent = "Refresh \u2192";
-  bar.appendChild(a);
-  var nav = document.querySelector(".topnav");
-  if (nav && nav.parentNode) nav.parentNode.insertBefore(bar, nav.nextSibling);
-  else document.body.insertBefore(bar, document.body.firstChild);
 }
 document.addEventListener("DOMContentLoaded", check);
 document.addEventListener("visibilitychange", function(){ if (!document.hidden) check(); });
@@ -1139,7 +1187,7 @@ function card(c){
     sync(); a.appendChild(tick);
   }
   var see = el("a", "", onPage ? "See it" : "See it on " + (cur.name || "the city page"));
-  see.href = (onPage ? "" : cur.href) + "#event-" + c.id;
+  see.href = (onPage ? "" : cur.href) + (c.eid ? "#e-" + c.eid : "#event-" + c.id);
   see.addEventListener("click", function(){ if (window.innerWidth < 560) panel.hidden = true; });
   a.appendChild(see);
   if (c.url) {
@@ -1166,11 +1214,20 @@ function dinnerTime(start){
 }
 function dinnerBlock(d){
   var cfg = BOOKING[cur.slug] || {}, mins = d.mins != null ? d.mins : dinnerTime(d.start), party = 2;
+  try { party = Math.min(12, Math.max(1, +localStorage.getItem("tonight-party") || 2)); } catch (e) {}
   var hh = String(Math.floor(mins / 60)).padStart(2, "0"), mm = String(mins % 60).padStart(2, "0");
   var h12 = (Math.floor(mins / 60) % 12 || 12) + (mins % 60 ? ":" + mm : "") + (mins >= 720 ? " PM" : " AM");
   var box = el("div", "tn-dine");
   box.appendChild(el("div", "t", "Dinner near " + d.venue));
-  box.appendChild(el("div", "s", h12 + (d.why ? ", " + d.why : "") + " \u00b7 " + party + " people"));
+  var sub = el("div", "s", h12 + (d.why ? ", " + d.why : "") + " \u00b7 ");
+  var ps = el("span", "tn-party"), minus = el("button", "", "\u2212"), cnt = el("b", "", party + (party === 1 ? " person" : " people")), plus = el("button", "", "+");
+  minus.type = plus.type = "button"; minus.setAttribute("aria-label", "Fewer people"); plus.setAttribute("aria-label", "More people");
+  function setParty(n){ n = Math.min(12, Math.max(1, n)); try { localStorage.setItem("tonight-party", String(n)); } catch (e) {}
+    var nb = dinnerBlock(d); box.replaceWith(nb); }
+  minus.addEventListener("click", function(){ setParty(party - 1); });
+  plus.addEventListener("click", function(){ setParty(party + 1); });
+  ps.appendChild(minus); ps.appendChild(cnt); ps.appendChild(plus); sub.appendChild(ps);
+  box.appendChild(sub);
   // named picks from the dinner engine (OpenStreetMap data), then the general booking links
   var dt = cur.date + "T" + hh + ":" + mm;
   (d.restaurants || []).forEach(function(r){
@@ -1222,6 +1279,51 @@ function applyPageFilters(f){
   var n = 0;
   document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;
+}
+// "Send to friends": a plan becomes one "are you in?" vote, a list becomes a pick-one vote.
+// The link goes to the group chat (phone share sheet, or copied on a laptop).
+function sendRow(m){
+  var row = el("div", "tn-send"), b = el("button", "", m.plan ? "Send this plan to friends →" : "Ask friends which one →");
+  b.type = "button"; var st = el("span", "tn-send-msg"); row.appendChild(b); row.appendChild(st);
+  b.addEventListener("click", function(){ startVote(m, b, st); });
+  return row;
+}
+function shareLink(text, url, st){
+  if (navigator.share && matchMedia("(pointer: coarse)").matches) return navigator.share({text: text, url: url}).catch(function(){});
+  return navigator.clipboard.writeText(url).then(function(){ st.firstChild.textContent = "Link copied. Paste it into your group chat. "; },
+    function(){ st.firstChild.textContent = url + " "; });
+}
+function startVote(m, b, st){
+  var abc = "abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  function rnd(n){ var a = new Uint8Array(n); crypto.getRandomValues(a); var s = ""; for (var i = 0; i < n; i++) s += abc[a[i] % abc.length]; return s; }
+  var id = rnd(10), key = rnd(24), host = "";
+  try { host = localStorage.getItem("tonight-voter-name") || ((JSON.parse(localStorage.getItem("tonight-account") || "null") || {}).name || ""); } catch (e) {}
+  var body = {id: id, key: key, city: cur.slug, date: cur.date, host: String(host).trim().split(/\s+/)[0].slice(0, 40),
+              ids: (m.cards || []).slice(0, 4).map(function(c){ return c.id; })};
+  if (m.plan) {
+    body.bundle = true;
+    if (m.dinner && m.dinner.time) body.dinner = {time: m.dinner.time, lat: m.dinner.lat, lng: m.dinner.lng,
+      places: (m.dinner.restaurants || []).slice(0, 3).map(function(r){ return r.name; })};
+  }
+  b.disabled = true; st.textContent = "Starting the vote…";
+  waitForBase(30).then(function(base){
+    if (!base) throw new Error("offline");
+    return fetch(base + "/plans", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)})
+      .then(function(r){ return r.json(); });
+  }).then(function(d){
+    b.disabled = false;
+    if (!d.ok) throw new Error(d.error || "failed");
+    try { localStorage.setItem("tonight-plan-key-" + id, key); } catch (e) {}
+    var brand = document.querySelector(".topnav .brand");
+    var url = new URL("vote.html?p=" + id, brand ? brand.href : location.href).href;
+    var text = m.plan ? "Who's in for tonight's plan? Tap in here:" : "Who's in tonight? Vote here:";
+    st.textContent = ""; st.appendChild(document.createTextNode("Vote ready. "));
+    var again = el("button", "tn-linkish", "Send the link"); again.type = "button";
+    again.addEventListener("click", function(){ shareLink(text, url, st); });
+    var open = el("a", "", "Open the vote →"); open.href = url;
+    st.appendChild(again); st.appendChild(document.createTextNode(" · ")); st.appendChild(open);
+    shareLink(text, url, st);
+  }).catch(function(){ b.disabled = false; st.textContent = "Couldn't start a vote right now. Try again in a minute."; });
 }
 function toniBlock(){
   var wrap = el("div", "tn-toni"); wrap.appendChild(el("div", "tn-who", "Toni")); return wrap;
@@ -1283,6 +1385,7 @@ function render(){
       sh.appendChild(go); blk.appendChild(sh);
     }
     if (m.dinner) blk.appendChild(dinnerBlock(m.dinner));
+    if (cards.length && !m.error) blk.appendChild(sendRow(m));
     log.appendChild(blk);
   });
   log.scrollTop = log.scrollHeight;
@@ -1330,7 +1433,7 @@ function ask(q, display){
     var headers = {"Content-Type": "application/json"};
     if (window.TonightAuth) headers = TonightAuth.headers(headers);
     return fetch(base + "/toni", {method: "POST", headers: headers, body: JSON.stringify({
-      city: cur.slug, date: cur.date, anon_id: anon, avoid_venues: recentVenues(), dinner_prefs: dinnerPrefs(),
+      city: cur.slug, date: cur.date, lang: document.documentElement.lang || "en", anon_id: anon, avoid_venues: recentVenues(), dinner_prefs: dinnerPrefs(),
       exclude_venues: (function(){ var x = excludeNext || []; excludeNext = null; return x; })(),
       can_filter: !!document.getElementById("fq"),
       taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only},
@@ -1339,7 +1442,7 @@ function ask(q, display){
   }).then(function(d){
     if (!d.ok) history.push({role: "assistant", content: d.error || "Toni can't answer right now.", error: true});
     else {
-      var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || []};
+      var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || [], plan: !!d.plan};
       // the server works out when and where dinner fits the plan
       if (d.dinner && d.dinner.venue) msg.dinner = d.dinner;
       rememberVenues(msg.cards);
@@ -1366,6 +1469,9 @@ window.TonightToni = {ask: function(q, display, exclude){ excludeNext = exclude 
 </script><script>window.__tonight_api="https://a364d5a6fcc5bb4b-104-28-195-106.serveousercontent.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
 var base=new URL(a.href).pathname,p=location.pathname,es=/\/es\/$/.test(base);
 var rest=p.indexOf(base)===0?p.slice(base.length):"";
-a.href=(es?base.slice(0,-3):base+"es/")+rest+location.search;a.textContent=es?"EN":"ES";
-a.setAttribute("lang",es?"en":"es");
-a.addEventListener("click",function(){try{localStorage.setItem("tonight-lang",es?"en":"es");}catch(e){}});})();</script></body></html>
+a.href=(es?base.slice(0,-3):base+"es/")+rest+location.search+location.hash;
+a.textContent=es?"English":"Espa\u00f1ol";a.setAttribute("lang",es?"en":"es");
+var cur=document.getElementById("langCur");if(cur)cur.textContent=es?"ES":"EN";
+a.addEventListener("click",function(){try{localStorage.setItem("tonight-lang",es?"en":"es");}catch(e){}});
+document.addEventListener("click",function(e){var m=document.querySelector(".langmenu[open]");if(m&&!m.contains(e.target))m.removeAttribute("open");});
+})();</script></body></html>

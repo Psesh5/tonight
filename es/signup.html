@@ -167,7 +167,7 @@ account:function(){try{return JSON.parse(localStorage.getItem("tonight-account")
 headers:function(h){h=h||{};var t=this.token();if(t)h["Authorization"]="Bearer "+t;return h;},
 set:function(t,a){try{localStorage.setItem("tonight-session",t);localStorage.setItem("tonight-account",JSON.stringify(a));if(a&&a.id)localStorage.setItem("tonight-user-id",a.id);}catch(e){}},
 clear:function(){try{["tonight-session","tonight-account","tonight-user-id","tonight-taste"].forEach(function(k){localStorage.removeItem(k);});}catch(e){}}
-};</script><script>window.CAT_LABELS={"Music": "Música", "Comedy": "Comedia", "Arts & Play": "Arte y juego", "Talks": "Charlas", "Tech": "Tecnología", "Meetups & Mixers": "Encuentros", "Food & Drink": "Comida y bebida", "Trivia & Games": "Trivia y juegos", "Sports": "Deportes", "Italian": "Italiana", "Japanese": "Japonesa", "Chinese": "China", "Mexican": "Mexicana", "Indian": "India", "Thai": "Tailandesa", "Korean": "Coreana", "French": "Francesa", "American": "Estadounidense", "Mediterranean": "Mediterránea", "Vegetarian / vegan": "Vegetariana / vegana", "Seafood": "Mariscos"};</script></head>
+};</script><script>window.CAT_LABELS={"Music": "Música", "Comedy": "Comedia", "Arts & Play": "Arte y juego", "Talks": "Charlas", "Tech": "Tecnología", "Meetups & Mixers": "Encuentros", "Food & Drink": "Comida y bebida", "Trivia & Games": "Trivia y juegos", "Sports": "Deportes", "Theater": "Teatro", "Fitness & Outdoors": "Ejercicio y aire libre", "Italian": "Italiana", "Japanese": "Japonesa", "Chinese": "China", "Mexican": "Mexicana", "Indian": "India", "Thai": "Tailandesa", "Korean": "Coreana", "French": "Francesa", "American": "Estadounidense", "Mediterranean": "Mediterránea", "Vegetarian / vegan": "Vegetariana / vegana", "Seafood": "Mariscos"};</script></head>
 <body>
 <nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a>
 <span class="tastelinks"><a class="tastelink" href="./taste.html">Tu gusto</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span>
@@ -253,6 +253,8 @@ var CATSVGS = {
 "Food & Drink": _SO + '<path d="M3 18.5h18"/><path d="M5 18.5a7 7 0 0 1 14 0"/><path d="M12 11.5v-2"/><circle cx="12" cy="8" r="1"/></svg>',
 "Talks": _SO + '<rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/><path d="M9 21h6"/></svg>',
 "Sports": _SO + '<circle cx="12" cy="12" r="9"/><path d="M3.5 9.5c3 1 5.5 3.5 6.5 11"/><path d="M20.5 14.5c-3-1-5.5-3.5-6.5-11"/></svg>',
+"Theater": _SO + '<path d="M4 4h16v6a8 8 0 0 1-16 0V4z"/><path d="M8.5 9h.01M15.5 9h.01"/><path d="M9 13.5c1.8 1.4 4.2 1.4 6 0"/></svg>',
+"Fitness & Outdoors": _SO + '<path d="M3 20l6-10 4 6 3-4 5 8H3z"/><circle cx="16.5" cy="5.5" r="2"/></svg>',
 "Trivia & Games": _SO + '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.6 2.6 0 0 1 5 .9c0 1.7-2.5 2.3-2.5 3.8"/><path d="M12 17h.01"/></svg>'};
 function paintCats(){
   var host = document.getElementById("catRows"); host.innerHTML = "";

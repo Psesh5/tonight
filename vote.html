@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aviso de privacidad</title>
+<title>Who's in? — Tonight</title>
+<meta property="og:title" content="Who's in tonight?">
+<meta property="og:description" content="Tap what you're up for. No app, no account.">
+<meta property="og:site_name" content="Tonight">
 <style>
 .topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
 background:var(--banner,#14201A);color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
@@ -19,19 +22,51 @@ padding:6px 14px;border-radius:999px;border:1px solid transparent;}
 .topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
 .topnav .tastelink:hover{text-decoration:underline;}
 
-body{margin:0;background:#F7F2E9;color:#14201A;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
-.lhero{max-width:760px;margin:0 auto;padding:44px 22px 8px;}
-.lhero .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E39A2D;font-weight:700;margin-bottom:10px;}
-.lhero h1{font-family:Georgia,'Times New Roman',serif;font-size:40px;margin:0 0 8px;color:#14201A;}
-.lhero h1 em{color:#E39A2D;font-style:italic;}
-.lhero .lupdated{opacity:.6;font-size:13px;margin:0;}
-.legal{max-width:760px;margin:0 auto;padding:18px 22px 90px;line-height:1.7;font-size:15.5px;}
-.legal h2{font-family:Georgia,'Times New Roman',serif;font-size:22px;margin:30px 0 8px;color:#14201A;}
-.legal p{margin:0 0 12px;}
-.legal ul{margin:0 0 12px;padding-left:22px;}
-.legal li{margin-bottom:6px;}
-.legal .fineprint{background:rgba(20,32,26,.05);border:1px solid rgba(20,32,26,.14);border-radius:12px;padding:14px 18px;margin:18px 0;}
-.legal a{color:#14201A;text-decoration:underline;text-decoration-color:#E39A2D;text-underline-offset:3px;}
+.vwrap{max-width:720px;margin:0 auto;padding:18px 16px 60px;}
+.vmsg{font-weight:600;margin:14px 0;}
+.vname{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0 16px;padding:12px 14px;background:var(--card);
+border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);}
+.vname label{font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+.vname input{flex:1;min-width:160px;height:40px;padding:0 12px;border:2px solid var(--ink);font:500 15px 'Inter',sans-serif;background:#fff;color:var(--ink);}
+.vopt{display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px 16px;background:var(--card);
+border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer;}
+.vopt.on{background:color-mix(in srgb,var(--accent) 22%,var(--card));box-shadow:5px 5px 0 var(--accent);}
+.vopt.locked{outline:4px solid var(--accent);outline-offset:3px;}
+.vtick{flex:none;width:30px;height:30px;border:3px solid var(--ink);background:#fff;display:flex;align-items:center;
+justify-content:center;font-weight:900;font-size:18px;color:var(--ink);}
+.vopt.on .vtick{background:var(--ink);color:var(--paper);}
+.vbody{flex:1;min-width:0;}
+.vbody h3{margin:0;font:900 19px/1.25 'Fraunces',Georgia,serif;}
+.vbody h3 a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;}
+.vmeta{font-size:13px;font-weight:600;opacity:.75;margin-top:4px;}
+.vwho{margin-top:8px;font-size:13px;font-weight:700;}
+.vstops{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:14px;}
+.vstops li{display:flex;gap:10px;align-items:baseline;}
+.vstops b{flex:none;min-width:64px;font:900 14px 'Fraunces',Georgia,serif;}
+.vstops a{color:var(--ink);font-weight:700;text-decoration-color:var(--accent);text-decoration-thickness:2px;}
+.vcount{flex:none;min-width:44px;text-align:center;font:900 22px 'Fraunces',Georgia,serif;}
+.vcount small{display:block;font:800 10px 'Inter',sans-serif;letter-spacing:1px;text-transform:uppercase;opacity:.7;}
+.vlead{display:inline-block;margin-left:8px;padding:1px 7px;background:var(--accent);color:var(--ink);font:800 10.5px 'Inter',sans-serif;
+letter-spacing:1px;text-transform:uppercase;vertical-align:2px;}
+.vrow{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0;}
+.vbtn{display:inline-block;padding:11px 18px;border:3px solid var(--ink);background:var(--ink);color:var(--paper);
+box-shadow:4px 4px 0 var(--accent);font:800 13px 'Inter',sans-serif;letter-spacing:1px;text-transform:uppercase;
+text-decoration:none;cursor:pointer;}
+.vbtn.gold{background:var(--accent);color:var(--ink);box-shadow:4px 4px 0 var(--ink);}
+.vbtn.ghost{background:transparent;color:var(--ink);box-shadow:none;}
+.vbtn:disabled{opacity:.5;cursor:wait;}
+.vlocked{margin:6px 0 18px;padding:16px;background:var(--ink);color:var(--paper);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--accent);}
+.vlocked b{font:900 22px/1.2 'Fraunces',Georgia,serif;display:block;margin:4px 0;}
+.vlocked .vbtn{border-color:var(--paper);}
+.vbook{margin-top:14px;padding-top:12px;border-top:2px solid var(--paper);}
+.vbook-t{font:900 17px 'Fraunces',Georgia,serif;}
+.vbook .vrow{margin:10px 0 6px;}
+.vbook .vbtn{padding:8px 12px;font-size:11.5px;}
+.vbook-n{font-size:12px;opacity:.8;}
+.vhost{margin-top:22px;padding:12px 14px;border:2px dashed var(--ink);font-size:13.5px;}
+.vhost .vbtn{padding:7px 12px;font-size:11.5px;box-shadow:2px 2px 0 var(--accent);margin:6px 6px 0 0;}
+:root[data-layout="concierge"] .vname,:root[data-layout="concierge"] .vopt{border-radius:18px;border-width:1px;border-color:var(--muted);box-shadow:0 8px 24px rgba(0,0,0,.06);}
+:root[data-layout="concierge"] .vbtn,:root[data-layout="concierge"] .vtick{border-radius:999px;}
 </style>
 <link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
@@ -287,43 +322,192 @@ body{overflow-x:hidden;}
 .picks{margin-left:16px;margin-right:16px;}
 .wrap{padding-left:16px;padding-right:16px;}
 }
-</style><script>window.CAT_LABELS={"Music": "Música", "Comedy": "Comedia", "Arts & Play": "Arte y juego", "Talks": "Charlas", "Tech": "Tecnología", "Meetups & Mixers": "Encuentros", "Food & Drink": "Comida y bebida", "Trivia & Games": "Trivia y juegos", "Sports": "Deportes", "Theater": "Teatro", "Fitness & Outdoors": "Ejercicio y aire libre", "Italian": "Italiana", "Japanese": "Japonesa", "Chinese": "China", "Mexican": "Mexicana", "Indian": "India", "Thai": "Tailandesa", "Korean": "Coreana", "French": "Francesa", "American": "Estadounidense", "Mediterranean": "Mediterránea", "Vegetarian / vegan": "Vegetariana / vegana", "Seafood": "Mariscos"};</script></head>
-<body>
-<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a>
-<span class="tastelinks"><a class="tastelink" href="./taste.html">Tu gusto</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span>
-<span class="citylinks"><a href="./">Inicio</a></span></nav>
-<header class="lhero"><div class="eyebrow">The fine print</div><h1>Privacidad <em>Policy</em></h1>
-<p class="lupdated">Last updated: September 27, 2026</p></header>
-<main class="legal">
-<p>Tonight (&ldquo;we&rdquo;, &ldquo;our&rdquo;) is a daily event digest service. This Privacy Policy
-explains what information we collect, how we use it, and the choices you have.</p>
-<h2>Information we collect</h2>
-<ul>
-<li><b>Contact information you provide:</b> your email address, and your mobile phone number
-only if you choose to turn on text alerts.</li>
-<li><b>Preferences:</b> your city, taste likes and mutes, free-only and surprise settings.</li>
-<li><b>Interactions:</b> events you pick, hide, or open, which we use to personalize your digest.</li>
-</ul>
-<h2>How we use it</h2>
-<ul>
-<li>To send your daily email digest and, if you opted in, text alerts about events.</li>
-<li>To personalize which events we highlight for you.</li>
-<li>To operate, maintain, and improve the service.</li>
-</ul>
-<h2>Text messages (SMS)</h2>
-<p>If you provide a mobile number and opt in, Tonight will send you event alert text messages.
-We use double opt-in: after signup we text you asking you to reply YES, and your number is only
-activated once you reply. You can reply STOP at any time to opt out and HELP for help.
-Message and data rates may apply.</p>
-<div class="fineprint"><b>We do not sell or share your SMS opt-in data or personal information with third parties for marketing purposes.</b></div>
-<h2>Sharing</h2>
-<p>We do not sell your personal information. We share data only with the service providers
-needed to operate Tonight (for example, email and SMS delivery), and when required by law.</p>
-<h2>Your choices</h2>
-<p>You can update your preferences on the <a href="./signup.html">signup</a> y
-<a href="./taste.html">taste</a> pages at any time, unsubscribe from emails via the link in
-any digest, or text STOP to end text alerts.</p>
-<h2>Contact</h2>
-<p>Questions about this policy: <a href="mailto:pseshadri91@gmail.com">pseshadri91@gmail.com</a>.</p>
-</main>
-</body></html>
+</style></head>
+<body><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Your taste</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="#" id="tuneTaste">Tune</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-02.html">NYC</a> <a class="" href="./london/2026-10-02.html">London</a> <a class="" href="./la/2026-10-02.html">LA</a></span><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
+<header class="hero dayhero">
+<div class="eyebrow">Tonight</div>
+<h1>Who's in?</h1>
+<p>Tick what you're up for tonight.</p>
+</header>
+<main class="vwrap" id="vote" aria-live="polite"><p class="vmsg">Loading the vote…</p></main>
+<script>
+(function(){
+var q = new URLSearchParams(location.search), pid = (q.get("p") || "").replace(/[^A-Za-z0-9_-]/g, "");
+var hk = (location.hash.match(/k=([A-Za-z0-9_-]+)/) || [])[1];
+function ls(k, v){ try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+if (hk) { ls("tonight-plan-key-" + pid, hk); history.replaceState(null, "", location.pathname + location.search); }
+var key = ls("tonight-plan-key-" + pid);
+var voter = ls("tonight-voter-id");
+if (!voter) { voter = Math.random().toString(36).slice(2) + Date.now().toString(36); ls("tonight-voter-id", voter); }
+var acct = null; try { acct = JSON.parse(ls("tonight-account") || "null"); } catch (e) {}
+var name = ls("tonight-voter-name") || (acct && acct.name ? String(acct.name).split(/\s+/)[0] : "");
+var root = document.getElementById("vote"), plan = null, mine = null, busy = false;
+function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+function base(n){ var b = window.__tonight_api || null; if (b || n <= 0) return Promise.resolve(b);
+  return new Promise(function(r){ setTimeout(r, 100); }).then(function(){ return base(n - 1); }); }
+function api(path, body){
+  return base(30).then(function(b){ if (!b) throw new Error("offline");
+    return fetch(b + path, body ? {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)} : {})
+      .then(function(r){ return r.json(); }); });
+}
+function link(){ return location.origin + location.pathname + "?p=" + pid; }
+function when(o){ return [o.start_time || "Time TBA", o.venue].filter(Boolean).join(" · ") + (o.price === "free" ? " · Free" : ""); }
+// a whole plan from Toni: dinner (if any), then each stop
+function stops(o){
+  var out = [];
+  if (o.dinner) out.push({t: o.dinner.time, what: "Dinner" + (o.dinner.places && o.dinner.places.length ? ": " + o.dinner.places.join(" or ") : "")});
+  (o.items || []).forEach(function(it){ out.push({t: it.start_time || "", what: it.name + (it.venue ? " at " + it.venue : ""), url: it.url}); });
+  // in time order: dinner can come before or after the show
+  function mins(t){ var m = /(\d{1,2})(?::(\d{2}))?\s*([AP])M/i.exec(t || ""); if (!m) return 9999;
+    return (+m[1] % 12 + (m[3].toUpperCase() === "P" ? 12 : 0)) * 60 + (+m[2] || 0); }
+  return out.sort(function(a, b){ return mins(a.t) - mins(b.t); });
+}
+// Book a table for the group: links open the booking page (or the app on a phone) with the
+// date, time, party size and restaurant filled in. Nothing is booked without the person.
+var BOOK = {nyc: {ot: "https://www.opentable.com", resy: "new-york-ny"}, la: {ot: "https://www.opentable.com", resy: "los-angeles-ca"},
+            london: {ot: "https://www.opentable.co.uk", resy: null}};
+function hm(t){ var m = /(\d{1,2})(?::(\d{2}))?\s*([AP])M/i.exec(t || ""); if (!m) return null;
+  var h = +m[1] % 12 + (m[3].toUpperCase() === "P" ? 12 : 0); return (h < 10 ? "0" : "") + h + ":" + (m[2] || "00"); }
+function bookBox(din, party){
+  var cfg = BOOK[plan.city] || {}, t = hm(din.time), box = el("div", "vbook");
+  box.appendChild(el("div", "vbook-t", "Book a table for " + party + (din.time ? ", " + din.time : "")));
+  var row = el("div", "vrow");
+  function add(label, href, gold){ var a = el("a", "vbtn" + (gold ? " gold" : ""), label); a.href = href; a.target = "_blank"; a.rel = "noopener"; row.appendChild(a); }
+  var base = cfg.ot && t ? cfg.ot + "/s?dateTime=" + encodeURIComponent(plan.date + "T" + t) + "&covers=" + party : null;
+  (din.places || []).forEach(function(p, k){ if (base) add(p + " \u2192", base + "&term=" + encodeURIComponent(p), k === 0); });
+  if (base) add("More tables nearby \u2192", base + (din.lat != null ? "&latitude=" + din.lat + "&longitude=" + din.lng : ""));
+  if (cfg.resy) add("Resy \u2192", "https://resy.com/cities/" + cfg.resy + "?date=" + plan.date + "&seats=" + party);
+  box.appendChild(row);
+  box.appendChild(el("div", "vbook-n", "Opens the booking page with your date, time and group size filled in."));
+  return box;
+}
+function planLine(o){ return stops(o).map(function(s){ return (s.t ? s.t + " " : "") + s.what; }).join(", then "); }
+function prettyDay(d){ try { return new Date(d + "T12:00:00").toLocaleDateString(document.documentElement.lang || "en", {weekday: "long", month: "long", day: "numeric"}); } catch (e) { return d; } }
+function share(text, url, msgEl){
+  if (navigator.share && matchMedia("(pointer: coarse)").matches) {
+    return navigator.share({text: text, url: url}).catch(function(){});
+  }
+  return navigator.clipboard.writeText(url).then(function(){ msgEl.textContent = "Link copied. Paste it into your group chat."; },
+    function(){ msgEl.textContent = url; });
+}
+function smsHref(body){ return "sms:" + (/iPhone|iPad|Mac/.test(navigator.userAgent) ? "&" : "?") + "body=" + encodeURIComponent(body); }
+function lead(){
+  var best = -1, n = 0;
+  plan.options.forEach(function(o, k){ if (o.in.length > n) { n = o.in.length; best = k; } });
+  return n ? best : -1;
+}
+function render(){
+  root.innerHTML = "";
+  if (!plan) return;
+  var eb = document.querySelector(".hero .eyebrow"); if (eb) eb.textContent = prettyDay(plan.date) + " · " + (plan.city || "").toUpperCase();
+  var sub = document.querySelector(".hero p"); if (sub) sub.textContent = plan.host ? plan.host + " wants to know: tick what you're up for." : "Tick what you're up for tonight.";
+  var locked = plan.locked != null ? plan.options[plan.locked] : null;
+  if (locked) {
+    var lb = el("div", "vlocked"); lb.appendChild(el("span", "", "It's on"));
+    lb.appendChild(el("b", "", locked.bundle ? "Tonight's plan" : locked.name));
+    lb.appendChild(el("div", "", locked.bundle ? planLine(locked) : when(locked)));
+    var row = el("div", "vrow");
+    if (locked.url) { var t = el("a", "vbtn gold", "Tickets & info →"); t.href = locked.url; t.target = "_blank"; t.rel = "noopener"; row.appendChild(t); }
+    if (locked.bundle && locked.dinner) lb.appendChild(bookBox(locked.dinner, Math.max(2, locked.in.length)));
+    var who = locked.in.length ? " With " + locked.in.join(", ") + "." : "";
+    var plainText = "It's on: " + (locked.bundle ? planLine(locked) : locked.name + ", " + when(locked)) + "." + who + " " + link();
+    if (key) { var tx = el("a", "vbtn", "Text everyone the plan"); tx.href = smsHref(plainText); row.appendChild(tx); }
+    lb.appendChild(row); root.appendChild(lb);
+  }
+  var nm = el("div", "vname"), lab = el("label", "", "Your name"), inp = el("input");
+  lab.htmlFor = "vName"; inp.id = "vName"; inp.value = name; inp.maxLength = 40; inp.placeholder = "So friends know who's in";
+  inp.autocomplete = "given-name";
+  inp.addEventListener("input", function(){ name = inp.value.trim(); });
+  nm.appendChild(lab); nm.appendChild(inp); root.appendChild(nm);
+  if (mine === null) {
+    mine = [];
+    var me = plan.votes.filter(function(v){ return v.name === name; })[0];
+    if (me) mine = me.choices.slice();
+  }
+  var top = lead();
+  plan.options.forEach(function(o, k){
+    var on = mine.indexOf(k) >= 0;
+    var card = el("div", "vopt" + (on ? " on" : "") + (plan.locked === k ? " locked" : ""));
+    card.setAttribute("role", "button"); card.tabIndex = 0; card.setAttribute("aria-pressed", on ? "true" : "false");
+    var tick = el("span", "vtick", on ? "✓" : ""); card.appendChild(tick);
+    var b = el("div", "vbody"), h = el("h3");
+    if (o.bundle) h.textContent = "Tonight's plan";
+    else if (o.url) { var a = el("a", "", o.name); a.href = o.url; a.target = "_blank"; a.rel = "noopener";
+      a.addEventListener("click", function(e){ e.stopPropagation(); }); h.appendChild(a); } else h.textContent = o.name;
+    if (k === top && plan.locked == null && plan.options.length > 1) h.appendChild(el("span", "vlead", "Leading"));
+    b.appendChild(h);
+    if (o.bundle) {
+      var ul = el("ol", "vstops");
+      stops(o).forEach(function(s){
+        var li = el("li"); li.appendChild(el("b", "", s.t || ""));
+        if (s.url) { var sa = el("a", "", s.what); sa.href = s.url; sa.target = "_blank"; sa.rel = "noopener";
+          sa.addEventListener("click", function(e){ e.stopPropagation(); }); li.appendChild(sa); }
+        else li.appendChild(el("span", "", s.what));
+        ul.appendChild(li);
+      });
+      b.appendChild(ul);
+    } else b.appendChild(el("div", "vmeta", when(o)));
+    b.appendChild(el("div", "vwho", o.in.length ? "In: " + o.in.join(", ") : "No one yet"));
+    card.appendChild(b);
+    var c = el("div", "vcount", String(o.in.length)); c.appendChild(el("small", "", "in")); card.appendChild(c);
+    function toggle(){ var i = mine.indexOf(k); if (i >= 0) mine.splice(i, 1); else mine.push(k); render(); }
+    card.addEventListener("click", toggle);
+    card.addEventListener("keydown", function(e){ if (e.key === " " || e.key === "Enter") { e.preventDefault(); toggle(); } });
+    if (key) {
+      var hl = el("button", "vbtn ghost", plan.locked === k ? "Locked ✓" : "Lock it in");
+      hl.style.marginTop = "10px"; hl.type = "button";
+      hl.addEventListener("click", function(e){ e.stopPropagation(); lock(plan.locked === k ? null : k); });
+      b.appendChild(hl);
+    }
+    root.appendChild(card);
+  });
+  var msg = el("div", "vmsg");
+  var row2 = el("div", "vrow");
+  var save = el("button", "vbtn gold", plan.options.length > 1 ? "Save my vote" : "I'm in"); save.type = "button";
+  var no = el("button", "vbtn ghost", "Can't make it"); no.type = "button";
+  save.addEventListener("click", function(){ if (plan.options.length === 1 && !mine.length) mine = [0]; vote(mine, msg); });
+  no.addEventListener("click", function(){ mine = []; vote([], msg); });
+  var inv = el("button", "vbtn", "Invite more friends"); inv.type = "button";
+  inv.addEventListener("click", function(){ share("Who's in tonight? Vote here:", link(), msg); });
+  row2.appendChild(save); row2.appendChild(no); row2.appendChild(inv);
+  root.appendChild(row2); root.appendChild(msg);
+  if (key) {
+    var hb = el("div", "vhost");
+    hb.appendChild(el("div", "", "You started this vote. When the group has decided, tap Lock it in on the winner, then text everyone the plan."));
+    root.appendChild(hb);
+  }
+}
+function vote(choices, msg){
+  if (busy) return;
+  if (!name) { msg.textContent = "Add your name first, so friends know who's in."; document.getElementById("vName").focus(); return; }
+  busy = true; ls("tonight-voter-name", name);
+  api("/plans/" + pid + "/vote", {voter: voter, name: name, choices: choices}).then(function(d){
+    if (d.ok) { plan = d; mine = choices.slice(); render(); root.querySelector(".vmsg").textContent = choices.length ? "Saved. You're in." : "Saved. Maybe next time."; }
+    else msg.textContent = d.error || "Couldn't save. Try again.";
+  }).catch(function(){ msg.textContent = "Couldn't reach Tonight. Try again in a minute."; })
+    .then(function(){ busy = false; });
+}
+function lock(k){
+  api("/plans/" + pid + "/lock", {key: key, option: k}).then(function(d){ if (d.ok) { plan = d; render(); window.scrollTo(0, 0); } });
+}
+function load(){
+  if (!pid) { root.appendChild(el("p", "vmsg", "This link is missing its vote. Ask your friend to send it again.")); return; }
+  api("/plans/" + pid).then(function(d){
+    if (!d.ok) { root.innerHTML = ""; root.appendChild(el("p", "vmsg", "This vote doesn't exist or has expired.")); return; }
+    var typing = document.activeElement && document.activeElement.id === "vName";
+    plan = d; if (!typing) render();
+  }).catch(function(){ if (!plan) { root.innerHTML = ""; root.appendChild(el("p", "vmsg", "Couldn't reach Tonight. Try again in a minute.")); } });
+}
+load();
+setInterval(function(){ if (!document.hidden && !busy) load(); }, 20000);
+})();
+</script>
+<script>window.__tonight_api="https://a364d5a6fcc5bb4b-104-28-195-106.serveousercontent.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
+var base=new URL(a.href).pathname,p=location.pathname,es=/\/es\/$/.test(base);
+var rest=p.indexOf(base)===0?p.slice(base.length):"";
+a.href=(es?base.slice(0,-3):base+"es/")+rest+location.search+location.hash;
+a.textContent=es?"English":"Espa\u00f1ol";a.setAttribute("lang",es?"en":"es");
+var cur=document.getElementById("langCur");if(cur)cur.textContent=es?"ES":"EN";
+a.addEventListener("click",function(){try{localStorage.setItem("tonight-lang",es?"en":"es");}catch(e){}});
+document.addEventListener("click",function(e){var m=document.querySelector(".langmenu[open]");if(m&&!m.contains(e.target))m.removeAttribute("open");});
+})();</script></body></html>
