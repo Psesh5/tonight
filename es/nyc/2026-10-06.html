@@ -3453,6 +3453,7 @@ window.__applyFilters = (function () {
         if (!hay.includes(F.q)) ok = false;
       }
       a.style.display = ok ? "" : "ninguna";
+      delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
     });
     document.querySelectorAll("section.cat").forEach(s => {
@@ -3460,6 +3461,12 @@ window.__applyFilters = (function () {
         .some(a => a.style.display !== "ninguna");
       s.style.display = vis ? "" : "ninguna";
     });
+    const fh = document.querySelector("section.cat.free > h2");
+    if (fh) {
+      if (!fh.dataset.orig) fh.dataset.orig = fh.textContent;
+      const opt = v => { const o = document.querySelector('#fcat option[value="' + v + '"]'); return o ? o.textContent : v; };
+      fh.textContent = F.cat ? "✨ Free · " + F.cat.split(",").map(opt).join(" + ") : fh.dataset.orig;
+    }
     document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
     window.__clamp && window.__clamp();
     document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "ninguna";
