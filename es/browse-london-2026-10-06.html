@@ -573,10 +573,16 @@ function score(i){
   if (tb) s += Math.min(tb, 3);
   if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
     s += (taste.surprise === "high" ? 8 : 4);
+  var tm = goOutTimes();
+  if (tm.length && typeof STARTS !== "undefined" && STARTS[i] != null) {
+    var w = STARTS[i] < 1020 ? "day" : (STARTS[i] < 1260 ? "evening" : "late");
+    s += tm.indexOf(w) >= 0 ? 4 : -3;
+  }
   return s;
 }
+function goOutTimes(){ try { return JSON.parse(localStorage.getItem("tonight-times") || "[]"); } catch (e) { return []; } }
 function hasTaste(){
-  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only ||
+  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only || goOutTimes().length > 0 ||
     taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
 }
 function sortChildren(container){
@@ -812,7 +818,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="seg" id="ftod">
 <button data-t="all" class="on">Cualquier hora</button><button data-t="morning">Mañana</button><button data-t="afternoon">Tarde</button><button data-t="evening">Noche</button>
 </div>
-<select id="fafter" autocomplete="off" aria-label="Empieza después de"><option value="">Empieza después de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Empieza antes de"><option value="">Empieza antes de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Barrio"><option value="">Todos los barrios</option><option value="Covent Garden">Covent Garden (16)</option><option value="Bloomsbury">Bloomsbury (6)</option><option value="Soho">Soho (5)</option><option value="Canary Wharf">Canary Wharf (2)</option><option value="Chalk Farm">Chalk Farm (2)</option><option value="Greenwich Peninsula">Greenwich Peninsula (2)</option><option value="Kentish Town">Kentish Town (2)</option><option value="Victoria">Victoria (2)</option><option value="Waterloo">Waterloo (2)</option><option value="Barnsbury">Barnsbury (1)</option><option value="Bethnal Green">Bethnal Green (1)</option><option value="Fitzrovia">Fitzrovia (1)</option><option value="Fulham">Fulham (1)</option><option value="Lambeth">Lambeth (1)</option><option value="Marylebone">Marylebone (1)</option><option value="Mayfair">Mayfair (1)</option><option value="New Cross">New Cross (1)</option><option value="Peckham">Peckham (1)</option><option value="Shepherd&#x27;s Bush">Shepherd&#x27;s Bush (1)</option><option value="Southwark">Southwark (1)</option><option value="Wapping">Wapping (1)</option></select>
+<select id="fafter" autocomplete="off" aria-label="Empieza después de"><option value="">Empieza después de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Empieza antes de"><option value="">Empieza antes de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Barrio"><option value="">Todos los barrios</option><option value="Covent Garden">Covent Garden (17)</option><option value="Bloomsbury">Bloomsbury (6)</option><option value="Soho">Soho (5)</option><option value="Canary Wharf">Canary Wharf (2)</option><option value="Chalk Farm">Chalk Farm (2)</option><option value="Greenwich Peninsula">Greenwich Peninsula (2)</option><option value="Kentish Town">Kentish Town (2)</option><option value="Victoria">Victoria (2)</option><option value="Waterloo">Waterloo (2)</option><option value="Barnsbury">Barnsbury (1)</option><option value="Bethnal Green">Bethnal Green (1)</option><option value="Fitzrovia">Fitzrovia (1)</option><option value="Fulham">Fulham (1)</option><option value="Lambeth">Lambeth (1)</option><option value="Marylebone">Marylebone (1)</option><option value="Mayfair">Mayfair (1)</option><option value="New Cross">New Cross (1)</option><option value="Peckham">Peckham (1)</option><option value="Shepherd&#x27;s Bush">Shepherd&#x27;s Bush (1)</option><option value="Southwark">Southwark (1)</option><option value="Wapping">Wapping (1)</option></select>
 <button class="fbtn" id="ffree" aria-pressed="false">Solo gratis</button>
 <span id="hiddenBar"><span id="hiddenN">0</span> ocultos · <button id="unhide">mostrarlos</button></span>
 <span id="resCount"></span>
@@ -824,17 +830,17 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 <main class="wrap">
 
-<article class="event" id="e-3769e6b3" data-idx="0" data-eid="3769e6b3" data-name="Twist Museum - London&#x27;s Home of Illusions STANDARD" data-start-local="2026-10-06T17:15:00" data-cal-start="20261006T161500Z" data-cal-end="20261006T181500Z" data-loc="Twist Museum, Mayfair" data-url="https://www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7?ref=ticketmaster" data-lat="51.51539505" data-lng="-0.14319582">
+<article class="event" id="e-f68798bb" data-idx="0" data-eid="f68798bb" data-name="Twist Museum - London&#x27;s Home of Illusions STANDARD" data-start-local="2026-10-06T17:30:00" data-cal-start="20261006T163000Z" data-cal-end="20261006T183000Z" data-loc="Twist Museum, Mayfair" data-url="https://www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7?ref=ticketmaster" data-lat="51.51539505" data-lng="-0.14319582">
 <button class="toggle" data-idx="0" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="0" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7?ref=ticketmaster">Twist Museum - London&#x27;s Home of Illusions STANDARD</a></h3>
-<div class="meta">5:15 PM · Twist Museum, Mayfair</div>
+<div class="meta">5:30 PM · Twist Museum, Mayfair</div>
 <p></p>
 <a class="tickets" href="https://www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7?ref=ticketmaster">Boletos e info →</a>
 
 <div class="cal-row">
-<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Twist%20Museum%20-%20London%27s%20Home%20of%20Illusions%20STANDARD&dates=20261006T161500Z/20261006T181500Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7%3Fref%3Dticketmaster&location=Twist%20Museum%2C%20Mayfair" target="_blank" rel="noopener">Google Calendar</a>
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Twist%20Museum%20-%20London%27s%20Home%20of%20Illusions%20STANDARD&dates=20261006T163000Z/20261006T183000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/twist-museum-londons-home-of-illusions-standard-tickets-6NVFD7%3Fref%3Dticketmaster&location=Twist%20Museum%2C%20Mayfair" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="0">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="0">Compartir</button>
 <span class="leave-by"></span>
@@ -1112,7 +1118,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <span class="leave-by"></span>
 </div>
 </div>
-<div class="mlt"><span>More like this:</span><a href="#e-3769e6b3">Twist Museum - London&#x27;s Home of Illusions STANDARD</a> <a href="#e-0e25eb3b">Therapeutic Tuesdays</a> <a href="#e-db77c98d">Viktor Wynd&#x27;s Guided Tour of His Museum + a Devil&#x27;s Botany</a></div></article>
+<div class="mlt"><span>More like this:</span><a href="#e-f68798bb">Twist Museum - London&#x27;s Home of Illusions STANDARD</a> <a href="#e-0e25eb3b">Therapeutic Tuesdays</a> <a href="#e-db77c98d">Viktor Wynd&#x27;s Guided Tour of His Museum + a Devil&#x27;s Botany</a></div></article>
 <article class="event" id="e-bb9eb319" data-idx="17" data-eid="bb9eb319" data-name="DJ Krush" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Jazz Cafe, Chalk Farm" data-url="https://www.universe.com/events/dj-krush-tickets-ZSXYT3?ref=ticketmaster" data-lat="51.53859" data-lng="-0.143343">
 <button class="toggle" data-idx="17" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="17" aria-label="Ocultar este evento" title="No me interesa">×</button>
@@ -1572,9 +1578,26 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-82dfe5f2">Gum Disease</a> <a href="#e-4ede4d40">The Strokes - Reality Awaits</a> <a href="#e-66d28519">Belle Livingstone&#x27;s 58th Street Country Club</a></div></article>
-<article class="event" id="e-de2ff774" data-idx="44" data-eid="de2ff774" data-name="Into The Woods" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="Noel Coward Theatre, Bloomsbury" data-url="https://www.ticketmaster.co.uk/into-the-woods-london-06-10-2026/event/Zor9uZKbZL4Zef7Q2Z3" data-lat="51.5142805" data-lng="-0.1284654">
+<article class="event" id="e-bb7a3059" data-idx="44" data-eid="bb7a3059" data-name="The Cherry Orchard" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="The Harold Pinter Theatre , Covent Garden" data-url="https://www.ticketmaster.co.uk/the-cherry-orchard-london-06-10-2026/event/Zor9uZKbZL4Ze3x4uZf" data-lat="51.509326" data-lng="-0.131851">
 <button class="toggle" data-idx="44" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="44" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="event-body">
+<h3><a href="https://www.ticketmaster.co.uk/the-cherry-orchard-london-06-10-2026/event/Zor9uZKbZL4Ze3x4uZf">The Cherry Orchard</a></h3>
+<div class="meta">7:30 PM · The Harold Pinter Theatre , Covent Garden</div>
+<p></p>
+<a class="tickets" href="https://www.ticketmaster.co.uk/the-cherry-orchard-london-06-10-2026/event/Zor9uZKbZL4Ze3x4uZf">Boletos e info →</a>
+
+<div class="cal-row">
+<a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Cherry%20Orchard&dates=20261006T183000Z/20261006T203000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.co.uk/the-cherry-orchard-london-06-10-2026/event/Zor9uZKbZL4Ze3x4uZf&location=The%20Harold%20Pinter%20Theatre%20%2C%20Covent%20Garden" target="_blank" rel="noopener">Google Calendar</a>
+<button class="cal-link ics-btn" data-idx="44">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="44">Compartir</button>
+<span class="leave-by"></span>
+</div>
+</div>
+<div class="mlt"><span>More like this:</span><a href="#e-159517e3">Mamma Mia! The Party</a> <a href="#e-8876cfad">Stranger Things: The First Shadow</a> <a href="#e-ccbe5bdd">My Neighbour Totoro</a></div></article>
+<article class="event" id="e-de2ff774" data-idx="45" data-eid="de2ff774" data-name="Into The Woods" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="Noel Coward Theatre, Bloomsbury" data-url="https://www.ticketmaster.co.uk/into-the-woods-london-06-10-2026/event/Zor9uZKbZL4Zef7Q2Z3" data-lat="51.5142805" data-lng="-0.1284654">
+<button class="toggle" data-idx="45" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="45" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/into-the-woods-london-06-10-2026/event/Zor9uZKbZL4Zef7Q2Z3">Into The Woods</a></h3>
 <div class="meta">7:30 PM · Noel Coward Theatre, Bloomsbury</div>
@@ -1583,15 +1606,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Into%20The%20Woods&dates=20261006T183000Z/20261006T203000Z&details=%281%29%20Suitable%20for%20ages%2012%20years%20and%20older%20This%20production%20contains%20haze%2C%20loud%20noises%2C%20flashing%20lights%2C%20as%20well%20as%20strobe%20effects%20that%20may%20affect%20audience%20members%20who%20are%20sensitive%20to%20light.%20There%20will%20be%20periods%20of%20absolute%20darkness%20in%20the%20auditorium%20as%20part%20of%20the%20show%2C%20we%20ask%20you%20to%20remain%20in%20your%20seats%20during%20this%20time.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.co.uk/into-the-woods-london-06-10-2026/event/Zor9uZKbZL4Zef7Q2Z3&location=Noel%20Coward%20Theatre%2C%20Bloomsbury" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="44">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="44">Compartir</button>
+<button class="cal-link ics-btn" data-idx="45">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="45">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-159517e3">Mamma Mia! The Party</a> <a href="#e-8876cfad">Stranger Things: The First Shadow</a> <a href="#e-ccbe5bdd">My Neighbour Totoro</a></div></article>
-<article class="event" id="e-34e05248" data-idx="45" data-eid="34e05248" data-name="Hay Fever" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="Wyndham&#x27;s Theatre, Covent Garden" data-url="https://www.ticketmaster.co.uk/hay-fever-london-06-10-2026/event/Zor9uZKbZL4ZefkovZ8" data-lat="51.511067" data-lng="-0.128249">
-<button class="toggle" data-idx="45" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="45" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-34e05248" data-idx="46" data-eid="34e05248" data-name="Hay Fever" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="Wyndham&#x27;s Theatre, Covent Garden" data-url="https://www.ticketmaster.co.uk/hay-fever-london-06-10-2026/event/Zor9uZKbZL4ZefkovZ8" data-lat="51.511067" data-lng="-0.128249">
+<button class="toggle" data-idx="46" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="46" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/hay-fever-london-06-10-2026/event/Zor9uZKbZL4ZefkovZ8">Hay Fever</a></h3>
 <div class="meta">7:30 PM · Wyndham&#x27;s Theatre, Covent Garden</div>
@@ -1600,15 +1623,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hay%20Fever&dates=20261006T183000Z/20261006T203000Z&details=%281%29%2027%20October%3A%20Please%20note%20that%20trailer%20filming%20will%20take%20place%20at%20this%20performance.%20Latecomers%20will%20not%20be%20admitted.%2016%20November%20and%2019%20November%3A%20Please%20note%20this%20performance%20will%20be%20filmed.%20Latecomers%20will%20not%20be%20admitted.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.co.uk/hay-fever-london-06-10-2026/event/Zor9uZKbZL4ZefkovZ8&location=Wyndham%27s%20Theatre%2C%20Covent%20Garden" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="45">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="45">Compartir</button>
+<button class="cal-link ics-btn" data-idx="46">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="46">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-159517e3">Mamma Mia! The Party</a> <a href="#e-8876cfad">Stranger Things: The First Shadow</a> <a href="#e-ccbe5bdd">My Neighbour Totoro</a></div></article>
-<article class="event" id="e-269d4238" data-idx="46" data-eid="269d4238" data-name="England V Czechia - ENGLAND FANS ONLY" data-start-local="2026-10-06T19:45:00" data-cal-start="20261006T184500Z" data-cal-end="20261006T204500Z" data-loc="Wembley Stadium" data-url="https://www.ticketmaster.co.uk/england-v-czechia-england-fans-only-london-06-10-2026/event/230064B3A65F1526" data-lat="51.557807" data-lng="-0.279581">
-<button class="toggle" data-idx="46" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="46" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-269d4238" data-idx="47" data-eid="269d4238" data-name="England V Czechia - ENGLAND FANS ONLY" data-start-local="2026-10-06T19:45:00" data-cal-start="20261006T184500Z" data-cal-end="20261006T204500Z" data-loc="Wembley Stadium" data-url="https://www.ticketmaster.co.uk/england-v-czechia-england-fans-only-london-06-10-2026/event/230064B3A65F1526" data-lat="51.557807" data-lng="-0.279581">
+<button class="toggle" data-idx="47" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="47" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/england-v-czechia-england-fans-only-london-06-10-2026/event/230064B3A65F1526">England V Czechia - ENGLAND FANS ONLY</a></h3>
 <div class="meta">7:45 PM · Wembley Stadium</div>
@@ -1617,15 +1640,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=England%20V%20Czechia%20-%20ENGLAND%20FANS%20ONLY&dates=20261006T184500Z/20261006T204500Z&details=We%20are%20only%20selling%20tickets%20for%20the%20ENGLAND%20FAN%20Sections.%20Czechia%20fans%20must%20contact%20their%20football%20Association%20for%20tickets.%20No%20under%202s%20are%20permitted%20inside%20the%20stadium.%20Under%2014s%20must%20be%20accompanied%20by%20an%20adult%20%2818%2B%29.%20Juniors%20are%20allowed%20in%20all%20areas%20but%20in%20Licensed%20Standing%20they%20must%20be%20aged%2012%20and%20above.%20No%20under%2012s%20are%20permitted%20in%20those%20areas.%20Bag%20Policy%20No%20briefcases%2C%20bags%2C%20luggage%20or%20large%20purses%20as%20Wembley%20Stadium%20operates%20a%20restricted%20bag%20policy.%20Each%20person%20can%20only%20bring%20one%20small%20bag%20in%20to%20the%20stadium%2C%20and%20it%20must%20not%20be%20bigger%20than%20A4%20size%3A%20-%20Height%20-%20297mm%20%2811.7%20inches%29%20-%20Width%20-%20210mm%20%288.27%20inches%29%20-%20Depth%20-%20210mm%20%288.27%20inches%29%20Bags%20that%20are%20half-full%20and%20folded%20over%20to%20reduce%20their%20size%20will%20not%20be%20accepted.%20Anyone%20carrying%20bags%20that%20do%20not%20meet%20the%20criteria%20above%20will%20not%20be%20allowed%20in%20to%20the%20stadium.%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.co.uk/england-v-czechia-england-fans-only-london-06-10-2026/event/230064B3A65F1526&location=Wembley%20Stadium" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="46">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="46">Compartir</button>
+<button class="cal-link ics-btn" data-idx="47">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="47">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-8d0b569d">EuroCup - London Lions v La Laguna Tenerife</a></div></article>
-<article class="event" id="e-bcca1aec" data-idx="47" data-eid="bcca1aec" data-name="Richard Marx - After Hours Tour" data-start-local="2026-10-06T20:00:00" data-cal-start="20261006T190000Z" data-cal-end="20261006T210000Z" data-loc="The London Palladium, Soho" data-url="https://www.ticketmaster.co.uk/richard-marx-after-hours-tour-london-06-10-2026/event/37006390AF682FCE" data-lat="51.514546" data-lng="-0.140055">
-<button class="toggle" data-idx="47" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="47" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-bcca1aec" data-idx="48" data-eid="bcca1aec" data-name="Richard Marx - After Hours Tour" data-start-local="2026-10-06T20:00:00" data-cal-start="20261006T190000Z" data-cal-end="20261006T210000Z" data-loc="The London Palladium, Soho" data-url="https://www.ticketmaster.co.uk/richard-marx-after-hours-tour-london-06-10-2026/event/37006390AF682FCE" data-lat="51.514546" data-lng="-0.140055">
+<button class="toggle" data-idx="48" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="48" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/richard-marx-after-hours-tour-london-06-10-2026/event/37006390AF682FCE">Richard Marx - After Hours Tour</a></h3>
 <div class="meta">8:00 PM · The London Palladium, Soho</div>
@@ -1634,15 +1657,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Richard%20Marx%20-%20After%20Hours%20Tour&dates=20261006T190000Z/20261006T210000Z&details=DOORS%20TBC%20START%208PM%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.co.uk/richard-marx-after-hours-tour-london-06-10-2026/event/37006390AF682FCE&location=The%20London%20Palladium%2C%20Soho" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="47">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="47">Compartir</button>
+<button class="cal-link ics-btn" data-idx="48">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="48">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-82dfe5f2">Gum Disease</a> <a href="#e-4ede4d40">The Strokes - Reality Awaits</a> <a href="#e-66d28519">Belle Livingstone&#x27;s 58th Street Country Club</a></div></article>
-<article class="event" id="e-242974fc" data-idx="48" data-eid="242974fc" data-name="SIX The Musical" data-start-local="2026-10-06T20:00:00" data-cal-start="20261006T190000Z" data-cal-end="20261006T210000Z" data-loc="Vaudeville Theatre, Covent Garden" data-url="https://theatre.ticketmaster.co.uk/book/1DYC8-six-vau/#perf=1DYC8-67K&amp;date=2026-10-06&amp;time=8.00PM" data-lat="51.510546" data-lng="-0.12265">
-<button class="toggle" data-idx="48" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="48" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-242974fc" data-idx="49" data-eid="242974fc" data-name="SIX The Musical" data-start-local="2026-10-06T20:00:00" data-cal-start="20261006T190000Z" data-cal-end="20261006T210000Z" data-loc="Vaudeville Theatre, Covent Garden" data-url="https://theatre.ticketmaster.co.uk/book/1DYC8-six-vau/#perf=1DYC8-67K&amp;date=2026-10-06&amp;time=8.00PM" data-lat="51.510546" data-lng="-0.12265">
+<button class="toggle" data-idx="49" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="49" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1DYC8-six-vau/#perf=1DYC8-67K&amp;date=2026-10-06&amp;time=8.00PM">SIX The Musical</a></h3>
 <div class="meta">8:00 PM · Vaudeville Theatre, Covent Garden</div>
@@ -1651,15 +1674,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SIX%20The%20Musical&dates=20261006T190000Z/20261006T210000Z&details=%20Tickets%20%26%20info%3A%20https%3A//theatre.ticketmaster.co.uk/book/1DYC8-six-vau/%23perf%3D1DYC8-67K%26date%3D2026-10-06%26time%3D8.00PM&location=Vaudeville%20Theatre%2C%20Covent%20Garden" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="48">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="48">Compartir</button>
+<button class="cal-link ics-btn" data-idx="49">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="49">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-159517e3">Mamma Mia! The Party</a> <a href="#e-8876cfad">Stranger Things: The First Shadow</a> <a href="#e-ccbe5bdd">My Neighbour Totoro</a></div></article>
-<article class="event" id="e-0d9fe077" data-idx="49" data-eid="0d9fe077" data-name="The Definitive Rat Pack" data-start-local="2026-10-06T20:30:00" data-cal-start="20261006T193000Z" data-cal-end="20261006T213000Z" data-loc="Boisdale, Canary Wharf, Canary Wharf" data-url="https://www.universe.com/events/the-definitive-rat-pack-tickets-V2W90G?ref=ticketmaster" data-lat="51.505252" data-lng="-0.022271">
-<button class="toggle" data-idx="49" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="49" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-0d9fe077" data-idx="50" data-eid="0d9fe077" data-name="The Definitive Rat Pack" data-start-local="2026-10-06T20:30:00" data-cal-start="20261006T193000Z" data-cal-end="20261006T213000Z" data-loc="Boisdale, Canary Wharf, Canary Wharf" data-url="https://www.universe.com/events/the-definitive-rat-pack-tickets-V2W90G?ref=ticketmaster" data-lat="51.505252" data-lng="-0.022271">
+<button class="toggle" data-idx="50" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="50" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/the-definitive-rat-pack-tickets-V2W90G?ref=ticketmaster">The Definitive Rat Pack</a></h3>
 <div class="meta">8:30 PM · Boisdale, Canary Wharf, Canary Wharf</div>
@@ -1668,15 +1691,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Definitive%20Rat%20Pack&dates=20261006T193000Z/20261006T213000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.universe.com/events/the-definitive-rat-pack-tickets-V2W90G%3Fref%3Dticketmaster&location=Boisdale%2C%20Canary%20Wharf%2C%20Canary%20Wharf" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="49">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="49">Compartir</button>
+<button class="cal-link ics-btn" data-idx="50">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="50">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-82dfe5f2">Gum Disease</a> <a href="#e-4ede4d40">The Strokes - Reality Awaits</a> <a href="#e-66d28519">Belle Livingstone&#x27;s 58th Street Country Club</a></div></article>
-<article class="event" id="e-d0e45626" data-idx="50" data-eid="d0e45626" data-name="Scientist to Founder: London" data-start-local="2026-10-06T17:00:00" data-cal-start="20261006T160000Z" data-cal-end="20261006T180000Z" data-loc="London, United Kingdom, Lambeth" data-url="https://luma.com/concep-0s1q" data-lat="51.49618354298221" data-lng="-0.12196865679035317">
-<button class="toggle" data-idx="50" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="50" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-d0e45626" data-idx="51" data-eid="d0e45626" data-name="Scientist to Founder: London" data-start-local="2026-10-06T17:00:00" data-cal-start="20261006T160000Z" data-cal-end="20261006T180000Z" data-loc="London, United Kingdom, Lambeth" data-url="https://luma.com/concep-0s1q" data-lat="51.49618354298221" data-lng="-0.12196865679035317">
+<button class="toggle" data-idx="51" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="51" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://luma.com/concep-0s1q">Scientist to Founder: London</a></h3>
 <div class="meta">5:00 PM – 7:30 PM · London, United Kingdom, Lambeth · Free</div>
@@ -1685,15 +1708,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Scientist%20to%20Founder%3A%20London&dates=20261006T160000Z/20261006T180000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/concep-0s1q&location=London%2C%20United%20Kingdom%2C%20Lambeth" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="50">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="50">Compartir</button>
+<button class="cal-link ics-btn" data-idx="51">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="51">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a> <a href="#e-ddb68eec">Create your MS Access Database, 1-Day, 1-to-1, Enhanced with Generative AI</a></div></article>
-<article class="event" id="e-0e25eb3b" data-idx="51" data-eid="0e25eb3b" data-name="Therapeutic Tuesdays" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="Bread and Butter Lounge" data-url="https://www.eventbrite.co.uk/e/therapeutic-tuesdays-registration-1997682560314">
-<button class="toggle" data-idx="51" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="51" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-0e25eb3b" data-idx="52" data-eid="0e25eb3b" data-name="Therapeutic Tuesdays" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="Bread and Butter Lounge" data-url="https://www.eventbrite.co.uk/e/therapeutic-tuesdays-registration-1997682560314">
+<button class="toggle" data-idx="52" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="52" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/therapeutic-tuesdays-registration-1997682560314">Therapeutic Tuesdays</a></h3>
 <div class="meta">6:00 PM – 7:30 PM · Bread and Butter Lounge · Free</div>
@@ -1702,15 +1725,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Therapeutic%20Tuesdays&dates=20261006T170000Z/20261006T190000Z&details=Join%20this%20safe%20space%20to%20de-stress%20and%20raise%20self-awareness%20through%20the%20use%20of%20art.%201st%20Tuesday%20of%20every%20month%21%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/therapeutic-tuesdays-registration-1997682560314&location=Bread%20and%20Butter%20Lounge" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="51">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="51">Compartir</button>
+<button class="cal-link ics-btn" data-idx="52">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="52">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
-<div class="mlt"><span>More like this:</span><a href="#e-3769e6b3">Twist Museum - London&#x27;s Home of Illusions STANDARD</a> <a href="#e-04dc2c37">Tues 6th Oct - Stand Up Comedy Show - Big Belly Comedy Club</a> <a href="#e-db77c98d">Viktor Wynd&#x27;s Guided Tour of His Museum + a Devil&#x27;s Botany</a></div></article>
-<article class="event" id="e-9bd99d1f" data-idx="52" data-eid="9bd99d1f" data-name="The Life Scientific" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="The Royal Institution" data-url="https://www.eventbrite.co.uk/e/the-life-scientific-tickets-1993015607332">
-<button class="toggle" data-idx="52" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="52" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="mlt"><span>More like this:</span><a href="#e-f68798bb">Twist Museum - London&#x27;s Home of Illusions STANDARD</a> <a href="#e-04dc2c37">Tues 6th Oct - Stand Up Comedy Show - Big Belly Comedy Club</a> <a href="#e-db77c98d">Viktor Wynd&#x27;s Guided Tour of His Museum + a Devil&#x27;s Botany</a></div></article>
+<article class="event" id="e-9bd99d1f" data-idx="53" data-eid="9bd99d1f" data-name="The Life Scientific" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="The Royal Institution" data-url="https://www.eventbrite.co.uk/e/the-life-scientific-tickets-1993015607332">
+<button class="toggle" data-idx="53" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="53" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/the-life-scientific-tickets-1993015607332">The Life Scientific</a></h3>
 <div class="meta">7:00 PM – 8:30 PM · The Royal Institution · $7.90</div>
@@ -1719,15 +1742,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Life%20Scientific&dates=20261006T180000Z/20261006T200000Z&details=Join%20Jim%20Al-Khalili%20as%20he%20interviews%20Chris%20Packham%20about%20his%20life%20and%20work%2C%20for%20a%20live%20recording%20of%20popular%20BBC%20Radio%204%20programme.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/the-life-scientific-tickets-1993015607332&location=The%20Royal%20Institution" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="52">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="52">Compartir</button>
+<button class="cal-link ics-btn" data-idx="53">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="53">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-6b98189b">The Psychology of Attachment, Love &amp; Heartbreak</a> <a href="#e-4332a639">Chapters &amp; Film + TV Charity Fundraiser Event</a> <a href="#e-d510cf4e">Aerial Relaxation Pods®- Sound Journey Gong Bath Meditation in Hammocks</a></div></article>
-<article class="event" id="e-6b98189b" data-idx="53" data-eid="6b98189b" data-name="The Psychology of Attachment, Love &amp; Heartbreak" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Cecil Sharp House" data-url="https://www.eventbrite.co.uk/e/the-psychology-of-attachment-love-heartbreak-tickets-1996460276430">
-<button class="toggle" data-idx="53" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="53" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-6b98189b" data-idx="54" data-eid="6b98189b" data-name="The Psychology of Attachment, Love &amp; Heartbreak" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Cecil Sharp House" data-url="https://www.eventbrite.co.uk/e/the-psychology-of-attachment-love-heartbreak-tickets-1996460276430">
+<button class="toggle" data-idx="54" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="54" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/the-psychology-of-attachment-love-heartbreak-tickets-1996460276430">The Psychology of Attachment, Love &amp; Heartbreak</a></h3>
 <div class="meta">7:00 PM – 9:30 PM · Cecil Sharp House · $15.00</div>
@@ -1736,15 +1759,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Psychology%20of%20Attachment%2C%20Love%20%26%20Heartbreak&dates=20261006T180000Z/20261006T200000Z&details=Dating%20and%20relationship%20coach%20Sabrina%20Zohar%20on%20breaking%20the%20patterns%20hijacking%20your%20love%20life.%20Followed%20by%20Q%26A.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/the-psychology-of-attachment-love-heartbreak-tickets-1996460276430&location=Cecil%20Sharp%20House" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="53">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="53">Compartir</button>
+<button class="cal-link ics-btn" data-idx="54">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="54">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-9bd99d1f">The Life Scientific</a> <a href="#e-4332a639">Chapters &amp; Film + TV Charity Fundraiser Event</a> <a href="#e-d510cf4e">Aerial Relaxation Pods®- Sound Journey Gong Bath Meditation in Hammocks</a></div></article>
-<article class="event" id="e-30e5854e" data-idx="54" data-eid="30e5854e" data-name="Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="Market Halls, Canary Wharf" data-url="https://www.eventbrite.co.uk/e/business-networking-event-in-london-fintech-finance-banking-tech-ecom-tickets-1999292569896">
-<button class="toggle" data-idx="54" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="54" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-30e5854e" data-idx="55" data-eid="30e5854e" data-name="Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="Market Halls, Canary Wharf" data-url="https://www.eventbrite.co.uk/e/business-networking-event-in-london-fintech-finance-banking-tech-ecom-tickets-1999292569896">
+<button class="toggle" data-idx="55" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="55" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/business-networking-event-in-london-fintech-finance-banking-tech-ecom-tickets-1999292569896">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a></h3>
 <div class="meta">6:30 PM – 9:30 PM · Market Halls, Canary Wharf · Free</div>
@@ -1753,15 +1776,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Business%20Networking%20Event%20in%20London%20-%20FinTech%2C%20Finance%2C%20Banking%2C%20Tech%2C%20eCom&dates=20261006T173000Z/20261006T193000Z&details=Business%20networking%20event%20in%20Canary%20Wharf.%20Meet%20FinTech%2C%20finance%2C%20investment%20banking%2C%20eCommerce%20pros%20%26%20entrepreneurs%2C%20startup%20founders.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/business-networking-event-in-london-fintech-finance-banking-tech-ecom-tickets-1999292569896&location=Market%20Halls%2C%20Canary%20Wharf" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="54">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="54">Compartir</button>
+<button class="cal-link ics-btn" data-idx="55">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="55">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a> <a href="#e-ddb68eec">Create your MS Access Database, 1-Day, 1-to-1, Enhanced with Generative AI</a></div></article>
-<article class="event" id="e-4332a639" data-idx="55" data-eid="4332a639" data-name="Chapters &amp; Film + TV Charity Fundraiser Event" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Emerald Theatre London." data-url="https://www.eventbrite.com/e/chapters-film-tv-charity-fundraiser-event-tickets-1983792429559">
-<button class="toggle" data-idx="55" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="55" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-4332a639" data-idx="56" data-eid="4332a639" data-name="Chapters &amp; Film + TV Charity Fundraiser Event" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Emerald Theatre London." data-url="https://www.eventbrite.com/e/chapters-film-tv-charity-fundraiser-event-tickets-1983792429559">
+<button class="toggle" data-idx="56" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="56" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/chapters-film-tv-charity-fundraiser-event-tickets-1983792429559">Chapters &amp; Film + TV Charity Fundraiser Event</a></h3>
 <div class="meta">7:00 PM – 11:00 PM · Emerald Theatre London. · $14.25</div>
@@ -1770,15 +1793,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Chapters%20%26%20Film%20%2B%20TV%20Charity%20Fundraiser%20Event&dates=20261006T180000Z/20261006T200000Z&details=Chapters%20%26%20Film%20%2B%20TV%20Charity%20%7C%20Film%20and%20TV%20Panel%20%26%20Networking%20%2B%20Q%26A%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.com/e/chapters-film-tv-charity-fundraiser-event-tickets-1983792429559&location=Emerald%20Theatre%20London." target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="55">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="55">Compartir</button>
+<button class="cal-link ics-btn" data-idx="56">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="56">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-9bd99d1f">The Life Scientific</a> <a href="#e-6b98189b">The Psychology of Attachment, Love &amp; Heartbreak</a> <a href="#e-d510cf4e">Aerial Relaxation Pods®- Sound Journey Gong Bath Meditation in Hammocks</a></div></article>
-<article class="event" id="e-0066acb0" data-idx="56" data-eid="0066acb0" data-name="Middle Temple Hall Lunch &amp; Tours" data-start-local="2026-10-06T12:00:00" data-cal-start="20261006T110000Z" data-cal-end="20261006T130000Z" data-loc="The Honourable Society of the Middle Temple" data-url="https://www.eventbrite.co.uk/e/middle-temple-hall-lunch-tours-tickets-1982342724452">
-<button class="toggle" data-idx="56" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="56" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-0066acb0" data-idx="57" data-eid="0066acb0" data-name="Middle Temple Hall Lunch &amp; Tours" data-start-local="2026-10-06T12:00:00" data-cal-start="20261006T110000Z" data-cal-end="20261006T130000Z" data-loc="The Honourable Society of the Middle Temple" data-url="https://www.eventbrite.co.uk/e/middle-temple-hall-lunch-tours-tickets-1982342724452">
+<button class="toggle" data-idx="57" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="57" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/middle-temple-hall-lunch-tours-tickets-1982342724452">Middle Temple Hall Lunch &amp; Tours</a></h3>
 <div class="meta">12:00 PM – 2:00 PM · The Honourable Society of the Middle Temple</div>
@@ -1787,15 +1810,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Middle%20Temple%20Hall%20Lunch%20%26%20Tours&dates=20261006T110000Z/20261006T130000Z&details=Enjoy%20tours%20and%20lunch%20inside%20one%20of%20the%20finest%20Elizabethan%20Halls%20in%20the%20country%2C%20the%20historic%20and%20awe-inspiring%20building%20of%20Middle%20Temple.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/middle-temple-hall-lunch-tours-tickets-1982342724452&location=The%20Honourable%20Society%20of%20the%20Middle%20Temple" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="56">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="56">Compartir</button>
+<button class="cal-link ics-btn" data-idx="57">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="57">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-82dfe5f2">Gum Disease</a> <a href="#e-4ede4d40">The Strokes - Reality Awaits</a> <a href="#e-66d28519">Belle Livingstone&#x27;s 58th Street Country Club</a></div></article>
-<article class="event" id="e-d510cf4e" data-idx="57" data-eid="d510cf4e" data-name="Aerial Relaxation Pods®- Sound Journey Gong Bath Meditation in Hammocks" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="The Skylight Centre" data-url="https://www.eventbrite.co.uk/e/aerial-relaxation-pods-sound-journey-gong-bath-meditation-in-hammocks-tickets-1999001249549">
-<button class="toggle" data-idx="57" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="57" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-d510cf4e" data-idx="58" data-eid="d510cf4e" data-name="Aerial Relaxation Pods®- Sound Journey Gong Bath Meditation in Hammocks" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="The Skylight Centre" data-url="https://www.eventbrite.co.uk/e/aerial-relaxation-pods-sound-journey-gong-bath-meditation-in-hammocks-tickets-1999001249549">
+<button class="toggle" data-idx="58" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="58" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/aerial-relaxation-pods-sound-journey-gong-bath-meditation-in-hammocks-tickets-1999001249549">Aerial Relaxation Pods®- Sound Journey Gong Bath Meditation in Hammocks</a></h3>
 <div class="meta">7:00 PM · The Skylight Centre · $16.76</div>
@@ -1804,15 +1827,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Aerial%20Relaxation%20Pods%C2%AE-%20Sound%20Journey%20Gong%20Bath%20Meditation%20in%20Hammocks&dates=20261006T180000Z/20261006T200000Z&details=London%27s%20first%20multi-sensory%20aerial%20relaxation%20experience%20with%20live%20ambient%20music%2C%20gongs%2C%20aromatherapy%20and%20aerial%20hammocks.%20Oasis%20of%20Calm.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/aerial-relaxation-pods-sound-journey-gong-bath-meditation-in-hammocks-tickets-1999001249549&location=The%20Skylight%20Centre" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="57">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="57">Compartir</button>
+<button class="cal-link ics-btn" data-idx="58">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="58">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-9bd99d1f">The Life Scientific</a> <a href="#e-6b98189b">The Psychology of Attachment, Love &amp; Heartbreak</a> <a href="#e-4332a639">Chapters &amp; Film + TV Charity Fundraiser Event</a></div></article>
-<article class="event" id="e-c80cc005" data-idx="58" data-eid="c80cc005" data-name="Into The Light | Cyanotype Workshop from the Linnean Collections" data-start-local="2026-10-06T11:00:00" data-cal-start="20261006T100000Z" data-cal-end="20261006T120000Z" data-loc="The Linnean Society of London" data-url="https://www.eventbrite.co.uk/e/into-the-light-cyanotype-workshop-from-the-linnean-collections-tickets-1996660104120">
-<button class="toggle" data-idx="58" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="58" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-c80cc005" data-idx="59" data-eid="c80cc005" data-name="Into The Light | Cyanotype Workshop from the Linnean Collections" data-start-local="2026-10-06T11:00:00" data-cal-start="20261006T100000Z" data-cal-end="20261006T120000Z" data-loc="The Linnean Society of London" data-url="https://www.eventbrite.co.uk/e/into-the-light-cyanotype-workshop-from-the-linnean-collections-tickets-1996660104120">
+<button class="toggle" data-idx="59" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="59" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/into-the-light-cyanotype-workshop-from-the-linnean-collections-tickets-1996660104120">Into The Light | Cyanotype Workshop from the Linnean Collections</a></h3>
 <div class="meta">11:00 AM – 2:00 PM · The Linnean Society of London</div>
@@ -1821,15 +1844,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Into%20The%20Light%20%7C%20Cyanotype%20Workshop%20from%20the%20Linnean%20Collections&dates=20261006T100000Z/20261006T120000Z&details=Explore%20the%20intersection%20of%20science%20and%20art%20in%20botany%20while%20making%20your%20own%20cyanotype%20prints%20from%20historical%20Linnean%20plant%20specimens.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/into-the-light-cyanotype-workshop-from-the-linnean-collections-tickets-1996660104120&location=The%20Linnean%20Society%20of%20London" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="58">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="58">Compartir</button>
+<button class="cal-link ics-btn" data-idx="59">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="59">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-9bd99d1f">The Life Scientific</a> <a href="#e-6b98189b">The Psychology of Attachment, Love &amp; Heartbreak</a> <a href="#e-4332a639">Chapters &amp; Film + TV Charity Fundraiser Event</a></div></article>
-<article class="event" id="e-e2ad51d9" data-idx="59" data-eid="e2ad51d9" data-name="TUESDAY CI LAB" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Pembroke House" data-url="https://www.eventbrite.com/e/tuesday-ci-lab-tickets-2000318234687">
-<button class="toggle" data-idx="59" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="59" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-e2ad51d9" data-idx="60" data-eid="e2ad51d9" data-name="TUESDAY CI LAB" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Pembroke House" data-url="https://www.eventbrite.com/e/tuesday-ci-lab-tickets-2000318234687">
+<button class="toggle" data-idx="60" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="60" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.com/e/tuesday-ci-lab-tickets-2000318234687">TUESDAY CI LAB</a></h3>
 <div class="meta">7:00 PM – 9:30 PM · Pembroke House · Free</div>
@@ -1838,15 +1861,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=TUESDAY%20CI%20LAB&dates=20261006T180000Z/20261006T200000Z&details=Two%20practitioners%20share%20their%20research%20of%20contact%20improvisation.%20A%20new%20approach%20to%20share%20questions%20through%20a%20joint%20embodied%20research.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.com/e/tuesday-ci-lab-tickets-2000318234687&location=Pembroke%20House" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="59">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="59">Compartir</button>
+<button class="cal-link ics-btn" data-idx="60">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="60">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-9bd99d1f">The Life Scientific</a> <a href="#e-6b98189b">The Psychology of Attachment, Love &amp; Heartbreak</a> <a href="#e-4332a639">Chapters &amp; Film + TV Charity Fundraiser Event</a></div></article>
-<article class="event" id="e-fb9b72d3" data-idx="60" data-eid="fb9b72d3" data-name="Tuesday Night British Stand-up Comedy, 9PM, Soho" data-start-local="2026-10-06T21:00:00" data-cal-start="20261006T200000Z" data-cal-end="20261006T220000Z" data-loc="JK Comedy Club Soho" data-url="https://www.eventbrite.co.uk/e/tuesday-night-british-stand-up-comedy-9pm-soho-tickets-1986015781665">
-<button class="toggle" data-idx="60" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="60" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-fb9b72d3" data-idx="61" data-eid="fb9b72d3" data-name="Tuesday Night British Stand-up Comedy, 9PM, Soho" data-start-local="2026-10-06T21:00:00" data-cal-start="20261006T200000Z" data-cal-end="20261006T220000Z" data-loc="JK Comedy Club Soho" data-url="https://www.eventbrite.co.uk/e/tuesday-night-british-stand-up-comedy-9pm-soho-tickets-1986015781665">
+<button class="toggle" data-idx="61" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="61" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/tuesday-night-british-stand-up-comedy-9pm-soho-tickets-1986015781665">Tuesday Night British Stand-up Comedy, 9PM, Soho</a></h3>
 <div class="meta">9:00 PM – 10:30 PM · JK Comedy Club Soho · $11.55</div>
@@ -1855,15 +1878,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Tuesday%20Night%20British%20Stand-up%20Comedy%2C%209PM%2C%20Soho&dates=20261006T200000Z/20261006T220000Z&details=Tuesday%20night%20stand-up%20comedy%20show%20in%20Soho%2C%20Central%20London%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/tuesday-night-british-stand-up-comedy-9pm-soho-tickets-1986015781665&location=JK%20Comedy%20Club%20Soho" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="60">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="60">Compartir</button>
+<button class="cal-link ics-btn" data-idx="61">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="61">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-c21aef09">Theatre Adult with Gianmarco Soresi</a> <a href="#e-7508ba68">Comedy in Your Eye - Stand up Comedy in Camden Town</a> <a href="#e-7e01a767">The Play That Goes Wrong</a></div></article>
-<article class="event" id="e-13fca28d" data-idx="61" data-eid="13fca28d" data-name="Should Scotland, N. Ireland &amp; Wales Leave The UK? - Victoria Debates" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="BAM Karaoke Box | Victoria" data-url="https://www.eventbrite.co.uk/e/should-scotland-n-ireland-wales-leave-the-uk-victoria-debates-tickets-2001400135682">
-<button class="toggle" data-idx="61" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="61" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-13fca28d" data-idx="62" data-eid="13fca28d" data-name="Should Scotland, N. Ireland &amp; Wales Leave The UK? - Victoria Debates" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="BAM Karaoke Box | Victoria" data-url="https://www.eventbrite.co.uk/e/should-scotland-n-ireland-wales-leave-the-uk-victoria-debates-tickets-2001400135682">
+<button class="toggle" data-idx="62" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="62" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/should-scotland-n-ireland-wales-leave-the-uk-victoria-debates-tickets-2001400135682">Should Scotland, N. Ireland &amp; Wales Leave The UK? - Victoria Debates</a></h3>
 <div class="meta">6:30 PM – 8:30 PM · BAM Karaoke Box | Victoria · Free</div>
@@ -1872,15 +1895,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Should%20Scotland%2C%20N.%20Ireland%20%26%20Wales%20Leave%20The%20UK%3F%20-%20Victoria%20Debates&dates=20261006T173000Z/20261006T193000Z&details=This%20House%20Would%20Break%20up%20The%20UK%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/should-scotland-n-ireland-wales-leave-the-uk-victoria-debates-tickets-2001400135682&location=BAM%20Karaoke%20Box%20%7C%20Victoria" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="61">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="61">Compartir</button>
+<button class="cal-link ics-btn" data-idx="62">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="62">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-9bd99d1f">The Life Scientific</a> <a href="#e-6b98189b">The Psychology of Attachment, Love &amp; Heartbreak</a> <a href="#e-4332a639">Chapters &amp; Film + TV Charity Fundraiser Event</a></div></article>
-<article class="event" id="e-77ee0c9f" data-idx="62" data-eid="77ee0c9f" data-name="Christian Creatives 4 Year Anniversary October Edition" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="Fresh Arts CIC" data-url="https://www.eventbrite.co.uk/e/christian-creatives-4-year-anniversary-october-edition-tickets-1998940954204">
-<button class="toggle" data-idx="62" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="62" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-77ee0c9f" data-idx="63" data-eid="77ee0c9f" data-name="Christian Creatives 4 Year Anniversary October Edition" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="Fresh Arts CIC" data-url="https://www.eventbrite.co.uk/e/christian-creatives-4-year-anniversary-october-edition-tickets-1998940954204">
+<button class="toggle" data-idx="63" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="63" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/christian-creatives-4-year-anniversary-october-edition-tickets-1998940954204">Christian Creatives 4 Year Anniversary October Edition</a></h3>
 <div class="meta">7:30 PM – 10:00 PM · Fresh Arts CIC · Free</div>
@@ -1889,15 +1912,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Christian%20Creatives%204%20Year%20Anniversary%20October%20Edition&dates=20261006T183000Z/20261006T203000Z&details=Hey%20there%21%20Christian%20Creatives%20is%20a%20casual%20meet%20up%20for%20all%20creatives%20to%20come%20together%20to%20share%20a%20word%20or%20two%2C%20eat%2C%20vibe%20and%20network.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/christian-creatives-4-year-anniversary-october-edition-tickets-1998940954204&location=Fresh%20Arts%20CIC" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="62">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="62">Compartir</button>
+<button class="cal-link ics-btn" data-idx="63">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="63">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-3c384eb6">A Networking Soiree In Conjunction With Santander, Cheapside, Bank, London</a> <a href="#e-8e494eef">ENGLAND FANPARK: ENGLAND V CZECHIA</a> <a href="#e-1b98128e">eCommerce, eBay, Amazon - eCommerce and Business Networking Event in London</a></div></article>
-<article class="event" id="e-71d4469d" data-idx="63" data-eid="71d4469d" data-name="Central London Stand-Up Comedy Show - £8 every night of the week" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="The Coach House" data-url="https://www.eventbrite.co.uk/e/central-london-stand-up-comedy-show-8-every-night-of-the-week-tickets-1986628288690">
-<button class="toggle" data-idx="63" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="63" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-71d4469d" data-idx="64" data-eid="71d4469d" data-name="Central London Stand-Up Comedy Show - £8 every night of the week" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="The Coach House" data-url="https://www.eventbrite.co.uk/e/central-london-stand-up-comedy-show-8-every-night-of-the-week-tickets-1986628288690">
+<button class="toggle" data-idx="64" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="64" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/central-london-stand-up-comedy-show-8-every-night-of-the-week-tickets-1986628288690">Central London Stand-Up Comedy Show - £8 every night of the week</a></h3>
 <div class="meta">7:30 PM – 9:00 PM · The Coach House · $9.00</div>
@@ -1906,15 +1929,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Central%20London%20Stand-Up%20Comedy%20Show%20-%20%C2%A38%20every%20night%20of%20the%20week&dates=20261006T183000Z/20261006T203000Z&details=Award-winning%20comedy%20in%20the%20heart%20of%20London%21%20See%20comedians%20from%20Netflix%2C%20Taskmaster%2C%20Live%20at%20the%20Apollo%20and%20more.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/central-london-stand-up-comedy-show-8-every-night-of-the-week-tickets-1986628288690&location=The%20Coach%20House" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="63">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="63">Compartir</button>
+<button class="cal-link ics-btn" data-idx="64">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="64">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-c21aef09">Theatre Adult with Gianmarco Soresi</a> <a href="#e-7508ba68">Comedy in Your Eye - Stand up Comedy in Camden Town</a> <a href="#e-7e01a767">The Play That Goes Wrong</a></div></article>
-<article class="event" id="e-3c384eb6" data-idx="64" data-eid="3c384eb6" data-name="A Networking Soiree In Conjunction With Santander, Cheapside, Bank, London" data-start-local="2026-10-06T17:30:00" data-cal-start="20261006T163000Z" data-cal-end="20261006T183000Z" data-loc="Santander Work Cafe" data-url="https://www.eventbrite.co.uk/e/a-networking-soiree-in-conjunction-with-santander-cheapside-bank-london-tickets-1999368691578">
-<button class="toggle" data-idx="64" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="64" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-3c384eb6" data-idx="65" data-eid="3c384eb6" data-name="A Networking Soiree In Conjunction With Santander, Cheapside, Bank, London" data-start-local="2026-10-06T17:30:00" data-cal-start="20261006T163000Z" data-cal-end="20261006T183000Z" data-loc="Santander Work Cafe" data-url="https://www.eventbrite.co.uk/e/a-networking-soiree-in-conjunction-with-santander-cheapside-bank-london-tickets-1999368691578">
+<button class="toggle" data-idx="65" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="65" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/a-networking-soiree-in-conjunction-with-santander-cheapside-bank-london-tickets-1999368691578">A Networking Soiree In Conjunction With Santander, Cheapside, Bank, London</a></h3>
 <div class="meta">5:30 PM – 7:30 PM · Santander Work Cafe · $24.50</div>
@@ -1923,15 +1946,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=A%20Networking%20Soiree%20In%20Conjunction%20With%20Santander%2C%20Cheapside%2C%20Bank%2C%20London&dates=20261006T163000Z/20261006T183000Z&details=Bringing%20together%20ambitious%20business%20owners%20looking%20for%20meaningful%20connections%20in%20the%20business%2C%20property%2C%20legal%20and%20financial%20sectors.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/a-networking-soiree-in-conjunction-with-santander-cheapside-bank-london-tickets-1999368691578&location=Santander%20Work%20Cafe" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="64">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="64">Compartir</button>
+<button class="cal-link ics-btn" data-idx="65">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="65">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-77ee0c9f">Christian Creatives 4 Year Anniversary October Edition</a> <a href="#e-8e494eef">ENGLAND FANPARK: ENGLAND V CZECHIA</a> <a href="#e-1b98128e">eCommerce, eBay, Amazon - eCommerce and Business Networking Event in London</a></div></article>
-<article class="event" id="e-8e494eef" data-idx="65" data-eid="8e494eef" data-name="ENGLAND FANPARK: ENGLAND V CZECHIA" data-start-local="2026-10-06T11:00:00" data-cal-start="20261006T100000Z" data-cal-end="20261006T120000Z" data-loc="BOXPARK Wembley" data-url="https://www.eventbrite.co.uk/e/england-fanpark-england-v-czechia-tickets-1994957167591">
-<button class="toggle" data-idx="65" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="65" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-8e494eef" data-idx="66" data-eid="8e494eef" data-name="ENGLAND FANPARK: ENGLAND V CZECHIA" data-start-local="2026-10-06T11:00:00" data-cal-start="20261006T100000Z" data-cal-end="20261006T120000Z" data-loc="BOXPARK Wembley" data-url="https://www.eventbrite.co.uk/e/england-fanpark-england-v-czechia-tickets-1994957167591">
+<button class="toggle" data-idx="66" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="66" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/england-fanpark-england-v-czechia-tickets-1994957167591">ENGLAND FANPARK: ENGLAND V CZECHIA</a></h3>
 <div class="meta">11:00 AM – 11:00 PM · BOXPARK Wembley · Free</div>
@@ -1940,15 +1963,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=ENGLAND%20FANPARK%3A%20ENGLAND%20V%20CZECHIA&dates=20261006T100000Z/20261006T120000Z&details=THE%20ONLY%20PLACE%20TO%20BE%20BEFORE%20A%20WEMBLEY%20STADIUM%20VISIT%21%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/england-fanpark-england-v-czechia-tickets-1994957167591&location=BOXPARK%20Wembley" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="65">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="65">Compartir</button>
+<button class="cal-link ics-btn" data-idx="66">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="66">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-77ee0c9f">Christian Creatives 4 Year Anniversary October Edition</a> <a href="#e-3c384eb6">A Networking Soiree In Conjunction With Santander, Cheapside, Bank, London</a> <a href="#e-1b98128e">eCommerce, eBay, Amazon - eCommerce and Business Networking Event in London</a></div></article>
-<article class="event" id="e-db77c98d" data-idx="66" data-eid="db77c98d" data-name="Viktor Wynd&#x27;s Guided Tour of His Museum + a Devil&#x27;s Botany" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="The Viktor Wynd Museum of Curiosities, Fine Art &amp; Natural History" data-url="https://www.eventbrite.co.uk/e/viktor-wynds-guided-tour-of-his-museum-a-devils-botany-tickets-1991775669645">
-<button class="toggle" data-idx="66" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="66" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-db77c98d" data-idx="67" data-eid="db77c98d" data-name="Viktor Wynd&#x27;s Guided Tour of His Museum + a Devil&#x27;s Botany" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="The Viktor Wynd Museum of Curiosities, Fine Art &amp; Natural History" data-url="https://www.eventbrite.co.uk/e/viktor-wynds-guided-tour-of-his-museum-a-devils-botany-tickets-1991775669645">
+<button class="toggle" data-idx="67" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="67" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/viktor-wynds-guided-tour-of-his-museum-a-devils-botany-tickets-1991775669645">Viktor Wynd&#x27;s Guided Tour of His Museum + a Devil&#x27;s Botany</a></h3>
 <div class="meta">6:00 PM – 7:30 PM · The Viktor Wynd Museum of Curiosities, Fine Art &amp; Natural History · $16.00</div>
@@ -1957,15 +1980,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Viktor%20Wynd%27s%20Guided%20Tour%20of%20His%20Museum%20%2B%20a%20Devil%27s%20Botany&dates=20261006T170000Z/20261006T190000Z&details=Join%20Viktor%20Wynd%20at%20his%20museum%20%28with%20a%20glass%20of%20Absinthe%29%20for%20an%20intimate%20tour%2C%20see%20mermaids%20%26%20fairies%20-%20In%20Person%20Event%20-%20not%20by%20Zoom%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/viktor-wynds-guided-tour-of-his-museum-a-devils-botany-tickets-1991775669645&location=The%20Viktor%20Wynd%20Museum%20of%20Curiosities%2C%20Fine%20Art%20%26%20Natural%20History" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="66">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="66">Compartir</button>
+<button class="cal-link ics-btn" data-idx="67">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="67">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
-<div class="mlt"><span>More like this:</span><a href="#e-3769e6b3">Twist Museum - London&#x27;s Home of Illusions STANDARD</a> <a href="#e-04dc2c37">Tues 6th Oct - Stand Up Comedy Show - Big Belly Comedy Club</a> <a href="#e-0e25eb3b">Therapeutic Tuesdays</a></div></article>
-<article class="event" id="e-1b98128e" data-idx="67" data-eid="1b98128e" data-name="eCommerce, eBay, Amazon - eCommerce and Business Networking Event in London" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="Market Halls Cargo Canary Wharf" data-url="https://www.eventbrite.co.uk/e/ecommerce-ebay-amazon-ecommerce-and-business-networking-event-in-london-tickets-2001773478360">
-<button class="toggle" data-idx="67" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="67" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<div class="mlt"><span>More like this:</span><a href="#e-f68798bb">Twist Museum - London&#x27;s Home of Illusions STANDARD</a> <a href="#e-04dc2c37">Tues 6th Oct - Stand Up Comedy Show - Big Belly Comedy Club</a> <a href="#e-0e25eb3b">Therapeutic Tuesdays</a></div></article>
+<article class="event" id="e-1b98128e" data-idx="68" data-eid="1b98128e" data-name="eCommerce, eBay, Amazon - eCommerce and Business Networking Event in London" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="Market Halls Cargo Canary Wharf" data-url="https://www.eventbrite.co.uk/e/ecommerce-ebay-amazon-ecommerce-and-business-networking-event-in-london-tickets-2001773478360">
+<button class="toggle" data-idx="68" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="68" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/ecommerce-ebay-amazon-ecommerce-and-business-networking-event-in-london-tickets-2001773478360">eCommerce, eBay, Amazon - eCommerce and Business Networking Event in London</a></h3>
 <div class="meta">6:30 PM – 9:30 PM · Market Halls Cargo Canary Wharf · Free</div>
@@ -1974,15 +1997,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=eCommerce%2C%20eBay%2C%20Amazon%20-%20eCommerce%20and%20Business%20Networking%20Event%20in%20London&dates=20261006T173000Z/20261006T193000Z&details=eCommerce%20Networking%20Event%20in%20London%2C%20Canary%20Wharf%3A%20Connect%20w/%20online%20sellers%2C%20eBay/Amazon%20Sellers%2C%20eCommerce%20Experts%20%26%20Business%20Owners.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/ecommerce-ebay-amazon-ecommerce-and-business-networking-event-in-london-tickets-2001773478360&location=Market%20Halls%20Cargo%20Canary%20Wharf" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="67">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="67">Compartir</button>
+<button class="cal-link ics-btn" data-idx="68">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="68">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-77ee0c9f">Christian Creatives 4 Year Anniversary October Edition</a> <a href="#e-3c384eb6">A Networking Soiree In Conjunction With Santander, Cheapside, Bank, London</a> <a href="#e-8e494eef">ENGLAND FANPARK: ENGLAND V CZECHIA</a></div></article>
-<article class="event" id="e-4d4c0c3f" data-idx="68" data-eid="4d4c0c3f" data-name="Traders Wine Club: Explore &amp; Taste New Wines" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="Traders Wine Bar" data-url="https://www.eventbrite.co.uk/e/traders-wine-club-explore-taste-new-wines-tickets-1981744327631">
-<button class="toggle" data-idx="68" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="68" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-4d4c0c3f" data-idx="69" data-eid="4d4c0c3f" data-name="Traders Wine Club: Explore &amp; Taste New Wines" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="Traders Wine Bar" data-url="https://www.eventbrite.co.uk/e/traders-wine-club-explore-taste-new-wines-tickets-1981744327631">
+<button class="toggle" data-idx="69" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="69" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/traders-wine-club-explore-taste-new-wines-tickets-1981744327631">Traders Wine Club: Explore &amp; Taste New Wines</a></h3>
 <div class="meta">6:30 PM – 8:30 PM · Traders Wine Bar · $15.00</div>
@@ -1991,15 +2014,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Traders%20Wine%20Club%3A%20Explore%20%26%20Taste%20New%20Wines&dates=20261006T173000Z/20261006T193000Z&details=Join%20us%20at%20Traders%20Wine%20Club%20to%20sip%2C%20swirl%2C%20and%20discover%20new%20wines%20in%20a%20cozy%20setting%20where%20every%20glass%20tells%20a%20story.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/traders-wine-club-explore-taste-new-wines-tickets-1981744327631&location=Traders%20Wine%20Bar" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="68">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="68">Compartir</button>
+<button class="cal-link ics-btn" data-idx="69">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="69">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-49573cbb">Vine x Azienda Agricola Tachinno - Wine Tasting</a> <a href="#e-53dee181">Sip n Paint at The Windsor Castle Pub N2</a> <a href="#e-a0b99953">Tuesday Wine &amp; Cheese Tasting</a></div></article>
-<article class="event" id="e-49573cbb" data-idx="69" data-eid="49573cbb" data-name="Vine x Azienda Agricola Tachinno - Wine Tasting" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="126 Bermondsey St" data-url="https://www.eventbrite.com/e/vine-x-azienda-agricola-tachinno-wine-tasting-tickets-2001888845426">
-<button class="toggle" data-idx="69" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="69" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-49573cbb" data-idx="70" data-eid="49573cbb" data-name="Vine x Azienda Agricola Tachinno - Wine Tasting" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="126 Bermondsey St" data-url="https://www.eventbrite.com/e/vine-x-azienda-agricola-tachinno-wine-tasting-tickets-2001888845426">
+<button class="toggle" data-idx="70" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="70" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/vine-x-azienda-agricola-tachinno-wine-tasting-tickets-2001888845426">Vine x Azienda Agricola Tachinno - Wine Tasting</a></h3>
 <div class="meta">6:00 PM – 8:00 PM · 126 Bermondsey St · $33.22</div>
@@ -2008,15 +2031,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vine%20x%20Azienda%20Agricola%20Tachinno%20-%20Wine%20Tasting&dates=20261006T170000Z/20261006T190000Z&details=Join%20us%20for%20an%20intimate%20evening%20of%20fabulous%20wines%20with%20Tachinno%20visiting%20us%20all%20the%20way%20from%20Piemonte.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.com/e/vine-x-azienda-agricola-tachinno-wine-tasting-tickets-2001888845426&location=126%20Bermondsey%20St" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="69">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="69">Compartir</button>
+<button class="cal-link ics-btn" data-idx="70">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="70">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-4d4c0c3f">Traders Wine Club: Explore &amp; Taste New Wines</a> <a href="#e-53dee181">Sip n Paint at The Windsor Castle Pub N2</a> <a href="#e-a0b99953">Tuesday Wine &amp; Cheese Tasting</a></div></article>
-<article class="event" id="e-53dee181" data-idx="70" data-eid="53dee181" data-name="Sip n Paint at The Windsor Castle Pub N2" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="The Windsor Castle N2" data-url="https://www.eventbrite.co.uk/e/sip-n-paint-at-the-windsor-castle-pub-n2-tickets-1998966468518">
-<button class="toggle" data-idx="70" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="70" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-53dee181" data-idx="71" data-eid="53dee181" data-name="Sip n Paint at The Windsor Castle Pub N2" data-start-local="2026-10-06T19:30:00" data-cal-start="20261006T183000Z" data-cal-end="20261006T203000Z" data-loc="The Windsor Castle N2" data-url="https://www.eventbrite.co.uk/e/sip-n-paint-at-the-windsor-castle-pub-n2-tickets-1998966468518">
+<button class="toggle" data-idx="71" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="71" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/sip-n-paint-at-the-windsor-castle-pub-n2-tickets-1998966468518">Sip n Paint at The Windsor Castle Pub N2</a></h3>
 <div class="meta">7:30 PM – 9:30 PM · The Windsor Castle N2 · $27.80</div>
@@ -2025,15 +2048,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sip%20n%20Paint%20at%20The%20Windsor%20Castle%20Pub%20N2&dates=20261006T183000Z/20261006T203000Z&details=Come%20join%20us%20for%20a%20fun%20evening%20of%20sipping%20and%20painting%20at%20The%20Windsor%20Castle%20Pub%20N2%21%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/sip-n-paint-at-the-windsor-castle-pub-n2-tickets-1998966468518&location=The%20Windsor%20Castle%20N2" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="70">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="70">Compartir</button>
+<button class="cal-link ics-btn" data-idx="71">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="71">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-4d4c0c3f">Traders Wine Club: Explore &amp; Taste New Wines</a> <a href="#e-49573cbb">Vine x Azienda Agricola Tachinno - Wine Tasting</a> <a href="#e-a0b99953">Tuesday Wine &amp; Cheese Tasting</a></div></article>
-<article class="event" id="e-a0b99953" data-idx="71" data-eid="a0b99953" data-name="Tuesday Wine &amp; Cheese Tasting" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Kenrick&#x27;s Wine Merchant" data-url="https://www.eventbrite.co.uk/e/tuesday-wine-cheese-tasting-tickets-1998206052092">
-<button class="toggle" data-idx="71" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="71" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-a0b99953" data-idx="72" data-eid="a0b99953" data-name="Tuesday Wine &amp; Cheese Tasting" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Kenrick&#x27;s Wine Merchant" data-url="https://www.eventbrite.co.uk/e/tuesday-wine-cheese-tasting-tickets-1998206052092">
+<button class="toggle" data-idx="72" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="72" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/tuesday-wine-cheese-tasting-tickets-1998206052092">Tuesday Wine &amp; Cheese Tasting</a></h3>
 <div class="meta">7:00 PM – 10:00 PM · Kenrick&#x27;s Wine Merchant · $15.00</div>
@@ -2042,15 +2065,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Tuesday%20Wine%20%26%20Cheese%20Tasting&dates=20261006T180000Z/20261006T200000Z&details=Discover%203%20interesting%20wines%20selected%20by%20an%20experienced%20wine%20merchant%2C%20with%20a%20little%20cheese.%20New%20wines%20and%20discoveries%20every%20Tuesday.%20%C2%A315.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/tuesday-wine-cheese-tasting-tickets-1998206052092&location=Kenrick%27s%20Wine%20Merchant" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="71">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="71">Compartir</button>
+<button class="cal-link ics-btn" data-idx="72">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="72">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-4d4c0c3f">Traders Wine Club: Explore &amp; Taste New Wines</a> <a href="#e-49573cbb">Vine x Azienda Agricola Tachinno - Wine Tasting</a> <a href="#e-53dee181">Sip n Paint at The Windsor Castle Pub N2</a></div></article>
-<article class="event" id="e-c8b510e6" data-idx="72" data-eid="c8b510e6" data-name="Indonesian and Thai Veggie Cooking Workshop" data-start-local="2026-10-06T11:00:00" data-cal-start="20261006T100000Z" data-cal-end="20261006T120000Z" data-loc="25 The Rodings, Snakes Ln E" data-url="https://www.eventbrite.com/e/indonesian-and-thai-veggie-cooking-workshop-tickets-1993210954621">
-<button class="toggle" data-idx="72" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="72" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-c8b510e6" data-idx="73" data-eid="c8b510e6" data-name="Indonesian and Thai Veggie Cooking Workshop" data-start-local="2026-10-06T11:00:00" data-cal-start="20261006T100000Z" data-cal-end="20261006T120000Z" data-loc="25 The Rodings, Snakes Ln E" data-url="https://www.eventbrite.com/e/indonesian-and-thai-veggie-cooking-workshop-tickets-1993210954621">
+<button class="toggle" data-idx="73" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="73" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/indonesian-and-thai-veggie-cooking-workshop-tickets-1993210954621">Indonesian and Thai Veggie Cooking Workshop</a></h3>
 <div class="meta">11:00 AM – 12:50 PM · 25 The Rodings, Snakes Ln E</div>
@@ -2059,15 +2082,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Indonesian%20and%20Thai%20Veggie%20Cooking%20Workshop&dates=20261006T100000Z/20261006T120000Z&details=Learn%20to%20cook%20a%20duo%20of%20delectable%20dishes%20at%20this%20vegetarian%20Indonesian%20and%20Thai%20cooking%20class%20in%20Woodford%20Green%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.com/e/indonesian-and-thai-veggie-cooking-workshop-tickets-1993210954621&location=25%20The%20Rodings%2C%20Snakes%20Ln%20E" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="72">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="72">Compartir</button>
+<button class="cal-link ics-btn" data-idx="73">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="73">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-4d4c0c3f">Traders Wine Club: Explore &amp; Taste New Wines</a> <a href="#e-49573cbb">Vine x Azienda Agricola Tachinno - Wine Tasting</a> <a href="#e-53dee181">Sip n Paint at The Windsor Castle Pub N2</a></div></article>
-<article class="event" id="e-c54a836d" data-idx="73" data-eid="c54a836d" data-name="London&#x27;s Hidden Cocktail Scene" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Soho" data-url="https://www.eventbrite.co.uk/e/londons-hidden-cocktail-scene-tickets-1992266746469">
-<button class="toggle" data-idx="73" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="73" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-c54a836d" data-idx="74" data-eid="c54a836d" data-name="London&#x27;s Hidden Cocktail Scene" data-start-local="2026-10-06T19:00:00" data-cal-start="20261006T180000Z" data-cal-end="20261006T200000Z" data-loc="Soho" data-url="https://www.eventbrite.co.uk/e/londons-hidden-cocktail-scene-tickets-1992266746469">
+<button class="toggle" data-idx="74" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="74" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/londons-hidden-cocktail-scene-tickets-1992266746469">London&#x27;s Hidden Cocktail Scene</a></h3>
 <div class="meta">7:00 PM – 10:00 PM · Soho · $280.00</div>
@@ -2076,37 +2099,37 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=London%27s%20Hidden%20Cocktail%20Scene&dates=20261006T180000Z/20261006T200000Z&details=Have%20the%20best%20night%20out%20discovering%20London%E2%80%99s%20most%20exciting%20and%20hidden%20cocktail%20bars%2C%20with%20legendary%20host%20Antoine%20%28A%20for%20Antoine%29.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/londons-hidden-cocktail-scene-tickets-1992266746469&location=Soho" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="73">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="73">Compartir</button>
+<button class="cal-link ics-btn" data-idx="74">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="74">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-82dfe5f2">Gum Disease</a> <a href="#e-4ede4d40">The Strokes - Reality Awaits</a> <a href="#e-66d28519">Belle Livingstone&#x27;s 58th Street Country Club</a></div></article>
-<article class="event" id="e-ff87e1bd" data-idx="74" data-eid="ff87e1bd" data-name="Bordeaux Uncorked Part II: Left Bank – Gravel, Glory &amp; the Kingdom of Caber" data-lat="51.4690603" data-lng="-0.1851528">
-<button class="toggle" data-idx="74" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="74" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-ff87e1bd" data-idx="75" data-eid="ff87e1bd" data-name="Bordeaux Uncorked Part II: Left Bank – Gravel, Glory &amp; the Kingdom of Caber" data-lat="51.4690603" data-lng="-0.1851528">
+<button class="toggle" data-idx="75" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="75" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/bordeaux-uncorked-part-ii-left-bank-gravel-glory-the-kingdom-of-caber-tickets-1999268350455">Bordeaux Uncorked Part II: Left Bank – Gravel, Glory &amp; the Kingdom of Caber</a></h3>
 <div class="meta">Time TBA · West London Wine School, Fulham</div>
 <p>Discover Médoc’s Cabernet Sauvignon, from 1855 Classified Growths to Crus Bourgeois and newly recognised white wines. Taste 7+ Left Bank gem</p>
 <a class="tickets" href="https://www.eventbrite.co.uk/e/bordeaux-uncorked-part-ii-left-bank-gravel-glory-the-kingdom-of-caber-tickets-1999268350455">Boletos e info →</a>
-<div class="cal-row"><button class="cal-link share-ev" data-idx="74">Compartir</button></div>
+<div class="cal-row"><button class="cal-link share-ev" data-idx="75">Compartir</button></div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-4d4c0c3f">Traders Wine Club: Explore &amp; Taste New Wines</a> <a href="#e-49573cbb">Vine x Azienda Agricola Tachinno - Wine Tasting</a> <a href="#e-53dee181">Sip n Paint at The Windsor Castle Pub N2</a></div></article>
-<article class="event" id="e-1ed65f69" data-idx="75" data-eid="1ed65f69" data-name="Ektara SeaFood Festival" data-lat="51.5031987" data-lng="-0.0597852">
-<button class="toggle" data-idx="75" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="75" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-1ed65f69" data-idx="76" data-eid="1ed65f69" data-name="Ektara SeaFood Festival" data-lat="51.5031987" data-lng="-0.0597852">
+<button class="toggle" data-idx="76" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="76" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/ektara-seafood-festival-tickets-1999418951908">Ektara SeaFood Festival</a></h3>
 <div class="meta">Time TBA · EKTARA, Wapping</div>
 <p>Celebrate seafood, spice, and tradition at EKTARA in Wapping. Enjoy a limited-time menu of Bengali and Indian-inspired seafood dishes.</p>
 <a class="tickets" href="https://www.eventbrite.com/e/ektara-seafood-festival-tickets-1999418951908">Boletos e info →</a>
-<div class="cal-row"><button class="cal-link share-ev" data-idx="75">Compartir</button></div>
+<div class="cal-row"><button class="cal-link share-ev" data-idx="76">Compartir</button></div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-4d4c0c3f">Traders Wine Club: Explore &amp; Taste New Wines</a> <a href="#e-49573cbb">Vine x Azienda Agricola Tachinno - Wine Tasting</a> <a href="#e-53dee181">Sip n Paint at The Windsor Castle Pub N2</a></div></article>
-<article class="event" id="e-48cb604e" data-idx="76" data-eid="48cb604e" data-name="£5 pints at Supercute Brewhouse!" data-start-local="2026-10-06T17:00:00" data-cal-start="20261006T160000Z" data-cal-end="20261006T180000Z" data-loc="Supercute Brewhouse" data-url="https://www.eventbrite.co.uk/e/5-pints-at-supercute-brewhouse-tickets-1834984561219">
-<button class="toggle" data-idx="76" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="76" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-48cb604e" data-idx="77" data-eid="48cb604e" data-name="£5 pints at Supercute Brewhouse!" data-start-local="2026-10-06T17:00:00" data-cal-start="20261006T160000Z" data-cal-end="20261006T180000Z" data-loc="Supercute Brewhouse" data-url="https://www.eventbrite.co.uk/e/5-pints-at-supercute-brewhouse-tickets-1834984561219">
+<button class="toggle" data-idx="77" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="77" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/5-pints-at-supercute-brewhouse-tickets-1834984561219">£5 pints at Supercute Brewhouse!</a></h3>
 <div class="meta">5:00 PM – 7:00 PM · Supercute Brewhouse · Free</div>
@@ -2115,15 +2138,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%C2%A35%20pints%20at%20Supercute%20Brewhouse%21&dates=20261006T160000Z/20261006T180000Z&details=Get%20%C2%A35%20pints%20in%20Brixton%27s%20favourite%20microbrewery%20bar%21%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/5-pints-at-supercute-brewhouse-tickets-1834984561219&location=Supercute%20Brewhouse" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="76">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="76">Compartir</button>
+<button class="cal-link ics-btn" data-idx="77">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="77">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-4d4c0c3f">Traders Wine Club: Explore &amp; Taste New Wines</a> <a href="#e-49573cbb">Vine x Azienda Agricola Tachinno - Wine Tasting</a> <a href="#e-53dee181">Sip n Paint at The Windsor Castle Pub N2</a></div></article>
-<article class="event" id="e-c82f7ef8" data-idx="77" data-eid="c82f7ef8" data-name="Women in Tech Speed Networking London" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="Hampton by Hilton London Waterloo" data-url="https://www.eventbrite.co.uk/e/women-in-tech-speed-networking-london-tickets-2000147627396">
-<button class="toggle" data-idx="77" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="77" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-c82f7ef8" data-idx="78" data-eid="c82f7ef8" data-name="Women in Tech Speed Networking London" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="Hampton by Hilton London Waterloo" data-url="https://www.eventbrite.co.uk/e/women-in-tech-speed-networking-london-tickets-2000147627396">
+<button class="toggle" data-idx="78" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="78" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/women-in-tech-speed-networking-london-tickets-2000147627396">Women in Tech Speed Networking London</a></h3>
 <div class="meta">6:00 PM – 8:00 PM · Hampton by Hilton London Waterloo · $25.00</div>
@@ -2132,15 +2155,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Women%20in%20Tech%20Speed%20Networking%20London&dates=20261006T170000Z/20261006T190000Z&details=Connect%20with%20other%20women%20working%20across%20the%20tech%20industry%20in%20London%20to%20talk%20careers%2C%20build%20real%20connections%2C%20and%20share%20opportunities.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/women-in-tech-speed-networking-london-tickets-2000147627396&location=Hampton%20by%20Hilton%20London%20Waterloo" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="77">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="77">Compartir</button>
+<button class="cal-link ics-btn" data-idx="78">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="78">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-ddb68eec">Create your MS Access Database, 1-Day, 1-to-1, Enhanced with Generative AI</a></div></article>
-<article class="event" id="e-ddb68eec" data-idx="78" data-eid="ddb68eec" data-name="Create your MS Access Database, 1-Day, 1-to-1, Enhanced with Generative AI" data-start-local="2026-10-06T11:00:00" data-cal-start="20261006T100000Z" data-cal-end="20261006T120000Z" data-loc="PCWorkshops at Regus" data-url="https://www.eventbrite.co.uk/e/create-your-ms-access-database-1-day-1-to-1-enhanced-with-generative-ai-tickets-1991374233940">
-<button class="toggle" data-idx="78" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="78" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-ddb68eec" data-idx="79" data-eid="ddb68eec" data-name="Create your MS Access Database, 1-Day, 1-to-1, Enhanced with Generative AI" data-start-local="2026-10-06T11:00:00" data-cal-start="20261006T100000Z" data-cal-end="20261006T120000Z" data-loc="PCWorkshops at Regus" data-url="https://www.eventbrite.co.uk/e/create-your-ms-access-database-1-day-1-to-1-enhanced-with-generative-ai-tickets-1991374233940">
+<button class="toggle" data-idx="79" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="79" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/create-your-ms-access-database-1-day-1-to-1-enhanced-with-generative-ai-tickets-1991374233940">Create your MS Access Database, 1-Day, 1-to-1, Enhanced with Generative AI</a></h3>
 <div class="meta">11:00 AM – 5:00 PM · PCWorkshops at Regus</div>
@@ -2149,15 +2172,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Create%20your%20MS%20Access%20Database%2C%201-Day%2C%201-to-1%2C%20Enhanced%20with%20Generative%20AI&dates=20261006T100000Z/20261006T120000Z&details=MS%20Access%20Database%20Setup%20and%20Queries.%20Enhanced%20with%20AI%20.%20Great%20for%20conceptualising%20and%20prototyping%20your%20database.%201-1%20with%20expert.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/create-your-ms-access-database-1-day-1-to-1-enhanced-with-generative-ai-tickets-1991374233940&location=PCWorkshops%20at%20Regus" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="78">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="78">Compartir</button>
+<button class="cal-link ics-btn" data-idx="79">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="79">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a></div></article>
-<article class="event" id="e-9b748e56" data-idx="79" data-eid="9b748e56" data-name="Safeguarding Anthropocene tropical forests" data-start-local="2026-10-06T09:00:00" data-cal-start="20261006T080000Z" data-cal-end="20261006T100000Z" data-loc="The Royal Society" data-url="https://www.eventbrite.co.uk/e/safeguarding-anthropocene-tropical-forests-tickets-1991058471486">
-<button class="toggle" data-idx="79" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="79" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-9b748e56" data-idx="80" data-eid="9b748e56" data-name="Safeguarding Anthropocene tropical forests" data-start-local="2026-10-06T09:00:00" data-cal-start="20261006T080000Z" data-cal-end="20261006T100000Z" data-loc="The Royal Society" data-url="https://www.eventbrite.co.uk/e/safeguarding-anthropocene-tropical-forests-tickets-1991058471486">
+<button class="toggle" data-idx="80" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="80" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/safeguarding-anthropocene-tropical-forests-tickets-1991058471486">Safeguarding Anthropocene tropical forests</a></h3>
 <div class="meta">9:00 AM – 5:00 PM · The Royal Society · Free</div>
@@ -2166,15 +2189,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Safeguarding%20Anthropocene%20tropical%20forests&dates=20261006T080000Z/20261006T100000Z&details=Science%2B%20meeting%20organised%20by%20Professor%20Hill%20OBE%20FRS%2C%20Datuk%20Dr%20Reynolds%20MBE%2C%20Dr%20Banin%2C%20Dr%20Wang%2C%20Professor%20Pyle%20FRS%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/safeguarding-anthropocene-tropical-forests-tickets-1991058471486&location=The%20Royal%20Society" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="79">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="79">Compartir</button>
+<button class="cal-link ics-btn" data-idx="80">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="80">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a></div></article>
-<article class="event" id="e-a71193e1" data-idx="80" data-eid="a71193e1" data-name="Conservation by Design: Technology &amp; the Future of Wildlife Protection" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="Huxley Lecture Theatre, ZSL Meeting Rooms" data-url="https://www.eventbrite.co.uk/e/conservation-by-design-technology-the-future-of-wildlife-protection-tickets-1992484797666">
-<button class="toggle" data-idx="80" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="80" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-a71193e1" data-idx="81" data-eid="a71193e1" data-name="Conservation by Design: Technology &amp; the Future of Wildlife Protection" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="Huxley Lecture Theatre, ZSL Meeting Rooms" data-url="https://www.eventbrite.co.uk/e/conservation-by-design-technology-the-future-of-wildlife-protection-tickets-1992484797666">
+<button class="toggle" data-idx="81" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="81" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/conservation-by-design-technology-the-future-of-wildlife-protection-tickets-1992484797666">Conservation by Design: Technology &amp; the Future of Wildlife Protection</a></h3>
 <div class="meta">6:00 PM – 7:30 PM · Huxley Lecture Theatre, ZSL Meeting Rooms · Free</div>
@@ -2183,15 +2206,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Conservation%20by%20Design%3A%20Technology%20%26%20the%20Future%20of%20Wildlife%20Protection&dates=20261006T170000Z/20261006T190000Z&details=The%20fifth%20lecture%20in%20the%20Wild%20Talks%20series%2C%20celebrating%20ZSL%27s%20200th%20anniversary%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/conservation-by-design-technology-the-future-of-wildlife-protection-tickets-1992484797666&location=Huxley%20Lecture%20Theatre%2C%20ZSL%20Meeting%20Rooms" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="80">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="80">Compartir</button>
+<button class="cal-link ics-btn" data-idx="81">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="81">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a></div></article>
-<article class="event" id="e-4fe374dd" data-idx="81" data-eid="4fe374dd" data-name="From Strategy to Execution: Why Delivery Breaks Down (and How to Fix It)" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="BCS, The Chartered Institute for IT" data-url="https://www.eventbrite.co.uk/e/from-strategy-to-execution-why-delivery-breaks-down-and-how-to-fix-it-registration-1997680152111">
-<button class="toggle" data-idx="81" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="81" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-4fe374dd" data-idx="82" data-eid="4fe374dd" data-name="From Strategy to Execution: Why Delivery Breaks Down (and How to Fix It)" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="BCS, The Chartered Institute for IT" data-url="https://www.eventbrite.co.uk/e/from-strategy-to-execution-why-delivery-breaks-down-and-how-to-fix-it-registration-1997680152111">
+<button class="toggle" data-idx="82" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="82" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/from-strategy-to-execution-why-delivery-breaks-down-and-how-to-fix-it-registration-1997680152111">From Strategy to Execution: Why Delivery Breaks Down (and How to Fix It)</a></h3>
 <div class="meta">6:30 PM – 8:45 PM · BCS, The Chartered Institute for IT · Free</div>
@@ -2200,15 +2223,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=From%20Strategy%20to%20Execution%3A%20Why%20Delivery%20Breaks%20Down%20%28and%20How%20to%20Fix%20It%29&dates=20261006T173000Z/20261006T193000Z&details=Strategy%20often%20fails%20at%20execution.%20This%20session%20helps%20diagnose%20delivery%20breakdowns%20and%20fix%20alignment%2C%20governance%20and%20leadership.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/from-strategy-to-execution-why-delivery-breaks-down-and-how-to-fix-it-registration-1997680152111&location=BCS%2C%20The%20Chartered%20Institute%20for%20IT" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="81">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="81">Compartir</button>
+<button class="cal-link ics-btn" data-idx="82">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="82">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a></div></article>
-<article class="event" id="e-ac67dfd7" data-idx="82" data-eid="ac67dfd7" data-name="Future of Neurosurgery Seminar Series - Alexander Khalessi" data-start-local="2026-10-06T17:15:00" data-cal-start="20261006T161500Z" data-cal-end="20261006T181500Z" data-loc="33 Queen Square Lecture Theatre, The Institute of Neurology" data-url="https://www.eventbrite.co.uk/e/future-of-neurosurgery-seminar-series-alexander-khalessi-tickets-1999095175484">
-<button class="toggle" data-idx="82" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="82" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-ac67dfd7" data-idx="83" data-eid="ac67dfd7" data-name="Future of Neurosurgery Seminar Series - Alexander Khalessi" data-start-local="2026-10-06T17:15:00" data-cal-start="20261006T161500Z" data-cal-end="20261006T181500Z" data-loc="33 Queen Square Lecture Theatre, The Institute of Neurology" data-url="https://www.eventbrite.co.uk/e/future-of-neurosurgery-seminar-series-alexander-khalessi-tickets-1999095175484">
+<button class="toggle" data-idx="83" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="83" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/future-of-neurosurgery-seminar-series-alexander-khalessi-tickets-1999095175484">Future of Neurosurgery Seminar Series - Alexander Khalessi</a></h3>
 <div class="meta">5:15 PM – 7:30 PM · 33 Queen Square Lecture Theatre, The Institute of Neurology · Free</div>
@@ -2217,15 +2240,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Future%20of%20Neurosurgery%20Seminar%20Series%20-%20Alexander%20Khalessi&dates=20261006T161500Z/20261006T181500Z&details=Join%20us%20for%20the%20first%20instalment%20of%20the%20Queen%20Square%20Future%20of%20Neurosurgery%20Seminar%20Series%20for%202026/27%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/future-of-neurosurgery-seminar-series-alexander-khalessi-tickets-1999095175484&location=33%20Queen%20Square%20Lecture%20Theatre%2C%20The%20Institute%20of%20Neurology" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="82">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="82">Compartir</button>
+<button class="cal-link ics-btn" data-idx="83">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="83">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a></div></article>
-<article class="event" id="e-d98054c4" data-idx="83" data-eid="d98054c4" data-name="SaaS Isn&#x27;t Dead - The Interface Is Being Rebuilt For AI and Humans Together" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="E20 1JN" data-url="https://www.eventbrite.co.uk/e/saas-isnt-dead-the-interface-is-being-rebuilt-for-ai-and-humans-together-tickets-1997693430828">
-<button class="toggle" data-idx="83" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="83" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-d98054c4" data-idx="84" data-eid="d98054c4" data-name="SaaS Isn&#x27;t Dead - The Interface Is Being Rebuilt For AI and Humans Together" data-start-local="2026-10-06T18:00:00" data-cal-start="20261006T170000Z" data-cal-end="20261006T190000Z" data-loc="E20 1JN" data-url="https://www.eventbrite.co.uk/e/saas-isnt-dead-the-interface-is-being-rebuilt-for-ai-and-humans-together-tickets-1997693430828">
+<button class="toggle" data-idx="84" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="84" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/saas-isnt-dead-the-interface-is-being-rebuilt-for-ai-and-humans-together-tickets-1997693430828">SaaS Isn&#x27;t Dead - The Interface Is Being Rebuilt For AI and Humans Together</a></h3>
 <div class="meta">6:00 PM – 9:00 PM · E20 1JN · Free</div>
@@ -2234,15 +2257,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SaaS%20Isn%27t%20Dead%20-%20The%20Interface%20Is%20Being%20Rebuilt%20For%20AI%20and%20Humans%20Together&dates=20261006T170000Z/20261006T190000Z&details=SaaS%20Isn%27t%20Dead%20-%20The%20Interface%20Is%20Being%20Rebuilt%20For%20AI%20and%20Humans%20Together%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/saas-isnt-dead-the-interface-is-being-rebuilt-for-ai-and-humans-together-tickets-1997693430828&location=E20%201JN" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="83">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="83">Compartir</button>
+<button class="cal-link ics-btn" data-idx="84">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="84">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a></div></article>
-<article class="event" id="e-4f72131f" data-idx="84" data-eid="4f72131f" data-name="The sex-strike theory of human origins" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="UCL Anthropology" data-url="https://www.eventbrite.co.uk/e/the-sex-strike-theory-of-human-origins-tickets-1998745522663">
-<button class="toggle" data-idx="84" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="84" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-4f72131f" data-idx="85" data-eid="4f72131f" data-name="The sex-strike theory of human origins" data-start-local="2026-10-06T18:30:00" data-cal-start="20261006T173000Z" data-cal-end="20261006T193000Z" data-loc="UCL Anthropology" data-url="https://www.eventbrite.co.uk/e/the-sex-strike-theory-of-human-origins-tickets-1998745522663">
+<button class="toggle" data-idx="85" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="85" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/the-sex-strike-theory-of-human-origins-tickets-1998745522663">The sex-strike theory of human origins</a></h3>
 <div class="meta">6:30 PM – 8:00 PM · UCL Anthropology · Free</div>
@@ -2251,15 +2274,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20sex-strike%20theory%20of%20human%20origins&dates=20261006T173000Z/20261006T193000Z&details=Anthropologists%20Chris%20Knight%20and%20Camilla%20Power%20will%20discuss%20their%20theory%20of%20human%20symbolic%20origins%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/the-sex-strike-theory-of-human-origins-tickets-1998745522663&location=UCL%20Anthropology" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="84">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="84">Compartir</button>
+<button class="cal-link ics-btn" data-idx="85">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="85">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a></div></article>
-<article class="event" id="e-a07c194a" data-idx="85" data-eid="a07c194a" data-name="Free Digital Support at North Kensington Library (pm)" data-start-local="2026-10-06T17:30:00" data-cal-start="20261006T163000Z" data-cal-end="20261006T183000Z" data-loc="North Kensington Library" data-url="https://www.eventbrite.co.uk/e/free-digital-support-at-north-kensington-library-pm-tickets-1982574104516">
-<button class="toggle" data-idx="85" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="85" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-a07c194a" data-idx="86" data-eid="a07c194a" data-name="Free Digital Support at North Kensington Library (pm)" data-start-local="2026-10-06T17:30:00" data-cal-start="20261006T163000Z" data-cal-end="20261006T183000Z" data-loc="North Kensington Library" data-url="https://www.eventbrite.co.uk/e/free-digital-support-at-north-kensington-library-pm-tickets-1982574104516">
+<button class="toggle" data-idx="86" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="86" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://www.eventbrite.co.uk/e/free-digital-support-at-north-kensington-library-pm-tickets-1982574104516">Free Digital Support at North Kensington Library (pm)</a></h3>
 <div class="meta">5:30 PM – 7:30 PM · North Kensington Library · Free</div>
@@ -2268,15 +2291,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Free%20Digital%20Support%20at%20North%20Kensington%20Library%20%28pm%29&dates=20261006T163000Z/20261006T183000Z&details=Free%20assistance%20with%20computer%20and%20mobile%20basics.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/free-digital-support-at-north-kensington-library-pm-tickets-1982574104516&location=North%20Kensington%20Library" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="85">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="85">Compartir</button>
+<button class="cal-link ics-btn" data-idx="86">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="86">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a></div></article>
-<article class="event" id="e-e5daa6c4" data-idx="86" data-eid="e5daa6c4" data-name="Smart Tech for Seniors" data-start-local="2026-10-06T12:30:00" data-cal-start="20261006T113000Z" data-cal-end="20261006T133000Z" data-loc="Lewisham Community Space" data-url="https://www.eventbrite.co.nz/e/smart-tech-for-seniors-tickets-1980845217368">
-<button class="toggle" data-idx="86" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="86" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-e5daa6c4" data-idx="87" data-eid="e5daa6c4" data-name="Smart Tech for Seniors" data-start-local="2026-10-06T12:30:00" data-cal-start="20261006T113000Z" data-cal-end="20261006T133000Z" data-loc="Lewisham Community Space" data-url="https://www.eventbrite.co.nz/e/smart-tech-for-seniors-tickets-1980845217368">
+<button class="toggle" data-idx="87" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="87" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.nz/e/smart-tech-for-seniors-tickets-1980845217368">Smart Tech for Seniors</a></h3>
 <div class="meta">12:30 PM – 2:30 PM · Lewisham Community Space</div>
@@ -2285,15 +2308,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Smart%20Tech%20for%20Seniors&dates=20261006T113000Z/20261006T133000Z&details=Smart%20Tech%20for%20Seniors%20is%20a%20user%20friendly%20digital%20skills%20education%20programme%2C%20that%20helps%20older%20adults%20feel%20confident%20using%20technology.%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.nz/e/smart-tech-for-seniors-tickets-1980845217368&location=Lewisham%20Community%20Space" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="86">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="86">Compartir</button>
+<button class="cal-link ics-btn" data-idx="87">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="87">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a></div></article>
-<article class="event" id="e-40f72a19" data-idx="87" data-eid="40f72a19" data-name="High Voltage Testing Workshop (Stevenage) | Relay Testing, PI, HV" data-start-local="2026-10-06T09:15:00" data-cal-start="20261006T081500Z" data-cal-end="20261006T101500Z" data-loc="PASS Ltd - Calibration, Test Equipment &amp; Training in Stevenage" data-url="https://www.eventbrite.co.uk/e/high-voltage-testing-workshop-stevenage-relay-testing-pi-hv-tickets-1988404981827">
-<button class="toggle" data-idx="87" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="87" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-40f72a19" data-idx="88" data-eid="40f72a19" data-name="High Voltage Testing Workshop (Stevenage) | Relay Testing, PI, HV" data-start-local="2026-10-06T09:15:00" data-cal-start="20261006T081500Z" data-cal-end="20261006T101500Z" data-loc="PASS Ltd - Calibration, Test Equipment &amp; Training in Stevenage" data-url="https://www.eventbrite.co.uk/e/high-voltage-testing-workshop-stevenage-relay-testing-pi-hv-tickets-1988404981827">
+<button class="toggle" data-idx="88" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="88" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/high-voltage-testing-workshop-stevenage-relay-testing-pi-hv-tickets-1988404981827">High Voltage Testing Workshop (Stevenage) | Relay Testing, PI, HV</a></h3>
 <div class="meta">9:15 AM – 3:00 PM · PASS Ltd - Calibration, Test Equipment &amp; Training in Stevenage</div>
@@ -2302,15 +2325,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=High%20Voltage%20Testing%20Workshop%20%28Stevenage%29%20%7C%20Relay%20Testing%2C%20PI%2C%20HV&dates=20261006T081500Z/20261006T101500Z&details=High-voltage%20testing%20%26%20commissioning%20at%20our%20hands-on%20workshop%20in%20Stevenage%21%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/high-voltage-testing-workshop-stevenage-relay-testing-pi-hv-tickets-1988404981827&location=PASS%20Ltd%20-%20Calibration%2C%20Test%20Equipment%20%26%20Training%20in%20Stevenage" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="87">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="87">Compartir</button>
+<button class="cal-link ics-btn" data-idx="88">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="88">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
 <div class="mlt"><span>More like this:</span><a href="#e-d0e45626">Scientist to Founder: London</a> <a href="#e-30e5854e">Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom</a> <a href="#e-c82f7ef8">Women in Tech Speed Networking London</a></div></article>
-<article class="event" id="e-4ad60186" data-idx="88" data-eid="4ad60186" data-name="Digital Drop-in with Cambridge Online at Arbury Court Library" data-start-local="2026-10-06T12:30:00" data-cal-start="20261006T113000Z" data-cal-end="20261006T133000Z" data-loc="Arbury Court Library" data-url="https://www.eventbrite.co.uk/e/digital-drop-in-with-cambridge-online-at-arbury-court-library-tickets-1994686339537">
-<button class="toggle" data-idx="88" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="88" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<article class="event" id="e-4ad60186" data-idx="89" data-eid="4ad60186" data-name="Digital Drop-in with Cambridge Online at Arbury Court Library" data-start-local="2026-10-06T12:30:00" data-cal-start="20261006T113000Z" data-cal-end="20261006T133000Z" data-loc="Arbury Court Library" data-url="https://www.eventbrite.co.uk/e/digital-drop-in-with-cambridge-online-at-arbury-court-library-tickets-1994686339537">
+<button class="toggle" data-idx="89" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
+<button class="hide" data-idx="89" aria-label="Ocultar este evento" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.co.uk/e/digital-drop-in-with-cambridge-online-at-arbury-court-library-tickets-1994686339537">Digital Drop-in with Cambridge Online at Arbury Court Library</a></h3>
 <div class="meta">12:30 PM – 1:45 PM · Arbury Court Library</div>
@@ -2319,8 +2342,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="cal-row">
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Digital%20Drop-in%20with%20Cambridge%20Online%20at%20Arbury%20Court%20Library&dates=20261006T113000Z/20261006T133000Z&details=Join%20our%20partners%20at%20Cambridge%20Online%20for%20free%20digital%20support%21%20Tickets%20%26%20info%3A%20https%3A//www.eventbrite.co.uk/e/digital-drop-in-with-cambridge-online-at-arbury-court-library-tickets-1994686339537&location=Arbury%20Court%20Library" target="_blank" rel="noopener">Google Calendar</a>
-<button class="cal-link ics-btn" data-idx="88">Apple / Outlook</button>
-<button class="cal-link share-ev" data-idx="88">Compartir</button>
+<button class="cal-link ics-btn" data-idx="89">Apple / Outlook</button>
+<button class="cal-link share-ev" data-idx="89">Compartir</button>
 <span class="leave-by"></span>
 </div>
 </div>
@@ -2334,11 +2357,11 @@ document.addEventListener("DOMContentLoaded", function(){
 const TRAVEL_MINUTES = 30;  // default buffer before an event's start time
 const CITY = "london";
 const DATE = "2026-10-06";
-const NAMES = ["Twist Museum - London's Home of Illusions STANDARD", "Gum Disease", "The Strokes - Reality Awaits", "Mamma Mia! The Party", "Belle Livingstone's 58th Street Country Club", "Stranger Things: The First Shadow", "My Neighbour Totoro", "Theatre Adult with Gianmarco Soresi", "Cabaret At The Kit Kat Club", "Matilda The Musical", "Baaba Maal", "Gavin DeGraw", "Orville Peck", "Talia Mar", "alexsucks", "Comedy in Your Eye - Stand up Comedy in Camden Town", "Tues 6th Oct - Stand Up Comedy Show - Big Belly Comedy Club", "DJ Krush", "Hadestown", "The Standard of Living", "Disney's THE LION KING", "EuroCup - London Lions v La Laguna Tenerife", "Mamma Mia!", "Sinatra the Musical", "The Devil Wears Prada", "Martin Guerre", "Avenue Q", "Million Dollar Quartet", "The Hunger Games On Stage", "Phantom of the Opera", "The Play That Goes Wrong", "Wicked", "Theatre", "Les Miserables", "Hamilton", "Beetlejuice", "Oh Mary!", "Moulin Rouge The Musical", "Shakespeare's Globe - Much Ado About Nothing", "The Mousetrap", "The Book Of Mormon", "Titanique", "Witness for the Prosecution", "The Van Morrison Alumni Band", "Into The Woods", "Hay Fever", "England V Czechia - ENGLAND FANS ONLY", "Richard Marx - After Hours Tour", "SIX The Musical", "The Definitive Rat Pack", "Scientist to Founder: London", "Therapeutic Tuesdays", "The Life Scientific", "The Psychology of Attachment, Love & Heartbreak", "Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom", "Chapters & Film + TV Charity Fundraiser Event", "Middle Temple Hall Lunch & Tours", "Aerial Relaxation Pods\u00ae- Sound Journey Gong Bath Meditation in Hammocks", "Into The Light | Cyanotype Workshop from the Linnean Collections", "TUESDAY CI LAB", "Tuesday Night British Stand-up Comedy, 9PM, Soho", "Should Scotland, N. Ireland & Wales Leave The UK? - Victoria Debates", "Christian Creatives 4 Year Anniversary October Edition", "Central London Stand-Up Comedy Show - \u00a38 every night of the week", "A Networking Soiree In Conjunction With Santander, Cheapside, Bank, London", "ENGLAND FANPARK: ENGLAND V CZECHIA", "Viktor Wynd's Guided Tour of His Museum + a Devil's Botany", "eCommerce, eBay, Amazon - eCommerce and Business Networking Event in London", "Traders Wine Club: Explore & Taste New Wines", "Vine x Azienda Agricola Tachinno - Wine Tasting", "Sip n Paint at The Windsor Castle Pub N2", "Tuesday Wine & Cheese Tasting", "Indonesian and Thai Veggie Cooking Workshop", "London's Hidden Cocktail Scene", "Bordeaux Uncorked Part II: Left Bank \u2013 Gravel, Glory & the Kingdom of Caber", "Ektara SeaFood Festival", "\u00a35 pints at Supercute Brewhouse!", "Women in Tech Speed Networking London", "Create your MS Access Database, 1-Day, 1-to-1, Enhanced with Generative AI", "Safeguarding Anthropocene tropical forests", "Conservation by Design: Technology & the Future of Wildlife Protection", "From Strategy to Execution: Why Delivery Breaks Down (and How to Fix It)", "Future of Neurosurgery Seminar Series - Alexander Khalessi", "SaaS Isn't Dead - The Interface Is Being Rebuilt For AI and Humans Together", "The sex-strike theory of human origins", "Free Digital Support at North Kensington Library (pm)", "Smart Tech for Seniors", "High Voltage Testing Workshop (Stevenage) | Relay Testing, PI, HV", "Digital Drop-in with Cambridge Online at Arbury Court Library"];
-const EIDS = ["3769e6b3", "82dfe5f2", "4ede4d40", "159517e3", "66d28519", "8876cfad", "ccbe5bdd", "c21aef09", "c94b593e", "88a5eb3a", "cb65ceaa", "a13ee18d", "c538bd30", "3e2b4efd", "278f5fc6", "7508ba68", "04dc2c37", "bb9eb319", "77318cf7", "0e9a9dff", "6a6f64c4", "8d0b569d", "8eac77b2", "9da83f2c", "bd250d55", "e80087d4", "0dc012ff", "c1c56851", "72f24fe5", "b6f0ef13", "7e01a767", "c7747733", "397765bc", "08b391ee", "4185e2b8", "c17d73da", "5ffabd4e", "35f717e8", "6d6c895d", "6c29edb2", "4de9158c", "55e21662", "cbaa1b48", "734c8289", "de2ff774", "34e05248", "269d4238", "bcca1aec", "242974fc", "0d9fe077", "d0e45626", "0e25eb3b", "9bd99d1f", "6b98189b", "30e5854e", "4332a639", "0066acb0", "d510cf4e", "c80cc005", "e2ad51d9", "fb9b72d3", "13fca28d", "77ee0c9f", "71d4469d", "3c384eb6", "8e494eef", "db77c98d", "1b98128e", "4d4c0c3f", "49573cbb", "53dee181", "a0b99953", "c8b510e6", "c54a836d", "ff87e1bd", "1ed65f69", "48cb604e", "c82f7ef8", "ddb68eec", "9b748e56", "a71193e1", "4fe374dd", "ac67dfd7", "d98054c4", "4f72131f", "a07c194a", "e5daa6c4", "40f72a19", "4ad60186"];  // permanent ids (index -> id)
-const VENUES = ["Twist Museum", "New Cross Inn", "The O2", "The O2", "Belle Livingstone's 58th Street Country Club", "Phoenix Theatre", "Gillian Lynne Theatre", "Leicester Square Theatre", "Playhouse Theatre", "Cambridge Theatre", "Blue Note London", "O2 Shepherds Bush Empire", "O2 Forum Kentish Town", "KOKO", "London Barfly", "Comedy In Your Eye", "Big Belly Comedy - Southbank", "Jazz Cafe", "Lyric Theatre", "Theatre Royal Haymarket", "Lyceum Theatre", "Copper Box Arena", "Novello Theatre", "Aldwych Theatre", "Dominion Theatre", "The Old Vic", "Shaftesbury Theatre", "The Arts at Marble Arch", "Troubadour Canary Wharf Theatre", "His Majesty's Theatre", "Duchess Theatre", "Apollo Victoria Theatre", "The Lexington", "Sondheim Theatre", "Victoria Palace Theatre", "Prince Edward Theatre", "Trafalgar Theatre", "Piccadilly Theatre", "Globe Theatre, Shakespeare's Globe", "St Martin's Theatre", "Prince of Wales Theatre", "Criterion Theatre", "County Hall", "Emerald Theatre", "Noel Coward Theatre", "Wyndham's Theatre", "Wembley Stadium", "The London Palladium", "Vaudeville Theatre", "Boisdale, Canary Wharf", "London, United Kingdom", "Bread and Butter Lounge", "The Royal Institution", "Cecil Sharp House", "Market Halls, Canary Wharf", "Emerald Theatre London.", "The Honourable Society of the Middle Temple", "The Skylight Centre", "The Linnean Society of London", "Pembroke House", "JK Comedy Club Soho", "BAM Karaoke Box | Victoria", "Fresh Arts CIC", "The Coach House", "Santander Work Cafe", "BOXPARK Wembley", "The Viktor Wynd Museum of Curiosities, Fine Art & Natural History", "Market Halls Cargo Canary Wharf", "Traders Wine Bar", "126 Bermondsey St", "The Windsor Castle N2", "Kenrick's Wine Merchant", "25 The Rodings, Snakes Ln E", "Soho", "West London Wine School", "EKTARA", "Supercute Brewhouse", "Hampton by Hilton London Waterloo", "PCWorkshops at Regus", "The Royal Society", "Huxley Lecture Theatre, ZSL Meeting Rooms", "BCS, The Chartered Institute for IT", "33 Queen Square Lecture Theatre, The Institute of Neurology", "E20 1JN", "UCL Anthropology", "North Kensington Library", "Lewisham Community Space", "PASS Ltd - Calibration, Test Equipment & Training in Stevenage", "Arbury Court Library"];
-const KIDS = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
-const PRICES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$7.90", "$15.00", "", "$14.25", "", "$16.76", "", "", "$11.55", "", "", "$9.00", "$24.50", "", "$16.00", "", "$15.00", "$33.22", "$27.80", "$15.00", "", "$280.00", "", "", "", "$25.00", "", "", "", "", "", "", "", "", "", "", ""];
+const NAMES = ["Twist Museum - London's Home of Illusions STANDARD", "Gum Disease", "The Strokes - Reality Awaits", "Mamma Mia! The Party", "Belle Livingstone's 58th Street Country Club", "Stranger Things: The First Shadow", "My Neighbour Totoro", "Theatre Adult with Gianmarco Soresi", "Cabaret At The Kit Kat Club", "Matilda The Musical", "Baaba Maal", "Gavin DeGraw", "Orville Peck", "Talia Mar", "alexsucks", "Comedy in Your Eye - Stand up Comedy in Camden Town", "Tues 6th Oct - Stand Up Comedy Show - Big Belly Comedy Club", "DJ Krush", "Hadestown", "The Standard of Living", "Disney's THE LION KING", "EuroCup - London Lions v La Laguna Tenerife", "Mamma Mia!", "Sinatra the Musical", "The Devil Wears Prada", "Martin Guerre", "Avenue Q", "Million Dollar Quartet", "The Hunger Games On Stage", "Phantom of the Opera", "The Play That Goes Wrong", "Wicked", "Theatre", "Les Miserables", "Hamilton", "Beetlejuice", "Oh Mary!", "Moulin Rouge The Musical", "Shakespeare's Globe - Much Ado About Nothing", "The Mousetrap", "The Book Of Mormon", "Titanique", "Witness for the Prosecution", "The Van Morrison Alumni Band", "The Cherry Orchard", "Into The Woods", "Hay Fever", "England V Czechia - ENGLAND FANS ONLY", "Richard Marx - After Hours Tour", "SIX The Musical", "The Definitive Rat Pack", "Scientist to Founder: London", "Therapeutic Tuesdays", "The Life Scientific", "The Psychology of Attachment, Love & Heartbreak", "Business Networking Event in London - FinTech, Finance, Banking, Tech, eCom", "Chapters & Film + TV Charity Fundraiser Event", "Middle Temple Hall Lunch & Tours", "Aerial Relaxation Pods\u00ae- Sound Journey Gong Bath Meditation in Hammocks", "Into The Light | Cyanotype Workshop from the Linnean Collections", "TUESDAY CI LAB", "Tuesday Night British Stand-up Comedy, 9PM, Soho", "Should Scotland, N. Ireland & Wales Leave The UK? - Victoria Debates", "Christian Creatives 4 Year Anniversary October Edition", "Central London Stand-Up Comedy Show - \u00a38 every night of the week", "A Networking Soiree In Conjunction With Santander, Cheapside, Bank, London", "ENGLAND FANPARK: ENGLAND V CZECHIA", "Viktor Wynd's Guided Tour of His Museum + a Devil's Botany", "eCommerce, eBay, Amazon - eCommerce and Business Networking Event in London", "Traders Wine Club: Explore & Taste New Wines", "Vine x Azienda Agricola Tachinno - Wine Tasting", "Sip n Paint at The Windsor Castle Pub N2", "Tuesday Wine & Cheese Tasting", "Indonesian and Thai Veggie Cooking Workshop", "London's Hidden Cocktail Scene", "Bordeaux Uncorked Part II: Left Bank \u2013 Gravel, Glory & the Kingdom of Caber", "Ektara SeaFood Festival", "\u00a35 pints at Supercute Brewhouse!", "Women in Tech Speed Networking London", "Create your MS Access Database, 1-Day, 1-to-1, Enhanced with Generative AI", "Safeguarding Anthropocene tropical forests", "Conservation by Design: Technology & the Future of Wildlife Protection", "From Strategy to Execution: Why Delivery Breaks Down (and How to Fix It)", "Future of Neurosurgery Seminar Series - Alexander Khalessi", "SaaS Isn't Dead - The Interface Is Being Rebuilt For AI and Humans Together", "The sex-strike theory of human origins", "Free Digital Support at North Kensington Library (pm)", "Smart Tech for Seniors", "High Voltage Testing Workshop (Stevenage) | Relay Testing, PI, HV", "Digital Drop-in with Cambridge Online at Arbury Court Library"];
+const EIDS = ["f68798bb", "82dfe5f2", "4ede4d40", "159517e3", "66d28519", "8876cfad", "ccbe5bdd", "c21aef09", "c94b593e", "88a5eb3a", "cb65ceaa", "a13ee18d", "c538bd30", "3e2b4efd", "278f5fc6", "7508ba68", "04dc2c37", "bb9eb319", "77318cf7", "0e9a9dff", "6a6f64c4", "8d0b569d", "8eac77b2", "9da83f2c", "bd250d55", "e80087d4", "0dc012ff", "c1c56851", "72f24fe5", "b6f0ef13", "7e01a767", "c7747733", "397765bc", "08b391ee", "4185e2b8", "c17d73da", "5ffabd4e", "35f717e8", "6d6c895d", "6c29edb2", "4de9158c", "55e21662", "cbaa1b48", "734c8289", "bb7a3059", "de2ff774", "34e05248", "269d4238", "bcca1aec", "242974fc", "0d9fe077", "d0e45626", "0e25eb3b", "9bd99d1f", "6b98189b", "30e5854e", "4332a639", "0066acb0", "d510cf4e", "c80cc005", "e2ad51d9", "fb9b72d3", "13fca28d", "77ee0c9f", "71d4469d", "3c384eb6", "8e494eef", "db77c98d", "1b98128e", "4d4c0c3f", "49573cbb", "53dee181", "a0b99953", "c8b510e6", "c54a836d", "ff87e1bd", "1ed65f69", "48cb604e", "c82f7ef8", "ddb68eec", "9b748e56", "a71193e1", "4fe374dd", "ac67dfd7", "d98054c4", "4f72131f", "a07c194a", "e5daa6c4", "40f72a19", "4ad60186"];  // permanent ids (index -> id)
+const VENUES = ["Twist Museum", "New Cross Inn", "The O2", "The O2", "Belle Livingstone's 58th Street Country Club", "Phoenix Theatre", "Gillian Lynne Theatre", "Leicester Square Theatre", "Playhouse Theatre", "Cambridge Theatre", "Blue Note London", "O2 Shepherds Bush Empire", "O2 Forum Kentish Town", "KOKO", "London Barfly", "Comedy In Your Eye", "Big Belly Comedy - Southbank", "Jazz Cafe", "Lyric Theatre", "Theatre Royal Haymarket", "Lyceum Theatre", "Copper Box Arena", "Novello Theatre", "Aldwych Theatre", "Dominion Theatre", "The Old Vic", "Shaftesbury Theatre", "The Arts at Marble Arch", "Troubadour Canary Wharf Theatre", "His Majesty's Theatre", "Duchess Theatre", "Apollo Victoria Theatre", "The Lexington", "Sondheim Theatre", "Victoria Palace Theatre", "Prince Edward Theatre", "Trafalgar Theatre", "Piccadilly Theatre", "Globe Theatre, Shakespeare's Globe", "St Martin's Theatre", "Prince of Wales Theatre", "Criterion Theatre", "County Hall", "Emerald Theatre", "The Harold Pinter Theatre ", "Noel Coward Theatre", "Wyndham's Theatre", "Wembley Stadium", "The London Palladium", "Vaudeville Theatre", "Boisdale, Canary Wharf", "London, United Kingdom", "Bread and Butter Lounge", "The Royal Institution", "Cecil Sharp House", "Market Halls, Canary Wharf", "Emerald Theatre London.", "The Honourable Society of the Middle Temple", "The Skylight Centre", "The Linnean Society of London", "Pembroke House", "JK Comedy Club Soho", "BAM Karaoke Box | Victoria", "Fresh Arts CIC", "The Coach House", "Santander Work Cafe", "BOXPARK Wembley", "The Viktor Wynd Museum of Curiosities, Fine Art & Natural History", "Market Halls Cargo Canary Wharf", "Traders Wine Bar", "126 Bermondsey St", "The Windsor Castle N2", "Kenrick's Wine Merchant", "25 The Rodings, Snakes Ln E", "Soho", "West London Wine School", "EKTARA", "Supercute Brewhouse", "Hampton by Hilton London Waterloo", "PCWorkshops at Regus", "The Royal Society", "Huxley Lecture Theatre, ZSL Meeting Rooms", "BCS, The Chartered Institute for IT", "33 Queen Square Lecture Theatre, The Institute of Neurology", "E20 1JN", "UCL Anthropology", "North Kensington Library", "Lewisham Community Space", "PASS Ltd - Calibration, Test Equipment & Training in Stevenage", "Arbury Court Library"];
+const KIDS = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+const PRICES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$7.90", "$15.00", "", "$14.25", "", "$16.76", "", "", "$11.55", "", "", "$9.00", "$24.50", "", "$16.00", "", "$15.00", "$33.22", "$27.80", "$15.00", "", "$280.00", "", "", "", "$25.00", "", "", "", "", "", "", "", "", "", "", ""];
 // parents can bring kids' events into story mode, Next hour and Toni's suggestions
 function kidsOn() { try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } }
 addEventListener("DOMContentLoaded", () => {
@@ -2383,12 +2406,12 @@ document.addEventListener("click", e => {
 });
 addEventListener("hashchange", () => revealCard(cardFor(location.hash)));
 addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash)), 300));
-const CATS = ["Arts & Play", "Music", "Music", "Theater", "Music", "Theater", "Theater", "Comedy", "Theater", "Theater", "Music", "Music", "Music", "Music", "Music", "Comedy", "Arts & Play", "Music", "Theater", "Theater", "Theater", "Sports", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Comedy", "Theater", "Music", "Theater", "Theater", "Theater", "Comedy", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Music", "Theater", "Theater", "Sports", "Music", "Theater", "Music", "Tech", "Arts & Play", "Talks", "Talks", "Tech", "Talks", "Music", "Talks", "Talks", "Talks", "Comedy", "Talks", "Meetups & Mixers", "Comedy", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Music", "Food & Drink", "Food & Drink", "Food & Drink", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech"];
-const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, true, false, false, false, false, true, false, true, true, false, false, true, false, true, false, false, false, false, false, false, false, false, true, false, false, true, true, true, true, true, true, true, false, false, false];
-const HOODS = ["Mayfair", "New Cross", "Greenwich Peninsula", "Greenwich Peninsula", "Peckham", "Bloomsbury", "Covent Garden", "Covent Garden", "Covent Garden", "Bloomsbury", "Covent Garden", "Shepherd's Bush", "Kentish Town", "Fitzrovia", "Chalk Farm", "Kentish Town", "", "Chalk Farm", "Soho", "Covent Garden", "Covent Garden", "Bethnal Green", "Covent Garden", "Covent Garden", "Bloomsbury", "Waterloo", "Bloomsbury", "Marylebone", "Canary Wharf", "Covent Garden", "Covent Garden", "Victoria", "Barnsbury", "Soho", "Victoria", "Soho", "Covent Garden", "Soho", "Southwark", "Bloomsbury", "Covent Garden", "Covent Garden", "Waterloo", "Covent Garden", "Bloomsbury", "Covent Garden", "", "Soho", "Covent Garden", "Canary Wharf", "Lambeth", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Fulham", "Wapping", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+const CATS = ["Arts & Play", "Music", "Music", "Theater", "Music", "Theater", "Theater", "Comedy", "Theater", "Theater", "Music", "Music", "Music", "Music", "Music", "Comedy", "Arts & Play", "Music", "Theater", "Theater", "Theater", "Sports", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Comedy", "Theater", "Music", "Theater", "Theater", "Theater", "Comedy", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Music", "Theater", "Theater", "Theater", "Sports", "Music", "Theater", "Music", "Tech", "Arts & Play", "Talks", "Talks", "Tech", "Talks", "Music", "Talks", "Talks", "Talks", "Comedy", "Talks", "Meetups & Mixers", "Comedy", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Music", "Food & Drink", "Food & Drink", "Food & Drink", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech"];
+const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, true, false, false, false, false, true, false, true, true, false, false, true, false, true, false, false, false, false, false, false, false, false, true, false, false, true, true, true, true, true, true, true, false, false, false];
+const HOODS = ["Mayfair", "New Cross", "Greenwich Peninsula", "Greenwich Peninsula", "Peckham", "Bloomsbury", "Covent Garden", "Covent Garden", "Covent Garden", "Bloomsbury", "Covent Garden", "Shepherd's Bush", "Kentish Town", "Fitzrovia", "Chalk Farm", "Kentish Town", "", "Chalk Farm", "Soho", "Covent Garden", "Covent Garden", "Bethnal Green", "Covent Garden", "Covent Garden", "Bloomsbury", "Waterloo", "Bloomsbury", "Marylebone", "Canary Wharf", "Covent Garden", "Covent Garden", "Victoria", "Barnsbury", "Soho", "Victoria", "Soho", "Covent Garden", "Soho", "Southwark", "Bloomsbury", "Covent Garden", "Covent Garden", "Waterloo", "Covent Garden", "Covent Garden", "Bloomsbury", "Covent Garden", "", "Soho", "Covent Garden", "Canary Wharf", "Lambeth", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Fulham", "Wapping", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 const TZ = "Europe/London";
-const STARTS = [1035, 1080, 1110, 1110, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1185, 1200, 1200, 1230, 1020, 1080, 1140, 1140, 1110, 1140, 720, 1140, 660, 1140, 1260, 1110, 1170, 1170, 1050, 660, 1080, 1110, 1110, 1080, 1170, 1140, 660, 1140, null, null, 1020, 1080, 660, 540, 1080, 1110, 1035, 1080, 1110, 1050, 750, 555, 750];   // minutes since midnight, or null
-const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1170, 1170, 1230, 1290, 1290, 1380, 840, null, 840, 1290, 1350, 1230, 1320, 1260, 1170, 1380, 1170, 1290, 1230, 1200, 1290, 1320, 770, 1320, null, null, 1140, 1200, 1020, 1020, 1170, 1245, 1170, 1260, 1200, 1170, 870, 900, 825];       // from end_time, or null (-> start + 2h)
+const STARTS = [1050, 1080, 1110, 1110, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1185, 1200, 1200, 1230, 1020, 1080, 1140, 1140, 1110, 1140, 720, 1140, 660, 1140, 1260, 1110, 1170, 1170, 1050, 660, 1080, 1110, 1110, 1080, 1170, 1140, 660, 1140, null, null, 1020, 1080, 660, 540, 1080, 1110, 1035, 1080, 1110, 1050, 750, 555, 750];   // minutes since midnight, or null
+const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1170, 1170, 1230, 1290, 1290, 1380, 840, null, 840, 1290, 1350, 1230, 1320, 1260, 1170, 1380, 1170, 1290, 1230, 1200, 1290, 1320, 770, 1320, null, null, 1140, 1200, 1020, 1020, 1170, 1245, 1170, 1260, 1200, 1170, 870, 900, 825];       // from end_time, or null (-> start + 2h)
 const KEY = "tonight-picks-" + CITY + "-" + DATE;
 let picks = new Set(loadIds(KEY));
 function render() {
@@ -3096,7 +3119,7 @@ function build(){
   var cb = el("input"); cb.type = "checkbox"; cb.id = "svDaily"; cb.checked = true;
   chk.appendChild(cb);
   chk.appendChild(el("span", "", "Mándame el correo diario de " + (CITY_NAMES[city()] || "mi ciudad") +
-    ": un correo a las 8 a. m. con lo mejor del día"));
+    ": un correo cada mañana con lo mejor del día"));
   p1.appendChild(chk);
   var a1 = el("div", "qactions");
   var send = el("button", "btn btn-gold", "Email me a code"); send.type = "button"; send.id = "svSend";
@@ -3120,6 +3143,27 @@ function build(){
   a2.appendChild(go); a2.appendChild(resend); a2.appendChild(back); p2.appendChild(a2);
   p2.appendChild(el("p", "sv-msg")).id = "svMsg2";
 
+  // 2b: make it yours (taste, when they go out, free-first, kids), prefilled from what we know
+  var pp = el("div", "sv-panel"); pp.hidden = true; panels.prefs = pp;
+  pp.appendChild(el("div", "quiz-eyebrow", "Una cosa más"));
+  pp.appendChild(el("h2", "", "Hazlo tuyo"));
+  pp.appendChild(el("p", "quiz-sub", "Tus planes y tu correo de la mañana siguen esto. Cámbialo cuando quieras."));
+  pp.appendChild(el("div", "qlabel", "¿Qué te gusta?"));
+  var pc = el("div", "qchips"); pc.id = "svCats"; pp.appendChild(pc);
+  pp.appendChild(el("div", "qlabel", "¿Cuándo sueles salir?"));
+  var pt = el("div", "qchips"); pt.id = "svTimes"; pp.appendChild(pt);
+  [["day", "De día"], ["evening", "Evening (5–9)"], ["late", "Tarde (21+)"]].forEach(function(t){
+    pt.appendChild(chip(t[1], {t: t[0]}));
+  });
+  pp.appendChild(el("div", "qlabel", "Además"));
+  var px = el("div", "qchips"); pp.appendChild(px);
+  var fq = chip("Gratis primero", {x: "free"}); fq.id = "svFree"; px.appendChild(fq);
+  var kq = chip("Incluir planes para niños y familias", {x: "kids"}); kq.id = "svKids"; px.appendChild(kq);
+  var ap = el("div", "qactions");
+  var keep = el("button", "btn btn-gold", "Save →"); keep.type = "button"; keep.id = "svPrefsSave";
+  ap.appendChild(keep); pp.appendChild(ap);
+  pp.appendChild(el("p", "sv-msg")).id = "svMsgP";
+
   // 3: you're in + optional texts + privacy
   var p3 = el("div", "sv-panel"); p3.hidden = true; panels.done = p3;
   p3.appendChild(el("div", "quiz-eyebrow", "Ya estás dentro"));
@@ -3142,7 +3186,7 @@ function build(){
   var acct = el("a", "qlink", "ajustes de la cuenta"); acct.href = "." + "/account.html";
   a3.appendChild(fin); a3.appendChild(acct); p3.appendChild(a3);
 
-  card.appendChild(p1); card.appendChild(p2); card.appendChild(p3);
+  card.appendChild(p1); card.appendChild(p2); card.appendChild(pp); card.appendChild(p3);
   document.body.appendChild(veil);
 
   send.addEventListener("click", sendCode);
@@ -3153,8 +3197,21 @@ function build(){
   back.addEventListener("click", function(){ show("email"); });
   later.addEventListener("click", function(){ ls(DISMISS_KEY, String(Date.now())); close(); });
   tb.addEventListener("click", textAlerts);
+  keep.addEventListener("click", savePrefs);
   fin.addEventListener("click", close);
   veil.addEventListener("keydown", function(e){ if (e.key === "Escape") close(); });
+}
+function chip(label, data){
+  var b = el("button", "qchip", label); b.type = "button"; b.setAttribute("aria-pressed", "false");
+  Object.keys(data || {}).forEach(function(k){ b.dataset[k] = data[k]; });
+  b.addEventListener("click", function(){
+    b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+  });
+  return b;
+}
+function on(b, v){ b.setAttribute("aria-pressed", v ? "true" : "false"); }
+function picked(sel, key){
+  return [].slice.call(document.querySelectorAll(sel + ' .qchip[aria-pressed="true"]')).map(function(b){ return b.dataset[key]; });
 }
 function say(id, t, cls){ var m = document.getElementById(id); m.textContent = t || ""; m.className = "sv-msg " + (cls || ""); }
 function show(name){
@@ -3200,24 +3257,54 @@ function verify(){
       steps.push(api("/me", {method: "PATCH", headers: {"Content-Type": "application/json"},
                              body: JSON.stringify({home_city: city()})}));
     }
-    var wantDaily = document.getElementById("svDaily").checked;
-    steps.push(api("/subscriptions").then(function(sub){
-      if (sub.found) return sub;                  // returning subscriber: keep their settings
-      if (!wantDaily) return null;
-      var t = tasteNow();
-      return post("/subscriptions", {email: email, city: city(), likes: t.likes, mutes: t.mutes,
-        free_only: t.free_only, surprise: t.surprise, daily_email: true, phone: "", sms_opt_in: false})
-        .then(function(r){ subscribedNow = !!r.ok; return r.ok ? {found: true, daily_email: true} : null; });
-    }));
-    return Promise.all(steps).then(function(res){ afterSignIn(d, res[res.length - 1]); });
+    steps.push(api("/subscriptions"));
+    return Promise.all(steps).then(function(res){ authed = d; existing = res[res.length - 1] || {}; showPrefs(); });
   }).catch(function(){ say("svMsg2", "No pudimos conectar con Tonight. Inténtalo en un rato.", "err"); });
+}
+var authed = null, existing = {};
+function localTimes(){ try { return JSON.parse(ls("tonight-times") || "[]"); } catch (e) { return []; } }
+function showPrefs(){
+  var t = tasteNow(), s = existing.found ? existing : {};
+  var likes = s.found ? s.likes || [] : t.likes, times = s.found ? s.times || [] : localTimes();
+  var host = document.getElementById("svCats"); host.innerHTML = "";
+  var cats = (window.Tonight && Tonight.CATS_ALL) || [];
+  cats.forEach(function(c){ var b = chip(c, {cat: c}); on(b, likes.indexOf(c) >= 0); host.appendChild(b); });
+  document.querySelectorAll("#svTimes .qchip").forEach(function(b){ on(b, times.indexOf(b.dataset.t) >= 0); });
+  on(document.getElementById("svFree"), s.found ? s.free_only : t.free_only);
+  on(document.getElementById("svKids"), s.found ? s.kids : ls("tonight-kids") === "1");
+  show("prefs");
+}
+function savePrefs(){
+  var likes = picked("#svCats", "cat"), times = picked("#svTimes", "t");
+  var free = document.getElementById("svFree").getAttribute("aria-pressed") === "true";
+  var kids = document.getElementById("svKids").getAttribute("aria-pressed") === "true";
+  var t = tasteNow(), mutes = t.mutes.filter(function(c){ return likes.indexOf(c) < 0; });
+  // this device: ranking, kids' cards, time preference
+  if (window.Tonight && Tonight.taste) {
+    Tonight.taste.likes = likes; Tonight.taste.mutes = mutes; Tonight.taste.free_only = free;
+    try { Tonight.save(); Tonight.applyRanking(); } catch (e) {}
+  }
+  ls("tonight-kids", kids ? "1" : "0"); ls("tonight-times", JSON.stringify(times));
+  say("svMsgP", "Saving…");
+  var s = existing, job;
+  if (s.found) {        // returning subscriber: keep delivery settings, update taste
+    job = post("/subscriptions", {email: s.email, city: s.city, likes: likes, mutes: mutes, free_only: free,
+      surprise: s.surprise, daily_email: s.daily_email, phone: s.phone, sms_opt_in: s.sms_opt_in,
+      times: times, kids: kids}).then(function(){ return s; });
+  } else if (document.getElementById("svDaily").checked) {
+    job = post("/subscriptions", {email: email, city: city(), likes: likes, mutes: mutes, free_only: free,
+      surprise: t.surprise, daily_email: true, phone: "", sms_opt_in: false, times: times, kids: kids})
+      .then(function(r){ subscribedNow = !!r.ok; return r.ok ? {found: true, daily_email: true} : null; });
+  } else job = Promise.resolve(null);
+  job.then(function(sub){ say("svMsgP", ""); afterSignIn(authed, sub); })
+     .catch(function(){ say("svMsgP", "No pudimos conectar con Tonight. Inténtalo en un rato.", "err"); });
 }
 function afterSignIn(d, sub){
   var name = CITY_NAMES[city()] || "tu ciudad";
   document.getElementById("svHello").textContent = d.new_account ? "Guardado. Bienvenido a Tonight." : "Qué bueno verte de nuevo.";
   document.getElementById("svSummary").textContent =
-    subscribedNow ? "Tus planes se guardaron en tu cuenta. Tu primer correo de " + name + " llega mañana a las 8 a. m."
-    : (sub && sub.found ? "Tus planes se guardaron en tu cuenta. Tus ajustes de correo no cambiaron."
+    subscribedNow ? "Tus planes y gustos están guardados. Tu primer correo para " + name + " llega mañana por la mañana."
+    : (sub && sub.found ? "Tus planes y gustos están guardados. Desde mañana tu correo sigue tus nuevos ajustes."
        : "Tus planes se guardaron en tu cuenta. Sin correo diario, como pediste.");
   api("/features").then(function(f){
     features = f || {};
@@ -3488,7 +3575,7 @@ function dinnerBlock(d){
   function add(label, href){ var a = el("a", "", label); a.href = href; a.target = "_blank"; a.rel = "noopener"; row.appendChild(a); }
   if (cfg.ot) {
     var ot = cfg.ot + "/s?dateTime=" + encodeURIComponent(cur.date + "T" + hh + ":" + mm) + "&covers=" + party;
-    if (d.lat != null && d.lng != null) ot += "&latitude=" + d.lat + "&longitude=" + d.lng;
+    if (d.area || d.venue) ot += "&term=" + encodeURIComponent(d.area || d.venue);  // OpenTable ignores lat/lng
     add("OpenTable →", ot);
   }
   if (cfg.resy) add("Resy →", "https://resy.com/cities/" + cfg.resy + "?date=" + cur.date + "&seats=" + party);

@@ -573,10 +573,16 @@ function score(i){
   if (tb) s += Math.min(tb, 3);
   if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
     s += (taste.surprise === "high" ? 8 : 4);
+  var tm = goOutTimes();
+  if (tm.length && typeof STARTS !== "undefined" && STARTS[i] != null) {
+    var w = STARTS[i] < 1020 ? "day" : (STARTS[i] < 1260 ? "evening" : "late");
+    s += tm.indexOf(w) >= 0 ? 4 : -3;
+  }
   return s;
 }
+function goOutTimes(){ try { return JSON.parse(localStorage.getItem("tonight-times") || "[]"); } catch (e) { return []; } }
 function hasTaste(){
-  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only ||
+  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only || goOutTimes().length > 0 ||
     taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
 }
 function sortChildren(container){
@@ -2654,7 +2660,7 @@ function build(){
   var cb = el("input"); cb.type = "checkbox"; cb.id = "svDaily"; cb.checked = true;
   chk.appendChild(cb);
   chk.appendChild(el("span", "", "Mándame el correo diario de " + (CITY_NAMES[city()] || "mi ciudad") +
-    ": un correo a las 8 a. m. con lo mejor del día"));
+    ": un correo cada mañana con lo mejor del día"));
   p1.appendChild(chk);
   var a1 = el("div", "qactions");
   var send = el("button", "btn btn-gold", "Email me a code"); send.type = "button"; send.id = "svSend";
@@ -2678,6 +2684,27 @@ function build(){
   a2.appendChild(go); a2.appendChild(resend); a2.appendChild(back); p2.appendChild(a2);
   p2.appendChild(el("p", "sv-msg")).id = "svMsg2";
 
+  // 2b: make it yours (taste, when they go out, free-first, kids), prefilled from what we know
+  var pp = el("div", "sv-panel"); pp.hidden = true; panels.prefs = pp;
+  pp.appendChild(el("div", "quiz-eyebrow", "Una cosa más"));
+  pp.appendChild(el("h2", "", "Hazlo tuyo"));
+  pp.appendChild(el("p", "quiz-sub", "Tus planes y tu correo de la mañana siguen esto. Cámbialo cuando quieras."));
+  pp.appendChild(el("div", "qlabel", "¿Qué te gusta?"));
+  var pc = el("div", "qchips"); pc.id = "svCats"; pp.appendChild(pc);
+  pp.appendChild(el("div", "qlabel", "¿Cuándo sueles salir?"));
+  var pt = el("div", "qchips"); pt.id = "svTimes"; pp.appendChild(pt);
+  [["day", "De día"], ["evening", "Evening (5–9)"], ["late", "Tarde (21+)"]].forEach(function(t){
+    pt.appendChild(chip(t[1], {t: t[0]}));
+  });
+  pp.appendChild(el("div", "qlabel", "Además"));
+  var px = el("div", "qchips"); pp.appendChild(px);
+  var fq = chip("Gratis primero", {x: "free"}); fq.id = "svFree"; px.appendChild(fq);
+  var kq = chip("Incluir planes para niños y familias", {x: "kids"}); kq.id = "svKids"; px.appendChild(kq);
+  var ap = el("div", "qactions");
+  var keep = el("button", "btn btn-gold", "Save →"); keep.type = "button"; keep.id = "svPrefsSave";
+  ap.appendChild(keep); pp.appendChild(ap);
+  pp.appendChild(el("p", "sv-msg")).id = "svMsgP";
+
   // 3: you're in + optional texts + privacy
   var p3 = el("div", "sv-panel"); p3.hidden = true; panels.done = p3;
   p3.appendChild(el("div", "quiz-eyebrow", "Ya estás dentro"));
@@ -2700,7 +2727,7 @@ function build(){
   var acct = el("a", "qlink", "ajustes de la cuenta"); acct.href = "." + "/account.html";
   a3.appendChild(fin); a3.appendChild(acct); p3.appendChild(a3);
 
-  card.appendChild(p1); card.appendChild(p2); card.appendChild(p3);
+  card.appendChild(p1); card.appendChild(p2); card.appendChild(pp); card.appendChild(p3);
   document.body.appendChild(veil);
 
   send.addEventListener("click", sendCode);
@@ -2711,8 +2738,21 @@ function build(){
   back.addEventListener("click", function(){ show("email"); });
   later.addEventListener("click", function(){ ls(DISMISS_KEY, String(Date.now())); close(); });
   tb.addEventListener("click", textAlerts);
+  keep.addEventListener("click", savePrefs);
   fin.addEventListener("click", close);
   veil.addEventListener("keydown", function(e){ if (e.key === "Escape") close(); });
+}
+function chip(label, data){
+  var b = el("button", "qchip", label); b.type = "button"; b.setAttribute("aria-pressed", "false");
+  Object.keys(data || {}).forEach(function(k){ b.dataset[k] = data[k]; });
+  b.addEventListener("click", function(){
+    b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+  });
+  return b;
+}
+function on(b, v){ b.setAttribute("aria-pressed", v ? "true" : "false"); }
+function picked(sel, key){
+  return [].slice.call(document.querySelectorAll(sel + ' .qchip[aria-pressed="true"]')).map(function(b){ return b.dataset[key]; });
 }
 function say(id, t, cls){ var m = document.getElementById(id); m.textContent = t || ""; m.className = "sv-msg " + (cls || ""); }
 function show(name){
@@ -2758,24 +2798,54 @@ function verify(){
       steps.push(api("/me", {method: "PATCH", headers: {"Content-Type": "application/json"},
                              body: JSON.stringify({home_city: city()})}));
     }
-    var wantDaily = document.getElementById("svDaily").checked;
-    steps.push(api("/subscriptions").then(function(sub){
-      if (sub.found) return sub;                  // returning subscriber: keep their settings
-      if (!wantDaily) return null;
-      var t = tasteNow();
-      return post("/subscriptions", {email: email, city: city(), likes: t.likes, mutes: t.mutes,
-        free_only: t.free_only, surprise: t.surprise, daily_email: true, phone: "", sms_opt_in: false})
-        .then(function(r){ subscribedNow = !!r.ok; return r.ok ? {found: true, daily_email: true} : null; });
-    }));
-    return Promise.all(steps).then(function(res){ afterSignIn(d, res[res.length - 1]); });
+    steps.push(api("/subscriptions"));
+    return Promise.all(steps).then(function(res){ authed = d; existing = res[res.length - 1] || {}; showPrefs(); });
   }).catch(function(){ say("svMsg2", "No pudimos conectar con Tonight. Inténtalo en un rato.", "err"); });
+}
+var authed = null, existing = {};
+function localTimes(){ try { return JSON.parse(ls("tonight-times") || "[]"); } catch (e) { return []; } }
+function showPrefs(){
+  var t = tasteNow(), s = existing.found ? existing : {};
+  var likes = s.found ? s.likes || [] : t.likes, times = s.found ? s.times || [] : localTimes();
+  var host = document.getElementById("svCats"); host.innerHTML = "";
+  var cats = (window.Tonight && Tonight.CATS_ALL) || [];
+  cats.forEach(function(c){ var b = chip(c, {cat: c}); on(b, likes.indexOf(c) >= 0); host.appendChild(b); });
+  document.querySelectorAll("#svTimes .qchip").forEach(function(b){ on(b, times.indexOf(b.dataset.t) >= 0); });
+  on(document.getElementById("svFree"), s.found ? s.free_only : t.free_only);
+  on(document.getElementById("svKids"), s.found ? s.kids : ls("tonight-kids") === "1");
+  show("prefs");
+}
+function savePrefs(){
+  var likes = picked("#svCats", "cat"), times = picked("#svTimes", "t");
+  var free = document.getElementById("svFree").getAttribute("aria-pressed") === "true";
+  var kids = document.getElementById("svKids").getAttribute("aria-pressed") === "true";
+  var t = tasteNow(), mutes = t.mutes.filter(function(c){ return likes.indexOf(c) < 0; });
+  // this device: ranking, kids' cards, time preference
+  if (window.Tonight && Tonight.taste) {
+    Tonight.taste.likes = likes; Tonight.taste.mutes = mutes; Tonight.taste.free_only = free;
+    try { Tonight.save(); Tonight.applyRanking(); } catch (e) {}
+  }
+  ls("tonight-kids", kids ? "1" : "0"); ls("tonight-times", JSON.stringify(times));
+  say("svMsgP", "Saving…");
+  var s = existing, job;
+  if (s.found) {        // returning subscriber: keep delivery settings, update taste
+    job = post("/subscriptions", {email: s.email, city: s.city, likes: likes, mutes: mutes, free_only: free,
+      surprise: s.surprise, daily_email: s.daily_email, phone: s.phone, sms_opt_in: s.sms_opt_in,
+      times: times, kids: kids}).then(function(){ return s; });
+  } else if (document.getElementById("svDaily").checked) {
+    job = post("/subscriptions", {email: email, city: city(), likes: likes, mutes: mutes, free_only: free,
+      surprise: t.surprise, daily_email: true, phone: "", sms_opt_in: false, times: times, kids: kids})
+      .then(function(r){ subscribedNow = !!r.ok; return r.ok ? {found: true, daily_email: true} : null; });
+  } else job = Promise.resolve(null);
+  job.then(function(sub){ say("svMsgP", ""); afterSignIn(authed, sub); })
+     .catch(function(){ say("svMsgP", "No pudimos conectar con Tonight. Inténtalo en un rato.", "err"); });
 }
 function afterSignIn(d, sub){
   var name = CITY_NAMES[city()] || "tu ciudad";
   document.getElementById("svHello").textContent = d.new_account ? "Guardado. Bienvenido a Tonight." : "Qué bueno verte de nuevo.";
   document.getElementById("svSummary").textContent =
-    subscribedNow ? "Tus planes se guardaron en tu cuenta. Tu primer correo de " + name + " llega mañana a las 8 a. m."
-    : (sub && sub.found ? "Tus planes se guardaron en tu cuenta. Tus ajustes de correo no cambiaron."
+    subscribedNow ? "Tus planes y gustos están guardados. Tu primer correo para " + name + " llega mañana por la mañana."
+    : (sub && sub.found ? "Tus planes y gustos están guardados. Desde mañana tu correo sigue tus nuevos ajustes."
        : "Tus planes se guardaron en tu cuenta. Sin correo diario, como pediste.");
   api("/features").then(function(f){
     features = f || {};
@@ -3046,7 +3116,7 @@ function dinnerBlock(d){
   function add(label, href){ var a = el("a", "", label); a.href = href; a.target = "_blank"; a.rel = "noopener"; row.appendChild(a); }
   if (cfg.ot) {
     var ot = cfg.ot + "/s?dateTime=" + encodeURIComponent(cur.date + "T" + hh + ":" + mm) + "&covers=" + party;
-    if (d.lat != null && d.lng != null) ot += "&latitude=" + d.lat + "&longitude=" + d.lng;
+    if (d.area || d.venue) ot += "&term=" + encodeURIComponent(d.area || d.venue);  // OpenTable ignores lat/lng
     add("OpenTable →", ot);
   }
   if (cfg.resy) add("Resy →", "https://resy.com/cities/" + cfg.resy + "?date=" + cur.date + "&seats=" + party);

@@ -215,10 +215,16 @@ function score(i){
   if (tb) s += Math.min(tb, 3);
   if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
     s += (taste.surprise === "high" ? 8 : 4);
+  var tm = goOutTimes();
+  if (tm.length && typeof STARTS !== "undefined" && STARTS[i] != null) {
+    var w = STARTS[i] < 1020 ? "day" : (STARTS[i] < 1260 ? "evening" : "late");
+    s += tm.indexOf(w) >= 0 ? 4 : -3;
+  }
   return s;
 }
+function goOutTimes(){ try { return JSON.parse(localStorage.getItem("tonight-times") || "[]"); } catch (e) { return []; } }
 function hasTaste(){
-  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only ||
+  return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only || goOutTimes().length > 0 ||
     taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
 }
 function sortChildren(container){
