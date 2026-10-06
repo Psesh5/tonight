@@ -2966,7 +2966,7 @@ window.TonightSave = {open: open};
 (function(){
 "use strict";
 var L = document.documentElement.getAttribute("data-layout") || "brutalist";
-if (L === "brutalist" || typeof STARTS === "undefined") return;
+if (typeof STARTS === "undefined") return;  // day pages only (every layout gets Toni's note)
 function fmt(m){
   var h = Math.floor(m / 60), mm = m % 60, ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12;
   return h + (mm ? ":" + String(mm).padStart(2, "0") : "") + " " + ap;
