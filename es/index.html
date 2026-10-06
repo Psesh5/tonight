@@ -305,6 +305,9 @@ text-transform:uppercase;cursor:pointer;}
 article.event.flash{animation:cardflash 1.6s ease-out;}
 article.event{scroll-margin-top:96px;}  /* jumps to a card land below the sticky nav */
 @media (prefers-reduced-motion: reduce){article.event.flash{animation:none;outline:3px solid var(--accent);}}
+.kids-note{grid-column:1/-1;margin:-4px 0 6px;font-size:13.5px;font-weight:600;opacity:.85;}
+.kids-note button{background:none;border:0;padding:0;font:inherit;font-weight:800;color:var(--ink);cursor:pointer;
+text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 /* events already over: bottom of their section, quiet */
 article.event.past{opacity:.5;}
 article.event.past:hover,article.event.past:focus-within{opacity:.85;}
@@ -333,6 +336,9 @@ padding:8px 10px 8px 16px!important;text-align:left;background:transparent;borde
 #picksBar .btn{padding:7px 13px;font-size:11.5px;box-shadow:2px 2px 0 var(--ink);}
 #picksBar #shareMsg{flex-basis:100%;min-height:0!important;margin:0!important;}
 #picksBar #shareMsg:empty{display:none;}
+#onlyBar{max-width:760px;margin:16px auto 0;padding:12px 16px;background:var(--accent);color:var(--on-accent,var(--ink));
+border:3px solid var(--ink);font-weight:700;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;}
+#onlyBar button{background:none;border:0;padding:0;font:inherit;font-weight:800;color:inherit;text-decoration:underline;cursor:pointer;}
 #picksBar #shareMsg .linkish{background:none;border:0;padding:0;font:inherit;font-weight:800;color:var(--ink);cursor:pointer;
 text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 #picksBar #shareMsg a{font-weight:800;color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px;}
@@ -585,10 +591,10 @@ function applyRanking(){
       return v;
     };
     secs.forEach(sortChildren);
-    var free = [], rest = [];
-    secs.forEach(function(s){ (s.classList.contains("free") ? free : rest).push(s); });
+    var free = [], rest = [], kids = [];
+    secs.forEach(function(s){ (s.classList.contains("free") ? free : s.classList.contains("kids") ? kids : rest).push(s); });
     rest.sort(function(a, b){ return secScore(b) - secScore(a); });
-    free.concat(rest).forEach(function(s){ wrap.appendChild(s); });
+    free.concat(rest, kids).forEach(function(s){ wrap.appendChild(s); });
     if (window.__clamp) window.__clamp();
   } else {
     sortChildren(wrap);
@@ -766,7 +772,7 @@ document.addEventListener("DOMContentLoaded", function(){
   if (window.TonightPage && TonightPage.init) TonightPage.init();
 });
 })();
-</script><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Tu gusto</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="#" id="tuneTaste">Ajustar</a><a class="tastelink" href="./account.html">Cuenta</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-05.html">NYC</a> <a class="" href="./london/2026-10-05.html">Londres</a> <a class="" href="./la/2026-10-05.html">LA</a></span><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Pronto</i></span><span class="soon" lang="pt">Português <i>Pronto</i></span><span class="soon" lang="de">Deutsch <i>Pronto</i></span><span class="soon" lang="it">Italiano <i>Pronto</i></span><span class="soon" lang="ja">日本語 <i>Pronto</i></span></div></details></nav>
+</script><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Tu gusto</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="#" id="tuneTaste">Ajustar</a><a class="tastelink" href="./account.html">Cuenta</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-06.html">NYC</a> <a class="" href="./london/2026-10-06.html">Londres</a> <a class="" href="./la/2026-10-06.html">LA</a></span><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Pronto</i></span><span class="soon" lang="pt">Português <i>Pronto</i></span><span class="soon" lang="de">Deutsch <i>Pronto</i></span><span class="soon" lang="it">Italiano <i>Pronto</i></span><span class="soon" lang="ja">日本語 <i>Pronto</i></span></div></details></nav>
 <header class="hero">
 <div class="eyebrow">Cada ciudad · Cada noche</div>
 <h1>Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></h1>
@@ -774,29 +780,29 @@ document.addEventListener("DOMContentLoaded", function(){
 <b>⚡ Esta noche</b> to see what's on right now, and tap the boxes —
 your picks train tomorrow's recommendations.</p>
 <div class="cta-row">
-<a class="btn btn-gold" href="nyc/2026-10-05.html#tonight">⚡ Qué hay esta noche</a>
+<a class="btn btn-gold" href="nyc/2026-10-06.html#tonight">⚡ Qué hay esta noche</a>
 <a class="btn btn-ghost" href="signup.html" data-save-flow>Recibe el correo diario</a>
 <a class="btn btn-ghost" href="#cities">Elige una ciudad</a>
 </div>
 </header>
 <main id="cities" class="cities">
 
-<a class="citycard" href="nyc/2026-10-05.html" data-tz="America/New_York">
+<a class="citycard" href="nyc/2026-10-06.html" data-tz="America/New_York">
 <div class="cc-top">Nueva York</div>
-<div class="cc-meta">Lunes, 5 de octubre</div>
-<div class="cc-meta">115 eventos · 45 gratis</div>
+<div class="cc-meta">Martes, 6 de octubre</div>
+<div class="cc-meta">148 eventos · 57 gratis</div>
 <div class="cc-cta">Ver esta noche →</div>
 </a>
-<a class="citycard" href="london/2026-10-05.html" data-tz="Europe/London">
+<a class="citycard" href="london/2026-10-06.html" data-tz="Europe/London">
 <div class="cc-top">Londres</div>
-<div class="cc-meta">Lunes, 5 de octubre</div>
-<div class="cc-meta">66 eventos · 7 gratis</div>
+<div class="cc-meta">Martes, 6 de octubre</div>
+<div class="cc-meta">96 eventos · 16 gratis</div>
 <div class="cc-cta">Ver esta noche →</div>
 </a>
-<a class="citycard" href="la/2026-10-05.html" data-tz="America/Los_Angeles">
+<a class="citycard" href="la/2026-10-06.html" data-tz="America/Los_Angeles">
 <div class="cc-top">Los Ángeles</div>
-<div class="cc-meta">Lunes, 5 de octubre</div>
-<div class="cc-meta">61 eventos · 13 gratis</div>
+<div class="cc-meta">Martes, 6 de octubre</div>
+<div class="cc-meta">76 eventos · 15 gratis</div>
 <div class="cc-cta">Ver esta noche →</div>
 </a>
 </main>
@@ -1041,8 +1047,8 @@ document.addEventListener("click", function(e){
   }, 350);
 });
 document.addEventListener("DOMContentLoaded", function(){
-  // a Save button next to Share, for anyone not signed in
-  var share = document.getElementById("sharePicksBtn");
+  // a Save button next to "Text the group", for anyone not signed in
+  var share = document.getElementById("textGroupBtn") || document.getElementById("sharePicksBtn");
   if (share && !signedIn()) {
     var b = el("button", "btn btn-gold sv-save", "Guardar mis planes"); b.type = "button"; b.id = "savePicksBtn";
     b.addEventListener("click", open);
@@ -1084,7 +1090,7 @@ function check(){
       checking = false;
       if (!r.ok) { bar("Estos son los planes del " + day + ". La lista de hoy sale temprano cada mañana."); return; }
       var panel = document.getElementById("toniPanel");
-      var busy = /^#e-/.test(location.hash) || (panel && !panel.hidden);
+      var busy = /^#e-/.test(location.hash) || /[?&]only=/.test(location.search) || (panel && !panel.hidden);
       if (busy) bar("Estos son los planes del " + day + ".", target);
       else location.replace(target);
     }).catch(function(){ checking = false; });
@@ -1301,48 +1307,40 @@ function applyPageFilters(f){
 }
 // "Send to friends": a plan becomes one "are you in?" vote, a list becomes a pick-one vote.
 // The link goes to the group chat (phone share sheet, or copied on a laptop).
+// "Text the group": a ready-to-send message (plan or picks) with a link to just those events.
+// The decision happens in the group chat; nothing to vote on here.
 function sendRow(m){
-  var row = el("div", "tn-send"), b = el("button", "", m.plan ? "Mandar este plan a tus amigos →" : "Pregunta a tus amigos cuál →");
+  var row = el("div", "tn-send"), b = el("button", "", "💬 Mandar al grupo →");
   b.type = "button"; var st = el("span", "tn-send-msg"); row.appendChild(b); row.appendChild(st);
-  b.addEventListener("click", function(){ startVote(m, b, st); });
+  b.addEventListener("click", function(){ textGroup(m, st); });
   return row;
 }
-function shareLink(text, url, st){
-  if (navigator.share && matchMedia("(pointer: coarse)").matches) return navigator.share({text: text, url: url}).catch(function(){});
-  return navigator.clipboard.writeText(url).then(function(){ st.firstChild.textContent = "Enlace copiado. Pégalo en tu chat de grupo. "; },
-    function(){ st.firstChild.textContent = url + " "; });
-}
-function startVote(m, b, st){
-  var abc = "abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  function rnd(n){ var a = new Uint8Array(n); crypto.getRandomValues(a); var s = ""; for (var i = 0; i < n; i++) s += abc[a[i] % abc.length]; return s; }
-  var id = rnd(10), key = rnd(24), host = "";
-  try { host = localStorage.getItem("tonight-voter-name") || ((JSON.parse(localStorage.getItem("tonight-account") || "null") || {}).name || ""); } catch (e) {}
-  var body = {id: id, key: key, city: cur.slug, date: cur.date, host: String(host).trim().split(/\s+/)[0].slice(0, 40),
-              ids: (m.cards || []).slice(0, 4).map(function(c){ return c.id; })};
+function toMins(t){ var x = /(\d{1,2})(?::(\d{2}))?\s*([AP])M/i.exec(t || ""); if (!x) return 9999;
+  return (+x[1] % 12 + (x[3].toUpperCase() === "P" ? 12 : 0)) * 60 + (+x[2] || 0); }
+function textGroup(m, st){
+  var cards = (m.cards || []).slice(0, 6);
+  var brand = document.querySelector(".topnav .brand");
+  var page = onPage ? location.origin + location.pathname : new URL(cur.slug + "/" + cur.date + ".html", brand ? brand.href : location.href).href;
+  var ids = cards.map(function(c){ return c.eid; }).filter(Boolean);
+  var url = page + (ids.length ? "?only=" + ids.join(",") : "");
+  var stops = cards.map(function(c){ return {t: c.start_time || "", line: c.name + (c.venue ? " · " + c.venue : "") +
+    (c.price === "free" || c.price === "gratis" ? " · free" : "")}; });
+  var text;
   if (m.plan) {
-    body.bundle = true;
-    if (m.dinner && m.dinner.time) body.dinner = {time: m.dinner.time, lat: m.dinner.lat, lng: m.dinner.lng,
-      places: (m.dinner.restaurants || []).slice(0, 3).map(function(r){ return r.name; })};
+    if (m.dinner && m.dinner.time) {
+      var rs = (m.dinner.restaurants || []).slice(0, 2).map(function(r){ return r.name; });
+      stops.push({t: m.dinner.time, line: "Dinner" + (rs.length ? " at " + rs.join(" o ") : m.dinner.venue ? " near " + m.dinner.venue : "")});
+    }
+    stops.sort(function(a, b){ return toMins(a.t) - toMins(b.t); });
+    text = "Tonight's plan 👇\n" + stops.map(function(x){ return (x.t ? x.t + " " : "") + x.line; }).join("\n") + "\nYou in? " + url;
+  } else {
+    text = (cards.length > 1 ? "Thinking about tonight 👇\n" : "Thinking about this tonight 👇\n") +
+      stops.map(function(x, k){ return (cards.length > 1 ? (k + 1) + ". " : "") + x.line + (x.t ? ", " + x.t : ""); }).join("\n") +
+      "\n" + (cards.length > 1 ? "¿Cuál? " : "¿Te apuntas? ") + url;
   }
-  b.disabled = true; st.textContent = "Creando la votación…";
-  waitForBase(30).then(function(base){
-    if (!base) throw new Error("offline");
-    return fetch(base + "/plans", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)})
-      .then(function(r){ return r.json(); });
-  }).then(function(d){
-    b.disabled = false;
-    if (!d.ok) throw new Error(d.error || "failed");
-    try { localStorage.setItem("tonight-plan-key-" + id, key); } catch (e) {}
-    var brand = document.querySelector(".topnav .brand");
-    var url = new URL("vote.html?p=" + id, brand ? brand.href : location.href).href;
-    var text = m.plan ? "¿Quién se apunta al plan de esta noche? Entra aquí:" : "¿Quién se apunta esta noche? Vota aquí:";
-    st.textContent = ""; st.appendChild(document.createTextNode("Votación lista. "));
-    var again = el("button", "tn-linkish", "Enviar el enlace"); again.type = "button";
-    again.addEventListener("click", function(){ shareLink(text, url, st); });
-    var open = el("a", "", "Abrir la votación →"); open.href = url;
-    st.appendChild(again); st.appendChild(document.createTextNode(" · ")); st.appendChild(open);
-    shareLink(text, url, st);
-  }).catch(function(){ b.disabled = false; st.textContent = "No se pudo crear la votación. Inténtalo en un minuto."; });
+  if (navigator.share && matchMedia("(pointer: coarse)").matches) { navigator.share({text: text}).catch(function(){}); return; }
+  navigator.clipboard.writeText(text).then(function(){ st.textContent = "Mensaje copiado. Pégalo en tu chat de grupo."; },
+    function(){ st.textContent = "No se pudo copiar en este dispositivo."; });
 }
 function toniBlock(){
   var wrap = el("div", "tn-toni"); wrap.appendChild(el("div", "tn-who", "Toni")); return wrap;
@@ -1455,7 +1453,8 @@ function ask(q, display){
       city: cur.slug, date: cur.date, lang: document.documentElement.lang || "en", anon_id: anon, avoid_venues: recentVenues(), dinner_prefs: dinnerPrefs(),
       exclude_venues: (function(){ var x = excludeNext || []; excludeNext = null; return x; })(),
       can_filter: !!document.getElementById("fq"),
-      taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only},
+      taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,
+        kids: (function(){ try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } })()},
       current_plan: (function(){  // the latest plan, so "swap the show" / "cheaper" edits it
         for (var k = history.length - 1; k >= 0; k--) { var m = history[k];
           if (m.role === "assistant" && !m.error) return m.plan && m.cards && m.cards.length ?
@@ -1491,7 +1490,7 @@ form.addEventListener("submit", function(e){ e.preventDefault(); ask(input.value
 document.addEventListener("DOMContentLoaded", function(){ document.body.appendChild(btn); document.body.appendChild(panel); });
 window.TonightToni = {ask: function(q, display, exclude){ excludeNext = exclude || null; panel.hidden = false; render(); ask(q, display); }};
 })();
-</script><script>window.__tonight_api="https://edf0bb7fa34d496e-87-81-238-50.serveousercontent.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
+</script><script>window.__tonight_api="https://86bb3bf8ef2fde55-87-81-238-41.serveousercontent.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
 var base=new URL(a.href).pathname,p=location.pathname,es=/\/es\/$/.test(base);
 var rest=p.indexOf(base)===0?p.slice(base.length):"";
 a.href=(es?base.slice(0,-3):base+"es/")+rest+location.search+location.hash;

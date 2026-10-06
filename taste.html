@@ -256,10 +256,10 @@ function applyRanking(){
       return v;
     };
     secs.forEach(sortChildren);
-    var free = [], rest = [];
-    secs.forEach(function(s){ (s.classList.contains("free") ? free : rest).push(s); });
+    var free = [], rest = [], kids = [];
+    secs.forEach(function(s){ (s.classList.contains("free") ? free : s.classList.contains("kids") ? kids : rest).push(s); });
     rest.sort(function(a, b){ return secScore(b) - secScore(a); });
-    free.concat(rest).forEach(function(s){ wrap.appendChild(s); });
+    free.concat(rest, kids).forEach(function(s){ wrap.appendChild(s); });
     if (window.__clamp) window.__clamp();
   } else {
     sortChildren(wrap);
@@ -487,7 +487,7 @@ page on this device; layouts change the city pages.</p>
 <div class="lk-grid" id="layoutPick"><button type="button" class="lk-opt" data-layout="brutalist" aria-pressed="false"><b>Bold Brutalist</b><span>Loud NYC poster: heavy borders, hard shadows, all-caps headers (default)</span></button><button type="button" class="lk-opt" data-layout="concierge" aria-pressed="false"><b>Warm Concierge</b><span>A note from a friend with a plan for your night, then softer cards</span></button><button type="button" class="lk-opt" data-layout="dense" aria-pressed="false"><b>Dense Utility List</b><span>Tight rows, small type: every event on one screen</span></button><button type="button" class="lk-opt" data-layout="timeline" aria-pressed="false"><b>Vertical Timeline</b><span>The night as a schedule on a time rail, earliest first</span></button></div>
 <div class="lk-label">Colors</div>
 <div class="lk-grid" id="palettePick"><button type="button" class="lk-opt" data-palette="knicks" aria-pressed="false"><span class="lk-sw"><i style="background:oklch(.965 .005 95)"></i><i style="background:oklch(.3 .14 265)"></i><i style="background:oklch(.72 .19 60)"></i></span><b>Knicks</b><span>Navy + orange on warm paper (default)</span></button><button type="button" class="lk-opt" data-palette="neon" aria-pressed="false"><span class="lk-sw"><i style="background:oklch(.16 .018 285)"></i><i style="background:oklch(.88 .22 126)"></i><i style="background:oklch(.68 .25 350)"></i></span><b>Neon</b><span>Late-night dark mode, mint + magenta</span></button><button type="button" class="lk-opt" data-palette="harbor" aria-pressed="false"><span class="lk-sw"><i style="background:oklch(.975 .012 190)"></i><i style="background:oklch(.21 .055 193)"></i><i style="background:oklch(.77 .13 168)"></i></span><b>Harbor</b><span>Cool and coastal, teal + green</span></button><button type="button" class="lk-opt" data-palette="cherry" aria-pressed="false"><span class="lk-sw"><i style="background:oklch(.94 .025 84)"></i><i style="background:oklch(.57 .22 24)"></i><i style="background:oklch(.77 .105 224)"></i></span><b>Cherry</b><span>Warm and editorial, cream + deep red</span></button><button type="button" class="lk-opt" data-palette="forest" aria-pressed="false"><span class="lk-sw"><i style="background:oklch(.95 .035 153)"></i><i style="background:oklch(.22 .06 147)"></i><i style="background:oklch(.74 .15 35)"></i></span><b>Forest</b><span>Evening-park green + orange</span></button></div>
-<p class="lk-see">See it on today's picks: <a href="./nyc/2026-10-05.html">New York City</a> · <a href="./london/2026-10-05.html">London</a> · <a href="./la/2026-10-05.html">Los Angeles</a></p>
+<p class="lk-see">See it on today's picks: <a href="./nyc/2026-10-06.html">New York City</a> · <a href="./london/2026-10-06.html">London</a> · <a href="./la/2026-10-06.html">Los Angeles</a></p>
 </div></div></section>
 <div class="tcenter">
 <button type="button" class="btn btn-gold" id="retakeQuiz">Retake the 30-second quiz</button>
@@ -617,4 +617,4 @@ window.TonightPage = {
   }
 };
 </script>
-<script>window.__tonight_api="https://edf0bb7fa34d496e-87-81-238-50.serveousercontent.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
+<script>window.__tonight_api="https://86bb3bf8ef2fde55-87-81-238-41.serveousercontent.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
