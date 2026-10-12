@@ -5,7 +5,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;}
 :root{--paper:oklch(.965 .005 95);--ink:oklch(.3 .14 265);--accent:oklch(.72 .19 60);
@@ -453,4 +453,70 @@ $("delYes").addEventListener("click", function(){
   }).catch(function(){});
 })();
 </script>
-<script>window.__tonight_api="https://tonight-api-2169.onrender.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>
+<script>window.__tonight_api="https://tonight-api-2169.onrender.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script>
+<style>
+#sgVeil{position:fixed;inset:0;z-index:210;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:16px;}
+#sgVeil[hidden]{display:none;}
+#sgCard{background:var(--card,#fff);color:var(--ink,#14201A);border:3px solid var(--ink,#14201A);box-shadow:6px 6px 0 var(--accent,#E39A2D);
+max-width:440px;width:100%;padding:22px 20px;font-family:inherit;}
+#sgCard h2{margin:0 0 6px;font:900 1.5rem 'Fraunces',Georgia,serif;}
+#sgCard p{margin:0 0 12px;font-size:14px;line-height:1.45;}
+#sgCard input,#sgCard textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:3px solid var(--ink,#14201A);font:inherit;font-size:15px;margin:0 0 10px;background:#fff;color:#14201A;border-radius:0;}
+#sgCard textarea{min-height:64px;resize:vertical;}
+#sgCard .sg-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+#sgCard button.sg-go{background:var(--accent,#E39A2D);border:3px solid var(--ink,#14201A);font-weight:800;padding:10px 16px;cursor:pointer;color:#14201A;}
+#sgCard button.sg-x{background:none;border:0;text-decoration:underline;cursor:pointer;color:inherit;font:inherit;}
+#sgMsg{min-height:18px;font-size:13.5px;font-weight:700;margin-top:8px;}
+</style>
+<script>
+(function(){
+var links = document.querySelector(".tastelinks");
+if (!links) return;
+var a = document.createElement("a"); a.className = "tastelink"; a.href = "#"; a.id = "suggestLink";
+a.textContent = "Suggest an event"; links.insertBefore(a, links.firstChild);
+var veil;
+function el(t, attrs, txt){ var e = document.createElement(t); for (var k in (attrs || {})) e.setAttribute(k, attrs[k]); if (txt) e.textContent = txt; return e; }
+function build(){
+  veil = el("div", {id: "sgVeil"}); veil.hidden = true;
+  var c = el("div", {id: "sgCard", role: "dialog", "aria-label": "Suggest an event"});
+  c.appendChild(el("h2", {}, "Know something good?"));
+  c.appendChild(el("p", {}, "Paste a link to an event: a talk, a tour, a class, a show. We check every one before it goes on the site."));
+  var u = el("input", {type: "url", id: "sgUrl", placeholder: "https://…", "aria-label": "Link to the event"});
+  var n = el("textarea", {id: "sgNote", placeholder: "Anything we should know? (optional)", "aria-label": "Note"});
+  var m = el("input", {type: "email", id: "sgEmail", placeholder: "Your email, if you'd like a thank-you (optional)", "aria-label": "Your email"});
+  c.appendChild(u); c.appendChild(n); c.appendChild(m);
+  var row = el("div", {"class": "sg-row"});
+  var go = el("button", {type: "button", "class": "sg-go"}, "Send it →");
+  var x = el("button", {type: "button", "class": "sg-x"}, "cancel");
+  row.appendChild(go); row.appendChild(x); c.appendChild(row);
+  c.appendChild(el("div", {id: "sgMsg"}));
+  veil.appendChild(c); document.body.appendChild(veil);
+  x.addEventListener("click", close);
+  veil.addEventListener("click", function(e){ if (e.target === veil) close(); });
+  veil.addEventListener("keydown", function(e){ if (e.key === "Escape") close(); });
+  go.addEventListener("click", function(){
+    var msg = document.getElementById("sgMsg"), url = u.value.trim();
+    if (!/^https?:\/\/\S+\.\S+/.test(url)) { msg.textContent = "Paste a link that starts with http."; return; }
+    var base = window.__tonight_api;
+    if (!base) { msg.textContent = "Couldn't reach Tonight. Try again in a bit."; return; }
+    var city = (typeof CITY !== "undefined" && CITY) || (function(){ try { return localStorage.getItem("tonight-city"); } catch (e) { return null; } })() || "nyc";
+    go.disabled = true; msg.textContent = "Sending…";
+    fetch(base + "/suggest", {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({url: url, note: n.value.trim(), email: m.value.trim(), city: city})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        go.disabled = false;
+        if (!d.ok) { msg.textContent = d.error || "That didn't work."; return; }
+        msg.textContent = "Thanks! We'll take a look."; u.value = ""; n.value = "";
+        setTimeout(close, 1600);
+      })
+      .catch(function(){ go.disabled = false; msg.textContent = "Couldn't reach Tonight. Try again in a bit."; });
+  });
+}
+function open(e){ if (e) e.preventDefault(); if (!veil) build(); veil.hidden = false; document.getElementById("sgMsg").textContent = ""; setTimeout(function(){ document.getElementById("sgUrl").focus(); }, 50); }
+function close(){ if (veil) veil.hidden = true; }
+a.addEventListener("click", open);
+window.TonightSuggest = {open: open};
+})();
+</script>
+</body></html>
