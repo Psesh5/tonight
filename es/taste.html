@@ -225,6 +225,7 @@ function score(i){
   var vb = (typeof VENUES !== "undefined" && VENUES[i]) ? venueBonus[VENUES[i].toLowerCase()] : 0;
   if (vb > 0) s += Math.min(vb * 2, 4); else if (vb < 0) s -= 5;  // places you like / crossed out
   if (freeShare >= 0.6 && FREE[i]) s += 2;  // you mostly tick free things
+  if (window.FRIENDS_GOING && typeof EIDS !== "undefined" && FRIENDS_GOING[EIDS[i]]) s += 6;  // friends are going
   if (typeof SERIES !== "undefined" && SERIES[i]) {
     if (regulars[SERIES[i]]) s += 15;                                   // your regular: on top
     else if (RECUR[i] && seriesRecent[SERIES[i]]) s -= 8;               // already ticked this week
@@ -265,6 +266,7 @@ document.addEventListener("click", function(e){
 document.addEventListener("DOMContentLoaded", paintRegulars);
 function hasTaste(){
   return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only || goOutTimes().length > 0 ||
+    (window.FRIENDS_GOING && Object.keys(window.FRIENDS_GOING).length > 0) ||
     Object.keys(regulars).length > 0 ||
     Object.keys(venueBonus).length > 0 ||
     taste.surprise !== "low" || Object.keys(tapBonus).length > 0;

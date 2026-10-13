@@ -254,6 +254,15 @@ you haven't replied STOP, and never between 9 PM and 8 AM.</span></span></span>
 <label class="switch"><input type="checkbox" id="squadTexts"><span class="sl"></span></label></div>
 </div></section>
 
+<section class="tsec"><div class="shead"><span class="snum">♥</span><h2>Friends</h2></div>
+<div class="tsec-body">
+<p class="thint">Friends see what you're going to (if your privacy setting above allows it), and you see theirs. Invite someone with a link: send it however you like.</p>
+<div class="acct-actions"><button type="button" class="btn2" id="inviteBtn">Invite a friend</button></div>
+<div id="inviteBox" hidden><input type="text" id="inviteUrl" readonly style="width:100%;margin:8px 0;padding:10px;border:2px solid currentColor;font:inherit;">
+<div class="acct-actions"><button type="button" class="btn2" id="inviteCopy">Copy link</button><span class="thint" id="inviteMsg" style="margin:0;"></span></div></div>
+<ul id="friendList" style="list-style:none;padding:0;margin:12px 0 0;"></ul>
+</div></section>
+
 <section class="tsec"><div class="shead"><span class="snum">3</span><h2>Email &amp; texts</h2></div>
 <div class="tsec-body">
 <p class="dsum" id="deliverySum">Loading…</p>
@@ -392,11 +401,37 @@ function loadDelivery(){
     el.textContent = t.join(" ");
   }).catch(function(){});
 }
+function loadFriends(){
+  api("/friends").then(function(d){
+    var ul = $("friendList"); ul.innerHTML = "";
+    if (!d.ok) return;
+    if (!d.friends.length) { var li = document.createElement("li"); li.className = "thint"; li.textContent = "No friends yet. Send someone an invite."; ul.appendChild(li); return; }
+    d.friends.forEach(function(f){
+      var li = document.createElement("li"); li.style.cssText = "display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.12);";
+      var n = document.createElement("b"); n.textContent = f.name; li.appendChild(n);
+      var rm = document.createElement("button"); rm.type = "button"; rm.className = "linkbtn"; rm.textContent = "Remove";
+      rm.addEventListener("click", function(){ api("/friends/" + encodeURIComponent(f.id), {method: "DELETE"}).then(loadFriends); });
+      li.appendChild(rm); ul.appendChild(li);
+    });
+  }).catch(function(){});
+}
+$("inviteBtn").addEventListener("click", function(){
+  api("/friends/invite", {method: "POST"}).then(function(d){
+    if (!d.ok) { say("acctMsg", d.error || "Couldn't make an invite.", "err"); return; }
+    $("inviteBox").hidden = false; $("inviteUrl").value = d.url; $("inviteMsg").textContent = "Works once, for 14 days.";
+    if (navigator.share) navigator.share({text: d.from + " invited you to be friends on Tonight", url: d.url}).catch(function(){});
+  }).catch(function(){ say("acctMsg", "Couldn't reach the server. Try again in a bit.", "err"); });
+});
+$("inviteCopy").addEventListener("click", function(){
+  var u = $("inviteUrl"); u.select();
+  (navigator.clipboard ? navigator.clipboard.writeText(u.value) : Promise.reject()).then(function(){ $("inviteMsg").textContent = "Copied. Paste it into a text."; })
+    .catch(function(){ $("inviteMsg").textContent = "Select the link and copy it."; });
+});
 function showAccount(a, isNew){
   $("signedOut").hidden = true; $("signedIn").hidden = false;
   $("heroTitle").textContent = "YOUR ACCOUNT";
   $("heroSub").textContent = "Your profile, privacy and data. Your taste and picks follow you to every device.";
-  paint(a); loadDelivery();
+  paint(a); loadDelivery(); loadFriends();
   if (isNew) say("acctMsg", "Welcome! Your account is set up, and the taste you'd already picked came with you.", "ok");
 }
 function showSignIn(note){
