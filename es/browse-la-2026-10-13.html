@@ -518,6 +518,9 @@ function load(){
 }
 var taste = load();
 var tapBonus = {}, venueBonus = {}, freeShare = 0;
+// recurring events: series you ticked earlier this week (don't push them again) and your regulars
+var seriesRecent = {}, regulars = {};
+try { (JSON.parse(localStorage.getItem("tonight-regulars-" + CITY) || "[]")).forEach(function(k){ regulars[k] = 1; }); } catch (e) {}
 function uid(){
   var u = null;
   try { u = localStorage.getItem("tonight-user-id"); } catch (e) {}
@@ -546,7 +549,8 @@ function save(sync){
 function pull(){
   var base = apiBase();
   if (!base || !CITY || typeof CATS === "undefined") return;
-  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()),
+  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()) +
+        (typeof DATE !== "undefined" ? "&date=" + DATE : ""),
         {headers: authHeaders()})
     .then(function(r){ return r.json(); })
     .then(function(d){
@@ -560,6 +564,9 @@ function pull(){
       }
       if (d.categories) tapBonus = d.categories;
       if (d.venues) venueBonus = d.venues;
+      seriesRecent = {}; (d.series_recent || []).forEach(function(k){ seriesRecent[k] = 1; });
+      (d.regulars || []).forEach(function(k){ regulars[k] = 1; });
+      paintRegulars();
       freeShare = +d.free_share || 0;
       applyRanking();
     })
@@ -576,6 +583,10 @@ function score(i){
   var vb = (typeof VENUES !== "undefined" && VENUES[i]) ? venueBonus[VENUES[i].toLowerCase()] : 0;
   if (vb > 0) s += Math.min(vb * 2, 4); else if (vb < 0) s -= 5;  // places you like / crossed out
   if (freeShare >= 0.6 && FREE[i]) s += 2;  // you mostly tick free things
+  if (typeof SERIES !== "undefined" && SERIES[i]) {
+    if (regulars[SERIES[i]]) s += 15;                                   // your regular: on top
+    else if (RECUR[i] && seriesRecent[SERIES[i]]) s -= 8;               // already ticked this week
+  }
   if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
     s += (taste.surprise === "high" ? 8 : 4);
   var tm = goOutTimes();
@@ -586,8 +597,33 @@ function score(i){
   return s;
 }
 function goOutTimes(){ try { return JSON.parse(localStorage.getItem("tonight-times") || "[]"); } catch (e) { return []; } }
+function paintRegulars(){
+  document.querySelectorAll(".regular-btn").forEach(function(b){
+    var on = !!regulars[b.dataset.series];
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.textContent = on ? "Your regular ✓ (undo)" : "Make this a regular";
+    var art = b.closest("article.event"), meta = art && art.querySelector(".meta");
+    var tag = art && art.querySelector(".regular-tag");
+    if (on && meta && !tag) { tag = document.createElement("span"); tag.className = "regular-tag"; tag.textContent = "Your regular"; meta.insertBefore(tag, meta.firstChild); }
+    if (!on && tag) tag.remove();
+  });
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest && e.target.closest(".regular-btn");
+  if (!b) return;
+  var k = b.dataset.series, on = !regulars[k];
+  if (on) regulars[k] = 1; else delete regulars[k];
+  try { localStorage.setItem("tonight-regulars-" + CITY, JSON.stringify(Object.keys(regulars))); } catch (err) {}
+  paintRegulars(); applyRanking();
+  var base = apiBase(), art = b.closest("article.event"), i = art ? +art.dataset.idx : -1;
+  if (base) fetch(base + "/regular", {method: "POST", headers: authHeaders({"Content-Type": "application/json"}),
+    body: JSON.stringify({city: CITY, user_id: uid(), series: k, on: on,
+      name: i >= 0 && typeof NAMES !== "undefined" ? NAMES[i] : "", venue: i >= 0 && typeof VENUES !== "undefined" ? VENUES[i] : ""})}).catch(function(){});
+});
+document.addEventListener("DOMContentLoaded", paintRegulars);
 function hasTaste(){
   return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only || goOutTimes().length > 0 ||
+    Object.keys(regulars).length > 0 ||
     Object.keys(venueBonus).length > 0 ||
     taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
 }
@@ -1771,6 +1807,8 @@ const DATE = "2026-10-13";
 const NAMES = ["SoFi Stadium Tours", "Dogman: The Musical", "Pink Noise: For the Girls ft. ALYSSAD, Selma Eriksen & Rey Solei", "Anaheim Ducks v Calgary Flames", "Larissa Lambert", "VLSF & KCRW Presents: Shiner / Fotocrime / Flesh Car", "Emma Nissen", "Ella Langley", "Los Angeles Kings vs. Edmonton Oilers", "The Outsiders (Touring)", "Tonight at the Improv ft. Jay Leno, Arsenio Hall, Patton Oswalt, Brian Monarch, Renee Percy, and Very Special Guests", "Just Pull Up ft. Dulc\u00e9 Sloan, Camille Waters, Kym Whitley, Tahir Moore, Mandal, Sydney Castillo, Kanisha Buss, and more TBA", "Lucy Darling: As You Wish", " Lucy Darling: 5:30PM Pre-Show Talkback ", "The Wallflowers", "Metaphor", "Finn Wolfhard", "Sara Bareilles: The Good Grief Tour", "Maro", "HOTEL ALLAN - The 10 Year Anniversary Tour", "Los Angeles Coliseum Historic Tours", "Visi\u00f3n y Compromiso - Free Community Services | Servicios Comunitarios Gratuitos", "Cover to Cover Reading Club", "Preschool Storytime", "Preschool Storytime and Crafts", "Virtual Get Ready for Kindergarten", "Toddler Storytime", "STAR Storytime With Donna", "Batter Up LA!", "VBC Voting Bootcamp", "Sonic Flow Yoga w/ Slow Jamz", "INFORMAL CROOKS PREMIERE PARTY - PIRATE FILMS MEDIA LAUNCH", "Sound of Water", "LA\u2019s Garden", "Carved", "Trivia Night at T Boyle's Tavern", "Trivia Night at Verdugo Bar", "Trivia Night at El Tejano Tex Mex", "Trivia Night at Player One Arcade Bar", "Jeopardy! Bar League at Where the Creatures Sleep", "Trivia Night at Biergarten LA", "Trivia Night at Thirsty Merchant", "Jeopardy! Bar League at Bixby Provisions", "Trivia Night at Rance's Chicago Pizza (Long Beach)", "Trivia Night at The Blind Donkey (Long Beach)", "Jeopardy! Bar League at Boardwalk 11", "Jeopardy! Bar League at P.V. House", "Jeopardy! Bar League at Paul Martin's - El Segundo", "Trivia Night at Firestone Walker Brewing Company - The Propagator", "Trivia Night at Hacienda Playa", "Using AI 101: Better Prompts, Better Results", "Using AI 101 Bundle: Tuesday Beginner + Saturday Advanced Lab", "Unlikely Collaborators Spark Salon with Melissa Conklin", "Research Case Study", "Intro to 3D Printing, An Overview"];
 const EIDS = ["71072397", "c6dda291", "14872d61", "a326105f", "243cdf80", "309a62e9", "4f421acb", "0862026c", "7286ed54", "b855e5d2", "1bde8e69", "96ae8361", "be243f8d", "bca9487e", "b24f1a3d", "e47078af", "5cb14dcd", "0949c17b", "efeb02b9", "e768e5ec", "5462fa03", "cda39f9f", "88e365ca", "a81fdb7f", "ec3fc6bf", "b8b3ba8e", "b3fd8987", "4d443a88", "112b7da6", "092be7a4", "a4ba7b0e", "be2c2610", "d69b1b8d", "57d1fb0b", "2359596d", "e5a0dc4c", "1e66dc9c", "8739f0b4", "d9b25c3c", "8091407a", "7ae86671", "6de543ad", "1fab8b03", "41458054", "8f8e9caa", "a908be4f", "35039108", "7dace87c", "406a9ef0", "37d4b0c2", "a831592e", "a0344398", "7a51d719", "cc7e6dd0", "3a119b28"];  // permanent ids (index -> id)
 const VENUES = ["SoFi Stadium Tours", "Kirk Douglas Theatre", "The Moroccan Lounge", "Honda Center", "The Echo", "Echoplex", "Blue Note Los Angeles", "Greek Theatre-Los Angeles", "Crypto.com Arena", "Hollywood Pantages Theatre", "Hollywood Improv (The Main Room) ", "Hollywood Improv (The Lab)", "Terrace Theater - Long Beach Convention and Entertainment Center", "Terrace Theater - Long Beach Convention and Entertainment Center", "Orpheum Theatre", "Peacock Theater - LA", "The Fonda Theatre", "Dolby Theatre", "El Rey Theatre - Los Angeles", "The Moroccan Lounge", "Los Angeles Memorial Coliseum", "Van Nuys", "Lincoln Heights", "Mid-Valley", "West Valley", "Central Library", "Mar Vista", "Sherman Oaks", "Los Angeles, CA", "SoCal Vibes Co. Abbot Kinney", "2448 E 8th St", "1089 N Oxford Ave", "Descanso Gardens", "Descanso Gardens", "Descanso Gardens", "T Boyle's Tavern", "Verdugo Bar", "El Tejano Tex Mex", "Player One Arcade Bar", "Where the Creatures Sleep", "Biergarten LA", "Thirsty Merchant", "Bixby Provisions", "Rance's Chicago Pizza (Long Beach)", "The Blind Donkey (Long Beach)", "Boardwalk 11", "P.V. House", "Paul Martin's - El Segundo", "Firestone Walker Brewing Company - The Propagator", "Hacienda Playa", "Industrious, Sherman Oaks", "Industrious, Sherman Oaks", "1520 2nd St", "18555 Victory Blvd", "Fishbowl Studio Prints"];
+const SERIES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];  // same show + place on any day
+const RECUR = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 const KIDS = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const PRICES = ["", "", "", "", "", "", "$18.80", "", "", "", "$42.73", "$24.19", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$25.00", "", "", "", "$12.00", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$79.00", "$199.00", "", "", "$55.20"];
 // parents can bring kids' events into story mode, Next hour and Toni's suggestions
@@ -1935,6 +1973,7 @@ document.querySelectorAll(".ics-btn").forEach(btn => {
       "DTSTAMP:" + stamp,
       "DTSTART:" + d.calStart, "DTEND:" + d.calEnd,
       "SUMMARY:" + icsEscape(d.name)];
+    if (d.weekly) lines.push("RRULE:FREQ=WEEKLY");
     if (d.loc) lines.push("LOCATION:" + icsEscape(d.loc));
     if (d.url) {
       lines.push("URL:" + d.url);

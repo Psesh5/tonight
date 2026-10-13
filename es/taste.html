@@ -160,6 +160,9 @@ function load(){
 }
 var taste = load();
 var tapBonus = {}, venueBonus = {}, freeShare = 0;
+// recurring events: series you ticked earlier this week (don't push them again) and your regulars
+var seriesRecent = {}, regulars = {};
+try { (JSON.parse(localStorage.getItem("tonight-regulars-" + CITY) || "[]")).forEach(function(k){ regulars[k] = 1; }); } catch (e) {}
 function uid(){
   var u = null;
   try { u = localStorage.getItem("tonight-user-id"); } catch (e) {}
@@ -188,7 +191,8 @@ function save(sync){
 function pull(){
   var base = apiBase();
   if (!base || !CITY || typeof CATS === "undefined") return;
-  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()),
+  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()) +
+        (typeof DATE !== "undefined" ? "&date=" + DATE : ""),
         {headers: authHeaders()})
     .then(function(r){ return r.json(); })
     .then(function(d){
@@ -202,6 +206,9 @@ function pull(){
       }
       if (d.categories) tapBonus = d.categories;
       if (d.venues) venueBonus = d.venues;
+      seriesRecent = {}; (d.series_recent || []).forEach(function(k){ seriesRecent[k] = 1; });
+      (d.regulars || []).forEach(function(k){ regulars[k] = 1; });
+      paintRegulars();
       freeShare = +d.free_share || 0;
       applyRanking();
     })
@@ -218,6 +225,10 @@ function score(i){
   var vb = (typeof VENUES !== "undefined" && VENUES[i]) ? venueBonus[VENUES[i].toLowerCase()] : 0;
   if (vb > 0) s += Math.min(vb * 2, 4); else if (vb < 0) s -= 5;  // places you like / crossed out
   if (freeShare >= 0.6 && FREE[i]) s += 2;  // you mostly tick free things
+  if (typeof SERIES !== "undefined" && SERIES[i]) {
+    if (regulars[SERIES[i]]) s += 15;                                   // your regular: on top
+    else if (RECUR[i] && seriesRecent[SERIES[i]]) s -= 8;               // already ticked this week
+  }
   if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
     s += (taste.surprise === "high" ? 8 : 4);
   var tm = goOutTimes();
@@ -228,8 +239,33 @@ function score(i){
   return s;
 }
 function goOutTimes(){ try { return JSON.parse(localStorage.getItem("tonight-times") || "[]"); } catch (e) { return []; } }
+function paintRegulars(){
+  document.querySelectorAll(".regular-btn").forEach(function(b){
+    var on = !!regulars[b.dataset.series];
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.textContent = on ? "Your regular ✓ (undo)" : "Make this a regular";
+    var art = b.closest("article.event"), meta = art && art.querySelector(".meta");
+    var tag = art && art.querySelector(".regular-tag");
+    if (on && meta && !tag) { tag = document.createElement("span"); tag.className = "regular-tag"; tag.textContent = "Your regular"; meta.insertBefore(tag, meta.firstChild); }
+    if (!on && tag) tag.remove();
+  });
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest && e.target.closest(".regular-btn");
+  if (!b) return;
+  var k = b.dataset.series, on = !regulars[k];
+  if (on) regulars[k] = 1; else delete regulars[k];
+  try { localStorage.setItem("tonight-regulars-" + CITY, JSON.stringify(Object.keys(regulars))); } catch (err) {}
+  paintRegulars(); applyRanking();
+  var base = apiBase(), art = b.closest("article.event"), i = art ? +art.dataset.idx : -1;
+  if (base) fetch(base + "/regular", {method: "POST", headers: authHeaders({"Content-Type": "application/json"}),
+    body: JSON.stringify({city: CITY, user_id: uid(), series: k, on: on,
+      name: i >= 0 && typeof NAMES !== "undefined" ? NAMES[i] : "", venue: i >= 0 && typeof VENUES !== "undefined" ? VENUES[i] : ""})}).catch(function(){});
+});
+document.addEventListener("DOMContentLoaded", paintRegulars);
 function hasTaste(){
   return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only || goOutTimes().length > 0 ||
+    Object.keys(regulars).length > 0 ||
     Object.keys(venueBonus).length > 0 ||
     taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
 }

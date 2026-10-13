@@ -518,6 +518,9 @@ function load(){
 }
 var taste = load();
 var tapBonus = {}, venueBonus = {}, freeShare = 0;
+// recurring events: series you ticked earlier this week (don't push them again) and your regulars
+var seriesRecent = {}, regulars = {};
+try { (JSON.parse(localStorage.getItem("tonight-regulars-" + CITY) || "[]")).forEach(function(k){ regulars[k] = 1; }); } catch (e) {}
 function uid(){
   var u = null;
   try { u = localStorage.getItem("tonight-user-id"); } catch (e) {}
@@ -546,7 +549,8 @@ function save(sync){
 function pull(){
   var base = apiBase();
   if (!base || !CITY || typeof CATS === "undefined") return;
-  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()),
+  fetch(base + "/taste/" + encodeURIComponent(CITY) + "?user_id=" + encodeURIComponent(uid()) +
+        (typeof DATE !== "undefined" ? "&date=" + DATE : ""),
         {headers: authHeaders()})
     .then(function(r){ return r.json(); })
     .then(function(d){
@@ -560,6 +564,9 @@ function pull(){
       }
       if (d.categories) tapBonus = d.categories;
       if (d.venues) venueBonus = d.venues;
+      seriesRecent = {}; (d.series_recent || []).forEach(function(k){ seriesRecent[k] = 1; });
+      (d.regulars || []).forEach(function(k){ regulars[k] = 1; });
+      paintRegulars();
       freeShare = +d.free_share || 0;
       applyRanking();
     })
@@ -576,6 +583,10 @@ function score(i){
   var vb = (typeof VENUES !== "undefined" && VENUES[i]) ? venueBonus[VENUES[i].toLowerCase()] : 0;
   if (vb > 0) s += Math.min(vb * 2, 4); else if (vb < 0) s -= 5;  // places you like / crossed out
   if (freeShare >= 0.6 && FREE[i]) s += 2;  // you mostly tick free things
+  if (typeof SERIES !== "undefined" && SERIES[i]) {
+    if (regulars[SERIES[i]]) s += 15;                                   // your regular: on top
+    else if (RECUR[i] && seriesRecent[SERIES[i]]) s -= 8;               // already ticked this week
+  }
   if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
     s += (taste.surprise === "high" ? 8 : 4);
   var tm = goOutTimes();
@@ -586,8 +597,33 @@ function score(i){
   return s;
 }
 function goOutTimes(){ try { return JSON.parse(localStorage.getItem("tonight-times") || "[]"); } catch (e) { return []; } }
+function paintRegulars(){
+  document.querySelectorAll(".regular-btn").forEach(function(b){
+    var on = !!regulars[b.dataset.series];
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.textContent = on ? "Your regular ✓ (undo)" : "Make this a regular";
+    var art = b.closest("article.event"), meta = art && art.querySelector(".meta");
+    var tag = art && art.querySelector(".regular-tag");
+    if (on && meta && !tag) { tag = document.createElement("span"); tag.className = "regular-tag"; tag.textContent = "Your regular"; meta.insertBefore(tag, meta.firstChild); }
+    if (!on && tag) tag.remove();
+  });
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest && e.target.closest(".regular-btn");
+  if (!b) return;
+  var k = b.dataset.series, on = !regulars[k];
+  if (on) regulars[k] = 1; else delete regulars[k];
+  try { localStorage.setItem("tonight-regulars-" + CITY, JSON.stringify(Object.keys(regulars))); } catch (err) {}
+  paintRegulars(); applyRanking();
+  var base = apiBase(), art = b.closest("article.event"), i = art ? +art.dataset.idx : -1;
+  if (base) fetch(base + "/regular", {method: "POST", headers: authHeaders({"Content-Type": "application/json"}),
+    body: JSON.stringify({city: CITY, user_id: uid(), series: k, on: on,
+      name: i >= 0 && typeof NAMES !== "undefined" ? NAMES[i] : "", venue: i >= 0 && typeof VENUES !== "undefined" ? VENUES[i] : ""})}).catch(function(){});
+});
+document.addEventListener("DOMContentLoaded", paintRegulars);
 function hasTaste(){
   return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only || goOutTimes().length > 0 ||
+    Object.keys(regulars).length > 0 ||
     Object.keys(venueBonus).length > 0 ||
     taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
 }
@@ -2429,6 +2465,8 @@ const DATE = "2026-10-13";
 const NAMES = ["Twist Museum - London's Home of Illusions STANDARD", "FRAMELESS", "Shakespeare's Globe - Much Ado About Nothing", "Sinatra the Musical", "The Mousetrap", "JUSTIN HAYWARD: THE STORY IN YOUR EYES TOUR", "Alice", "Alice Cooper Devil on My Shoulder Book Tour", "Mamma Mia! The Party", "The Pussycat Dolls: PCD FOREVER TOUR", "James McMurtry", "Soul Clash", "The World of Hans Zimmer - Premium Ticket and Hotel Experiences", "EYES", "Jamie McIntyre", "Oliver!", "James Emmanuel", "Belle Livingstone's 58th Street Country Club", "Bank Holiday", "My Neighbour Totoro", "Stranger Things: The First Shadow", "Harry Potter and the Cursed Child - One Part Show", "Bel Cobain", "Moses Yoofee Trio", "Cabaret At The Kit Kat Club", "Matilda The Musical", "Heated Rivalry: The Unauthorized Musical Parody", "SKAI ISYOURGOD", "Heaven 17", "Jack Harlow - Monica Tour", "Madra Salach", "Comedy in Your Eye - Stand up Comedy in Camden Town", "Tues 13th Oct - Stand Up Comedy Show - Big Belly Comedy Club", "Kris Barras Band", "The Hoosiers", "Blonde Revisited (10th Anniversary)", "ELEINE", "HERE AND EVERYWHERE + ARIF RAIHAN + NICK ALEXANDER", "The Cherry Orchard", "Hadestown", "The Standard of Living", "Mamma Mia!", "Girl In The Year Above", "The Devil Wears Prada", "Martin Guerre", "High School Musical", "Avenue Q", "Million Dollar Quartet", "The Hunger Games On Stage", "Phantom of the Opera", "The Play That Goes Wrong", "Wicked", "Derren Brown: Only Human", "Les Miserables", "Hamilton", "Beetlejuice", "Oh Mary!", "Moulin Rouge The Musical", "The Book Of Mormon", "Disney's THE LION KING", "Titanique", "Affluenza", "Witness for the Prosecution", "Jill Scott - To Whom This May Concern 2026 Tour", "Ben Ellis", "Big Belly Comedy Club - Voted London\u2019s Best Comedy Club", "Paranormal Activity", "Fences", "Into The Woods", "RENT", "Franz & Marie", "Hay Fever", "Finn Carter - \u2018Finding Home\u2019 Album Launch", "SIX The Musical", "The Definitive Rat Pack", "The 400 Club x Pinterest: Creator Curriculum", "Blue Earth Summit - KULEANA Screening", "Fintech Hackathon", "The Next Generation with Baroness Fox", "VC Pitch Night | DeepTech Founders with Empirical Ventures and Aligned Syndicate", "Uplift Live: Black in the Room", "Truefuels x TRD: London Startups Operator RunClub & Social", "The Grouse & Grape Luncheon", "SPILL THE BEANS- VOL:10, Free From", "Whisky Tasting | Smoky Whisky Night", "Nigerian Cookery Class with Bolu | Veg Friendly | LONDON| Pop Up", "Bottomless Sip & Paint At Brick Lane's Vibey Pizza Spot", "Italian Wine Tasting with 4 Premium Wines in Mayfair", "Afternoon Tea Experience with Unlimited Tea at Courtyard Wine Cellars", "Tuesday Wine & Cheese Tasting", "London's Hidden Cocktail Scene", "Barista Experience at Principles Coffee House", "Vinorum Uncorked: Altitude versus Ocean"];
 const EIDS = ["38822adf", "a708171d", "ff01ee7f", "27f3f7c8", "5b4271b6", "97f4fdc7", "840ff91a", "b6ac6014", "509918d3", "fb54e340", "2e1f9bab", "f9d2ceb5", "2c0b0cad", "98b92810", "d8890f4d", "12c84ba2", "f6f3316b", "299363ae", "79e203a7", "299e6d46", "2f51b3fc", "54f6fcbb", "1b3926e2", "85f9c275", "11dd5746", "d26431f2", "0ec1279b", "c5cf1479", "de7e20a0", "3c19d695", "2b93d6e8", "5c8d70fe", "ea9b29cf", "b23972e2", "8bc7c1c9", "550b91f5", "ff15deae", "be69b49b", "91209d56", "2eb2dea0", "9eececb6", "6caf62f3", "0ffe94a6", "1c74994c", "68a34858", "652d8835", "fb3c620c", "e6ea3af4", "8b1a304c", "31727543", "364e2ac9", "4833609f", "072d0d62", "e71893ab", "c41b4aef", "3079eb36", "ed858cdf", "7d4a877a", "099f95df", "af5905db", "30fa26c9", "f107ba29", "35b1272d", "59e73bcd", "81360920", "f3886ce3", "bc48f861", "59f47929", "a71b74af", "f8d2d64d", "7e109f43", "2efb8721", "a38bb532", "70da1c6e", "53fbbb8a", "de224ae3", "30004d0c", "445c7789", "4a47b821", "84c01189", "5135b04f", "76e6ba0d", "797b473a", "866a2469", "62c0e89e", "44184a9e", "52ccb327", "4ccf5e1c", "b0bfc501", "1c92721e", "de15f543", "91b791de", "bb110e3e"];  // permanent ids (index -> id)
 const VENUES = ["Twist Museum", "Marble Arch Place", "Globe Theatre, Shakespeare's Globe", "Aldwych Theatre", "St Martin's Theatre", "Cadogan Hall", "New Cross Inn", "The London Palladium", "The O2", "The O2", "Union Chapel", "Soul Mama Islington", "The O2", "The Black Heart", "London Oslo", "Gielgud Theatre", "The Lexington", "Belle Livingstone's 58th Street Country Club", "Next Door Records Two", "Gillian Lynne Theatre", "Phoenix Theatre", "Palace Theatre", "Amazing Grace", "Blue Note London", "Playhouse Theatre", "Cambridge Theatre", "Underbelly Boulevard", "O2 Forum Kentish Town", "O2 Shepherds Bush Empire", "KOKO", "Electric Ballroom", "Comedy In Your Eye", "Big Belly Comedy - Southbank", "The Garage", "Islington Assembly Hall", "Jazz Cafe", "Underworld", "Cart & Horses", "The Harold Pinter Theatre ", "Lyric Theatre", "Theatre Royal Haymarket", "Novello Theatre", "Village Underground", "Dominion Theatre", "The Old Vic", "Troubadour Wembley Park Theatre", "Shaftesbury Theatre", "The Arts at Marble Arch", "Troubadour Canary Wharf Theatre", "His Majesty's Theatre", "Duchess Theatre", "Apollo Victoria Theatre", "Apollo Theatre", "Sondheim Theatre", "Victoria Palace Theatre", "Prince Edward Theatre", "Trafalgar Theatre", "Piccadilly Theatre", "Prince of Wales Theatre", "Lyceum Theatre", "Criterion Theatre", "Riverside Studios", "County Hall", "Royal Albert Hall", "Scala", "Big Belly Comedy - Southbank", "Ambassadors Theatre", "Lyric Theatre Hammersmith", "Noel Coward Theatre", "Tom Stoppard Theatre", "Charing Cross Theatre", "Wyndham's Theatre", "Vortex Jazz Club", "Vaudeville Theatre", "Boisdale, Canary Wharf", "2 Great Titchfield St.", "Punchdrunk", "London, United Kingdom", "Adam Smith Institute", "IDEALondon", "OLIVER", "London, United Kingdom", "Spencer House", "The Institution of Structural Engineers", "Duke of St Albans", "All Saints Church", "118 Brick Ln", "Mercato Mayfair", "Courtyard Wine Cellars", "Kenrick's Wine Merchant", "Soho", "Principles Coffee House", "The Fulham Arms"];
+const SERIES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];  // same show + place on any day
+const RECUR = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 const KIDS = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const PRICES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$98.00", "$217.38", "$27.80", "$59.00", "$38.62", "$25.00", "$29.95", "$15.00", "$280.00", "$95.00", "$85.00"];
 // parents can bring kids' events into story mode, Next hour and Toni's suggestions
@@ -2593,6 +2631,7 @@ document.querySelectorAll(".ics-btn").forEach(btn => {
       "DTSTAMP:" + stamp,
       "DTSTART:" + d.calStart, "DTEND:" + d.calEnd,
       "SUMMARY:" + icsEscape(d.name)];
+    if (d.weekly) lines.push("RRULE:FREQ=WEEKLY");
     if (d.loc) lines.push("LOCATION:" + icsEscape(d.loc));
     if (d.url) {
       lines.push("URL:" + d.url);
