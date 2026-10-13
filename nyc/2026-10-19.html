@@ -219,6 +219,8 @@ font-weight:900;text-transform:none;letter-spacing:0;line-height:1.1;}
 box-sizing:border-box;background:var(--accent);border:3px solid var(--ink);border-radius:50%;}
 :root[data-layout="timeline"] section.cat.tl article.event{border-bottom:2px solid var(--muted);}
 :root[data-layout="timeline"] .tl-start{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin:24px 0 8px;}
+.going-btn[aria-pressed="true"]{background:var(--accent)!important;color:var(--on-accent,#14201A)!important;border-color:var(--ink)!important;font-weight:800;}
+.going-count{font-size:12.5px;font-weight:700;opacity:.8;align-self:center;}
 .meta .regular-tag{display:inline-block;background:var(--accent);color:var(--on-accent,#14201A);font-weight:800;font-size:10.5px;
 letter-spacing:1px;text-transform:uppercase;padding:2px 7px;margin-right:6px;vertical-align:1px;}
 /* every look: the search row and the top links must fit a 360px phone */
@@ -2261,7 +2263,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=NYC%20Parks%E2%80%99%2044th%20Annual%20Wreath%20Interpretations%20Open%20Call&dates=20261019T040000Z/20261019T060000Z&details=This%20juried%20exhibition%20features%20creative%20variations%20on%20the%20traditional%20holiday%20decoration%20in%20all%20varieties%20of%20materials%20and%20subjects.%20Artists%20are%20invited%20to%20commemorate%20the%20holiday%20season%20by%20handcrafting%20a%20whimsical%20wreath%20using%20inventive%2C%20unexpected%20objects.%20To%20submit%20your%20wreath%20for%20consideration%2C%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/nyc-parks-44th-annual-wreath-interpretations-open-call&location=Arsenal%20%28in%20Central%20Park%29%2C%20Central%20Park&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="0">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="0">Share</button>
-<button class="cal-link regular-btn" data-series="5bd8c48d50" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="0" aria-pressed="false">I’m going</button><span class="going-count" data-idx="0" hidden></span><button class="cal-link regular-btn" data-series="5bd8c48d50" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2278,7 +2280,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=New%20Dendrology%20at%20the%20Arsenal%20Gallery&dates=20261019T130000Z/20261019T150000Z&details=New%20Dendrology%20is%20a%20group%20exhibition%20featuring%20eleven%20artists%20whose%20work%20contributes%20to%20the%20study%20of%20trees%2C%20offering%20new%20insight%20and%20connection%20between%20humans%20and%20their%20arboreal%20neighbors.%20From%20communing%20with%20streets%20trees%20through%20a%20reading%20with%20The%20New%20York%20City%20Street%20Tree%20Tarot%20deck%20by%20Matthew%20L%C3%B3%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/new-dendrology-at-the-arsenal-gallery&location=Arsenal%20%28in%20Central%20Park%29%2C%20Central%20Park&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="1">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="1">Share</button>
-<button class="cal-link regular-btn" data-series="c311e23cb9" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="1" aria-pressed="false">I’m going</button><span class="going-count" data-idx="1" hidden></span><button class="cal-link regular-btn" data-series="c311e23cb9" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2295,7 +2297,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ongoing%20Museum%20Exhibit%3A%20Voices%20of%201776&dates=20261019T140000Z/20261019T160000Z&details=The%20Conference%20House%20Association%20and%20NYC%20Parks%20invite%20you%20to%20explore%20this%20America%20250%20Exhibit%21%20Stop%20by%20the%20Lenape%20Gallery%20in%20the%20Conference%20House%20Park%20Visitor%20Center%20and%20explore%20%E2%80%9CVoices%20of%201776%3A%20The%20People%20and%20Events%20Surrounding%20the%20Historic%20Staten%20Island%20Peace%20Conference%20of%20the%20American%20Revolution%E2%80%9D%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/ongoing-museum-exhibit-voices-of-1776&location=Conference%20House%20Museum%20%28in%20Conference%20House%20Park%29%2C%20Tottenville-Charleston&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="3">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="3">Share</button>
-<button class="cal-link regular-btn" data-series="cb65f9a5b0" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="3" aria-pressed="false">I’m going</button><span class="going-count" data-idx="3" hidden></span><button class="cal-link regular-btn" data-series="cb65f9a5b0" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2312,7 +2314,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Riverside%20Field%20House%3A%20Fall%20Bodyroll&dates=20261019T140000Z/20261019T160000Z&details=Bodyroll%20is%20a%20dance%20practice%20pulsing%20with%20pure%20joy.%20Classes%20ignite%20embodied%20empowerment%20and%20energize%20a%20cathartic%20release.%20The%20experience%20is%20designed%20to%20alchemize%20a%20playful%20perspective%20for%20rolling%2C%20releasing%2C%20and%20reinventing%20yourself.%20Together%2C%20we%E2%80%99ll%20tap%20into%20the%20spiral%20rave%20through%20body%20rolling%2C%20mov%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/riverside-field-house-fall-bodyroll&location=102nd%20Street%20Field%20House%20%28in%20Riverside%20Park%29%2C%20Upper%20West%20Side-Manhattan%20Valley" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="4">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="4">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="4" aria-pressed="false">I’m going</button><span class="going-count" data-idx="4" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2329,7 +2331,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ongoing%20Outdoor%20Museum%20Exhibit%3A%20Alice%27s%20Terracotta%20Garden&dates=20261019T150000Z/20261019T170000Z&details=Terra%20cotta%20sculpture%20garden%20featuring%20antique%20architectural%20ornaments%20from%20Tottenville%27s%20Atlantic%20Terra%20Cotta%20Company%20%28west%20side%20lawn%20of%20Biddle%20House%29.%20NYC%20Parks%20and%20the%20Tottenville%20Historical%20Society%20invite%20you%20to%20visit%20a%20unique%20collection%20of%20terracotta%20artifacts%20that%20chronicle%20turn-of-the-twentie%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/ongoing-outdoor-museum-exhibit-alices-terracotta-garden&location=H.H.%20Biddle%20House%20%28in%20Conference%20House%20Park%29%2C%20Tottenville-Charleston&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="5">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="5">Share</button>
-<button class="cal-link regular-btn" data-series="dfd066eadd" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="5" aria-pressed="false">I’m going</button><span class="going-count" data-idx="5" hidden></span><button class="cal-link regular-btn" data-series="dfd066eadd" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2346,7 +2348,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Soil%20Health%20Field%20Day%20with%20Cornell%20Cooperative%20Extension&dates=20261019T153000Z/20261019T173000Z&details=A%20hands-on%20look%20at%20soil%20health%20for%20urban%20growers%20with%20Cornell%20Cooperative%20Extension%E2%80%99s%20urban%20ag%20team%20and%20other%20NYC%20soil%20folks%2C%20pulling%20out%20all%20our%20best%20field%20demos%3A%20rainfall%20simulation%2C%20cover%20crop%20seeding%20and%20termination%20%28with%20a%20cover%20crop%20seed%20giveaway%29%2C%20characterizing%20soil%20texture%2C%20and%20more.%20Take%20t%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/soil-health-field-day-with-cornell-cooperative-extension&location=Governors%20Island%2C%20The%20Battery-Governors%20Island-Ellis%20Island-Liberty%20Island" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="6">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="6">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="6" aria-pressed="false">I’m going</button><span class="going-count" data-idx="6" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2363,7 +2365,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=P%C3%A9tanque%20in%20the%20Park&dates=20261019T170000Z/20261019T190000Z&details=Never%20heard%20of%20P%C3%A9tanque%3F%20Our%20expert%20friends%20at%20NYC%E2%80%99s%20oldest%20running%20P%C3%A9tanque%20club%20will%20teach%20you.%20This%20French%20lawn%20bowling%20game%20from%20the%20early%2020th%20century%20is%20easy%20to%20learn%2C%20and%20we%20provide%20the%20boules.%20Just%20bring%20yourself%21%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/ptanque-in-the-park&location=P%C3%A9tanque%20Court%20%28in%20Washington%20Square%20Park%29%2C%20Greenwich%20Village&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="7">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="7">Share</button>
-<button class="cal-link regular-btn" data-series="ae27d52c14" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="7" aria-pressed="false">I’m going</button><span class="going-count" data-idx="7" hidden></span><button class="cal-link regular-btn" data-series="ae27d52c14" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2380,7 +2382,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hoop%20Jam%20in%20Herald%20Square%20Park&dates=20261019T220000Z/20261020T000000Z&details=We%27re%20collaborating%20with%20Big%20Apple%20Hooping%20to%20bring%20hooping%20fun%20to%20Herald%20Square%20Park.%20If%20you%27re%20looking%20to%20learn%20the%20fundamentals%20of%20hooping%2C%20work%20on%20refining%20your%20tricks%2C%20or%20meet%20fellow%20hoopers%20from%20the%20NYC%20area%2C%20this%20is%20the%20event%20for%20you.%20Hoopers%20of%20all%20experience%20levels%2C%20from%20beginner%20to%20advance%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/hoop-jam-in-herald-square-park&location=Herald%20Square%2C%20Midtown-Times%20Square&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="10">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="10">Share</button>
-<button class="cal-link regular-btn" data-series="fc9746a012" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="10" aria-pressed="false">I’m going</button><span class="going-count" data-idx="10" hidden></span><button class="cal-link regular-btn" data-series="fc9746a012" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2397,7 +2399,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Harlem%20Run%3A%20Monday%20Night%20Run&dates=20261019T224500Z/20261020T004500Z&details=Harlem%20Run%20brings%20free%20weekly%20and%20inclusive%20pacer-led%20runs%20and%20walks%20throughout%20Harlem.%20Join%20us%20for%20a%20different%20route%20through%20Harlem%2C%20beginning%20and%20ending%20at%20Marcus%20Garvey%20Park.%20Paces%20available%20include%207%20min%20to%2012%20min%2C%20run/walk%2C%20and%20walk%20groups.%20Open%20to%20all%20ages%20and%20abilities.%20Bag%20drop%20available%2C%20th%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/harlem-run-monday-night-run&location=Marcus%20Garvey%20Park%2C%20East%20Harlem%20%28North%29&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="11">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="11">Share</button>
-<button class="cal-link regular-btn" data-series="ef1bbc63a3" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="11" aria-pressed="false">I’m going</button><span class="going-count" data-idx="11" hidden></span><button class="cal-link regular-btn" data-series="ef1bbc63a3" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2414,7 +2416,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sexual%20Health%20Mobile%20Medical%20Unit&dates=20261019T140000Z/20261019T160000Z&details=Prospect%20Park%20Alliance%20is%20collaborating%20with%20NewYork-Presbyterian%20to%20offer%20comprehensive%20sexual%20health%20services%20in%20Brooklyn%E2%80%99s%20backyard%20at%20Grand%20Army%20Plaza%20every%20Thursday%20from%2010%20am%20to%203%20pm%20and%20every%20Monday%20at%20the%20Parkside%20%2B%20Ocean%20Avenue%20Entrance%20from%2010%20am%20to%203%20pm.%20The%20NewYork-Presbyterian%20Sexual%20He%20Tickets%20%26%20info%3A%20https%3A//www.prospectpark.org/event/sexual-health-mobile-medical-unit-2/2026-10-19/&location=Prospect%20Park%2C%20Prospect%20Park&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="12">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="12">Share</button>
-<button class="cal-link regular-btn" data-series="cdbbdaab14" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="12" aria-pressed="false">I’m going</button><span class="going-count" data-idx="12" hidden></span><button class="cal-link regular-btn" data-series="cdbbdaab14" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2431,7 +2433,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=It%E2%80%99s%20My%20Park%20Day&dates=20261019T140000Z/20261019T160000Z&details=Looking%20to%20get%20involved%20in%20a%20park%20clean-up%20effort%3F%20Join%20Prospect%20Park%20Alliance%20for%20It%E2%80%99s%20My%20Park%20Day%20to%20care%20for%20the%20park%20after%20busy%20weekends.%20All%20necessary%20tools%20will%20be%20provided%20for%20your%20volunteer%20experience.%20Join%20It%E2%80%99s%20My%20Park%20Days%20on%3A%20September%208%2C%2014%2C%2021%2C%2028%20%2B%20October%205%2C%2013%2C%2019%2C%2026%20Open%20to%20teens%201%20Tickets%20%26%20info%3A%20https%3A//www.prospectpark.org/event/its-my-park-day-22/2026-10-19/&location=Prospect%20Park%2C%20Prospect%20Park" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="13">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="13">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="13" aria-pressed="false">I’m going</button><span class="going-count" data-idx="13" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2448,7 +2450,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=New%20Jokes%20%26%20Newbies&dates=20261020T014500Z/20261020T034500Z&details=If%20a%20band%20practices%20in%20a%20garage%2C%20where%20does%20a%20comedian%20practice%3F...%20Right%20here%21Take%20a%20peek%20into%20the%20%22garage%22%20as%20veterans%20work%20on%20new%20material%20and%20fresh%20faced%20comics%20polish%20up%20their%20acts.%20The%20lineup%20is%20a%20surprise%20and%20changes%20nightly%20-%20you%20never%20know%20who%20you%27re%20gonna%20see%21%20Tickets%20%26%20info%3A%20https%3A//newyorkcomedyclub.com/events/new-jokes-newbies-2026-10-19214500&location=New%20York%20Comedy%20Club%20on%204th%20Street&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="23">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="23">Share</button>
-<button class="cal-link regular-btn" data-series="cef02c0dda" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="23" aria-pressed="false">I’m going</button><span class="going-count" data-idx="23" hidden></span><button class="cal-link regular-btn" data-series="cef02c0dda" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2465,7 +2467,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Warm%20Start%3A%20An%20Evening%20at%20Othership%20%28Hosted%20by%20STRV%2C%20Sponsored%20by%20RevenueCat%29&dates=20261019T230000Z/20261020T010000Z&details=STRV%20is%20a%20digital%20product%20company%20with%20a%20thing%20for%20good%20conversation.%20We%20bring%20people%20together%20through%20meetups%2C%20talks%20and%20partnership%20events%2C%20because%20the%20best%20ideas%20happen%20out%20loud.%20Tickets%20%26%20info%3A%20https%3A//luma.com/strv-f4ju&location=Othership%20Flatiron%2C%20Midtown%20South-Flatiron-Union%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="38">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="38">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="38" aria-pressed="false">I’m going</button><span class="going-count" data-idx="38" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2482,7 +2484,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=the%20appspresso%20%E2%98%95%E2%9C%A8%20app%20week%20cafe&dates=20261019T120000Z/20261019T140000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/6bkjlc0n&location=Fellini%20Coffee%20Chelsea%2C%20Chelsea-Hudson%20Yards" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="39">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="39">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="39" aria-pressed="false">I’m going</button><span class="going-count" data-idx="39" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2499,7 +2501,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Monthly%20Coffee%20with%20Crystal%20Venture%20Partners&dates=20261019T130000Z/20261019T150000Z&details=NYC-based%20venture%20capital%20firm%20backing%20transformational%20founders%20in%20insurance%2C%20risk%2C%20and%20technology.%20Tickets%20%26%20info%3A%20https%3A//luma.com/3j0qus76&location=Manhattan%2C%20Midtown-Times%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="41">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="41">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="41" aria-pressed="false">I’m going</button><span class="going-count" data-idx="41" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2516,7 +2518,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pitch%20and%20Run%20Monday&dates=20261019T130000Z/20261019T150000Z&details=Pitch%20and%20Run%20was%20founded%20to%20make%20it%20easy%20for%20founders%20to%20connect%20with%20Angels%20and%20VCs%20without%20the%20pressure%20of%20a%20pitch%20meeting%20and%20to%20allow%20founders%20and%20startup%20employees%20to%20connect.%20Tickets%20%26%20info%3A%20https%3A//luma.com/0yc5aeut&location=Bluestone%20Lane%20Chelsea%20Piers%20Caf%C3%A9%2C%20Chelsea-Hudson%20Yards" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="42">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="42">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="42" aria-pressed="false">I’m going</button><span class="going-count" data-idx="42" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2533,7 +2535,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Windsor%20Terrace%20Elementary%20School%20Tour&dates=20261019T133000Z/20261019T153000Z&details=Tuition-free%20K%E2%80%9312%20public%20schools%20across%20Brooklyn.%20Students%20can%20start%20in%20kindergarten%20and%20continue%20through%20the%20IB%20Diploma%20Programme%20at%20Brooklyn%20Prospect%20High%20School.%20Tickets%20%26%20info%3A%20https%3A//luma.com/8kzivl1t&location=3002%20Fort%20Hamilton%20Pkwy%2C%20Windsor%20Terrace-South%20Slope" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="43">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="43">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="43" aria-pressed="false">I’m going</button><span class="going-count" data-idx="43" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2550,7 +2552,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Apps%20Capital%20Cowork&dates=20261019T140000Z/20261019T160000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/wwgi249c&location=Midtown%20Manhattan%2C%20Midtown%20South-Flatiron-Union%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="44">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="44">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="44" aria-pressed="false">I’m going</button><span class="going-count" data-idx="44" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2567,7 +2569,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Windsor%20Terrace%20Middle%20School%20Tour&dates=20261019T141500Z/20261019T161500Z&details=Tuition-free%20K%E2%80%9312%20public%20schools%20across%20Brooklyn.%20Students%20can%20start%20in%20kindergarten%20and%20continue%20through%20the%20IB%20Diploma%20Programme%20at%20Brooklyn%20Prospect%20High%20School.%20Tickets%20%26%20info%3A%20https%3A//luma.com/g07uo5dp&location=3002%20Fort%20Hamilton%20Pkwy%2C%20Windsor%20Terrace-South%20Slope" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="45">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="45">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="45" aria-pressed="false">I’m going</button><span class="going-count" data-idx="45" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2584,7 +2586,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Magma%20Math%20New%20York%20Fall%20Summit%21&dates=20261019T173000Z/20261019T193000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/8rfhert8&location=National%20Museum%20of%20Mathematics%2C%20Chelsea-Hudson%20Yards" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="46">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="46">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="46" aria-pressed="false">I’m going</button><span class="going-count" data-idx="46" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2601,7 +2603,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vacuum%20Form%20Chocolate%20Molds&dates=20261019T200000Z/20261019T220000Z&details=NYU%20MakerSpace%20Design%20Lab%20Workshops%20%26%20Events%20Tickets%20%26%20info%3A%20https%3A//luma.com/6bxp9m1w&location=NYU%20MakerSpace%2C%20Downtown%20Brooklyn-DUMBO-Boerum%20Hill" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="47">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="47">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="47" aria-pressed="false">I’m going</button><span class="going-count" data-idx="47" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2618,7 +2620,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=asmara%20pop-up%21&dates=20261019T210000Z/20261019T230000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/nw1q0g35&location=TIME%20AGAIN%2C%20Chinatown-Two%20Bridges" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="48">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="48">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="48" aria-pressed="false">I’m going</button><span class="going-count" data-idx="48" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2635,7 +2637,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Clinton%20Hill%20Middle%20School%20Tour&dates=20261019T210000Z/20261019T230000Z&details=Tuition-free%20K%E2%80%9312%20public%20schools%20across%20Brooklyn.%20Students%20can%20start%20in%20kindergarten%20and%20continue%20through%20the%20IB%20Diploma%20Programme%20at%20Brooklyn%20Prospect%20High%20School.%20Tickets%20%26%20info%3A%20https%3A//luma.com/7mavs5t5&location=1100%20Fulton%20St%2C%20Bedford-Stuyvesant%20%28West%29" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="49">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="49">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="49" aria-pressed="false">I’m going</button><span class="going-count" data-idx="49" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2652,7 +2654,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sail%20%26%20Scale%3A%20The%20RAGA%20Launch%20Cruise%20by%20Paddle&dates=20261019T210000Z/20261019T230000Z&details=As%20the%20Merchant%20of%20Record%20for%20digital%20product%20businesses%2C%20Paddle%20manages%20payments%2C%20tax%2C%20compliance%2C%20and%20billing%20across%20300%2B%20markets.%20Tickets%20%26%20info%3A%20https%3A//luma.com/paddle-sail-and-scale&location=Manhattan" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="50">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="50">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="50" aria-pressed="false">I’m going</button><span class="going-count" data-idx="50" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2669,7 +2671,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Claude%20%26%20Chill%20for%20Founders%20%26%20Creators&dates=20261019T211500Z/20261019T231500Z&details=Claude%20Community%20Events%20hosted%20globally%20by%20Claude%20Community%20members.%20Meet%20others%20building%20with%20Claude%20and%20keep%20thinking.%20Learn%20more%3A%20https%3A//claude.com/community%20Tickets%20%26%20info%3A%20https%3A//luma.com/claude-and-chill-oct19&location=Manhattan" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="51">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="51">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="51" aria-pressed="false">I’m going</button><span class="going-count" data-idx="51" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2686,7 +2688,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AIIA%20Innovation%20Night&dates=20261019T213000Z/20261019T233000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/efwl737n&location=NYU%20Stern%20School%20of%20Business%2C%20Greenwich%20Village" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="52">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="52">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="52" aria-pressed="false">I’m going</button><span class="going-count" data-idx="52" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2703,7 +2705,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Exit%20Strategy%20%7C%20by%20A.%20Battista%20%7C%20New%20York%20Presentation%20Event&dates=20261019T213000Z/20261019T233000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/l4m4eozm&location=Transatlantic%20Innovation%20Hub%20powered%20by%20ATLAS%2C%20Midtown-Times%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="53">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="53">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="53" aria-pressed="false">I’m going</button><span class="going-count" data-idx="53" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2720,7 +2722,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%28IN%29%20Focus%3A%20Marc%20Lore&dates=20261019T213000Z/20261019T233000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/the-jzoa&location=The%20Lighthouse%20Campus%2C%20Greenpoint" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="54">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="54">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="54" aria-pressed="false">I’m going</button><span class="going-count" data-idx="54" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2737,7 +2739,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=C2FM%20x%20CEN%20Founder%20Speed%20Matching%3A%20Clean%20Energy&dates=20261019T220000Z/20261020T000000Z&details=NYC%27s%20climate%20co-founder%20matching%20platform.%20Tickets%20%26%20info%3A%20https%3A//luma.com/5brclaye&location=Midtown%20Manhattan%2C%20Midtown%20South-Flatiron-Union%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="55">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="55">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="55" aria-pressed="false">I’m going</button><span class="going-count" data-idx="55" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2754,7 +2756,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=NY%20Women%20in%20Medicine%20Leadership%20Dinner&dates=20261019T220000Z/20261020T000000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/0oo0yckm&location=Penn%20Club%20of%20New%20York%2C%20Midtown-Times%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="58">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="58">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="58" aria-pressed="false">I’m going</button><span class="going-count" data-idx="58" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2771,7 +2773,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Private%20Dinner%3A%20Navigating%20International%20Retail&dates=20261019T220000Z/20261020T000000Z&details=Our%20exclusive%20events%20give%20retail%20and%20brand%20executives%20a%20trusted%20space%20to%20compare%20strategies%2C%20discover%20new%20ideas%2C%20and%20stay%20plugged%20into%20what%E2%80%99s%20shaping%20the%20industry%20next.%20Tickets%20%26%20info%3A%20https%3A//luma.com/rtmnexus-kd2i&location=Raines%20Law%20Room%20at%20The%20William%2C%20Midtown-Times%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="59">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="59">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="59" aria-pressed="false">I’m going</button><span class="going-count" data-idx="59" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2788,7 +2790,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Tribeca%20Club%3A%20Game%20Night&dates=20261019T220000Z/20261020T000000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/n87wuzjz&location=South%20Village%2C%20Greenwich%20Village" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="60">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="60">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="60" aria-pressed="false">I’m going</button><span class="going-count" data-idx="60" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2805,7 +2807,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI%20app%20founders%20dinner&dates=20261019T223000Z/20261020T003000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/135vltww&location=Bowery%2C%20East%20Village" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="61">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="61">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="61" aria-pressed="false">I’m going</button><span class="going-count" data-idx="61" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2822,7 +2824,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI%20For%20NYC%20Hackathon&dates=20261019T223000Z/20261020T003000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/3jtm4813&location=Pursuit%2C%20Long%20Island%20City-Hunters%20Point" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="62">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="62">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="62" aria-pressed="false">I’m going</button><span class="going-count" data-idx="62" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2839,7 +2841,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Chelsea%20Community%20Dinner&dates=20261019T223000Z/20261020T003000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/du66p0mh&location=Neighbor%2C%20Chelsea-Hudson%20Yards" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="64">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="64">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="64" aria-pressed="false">I’m going</button><span class="going-count" data-idx="64" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2856,7 +2858,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Growth%20Gems%20%26%20Screw-Ups&dates=20261019T223000Z/20261020T003000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/gzu9pr1d&location=TALEA%20Beer%20Penn%20District%2C%20Midtown%20South-Flatiron-Union%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="65">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="65">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="65" aria-pressed="false">I’m going</button><span class="going-count" data-idx="65" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2873,7 +2875,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Intro%20to%20Electronics%2C%20Part%204%21&dates=20261019T223000Z/20261020T003000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/j53ket8g&location=Fat%20Cat%20Fab%20Lab%2C%20West%20Village" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="66">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="66">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="66" aria-pressed="false">I’m going</button><span class="going-count" data-idx="66" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2890,7 +2892,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shopkeeper%20Social%20%233&dates=20261019T223000Z/20261020T003000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/xr0exqap&location=Marche%20Rue%20Dix%20Shop%20%26%20Beauty%20Salon%2C%20Crown%20Heights%20%28North%29" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="71">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="71">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="71" aria-pressed="false">I’m going</button><span class="going-count" data-idx="71" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2907,7 +2909,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Worship%20%26%20Network%20%3A%20Kre8tive%20Lounge&dates=20261019T223000Z/20261020T003000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/403mefhk&location=The%20Kre8tive%20Lounge" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="72">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="72">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="72" aria-pressed="false">I’m going</button><span class="going-count" data-idx="72" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2924,7 +2926,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Designer%20Internship%20Panel&dates=20261019T230000Z/20261020T010000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/ntiany5e&location=NYU%20370%20Jay%20Street%2C%20Downtown%20Brooklyn-DUMBO-Boerum%20Hill" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="73">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="73">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="73" aria-pressed="false">I’m going</button><span class="going-count" data-idx="73" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2941,7 +2943,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Lost%20Horizon%20Night%20Market%20Proprietor%20Meet%20and%20Greet&dates=20261019T230000Z/20261020T010000Z&details=creative%20studio%20%2B%20makerspace%20in%20bklyn.%20costume%20%C2%B7%20fashion%20%C2%B7%20fabrication%20%C2%B7%20wearable%20art%20of%20all%20kinds.%20%40makefunstudio%20%C2%B7%20makefunstudio.com%20Tickets%20%26%20info%3A%20https%3A//luma.com/egdykupm&location=347%20Maujer%20St%202nd%20floor%2C%20East%20Williamsburg" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="74">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="74">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="74" aria-pressed="false">I’m going</button><span class="going-count" data-idx="74" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2958,7 +2960,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Apps%20Capital%20Dinner%3A%20Founders%20%26%20Investors&dates=20261019T233000Z/20261020T013000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/8dth97a7&location=Chelsea%2C%20Chelsea-Hudson%20Yards" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="77">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="77">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="77" aria-pressed="false">I’m going</button><span class="going-count" data-idx="77" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2975,7 +2977,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=BCPC%20Open%20Gym&dates=20261020T000000Z/20261020T020000Z&details=Brooklyn%27s%20leading%20provider%20of%20LGBTQ%2B%20community%20space%2C%20programming%2C%20and%20resources.%20Tickets%20%26%20info%3A%20https%3A//luma.com/qcs55ne0&location=Major%20R.%20Owens%20Health%20%26%20Wellness%20Community%20Center%2C%20Crown%20Heights%20%28South%29" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="78">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="78">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="78" aria-pressed="false">I’m going</button><span class="going-count" data-idx="78" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -2992,7 +2994,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=REACH%20Commercial%20Networking%20Hour&dates=20261020T000000Z/20261020T020000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/u7cklg5c&location=The%20Joyce%20Public%20House%2C%20Hell%27s%20Kitchen" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="79">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="79">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="79" aria-pressed="false">I’m going</button><span class="going-count" data-idx="79" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3013,7 +3015,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pudu%3A%20NYC%20Film%20Salon&dates=20261019T230000Z/20261020T010000Z&details=making%20the%20movie%20viewing%20experience%20a%20social%20experience%20if%20you%20have%20a%20short%20film%20you%27d%20like%20to%20screen%20with%20us%2C%20send%20to%20jsuhmedia%40gmail.com%20Tickets%20%26%20info%3A%20https%3A//luma.com/waz5d50j&location=Williamsburg%2C%20East%20Williamsburg" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="75">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="75">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="75" aria-pressed="false">I’m going</button><span class="going-count" data-idx="75" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3034,7 +3036,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Fall%20Festival%20at%20Lakeside&dates=20261019T200000Z/20261019T220000Z&details=Celebrate%20the%20season%20at%20the%20Lakeside%20Fall%20Festival%2C%20a%20month-long%20fall%20experience%20filled%20with%20pumpkins%2C%20Haunted%20Hotel%20experience%2C%20carnival%20games%2C%20family%20activities%2C%20seasonal%20treats%2C%20photo%20ops%2C%20and%20Halloween%20fun%20in%20the%20heart%20of%20Prospect%20Park.%20Pick%20a%20pumpkin%2C%20make%20your%20way%20through%20the%20corn%20maze%2C%20challe%20Tickets%20%26%20info%3A%20https%3A//www.prospectpark.org/event/fall-festival-at-lakeside/2026-10-19/&location=Prospect%20Park%2C%20Prospect%20Park&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="14">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="14">Share</button>
-<button class="cal-link regular-btn" data-series="1824d83e9e" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="14" aria-pressed="false">I’m going</button><span class="going-count" data-idx="14" hidden></span><button class="cal-link regular-btn" data-series="1824d83e9e" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3051,7 +3053,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=PlacePartner%20Opportunity%3A%20Compost%20Compound%20at%20W%2095th%20St&dates=20261019T130000Z/20261019T150000Z&details=The%20Conservancy%E2%80%99s%20Sustainability%20team%20invites%20you%20to%20support%20us%20with%20compost%20processing%20and%20gardening%20work%20and%20at%20the%2095th%20Street%20Compost%20Compound.%20The%20compost%20that%20is%20currently%20in%20progress%20at%20our%20site%20is%20created%20right%20here%20in%20Riverside%20Park%21%20We%20utilize%20machinery%20for%20the%20composting%20work%2C%20and%20when%20th%20Tickets%20%26%20info%3A%20https%3A//riversideparknyc.org/event/volunteer-at-the-compost-compound-3-2/2026-10-19/&location=95th%20Street%20Compost%20Compound%2C%20Upper%20West%20Side%20%28Central%29&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="15">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="15">Share</button>
-<button class="cal-link regular-btn" data-series="41744eb376" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="15" aria-pressed="false">I’m going</button><span class="going-count" data-idx="15" hidden></span><button class="cal-link regular-btn" data-series="41744eb376" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3068,7 +3070,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Fireside%20Chat%20w.%20CMO%20%40%20Revolve%20%28Divya%20Mathur%29%20at%20Maxwell%20Social%20%F0%9F%8D%B8&dates=20261019T220000Z/20261020T000000Z&details=US%20Monday%20Girl%20Events%20Tickets%20%26%20info%3A%20https%3A//luma.com/MGMaxwellOctober&location=Tribeca%2C%20SoHo-Little%20Italy-Hudson%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="37">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="37">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="37" aria-pressed="false">I’m going</button><span class="going-count" data-idx="37" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3085,7 +3087,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=DRW%20Presents%3A%20Spooky%20Sculpt%20%26%20Sip&dates=20261019T220000Z/20261020T000000Z&details=%20Tickets%20%26%20info%3A%20https%3A//luma.com/wuljktkn&location=119%20W%2023rd%20St%2C%20Chelsea-Hudson%20Yards" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="56">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="56">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="56" aria-pressed="false">I’m going</button><span class="going-count" data-idx="56" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3102,7 +3104,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=NYC%20Backgammon%20Tournament%20-%20read%20details&dates=20261019T220000Z/20261020T000000Z&details=Social%20club%20to%20play%20%2B%20learn%20backgammon%20%F0%9F%8E%B2%20%E2%80%9CCome%20for%20backgammon.%20Leave%20with%20new%20friends%E2%80%9D.%20Luck%20Favors%20the%20Social%21%20Tickets%20%26%20info%3A%20https%3A//luma.com/hrc7bwwu&location=Soho%20Grand%20Hotel%2C%20SoHo-Little%20Italy-Hudson%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="57">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="57">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="57" aria-pressed="false">I’m going</button><span class="going-count" data-idx="57" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3119,7 +3121,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Read%20%26%20Release&dates=20261019T223000Z/20261020T003000Z&details=Join%20us%20for%20intentional%20gatherings%20rooted%20in%20culture%2C%20community%2C%20and%20care.%20Tickets%20%26%20info%3A%20https%3A//luma.com/pab81uk8&location=KGC%20Pilates%20and%20Wellness%20Club%2C%20East%20Flatbush-Erasmus" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="70">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="70">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="70" aria-pressed="false">I’m going</button><span class="going-count" data-idx="70" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3140,7 +3142,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Criterion%20Presents%20Adventures%20in%20Moviegoing%20with%20Isaac%20Mizrahi&dates=20261019T233000Z/20261020T013000Z&details=To%20celebrate%20Criterion%20and%20Janus%20Films%E2%80%99%20theatrical%20re-release%20of%20Unzipped%20%281995%29%2C%20Douglas%20Keeve%E2%80%99s%20exuberant%20documentary%20following%20Isaac%20Mizrahi%20as%20he%20creates%20his%20fall%201994%20collection%2C%20Mizrahi%20joins%20Criterion%E2%80%99s%20Peter%20Becker%20for%20a%20live%20conversation%20about%20the%20films%20that%20have%20inspired%20his%20life%20and%20work.%20Tickets%20%26%20info%3A%20https%3A//movingimage.org/event/adventures-in-moviegoing-mizrahi/&location=Museum%20of%20the%20Moving%20Image%2C%20Astoria%20%28Central%29" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="30">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="30">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="30" aria-pressed="false">I’m going</button><span class="going-count" data-idx="30" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3157,7 +3159,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Devils&dates=20261019T225000Z/20261020T005000Z&details=Showtimes%20today%3A%2010%3A35%20AM%2C%201%3A20%20PM%2C%204%3A05%20PM%2C%206%3A50%20PM%2C%209%3A35%20PM.%20Tickets%20%26%20info%3A%20https%3A//www.ifccenter.com/films/the-devils/&location=IFC%20Center%2C%20Greenwich%20Village" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="31">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="31">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="31" aria-pressed="false">I’m going</button><span class="going-count" data-idx="31" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3174,7 +3176,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Fjord&dates=20261020T004500Z/20261020T024500Z&details=Showtimes%20today%3A%2010%3A45%20AM%2C%2012%3A45%20PM%2C%203%3A55%20PM%2C%208%3A45%20PM.%20Tickets%20%26%20info%3A%20https%3A//www.ifccenter.com/films/fjord-open-captioning/&location=IFC%20Center%2C%20Greenwich%20Village" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="32">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="32">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="32" aria-pressed="false">I’m going</button><span class="going-count" data-idx="32" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3191,7 +3193,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20Great%20Experiment&dates=20261019T230500Z/20261020T010500Z&details=Showtimes%20today%3A%2010%3A55%20AM%2C%207%3A05%20PM%2C%209%3A25%20PM.%20Tickets%20%26%20info%3A%20https%3A//www.ifccenter.com/films/the-great-experiment-2/&location=IFC%20Center%2C%20Greenwich%20Village" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="33">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="33">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="33" aria-pressed="false">I’m going</button><span class="going-count" data-idx="33" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3208,7 +3210,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The%20History%20of%20Concrete&dates=20261020T014000Z/20261020T034000Z&details=Showtimes%20today%3A%2010%3A40%20AM%2C%2012%3A55%20PM%2C%201%3A30%20PM%2C%203%3A30%20PM%2C%204%3A35%20PM%2C%209%3A40%20PM.%20Tickets%20%26%20info%3A%20https%3A//www.ifccenter.com/films/the-history-of-concrete/&location=IFC%20Center%2C%20Greenwich%20Village" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="34">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="34">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="34" aria-pressed="false">I’m going</button><span class="going-count" data-idx="34" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3225,7 +3227,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Naza&dates=20261019T213500Z/20261019T233500Z&details=Showtimes%20today%3A%2012%3A35%20PM%2C%202%3A35%20PM%2C%203%3A25%20PM%2C%205%3A35%20PM%2C%207%3A30%20PM%2C%209%3A55%20PM.%20Tickets%20%26%20info%3A%20https%3A//www.ifccenter.com/films/naza/&location=IFC%20Center%2C%20Greenwich%20Village" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="35">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="35">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="35" aria-pressed="false">I’m going</button><span class="going-count" data-idx="35" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3246,7 +3248,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Fall%20Bodyroll%20in%20the%20Field%20House&dates=20261019T140000Z/20261019T160000Z&details=Bodyroll%20is%20a%20dance%20practice%20pulsing%20with%20pure%20joy.%20Classes%20ignite%20embodied%20empowerment%20and%20energize%20a%20cathartic%20release.%20The%20experience%20is%20designed%20to%20alchemize%20a%20playful%20perspective%20for%20rolling%2C%20releasing%2C%20and%20reinventing%20yourself.%20Together%2C%20we%E2%80%99ll%20tap%20into%20the%20spiral%20rave%20through%20body%20rolling%2C%20mov%20Tickets%20%26%20info%3A%20https%3A//riversideparknyc.org/event/fall-bodyroll-in-the-field-house/2026-10-19/&location=102nd%20Street%20Field%20House%2C%20Upper%20West%20Side-Manhattan%20Valley" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="16">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="16">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="16" aria-pressed="false">I’m going</button><span class="going-count" data-idx="16" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3263,7 +3265,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Intro%20to%20Soft%20Solder%3A%20Mini%20Frames%2C%20Gems%20%26%20Shells&dates=20261019T223000Z/20261020T003000Z&details=Live%20a%20life%20full%20of%20creativity%20%26%20connection.%20Join%20us%20for%20a%20club%2C%20project%2C%20workshop%20or%20private%20event%20in%20our%20communal%20Clinton%20Hill%20art%20studio.%20Tickets%20%26%20info%3A%20https%3A//luma.com/wfwcs38a&location=20%20Grand%20Ave%2C%20Fort%20Greene" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="67">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="67">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="67" aria-pressed="false">I’m going</button><span class="going-count" data-idx="67" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3280,7 +3282,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Making%20Fire%20Cider%20with%20Astoria%20School%20of%20Plant%20Wisdom&dates=20261019T223000Z/20261020T003000Z&details=Access%20your%20creativity.%20Join%20us%20at%20our%20Long%20Island%20City%20art%20studio%20for%20workshops%2C%20meetups%2C%20private%20events%2C%20and%20craft-based%20community.%20Run%20by%20the%20folks%20behind%20Queens%20Collaborative.%20%E2%AD%90%EF%B8%8F%20Tickets%20%26%20info%3A%20https%3A//luma.com/mxh5e0qy&location=21-07%2041st%20Ave%2C%20Queensbridge-Ravenswood-Dutch%20Kills" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="68">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="68">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="68" aria-pressed="false">I’m going</button><span class="going-count" data-idx="68" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3301,7 +3303,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Jeopardy%21%20Bar%20League%20at%20Olly%20Olly%20Market&dates=20261020T003000Z/20261020T023000Z&details=Weekly%20Jeopardy%21%20Bar%20League%20quiz%2C%20run%20by%20Geeks%20Who%20Drink%20at%20Olly%20Olly%20Market%2C%20601%20W%2026th%20St%20New%20York%2C%20NY%2010001.%20Teams%20of%20up%20to%206%3B%20all%20ages%20welcome%2C%20but%20check%20the%20venue%27s%20own%20rules.%20Weekly%20event%3A%20check%20the%20venue%20page%20before%20you%20go.%20Tickets%20%26%20info%3A%20https%3A//www.geekswhodrink.com/venues/3352943124&location=Olly%20Olly%20Market%2C%20Chelsea-Hudson%20Yards&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="17">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="17">Share</button>
-<button class="cal-link regular-btn" data-series="9925ffdb9b" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="17" aria-pressed="false">I’m going</button><span class="going-count" data-idx="17" hidden></span><button class="cal-link regular-btn" data-series="9925ffdb9b" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3318,7 +3320,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Trivia%20Night%20at%20House%20of%20Wax%20%40Alamo%20Drafthouse%20Brooklyn&dates=20261020T020000Z/20261020T040000Z&details=Weekly%20pub%20trivia%20hosted%20by%20Geeks%20Who%20Drink%20at%20House%20of%20Wax%20%40Alamo%20Drafthouse%20Brooklyn%2C%20445%20Albee%20Square%20W%20%234410%20Brooklyn%2C%20NY%2011201.%20Teams%20of%20up%20to%206%3B%20all%20ages%20welcome%2C%20but%20check%20the%20venue%27s%20own%20rules.%20Weekly%20event%3A%20check%20the%20venue%20page%20before%20you%20go.%20Tickets%20%26%20info%3A%20https%3A//www.geekswhodrink.com/venues/532021164&location=House%20of%20Wax%20%40Alamo%20Drafthouse%20Brooklyn%2C%20Downtown%20Brooklyn-DUMBO-Boerum%20Hill&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="18">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="18">Share</button>
-<button class="cal-link regular-btn" data-series="ecc971b803" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="18" aria-pressed="false">I’m going</button><span class="going-count" data-idx="18" hidden></span><button class="cal-link regular-btn" data-series="ecc971b803" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3335,7 +3337,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Trivia%20Night%20at%20Dylan%20Murphy%27s&dates=20261020T020000Z/20261020T040000Z&details=Weekly%20pub%20trivia%20hosted%20by%20Geeks%20Who%20Drink%20at%20Dylan%20Murphy%27s%2C%201453%203rd%20Ave%20New%20York%2C%20NY%2010028.%20Teams%20of%20up%20to%206%3B%20all%20ages%20welcome%2C%20but%20check%20the%20venue%27s%20own%20rules.%20Weekly%20event%3A%20check%20the%20venue%20page%20before%20you%20go.%20Tickets%20%26%20info%3A%20https%3A//www.geekswhodrink.com/venues/223268453&location=Dylan%20Murphy%27s%2C%20Upper%20East%20Side-Yorkville&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="19">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="19">Share</button>
-<button class="cal-link regular-btn" data-series="b6b4dea068" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="19" aria-pressed="false">I’m going</button><span class="going-count" data-idx="19" hidden></span><button class="cal-link regular-btn" data-series="b6b4dea068" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3356,7 +3358,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=New%20York%20Comedy%20Club%20Presents&dates=20261019T230000Z/20261020T010000Z&details=Get%20the%20authentic%20NYC%20stand-up%20comedy%20experience%20at%20New%20York%20Comedy%20Club%21%20Enjoy%20a%20nightly%20showcase%20of%20the%20best%20comedians%20in%20the%20city%2C%20hot%20up-and-comers%2C%20plus%20hot-shot%20celebrity%20drop-ins%2C%20national%20and%20international%20touring%20comics%2C%20and%20more%20surprises%21Our%20regulars%20include%20Judah%20Friedlander%2C%20Todd%20Barry%2C%20Tickets%20%26%20info%3A%20https%3A//newyorkcomedyclub.com/events/new-york-comedy-club-presents-2026-10-19190000&location=New%20York%20Comedy%20Club" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="20">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="20">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="20" aria-pressed="false">I’m going</button><span class="going-count" data-idx="20" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3373,7 +3375,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Good%20Eggs%20Presented%20by%20Mark%20Normand%2C%20Gary%20Vider%2C%20Matt%20Ruby&dates=20261019T233000Z/20261020T013000Z&details=It%27s%20time%20for%20GOOD%20EGGS%21%20Time%20Out%20NY%20called%20it%20%22one%20of%20the%20best%20weekly%20shows%20in%20the%20city%22%20and%20Thrillist%20said%20it%27s%20%22one%20of%20the%20best%20underground%20comedy%20shows%20in%20NYC.%22%20Presented%20by%20Mark%20Normand%2C%20Gary%20Vider%2C%20and%20Matt%20Ruby%20-%20who%20often%20perform%20in%20the%20lineup%20-%20it%27s%20an%20unmissable%20NYC%20comedy-scene%20staple%20and%20Tickets%20%26%20info%3A%20https%3A//newyorkcomedyclub.com/events/good-eggs-presented-by-mark-normand-gary-vider-matt-ruby-2026-10-19193000&location=New%20York%20Comedy%20Club%20Upper%20West%20Side" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="21">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="21">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="21" aria-pressed="false">I’m going</button><span class="going-count" data-idx="21" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3390,7 +3392,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Eric%20Neumann%3A%20Neu%20Material&dates=20261020T011500Z/20261020T031500Z&details=Eric%20Neumann%20is%20comedian%20and%20storyteller%20whose%20comedy%20blends%20sharp%20stand-up%20with%20genuine%20emotional%20honesty.%20His%20late%20night%20debut%20on%20%22The%20Tonight%20Show%20Starring%20Jimmy%20Fallon%22%20was%20named%20%22Set%20of%20the%20Week%22%20by%20Vulture.%20He%20has%20also%20appeared%20on%20%22Comics%20Unleashed%20with%20Byron%20Allen%22%20%28CBS%29%2C%20%22The%20Iliza%20Shlesinge%20Tickets%20%26%20info%3A%20https%3A//newyorkcomedyclub.com/events/eric-neumann-neu-material-1&location=New%20York%20Comedy%20Club" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="22">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="22">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="22" aria-pressed="false">I’m going</button><span class="going-count" data-idx="22" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3407,7 +3409,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=6PM%20Weekday%20Open%20Mics%20%40%20Eastville%20Comedy&dates=20261019T220000Z/20261020T000000Z&details=EASTVILLE%20OPEN%20MICFor%20the%20curious%2C%20the%20dedicated%2C%20and%20anyone%20who%20wants%20to%20see%20comedy%20before%20it%E2%80%99s%20polished.Eastville%E2%80%99s%20Open%20Mic%20is%20where%20you%20get%20to%20see%20the%20next%20generation%20of%20comedians%20develop%20their%20voices%2C%20test%20new%20ideas%2C%20take%20risks%2C%20and%20polish%20material%20in%20its%20rawest%20form.%20Some%20jokes%20will%20hit.%20Some%20%20Tickets%20%26%20info%3A%20https%3A//www.eastvillecomedy.com/events/6pm-weekday-open-mics-eastville-comedy-2026-10-19180000&location=Eastville%20Comedy%20Club&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="24">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="24">Share</button>
-<button class="cal-link regular-btn" data-series="fa195a1798" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="24" aria-pressed="false">I’m going</button><span class="going-count" data-idx="24" hidden></span><button class="cal-link regular-btn" data-series="fa195a1798" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3424,7 +3426,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Brooklyn%20Power%20Hour%20NOW%20ON%20A%20NEW%20NIGHT%21&dates=20261019T233000Z/20261020T013000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.eastvillecomedy.com/events/brooklyn-power-hour-now-on-a-new-night-2026-10-19193000&location=Eastville%20Comedy%20Club&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="25">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="25">Share</button>
-<button class="cal-link regular-btn" data-series="4a203a6f01" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="25" aria-pressed="false">I’m going</button><span class="going-count" data-idx="25" hidden></span><button class="cal-link regular-btn" data-series="4a203a6f01" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3441,7 +3443,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Colin%20Quinn%20Returns%20to%20The%20CQ%20Room%20at%20Comedy%20Cellar&dates=20261019T230000Z/20261020T010000Z&details=Tonight%27s%20lineup%3A%20Nick%20Griffin%2C%20Colin%20Quinn.%20Lineups%20change%3B%20check%20before%20you%20go.%20Tickets%20%26%20info%3A%20https%3A//www.comedycellar.com/reservations-newyork/%3Fshowid%3D1791918000&location=Comedy%20Cellar%2C%20Greenwich%20Village&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="27">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="27">Share</button>
-<button class="cal-link regular-btn" data-series="c617c9ab06" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="27" aria-pressed="false">I’m going</button><span class="going-count" data-idx="27" hidden></span><button class="cal-link regular-btn" data-series="c617c9ab06" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3458,7 +3460,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=MS%20Stand%20Up%204th%20Annual%20Comedy%20Benefit%20at%20Gotham%20Comedy%20Club&dates=20261019T233000Z/20261020T013000Z&details=Stand-up%20at%20Gotham%20Comedy%20Club%20in%20Chelsea.%20Tickets%20%26%20info%3A%20https%3A//gothamcomedyclub.com/events/ms-stand-up-4th-annual-comedy-benefit&location=Gotham%20Comedy%20Club%2C%20Chelsea-Hudson%20Yards" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="28">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="28">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="28" aria-pressed="false">I’m going</button><span class="going-count" data-idx="28" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3479,7 +3481,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Michelle%20Buteau&dates=20261019T233000Z/20261020T013000Z&details=%20Tickets%20%26%20info%3A%20https%3A//www.ticketmaster.com/michelle-buteau-brooklyn-new-york-10-19-2026/event/300064BACFE08BB7&location=The%20Bell%20House" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="26">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="26">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="26" aria-pressed="false">I’m going</button><span class="going-count" data-idx="26" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3496,7 +3498,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%22Books%20That%20Go%20Bump%20in%20the%20Night%22%20-%20Seasonal%20Halloween%20Theme%20with%20Harlem%20Book%20Co.%20Book%20Fair%21%20Reading%20Rhythms%20Upper%20West%20Side%3A%20October%2019th&dates=20261019T223000Z/20261020T003000Z&details=Not%20a%20book%20club.%20A%20reading%20party.%20Read%20with%20friends%20to%20live%20music%20%26%20curated%20playlists%21%E2%80%8E%20Tickets%20%26%20info%3A%20https%3A//luma.com/reading-ocev&location=Hex%20%26%20Company%2C%20Morningside%20Heights" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="63">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="63">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="63" aria-pressed="false">I’m going</button><span class="going-count" data-idx="63" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3513,7 +3515,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Reading%20Rhythms%20Lower%20Manhattan%3A%20October%2019&dates=20261019T223000Z/20261020T003000Z&details=Not%20a%20book%20club.%20A%20reading%20party.%20Read%20with%20friends%20to%20live%20music%20%26%20curated%20playlists%21%E2%80%8E%20Tickets%20%26%20info%3A%20https%3A//luma.com/reading-i3t1&location=Housing%20Works%20Bookstore%2C%20SoHo-Little%20Italy-Hudson%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="69">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="69">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="69" aria-pressed="false">I’m going</button><span class="going-count" data-idx="69" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3530,7 +3532,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Reading%20Rhythms%20Bushwick%3A%20October%2019th&dates=20261019T230000Z/20261020T010000Z&details=Not%20a%20book%20club.%20A%20reading%20party.%20Read%20with%20friends%20to%20live%20music%20%26%20curated%20playlists%21%E2%80%8E%20Tickets%20%26%20info%3A%20https%3A//luma.com/reading-zdic&location=The%20Tiny%20Cupboard%20Comedy%20Club%20%26%20Game%20Bar%2C%20Bushwick%20%28East%29" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="76">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="76">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="76" aria-pressed="false">I’m going</button><span class="going-count" data-idx="76" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3551,7 +3553,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=CBH%20Talk%20%7C%20Why%20We%20Want%20to%20Believe%3A%20UFOs%2C%20Aliens%2C%20and%20Us&dates=20261019T223000Z/20261020T003000Z&details=For%20decades%2C%20UFOs%20belonged%20to%20the%20fringes%3A%20conspiracy%20theories%2C%20late-night%20radio%2C%20blurry%20photographs%2C%20and%20tales%20of%20alien%20abduction.%20Then%20something%20changed.%20The%20Pentagon%20released%20videos%20of%20objects%20it%20could%20not%20explain.%20Navy%20pilots%20testified%20before%20Congress%20about%20mysterious%20encounters.%20Intelligence%20ag%20Tickets%20%26%20info%3A%20https%3A//www.bklynlibrary.org/calendar/cbh-talk-why-we-want-center-for-brooklyn-20261019-0630pm&location=Brooklyn%20Public%20Library" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="29">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="29">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="29" aria-pressed="false">I’m going</button><span class="going-count" data-idx="29" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3567,7 +3569,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="meta">Time TBA · The Tank</div>
 <p>What if your boyfriend turned into a mouse? Little Beast is a twisted queer fairy tale about love, sex, power and what survives when your happily-ever-after mutates.</p>
 <a class="tickets" href="https://thetanknyc.org/calendar-1/littlebeast">Tickets &amp; info →</a>
-<div class="cal-row"><button class="cal-link share-ev" data-idx="36">Share</button></div>
+<div class="cal-row"><button class="cal-link share-ev" data-idx="36">Share</button><button class="cal-link going-btn" data-idx="36" aria-pressed="false">I’m going</button><span class="going-count" data-idx="36" hidden></span></div>
 </div>
 </article>
 </section>
@@ -3587,7 +3589,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Digital%20Irish%20Tech%20Week%20-%20Conference%20Day&dates=20261019T123000Z/20261019T143000Z&details=Connecting%20Irish%20Innovation%20Globally%20Tickets%20%26%20info%3A%20https%3A//luma.com/ditw2026&location=Theater%20District%2C%20Midtown-Times%20Square" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="40">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="40">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="40" aria-pressed="false">I’m going</button><span class="going-count" data-idx="40" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3609,7 +3611,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Monday%20Morning%20Pitch%20In%20to%20Pick%20Up&dates=20261019T140000Z/20261019T160000Z&details=Volunteer%20with%20us%21%20We%20will%20be%20cleaning%20up%20litter%20to%20prevent%20it%20from%20entering%20the%20Bronx%20River.%20Your%20efforts%20not%20only%20protect%20wildlife%20%26%20the%20rest%20of%20the%20Bronx%20River%20ecosystem%2C%20but%20they%20also%20help%20us%20identify%20the%20sources%20of%20trash%20so%20we%20can%20stop%20the%20pollution%20where%20it%20starts%21%20We%20will%20provide%20gloves%20and%20t%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/monday-morning-pitch-in-to-pick-up&location=Bronx%20River%20House%20%28in%20Starlight%20Park%29%2C%20Crotona%20Park%20East" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="2">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="2">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="2" aria-pressed="false">I’m going</button><span class="going-count" data-idx="2" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3626,7 +3628,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=After%20School%20Youth%20Recreation&dates=20261019T183000Z/20261019T203000Z&details=Join%20us%20after%20school%20for%20fun%20games%20and%20active%20play.%20In%20this%20program%20youth%20ages%206%20-%2012%20will%20have%20the%20opportunity%20to%20play%20various%20sports%2C%20compete%20against%20other%20kids%20while%20playing%20board%20games%2C%20and%20play%20an%20assortment%20of%20group%20games.%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/after-school-youth-recreation&location=Classroom%20A%20-%20Small%20%28in%20Lost%20Battalion%20Hall%20Recreation%20Center%29%2C%20Rego%20Park&recur=RRULE%3AFREQ%3DWEEKLY" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="8">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="8">Share</button>
-<button class="cal-link regular-btn" data-series="6fc17404e0" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="8" aria-pressed="false">I’m going</button><span class="going-count" data-idx="8" hidden></span><button class="cal-link regular-btn" data-series="6fc17404e0" aria-pressed="false">Make this a regular</button><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3643,7 +3645,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Arts%2C%20Culture%20%26%20Fun%3A%20BE%20BOLD%20-%20Ballet%20Programming&dates=20261019T200000Z/20261019T220000Z&details=NYC%20Parks%2C%20in%20partnership%20with%20the%20Misty%20Copeland%20Foundation%2C%20invites%20children%20ages%206%20%E2%80%93%2014%20years%20to%20enroll%20in%20the%20BE%20BOLD%20afterschool%20dance%20program%2C%20a%20fun%20introductory%20ballet%20class%20with%20live%20music.%20The%20BE%20BOLD%20program%20is%20FREE%20and%20offers%20a%20new%20approach%20to%20afterschool%20dance%20education%20for%20young%20childre%20Tickets%20%26%20info%3A%20http%3A//www.nycgovparks.org/events/2026/10/19/be-bold-ballet-programming&location=Multi-Use%20Room%20%28in%20Williamsbridge%20Oval%29%2C%20Norwood" target="_blank" rel="noopener">Google Calendar</a>
 <button class="cal-link ics-btn" data-idx="9">Apple / Outlook</button>
 <button class="cal-link share-ev" data-idx="9">Share</button>
-<span class="leave-by"></span>
+<button class="cal-link going-btn" data-idx="9" aria-pressed="false">I’m going</button><span class="going-count" data-idx="9" hidden></span><span class="leave-by"></span>
 </div>
 </div>
 </article>
@@ -3729,6 +3731,47 @@ function render() {
   else saveIds(KEY, picks);
   reportTaps();
 }
+// "I'm going": stronger than a tick (it ticks too). Saved per event day; headcounts shown from 3 up.
+const going = new Set();
+function paintGoing(counts) {
+  document.querySelectorAll(".going-btn").forEach(b => {
+    const on = going.has(EIDS[+b.dataset.idx]);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.textContent = on ? "Going ✓" : "I’m going";
+  });
+  if (counts) document.querySelectorAll(".going-count").forEach(s => {
+    const n = counts[EIDS[+s.dataset.idx]] || 0;
+    s.hidden = n < 3; s.textContent = n + " going";
+  });
+}
+function loadGoing() {
+  if (!window.__tonight_api) return;
+  const uid = localStorage.getItem("tonight-user-id") || "";
+  const hdrs = window.TonightAuth ? TonightAuth.headers({}) : {};
+  const counts = {};
+  Promise.all((typeof EDAYS !== "undefined" && EDAYS ? EDAYS : [DATE]).map(d =>
+    fetch(window.__tonight_api + "/going/" + CITY + "/" + d + "?user_id=" + encodeURIComponent(uid), {headers: hdrs})
+      .then(r => r.json()).then(j => { (j.mine || []).forEach(e => going.add(e)); Object.assign(counts, j.counts || {}); })
+      .catch(() => {})
+  )).then(() => paintGoing(counts));
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest && e.target.closest(".going-btn");
+  if (!b) return;
+  const i = +b.dataset.idx, eid = EIDS[i], on = !going.has(eid);
+  on ? going.add(eid) : going.delete(eid);
+  if (on && !picks.has(String(i))) { picks.add(String(i)); render(); }
+  paintGoing(null);
+  if (!window.__tonight_api) return;
+  const art = b.closest("article.event"), meta = art && art.querySelector(".meta");
+  fetch(window.__tonight_api + "/going", {method: "POST",
+    headers: window.TonightAuth ? TonightAuth.headers({"Content-Type": "application/json"}) : {"Content-Type": "application/json"},
+    body: JSON.stringify({city: CITY, date: (typeof EDATE !== "undefined" && EDATE) ? EDATE[i] : DATE, eid: eid, on: on,
+      user_id: localStorage.getItem("tonight-user-id"), name: NAMES[i], venue: VENUES[i],
+      start_time: meta ? meta.textContent.split(" · ")[0].split(" – ")[0].trim() : "",
+      url: art && art.dataset.url || ""})}).catch(() => {});
+});
+addEventListener("load", () => setTimeout(loadGoing, 400));  // after the API address resolves
 // ticks and crossed-out events go to the backend: they shape tomorrow's picks and what Toni suggests
 function reportTaps() {
   if (!window.__tonight_api) return;
