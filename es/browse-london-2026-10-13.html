@@ -2466,6 +2466,9 @@ const NAMES = ["Twist Museum - London's Home of Illusions STANDARD", "FRAMELESS"
 const EIDS = ["38822adf", "a708171d", "ff01ee7f", "27f3f7c8", "5b4271b6", "97f4fdc7", "840ff91a", "b6ac6014", "509918d3", "fb54e340", "2e1f9bab", "f9d2ceb5", "2c0b0cad", "98b92810", "d8890f4d", "12c84ba2", "f6f3316b", "299363ae", "79e203a7", "299e6d46", "2f51b3fc", "54f6fcbb", "1b3926e2", "85f9c275", "11dd5746", "d26431f2", "0ec1279b", "c5cf1479", "de7e20a0", "3c19d695", "2b93d6e8", "5c8d70fe", "ea9b29cf", "b23972e2", "8bc7c1c9", "550b91f5", "ff15deae", "be69b49b", "91209d56", "2eb2dea0", "9eececb6", "6caf62f3", "0ffe94a6", "1c74994c", "68a34858", "652d8835", "fb3c620c", "e6ea3af4", "8b1a304c", "31727543", "364e2ac9", "4833609f", "072d0d62", "e71893ab", "c41b4aef", "3079eb36", "ed858cdf", "7d4a877a", "099f95df", "af5905db", "30fa26c9", "f107ba29", "35b1272d", "59e73bcd", "81360920", "f3886ce3", "bc48f861", "59f47929", "a71b74af", "f8d2d64d", "7e109f43", "2efb8721", "a38bb532", "70da1c6e", "53fbbb8a", "de224ae3", "30004d0c", "445c7789", "4a47b821", "84c01189", "5135b04f", "76e6ba0d", "797b473a", "866a2469", "62c0e89e", "44184a9e", "52ccb327", "4ccf5e1c", "b0bfc501", "1c92721e", "de15f543", "91b791de", "bb110e3e"];  // permanent ids (index -> id)
 const VENUES = ["Twist Museum", "Marble Arch Place", "Globe Theatre, Shakespeare's Globe", "Aldwych Theatre", "St Martin's Theatre", "Cadogan Hall", "New Cross Inn", "The London Palladium", "The O2", "The O2", "Union Chapel", "Soul Mama Islington", "The O2", "The Black Heart", "London Oslo", "Gielgud Theatre", "The Lexington", "Belle Livingstone's 58th Street Country Club", "Next Door Records Two", "Gillian Lynne Theatre", "Phoenix Theatre", "Palace Theatre", "Amazing Grace", "Blue Note London", "Playhouse Theatre", "Cambridge Theatre", "Underbelly Boulevard", "O2 Forum Kentish Town", "O2 Shepherds Bush Empire", "KOKO", "Electric Ballroom", "Comedy In Your Eye", "Big Belly Comedy - Southbank", "The Garage", "Islington Assembly Hall", "Jazz Cafe", "Underworld", "Cart & Horses", "The Harold Pinter Theatre ", "Lyric Theatre", "Theatre Royal Haymarket", "Novello Theatre", "Village Underground", "Dominion Theatre", "The Old Vic", "Troubadour Wembley Park Theatre", "Shaftesbury Theatre", "The Arts at Marble Arch", "Troubadour Canary Wharf Theatre", "His Majesty's Theatre", "Duchess Theatre", "Apollo Victoria Theatre", "Apollo Theatre", "Sondheim Theatre", "Victoria Palace Theatre", "Prince Edward Theatre", "Trafalgar Theatre", "Piccadilly Theatre", "Prince of Wales Theatre", "Lyceum Theatre", "Criterion Theatre", "Riverside Studios", "County Hall", "Royal Albert Hall", "Scala", "Big Belly Comedy - Southbank", "Ambassadors Theatre", "Lyric Theatre Hammersmith", "Noel Coward Theatre", "Tom Stoppard Theatre", "Charing Cross Theatre", "Wyndham's Theatre", "Vortex Jazz Club", "Vaudeville Theatre", "Boisdale, Canary Wharf", "2 Great Titchfield St.", "Punchdrunk", "London, United Kingdom", "Adam Smith Institute", "IDEALondon", "OLIVER", "London, United Kingdom", "Spencer House", "The Institution of Structural Engineers", "Duke of St Albans", "All Saints Church", "118 Brick Ln", "Mercato Mayfair", "Courtyard Wine Cellars", "Kenrick's Wine Merchant", "Soho", "Principles Coffee House", "The Fulham Arms"];
 const SERIES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];  // same show + place on any day
+// weekend page: each event's own day (ticks are saved on that day, so the day pages show them too)
+const EDATE = null;
+const EDAYS = EDATE ? [...new Set(EDATE)] : null;
 const RECUR = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 const KIDS = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const PRICES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$98.00", "$217.38", "$27.80", "$59.00", "$38.62", "$25.00", "$29.95", "$15.00", "$280.00", "$95.00", "$85.00"];
@@ -2520,14 +2523,15 @@ const TZ = "Europe/London";
 const STARTS = [0, 660, 840, 870, 900, 1080, 1080, 1110, 1110, 1110, 1110, 1110, 1111, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1185, 1200, 1230, 1050, 1065, 1080, 1080, 1080, 1110, 1140, 750, 600, 1140, 1110, 750, 720, 720, 1140, 1140, 1050, 1170];   // minutes since midnight, or null
 const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1200, 1200, 1290, 1200, 1200, 1290, 1200, 870, 1020, 1260, 1260, 900, 780, 810, 1320, 1320, 1125, 1320];       // from end_time, or null (-> start + 2h)
 const KEY = "tonight-picks-" + CITY + "-" + DATE;
-let picks = new Set(loadIds(KEY));
+let picks = new Set(EDAYS ? EDAYS.flatMap(d => loadIds("tonight-picks-" + CITY + "-" + d)) : loadIds(KEY));
 function render() {
   document.querySelectorAll(".toggle").forEach(btn => {
     const on = picks.has(btn.dataset.idx);
     btn.setAttribute("aria-pressed", on ? "true" : "false");
   });
   document.getElementById("pickCount").textContent = picks.size;
-  saveIds(KEY, picks);
+  if (EDAYS) EDAYS.forEach(d => saveIds("tonight-picks-" + CITY + "-" + d, new Set([...picks].filter(i => EDATE[+i] === d))));
+  else saveIds(KEY, picks);
   reportTaps();
 }
 // ticks and crossed-out events go to the backend: they shape tomorrow's picks and what Toni suggests
@@ -2537,11 +2541,15 @@ function reportTaps() {
   const hdrs = window.TonightAuth ? TonightAuth.headers({"Content-Type": "application/json"})
                                   : {"Content-Type": "application/json"};
   const row = i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i], venue: VENUES[+i]});
-  fetch(window.__tonight_api + "/tap", {
-    method: "POST", headers: hdrs,
-    body: JSON.stringify({city: CITY, date: DATE, user_id: USER_ID, picks: [...picks].map(row),
-      hidden: loadIds("tonight-hidden-" + CITY + "-" + DATE).map(row)})
-  }).catch(() => {});
+  const hid = loadIds("tonight-hidden-" + CITY + "-" + DATE);
+  (EDAYS || [DATE]).forEach(d => {  // weekend page: one report per day, so each tick counts on its own day
+    const mine = i => !EDAYS || EDATE[+i] === d;
+    fetch(window.__tonight_api + "/tap", {
+      method: "POST", headers: hdrs,
+      body: JSON.stringify({city: CITY, date: d, user_id: USER_ID, picks: [...picks].filter(mine).map(row),
+        hidden: hid.filter(mine).map(row)})
+    }).catch(() => {});
+  });
 }
 document.querySelectorAll(".toggle").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -3492,7 +3500,8 @@ function check(){
   if (checking) return;
   if (typeof DATE !== "undefined" && typeof TZ !== "undefined") {
     var t = today(TZ);
-    if (!t || DATE >= t) { var old = document.getElementById("staleBar"); if (old) old.remove(); return; }
+    var last = typeof DATE_END !== "undefined" ? DATE_END : DATE;  // the weekend page lasts through Sunday
+    if (!t || last >= t) { var old = document.getElementById("staleBar"); if (old) old.remove(); return; }
     var target = location.pathname.replace(DATE, t) + location.search;
     var day = new Date(DATE + "T12:00:00").toLocaleDateString(document.documentElement.lang || "en", {weekday: "long"});
     checking = true;

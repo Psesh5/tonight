@@ -3214,6 +3214,9 @@ const NAMES = ["SoFi Stadium Tours", "Dogman: The Musical", "Pink Noise: For the
 const EIDS = ["71072397", "c6dda291", "14872d61", "a326105f", "243cdf80", "309a62e9", "4f421acb", "0862026c", "7286ed54", "b855e5d2", "1bde8e69", "96ae8361", "be243f8d", "bca9487e", "b24f1a3d", "e47078af", "5cb14dcd", "0949c17b", "efeb02b9", "e768e5ec", "5462fa03", "cda39f9f", "88e365ca", "a81fdb7f", "ec3fc6bf", "b8b3ba8e", "b3fd8987", "4d443a88", "112b7da6", "092be7a4", "a4ba7b0e", "be2c2610", "d69b1b8d", "57d1fb0b", "2359596d", "e5a0dc4c", "1e66dc9c", "8739f0b4", "d9b25c3c", "8091407a", "7ae86671", "6de543ad", "1fab8b03", "41458054", "8f8e9caa", "a908be4f", "35039108", "7dace87c", "406a9ef0", "37d4b0c2", "a831592e", "a0344398", "7a51d719", "cc7e6dd0", "3a119b28"];  // permanent ids (index -> id)
 const VENUES = ["SoFi Stadium Tours", "Kirk Douglas Theatre", "The Moroccan Lounge", "Honda Center", "The Echo", "Echoplex", "Blue Note Los Angeles", "Greek Theatre-Los Angeles", "Crypto.com Arena", "Hollywood Pantages Theatre", "Hollywood Improv (The Main Room) ", "Hollywood Improv (The Lab)", "Terrace Theater - Long Beach Convention and Entertainment Center", "Terrace Theater - Long Beach Convention and Entertainment Center", "Orpheum Theatre", "Peacock Theater - LA", "The Fonda Theatre", "Dolby Theatre", "El Rey Theatre - Los Angeles", "The Moroccan Lounge", "Los Angeles Memorial Coliseum", "Van Nuys", "Lincoln Heights", "Mid-Valley", "West Valley", "Central Library", "Mar Vista", "Sherman Oaks", "Los Angeles, CA", "SoCal Vibes Co. Abbot Kinney", "2448 E 8th St", "1089 N Oxford Ave", "Descanso Gardens", "Descanso Gardens", "Descanso Gardens", "T Boyle's Tavern", "Verdugo Bar", "El Tejano Tex Mex", "Player One Arcade Bar", "Where the Creatures Sleep", "Biergarten LA", "Thirsty Merchant", "Bixby Provisions", "Rance's Chicago Pizza (Long Beach)", "The Blind Donkey (Long Beach)", "Boardwalk 11", "P.V. House", "Paul Martin's - El Segundo", "Firestone Walker Brewing Company - The Propagator", "Hacienda Playa", "Industrious, Sherman Oaks", "Industrious, Sherman Oaks", "1520 2nd St", "18555 Victory Blvd", "Fishbowl Studio Prints"];
 const SERIES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];  // same show + place on any day
+// weekend page: each event's own day (ticks are saved on that day, so the day pages show them too)
+const EDATE = null;
+const EDAYS = EDATE ? [...new Set(EDATE)] : null;
 const RECUR = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 const KIDS = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const PRICES = ["", "", "", "", "", "", "$18.80", "", "", "", "$42.73", "$24.19", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$25.00", "", "", "", "$12.00", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$79.00", "$199.00", "", "", "$55.20"];
@@ -3268,14 +3271,15 @@ const TZ = "America/Los_Angeles";
 const STARTS = [540, 660, 1080, 1125, 1140, 1140, 1140, 1150, 1170, 1170, 1170, 1170, 1170, 1170, 1200, 1200, 1200, 1200, 1260, 1290, null, 780, null, 615, 630, 630, 750, 780, 1080, 1110, 1170, 1200, 600, 600, 1080, 1140, 1110, 1140, 1140, 1080, 1140, 1140, 1110, 1050, 1080, 1080, 1110, 1020, 1080, 1140, 1140, 1140, 1020, 570, 900];   // minutes since midnight, or null
 const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 900, null, 675, 690, 675, 780, 870, 1260, 1260, 1230, 1380, 960, 960, 1320, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1260, 960, 1200, 630, 1020];       // from end_time, or null (-> start + 2h)
 const KEY = "tonight-picks-" + CITY + "-" + DATE;
-let picks = new Set(loadIds(KEY));
+let picks = new Set(EDAYS ? EDAYS.flatMap(d => loadIds("tonight-picks-" + CITY + "-" + d)) : loadIds(KEY));
 function render() {
   document.querySelectorAll(".toggle").forEach(btn => {
     const on = picks.has(btn.dataset.idx);
     btn.setAttribute("aria-pressed", on ? "true" : "false");
   });
   document.getElementById("pickCount").textContent = picks.size;
-  saveIds(KEY, picks);
+  if (EDAYS) EDAYS.forEach(d => saveIds("tonight-picks-" + CITY + "-" + d, new Set([...picks].filter(i => EDATE[+i] === d))));
+  else saveIds(KEY, picks);
   reportTaps();
 }
 // ticks and crossed-out events go to the backend: they shape tomorrow's picks and what Toni suggests
@@ -3285,11 +3289,15 @@ function reportTaps() {
   const hdrs = window.TonightAuth ? TonightAuth.headers({"Content-Type": "application/json"})
                                   : {"Content-Type": "application/json"};
   const row = i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i], venue: VENUES[+i]});
-  fetch(window.__tonight_api + "/tap", {
-    method: "POST", headers: hdrs,
-    body: JSON.stringify({city: CITY, date: DATE, user_id: USER_ID, picks: [...picks].map(row),
-      hidden: loadIds("tonight-hidden-" + CITY + "-" + DATE).map(row)})
-  }).catch(() => {});
+  const hid = loadIds("tonight-hidden-" + CITY + "-" + DATE);
+  (EDAYS || [DATE]).forEach(d => {  // weekend page: one report per day, so each tick counts on its own day
+    const mine = i => !EDAYS || EDATE[+i] === d;
+    fetch(window.__tonight_api + "/tap", {
+      method: "POST", headers: hdrs,
+      body: JSON.stringify({city: CITY, date: d, user_id: USER_ID, picks: [...picks].filter(mine).map(row),
+        hidden: hid.filter(mine).map(row)})
+    }).catch(() => {});
+  });
 }
 document.querySelectorAll(".toggle").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -4955,7 +4963,8 @@ function check(){
   if (checking) return;
   if (typeof DATE !== "undefined" && typeof TZ !== "undefined") {
     var t = today(TZ);
-    if (!t || DATE >= t) { var old = document.getElementById("staleBar"); if (old) old.remove(); return; }
+    var last = typeof DATE_END !== "undefined" ? DATE_END : DATE;  // the weekend page lasts through Sunday
+    if (!t || last >= t) { var old = document.getElementById("staleBar"); if (old) old.remove(); return; }
     var target = location.pathname.replace(DATE, t) + location.search;
     var day = new Date(DATE + "T12:00:00").toLocaleDateString(document.documentElement.lang || "en", {weekday: "long"});
     checking = true;

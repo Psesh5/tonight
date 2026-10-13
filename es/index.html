@@ -1194,7 +1194,8 @@ function check(){
   if (checking) return;
   if (typeof DATE !== "undefined" && typeof TZ !== "undefined") {
     var t = today(TZ);
-    if (!t || DATE >= t) { var old = document.getElementById("staleBar"); if (old) old.remove(); return; }
+    var last = typeof DATE_END !== "undefined" ? DATE_END : DATE;  // the weekend page lasts through Sunday
+    if (!t || last >= t) { var old = document.getElementById("staleBar"); if (old) old.remove(); return; }
     var target = location.pathname.replace(DATE, t) + location.search;
     var day = new Date(DATE + "T12:00:00").toLocaleDateString(document.documentElement.lang || "en", {weekday: "long"});
     checking = true;
