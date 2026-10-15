@@ -184,7 +184,7 @@ clear:function(){try{["tonight-session","tonight-account","tonight-user-id","ton
 };</script><script>window.CAT_LABELS={"Music": "Música", "Comedy": "Comedia", "Arts & Play": "Arte y juego", "Talks": "Charlas", "Tech": "Tecnología", "Meetups & Mixers": "Encuentros", "Food & Drink": "Comida y bebida", "Trivia & Games": "Trivia y juegos", "Sports": "Deportes", "Theater": "Teatro", "Fitness & Outdoors": "Ejercicio y aire libre", "Classes & Workshops": "Clases y talleres", "Film": "Cine", "Tours": "Recorridos", "Italian": "Italiana", "Japanese": "Japonesa", "Chinese": "China", "Mexican": "Mexicana", "Indian": "India", "Thai": "Tailandesa", "Korean": "Coreana", "French": "Francesa", "American": "Estadounidense", "Mediterranean": "Mediterránea", "Vegetarian / vegan": "Vegetariana / vegana", "Seafood": "Mariscos"};</script></head>
 <body>
 <nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a>
-<span class="tastelinks"><a class="tastelink" href="./taste.html">Tu gusto</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span>
+<span class="tastelinks"><a class="tastelink" href="./taste.html">Preferencias</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span>
 <span class="citylinks"><a href="./">Inicio</a></span></nav>
 <header class="bhero">
 <div class="eyebrow">Resumen diario</div>
@@ -434,13 +434,19 @@ max-width:440px;width:100%;padding:22px 20px;font-family:inherit;}
 #sgCard button.sg-go{background:var(--accent,#E39A2D);border:3px solid var(--ink,#14201A);font-weight:800;padding:10px 16px;cursor:pointer;color:#14201A;}
 #sgCard button.sg-x{background:none;border:0;text-decoration:underline;cursor:pointer;color:inherit;font:inherit;}
 #sgMsg{min-height:18px;font-size:13.5px;font-weight:700;margin-top:8px;}
+#siteFoot{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center;padding:18px 16px 90px;
+font:800 12px/1.2 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;}
+#siteFoot a,#siteFoot summary{color:var(--ink,#14201A);text-decoration:none;border-bottom:2px solid var(--accent,#E39A2D);}
+#siteFoot .stylepanel{top:auto;bottom:calc(100% + 10px);left:50%;right:auto;transform:translateX(-50%);}
 </style>
 <script>
 (function(){
-var links = document.querySelector(".tastelinks");
-if (!links) return;
+if (!document.querySelector(".tastelinks")) return;
+// the strip at the foot of every page: Suggest an event here, the Style menu joins it on city pages
+var foot = document.getElementById("siteFoot");
+if (!foot) { foot = document.createElement("div"); foot.id = "siteFoot"; document.body.appendChild(foot); }
 var a = document.createElement("a"); a.className = "tastelink"; a.href = "#"; a.id = "suggestLink";
-a.textContent = "Sugiere un evento"; links.insertBefore(a, links.firstChild);
+a.textContent = "Sugiere un evento"; foot.insertBefore(a, foot.firstChild);
 var veil;
 function el(t, attrs, txt){ var e = document.createElement(t); for (var k in (attrs || {})) e.setAttribute(k, attrs[k]); if (txt) e.textContent = txt; return e; }
 function build(){

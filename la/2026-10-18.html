@@ -2219,6 +2219,10 @@ window.Tonight = {
 document.addEventListener("DOMContentLoaded", function(){
   var tune = document.getElementById("tuneTaste");
   if (tune) tune.addEventListener("click", function(e){ e.preventDefault(); openQuiz(); });
+  document.addEventListener("click", function(e){
+    var t = e.target.closest && e.target.closest("[data-tune]");
+    if (t) { e.preventDefault(); openQuiz(); }
+  });
   var noquiz = document.body && document.body.getAttribute("data-noquiz") === "1";
   try { if (!noquiz && !localStorage.getItem(OKEY)) openQuiz(); } catch (e) {}
   applyRanking();
@@ -2226,7 +2230,7 @@ document.addEventListener("DOMContentLoaded", function(){
   if (window.TonightPage && TonightPage.init) TonightPage.init();
 });
 })();
-</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Your taste</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="#" id="tuneTaste">Tune</a><a class="tastelink" href="../account.html">Account</a></span><span class="citylinks"><a class="" href="../nyc/2026-10-18.html">NYC</a> <a class="" href="../london/2026-10-18.html">London</a> <a class="cur" href="../la/2026-10-18.html">LA</a></span><a class="browselink" href="../browse-la-2026-10-18.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="../" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
+</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Preferences</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="../account.html">Account</a></span><span class="citylinks"><a class="" href="../nyc/2026-10-18.html">NYC</a> <a class="" href="../london/2026-10-18.html">London</a> <a class="cur" href="../la/2026-10-18.html">LA</a></span><a class="browselink" href="../browse-la-2026-10-18.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="../" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
 <header class="hero dayhero">
 <div class="eyebrow">Sunday, October 18 · Los Angeles</div>
 <h1>Los Angeles</h1>
@@ -6399,8 +6403,12 @@ function concierge(){
   host.innerHTML = "";
   var eye = document.createElement("div"); eye.className = "cn-eye"; eye.textContent = "A note for your " + day;
   var sign = document.createElement("div"); sign.className = "cn-sign";
-  sign.textContent = (window.Tonight && Tonight.describe && Tonight.taste && (Tonight.taste.likes.length || Tonight.taste.free_only))
-    ? "Picked with your taste in mind." : "Tell Tonight what you like (Tune, up top) and this note gets more personal.";
+  var tasted = window.Tonight && Tonight.describe && Tonight.taste && (Tonight.taste.likes.length || Tonight.taste.free_only);
+  var adj = document.createElement("a"); adj.href = "#"; adj.setAttribute("data-tune", "1");
+  adj.textContent = tasted ? "Not quite right? Adjust" : "Tell Tonight what you like";
+  sign.appendChild(document.createTextNode(tasted ? "Picked with your taste in mind. " : ""));
+  sign.appendChild(adj);
+  if (!tasted) sign.appendChild(document.createTextNode(" and this note gets more personal."));
   host.appendChild(eye); var hi = greeting(); if (hi) host.appendChild(hi); host.appendChild(p); host.appendChild(sign);
 }
 
@@ -6508,6 +6516,8 @@ function aiNote(){
       row.appendChild(ch);
     }
     row.appendChild(el("span", "cn-sign", "Picked by Toni for your taste."));
+    var adj = el("a", "cn-adjust", "Not quite right? Adjust"); adj.href = "#"; adj.setAttribute("data-tune", "1");
+    row.appendChild(adj);
     host.appendChild(row);
   }).catch(function(){});
 }
@@ -6555,7 +6565,9 @@ function grid(){
 
 // Look picker in the top bar: every layout, saved on this device (reloads, since some layouts rearrange the page)
 function lookPicker(){
-  var links = document.querySelector(".tastelinks"); if (!links || document.getElementById("lookPick")) return;
+  if (!document.querySelector(".tastelinks") || document.getElementById("lookPick")) return;
+  var links = document.getElementById("siteFoot");
+  if (!links) { links = document.createElement("div"); links.id = "siteFoot"; document.body.appendChild(links); }
   // one "Style" menu in the top bar holding both pickers (two selects crowd the bar)
   var menu = document.createElement("details"); menu.className = "stylemenu";
   var sum = document.createElement("summary"); sum.className = "tastelink"; sum.textContent = "Style"; menu.appendChild(sum);
@@ -7707,13 +7719,19 @@ max-width:440px;width:100%;padding:22px 20px;font-family:inherit;}
 #sgCard button.sg-go{background:var(--accent,#E39A2D);border:3px solid var(--ink,#14201A);font-weight:800;padding:10px 16px;cursor:pointer;color:#14201A;}
 #sgCard button.sg-x{background:none;border:0;text-decoration:underline;cursor:pointer;color:inherit;font:inherit;}
 #sgMsg{min-height:18px;font-size:13.5px;font-weight:700;margin-top:8px;}
+#siteFoot{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center;padding:18px 16px 90px;
+font:800 12px/1.2 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;}
+#siteFoot a,#siteFoot summary{color:var(--ink,#14201A);text-decoration:none;border-bottom:2px solid var(--accent,#E39A2D);}
+#siteFoot .stylepanel{top:auto;bottom:calc(100% + 10px);left:50%;right:auto;transform:translateX(-50%);}
 </style>
 <script>
 (function(){
-var links = document.querySelector(".tastelinks");
-if (!links) return;
+if (!document.querySelector(".tastelinks")) return;
+// the strip at the foot of every page: Suggest an event here, the Style menu joins it on city pages
+var foot = document.getElementById("siteFoot");
+if (!foot) { foot = document.createElement("div"); foot.id = "siteFoot"; document.body.appendChild(foot); }
 var a = document.createElement("a"); a.className = "tastelink"; a.href = "#"; a.id = "suggestLink";
-a.textContent = "Suggest an event"; links.insertBefore(a, links.firstChild);
+a.textContent = "Suggest an event"; foot.insertBefore(a, foot.firstChild);
 var veil;
 function el(t, attrs, txt){ var e = document.createElement(t); for (var k in (attrs || {})) e.setAttribute(k, attrs[k]); if (txt) e.textContent = txt; return e; }
 function build(){
