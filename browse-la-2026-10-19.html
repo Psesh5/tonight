@@ -2901,7 +2901,7 @@ function travel(mi) {  // minutes, and how
   if (mi <= 1.2) return {mins: Math.max(2, Math.round(mi * 20)), how: "walk"};
   return {mins: Math.round(10 + mi * 4), how: "by subway or car"};
 }
-function setNextHour(on) {
+function setNextHour(on, quiet) {
   if (on && tonightOn) setTonight(false);
   nextOn = on;
   const btn = document.getElementById("nextHourBtn");
@@ -2918,6 +2918,7 @@ function setNextHour(on) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i)) || (KIDS[i] && !kidsOn())) return;
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     let kind = null;
@@ -2949,7 +2950,7 @@ function setNextHour(on) {
     "Nothing you can get to in the next hour. Try ⚡ Tonight for later on.";
   count.textContent = (items.length ? items.length + (items.length === 1 ? " thing" : " things") + " you can still make" : "") +
     (userPos ? "" : (items.length ? " · " : "") + "turn on location to see travel times");
-  wrap.scrollIntoView({block: "start"});
+  if (!quiet) wrap.scrollIntoView({block: "start"});
 }
 const _nhb = document.getElementById("nextHourBtn");  // day pages only (browse pages share this script)
 if (_nhb) _nhb.addEventListener("click", () => {

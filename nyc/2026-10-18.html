@@ -9839,7 +9839,7 @@ function travel(mi) {  // minutes, and how
   if (mi <= 1.2) return {mins: Math.max(2, Math.round(mi * 20)), how: "walk"};
   return {mins: Math.round(10 + mi * 4), how: "by subway or car"};
 }
-function setNextHour(on) {
+function setNextHour(on, quiet) {
   if (on && tonightOn) setTonight(false);
   nextOn = on;
   const btn = document.getElementById("nextHourBtn");
@@ -9856,6 +9856,7 @@ function setNextHour(on) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i)) || (KIDS[i] && !kidsOn())) return;
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     let kind = null;
@@ -9887,7 +9888,7 @@ function setNextHour(on) {
     "Nothing you can get to in the next hour. Try ⚡ Tonight for later on.";
   count.textContent = (items.length ? items.length + (items.length === 1 ? " thing" : " things") + " you can still make" : "") +
     (userPos ? "" : (items.length ? " · " : "") + "turn on location to see travel times");
-  wrap.scrollIntoView({block: "start"});
+  if (!quiet) wrap.scrollIntoView({block: "start"});
 }
 const _nhb = document.getElementById("nextHourBtn");  // day pages only (browse pages share this script)
 if (_nhb) _nhb.addEventListener("click", () => {
@@ -11680,10 +11681,32 @@ var when = section(L.when, function(){
 });
 var tods = [["evening", L.evening], ["day", L.day], ["all", L.any]].map(function(t){
   var b = todBtn(t[0]), lab = b ? b.textContent : t[1];
-  return {t: t[0], o: row(when.s, "radio", "fs-tod", lab, function(on){ var x = todBtn(t[0]); if (on && x) x.click(); })};
+  return {t: t[0], o: row(when.s, "radio", "fs-tod", lab, function(on){
+    if (!on) return;
+    if (soonOn()) soonBtn.click();  // one "when" at a time: leaving Starting soon
+    var x = todBtn(t[0]); if (x) x.click();
+  })};
 });
+// Starting soon (today only) is one of the "when" choices, first, with its own count
 var soon = null;
-if (soonShown()) soon = row(when.s, "checkbox", null, L.soon, function(){ soonBtn.click(); setTimeout(draw, 0); });
+if (soonShown()) {
+  soon = row(when.s, "radio", "fs-tod", L.soon, function(on){
+    if (!on) return;
+    var any = todBtn("all"); if (any && FX.F.tod !== "all") any.click();  // "soon" sets its own window
+    if (!soonOn()) soonBtn.click();
+    setTimeout(draw, 0);
+  });
+  when.s.insertBefore(soon.r, tods[0].o.r);
+}
+function soonMatch(i){
+  var st = STARTS[i], now = typeof cityNowMinutes === "function" ? cityNowMinutes() : null;
+  if (st == null || now == null) return false;
+  if (typeof KIDS !== "undefined" && KIDS[i] && typeof kidsOn === "function" && !kidsOn()) return false;
+  if (st >= now - 10 && st <= now + 90) return true;
+  // on now and open a while longer (exhibitions, markets): the Starting soon list shows these too
+  var en = typeof ENDS !== "undefined" && ENDS[i] != null && ENDS[i] > st ? ENDS[i] : null;
+  return st < now && en != null && en - now >= 45 && typeof DROP_IN !== "undefined" && DROP_IN.has(CATS[i]);
+}
 var times = el("details", "fs-x"), tsum = el("summary", null, L.exact), tbox = el("div", "fs-times");
 times.appendChild(tsum); times.appendChild(tbox);
 ["fafter", "fbefore"].forEach(function(id){
@@ -11779,7 +11802,7 @@ place();
 // live counts: what each box would show with all the other filters as they are
 function draw(){
   var F = FX.F, cats = vals(catSel, ","), hoods = vals(hoodSel, "|");
-  var cc = {}, hc = {}, gc = {}, tc = {evening: 0, day: 0, all: 0}, fr = 0, total = 0;
+  var cc = {}, hc = {}, gc = {}, tc = {evening: 0, day: 0, all: 0, soon: 0}, fr = 0, total = 0;
   for (var i = 0; i < N; i++) {
     var a = cardOf[i]; if (!a) continue;
     var d = FX.dims(i, a); if (!d.base) continue;
@@ -11787,10 +11810,13 @@ function draw(){
     if (d.hood && d.free && d.tod) cc[CATS[i]] = (cc[CATS[i]] || 0) + 1;
     if (d.cat && d.free && d.tod && HOODS[i]) { hc[HOODS[i]] = (hc[HOODS[i]] || 0) + 1; var g = hoodGroup[HOODS[i]]; gc[g] = (gc[g] || 0) + 1; }
     if (d.cat && d.hood && d.tod && FREE[i]) fr++;
-    if (d.cat && d.hood && d.free) { if (FX.todMatch(i, "evening")) tc.evening++; if (FX.todMatch(i, "day")) tc.day++; tc.all++; }
+    if (d.cat && d.hood && d.free) { if (FX.todMatch(i, "evening")) tc.evening++; if (FX.todMatch(i, "day")) tc.day++; tc.all++;
+      if (soon && soonMatch(i)) tc.soon++; }
   }
-  tods.forEach(function(t){ setRow(t.o, tc[t.t], F.tod === t.t); });
-  if (soon) soon.i.checked = soonOn();
+  var sOn = soonOn();
+  tods.forEach(function(t){ setRow(t.o, tc[t.t], !sOn && F.tod === t.t); });
+  if (soon) setRow(soon, tc.soon, sOn);
+  if (sOn && typeof setNextHour === "function") setNextHour(true, true);  // the Starting soon list follows the other filters
   var tOn = F.after != null || F.before != null;
   ["fafter", "fbefore"].forEach(function(id){ var s = $(id); if (s) s.classList.toggle("on", s.value !== ""); });
   if (tOn && !times.open) times.open = true;
