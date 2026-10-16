@@ -144,9 +144,10 @@ font-family:inherit;color:var(--ink,#14201A);background:var(--field);margin:6px 
 .sv-note{font-size:13px;opacity:.8;line-height:1.5;margin:10px 0 0;}
 .sv-save{margin-left:10px;}
 </style><style>
-#conciergeNote{display:block;max-width:760px;margin:16px auto 4px;background:var(--card);color:var(--ink);
-border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:16px 22px;}
+#conciergeNote{display:block;max-width:1040px;margin:16px auto 4px;background:var(--card);color:var(--ink);
+border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:12px 18px 12px;box-sizing:border-box;}
 #conciergeNote:empty{display:none;}
+@media(max-width:640px){#conciergeNote{margin-left:12px;margin-right:12px;padding:10px 14px;}}
 :root[data-layout="concierge"] #conciergeNote{display:block;max-width:760px;margin:16px auto 4px;background:var(--card);
 color:var(--ink);border-radius:20px;padding:16px 22px;box-shadow:0 10px 30px rgba(0,0,0,.08);
 border:1px solid var(--muted);}
@@ -157,18 +158,21 @@ color:var(--accent);filter:brightness(.8);}
 #conciergeNote a{color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 #conciergeNote .cn-late{font-size:.8em;opacity:.8;}
 #conciergeNote .cn-hi{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:22px;margin-top:8px;}
-#conciergeNote .cn-plan{list-style:none;margin:10px 0 2px;padding:0;display:flex;flex-direction:column;gap:6px;}
-#conciergeNote .cn-plan li{display:flex;gap:14px;align-items:flex-start;}
-#conciergeNote .cn-t{flex:none;width:74px;font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:16px;}
-#conciergeNote .cn-b{display:flex;flex-direction:column;gap:1px;min-width:0;}
-#conciergeNote .cn-role{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.6;}
-#conciergeNote .cn-b a{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:18px;}
+#conciergeNote .cn-plan{list-style:none;margin:6px 0 2px;padding:0;display:flex;flex-direction:column;gap:4px;}
+#conciergeNote .cn-plan li{font-size:14.5px;line-height:1.45;}
+#conciergeNote .cn-t{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;}
+#conciergeNote .cn-role{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;}
+#conciergeNote .cn-plan a{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:16.5px;}
+#conciergeNote .cn-plan a.cn-book{font:800 11.5px/1.2 'Inter',sans-serif;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;
+border:2px solid var(--ink);padding:2px 7px;text-decoration:none;vertical-align:1px;}
+#conciergeNote .cn-plan a.cn-book:hover{background:var(--accent);color:var(--on-accent,var(--ink));}
+#conciergeNote .cn-adjust{font-size:13.5px;font-weight:600;}
 #conciergeNote .cn-v{font-size:13px;opacity:.75;}
 #conciergeNote .cn-why{font-size:14px;}
 #conciergeNote li.cn-gap{font-size:12px;font-weight:700;opacity:.65;padding-left:88px;}
 #conciergeNote .cn-dine{margin-top:8px;padding-top:8px;border-top:1px solid var(--muted);font-size:14.5px;line-height:1.5;}
 #conciergeNote .cn-dine a{font-weight:700;}
-#conciergeNote .cn-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:8px;}
+#conciergeNote .cn-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:6px;}
 #conciergeNote .cn-actions .cn-sign{margin:0;}
 #conciergeNote .cn-ask{font:700 13px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent);
 border:none;border-radius:999px;padding:7px 14px;cursor:pointer;vertical-align:middle;}
@@ -262,6 +266,10 @@ background:var(--field,#fff);color:var(--ink,#14201A);border-radius:0;}
 :root[data-layout="grid"] #conciergeNote{max-width:1060px;border-radius:14px;border:none;box-shadow:none;background-color:var(--accent);color:var(--on-accent,#14201A);
 background-image:repeating-linear-gradient(135deg,rgba(20,32,26,.08) 0 2px,transparent 2px 14px);}
 :root[data-layout="grid"] #conciergeNote a{color:inherit;}
+:root[data-layout="grid"] #conciergeNote .cn-eye{color:inherit;filter:none;opacity:.75;}
+:root[data-layout="grid"] #conciergeNote .cn-ask{background:var(--ink);color:var(--paper);}
+:root[data-layout="grid"] #topTonight{max-width:1060px;border-radius:16px;border-width:1.5px;box-shadow:4px 4px 0 var(--ink);}
+:root[data-layout="concierge"] #topTonight{border-radius:20px;border:1px solid var(--muted);box-shadow:0 8px 24px rgba(0,0,0,.06);}
 :root[data-layout="grid"] #filterBar{border-radius:16px;border-width:1.5px;box-shadow:none;}
 :root[data-layout="grid"] #filterBar .fsearch,:root[data-layout="grid"] #filterBar .fbtn,:root[data-layout="grid"] #filterBar select,:root[data-layout="grid"] .filters .fmulti summary{border-radius:10px;border-width:1.5px;box-shadow:none;}
 :root[data-layout="grid"] #filterBar .seg{border-radius:10px;border:none;background:var(--muted);padding:3px;gap:2px;box-shadow:none;}
@@ -1455,7 +1463,7 @@ padding:8px 0 calc(16px + env(safe-area-inset-bottom,0px));border-width:1px 0 0;
 :root[data-layout="appplain"] #toniPanel{border-width:1px 0 0;border-radius:12px 12px 0 0;}
 }
 </style><style>
-.daystrip{display:flex;gap:8px;overflow-x:auto;max-width:1100px;margin:14px auto 0;padding:0 16px 6px;scrollbar-width:none;box-sizing:border-box;}
+.daystrip{display:flex;gap:8px;overflow-x:auto;max-width:1072px;margin:14px auto 0;padding:0 16px 6px;scrollbar-width:none;box-sizing:border-box;}
 .daystrip::-webkit-scrollbar{display:none;}
 .daystrip .ds{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:64px;padding:8px 12px;
 border:2px solid var(--ink);background:var(--card);color:var(--ink);text-decoration:none;font:800 12px/1.15 'Inter',sans-serif;
@@ -1465,8 +1473,59 @@ letter-spacing:.06em;text-transform:uppercase;box-sizing:border-box;}
 .daystrip .ds.cur{background:var(--accent);color:var(--on-accent,#14201A);}
 .daystrip .ds.cur span{opacity:.85;}
 .daystrip .ds.wk{background:var(--ink);color:var(--paper);text-transform:none;letter-spacing:0;}
+.daystrip .ds-x{display:none;}
+.daystrip.open .ds-x{display:flex;}
+.daystrip .ds-more{cursor:pointer;font:800 12px/1.15 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;background:var(--paper);border-style:dashed;}
+.daystrip.open .ds-more{display:none;}
 .ds-note{max-width:1100px;margin:8px auto 0;padding:0 16px;font-size:13px;opacity:.75;box-sizing:border-box;}
 #tonightBtn,#nextHourBtn{display:none!important;}</style><style>
+#topTonight{max-width:1040px;margin:16px auto 0;padding:14px 16px 12px;background:var(--card);color:var(--ink);
+border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);box-sizing:border-box;}
+.listmode #topTonight{display:none;}
+#topTonight h2{margin:0 0 6px;font:900 clamp(1.35rem,3vw,1.75rem)/1.1 'Fraunces',Georgia,serif;text-transform:uppercase;letter-spacing:.5px;}
+.tt-list{list-style:none;margin:0;padding:0;}
+.tt-row{position:relative;display:grid;grid-template-columns:30px 76px minmax(0,1fr) auto 30px;column-gap:10px;align-items:baseline;
+padding:9px 0;border-top:2px solid var(--muted);}
+.tt-row:first-child{border-top:0;}
+.tt-star{align-self:start;width:30px;height:30px;margin-top:-4px;padding:0;border:0;background:none;color:var(--ink);font-size:22px;line-height:30px;cursor:pointer;}
+.tt-star[aria-pressed="true"]{color:var(--accent);}
+.tt-star:hover{transform:scale(1.12);}
+.tt-time{font:800 13.5px/1.3 'Inter',sans-serif;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.tt-main{min-width:0;}
+.tt-name{font:700 17px/1.3 'Fraunces',Georgia,serif;color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);
+text-decoration-thickness:2px;text-underline-offset:3px;}
+.tt-hood{font-size:13px;font-weight:600;opacity:.7;}
+.tt-why{font-size:13px;line-height:1.4;opacity:.68;margin-top:2px;}
+.tt-price{align-self:start;justify-self:end;white-space:nowrap;padding:3px 9px;border:2px solid var(--ink);background:var(--field,#fff);
+color:var(--ink);font:800 12px/1.3 'Inter',sans-serif;text-decoration:none;}
+a.tt-price:hover{background:var(--muted);}
+.tt-price.free{background:var(--accent);color:var(--on-accent,var(--ink));}
+.tt-x{align-self:start;width:30px;height:30px;margin-top:-3px;padding:0;border:0;background:none;color:var(--ink);font-size:22px;line-height:30px;
+cursor:pointer;opacity:0;transition:opacity .12s;}
+.tt-row:hover .tt-x,.tt-x:focus-visible{opacity:.55;}
+.tt-x:hover{opacity:1!important;}
+@media (hover:none){.tt-x{opacity:.5;}}
+.tt-empty{margin:4px 0 8px;font-size:14px;font-weight:600;opacity:.75;}
+.tt-all{display:inline-block;margin-top:8px;font:800 13px 'Inter',sans-serif;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);
+text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:4px;}
+#allEvents{scroll-margin-top:70px;}
+/* the default look: the full list lines up with the boxes above it */
+:root:not([data-layout]) main#allEvents,:root[data-layout="brutalist"] main#allEvents{max-width:1080px;}
+:root:not([data-layout]) #allEvents .event-body p,:root[data-layout="brutalist"] #allEvents .event-body p{max-width:76ch;}
+@media (max-width:640px){
+#topTonight{margin:14px 12px 0;padding:10px 12px 10px;}
+.tt-row{grid-template-columns:26px minmax(0,1fr) auto 26px;column-gap:8px;}
+.tt-star,.tt-x{width:26px;}
+.tt-time{grid-column:2;grid-row:1;font-size:12px;}
+.tt-main{grid-column:2;grid-row:2;}
+.tt-star{grid-row:1/3;}
+.tt-price{grid-column:3;grid-row:1/3;}
+.tt-x{grid-column:4;grid-row:1/3;}
+.tt-name{font-size:15.5px;}
+.tt-hood,.tt-why{font-size:12.5px;}
+.tt-x{opacity:.5;}
+}
+</style><style>
 #toniBtn{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:120;
 background:var(--accent);color:var(--on-accent,var(--ink));border:3px solid var(--ink);
 box-shadow:4px 4px 0 var(--ink);font:800 14px/1 'Inter',sans-serif;letter-spacing:1px;text-transform:uppercase;
@@ -1563,6 +1622,83 @@ text-transform:uppercase;padding:0 14px;cursor:pointer;}
 font:700 14.5px 'Inter',sans-serif;padding:11px 16px;text-align:center;}
 #staleBar a{color:inherit;font-weight:800;text-decoration:underline;text-decoration-thickness:2px;margin-left:6px;}
 </style><style>
+#fsLayout{box-sizing:border-box;}
+#fside{display:none;}
+:root.fs-on #filterBar .fchips > :not(.fsearch):not(#fsBtn){display:none!important;}
+:root.fs-on #filterBar .fextra{display:none!important;}
+:root.fs-on #filterBar .fchips{flex-wrap:nowrap;}
+:root.fs-on #filterBar .fchips .fsearch{flex:1 1 auto;}
+#fsBtn{flex:none;height:34px;padding:0 12px;border:2px solid var(--ink);background:var(--field,#fff);color:var(--ink);
+font:800 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+#fsBtn.on{background:var(--accent);color:var(--on-accent,var(--ink));}
+/* the groups: calm, thin rules, small caps headings, muted counts */
+.fsg{color:var(--ink);font-family:'Inter',-apple-system,'Segoe UI',sans-serif;font-size:14px;}
+.fs-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:2px 0 10px;}
+.fs-title{font:800 12px/1.2 'Inter',sans-serif;letter-spacing:1.5px;text-transform:uppercase;}
+.fs-link{background:none;border:0;padding:0;font:600 12.5px 'Inter',sans-serif;color:var(--ink);opacity:.7;cursor:pointer;
+text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+.fs-link:hover{opacity:1;}
+.fs-link[hidden]{display:none;}
+.fs-sec{border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent);padding:12px 0 10px;}
+.fs-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 6px;}
+.fs-h{margin:0;font:700 11px/1.2 'Inter',sans-serif;letter-spacing:1.4px;text-transform:uppercase;opacity:.62;}
+.fs-row{display:flex;align-items:flex-start;gap:9px;padding:4px 0;cursor:pointer;line-height:1.3;}
+.fs-row input{flex:none;width:15px;height:15px;margin:1px 0 0;accent-color:var(--ink);cursor:pointer;}
+.fs-row .fs-l{flex:1;min-width:0;overflow-wrap:anywhere;}
+.fs-row .fs-n{flex:none;padding-top:1px;font-size:12px;font-variant-numeric:tabular-nums;opacity:.5;}
+.fs-row.zero{opacity:.38;cursor:default;}
+.fs-row.zero input{cursor:default;}
+.fs-row:not(.zero):hover .fs-l{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;}
+.fs-sub{padding-left:24px;}
+.fs-x{margin:6px 0 0;}
+.fs-x summary,.fs-grp summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:7px;padding:5px 0;}
+.fs-x summary::-webkit-details-marker,.fs-grp summary::-webkit-details-marker{display:none;}
+.fs-x summary::before,.fs-grp summary::before{content:"";flex:none;width:6px;height:6px;margin:0 4px 0 3px;border:solid currentColor;
+border-width:0 1.5px 1.5px 0;transform:rotate(-45deg);opacity:.55;transition:transform .12s;}
+.fs-x[open] > summary::before,.fs-grp[open] > summary::before{transform:rotate(45deg);}
+.fs-x summary{font-size:13px;opacity:.8;}
+.fs-x .fs-times{display:flex;flex-direction:column;gap:6px;padding:4px 0 2px 20px;}
+.fs-x select{height:32px;padding:0 8px;border:1px solid color-mix(in srgb,var(--ink) 30%,transparent);background:var(--field,#fff);
+color:var(--ink);font:500 13px 'Inter',sans-serif;border-radius:0;max-width:100%;}
+.fs-x select.on{border-color:var(--ink);outline:2px solid var(--accent);outline-offset:-1px;}
+.fs-grp summary .fs-l{flex:1;font-weight:600;}
+.fs-grp summary .fs-n{font-size:12px;opacity:.5;font-variant-numeric:tabular-nums;}
+.fs-grp summary .fs-dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent);}
+.fs-grp.zero > summary{opacity:.38;}
+.fs-grp .fs-sub{padding:0 0 4px 20px;}
+.fs-morebtn{margin:4px 0 0;}
+/* wide screens: the sidebar beside Top tonight and the list */
+@media (min-width:1100px){
+:root.fs-on #fsLayout{display:grid;grid-template-columns:248px minmax(0,1fr);column-gap:28px;align-items:start;
+max-width:1360px;margin:0 auto;padding:0 24px;}
+:root.fs-on #fside{display:block;position:sticky;top:76px;margin-top:16px;max-height:calc(100vh - 92px);overflow-y:auto;
+overscroll-behavior:contain;padding:14px 16px 18px;box-sizing:border-box;background:var(--card);
+border:1px solid color-mix(in srgb,var(--ink) 18%,transparent);scrollbar-width:thin;}
+:root.fs-on #fsCol{min-width:0;}
+:root.fs-on #fsCol > #filterBar,:root.fs-on #fsCol > #topTonight,:root.fs-on #fsCol > #picksBar{max-width:none;margin-left:0!important;margin-right:0!important;}
+:root.fs-on #fsCol > main#allEvents{max-width:none;}
+:root.fs-on #fsBtn,:root.fs-on #filterBar .fclear{display:none!important;}
+:root.fs-on.listmode #fside{display:block;}
+}
+/* phones and narrow windows: one Filters button, the groups in a bottom sheet */
+#fsSheet{position:fixed;inset:0;z-index:130;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(0,0,0,.42);}
+#fsSheet[hidden]{display:none;}
+#fsSheet .fs-panel{position:relative;max-height:88vh;display:flex;flex-direction:column;background:var(--card);color:var(--ink);
+border-top:3px solid var(--ink);box-shadow:0 -6px 24px rgba(0,0,0,.18);}
+#fsSheet .fs-scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:14px 18px 8px;-webkit-overflow-scrolling:touch;}
+#fsSheet .fs-close{position:absolute;top:6px;right:8px;width:38px;height:38px;border:0;background:none;color:var(--ink);font-size:24px;
+cursor:pointer;z-index:1;}
+#fsSheet .fs-top{padding-right:44px;}
+#fsSheet .fs-row{padding:7px 0;font-size:15px;}
+#fsSheet .fs-row input{width:18px;height:18px;}
+#fsSheet .fs-foot{position:sticky;bottom:0;padding:10px 18px calc(10px + env(safe-area-inset-bottom));background:var(--card);
+border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent);}
+#fsSheet .fs-show{width:100%;height:46px;border:3px solid var(--ink);background:var(--ink);color:var(--paper);
+font:800 14px 'Inter',sans-serif;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 var(--accent);}
+:root.fs-lock,:root.fs-lock body{overflow:hidden;}
+@media (prefers-reduced-motion:no-preference){#fsSheet:not([hidden]) .fs-panel{animation:fsUp .18s ease-out;}}
+@keyframes fsUp{from{transform:translateY(40px);opacity:.6;}to{transform:none;opacity:1;}}
+</style><style>
 #storyLayer{position:fixed;inset:0;z-index:90;display:none;flex-direction:column;align-items:center;
 background:var(--banner,var(--ink));color:var(--paper);padding:14px 16px 20px;overscroll-behavior:contain;}
 #storyLayer.on{display:flex;}
@@ -1642,11 +1778,21 @@ text-transform:uppercase;line-height:1.02;}
 .hero p,.bhero p{opacity:.9;font-weight:500;}
 .hero h1 b{color:var(--accent);}
 .home .hero h1{text-transform:none;font-size:clamp(3.2rem,11vw,5.2rem);}
-/* day pages: one tight band (date, city, actions) so events show on the first screen */
-.dayhero{padding:20px 20px 18px;}
-.dayhero h1{font-size:clamp(1.9rem,5vw,2.8rem);margin:10px 0 12px;}
-.dayhero .toolbar{padding:0;}
+/* day pages: one tight band, "NEW YORK CITY - THURSDAY, OCTOBER 15" with Share and a ⋯ menu beside it */
+.dayhero{display:flex;align-items:center;justify-content:space-between;gap:10px 18px;flex-wrap:wrap;text-align:left;
+padding:16px max(16px,calc((100% - 1040px) / 2));}
+.dayhero > .eyebrow{display:none!important;}  /* the title carries the day (scripts still read it) */
+.dayhero h1{font-size:clamp(1.25rem,3vw,2rem);margin:0;line-height:1.1;min-width:0;}
+.dayhero .toolbar{padding:0;flex-wrap:nowrap;justify-content:flex-end;}
 .dayhero .toolbar .btn{padding:8px 14px;font-size:12px;}
+.tmore{position:relative;}
+.tmore summary{list-style:none;cursor:pointer;font-size:16px!important;line-height:1.05!important;letter-spacing:1px!important;}
+.tmore summary::-webkit-details-marker{display:none;}
+.tmenu{position:absolute;right:0;top:calc(100% + 10px);z-index:70;min-width:240px;display:flex;flex-direction:column;padding:6px 0;
+background:var(--card);color:var(--ink);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--accent);text-align:left;}
+.tm-item{display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:0;font:700 14px/1.3 'Inter',sans-serif;
+letter-spacing:0;text-transform:none;color:var(--ink);text-decoration:none;cursor:pointer;}
+.tm-item:hover{background:var(--muted);}
 .dayhero .btn-dark{background:transparent;color:var(--on-banner);border-color:var(--on-banner);}
 .langmenu{position:relative;margin-left:14px;}
 .langmenu summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 10px;
@@ -1662,23 +1808,30 @@ font-weight:700;text-transform:none;letter-spacing:0;color:var(--ink);text-decor
 .langlist .soon i{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
 @media (max-width:640px){.langmenu{margin-left:8px;}.langmenu summary{padding:4px 7px;}}
 /* filter panel: search on top, one row of same-height chips below */
-#filterBar{max-width:760px;margin:16px auto 0;padding:14px;display:flex;flex-direction:column;align-items:stretch;gap:10px;
+#filterBar{max-width:1040px;margin:16px auto 0;padding:12px 14px 10px;display:flex;flex-direction:column;align-items:stretch;gap:8px;box-sizing:border-box;
 background:var(--card);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);}
 #filterBar .frow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-#filterBar .fsearch{flex:1;display:flex;align-items:center;gap:9px;height:42px;padding:0 14px;
+#filterBar .frow[hidden]{display:none;}
+#filterBar .fsearch{flex:1 1 110px;display:flex;align-items:center;gap:9px;height:34px;padding:0 14px;
 border:2px solid var(--ink);background:var(--field,#fff);color:var(--ink);}
 #filterBar .fsearch:focus-within{outline:3px solid var(--accent);outline-offset:1px;}
 #filterBar .fsearch svg{width:17px;height:17px;flex:none;opacity:.55;}
 #filterBar .fsearch input{flex:1;min-width:0;height:100%;padding:0;border:0;outline:0;background:transparent;
 box-shadow:none;font-size:14.5px;font-weight:500;color:var(--ink);}
-#filterBar #resCount{margin:0 2px 0 6px;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+#filterBar .fmeta{gap:4px 12px;min-height:0;}
+#filterBar .fmeta #hiddenBar,#filterBar .fmeta .fclear{height:26px;}
+#filterBar .fmore.on{background-color:var(--accent);color:var(--on-accent,var(--ink));}
+#filterBar .fchips{gap:6px;}
+#filterBar #fhood{max-width:150px;}
+#filterBar .seg button,#filterBar .fbtn{white-space:nowrap;}
+#filterBar #resCount{margin:0 2px 0 0;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
 opacity:.65;white-space:nowrap;}
 #filterBar .seg{display:inline-flex;flex:none;gap:0;border:2px solid var(--ink);overflow:hidden;}
-#filterBar .seg button{height:30px;padding:0 12px;border:0;border-right:2px solid var(--ink);border-radius:0;
+#filterBar .seg button{height:30px;padding:0 9px;border:0;border-right:2px solid var(--ink);border-radius:0;
 background:var(--field,#fff);font-size:11.5px;letter-spacing:.3px;}
 #filterBar .seg button:last-child{border-right:0;}
 #filterBar .seg button.on{background:var(--ink);color:var(--paper);}
-#filterBar .fbtn,#filterBar select{height:34px;padding:0 12px;border:2px solid var(--ink);background-color:var(--field,#fff);
+#filterBar .fbtn,#filterBar select{height:34px;padding:0 10px;border:2px solid var(--ink);background-color:var(--field,#fff);
 color:var(--ink);font-size:12.5px;font-weight:700;letter-spacing:0;text-transform:none;cursor:pointer;}
 #filterBar select{-webkit-appearance:none;appearance:none;max-width:210px;padding-right:30px;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23888' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;background-size:11px;}
@@ -1733,7 +1886,7 @@ box-shadow:4px 4px 0 var(--accent);transition:transform .2s ease;}
 #tnToast button{background:var(--accent);color:var(--on-accent,var(--ink));border:0;padding:5px 11px;font-weight:800;cursor:pointer;font-size:13px;}
 @media (prefers-reduced-motion: reduce){#tnToast{transition:none;}}
 /* My picks: a slim tray under the filters */
-#picksBar{max-width:760px;margin:10px auto 0!important;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+#picksBar{max-width:1040px;box-sizing:border-box;margin:12px auto 0!important;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
 padding:8px 10px 8px 16px!important;text-align:left;background:transparent;border:2px dashed var(--ink);box-shadow:none;}
 #picksBar > br,#picksBar > span{display:none;}
 #picksBar strong{font-size:14px;margin-right:auto;}
@@ -1748,9 +1901,11 @@ text-decoration:underline;text-decoration-color:var(--accent);text-decoration-th
 #picksBar #shareMsg a{font-weight:800;color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 @media (max-width:640px){
 #filterBar{margin-left:12px;margin-right:12px;padding:12px;}
-#filterBar .fchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -12px;padding:0 12px 3px;}
-#filterBar .fchips::-webkit-scrollbar{display:none;}
-#filterBar .fchips > *{flex:none;}
+#filterBar .fchips{flex-wrap:wrap;}
+#filterBar .fchips .fsearch{flex-basis:100%;}
+#filterBar .fchips > select,#filterBar .fchips > .fmulti{flex:1 1 40%;max-width:none!important;min-width:0;}
+#filterBar .fchips > .fmulti summary{max-width:none;}
+#filterBar .fchips > .fmulti .fmenu{left:auto;right:0;max-width:calc(100vw - 32px);}
 #picksBar{margin-left:12px!important;margin-right:12px!important;}
 }
 .wrap > section.cat.free{margin-top:4px;}
@@ -1953,7 +2108,18 @@ function pull(){
     })
     .catch(function(){});
 }
+// how good the event is for anyone (ingest/quality.py: 1-10, 5 when not scored)
+function quality(i){
+  var q = typeof QUAL !== "undefined" ? QUAL[i] : null;
+  return typeof q === "number" ? q : 5;
+}
+// the list's order: your taste, nudged by quality
 function score(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  return personal(i) + (quality(i) - 5) * 1.5;
+}
+// the personal half: categories, ticks, venues, friends, regulars, when you go out
+function personal(i){
   if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
   var cat = CATS[i], s = 0;
   if (taste.likes.indexOf(cat) >= 0) s += 10;
@@ -2022,8 +2188,10 @@ function sortChildren(container){
     .sort(function(x, y){ return (x.p - y.p) || (y.k - x.k) || (x.n - y.n); })
     .forEach(function(o){ container.appendChild(o.a); });
 }
+function scored(){ return typeof QUAL !== "undefined" && QUAL.some(function(q){ return q != null; }); }
 function applyRanking(){
-  if (!hasTaste() || typeof CATS === "undefined") return;
+  if (window.__topTonight) window.__topTonight();  // Top tonight re-ranks whatever the layout
+  if ((!hasTaste() && !scored()) || typeof CATS === "undefined") return;
   // the timeline layout orders by start time, not taste
   if (document.documentElement.getAttribute("data-layout") === "timeline") return;
   var wrap = document.querySelector("main.wrap");
@@ -2055,7 +2223,7 @@ function applyRanking(){
   }
 }
 /* ---------------- quiz ---------------- */
-var SURP = {low: "none", med: "a few", high: "lots"};
+var SURP = {low: "Surprises: none", med: "Surprises: a few", high: "Surprises: lots"};  // whole labels: a bare "none" literal would be translated everywhere (style.display) on /es/
 var sheet = null, sel = {};
 function guessCity(){
   var saved = null;
@@ -2105,7 +2273,7 @@ function buildSheet(){
   var surpB = document.createElement("button");
   surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
   var paintSurp = function(){
-    surpB.textContent = "Surprises: " + SURP[surp];
+    surpB.textContent = SURP[surp];
     surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
   };
   paintSurp();
@@ -2213,7 +2381,7 @@ function setCat(cat, mode){
 }
 window.Tonight = {
   taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
-  score: score, save: save, applyRanking: applyRanking,
+  score: score, personal: personal, quality: quality, save: save, applyRanking: applyRanking,
   openQuiz: openQuiz, describe: describe, setCat: setCat
 };
 document.addEventListener("DOMContentLoaded", function(){
@@ -2230,42 +2398,50 @@ document.addEventListener("DOMContentLoaded", function(){
   if (window.TonightPage && TonightPage.init) TonightPage.init();
 });
 })();
-</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Preferences</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="../account.html">Account</a></span><span class="citylinks"><a class="" href="../nyc/2026-10-18.html">NYC</a> <a class="cur" href="../london/2026-10-18.html">London</a> <a class="" href="../la/2026-10-18.html">LA</a></span><a class="browselink" href="../browse-london-2026-10-18.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="../" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
+</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Preferences</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="../account.html">Account</a></span><span class="citylinks"><a class="" href="../nyc/2026-10-18.html">NYC</a> <a class="cur" href="../london/2026-10-18.html">London</a> <a class="" href="../la/2026-10-18.html">LA</a></span><a class="browselink" href="../browse-london-2026-10-18.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="../" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
 <header class="hero dayhero">
 <div class="eyebrow">Sunday, October 18 · London</div>
-<h1>London</h1>
+<h1><span class="h-city">London</span><span class="h-date"> — Sunday, October 18</span></h1>
 <div class="toolbar">
 <button class="btn btn-dark" id="shareBtn">Share →</button>
-<a class="btn btn-gold" href="https://psesh5.github.io/tonight/london/2026-10-18.ics" download>📅 Add all to calendar</a>
-<button class="btn btn-dark" id="tonightBtn" aria-pressed="false">⚡ Tonight</button>
-<button class="btn btn-dark" id="nextHourBtn" aria-pressed="false">⏱ Next hour</button>
-<button class="btn btn-gold" id="storyBtn" type="button">♥ Swipe tonight</button>
+<details class="tmore"><summary class="btn btn-dark" aria-label="More actions">⋯</summary>
+<div class="tmenu">
+<a class="tm-item" href="https://psesh5.github.io/tonight/london/2026-10-18.ics" download>📅 Add all to calendar</a>
+<button class="tm-item" id="storyBtn" type="button">♥ Swipe tonight</button>
+<button class="tm-item" id="tonightBtn" type="button" aria-pressed="false">⚡ Tonight</button>
 </div>
-</header><nav class="daystrip" aria-label="Pick a day"><a class="ds" href="2026-10-16.html"><b>Tonight</b><span>Fri 16</span></a><a class="ds" href="2026-10-17.html"><b>Tomorrow</b><span>Sat 17</span></a><a class="ds cur" href="2026-10-18.html" aria-current="page"><b>Sun</b><span>18</span></a><a class="ds" href="2026-10-19.html"><b>Mon</b><span>19</span></a><a class="ds" href="2026-10-20.html"><b>Tue</b><span>20</span></a><a class="ds" href="2026-10-21.html"><b>Wed</b><span>21</span></a><a class="ds" href="2026-10-22.html"><b>Thu</b><span>22</span></a></nav><p class="ds-note">More gets added as the day gets closer (comedy lineups and some talks are posted a day or two ahead).</p><div id="conciergeNote" aria-live="polite"></div>
+</details>
+</div>
+</header><nav class="daystrip" aria-label="Pick a day"><a class="ds" href="2026-10-16.html"><b>Today</b><span>Fri 16</span></a><a class="ds" href="2026-10-17.html"><b>Tomorrow</b><span>Sat 17</span></a><a class="ds cur" href="2026-10-18.html" aria-current="page"><b>Sun</b><span>18</span></a><a class="ds" href="2026-10-19.html"><b>Mon</b><span>19</span></a><a class="ds ds-x" href="2026-10-20.html"><b>Tue</b><span>20</span></a><a class="ds ds-x" href="2026-10-21.html"><b>Wed</b><span>21</span></a><a class="ds ds-x" href="2026-10-22.html"><b>Thu</b><span>22</span></a><button type="button" class="ds ds-more" aria-expanded="false" onclick="var s=this.parentNode;s.classList.toggle('open');this.setAttribute('aria-expanded',s.classList.contains('open'))">More ▾</button></nav><p class="ds-note">More gets added as the day gets closer (comedy lineups and some talks are posted a day or two ahead).</p><div id="conciergeNote" aria-live="polite"></div>
 
-<div class="filters" id="filterBar">
-<div class="frow">
+<div id="fsLayout"><aside id="fside" aria-label="Filters"></aside><div id="fsCol"><div class="filters" id="filterBar">
+<div class="frow fchips">
 <label class="fsearch"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
 <input id="fq" type="search" autocomplete="off" placeholder="Search events, venues…" aria-label="Search events"></label>
-<span id="resCount"></span>
-</div>
-<div class="frow fchips">
 <div class="seg" id="ftod">
-<button data-t="all" class="on">Any time</button><button data-t="morning">Morning</button><button data-t="afternoon">Afternoon</button><button data-t="evening">Evening</button>
+<button data-t="evening">Evening 5pm+</button><button data-t="day">Daytime</button><button data-t="all" class="on">Any</button>
 </div>
-<button class="fbtn" id="ffree" aria-pressed="false">✨ Free only</button>
+<select id="fhood" autocomplete="off" aria-label="Neighborhood"><option value="">All neighborhoods</option><option value="Covent Garden">Covent Garden (33)</option><option value="Holborn">Holborn (10)</option><option value="Barbican">Barbican (7)</option><option value="Brondesbury">Brondesbury (7)</option><option value="Islington">Islington (7)</option><option value="Soho">Soho (7)</option><option value="Bloomsbury">Bloomsbury (6)</option><option value="Dalston">Dalston (6)</option><option value="Hampstead Garden Suburb">Hampstead Garden Suburb (6)</option><option value="Homerton">Homerton (6)</option><option value="Marylebone">Marylebone (6)</option><option value="Mayfair">Mayfair (6)</option><option value="Shacklewell">Shacklewell (6)</option><option value="Shoreditch">Shoreditch (6)</option><option value="Waterloo">Waterloo (6)</option><option value="Chalk Farm">Chalk Farm (5)</option><option value="Canary Wharf">Canary Wharf (4)</option><option value="Chelsea">Chelsea (3)</option><option value="Leyton">Leyton (3)</option><option value="Shepherd&#x27;s Bush">Shepherd&#x27;s Bush (3)</option><option value="Southwark">Southwark (3)</option><option value="Whitechapel">Whitechapel (3)</option><option value="Barnsbury">Barnsbury (2)</option><option value="Battersea">Battersea (2)</option><option value="Broad Green">Broad Green (2)</option><option value="East Greenwich">East Greenwich (2)</option><option value="Hackney Wick">Hackney Wick (2)</option><option value="Hammersmith">Hammersmith (2)</option><option value="Highbury">Highbury (2)</option><option value="Kennington">Kennington (2)</option><option value="Kensington">Kensington (2)</option><option value="Leadenhall Market">Leadenhall Market (2)</option><option value="Peckham">Peckham (2)</option><option value="South Woodford">South Woodford (2)</option><option value="The Borough">The Borough (2)</option><option value="Camden Town">Camden Town (1)</option><option value="Elephant and Castle">Elephant and Castle (1)</option><option value="Farnborough">Farnborough (1)</option><option value="Greenwich Peninsula">Greenwich Peninsula (1)</option><option value="Hackney">Hackney (1)</option><option value="Hampton Wick">Hampton Wick (1)</option><option value="Harlesden">Harlesden (1)</option><option value="Hendon">Hendon (1)</option><option value="Herne Hill">Herne Hill (1)</option><option value="Highams Park">Highams Park (1)</option><option value="Hinchley Wood">Hinchley Wood (1)</option><option value="Inner and Middle Temples">Inner and Middle Temples (1)</option><option value="Kensal Town">Kensal Town (1)</option><option value="Kentish Town">Kentish Town (1)</option><option value="King&#x27;s Cross">King&#x27;s Cross (1)</option><option value="Knightsbridge">Knightsbridge (1)</option><option value="Ladywell">Ladywell (1)</option><option value="Millbank">Millbank (1)</option><option value="New Cross">New Cross (1)</option><option value="New Malden">New Malden (1)</option><option value="Nine Elms">Nine Elms (1)</option><option value="North Finchley">North Finchley (1)</option><option value="North Kensington">North Kensington (1)</option><option value="Paddington">Paddington (1)</option><option value="Park Royal">Park Royal (1)</option><option value="Ponders End">Ponders End (1)</option><option value="Preston">Preston (1)</option><option value="Rotherhithe">Rotherhithe (1)</option><option value="St Pancras">St Pancras (1)</option><option value="Stepney">Stepney (1)</option><option value="Stratford">Stratford (1)</option><option value="Upminster">Upminster (1)</option><option value="Victoria">Victoria (1)</option><option value="Wealdstone">Wealdstone (1)</option><option value="West Hackney">West Hackney (1)</option><option value="West Kensington">West Kensington (1)</option></select>
 <select id="fcat" autocomplete="off" aria-label="Filter by category"><option value="">All categories</option><option value="Arts &amp; Play">Arts &amp; Play</option><option value="Comedy">Comedy</option><option value="Music">Music</option><option value="Theater">Theater</option><option value="Trivia &amp; Games">Trivia &amp; Games</option><option value="Sports">Sports</option><option value="Meetups &amp; Mixers">Meetups &amp; Mixers</option><option value="Fitness &amp; Outdoors">Fitness &amp; Outdoors</option><option value="Food &amp; Drink">Food &amp; Drink</option><option value="Talks">Talks</option><option value="Film">Film</option><option value="Tours">Tours</option><option value="Classes &amp; Workshops">Classes &amp; Workshops</option></select>
-<select id="fafter" autocomplete="off" aria-label="Starts after"><option value="">Starts after…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Starts before"><option value="">Starts before…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Neighborhood"><option value="">All neighborhoods</option><option value="Covent Garden">Covent Garden (33)</option><option value="Holborn">Holborn (10)</option><option value="Barbican">Barbican (7)</option><option value="Brondesbury">Brondesbury (7)</option><option value="Islington">Islington (7)</option><option value="Soho">Soho (7)</option><option value="Bloomsbury">Bloomsbury (6)</option><option value="Dalston">Dalston (6)</option><option value="Hampstead Garden Suburb">Hampstead Garden Suburb (6)</option><option value="Homerton">Homerton (6)</option><option value="Marylebone">Marylebone (6)</option><option value="Mayfair">Mayfair (6)</option><option value="Shacklewell">Shacklewell (6)</option><option value="Shoreditch">Shoreditch (6)</option><option value="Waterloo">Waterloo (6)</option><option value="Chalk Farm">Chalk Farm (5)</option><option value="Canary Wharf">Canary Wharf (4)</option><option value="Chelsea">Chelsea (3)</option><option value="Leyton">Leyton (3)</option><option value="Shepherd&#x27;s Bush">Shepherd&#x27;s Bush (3)</option><option value="Southwark">Southwark (3)</option><option value="Whitechapel">Whitechapel (3)</option><option value="Barnsbury">Barnsbury (2)</option><option value="Battersea">Battersea (2)</option><option value="Broad Green">Broad Green (2)</option><option value="East Greenwich">East Greenwich (2)</option><option value="Hackney Wick">Hackney Wick (2)</option><option value="Hammersmith">Hammersmith (2)</option><option value="Highbury">Highbury (2)</option><option value="Kennington">Kennington (2)</option><option value="Kensington">Kensington (2)</option><option value="Leadenhall Market">Leadenhall Market (2)</option><option value="Peckham">Peckham (2)</option><option value="South Woodford">South Woodford (2)</option><option value="The Borough">The Borough (2)</option><option value="Camden Town">Camden Town (1)</option><option value="Elephant and Castle">Elephant and Castle (1)</option><option value="Farnborough">Farnborough (1)</option><option value="Greenwich Peninsula">Greenwich Peninsula (1)</option><option value="Hackney">Hackney (1)</option><option value="Hampton Wick">Hampton Wick (1)</option><option value="Harlesden">Harlesden (1)</option><option value="Hendon">Hendon (1)</option><option value="Herne Hill">Herne Hill (1)</option><option value="Highams Park">Highams Park (1)</option><option value="Hinchley Wood">Hinchley Wood (1)</option><option value="Inner and Middle Temples">Inner and Middle Temples (1)</option><option value="Kensal Town">Kensal Town (1)</option><option value="Kentish Town">Kentish Town (1)</option><option value="King&#x27;s Cross">King&#x27;s Cross (1)</option><option value="Knightsbridge">Knightsbridge (1)</option><option value="Ladywell">Ladywell (1)</option><option value="Millbank">Millbank (1)</option><option value="New Cross">New Cross (1)</option><option value="New Malden">New Malden (1)</option><option value="Nine Elms">Nine Elms (1)</option><option value="North Finchley">North Finchley (1)</option><option value="North Kensington">North Kensington (1)</option><option value="Paddington">Paddington (1)</option><option value="Park Royal">Park Royal (1)</option><option value="Ponders End">Ponders End (1)</option><option value="Preston">Preston (1)</option><option value="Rotherhithe">Rotherhithe (1)</option><option value="St Pancras">St Pancras (1)</option><option value="Stepney">Stepney (1)</option><option value="Stratford">Stratford (1)</option><option value="Upminster">Upminster (1)</option><option value="Victoria">Victoria (1)</option><option value="Wealdstone">Wealdstone (1)</option><option value="West Hackney">West Hackney (1)</option><option value="West Kensington">West Kensington (1)</option></select>
-<button class="fclear" id="fclear" type="button" hidden>Clear all</button>
+<button class="fbtn" id="ffree" aria-pressed="false">✨ Free only</button>
+<button class="fbtn" id="nextHourBtn" type="button" aria-pressed="false">⏱ Starting soon</button>
+<button class="fbtn fmore" id="fmore" type="button" aria-expanded="false" aria-controls="fextra">More filters</button>
+</div>
+<div class="frow fextra" id="fextra" hidden>
+<select id="fafter" autocomplete="off" aria-label="Starts after"><option value="">Starts after…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Starts before"><option value="">Starts before…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select>
+</div>
+<div class="frow fmeta">
+<span id="resCount"></span>
 <span id="hiddenBar"><span id="hiddenN">0</span> hidden · <button id="unhide">show them</button></span>
+<button class="fclear" id="fclear" type="button" hidden>Clear all</button>
 </div>
 </div>
-<div class="picks" id="picksBar"><strong>★ My picks: <span id="pickCount">0</span></strong><br>
+<section id="topTonight" aria-labelledby="ttHead"><h2 id="ttHead">Top picks Sunday</h2><ol class="tt-list"></ol><p class="tt-empty" hidden>Nothing to single out with these filters. Everything is below.</p><a class="tt-all" href="#allEvents">See all 216 events →</a></section><div class="picks" id="picksBar"><strong>★ My picks: <span id="pickCount">0</span></strong><br>
 <span style="font-size:13px;color:#6b6b6b;">Ticks save automatically and shape tomorrow's picks. Going with friends? Send them your list.</span><br><br>
 <button class="btn btn-gold" id="textGroupBtn">💬 Text the group →</button>
 <div id="shareMsg" style="font-size:13px;margin-top:10px;min-height:18px;"></div>
 </div>
-<main class="wrap">
+<main class="wrap" id="allEvents">
 <div id="tonightWrap">
 <div class="tonight-head"><h2>⚡ Tonight</h2><p id="tonightCount"></p></div>
 <div id="tonightList"></div>
@@ -3036,7 +3212,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="148" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://thetopsecretcomedyclub.co.uk/events-listings/freya-mcghee-experimental-wip/#2026-10-18-1500">Freya McGhee: Experimental (WIP)</a></h3>
-<div class="meta">3:00 PM · The Top Secret Comedy Club, Bloomsbury · $1.00</div>
+<div class="meta">3:00 PM · The Top Secret Comedy Club, Bloomsbury · £1.00</div>
 <p>Stand-up at the Top Secret Comedy Club (170 Drury Lane (ground floor)).</p>
 <a class="tickets" href="https://thetopsecretcomedyclub.co.uk/events-listings/freya-mcghee-experimental-wip/#2026-10-18-1500">Tickets &amp; info →</a>
 
@@ -3053,7 +3229,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="149" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://thetopsecretcomedyclub.co.uk/events-listings/sunday-stand-up-comedy-5pm-show-39/#2026-10-18-1700">Sunday Stand Up Comedy 5pm Show</a></h3>
-<div class="meta">5:00 PM · The Top Secret Comedy Club, Bloomsbury · $1.00</div>
+<div class="meta">5:00 PM · The Top Secret Comedy Club, Bloomsbury · £1.00</div>
 <p>Stand-up at the Top Secret Comedy Club (170 Drury Lane (basement)).</p>
 <a class="tickets" href="https://thetopsecretcomedyclub.co.uk/events-listings/sunday-stand-up-comedy-5pm-show-39/#2026-10-18-1700">Tickets &amp; info →</a>
 
@@ -3070,7 +3246,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="150" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://thetopsecretcomedyclub.co.uk/events-listings/brown-sugar-comedy-night-early-show-3/#2026-10-18-1800">Brown Sugar Comedy Night Early Show</a></h3>
-<div class="meta">6:00 PM · The Top Secret Comedy Club, Bloomsbury · $10.00</div>
+<div class="meta">6:00 PM · The Top Secret Comedy Club, Bloomsbury · £10.00</div>
 <p>Stand-up at the Top Secret Comedy Club (170 Drury Lane (ground floor)).</p>
 <a class="tickets" href="https://thetopsecretcomedyclub.co.uk/events-listings/brown-sugar-comedy-night-early-show-3/#2026-10-18-1800">Tickets &amp; info →</a>
 
@@ -3703,7 +3879,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="158" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://www.cafeoto.co.uk/events/byh-simon-finn-tony-caro-and-john/">Simon Finn + The Owl Service</a></h3>
-<div class="meta">7:30 PM · Cafe Oto, Dalston · $15.00</div>
+<div class="meta">7:30 PM · Cafe Oto, Dalston · £15.00</div>
 <p>Baba Yaga&#x27;s Hut at Cafe Oto.</p>
 <a class="tickets" href="https://www.cafeoto.co.uk/events/byh-simon-finn-tony-caro-and-john/">Tickets &amp; info →</a>
 
@@ -4175,7 +4351,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="86" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/7zbgdgtu">Women Only Game Night Costume Party</a></h3>
-<div class="meta">4:00 PM – 9:00 PM · Sip Slow, Paddington · $7.50</div>
+<div class="meta">4:00 PM – 9:00 PM · Sip Slow, Paddington · £7.50</div>
 <p></p>
 <a class="tickets" href="https://luma.com/7zbgdgtu">Tickets &amp; info →</a>
 
@@ -4234,7 +4410,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="75" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/bdjac7gh">FOUNDATION/+: SUMO DEADLIFT WITH SARA CARDINALE</a></h3>
-<div class="meta">10:00 AM – 12:00 PM · My Fit Pod Hackney, Hackney · $32.00</div>
+<div class="meta">10:00 AM – 12:00 PM · My Fit Pod Hackney, Hackney · £32.00</div>
 <p>A community of women and non-binary individuals of all abilities. We train together and have access to gyms, coaches and discounts. You can join and lift with us.</p>
 <a class="tickets" href="https://luma.com/bdjac7gh">Tickets &amp; info →</a>
 
@@ -4251,7 +4427,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="80" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/the-ktny">SOUL RESTORE: Sound, Breath + Reiki with Jessii Rose</a></h3>
-<div class="meta">11:00 AM – 12:30 PM · The Mandrake, Mayfair · $40.00</div>
+<div class="meta">11:00 AM – 12:30 PM · The Mandrake, Mayfair · £40.00</div>
 <p>The Mandrake is a multi-award-winning, luxury lifestyle bouqute hotel in the heart of London’s Fitzrovia.</p>
 <a class="tickets" href="https://luma.com/the-ktny">Tickets &amp; info →</a>
 
@@ -4268,7 +4444,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="83" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/9om9tnii">IOE Sunday Roast Club</a></h3>
-<div class="meta">12:45 PM – 3:00 PM · The Grazing Goat Pub &amp; Boutique Hotel Marylebone, Marylebone · $22.22 · Full · waitlist open</div>
+<div class="meta">12:45 PM – 3:00 PM · The Grazing Goat Pub &amp; Boutique Hotel Marylebone, Marylebone · £22.22 · Full · waitlist open</div>
 <p></p>
 <a class="tickets" href="https://luma.com/9om9tnii">Tickets &amp; info →</a>
 
@@ -4285,7 +4461,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="84" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/sjxfulmu">Akhi Retreats FootGolf ⚽⛳</a></h3>
-<div class="meta">1:00 PM – 3:00 PM · Park Royal · $20.00</div>
+<div class="meta">1:00 PM – 3:00 PM · Park Royal · £20.00</div>
 <p></p>
 <a class="tickets" href="https://luma.com/sjxfulmu">Tickets &amp; info →</a>
 
@@ -4302,7 +4478,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="85" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/wzoptmw0">Press Pause - More than Meditation</a></h3>
-<div class="meta">2:00 PM – 3:15 PM · Colets Health and Fitness, Hinchley Wood · $24.44</div>
+<div class="meta">2:00 PM – 3:15 PM · Colets Health and Fitness, Hinchley Wood · £24.44</div>
 <p></p>
 <a class="tickets" href="https://luma.com/wzoptmw0">Tickets &amp; info →</a>
 
@@ -4319,7 +4495,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="89" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/ora8mi28">Day 9 - Sunday - 18th Oct - Navratri Festival 2026</a></h3>
-<div class="meta">8:00 PM · Byron Hall, Wealdstone · $20.00</div>
+<div class="meta">8:00 PM · Byron Hall, Wealdstone · £20.00</div>
 <p>Note: This festival supports a charitable cause. Tickets can not be refunded or transferred. Festival Organised By International Siddhashram Shakti Centre, Harrow, London - HA37RR</p>
 <a class="tickets" href="https://luma.com/ora8mi28">Tickets &amp; info →</a>
 
@@ -4480,7 +4656,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="87" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/0gbwpiwf">Powerhouse London Film Festival: Closing Dinner &amp; Mixer</a></h3>
-<div class="meta">6:00 PM – 11:00 PM · 11 Berkeley St, Greater, Mayfair · $350.00</div>
+<div class="meta">6:00 PM – 11:00 PM · 11 Berkeley St, Greater, Mayfair · £350.00</div>
 <p></p>
 <a class="tickets" href="https://luma.com/0gbwpiwf">Tickets &amp; info →</a>
 
@@ -4620,7 +4796,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="hide" data-idx="82" aria-label="Hide this event" title="Not interested">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/lw5bigwe">Reading Salon For Ruminators: Session 8</a></h3>
-<div class="meta">12:00 PM – 2:00 PM · Kasa Cafe London, Mayfair · $12.50 · Full · waitlist open</div>
+<div class="meta">12:00 PM – 2:00 PM · Kasa Cafe London, Mayfair · £12.50 · Full · waitlist open</div>
 <p></p>
 <a class="tickets" href="https://luma.com/lw5bigwe">Tickets &amp; info →</a>
 
@@ -5993,7 +6169,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 </article>
 </section>
-</main>
+</main></div></div>
 <footer>
 <div class="serif">Hand-picked for you by Tonight.</div>
 <p>Every tick is saved —<br>tomorrow's picks learn what you love.</p>
@@ -6011,7 +6187,11 @@ const EDATE = null;
 const EDAYS = EDATE ? [...new Set(EDATE)] : null;
 const RECUR = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Every Sunday", "Also on other days", "Most days", "", "Also on other days", "Every Sunday", "Most days", "Also on other days", "Also on other days", "", "Also on other days", "Most days", "Most days", "Most days", "", "", "Most days", "Most days", "Most days", "", "Most days", "Also on other days", "Most days", "Most days", "Also on other days", "Most days", "Most days", "Most days", "Most days", "Most days", "Also on other days", "Most days", "Most days", "Most days", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Every Sunday", "Every Sunday", "", "Also on other days", "Also on other days", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 const KIDS = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
-const PRICES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$32.00", "", "", "", "", "$40.00", "", "$12.50", "$22.22", "$20.00", "$24.44", "$7.50", "$350.00", "", "$20.00", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$1.00", "$1.00", "$10.00", "", "", "", "", "", "", "", "$15.00", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+const PRICES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\u00a332.00", "", "", "", "", "\u00a340.00", "", "\u00a312.50", "\u00a322.22", "\u00a320.00", "\u00a324.44", "\u00a37.50", "\u00a3350.00", "", "\u00a320.00", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\u00a31.00", "\u00a31.00", "\u00a310.00", "", "", "", "", "", "", "", "\u00a315.00", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+// how good each event is for anyone (1-10, null = not scored) + why, and its flags (ingest/quality.py)
+const QUAL = [3, 5, 4, 4, 4, 3, 4, 3, 3, 2, 3, 4, 4, 5, 5, 2, 2, 4, 3, 4, 4, 3, 4, 5, 7, 3, 4, 4, 5, 6, 5, 7, 7, 5, 5, 3, 6, 5, 3, 5, 4, 5, 5, 4, 5, 5, 7, 4, 6, 6, 4, 4, 5, 4, 3, 4, 4, 4, 6, 5, 6, 7, 6, 6, 5, 6, 7, 8, 5, 3, 8, 8, 6, 6, 4, 2, 2, 3, 4, 5, 2, 2, 5, 3, 3, 2, 4, 3, 2, 5, 5, 6, 6, 6, 7, 5, 8, 5, 6, 6, 6, 5, 7, 6, 8, 6, 7, 8, 6, 5, 7, 7, 8, 6, 6, 5, 5, 5, 5, 6, 6, 6, 5, 3, 5, 5, 4, 7, 5, 5, 5, 5, 6, 6, 7, 7, 6, 8, 6, 6, 7, 4, 5, 5, 5, 4, 5, 8, 4, 4, 5, 4, 4, 4, 6, 4, 6, 5, 7, 3, 4, 7, 5, 4, 2, 4, 6, 2, 5, 5, 6, 3, 5, 3, 5, 5, 5, 5, 4, 3, 1, 2, 6, 6, 4, 7, 5, 6, 5, 5, 4, 5, 4, 6, 3, 3, 5, 5, 6, 6, 4, 4, 6, 5, 7, 4, 7, 5, 3, 4, 3, 8, 6, 6, 6, 5];
+const WHY = ["", "Regular Saturday stand-up night at the Up The Creek comedy club.", "Caribbean dinner followed by DJ after-party at Boisdale.", "Live band karaoke at Up The Creek, a recurring night.", "Long-running 90s and 00s throwback club night at Scala.", "", "Singer Tiffany Quinn performing late at Jazz Cafe.", "", "", "", "", "Wallace and Gromit and Aardman characters in an immersive exhibition.", "Tudor palace and gardens, but only standard all-day entry is listed.", "Royal palace with state apartments and Diana exhibitions; a standard tourist staple.", "Historic fortress with Crown Jewels; a standard tourist staple.", "", "", "Large-scale digital art installations in a timed-entry commercial show.", "", "", "Disco brunch with Jaelee Small at Soul Mama.", "", "Recurring Sunday soul sessions over lunch in Canary Wharf.", "", "As You Like It staged in Shakespeare's reconstructed Globe Theatre.", "", "Recurring Sunday pub quiz at a comedy club.", "Faulty Towers dinner show with a set menu and actors.", "", "Roald Dahl's Matilda, a long-running West End hit.", "Unauthorised musical parody of the TV show Heated Rivalry.", "UK's longest-running freely improvised music series, four sets.", "NFL game at Wembley: Houston Texans against Jacksonville Jaguars.", "Revival of the classic musical Oliver! at the Gielgud.", "", "", "Lloyd Webber's Love Never Dies sequel on tour at the Palladium.", "Long-running Oz prequel musical; a local can catch it any night.", "", "Disney's The Lion King, a long-running West End staple.", "", "Dance company's Stories programme at Peacock Theatre.", "", "Jukebox show about Sun Records' famous 1956 jam session.", "Six wives of Henry VIII as a pop-concert musical.", "Long-running slapstick farce The Play That Goes Wrong.", "Derren Brown's mind-reading and illusion show, Only Human, at the Apollo.", "", "Christie's courtroom thriller staged in County Hall's riverside space.", "Ana\u00efs Mitchell's folk-musical Orpheus retelling, with BSL performances.", "Intimate musical staged at the Charing Cross Theatre.", "Male revue staged at the Hippodrome Casino; a commercial show.", "Stand-up showcase; no headline acts named in listing.", "Filipino hits act Sweetnotes performing at Troxy.", "", "Small pub gig; no headline act described.", "South Asian cultural evening at Redbridge Drama Centre.", "Comedy show at Big Belly; no performers named.", "Reggae singer Etana performing at the intimate Soul Mama venue.", "Radhika Das live at the Apollo; no details given.", "UK rapper Hak Baker live at Blue Note London.", "Richard Blackwood and White Yardie headline a Jamaica-themed comedy bill.", "Turkish-German rapper Ezhel plays the Forum in Kentish Town.", "US country singer Warren Zeiders plays the Roundhouse.", "Long-running hard rock band Quireboys at the small Garage venue.", "Level 42 keyboardist Mike Lindup leads his own jazz trio.", "Japanese garage-rock legends The 5.6.7.8's at the historic 100 Club.", "Veteran improv troupe with Josie Lawrence performing at the Comedy Store.", "Open jazz jam session at Vortex, a recurring Dalston night.", "", "Flagship contemporary art fair, 170+ galleries, public days.", "Art made before 2000, with curated Spotlight and Reflections sections.", "Graduates Exhibition and a 7-metre Charles Inge installation.", "Solo piano recital by Jakub Kuszlik at the Duke's Hall, free.", "Live-coded algorave night from London's electronic music scene.", "", "", "", "Breakfast murder-mystery game hosted at a corgi-themed cafe.", "Artist Regina Torres Thompson opens her Culford Mews studio, free.", "", "", "Ongoing reading salon series for literary discussion over coffee.", "", "", "", "Costume party game night for women at Sip Slow.", "", "", "Ninth night of Navratri with dance, at Byron Hall in Harrow.", "Barbican film screening of NAZA.", "Dance Umbrella's short film programme on movement and encounter.", "Barbican screening of The Social Reckoning.", "Ang Lee's Austen adaptation, screened at the Barbican.", "London Symphony Orchestra at the Barbican; no programme specified.", "Evening Barbican screening of Digger.", "Throbbing Gristle's 50th anniversary celebration at the ICA.", "ICA film screening; the listing gives too little detail to judge.", "The Idiot(s), a London Film Festival screening at the ICA.", "Throbbing Gristle's 1980 album Heathen Earth, presented at the ICA.", "Reconstruction Sites, a London Film Festival screening at the ICA.", "ICA screening of NAZA.", "New Dardenne brothers film, Case 137, at the ICA.", "Chapter Phaedra from A Day in the Life of Jo, a festival screening.", "Throbbing Gristle's Chris Carter and Cosey Fanni Tutti in conversation.", "MINOTAUR, a London Film Festival screening at the ICA.", "Throbbing Gristle's Kezar Pavilion live set, a rare live document.", "Reece Shearsmith's tales of Glamis skull, Highgate vampire and talking mongoose Gef.", "London Gay Symphony Orchestra's 30th anniversary concert.", "Sorkin's drama on the Facebook whistleblower story, at the Rio.", "Israeli filmmakers examine the systems behind mass killings in Gaza.", "Christine Edzard's Beveridge Report fantasy, followed by a Q&A.", "Rio anniversary: Dalston Tatler porn-cinema history paired with Variety.", "Na Hong-jin's creature thriller, a long 160-minute epic.", "Lesley Manville leads this 1981 Warsaw martial-law thriller.", "Documentary following the Com\u00e9die-Fran\u00e7aise theatre company in Paris.", "Jennifer Peedom's Everest feature about Tenzing Norgay's summit quest.", "Sorkin's Facebook whistleblower drama, screened at the Phoenix.", "Colin Farrell's Bruges hitman comedy in Phoenix's classics series.", "Life of conductor Sergiu Celibidache, from Romania to wartime Germany.", "Night-shot Tel Aviv rooftop documentary, with producer James Wilson Q&A.", "Lesley Manville as a British academic in Cold War Warsaw.", "Sorkin's Facebook whistleblower drama, screened at the Lexi.", "", "Second part of Baudry's De Gaulle, covering the 1940 armistice.", "Georgia Oakley's Austen adaptation, with Daisy Edgar-Jones and George MacKay.", "Filmed screening of the international hit musical Hadestown.", "Friedkin's Exorcist extended cut, a rarely seen longer version.", "Recent 2026 release, screening at the Prince Charles Cinema.", "Recent 2026 release, screening at the Prince Charles Cinema.", "Recent 2026 release, screening at the Prince Charles Cinema.", "Recent 2026 release, screening at the Prince Charles Cinema.", "Miyazaki's 1988 Ghibli classic, dubbed, morning screening.", "Night-shot film on Israel's targeting systems by journalist Yuval Abraham.", "Hitchcock classic screened as tribute to Eva Marie Saint.", "Jean-Claude Barny's Fanon biopic, screened in CineCarib UK's Black History Month edition.", "Georgia Oakley's new Austen adaptation, following her acclaimed Blue Jean.", "Mike Figgis in person for his 1990 thriller Internal Affairs, with Granta Q&A.", "Dominik Moll's Paris-set thriller about an internal affairs investigator.", "Cult 2004 sapphic spy comedy D.E.B.S. preceded by zine-making.", "Aaron Sorkin's original screenplay on Frances Haugen's Facebook whistleblowing.", "Title only; no director or details given.", "Dominik Moll's Paris internal affairs thriller at the Castle Cinema.", "Molly Manners' English girls' school debut at the Castle Cinema.", "Yuval Abraham's night-shot film on Israel's targeting systems.", "Title only; no director or details given.", "Austen's Sense and Sensibility at a local independent cinema; no details given.", "Tenor Mark Padmore leads a Schumann-to-Shakespeare song programme at Conway Hall.", "", "", "", "", "", "", "Sofie Hagen, known Danish-British comic and podcaster, performing live.", "", "Victor Patrascan, a known stand-up, performing a London date.", "", "Simon Finn's songs with The Owl Service at Cafe Oto's Baba Yaga's Hut.", "", "", "Curated archive pieces from Yohji, Margiela, Rick Owens and Issey Miyake.", "", "", "", "", "Kirill Seleguey's new stand-up programme, performed live in London.", "", "", "Walking tour tracing Karl Marx's life and ideas through Soho.", "All-day amapiano, afrobeats and afrohouse party with 1500+ ravers.", "", "Interactive guided murder mystery played over a three-course dinner.", "", "Chef Michael Flakes's supper club pairing curated music with dining.", "Outdoor Sunday party with Caribbean food and top radio DJs.", "Live jazz set alongside a three-course dinner and wine pairing.", "Ecstatic dance with high-quality sound at The Baths, saunas included.", "Adult tennis matches marking Black History Month, community-focused.", "", "", "", "Guided by a lifelong fan through Sweeney and Minder filming locations.", "Walk through London's Brutalist and high-tech architectural landmarks.", "Stroll through Hampstead Village's streets and hidden corners.", "Bright Young Things seen through Waugh, Coward, Christie, Sayers and Woolf.", "Arts and Crafts figures who lived along Hammersmith's riverside.", "Soho's 1976-77 punk scene, where British punk broke out.", "Five centuries of Bengali links across the City and East End.", "Soho's four centuries of history told through its Jewish heritage.", "Why the Romans invaded Britain and founded London.", "Inside the Hippodrome, with a century of circus-to-casino history.", "The Great Fire's aftermath and the politics of rebuilding London.", "Free walk past Brixton's Black history plaques with a Lambeth guide.", "", "", "Caravaggio's Supper at Emmaus, examined through visual theology in a cathedral talk.", "Themed Comedy Warehouse showcase at the Shepherd's Bush Empire.", "Pro and TV comedians test new material for \u00a32 entry.", "Harry's own Chinese-language special by a Briton who appears on a stand-up TV show.", "Tommy and Chirag's mixed vocal and comedy night in South Woodford.", "Dating-themed comedy night at Hoxton Cabin.", "Pro and TV comedians test new material for \u00a32 entry.", "Curated short films in a Stoke Newington venue, 18+ only.", "The Return of the Living Dead screened at the Cinema Museum to fund it.", "Short film festival screening at Strongroom Venue.", "1961 Val Guest apocalypse classic screened in a pub cult series.", "Burton's Edward Scissorhands in a hotel cinema club setting.", "", "Tim Burton's Nightmare Before Christmas, but residents-only screening.", "", "Glee star Darren Criss performing live at the Royal Albert Hall.", "Austrian extreme metal band Belphegor at the Camden Underworld.", "Scottish folk-pop band Stornoway playing at Rough Trade East.", "Blues guitarist Walter Trout at Islington Assembly Hall.", "Jim Jones All Stars show at Scala."];
+const FLAGS = ["", "", "", "", "", "", "", "flex_entry", "flex_entry", "flex_entry", "flex_entry", "flex_entry", "", "", "", "kids,flex_entry", "kids,flex_entry", "flex_entry", "flex_entry", "", "", "flex_entry", "", "", "", "", "", "", "kids", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "kids", "", "", "", "", "", "sales,members_only", "sales", "", "", "", "sales", "networking", "", "networking", "", "sales", "", "networking", "sales", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "kids", "", "", "", "", "", "", "", "", "kids", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "class_slot", "", "", "", "", "", "", "service", "", "class_slot", "", "", "", "", "", "class_slot", "kids,class_slot", "class_slot", "", "", "", "", "", "", "", "", "", "", "", "", "class_slot", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "members_only", "", "", "", "", "", ""];
 // parents can bring kids' events into story mode, Next hour and Toni's suggestions
 function kidsOn() { try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } }
 addEventListener("DOMContentLoaded", () => {
@@ -6059,6 +6239,8 @@ addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash
 const CATS = ["Arts & Play", "Comedy", "Music", "Music", "Arts & Play", "Arts & Play", "Music", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Arts & Play", "Arts & Play", "Music", "Music", "Theater", "Music", "Trivia & Games", "Comedy", "Theater", "Theater", "Comedy", "Music", "Sports", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Arts & Play", "Theater", "Theater", "Theater", "Comedy", "Arts & Play", "Theater", "Theater", "Theater", "Theater", "Theater", "Arts & Play", "Music", "Arts & Play", "Music", "Arts & Play", "Arts & Play", "Music", "Music", "Music", "Comedy", "Music", "Music", "Arts & Play", "Music", "Music", "Comedy", "Music", "Theater", "Arts & Play", "Arts & Play", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Fitness & Outdoors", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Talks", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Trivia & Games", "Food & Drink", "Food & Drink", "Meetups & Mixers", "Film", "Film", "Film", "Film", "Music", "Film", "Music", "Film", "Film", "Arts & Play", "Film", "Film", "Film", "Film", "Music", "Film", "Music", "Comedy", "Music", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Music", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Music", "Music", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Fitness & Outdoors", "Sports", "Comedy", "Food & Drink", "Food & Drink", "Tours", "Meetups & Mixers", "Food & Drink", "Food & Drink", "Classes & Workshops", "Food & Drink", "Food & Drink", "Food & Drink", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Talks", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Music", "Music", "Music", "Music", "Music"];
 const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, true, true, true, true, false, true, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const HOODS = ["Hendon", "East Greenwich", "Canary Wharf", "East Greenwich", "Barnsbury", "Chalk Farm", "Chalk Farm", "Mayfair", "Waterloo", "Marylebone", "Waterloo", "King's Cross", "Hampton Wick", "Kensington", "Whitechapel", "Waterloo", "Waterloo", "Marylebone", "Nine Elms", "Greenwich Peninsula", "Islington", "The Borough", "Canary Wharf", "Peckham", "Southwark", "Stratford", "", "Bloomsbury", "Covent Garden", "Bloomsbury", "Soho", "Dalston", "", "Soho", "Soho", "Canary Wharf", "Soho", "Victoria", "West Kensington", "Covent Garden", "Covent Garden", "Covent Garden", "Bloomsbury", "Marylebone", "Covent Garden", "Covent Garden", "Soho", "Covent Garden", "Waterloo", "Soho", "Covent Garden", "Covent Garden", "", "Stepney", "", "New Cross", "South Woodford", "", "Islington", "Hammersmith", "Covent Garden", "Shepherd's Bush", "Kentish Town", "Chalk Farm", "Highbury", "Chalk Farm", "Mayfair", "Covent Garden", "Dalston", "Waterloo", "Marylebone", "Camden Town", "Battersea", "Marylebone", "Peckham", "Hackney", "Kensal Town", "Chelsea", "Shoreditch", "Dalston", "Mayfair", "Inner and Middle Temples", "Mayfair", "Marylebone", "Park Royal", "Hinchley Wood", "Paddington", "Mayfair", "Chelsea", "Wealdstone", "Barbican", "Barbican", "Barbican", "Barbican", "Barbican", "Barbican", "Covent Garden", "Covent Garden", "Covent Garden", "Covent Garden", "Covent Garden", "Covent Garden", "Covent Garden", "Covent Garden", "Covent Garden", "Covent Garden", "Covent Garden", "Leyton", "Chelsea", "Shacklewell", "Shacklewell", "Shacklewell", "Shacklewell", "Shacklewell", "Hampstead Garden Suburb", "Hampstead Garden Suburb", "Hampstead Garden Suburb", "Hampstead Garden Suburb", "Hampstead Garden Suburb", "Hampstead Garden Suburb", "Brondesbury", "Brondesbury", "Brondesbury", "Brondesbury", "Brondesbury", "Brondesbury", "Brondesbury", "Covent Garden", "Covent Garden", "Covent Garden", "Covent Garden", "Covent Garden", "Holborn", "Holborn", "Holborn", "Holborn", "Holborn", "Holborn", "Holborn", "Holborn", "Holborn", "Homerton", "Homerton", "Homerton", "Homerton", "Homerton", "Homerton", "Holborn", "Bloomsbury", "Bloomsbury", "Bloomsbury", "Islington", "Islington", "Islington", "Islington", "Islington", "Covent Garden", "Dalston", "Dalston", "Broad Green", "Ponders End", "Leyton", "Kensington", "St Pancras", "North Kensington", "Preston", "Southwark", "Canary Wharf", "Ladywell", "Covent Garden", "Broad Green", "Kennington", "Leyton", "Dalston", "Shacklewell", "Highams Park", "Mayfair", "Hackney Wick", "Farnborough", "Rotherhithe", "Upminster", "North Finchley", "Shepherd's Bush", "Barbican", "Harlesden", "Covent Garden", "Hammersmith", "Covent Garden", "Whitechapel", "Soho", "Leadenhall Market", "Covent Garden", "Leadenhall Market", "Herne Hill", "Millbank", "Covent Garden", "The Borough", "Shepherd's Bush", "Shoreditch", "Southwark", "South Woodford", "Shoreditch", "Shoreditch", "West Hackney", "Kennington", "Shoreditch", "Hackney Wick", "Shoreditch", "New Malden", "Battersea", "Elephant and Castle", "Knightsbridge", "Chalk Farm", "Whitechapel", "Highbury", "Barnsbury"];
+const AREA_GROUP = ["Barnet", "Greenwich", "Tower Hamlets", "Greenwich", "Camden", "Camden", "Camden", "Westminster", "Lambeth", "Westminster", "Lambeth", "Camden", "Richmond upon Thames", "Kensington and Chelsea", "Tower Hamlets", "Lambeth", "Lambeth", "Westminster", "Wandsworth", "Greenwich", "Islington", "Southwark", "Tower Hamlets", "Southwark", "Southwark", "Newham", "", "Camden", "Westminster", "Camden", "Westminster", "Hackney", "", "Westminster", "Westminster", "Tower Hamlets", "Westminster", "Westminster", "Hammersmith and Fulham", "Westminster", "Westminster", "Westminster", "Camden", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Lambeth", "Westminster", "Westminster", "Westminster", "", "Tower Hamlets", "", "Lewisham", "Redbridge", "", "Islington", "Hammersmith and Fulham", "Westminster", "Hammersmith and Fulham", "Camden", "Camden", "Islington", "Camden", "Westminster", "Westminster", "Hackney", "Lambeth", "Elsewhere", "Elsewhere", "Elsewhere", "Westminster", "Southwark", "Hackney", "Westminster", "Kensington and Chelsea", "Hackney", "Hackney", "Westminster", "City of London", "Westminster", "Westminster", "Ealing", "Elsewhere", "Westminster", "Westminster", "Kensington and Chelsea", "Harrow", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Waltham Forest", "Kensington and Chelsea", "Hackney", "Hackney", "Hackney", "Hackney", "Hackney", "Barnet", "Barnet", "Barnet", "Barnet", "Barnet", "Barnet", "Brent", "Brent", "Brent", "Brent", "Brent", "Brent", "Brent", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Camden", "Camden", "Camden", "Camden", "Camden", "Camden", "Camden", "Camden", "Camden", "Hackney", "Hackney", "Hackney", "Hackney", "Hackney", "Hackney", "Camden", "Camden", "Camden", "Camden", "Islington", "Islington", "Islington", "Islington", "Islington", "Westminster", "Hackney", "Hackney", "Croydon", "Enfield", "Waltham Forest", "Kensington and Chelsea", "Camden", "Kensington and Chelsea", "Brent", "Southwark", "Tower Hamlets", "Lewisham", "Westminster", "Croydon", "Lambeth", "Waltham Forest", "Hackney", "Hackney", "Waltham Forest", "Westminster", "Hackney", "Bromley", "Southwark", "Havering", "Barnet", "Hammersmith and Fulham", "City of London", "Brent", "Westminster", "Hammersmith and Fulham", "Westminster", "Tower Hamlets", "Westminster", "Tower Hamlets", "Westminster", "Tower Hamlets", "Lambeth", "Westminster", "Westminster", "Southwark", "Hammersmith and Fulham", "Hackney", "Southwark", "Redbridge", "Hackney", "Hackney", "Hackney", "Lambeth", "Hackney", "Hackney", "Hackney", "Kingston upon Thames", "Wandsworth", "Southwark", "Westminster", "Camden", "Tower Hamlets", "Islington", "Islington"];  // each event's borough / region ("" = no neighbourhood)
+const AREA_ORDER = ["Westminster", "Hackney", "Camden", "Islington", "Tower Hamlets", "Brent", "Lambeth", "Southwark", "Barnet", "City of London", "Hammersmith and Fulham", "Kensington and Chelsea", "Waltham Forest", "Greenwich", "Croydon", "Lewisham", "Redbridge", "Wandsworth", "Bromley", "Ealing", "Enfield", "Harrow", "Havering", "Kingston upon Thames", "Newham", "Richmond upon Thames", "Barking and Dagenham", "Bexley", "Haringey", "Hillingdon", "Hounslow", "Merton", "Sutton", "Elsewhere"];
 const TZ = "Europe/London";
 const STARTS = [840, 1080, 1200, 1320, 1320, 1350, 1350, 570, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 720, 720, 720, 750, 780, 780, 780, 780, 810, 840, 840, 840, 840, 870, 870, 870, 870, 870, 870, 870, 870, 870, 870, 900, 900, 900, 900, 900, 900, 900, 900, 900, 960, 990, 1020, 1050, 1080, 1080, 1110, 1110, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1170, 1170, 1185, null, 660, 660, 660, 1020, 1125, 600, 600, 600, 630, 660, 660, 720, 720, 765, 780, 840, 960, 1080, 1140, 1200, 1090, 840, 1035, 1020, 1140, 1210, 720, 730, 750, 840, 915, 960, 1050, 1065, 1080, 1200, 1200, 1170, 1110, 915, 1215, 840, 1040, 1180, 1005, 885, 1185, 1170, 840, 990, 900, 1190, 795, 765, 1140, 960, 1020, 710, 740, 900, 1070, 1245, 660, 1200, 825, 840, 960, 1010, 1020, 1050, 1170, 1200, 720, 795, 1080, 920, 990, 1110, 900, 1020, 1080, 1170, 960, 1050, 1140, 1230, 870, 1185, 1170, 960, 540, 720, 660, 600, 780, 540, 1140, 900, 720, 660, 960, 720, 1080, 600, 1080, 960, 1080, 600, 900, 660, 690, 660, 840, 840, 780, 840, 660, 690, 780, 900, 840, 660, 660, 600, 645, 570, 590, 1140, 1110, 990, 1080, 1080, 1110, 1140, 1170, 1080, 1110, 900, 900, 1140, 1125, null, 1080, 1080, 1140, 1170];   // minutes since midnight, or null
 const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1080, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1110, 1340, 720, 660, 660, 780, 960, 750, 840, 840, 900, 900, 915, 1260, 1380, 1260, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1230, null, null, null, null, null, null, null, null, null, 1350, null, 1380, 990, 960, 1050, 960, 870, 1380, 1290, 1380, 1080, 810, 1380, 855, 1290, 930, 1380, 1380, 1320, 780, 1140, 720, 810, 720, 1020, 1020, null, 960, 750, 840, 900, 1020, 960, 750, 780, 720, 810, 720, 630, 1380, 1230, 1080, 1170, 1320, 1230, 1290, 1350, 1260, 1275, 1010, 1020, 1230, 1230, null, null, null, null, null];       // from end_time, or null (-> start + 2h)
@@ -6073,6 +6255,7 @@ function render() {
   if (EDAYS) EDAYS.forEach(d => saveIds("tonight-picks-" + CITY + "-" + d, new Set([...picks].filter(i => EDATE[+i] === d))));
   else saveIds(KEY, picks);
   reportTaps();
+  if (window.__topTonight) window.__topTonight();
 }
 // "I'm going": stronger than a tick (it ticks too). Saved per event day; headcounts shown from 3 up.
 const going = new Set();
@@ -6165,6 +6348,12 @@ const _shareBtn = document.getElementById("shareBtn");
 if (_shareBtn) _shareBtn.addEventListener("click", async () => {
   const r = await shareOrCopy("Things to do today in London, hand-picked by Tonight:", location.href.split("#")[0]);
   if (r === "copied") shareMsg("Link copied — paste it anywhere.");
+});
+// the header's ⋯ menu closes once something in it is picked, or on a click elsewhere
+document.addEventListener("click", e => {
+  document.querySelectorAll("details.tmore[open]").forEach(m => {
+    if (!m.contains(e.target) || e.target.closest(".tm-item")) m.removeAttribute("open");
+  });
 });
 function fmtStart(i) {
   const s = STARTS[i]; if (s == null) return "";
@@ -6263,23 +6452,38 @@ window.__applyFilters = (function () {
     if (s < 1020) return "afternoon";   // 12–5 PM
     return "evening";                   // 5 PM+
   }
+  // Evening is the default on today's page after noon (city time); other days show any time
+  const TOD0 = !EDAYS && DATE === cityToday() && cityNowMinutes() >= 720 ? "evening" : "all";
+  function todMatch(i, tod) {
+    const t = todOf(i);
+    if (tod === "all" || t === "tba") return true;  // a listing without a time could be any time
+    return tod === "day" ? t !== "evening" : t === tod;
+  }
+  function todOk(i) { return todMatch(i, F.tod); }
+  const hay = {};  // search text per card, read once
+  // each filter on its own (the sidebar counts what each box would show with all the others)
+  function dims(i, a) {
+    let base = !hidden.has(String(i));
+    if (base && F.only && !F.only.has(EIDS[i])) base = false;  // a friend's shared picks (?only=)
+    if (base && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) base = false;
+    if (base && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) base = false;
+    if (base && F.q) {
+      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
+      if (!hay[i].includes(F.q)) base = false;
+    }
+    return {base: base,
+      cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
+      free: !F.free || FREE[i],
+      tod: todOk(i),
+      hood: !F.hood || F.hood.split("|").includes(HOODS[i])};  // one or several neighbourhoods
+  }
+  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
     let n = 0;
     cards.forEach(a => {
-      const i = a.dataset.idx;
-      let ok = !hidden.has(i);
-      if (ok && F.only && !F.only.has(EIDS[+i])) ok = false;  // a friend's shared picks (?only=)
-      if (ok && F.cat && !F.cat.split(",").includes(CATS[+i])) ok = false;  // one or several categories
-      if (ok && F.free && !FREE[+i]) ok = false;
-      if (ok && F.tod !== "all" && todOf(+i) !== F.tod) ok = false;
-      if (ok && F.after != null && !(STARTS[+i] != null && STARTS[+i] >= F.after)) ok = false;
-      if (ok && F.before != null && !(STARTS[+i] != null && STARTS[+i] < F.before)) ok = false;
-      if (ok && F.hood && HOODS[+i] !== F.hood) ok = false;
-      if (ok && F.q) {
-        const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
-        if (!hay.includes(F.q)) ok = false;
-      }
+      const i = a.dataset.idx, d = dims(+i, a);
+      const ok = d.base && d.cat && d.free && d.tod && d.hood;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
@@ -6299,6 +6503,8 @@ window.__applyFilters = (function () {
     window.__clamp && window.__clamp();
     document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
     document.getElementById("hiddenN").textContent = hidden.size;
+    if (window.__topTonight) window.__topTonight();
+    if (window.__fside) window.__fside();
   }
   document.getElementById("fq").addEventListener("input", e => {
     F.q = e.target.value.trim().toLowerCase(); applyFilters();
@@ -6317,13 +6523,18 @@ window.__applyFilters = (function () {
     e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
     applyFilters();
   });
+  const setTod = t => {
+    document.querySelectorAll("#ftod button").forEach(x => x.classList.toggle("on", x.dataset.t === t));
+    F.tod = t;
+  };
   document.querySelectorAll("#ftod button").forEach(b => {
-    b.addEventListener("click", () => {
-      document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
-      b.classList.add("on");
-      F.tod = b.dataset.t; applyFilters();
-    });
+    b.addEventListener("click", () => { setTod(b.dataset.t); applyFilters(); });
   });
+  setTod(TOD0);
+  // the start-time pickers live behind "More filters"
+  const _fm = document.getElementById("fmore"), _fx = document.getElementById("fextra");
+  const showExtra = on => { if (!_fm || !_fx) return; _fx.hidden = !on; _fm.setAttribute("aria-expanded", on ? "true" : "false"); };
+  if (_fm) _fm.addEventListener("click", () => showExtra(_fx.hidden));
   function toast(msg, action, onAction) {
     let t = document.getElementById("tnToast");
     if (!t) { t = document.createElement("div"); t.id = "tnToast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
@@ -6390,7 +6601,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || F.tod !== "all" || F.after != null || F.before != null || F.hood;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -6443,7 +6654,9 @@ window.__applyFilters = (function () {
   function syncFilterUI() {
     ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || F.tod !== "all" || F.after != null || F.before != null || F.hood);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood);
+    if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
+    if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
   _fb.addEventListener("change", syncFilterUI);
   _fb.addEventListener("input", syncFilterUI);
@@ -6548,6 +6761,7 @@ function restoreCards() {
     }
   });
   homeSpot.clear();
+  document.documentElement.classList.remove("listmode");
   document.getElementById("tonightWrap").style.display = "none";
   document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
   const fb = document.getElementById("filterBar");
@@ -6607,6 +6821,7 @@ function setTonight(on) {
   document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
   const fbOn = document.getElementById("filterBar");
   if (fbOn) fbOn.style.display = "none";
+  document.documentElement.classList.add("listmode");
   wrap.style.display = "block";
   empty.style.display = live ? "none" : "block";
   count.textContent = live ? live + (live === 1 ? " thing" : " things") + " on now or starting soon" : "";
@@ -6643,7 +6858,7 @@ function setNextHour(on) {
   const wrap = document.getElementById("tonightWrap"), list = document.getElementById("tonightList");
   const empty = document.getElementById("tonightEmpty"), count = document.getElementById("tonightCount");
   const head = wrap.querySelector(".tonight-head h2");
-  if (head) { if (!head.dataset.orig) head.dataset.orig = head.textContent; head.textContent = "⏱ Next hour"; }
+  if (head) { if (!head.dataset.orig) head.dataset.orig = head.textContent; head.textContent = "⏱ Starting soon"; }
   const today = (typeof cityToday === "function") ? cityToday() : DATE;
   const now = cityNowMinutes();
   const items = [], hiddenByYou = new Set(loadIds("tonight-hidden-" + CITY + "-" + DATE));
@@ -6674,7 +6889,8 @@ function setNextHour(on) {
     list.appendChild(o.art);
   });
   document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
-  const fb = document.getElementById("filterBar"); if (fb) fb.style.display = "none";
+  // the Starting soon chip sits in the filter row, so the row stays (to switch it off)
+  document.documentElement.classList.add("listmode");
   wrap.style.display = "block";
   empty.style.display = items.length ? "none" : "block";
   if (!items.length) empty.textContent = DATE !== today ? "Next hour works on today's page." :
@@ -7032,13 +7248,52 @@ function isToday(){
   catch (e) { return false; }
 }
 
-// Warm Concierge: a note that hands you a plan for the night.
+// Toni's plan, compact: a title, then a line per stop, "6:00 PM · MAIN EVENT: <title> (Neighbourhood · Free)".
+var PLAN_SKIP = ["networking", "sales", "spam", "service", "internal", "members_only", "online"];
+function hm(m){  // 1080 -> "6:00 PM"
+  var h = Math.floor(m / 60) % 24, mm = m % 60;
+  return (h % 12 || 12) + ":" + String(mm).padStart(2, "0") + " " + (h >= 12 ? "PM" : "AM");
+}
+function quality(i){ return window.Tonight && Tonight.quality ? Tonight.quality(i) : 5; }
+function priceOf(i){ return FREE[i] ? "Free" : (typeof PRICES !== "undefined" && PRICES[i] || "").replace(/\.00(?!\d)/g, ""); }
+function planBox(host, lines){
+  host.innerHTML = "";
+  var eye = document.createElement("div"); eye.className = "cn-eye"; eye.textContent = "Toni's plan for you";
+  host.appendChild(eye); var hi = greeting(); if (hi) host.appendChild(hi);
+  var ol = document.createElement("ol"); ol.className = "cn-plan";
+  lines.forEach(function(l){ ol.appendChild(l); }); host.appendChild(ol);
+}
+function planLine(time, role, extra){
+  var li = document.createElement("li"), t = document.createElement("span"), r = document.createElement("span");
+  t.className = "cn-t"; t.textContent = time; r.className = "cn-role"; r.textContent = role;
+  li.appendChild(t); li.appendChild(document.createTextNode(" \u00b7 ")); li.appendChild(r);
+  if (extra) li.appendChild(document.createTextNode(" (" + extra + ")"));
+  li.appendChild(document.createTextNode(": "));
+  return li;
+}
+function eventLine(time, role, i, name, href){
+  var li = planLine(time, role), a = document.createElement("a");
+  a.href = href; a.textContent = name; li.appendChild(a);
+  var bits = i != null ? [HOODS[i], priceOf(i)].filter(Boolean) : [];
+  if (bits.length) li.appendChild(document.createTextNode(" (" + bits.join(" \u00b7 ") + ")"));
+  return li;
+}
+function adjustLink(){
+  var adj = document.createElement("a"); adj.className = "cn-adjust"; adj.href = "#"; adj.setAttribute("data-tune", "1");
+  adj.textContent = "Not quite right? Adjust"; return adj;
+}
+
+// Warm Concierge: a plan for the night, from the page itself (Toni's own plan replaces it when it arrives).
 function concierge(){
   var host = document.getElementById("conciergeNote"); if (!host) return;
   var now = isToday() && typeof cityNowMinutes === "function" ? cityNowMinutes() - 15 : -1;
   var score = function(i){ return (window.Tonight && Tonight.score) ? Tonight.score(i) : 0; };
+  var kidsOK = typeof kidsOn === "function" && kidsOn();
+  var flagged = function(i){ var f = typeof FLAGS !== "undefined" && FLAGS[i] ? FLAGS[i].split(",") : [];
+    return f.some(function(x){ return PLAN_SKIP.indexOf(x) >= 0; }) || (f.indexOf("kids") >= 0 && !kidsOK); };
   var cands = events().map(function(a){ return {a: a, i: +a.dataset.idx}; })
-    .filter(function(o){ var s = STARTS[o.i]; return s != null && s >= Math.max(now, 15 * 60 - 60); })
+    .filter(function(o){ var s = STARTS[o.i]; return s != null && s >= Math.max(now, 15 * 60 - 60) &&
+      quality(o.i) > 3 && !flagged(o.i) && !(KIDS[o.i] && !kidsOK); })
     .sort(function(x, y){ return (score(y.i) - score(x.i)) || (FREE[y.i] - FREE[x.i]) || (STARTS[x.i] - STARTS[y.i]); });
   // One main event (6:00-9:30 PM), one thing before it at a different venue,
   // and a late option only as an aside. Two things is a night; three is a lot.
@@ -7061,8 +7316,11 @@ function concierge(){
   }).map(function(f){ return f.venue; });
   var fresh = function(o){ return recent.indexOf(venue(o)) < 0; };
   var evening = function(o){ return STARTS[o.i] >= 18 * 60 && STARTS[o.i] <= 21 * 60 + 30; };
-  var main = cands.filter(function(o){ return evening(o) && fresh(o); })[0] ||
-             cands.filter(fresh)[0] || cands.filter(evening)[0] || cands[0];
+  // the main event is one of the day's standouts (quality 7+) whenever one fits
+  var best = cands.filter(function(o){ return quality(o.i) >= 7; });
+  var main = best.filter(function(o){ return evening(o) && fresh(o); })[0] || best.filter(evening)[0] ||
+             cands.filter(function(o){ return evening(o) && fresh(o); })[0] ||
+             best.filter(fresh)[0] || cands.filter(fresh)[0] || cands.filter(evening)[0] || cands[0];
   if (main) {
     featured = featured.filter(function(f){ return f.date !== DATE; })
       .concat([{date: DATE, venue: venue(main)}]).slice(-7);
@@ -7080,51 +7338,38 @@ function concierge(){
       return o !== main && o !== before && STARTS[o.i] - STARTS[main.i] >= 150 && venue(o) !== venue(main) && near(o, main);
     })[0] || null;
   }
-  var day = new Date(DATE + "T12:00:00").toLocaleDateString("en-US", {weekday: "long"});
-  var p = document.createElement("p");
-  function link(o){
-    var a = document.createElement("a"); a.href = (typeof EIDS !== "undefined" && EIDS[o.i]) ? "#e-" + EIDS[o.i] : "#event-" + o.i; a.textContent = NAMES[o.i]; return a;
-  }
-  function bit(o){
-    var v = venueOf(o.a), frag = document.createDocumentFragment();
-    frag.appendChild(link(o));
-    frag.appendChild(document.createTextNode((v ? " at " + v : "") + ", " + fmt(STARTS[o.i]) + (FREE[o.i] ? " (free)" : "")));
-    return frag;
-  }
-  function say(t){ p.appendChild(document.createTextNode(t)); }
+  var href = function(o){ return (typeof EIDS !== "undefined" && EIDS[o.i]) ? "#e-" + EIDS[o.i] : "#event-" + o.i; };
+  var line = function(o, role){ return eventLine(hm(STARTS[o.i]), role, o.i, NAMES[o.i], href(o)); };
   if (!main) {
+    host.innerHTML = "";
+    var p = document.createElement("p");
     p.textContent = "Quiet day so far. Everything that's on is below; tick what looks good.";
-  } else {
-    if (before) { say("Warm up with "); p.appendChild(bit(before)); say(". Then the main event: "); }
-    else { say("Tonight's pick: "); }
-    p.appendChild(bit(main)); say(".");
-    if (late) {
-      var aside = document.createElement("span"); aside.className = "cn-late";
-      aside.appendChild(document.createTextNode(" Still up after? "));
-      aside.appendChild(bit(late)); aside.appendChild(document.createTextNode("."));
-      p.appendChild(aside);
-    }
-    if (!before && window.TonightToni) {
-      var ask = document.createElement("button"); ask.type = "button"; ask.className = "cn-ask";
-      ask.textContent = "Plan a night around it →";
-      ask.addEventListener("click", function(){
-        TonightToni.ask("Plan a night around " + NAMES[main.i] + " at " + venueOf(main.a) + " (" + fmt(STARTS[main.i]) +
-          "): add one thing before or after it at a different venue. Keep it to two things.",
-          "Plan my night around " + NAMES[main.i].split(/[,:(]/)[0].trim());
-      });
-      p.appendChild(document.createTextNode(" ")); p.appendChild(ask);
-    }
+    host.appendChild(p);
+    return;
   }
-  host.innerHTML = "";
-  var eye = document.createElement("div"); eye.className = "cn-eye"; eye.textContent = "A note for your " + day;
-  var sign = document.createElement("div"); sign.className = "cn-sign";
-  var tasted = window.Tonight && Tonight.describe && Tonight.taste && (Tonight.taste.likes.length || Tonight.taste.free_only);
-  var adj = document.createElement("a"); adj.href = "#"; adj.setAttribute("data-tune", "1");
-  adj.textContent = tasted ? "Not quite right? Adjust" : "Tell Tonight what you like";
-  sign.appendChild(document.createTextNode(tasted ? "Picked with your taste in mind. " : ""));
-  sign.appendChild(adj);
-  if (!tasted) sign.appendChild(document.createTextNode(" and this note gets more personal."));
-  host.appendChild(eye); var hi = greeting(); if (hi) host.appendChild(hi); host.appendChild(p); host.appendChild(sign);
+  var lines = [];
+  if (before) lines.push(line(before, "Warm-up"));
+  lines.push(line(main, "Main event"));
+  if (late) lines.push(line(late, "After"));
+  planBox(host, lines);
+  var row = document.createElement("div"); row.className = "cn-actions";
+  if (!before && window.TonightToni) {
+    var ask = document.createElement("button"); ask.type = "button"; ask.className = "cn-ask";
+    ask.textContent = "Plan a night around it \u2192";
+    ask.addEventListener("click", function(){
+      TonightToni.ask("Plan a night around " + NAMES[main.i] + " at " + venueOf(main.a) + " (" + fmt(STARTS[main.i]) +
+        "): add one thing before or after it at a different venue. Keep it to two things.",
+        "Plan my night around " + NAMES[main.i].split(/[,:(]/)[0].trim());
+    });
+    row.appendChild(ask);
+  }
+  var tasted = window.Tonight && Tonight.taste && (Tonight.taste.likes.length || Tonight.taste.free_only);
+  if (tasted) row.appendChild(adjustLink());
+  else {
+    var tell = document.createElement("a"); tell.className = "cn-adjust"; tell.href = "#"; tell.setAttribute("data-tune", "1");
+    tell.textContent = "Tell Tonight what you like"; row.appendChild(tell);
+  }
+  host.appendChild(row);
 }
 
 // Vertical Timeline: one list, grouped by start hour, on a rail.
@@ -7178,61 +7423,56 @@ function aiNote(){
       .concat([{date: DATE, venue: (main.venue || "").toLowerCase()}]).slice(-7);
     try { localStorage.setItem("tonight-featured-" + CITY, JSON.stringify(featured)); } catch (e) {}
     var el = function(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
-    var day = new Date(DATE + "T12:00:00").toLocaleDateString("en-US", {weekday: "long"});
-    host.innerHTML = "";
-    host.appendChild(el("div", "cn-eye", "A note for your " + day));
-    var hi = greeting(); if (hi) host.appendChild(hi);
-    host.appendChild(el("p", "", d.note || main.why));
-    var ol = el("ol", "cn-plan");
     var label = {before: "Warm-up", main: "Main event", after: "After"};
-    d.picks.forEach(function(p, k){
-      var li = el("li"), t = el("span", "cn-t", (p.start_time || "").replace(":00", ""));
-      var body = el("span", "cn-b"); body.appendChild(el("span", "cn-role", label[p.role] || ""));
-      var a = el("a", "", p.name); a.href = p.eid ? "#e-" + p.eid : "#event-" + p.id; body.appendChild(a);
-      body.appendChild(el("span", "cn-v", [p.venue, p.price === "free" ? "free" : (p.price !== "price unknown" ? p.price : "")].filter(Boolean).join(" · ")));
-      if (p.why) body.appendChild(el("span", "cn-why", p.why));
-      li.appendChild(t); li.appendChild(body); ol.appendChild(li);
-      if (p.gap_after && k < d.picks.length - 1) ol.appendChild(el("li", "cn-gap", p.gap_after));
+    // this page's own index for a pick (the weekend page lists three days, so go by permanent id)
+    var idxOf = function(p){ var j = p.eid && typeof EIDS !== "undefined" ? EIDS.indexOf(p.eid) : -1;
+      return j >= 0 ? j : (typeof EDATE !== "undefined" && EDATE ? null : (p.id != null && p.id < NAMES.length ? p.id : null)); };
+    var lines = d.picks.map(function(p){
+      return eventLine(p.start_time || "", label[p.role] || "", idxOf(p), p.name, p.eid ? "#e-" + p.eid : "#event-" + p.id);
     });
-    host.appendChild(ol);
     var dn = d.dinner;
     if (dn && dn.time) {
-      var dl = el("div", "cn-dine");
-      dl.appendChild(el("b", "", "Dinner: " + dn.time + ", " + dn.why + ". "));
       var rs = dn.restaurants || [];
+      var li = planLine(dn.time, "Dinner", rs.length && rs[0].walk ? rs[0].walk : "");
       // each suggestion opens the real place on Google Maps (with "Reserve" where it takes bookings);
       // OpenStreetMap places are often not on OpenTable at all
-      var cityName = (document.querySelector(".hero h1") || {textContent: ""}).textContent.trim();
+      var cityName = (document.querySelector(".hero h1 .h-city") || document.querySelector(".hero h1") || {textContent: ""}).textContent.trim();
       rs.forEach(function(r, k){
         var a = el("a", "", r.name); a.target = "_blank"; a.rel = "noopener";
         a.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + (dn.area || dn.venue || "") + " " + cityName);
-        dl.appendChild(a); dl.appendChild(document.createTextNode(" (" + [r.cuisine, r.walk].filter(Boolean).join(", ") + ")" + (k < rs.length - 1 ? " or " : ". ")));
+        if (k) li.appendChild(document.createTextNode(" or "));
+        li.appendChild(a);
       });
+      if (!rs.length) li.appendChild(document.createTextNode(dn.why || ""));
       var ot = {nyc: "https://www.opentable.com", la: "https://www.opentable.com", london: "https://www.opentable.co.uk"}[CITY];
       var where = dn.area || dn.venue;
       if (ot && where) {
         var hh = String(Math.floor(dn.mins / 60)).padStart(2, "0"), mm = String(dn.mins % 60).padStart(2, "0");
         var party = 2; try { party = Math.min(12, Math.max(1, +localStorage.getItem("tonight-party") || 2)); } catch (e) {}
         // OpenTable ignores map coordinates in the address; its search box takes a place name
-        var bk = el("a", "", "Book a table near " + where + " →");
+        var bk = el("a", "cn-book", "Book table \u2197");
         bk.href = ot + "/s?dateTime=" + encodeURIComponent(DATE + "T" + hh + ":" + mm) + "&covers=" + party +
           "&term=" + encodeURIComponent(where);
-        bk.target = "_blank"; bk.rel = "noopener"; dl.appendChild(bk);
+        bk.target = "_blank"; bk.rel = "noopener";
+        li.appendChild(document.createTextNode(" ")); li.appendChild(bk);
       }
-      host.appendChild(dl);
+      lines.push(li);
     }
+    // in time order: dinner sits between the stops it fits around
+    var mins = function(li){ var m = /^(\d{1,2})(?::(\d{2}))?\s*([AP])M/i.exec(li.querySelector(".cn-t").textContent || "");
+      return m ? (+m[1] % 12 + (m[3].toUpperCase() === "P" ? 12 : 0)) * 60 + (+m[2] || 0) : 9999; };
+    lines.sort(function(a, b){ return mins(a) - mins(b); });
+    planBox(host, lines);
     var row = el("div", "cn-actions");
     if (window.TonightToni) {
-      var ch = el("button", "cn-ask", "Ask Toni to change it →"); ch.type = "button";
+      var ch = el("button", "cn-ask", "Shuffle plan \u21bb"); ch.type = "button";
       var used = d.picks.map(function(p){ return p.name + " (" + p.venue + ")"; }).join(", ");
       ch.addEventListener("click", function(){ TonightToni.ask("Give me a different plan for tonight. Don't use any of these: " +
         used + ". Pick a new main event at a different venue, plus one thing before or after it. Keep it to two things.",
         "Change tonight's plan", d.picks.map(function(p){ return p.venue; })); });
       row.appendChild(ch);
     }
-    row.appendChild(el("span", "cn-sign", "Picked by Toni for your taste."));
-    var adj = el("a", "cn-adjust", "Not quite right? Adjust"); adj.href = "#"; adj.setAttribute("data-tune", "1");
-    row.appendChild(adj);
+    row.appendChild(adjustLink());
     host.appendChild(row);
   }).catch(function(){});
 }
@@ -7810,6 +8050,111 @@ function look_appplain(){
 }
 var f={'editorial':typeof look_editorial==='function'?look_editorial:null,'zen':typeof look_zen==='function'?look_zen:null,'tonightfirst':typeof look_tonightfirst==='function'?look_tonightfirst:null,'tabs':typeof look_tabs==='function'?look_tabs:null,'app':typeof look_app==='function'?look_app:null,'tonightapp':typeof look_tonightapp==='function'?look_tonightapp:null,'appeditorial':typeof look_appeditorial==='function'?look_appeditorial:null,'appplain':typeof look_appplain==='function'?look_appplain:null}[L];if(f)document.addEventListener('DOMContentLoaded',function(){try{f();}catch(e){console.error(e);}});})();</script><script>
 (function(){
+"use strict";
+var host = document.getElementById("topTonight");
+if (!host || typeof NAMES === "undefined") return;
+var list = host.querySelector(".tt-list"), empty = host.querySelector(".tt-empty");
+var SIZE = 15, SKIP = ["networking", "sales", "spam", "service", "internal", "members_only", "online"];
+function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+function T(){ return window.Tonight || {}; }
+function quality(i){ return T().quality ? T().quality(i) : (typeof QUAL[i] === "number" ? QUAL[i] : 5); }
+function personal(i){ return T().personal ? T().personal(i) : 0; }
+function flags(i){ return FLAGS[i] ? FLAGS[i].split(",") : []; }
+function card(i){ return document.querySelector('article.event[data-idx="' + i + '"]'); }
+// the filter row decides for the list below; Top tonight follows it (collapsed "Show all" cards still count)
+function shown(a){ return a.style.display !== "none" || a.dataset.clamped === "1"; }
+function nameKey(i){ return NAMES[i].toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 40); }
+function pick(){
+  var today = !EDAYS && typeof cityToday === "function" && DATE === cityToday();
+  var now = today ? cityNowMinutes() : 0, kids = typeof kidsOn === "function" && kidsOn();
+  var cands = [];
+  NAMES.forEach(function(n, i){
+    var a = card(i), q = quality(i), f = flags(i);
+    if (!a || !shown(a) || q <= 3) return;
+    if (f.some(function(x){ return SKIP.indexOf(x) >= 0; })) return;
+    if ((KIDS[i] || f.indexOf("kids") >= 0) && !kids) return;
+    var s = STARTS[i];
+    if (today && s != null) {
+      var end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
+      if (now - s > 60 || (end != null && end <= now)) return;  // started over an hour ago, or over
+    }
+    cands.push({i: i, r: (q - 5) * 3 + personal(i), q: q});
+  });
+  cands.sort(function(x, y){ return (y.r - x.r) || (y.q - x.q) || (x.i - y.i); });
+  var catOn = (document.getElementById("fcat") || {}).value;  // one kind picked: no cap on it
+  var out = [], venues = {}, shows = {}, names = {}, perCat = {}, flex = 0, slots = 0;
+  for (var k = 0; k < cands.length && out.length < SIZE; k++) {
+    var i = cands[k].i, f = flags(i), v = (VENUES[i] || "").toLowerCase().trim(), sk = SERIES[i], nk = nameKey(i);
+    if (v && venues[v]) continue;
+    if ((sk && shows[sk]) || names[nk]) continue;
+    if (!catOn && (perCat[CATS[i]] || 0) >= 3) continue;
+    if (f.indexOf("flex_entry") >= 0 && flex) continue;
+    if (f.indexOf("class_slot") >= 0 && slots) continue;
+    if (v) venues[v] = 1; if (sk) shows[sk] = 1; names[nk] = 1;
+    perCat[CATS[i]] = (perCat[CATS[i]] || 0) + 1;
+    if (f.indexOf("flex_entry") >= 0) flex = 1;
+    if (f.indexOf("class_slot") >= 0) slots = 1;
+    out.push(i);
+  }
+  return out;
+}
+function when(i){
+  var t = STARTS[i] != null && typeof hmLabel === "function" ? hmLabel(STARTS[i]) : "TBA";
+  if (EDATE) {  // the weekend page: say which day
+    var d = new Date(EDATE[i] + "T12:00:00").toLocaleDateString(document.documentElement.lang === "es" ? "es-MX" : "en-US", {weekday: "short"});
+    t = d.replace(".", "") + " " + t;
+  }
+  return t;
+}
+function row(i){
+  var a = card(i), li = el("li", "tt-row"); li.dataset.idx = i;
+  var tick = a && a.querySelector(".toggle"), on = !!tick && tick.getAttribute("aria-pressed") === "true";
+  var star = el("button", "tt-star", on ? "★" : "☆"); star.type = "button";
+  star.setAttribute("aria-pressed", on ? "true" : "false"); star.setAttribute("aria-label", "Pick");
+  star.addEventListener("click", function(){ var t = card(i) && card(i).querySelector(".toggle"); if (t) t.click(); });
+  li.appendChild(star);
+  li.appendChild(el("span", "tt-time", when(i)));
+  var main = el("div", "tt-main"), name = el("a", "tt-name", NAMES[i]);
+  name.href = EIDS[i] ? "#e-" + EIDS[i] : "#event-" + i;
+  main.appendChild(name);
+  if (HOODS[i]) main.appendChild(el("span", "tt-hood", " · " + HOODS[i]));
+  if (WHY[i]) main.appendChild(el("div", "tt-why", WHY[i]));
+  li.appendChild(main);
+  var tix = a && a.querySelector("a.tickets"), label = FREE[i] ? "Free" : (PRICES[i] || "").replace(/\.00(?!\d)/g, "");
+  if (!label && tix) label = "Tickets";
+  var price = el(tix ? "a" : "span", "tt-price" + (FREE[i] ? " free" : ""), label || null);
+  if (tix) { price.href = tix.href; price.target = "_blank"; price.rel = "noopener"; }
+  if (!label) price.style.visibility = "hidden";
+  li.appendChild(price);
+  var x = el("button", "tt-x", "×"); x.type = "button";
+  x.setAttribute("aria-label", "Not for me"); x.title = "Not for me";
+  x.addEventListener("click", function(){ var h = card(i) && card(i).querySelector(".hide"); if (h) h.click(); });
+  li.appendChild(x);
+  return li;
+}
+function draw(){
+  var ids = pick(), frag = document.createDocumentFragment();
+  ids.forEach(function(i){ frag.appendChild(row(i)); });
+  list.innerHTML = ""; list.appendChild(frag);
+  if (empty) empty.hidden = ids.length > 0;
+}
+var queued = false;
+window.__topTonight = function(){
+  if (queued) return; queued = true;
+  setTimeout(function(){ queued = false; draw(); }, 0);
+};
+// "Include kids' events" changes who's in; the list below stays where it is
+document.addEventListener("click", function(e){ if (e.target.closest && e.target.closest("#kidsToggle")) window.__topTonight(); });
+var all = host.querySelector(".tt-all");
+if (all) all.addEventListener("click", function(e){
+  var m = document.getElementById("allEvents"); if (!m) return;
+  e.preventDefault(); m.scrollIntoView({behavior: "smooth", block: "start"});
+});
+document.addEventListener("DOMContentLoaded", window.__topTonight);
+setInterval(window.__topTonight, 5 * 60 * 1000);  // today: what's started drops off
+})();
+</script><script>
+(function(){
 // An older day's page: go to today's page for the same city (keeping filters), unless this is a
 // shared link to one event (#e-...) or Toni is open mid-conversation; then just say so.
 function today(tz){ try { return new Intl.DateTimeFormat("en-CA", {timeZone: tz}).format(new Date()); } catch (e) { return null; } }
@@ -8282,6 +8627,208 @@ sel.addEventListener("change", fromSelect);
 document.addEventListener("click", function(e){ if (box.hasAttribute("open") && !box.contains(e.target)) box.removeAttribute("open"); });
 sel.hidden = true; sel.parentNode.insertBefore(box, sel.nextSibling);
 fromSelect();
+})();
+</script><script>
+(function(){
+"use strict";
+var FX = window.__facet, side = document.getElementById("fside"), bar = document.getElementById("filterBar");
+if (!FX || !side || !bar || typeof CATS === "undefined") return;
+var L = {when: "When", evening: "Evening 5pm+", day: "Daytime", any: "Any", soon: "Starting soon", exact: "Exact times",
+  price: "Price", free: "Free only", cat: "Category", area: "Area", clear: "Clear", clearAll: "Clear all",
+  show: "Show {n} events", show1: "Show 1 event", filters: "Filters", filtersN: "Filters ({n})", elsewhere: "Elsewhere",
+  more: "Show all {n}", fewer: "Show fewer", close: "Close"};
+var root = document.documentElement; root.classList.add("fs-on");
+function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+function $(id){ return document.getElementById(id); }
+var catSel = $("fcat"), hoodSel = $("fhood"), soonBtn = $("nextHourBtn");
+var cards = [].slice.call(document.querySelectorAll("article.event"));
+var N = NAMES.length, cardOf = {};
+cards.forEach(function(a){ cardOf[+a.dataset.idx] = a; });
+// set a filter-row select (several values join with "," for categories, "|" for areas) and let the row react
+function setSel(sel, v){
+  if (!sel) return;
+  if (v && ![].slice.call(sel.options).some(function(o){ return o.value === v; })) {
+    var o = document.createElement("option"); o.value = v; o.textContent = v; o.dataset.multi = "1"; sel.appendChild(o);
+  }
+  sel.value = v; sel.dispatchEvent(new Event("change", {bubbles: true}));
+}
+function vals(sel, sep){ return sel && sel.value ? sel.value.split(sep).filter(Boolean) : []; }
+function toggle(list, v, on){ var i = list.indexOf(v); if (on && i < 0) list.push(v); else if (!on && i >= 0) list.splice(i, 1); return list; }
+function soonShown(){ return !!soonBtn && !EDAYS && typeof cityToday === "function" && DATE === cityToday(); }
+function soonOn(){ return !!soonBtn && soonBtn.getAttribute("aria-pressed") === "true"; }
+
+var groups = el("div", "fsg"); groups.id = "fsGroups";
+var top = el("div", "fs-top"), title = el("span", "fs-title", L.filters), clearAll = el("button", "fs-link", L.clearAll);
+clearAll.type = "button"; top.appendChild(title); top.appendChild(clearAll); groups.appendChild(top);
+function section(name, onClear){
+  var s = el("section", "fs-sec"), h = el("div", "fs-head"), hh = el("h3", "fs-h", name);
+  h.appendChild(hh);
+  var c = null;
+  if (onClear) { c = el("button", "fs-link", L.clear); c.type = "button"; c.addEventListener("click", onClear); h.appendChild(c); }
+  s.appendChild(h); groups.appendChild(s);
+  return {s: s, clear: c};
+}
+function row(parent, type, name, label, onChange){
+  var r = el("label", "fs-row"), i = document.createElement("input"), l = el("span", "fs-l", label), n = el("span", "fs-n");
+  i.type = type; if (name) i.name = name;
+  i.addEventListener("change", function(){ onChange(i.checked); });
+  r.appendChild(i); r.appendChild(l); r.appendChild(n); parent.appendChild(r);
+  return {r: r, i: i, n: n};
+}
+function setRow(o, count, checked){
+  o.i.checked = checked; o.n.textContent = count;
+  var zero = !count && !checked;
+  o.r.classList.toggle("zero", zero); o.i.disabled = zero;
+}
+
+// When
+var todBtn = function(t){ return document.querySelector('#ftod button[data-t="' + t + '"]'); };
+var when = section(L.when, function(){
+  if (soonOn()) soonBtn.click();
+  ["fafter", "fbefore"].forEach(function(id){ var s = $(id); if (s && s.value !== "") setSel(s, ""); });
+  var b = todBtn(FX.TOD0()); if (b) b.click();
+});
+var tods = [["evening", L.evening], ["day", L.day], ["all", L.any]].map(function(t){
+  var b = todBtn(t[0]), lab = b ? b.textContent : t[1];
+  return {t: t[0], o: row(when.s, "radio", "fs-tod", lab, function(on){ var x = todBtn(t[0]); if (on && x) x.click(); })};
+});
+var soon = null;
+if (soonShown()) soon = row(when.s, "checkbox", null, L.soon, function(){ soonBtn.click(); setTimeout(draw, 0); });
+var times = el("details", "fs-x"), tsum = el("summary", null, L.exact), tbox = el("div", "fs-times");
+times.appendChild(tsum); times.appendChild(tbox);
+["fafter", "fbefore"].forEach(function(id){
+  var s = $(id); if (!s) return;
+  tbox.appendChild(s);  // the row's own pickers move here (same ids, same listeners)
+  s.addEventListener("change", function(){ bar.dispatchEvent(new Event("change")); });
+});
+if (tbox.children.length) when.s.appendChild(times);
+
+// Price
+var price = section(L.price, null), freeBtn = $("ffree");
+var free = row(price.s, "checkbox", null, L.free, function(on){ if (freeBtn && FX.F.free !== on) freeBtn.click(); });
+
+// Category: busiest first
+var catOpts = catSel ? [].slice.call(catSel.options).filter(function(o){ return o.value && !o.dataset.multi && o.value.indexOf(",") < 0; }) : [];
+var dayCat = {}; CATS.forEach(function(c){ dayCat[c] = (dayCat[c] || 0) + 1; });
+catOpts.sort(function(a, b){ return (dayCat[b.value] || 0) - (dayCat[a.value] || 0); });
+var catSec = catOpts.length ? section(L.cat, function(){ setSel(catSel, ""); }) : null;
+var catRows = catOpts.map(function(o){
+  return {v: o.value, o: row(catSec.s, "checkbox", null, o.textContent, function(on){
+    setSel(catSel, toggle(vals(catSel, ","), o.value, on).join(","));
+  })};
+});
+
+// Area: borough / region groups, neighbourhoods inside (busiest first); a city without groups gets one list
+var dayHood = {}, hoodGroup = {};
+HOODS.forEach(function(h, i){ if (!h) return; dayHood[h] = (dayHood[h] || 0) + 1;
+  if (!hoodGroup[h]) hoodGroup[h] = (typeof AREA_GROUP !== "undefined" && AREA_GROUP[i]) || ""; });
+var hoodNames = Object.keys(dayHood).sort(function(a, b){ return (dayHood[b] - dayHood[a]) || a.localeCompare(b); });
+var areaSec = hoodSel && hoodNames.length ? section(L.area, function(){ setSel(hoodSel, ""); }) : null;
+var hoodRows = [], grpBoxes = [];
+function hoodRow(parent, h){
+  hoodRows.push({v: h, g: hoodGroup[h], o: row(parent, "checkbox", null, h, function(on){
+    setSel(hoodSel, toggle(vals(hoodSel, "|"), h, on).join("|"));
+  })});
+}
+if (areaSec) {
+  var order = (typeof AREA_ORDER !== "undefined" && AREA_ORDER) || [];
+  var used = order.filter(function(g){ return hoodNames.some(function(h){ return hoodGroup[h] === g; }); });
+  if (used.length) {
+    used.forEach(function(g){
+      var d = el("details", "fs-grp"), s = el("summary"), dot = el("span", "fs-dot"), n = el("span", "fs-n");
+      s.appendChild(el("span", "fs-l", g === order[order.length - 1] ? L.elsewhere : g)); s.appendChild(dot); s.appendChild(n);
+      d.appendChild(s); var sub = el("div", "fs-sub"); d.appendChild(sub);
+      hoodNames.forEach(function(h){ if (hoodGroup[h] === g) hoodRow(sub, h); });
+      areaSec.s.appendChild(d); grpBoxes.push({g: g, d: d, n: n, dot: dot});
+    });
+  } else {  // no borough map for this city: the busiest dozen, then the rest behind "Show all"
+    var wrap = el("div"), rest = el("div"); rest.hidden = true;
+    hoodNames.forEach(function(h, k){ hoodRow(k < 12 ? wrap : rest, h); });
+    areaSec.s.appendChild(wrap); areaSec.s.appendChild(rest);
+    if (hoodNames.length > 12) {
+      var mb = el("button", "fs-link fs-morebtn", L.more.replace("{n}", hoodNames.length)); mb.type = "button";
+      mb.addEventListener("click", function(){ rest.hidden = !rest.hidden;
+        mb.textContent = rest.hidden ? L.more.replace("{n}", hoodNames.length) : L.fewer; });
+      areaSec.s.appendChild(mb);
+    }
+  }
+}
+
+clearAll.addEventListener("click", function(){
+  var fc = $("fclear"); if (fc) fc.click();
+  if (soonOn()) soonBtn.click();
+  var b = todBtn(FX.TOD0()); if (b) b.click();  // back to the page's default (Evening after noon today)
+  setTimeout(draw, 0);
+});
+
+// Filters (n) button for narrow screens + the bottom sheet
+var fsBtn = el("button", null, L.filters); fsBtn.id = "fsBtn"; fsBtn.type = "button";
+fsBtn.setAttribute("aria-haspopup", "dialog");
+var srch = bar.querySelector(".fsearch"); if (srch) srch.parentNode.insertBefore(fsBtn, srch.nextSibling);
+var sheet = el("div"); sheet.id = "fsSheet"; sheet.hidden = true; sheet.setAttribute("role", "dialog"); sheet.setAttribute("aria-modal", "true");
+sheet.setAttribute("aria-label", L.filters);
+var panel = el("div", "fs-panel"), scroll = el("div", "fs-scroll"), foot = el("div", "fs-foot"), show = el("button", "fs-show");
+var x = el("button", "fs-close", "×"); x.type = "button"; x.setAttribute("aria-label", L.close); show.type = "button";
+panel.appendChild(x); panel.appendChild(scroll); foot.appendChild(show); panel.appendChild(foot); sheet.appendChild(panel);
+document.body.appendChild(sheet);
+var wide = matchMedia("(min-width:1100px)");
+function place(){
+  if (wide.matches) { if (!sheet.hidden) closeSheet(); if (groups.parentNode !== side) side.appendChild(groups); }
+  else if (groups.parentNode !== scroll) scroll.appendChild(groups);
+}
+function openSheet(){ place(); sheet.hidden = false; root.classList.add("fs-lock"); draw(); x.focus(); }
+function closeSheet(){ sheet.hidden = true; root.classList.remove("fs-lock"); }
+fsBtn.addEventListener("click", openSheet);
+x.addEventListener("click", closeSheet);
+show.addEventListener("click", function(){ closeSheet(); var m = $("topTonight") || $("allEvents"); if (m && m.offsetParent) m.scrollIntoView({block: "start"}); });
+sheet.addEventListener("click", function(e){ if (e.target === sheet) closeSheet(); });
+document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !sheet.hidden) closeSheet(); });
+if (wide.addEventListener) wide.addEventListener("change", place); else wide.addListener(place);
+place();
+
+// live counts: what each box would show with all the other filters as they are
+function draw(){
+  var F = FX.F, cats = vals(catSel, ","), hoods = vals(hoodSel, "|");
+  var cc = {}, hc = {}, gc = {}, tc = {evening: 0, day: 0, all: 0}, fr = 0, total = 0;
+  for (var i = 0; i < N; i++) {
+    var a = cardOf[i]; if (!a) continue;
+    var d = FX.dims(i, a); if (!d.base) continue;
+    if (d.cat && d.free && d.tod && d.hood) total++;
+    if (d.hood && d.free && d.tod) cc[CATS[i]] = (cc[CATS[i]] || 0) + 1;
+    if (d.cat && d.free && d.tod && HOODS[i]) { hc[HOODS[i]] = (hc[HOODS[i]] || 0) + 1; var g = hoodGroup[HOODS[i]]; gc[g] = (gc[g] || 0) + 1; }
+    if (d.cat && d.hood && d.tod && FREE[i]) fr++;
+    if (d.cat && d.hood && d.free) { if (FX.todMatch(i, "evening")) tc.evening++; if (FX.todMatch(i, "day")) tc.day++; tc.all++; }
+  }
+  tods.forEach(function(t){ setRow(t.o, tc[t.t], F.tod === t.t); });
+  if (soon) soon.i.checked = soonOn();
+  var tOn = F.after != null || F.before != null;
+  ["fafter", "fbefore"].forEach(function(id){ var s = $(id); if (s) s.classList.toggle("on", s.value !== ""); });
+  if (tOn && !times.open) times.open = true;
+  setRow(free, fr, !!F.free);
+  catRows.forEach(function(r){ setRow(r.o, cc[r.v] || 0, cats.indexOf(r.v) >= 0); });
+  hoodRows.forEach(function(r){ setRow(r.o, hc[r.v] || 0, hoods.indexOf(r.v) >= 0); });
+  grpBoxes.forEach(function(b){
+    var sel = hoods.some(function(h){ return hoodGroup[h] === b.g; });
+    b.n.textContent = gc[b.g] || 0; b.dot.hidden = !sel;
+    b.d.classList.toggle("zero", !gc[b.g] && !sel);
+    if (sel && !b.d.dataset.seen) { b.d.open = true; }
+    b.d.dataset.seen = sel ? "1" : "";
+  });
+  var nOn = cats.length + hoods.length + (F.free ? 1 : 0) + (F.tod !== FX.TOD0() ? 1 : 0) +
+    (F.after != null ? 1 : 0) + (F.before != null ? 1 : 0) + (soonOn() ? 1 : 0);
+  var any = nOn > 0 || !!F.q;
+  clearAll.hidden = !any;
+  if (when.clear) when.clear.hidden = !(F.tod !== FX.TOD0() || tOn || soonOn());
+  if (catSec) catSec.clear.hidden = !cats.length;
+  if (areaSec) areaSec.clear.hidden = !hoods.length;
+  fsBtn.textContent = nOn ? L.filtersN.replace("{n}", nOn) : L.filters;
+  fsBtn.classList.toggle("on", nOn > 0);
+  show.textContent = total === 1 ? L.show1 : L.show.replace("{n}", total);
+}
+var queued = false;
+window.__fside = function(){ if (queued) return; queued = true; setTimeout(function(){ queued = false; draw(); }, 0); };
+document.addEventListener("click", function(e){ if (e.target.closest && e.target.closest("#nextHourBtn,#ftod button,#ffree")) window.__fside(); });
+draw();
 })();
 </script><script>
 (function(){

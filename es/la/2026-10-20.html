@@ -144,9 +144,10 @@ font-family:inherit;color:var(--ink,#14201A);background:var(--field);margin:6px 
 .sv-note{font-size:13px;opacity:.8;line-height:1.5;margin:10px 0 0;}
 .sv-save{margin-left:10px;}
 </style><style>
-#conciergeNote{display:block;max-width:760px;margin:16px auto 4px;background:var(--card);color:var(--ink);
-border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:16px 22px;}
+#conciergeNote{display:block;max-width:1040px;margin:16px auto 4px;background:var(--card);color:var(--ink);
+border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:12px 18px 12px;box-sizing:border-box;}
 #conciergeNote:empty{display:none;}
+@media(max-width:640px){#conciergeNote{margin-left:12px;margin-right:12px;padding:10px 14px;}}
 :root[data-layout="concierge"] #conciergeNote{display:block;max-width:760px;margin:16px auto 4px;background:var(--card);
 color:var(--ink);border-radius:20px;padding:16px 22px;box-shadow:0 10px 30px rgba(0,0,0,.08);
 border:1px solid var(--muted);}
@@ -157,18 +158,21 @@ color:var(--accent);filter:brightness(.8);}
 #conciergeNote a{color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 #conciergeNote .cn-late{font-size:.8em;opacity:.8;}
 #conciergeNote .cn-hi{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:22px;margin-top:8px;}
-#conciergeNote .cn-plan{list-style:none;margin:10px 0 2px;padding:0;display:flex;flex-direction:column;gap:6px;}
-#conciergeNote .cn-plan li{display:flex;gap:14px;align-items:flex-start;}
-#conciergeNote .cn-t{flex:none;width:74px;font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:16px;}
-#conciergeNote .cn-b{display:flex;flex-direction:column;gap:1px;min-width:0;}
-#conciergeNote .cn-role{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.6;}
-#conciergeNote .cn-b a{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:18px;}
+#conciergeNote .cn-plan{list-style:none;margin:6px 0 2px;padding:0;display:flex;flex-direction:column;gap:4px;}
+#conciergeNote .cn-plan li{font-size:14.5px;line-height:1.45;}
+#conciergeNote .cn-t{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;}
+#conciergeNote .cn-role{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;}
+#conciergeNote .cn-plan a{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:16.5px;}
+#conciergeNote .cn-plan a.cn-book{font:800 11.5px/1.2 'Inter',sans-serif;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;
+border:2px solid var(--ink);padding:2px 7px;text-decoration:none;vertical-align:1px;}
+#conciergeNote .cn-plan a.cn-book:hover{background:var(--accent);color:var(--on-accent,var(--ink));}
+#conciergeNote .cn-adjust{font-size:13.5px;font-weight:600;}
 #conciergeNote .cn-v{font-size:13px;opacity:.75;}
 #conciergeNote .cn-why{font-size:14px;}
 #conciergeNote li.cn-gap{font-size:12px;font-weight:700;opacity:.65;padding-left:88px;}
 #conciergeNote .cn-dine{margin-top:8px;padding-top:8px;border-top:1px solid var(--muted);font-size:14.5px;line-height:1.5;}
 #conciergeNote .cn-dine a{font-weight:700;}
-#conciergeNote .cn-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:8px;}
+#conciergeNote .cn-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:6px;}
 #conciergeNote .cn-actions .cn-sign{margin:0;}
 #conciergeNote .cn-ask{font:700 13px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent);
 border:none;border-radius:999px;padding:7px 14px;cursor:pointer;vertical-align:middle;}
@@ -262,6 +266,10 @@ background:var(--field,#fff);color:var(--ink,#14201A);border-radius:0;}
 :root[data-layout="grid"] #conciergeNote{max-width:1060px;border-radius:14px;border:none;box-shadow:none;background-color:var(--accent);color:var(--on-accent,#14201A);
 background-image:repeating-linear-gradient(135deg,rgba(20,32,26,.08) 0 2px,transparent 2px 14px);}
 :root[data-layout="grid"] #conciergeNote a{color:inherit;}
+:root[data-layout="grid"] #conciergeNote .cn-eye{color:inherit;filter:none;opacity:.75;}
+:root[data-layout="grid"] #conciergeNote .cn-ask{background:var(--ink);color:var(--paper);}
+:root[data-layout="grid"] #topTonight{max-width:1060px;border-radius:16px;border-width:1.5px;box-shadow:4px 4px 0 var(--ink);}
+:root[data-layout="concierge"] #topTonight{border-radius:20px;border:1px solid var(--muted);box-shadow:0 8px 24px rgba(0,0,0,.06);}
 :root[data-layout="grid"] #filterBar{border-radius:16px;border-width:1.5px;box-shadow:none;}
 :root[data-layout="grid"] #filterBar .fsearch,:root[data-layout="grid"] #filterBar .fbtn,:root[data-layout="grid"] #filterBar select,:root[data-layout="grid"] .filters .fmulti summary{border-radius:10px;border-width:1.5px;box-shadow:none;}
 :root[data-layout="grid"] #filterBar .seg{border-radius:10px;border:none;background:var(--muted);padding:3px;gap:2px;box-shadow:none;}
@@ -1455,7 +1463,7 @@ padding:8px 0 calc(16px + env(safe-area-inset-bottom,0px));border-width:1px 0 0;
 :root[data-layout="appplain"] #toniPanel{border-width:1px 0 0;border-radius:12px 12px 0 0;}
 }
 </style><style>
-.daystrip{display:flex;gap:8px;overflow-x:auto;max-width:1100px;margin:14px auto 0;padding:0 16px 6px;scrollbar-width:none;box-sizing:border-box;}
+.daystrip{display:flex;gap:8px;overflow-x:auto;max-width:1072px;margin:14px auto 0;padding:0 16px 6px;scrollbar-width:none;box-sizing:border-box;}
 .daystrip::-webkit-scrollbar{display:none;}
 .daystrip .ds{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:64px;padding:8px 12px;
 border:2px solid var(--ink);background:var(--card);color:var(--ink);text-decoration:none;font:800 12px/1.15 'Inter',sans-serif;
@@ -1465,8 +1473,59 @@ letter-spacing:.06em;text-transform:uppercase;box-sizing:border-box;}
 .daystrip .ds.cur{background:var(--accent);color:var(--on-accent,#14201A);}
 .daystrip .ds.cur span{opacity:.85;}
 .daystrip .ds.wk{background:var(--ink);color:var(--paper);text-transform:none;letter-spacing:0;}
+.daystrip .ds-x{display:none;}
+.daystrip.open .ds-x{display:flex;}
+.daystrip .ds-more{cursor:pointer;font:800 12px/1.15 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;background:var(--paper);border-style:dashed;}
+.daystrip.open .ds-more{display:none;}
 .ds-note{max-width:1100px;margin:8px auto 0;padding:0 16px;font-size:13px;opacity:.75;box-sizing:border-box;}
 #tonightBtn,#nextHourBtn{display:none!important;}</style><style>
+#topTonight{max-width:1040px;margin:16px auto 0;padding:14px 16px 12px;background:var(--card);color:var(--ink);
+border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);box-sizing:border-box;}
+.listmode #topTonight{display:none;}
+#topTonight h2{margin:0 0 6px;font:900 clamp(1.35rem,3vw,1.75rem)/1.1 'Fraunces',Georgia,serif;text-transform:uppercase;letter-spacing:.5px;}
+.tt-list{list-style:none;margin:0;padding:0;}
+.tt-row{position:relative;display:grid;grid-template-columns:30px 76px minmax(0,1fr) auto 30px;column-gap:10px;align-items:baseline;
+padding:9px 0;border-top:2px solid var(--muted);}
+.tt-row:first-child{border-top:0;}
+.tt-star{align-self:start;width:30px;height:30px;margin-top:-4px;padding:0;border:0;background:none;color:var(--ink);font-size:22px;line-height:30px;cursor:pointer;}
+.tt-star[aria-pressed="true"]{color:var(--accent);}
+.tt-star:hover{transform:scale(1.12);}
+.tt-time{font:800 13.5px/1.3 'Inter',sans-serif;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.tt-main{min-width:0;}
+.tt-name{font:700 17px/1.3 'Fraunces',Georgia,serif;color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);
+text-decoration-thickness:2px;text-underline-offset:3px;}
+.tt-hood{font-size:13px;font-weight:600;opacity:.7;}
+.tt-why{font-size:13px;line-height:1.4;opacity:.68;margin-top:2px;}
+.tt-price{align-self:start;justify-self:end;white-space:nowrap;padding:3px 9px;border:2px solid var(--ink);background:var(--field,#fff);
+color:var(--ink);font:800 12px/1.3 'Inter',sans-serif;text-decoration:none;}
+a.tt-price:hover{background:var(--muted);}
+.tt-price.free{background:var(--accent);color:var(--on-accent,var(--ink));}
+.tt-x{align-self:start;width:30px;height:30px;margin-top:-3px;padding:0;border:0;background:none;color:var(--ink);font-size:22px;line-height:30px;
+cursor:pointer;opacity:0;transition:opacity .12s;}
+.tt-row:hover .tt-x,.tt-x:focus-visible{opacity:.55;}
+.tt-x:hover{opacity:1!important;}
+@media (hover:none){.tt-x{opacity:.5;}}
+.tt-empty{margin:4px 0 8px;font-size:14px;font-weight:600;opacity:.75;}
+.tt-all{display:inline-block;margin-top:8px;font:800 13px 'Inter',sans-serif;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);
+text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:4px;}
+#allEvents{scroll-margin-top:70px;}
+/* the default look: the full list lines up with the boxes above it */
+:root:not([data-layout]) main#allEvents,:root[data-layout="brutalist"] main#allEvents{max-width:1080px;}
+:root:not([data-layout]) #allEvents .event-body p,:root[data-layout="brutalist"] #allEvents .event-body p{max-width:76ch;}
+@media (max-width:640px){
+#topTonight{margin:14px 12px 0;padding:10px 12px 10px;}
+.tt-row{grid-template-columns:26px minmax(0,1fr) auto 26px;column-gap:8px;}
+.tt-star,.tt-x{width:26px;}
+.tt-time{grid-column:2;grid-row:1;font-size:12px;}
+.tt-main{grid-column:2;grid-row:2;}
+.tt-star{grid-row:1/3;}
+.tt-price{grid-column:3;grid-row:1/3;}
+.tt-x{grid-column:4;grid-row:1/3;}
+.tt-name{font-size:15.5px;}
+.tt-hood,.tt-why{font-size:12.5px;}
+.tt-x{opacity:.5;}
+}
+</style><style>
 #toniBtn{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:120;
 background:var(--accent);color:var(--on-accent,var(--ink));border:3px solid var(--ink);
 box-shadow:4px 4px 0 var(--ink);font:800 14px/1 'Inter',sans-serif;letter-spacing:1px;text-transform:uppercase;
@@ -1563,6 +1622,83 @@ text-transform:uppercase;padding:0 14px;cursor:pointer;}
 font:700 14.5px 'Inter',sans-serif;padding:11px 16px;text-align:center;}
 #staleBar a{color:inherit;font-weight:800;text-decoration:underline;text-decoration-thickness:2px;margin-left:6px;}
 </style><style>
+#fsLayout{box-sizing:border-box;}
+#fside{display:none;}
+:root.fs-on #filterBar .fchips > :not(.fsearch):not(#fsBtn){display:none!important;}
+:root.fs-on #filterBar .fextra{display:none!important;}
+:root.fs-on #filterBar .fchips{flex-wrap:nowrap;}
+:root.fs-on #filterBar .fchips .fsearch{flex:1 1 auto;}
+#fsBtn{flex:none;height:34px;padding:0 12px;border:2px solid var(--ink);background:var(--field,#fff);color:var(--ink);
+font:800 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+#fsBtn.on{background:var(--accent);color:var(--on-accent,var(--ink));}
+/* the groups: calm, thin rules, small caps headings, muted counts */
+.fsg{color:var(--ink);font-family:'Inter',-apple-system,'Segoe UI',sans-serif;font-size:14px;}
+.fs-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:2px 0 10px;}
+.fs-title{font:800 12px/1.2 'Inter',sans-serif;letter-spacing:1.5px;text-transform:uppercase;}
+.fs-link{background:none;border:0;padding:0;font:600 12.5px 'Inter',sans-serif;color:var(--ink);opacity:.7;cursor:pointer;
+text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+.fs-link:hover{opacity:1;}
+.fs-link[hidden]{display:none;}
+.fs-sec{border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent);padding:12px 0 10px;}
+.fs-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 6px;}
+.fs-h{margin:0;font:700 11px/1.2 'Inter',sans-serif;letter-spacing:1.4px;text-transform:uppercase;opacity:.62;}
+.fs-row{display:flex;align-items:flex-start;gap:9px;padding:4px 0;cursor:pointer;line-height:1.3;}
+.fs-row input{flex:none;width:15px;height:15px;margin:1px 0 0;accent-color:var(--ink);cursor:pointer;}
+.fs-row .fs-l{flex:1;min-width:0;overflow-wrap:anywhere;}
+.fs-row .fs-n{flex:none;padding-top:1px;font-size:12px;font-variant-numeric:tabular-nums;opacity:.5;}
+.fs-row.zero{opacity:.38;cursor:default;}
+.fs-row.zero input{cursor:default;}
+.fs-row:not(.zero):hover .fs-l{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;}
+.fs-sub{padding-left:24px;}
+.fs-x{margin:6px 0 0;}
+.fs-x summary,.fs-grp summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:7px;padding:5px 0;}
+.fs-x summary::-webkit-details-marker,.fs-grp summary::-webkit-details-marker{display:none;}
+.fs-x summary::before,.fs-grp summary::before{content:"";flex:none;width:6px;height:6px;margin:0 4px 0 3px;border:solid currentColor;
+border-width:0 1.5px 1.5px 0;transform:rotate(-45deg);opacity:.55;transition:transform .12s;}
+.fs-x[open] > summary::before,.fs-grp[open] > summary::before{transform:rotate(45deg);}
+.fs-x summary{font-size:13px;opacity:.8;}
+.fs-x .fs-times{display:flex;flex-direction:column;gap:6px;padding:4px 0 2px 20px;}
+.fs-x select{height:32px;padding:0 8px;border:1px solid color-mix(in srgb,var(--ink) 30%,transparent);background:var(--field,#fff);
+color:var(--ink);font:500 13px 'Inter',sans-serif;border-radius:0;max-width:100%;}
+.fs-x select.on{border-color:var(--ink);outline:2px solid var(--accent);outline-offset:-1px;}
+.fs-grp summary .fs-l{flex:1;font-weight:600;}
+.fs-grp summary .fs-n{font-size:12px;opacity:.5;font-variant-numeric:tabular-nums;}
+.fs-grp summary .fs-dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent);}
+.fs-grp.zero > summary{opacity:.38;}
+.fs-grp .fs-sub{padding:0 0 4px 20px;}
+.fs-morebtn{margin:4px 0 0;}
+/* wide screens: the sidebar beside Top tonight and the list */
+@media (min-width:1100px){
+:root.fs-on #fsLayout{display:grid;grid-template-columns:248px minmax(0,1fr);column-gap:28px;align-items:start;
+max-width:1360px;margin:0 auto;padding:0 24px;}
+:root.fs-on #fside{display:block;position:sticky;top:76px;margin-top:16px;max-height:calc(100vh - 92px);overflow-y:auto;
+overscroll-behavior:contain;padding:14px 16px 18px;box-sizing:border-box;background:var(--card);
+border:1px solid color-mix(in srgb,var(--ink) 18%,transparent);scrollbar-width:thin;}
+:root.fs-on #fsCol{min-width:0;}
+:root.fs-on #fsCol > #filterBar,:root.fs-on #fsCol > #topTonight,:root.fs-on #fsCol > #picksBar{max-width:none;margin-left:0!important;margin-right:0!important;}
+:root.fs-on #fsCol > main#allEvents{max-width:none;}
+:root.fs-on #fsBtn,:root.fs-on #filterBar .fclear{display:none!important;}
+:root.fs-on.listmode #fside{display:block;}
+}
+/* phones and narrow windows: one Filters button, the groups in a bottom sheet */
+#fsSheet{position:fixed;inset:0;z-index:130;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(0,0,0,.42);}
+#fsSheet[hidden]{display:none;}
+#fsSheet .fs-panel{position:relative;max-height:88vh;display:flex;flex-direction:column;background:var(--card);color:var(--ink);
+border-top:3px solid var(--ink);box-shadow:0 -6px 24px rgba(0,0,0,.18);}
+#fsSheet .fs-scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:14px 18px 8px;-webkit-overflow-scrolling:touch;}
+#fsSheet .fs-close{position:absolute;top:6px;right:8px;width:38px;height:38px;border:0;background:none;color:var(--ink);font-size:24px;
+cursor:pointer;z-index:1;}
+#fsSheet .fs-top{padding-right:44px;}
+#fsSheet .fs-row{padding:7px 0;font-size:15px;}
+#fsSheet .fs-row input{width:18px;height:18px;}
+#fsSheet .fs-foot{position:sticky;bottom:0;padding:10px 18px calc(10px + env(safe-area-inset-bottom));background:var(--card);
+border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent);}
+#fsSheet .fs-show{width:100%;height:46px;border:3px solid var(--ink);background:var(--ink);color:var(--paper);
+font:800 14px 'Inter',sans-serif;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 var(--accent);}
+:root.fs-lock,:root.fs-lock body{overflow:hidden;}
+@media (prefers-reduced-motion:no-preference){#fsSheet:not([hidden]) .fs-panel{animation:fsUp .18s ease-out;}}
+@keyframes fsUp{from{transform:translateY(40px);opacity:.6;}to{transform:none;opacity:1;}}
+</style><style>
 #storyLayer{position:fixed;inset:0;z-index:90;display:none;flex-direction:column;align-items:center;
 background:var(--banner,var(--ink));color:var(--paper);padding:14px 16px 20px;overscroll-behavior:contain;}
 #storyLayer.on{display:flex;}
@@ -1642,11 +1778,21 @@ text-transform:uppercase;line-height:1.02;}
 .hero p,.bhero p{opacity:.9;font-weight:500;}
 .hero h1 b{color:var(--accent);}
 .home .hero h1{text-transform:none;font-size:clamp(3.2rem,11vw,5.2rem);}
-/* day pages: one tight band (date, city, actions) so events show on the first screen */
-.dayhero{padding:20px 20px 18px;}
-.dayhero h1{font-size:clamp(1.9rem,5vw,2.8rem);margin:10px 0 12px;}
-.dayhero .toolbar{padding:0;}
+/* day pages: one tight band, "NEW YORK CITY - THURSDAY, OCTOBER 15" with Share and a ⋯ menu beside it */
+.dayhero{display:flex;align-items:center;justify-content:space-between;gap:10px 18px;flex-wrap:wrap;text-align:left;
+padding:16px max(16px,calc((100% - 1040px) / 2));}
+.dayhero > .eyebrow{display:none!important;}  /* the title carries the day (scripts still read it) */
+.dayhero h1{font-size:clamp(1.25rem,3vw,2rem);margin:0;line-height:1.1;min-width:0;}
+.dayhero .toolbar{padding:0;flex-wrap:nowrap;justify-content:flex-end;}
 .dayhero .toolbar .btn{padding:8px 14px;font-size:12px;}
+.tmore{position:relative;}
+.tmore summary{list-style:none;cursor:pointer;font-size:16px!important;line-height:1.05!important;letter-spacing:1px!important;}
+.tmore summary::-webkit-details-marker{display:none;}
+.tmenu{position:absolute;right:0;top:calc(100% + 10px);z-index:70;min-width:240px;display:flex;flex-direction:column;padding:6px 0;
+background:var(--card);color:var(--ink);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--accent);text-align:left;}
+.tm-item{display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:0;font:700 14px/1.3 'Inter',sans-serif;
+letter-spacing:0;text-transform:none;color:var(--ink);text-decoration:none;cursor:pointer;}
+.tm-item:hover{background:var(--muted);}
 .dayhero .btn-dark{background:transparent;color:var(--on-banner);border-color:var(--on-banner);}
 .langmenu{position:relative;margin-left:14px;}
 .langmenu summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 10px;
@@ -1662,23 +1808,30 @@ font-weight:700;text-transform:none;letter-spacing:0;color:var(--ink);text-decor
 .langlist .soon i{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
 @media (max-width:640px){.langmenu{margin-left:8px;}.langmenu summary{padding:4px 7px;}}
 /* filter panel: search on top, one row of same-height chips below */
-#filterBar{max-width:760px;margin:16px auto 0;padding:14px;display:flex;flex-direction:column;align-items:stretch;gap:10px;
+#filterBar{max-width:1040px;margin:16px auto 0;padding:12px 14px 10px;display:flex;flex-direction:column;align-items:stretch;gap:8px;box-sizing:border-box;
 background:var(--card);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);}
 #filterBar .frow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-#filterBar .fsearch{flex:1;display:flex;align-items:center;gap:9px;height:42px;padding:0 14px;
+#filterBar .frow[hidden]{display:none;}
+#filterBar .fsearch{flex:1 1 110px;display:flex;align-items:center;gap:9px;height:34px;padding:0 14px;
 border:2px solid var(--ink);background:var(--field,#fff);color:var(--ink);}
 #filterBar .fsearch:focus-within{outline:3px solid var(--accent);outline-offset:1px;}
 #filterBar .fsearch svg{width:17px;height:17px;flex:none;opacity:.55;}
 #filterBar .fsearch input{flex:1;min-width:0;height:100%;padding:0;border:0;outline:0;background:transparent;
 box-shadow:none;font-size:14.5px;font-weight:500;color:var(--ink);}
-#filterBar #resCount{margin:0 2px 0 6px;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+#filterBar .fmeta{gap:4px 12px;min-height:0;}
+#filterBar .fmeta #hiddenBar,#filterBar .fmeta .fclear{height:26px;}
+#filterBar .fmore.on{background-color:var(--accent);color:var(--on-accent,var(--ink));}
+#filterBar .fchips{gap:6px;}
+#filterBar #fhood{max-width:150px;}
+#filterBar .seg button,#filterBar .fbtn{white-space:nowrap;}
+#filterBar #resCount{margin:0 2px 0 0;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
 opacity:.65;white-space:nowrap;}
 #filterBar .seg{display:inline-flex;flex:none;gap:0;border:2px solid var(--ink);overflow:hidden;}
-#filterBar .seg button{height:30px;padding:0 12px;border:0;border-right:2px solid var(--ink);border-radius:0;
+#filterBar .seg button{height:30px;padding:0 9px;border:0;border-right:2px solid var(--ink);border-radius:0;
 background:var(--field,#fff);font-size:11.5px;letter-spacing:.3px;}
 #filterBar .seg button:last-child{border-right:0;}
 #filterBar .seg button.on{background:var(--ink);color:var(--paper);}
-#filterBar .fbtn,#filterBar select{height:34px;padding:0 12px;border:2px solid var(--ink);background-color:var(--field,#fff);
+#filterBar .fbtn,#filterBar select{height:34px;padding:0 10px;border:2px solid var(--ink);background-color:var(--field,#fff);
 color:var(--ink);font-size:12.5px;font-weight:700;letter-spacing:0;text-transform:none;cursor:pointer;}
 #filterBar select{-webkit-appearance:none;appearance:none;max-width:210px;padding-right:30px;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23888' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;background-size:11px;}
@@ -1733,7 +1886,7 @@ box-shadow:4px 4px 0 var(--accent);transition:transform .2s ease;}
 #tnToast button{background:var(--accent);color:var(--on-accent,var(--ink));border:0;padding:5px 11px;font-weight:800;cursor:pointer;font-size:13px;}
 @media (prefers-reduced-motion: reduce){#tnToast{transition:none;}}
 /* My picks: a slim tray under the filters */
-#picksBar{max-width:760px;margin:10px auto 0!important;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+#picksBar{max-width:1040px;box-sizing:border-box;margin:12px auto 0!important;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
 padding:8px 10px 8px 16px!important;text-align:left;background:transparent;border:2px dashed var(--ink);box-shadow:none;}
 #picksBar > br,#picksBar > span{display:none;}
 #picksBar strong{font-size:14px;margin-right:auto;}
@@ -1748,9 +1901,11 @@ text-decoration:underline;text-decoration-color:var(--accent);text-decoration-th
 #picksBar #shareMsg a{font-weight:800;color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 @media (max-width:640px){
 #filterBar{margin-left:12px;margin-right:12px;padding:12px;}
-#filterBar .fchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -12px;padding:0 12px 3px;}
-#filterBar .fchips::-webkit-scrollbar{display:none;}
-#filterBar .fchips > *{flex:none;}
+#filterBar .fchips{flex-wrap:wrap;}
+#filterBar .fchips .fsearch{flex-basis:100%;}
+#filterBar .fchips > select,#filterBar .fchips > .fmulti{flex:1 1 40%;max-width:none!important;min-width:0;}
+#filterBar .fchips > .fmulti summary{max-width:none;}
+#filterBar .fchips > .fmulti .fmenu{left:auto;right:0;max-width:calc(100vw - 32px);}
 #picksBar{margin-left:12px!important;margin-right:12px!important;}
 }
 .wrap > section.cat.free{margin-top:4px;}
@@ -1953,7 +2108,18 @@ function pull(){
     })
     .catch(function(){});
 }
+// how good the event is for anyone (ingest/quality.py: 1-10, 5 when not scored)
+function quality(i){
+  var q = typeof QUAL !== "undefined" ? QUAL[i] : null;
+  return typeof q === "number" ? q : 5;
+}
+// the list's order: your taste, nudged by quality
 function score(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  return personal(i) + (quality(i) - 5) * 1.5;
+}
+// the personal half: categories, ticks, venues, friends, regulars, when you go out
+function personal(i){
   if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
   var cat = CATS[i], s = 0;
   if (taste.likes.indexOf(cat) >= 0) s += 10;
@@ -2022,8 +2188,10 @@ function sortChildren(container){
     .sort(function(x, y){ return (x.p - y.p) || (y.k - x.k) || (x.n - y.n); })
     .forEach(function(o){ container.appendChild(o.a); });
 }
+function scored(){ return typeof QUAL !== "undefined" && QUAL.some(function(q){ return q != null; }); }
 function applyRanking(){
-  if (!hasTaste() || typeof CATS === "undefined") return;
+  if (window.__topTonight) window.__topTonight();  // Top tonight re-ranks whatever the layout
+  if ((!hasTaste() && !scored()) || typeof CATS === "undefined") return;
   // the timeline layout orders by start time, not taste
   if (document.documentElement.getAttribute("data-layout") === "timeline") return;
   var wrap = document.querySelector("main.wrap");
@@ -2055,7 +2223,7 @@ function applyRanking(){
   }
 }
 /* ---------------- quiz ---------------- */
-var SURP = {low: "ninguna", med: "algunas", high: "muchas"};
+var SURP = {low: "Sorpresas: ninguna", med: "Sorpresas: algunas", high: "Sorpresas: muchas"};  // whole labels: a bare "none" literal would be translated everywhere (style.display) on /es/
 var sheet = null, sel = {};
 function guessCity(){
   var saved = null;
@@ -2105,7 +2273,7 @@ function buildSheet(){
   var surpB = document.createElement("button");
   surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
   var paintSurp = function(){
-    surpB.textContent = "Sorpresas: " + SURP[surp];
+    surpB.textContent = SURP[surp];
     surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
   };
   paintSurp();
@@ -2213,7 +2381,7 @@ function setCat(cat, mode){
 }
 window.Tonight = {
   taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
-  score: score, save: save, applyRanking: applyRanking,
+  score: score, personal: personal, quality: quality, save: save, applyRanking: applyRanking,
   openQuiz: openQuiz, describe: describe, setCat: setCat
 };
 document.addEventListener("DOMContentLoaded", function(){
@@ -2230,42 +2398,50 @@ document.addEventListener("DOMContentLoaded", function(){
   if (window.TonightPage && TonightPage.init) TonightPage.init();
 });
 })();
-</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Preferencias</a><a class="tastelink" href="../signup.html">Suscríbete</a><a class="tastelink" href="../account.html">Cuenta</a></span><span class="citylinks"><a class="" href="../nyc/2026-10-20.html">NYC</a> <a class="" href="../london/2026-10-20.html">Londres</a> <a class="cur" href="../la/2026-10-20.html">LA</a></span><a class="browselink" href="../browse-la-2026-10-20.html">Ver todo →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="../" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Pronto</i></span><span class="soon" lang="pt">Português <i>Pronto</i></span><span class="soon" lang="de">Deutsch <i>Pronto</i></span><span class="soon" lang="it">Italiano <i>Pronto</i></span><span class="soon" lang="ja">日本語 <i>Pronto</i></span></div></details></nav>
+</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Preferencias</a><a class="tastelink" href="../signup.html">Suscríbete</a><a class="tastelink" href="../account.html">Cuenta</a></span><span class="citylinks"><a class="" href="../nyc/2026-10-20.html">NYC</a> <a class="" href="../london/2026-10-20.html">Londres</a> <a class="cur" href="../la/2026-10-20.html">LA</a></span><a class="browselink" href="../browse-la-2026-10-20.html">Ver todo →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="../" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Pronto</i></span><span class="soon" lang="pt">Português <i>Pronto</i></span><span class="soon" lang="de">Deutsch <i>Pronto</i></span><span class="soon" lang="it">Italiano <i>Pronto</i></span><span class="soon" lang="ja">日本語 <i>Pronto</i></span></div></details></nav>
 <header class="hero dayhero">
 <div class="eyebrow">Martes, 20 de octubre · Los Ángeles</div>
-<h1>Los Ángeles</h1>
+<h1><span class="h-city">Los Ángeles</span><span class="h-date"> — Martes, 20 de octubre</span></h1>
 <div class="toolbar">
 <button class="btn btn-dark" id="shareBtn">Compartir →</button>
-<a class="btn btn-gold" href="https://psesh5.github.io/tonight/la/2026-10-20.ics" download>📅 Agregar todo al calendario</a>
-<button class="btn btn-dark" id="tonightBtn" aria-pressed="false">⚡ Esta noche</button>
-<button class="btn btn-dark" id="nextHourBtn" aria-pressed="false">⏱ Próxima hora</button>
-<button class="btn btn-gold" id="storyBtn" type="button">♥ Desliza esta noche</button>
+<details class="tmore"><summary class="btn btn-dark" aria-label="Más acciones">⋯</summary>
+<div class="tmenu">
+<a class="tm-item" href="https://psesh5.github.io/tonight/la/2026-10-20.ics" download>📅 Agregar todo al calendario</a>
+<button class="tm-item" id="storyBtn" type="button">♥ Desliza esta noche</button>
+<button class="tm-item" id="tonightBtn" type="button" aria-pressed="false">⚡ Esta noche</button>
 </div>
-</header><nav class="daystrip" aria-label="Pick a day"><a class="ds" href="2026-10-16.html"><b>Esta noche</b><span>Vie 16</span></a><a class="ds" href="2026-10-17.html"><b>Mañana</b><span>Sáb 17</span></a><a class="ds" href="2026-10-18.html"><b>Dom</b><span>18</span></a><a class="ds" href="2026-10-19.html"><b>Lun</b><span>19</span></a><a class="ds cur" href="2026-10-20.html" aria-current="page"><b>Mar</b><span>20</span></a><a class="ds" href="2026-10-21.html"><b>Mié</b><span>21</span></a><a class="ds" href="2026-10-22.html"><b>Jue</b><span>22</span></a></nav><p class="ds-note">Se agregan más planes a medida que se acerca el día (algunas comedias y charlas se publican uno o dos días antes).</p><div id="conciergeNote" aria-live="polite"></div>
+</details>
+</div>
+</header><nav class="daystrip open" aria-label="Pick a day"><a class="ds" href="2026-10-16.html"><b>Hoy</b><span>Vie 16</span></a><a class="ds" href="2026-10-17.html"><b>Mañana</b><span>Sáb 17</span></a><a class="ds" href="2026-10-18.html"><b>Dom</b><span>18</span></a><a class="ds" href="2026-10-19.html"><b>Lun</b><span>19</span></a><a class="ds cur ds-x" href="2026-10-20.html" aria-current="page"><b>Mar</b><span>20</span></a><a class="ds ds-x" href="2026-10-21.html"><b>Mié</b><span>21</span></a><a class="ds ds-x" href="2026-10-22.html"><b>Jue</b><span>22</span></a><button type="button" class="ds ds-more" aria-expanded="false" onclick="var s=this.parentNode;s.classList.toggle('open');this.setAttribute('aria-expanded',s.classList.contains('open'))">Más ▾</button></nav><p class="ds-note">Se agregan más planes a medida que se acerca el día (algunas comedias y charlas se publican uno o dos días antes).</p><div id="conciergeNote" aria-live="polite"></div>
 
-<div class="filters" id="filterBar">
-<div class="frow">
+<div id="fsLayout"><aside id="fside" aria-label="Filtros"></aside><div id="fsCol"><div class="filters" id="filterBar">
+<div class="frow fchips">
 <label class="fsearch"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
 <input id="fq" type="search" autocomplete="off" placeholder="Busca eventos, lugares…" aria-label="Buscar eventos"></label>
-<span id="resCount"></span>
-</div>
-<div class="frow fchips">
 <div class="seg" id="ftod">
-<button data-t="all" class="on">Cualquier hora</button><button data-t="morning">Mañana</button><button data-t="afternoon">Tarde</button><button data-t="evening">Noche</button>
+<button data-t="evening">Noche 5pm+</button><button data-t="day">De día</button><button data-t="all" class="on">Todo</button>
 </div>
-<button class="fbtn" id="ffree" aria-pressed="false">✨ Solo gratis</button>
+<select id="fhood" autocomplete="off" aria-label="Barrio"><option value="">Todos los barrios</option><option value="Downtown">Downtown (9)</option><option value="Hollywood">Hollywood (8)</option><option value="Fairfax">Fairfax (7)</option><option value="Los Feliz">Los Feliz (5)</option><option value="Echo Park">Echo Park (4)</option><option value="Venice">Venice (4)</option><option value="Downtown Santa Monica">Downtown Santa Monica (3)</option><option value="Exposition Park">Exposition Park (3)</option><option value="Koreatown">Koreatown (3)</option><option value="Sherman Oaks Neighborhood Council District">Sherman Oaks Neighborhood Council District (3)</option><option value="Chinatown">Chinatown (2)</option><option value="Historic South-Central">Historic South-Central (2)</option><option value="Mar Vista">Mar Vista (2)</option><option value="North Hollywood Neighborhood Council District">North Hollywood Neighborhood Council District (2)</option><option value="Palms">Palms (2)</option><option value="Pico-Union">Pico-Union (2)</option><option value="Silver Lake Heights">Silver Lake Heights (2)</option><option value="Westchester">Westchester (2)</option><option value="Westlake">Westlake (2)</option><option value="Anaheim Resort District">Anaheim Resort District (1)</option><option value="Atwater Village">Atwater Village (1)</option><option value="Belmont Shore">Belmont Shore (1)</option><option value="Bixby Knolls">Bixby Knolls (1)</option><option value="Browning">Browning (1)</option><option value="Eagle Rock">Eagle Rock (1)</option><option value="East Whittier">East Whittier (1)</option><option value="Greater Toluca Lake Neighborhood Council District">Greater Toluca Lake Neighborhood Council District (1)</option><option value="Highland Park">Highland Park (1)</option><option value="Leimert Park Village">Leimert Park Village (1)</option><option value="Los Feliz Neighborhood Council District">Los Feliz Neighborhood Council District (1)</option><option value="Melrose Hill">Melrose Hill (1)</option><option value="Panorama City">Panorama City (1)</option><option value="Pico-Robertson">Pico-Robertson (1)</option><option value="Playa del Rey">Playa del Rey (1)</option><option value="Reseda">Reseda (1)</option><option value="Sawtelle">Sawtelle (1)</option><option value="Universal City">Universal City (1)</option><option value="Valley Village Neighborhood Council District">Valley Village Neighborhood Council District (1)</option><option value="West Adams">West Adams (1)</option><option value="Westwood">Westwood (1)</option></select>
 <select id="fcat" autocomplete="off" aria-label="Filtrar por categoría"><option value="">Todas las categorías</option><option value="Music">Música</option><option value="Theater">Teatro</option><option value="Comedy">Comedia</option><option value="Arts &amp; Play">Arte y juego</option><option value="Tours">Recorridos</option><option value="Trivia &amp; Games">Trivia y juegos</option><option value="Meetups &amp; Mixers">Encuentros</option><option value="Fitness &amp; Outdoors">Ejercicio y aire libre</option><option value="Tech">Tecnología</option><option value="Classes &amp; Workshops">Clases y talleres</option><option value="Talks">Charlas</option><option value="Film">Cine</option><option value="Food &amp; Drink">Comida y bebida</option></select>
-<select id="fafter" autocomplete="off" aria-label="Empieza después de"><option value="">Empieza después de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Empieza antes de"><option value="">Empieza antes de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Barrio"><option value="">Todos los barrios</option><option value="Downtown">Downtown (9)</option><option value="Hollywood">Hollywood (8)</option><option value="Fairfax">Fairfax (7)</option><option value="Los Feliz">Los Feliz (5)</option><option value="Echo Park">Echo Park (4)</option><option value="Venice">Venice (4)</option><option value="Downtown Santa Monica">Downtown Santa Monica (3)</option><option value="Exposition Park">Exposition Park (3)</option><option value="Koreatown">Koreatown (3)</option><option value="Sherman Oaks Neighborhood Council District">Sherman Oaks Neighborhood Council District (3)</option><option value="Chinatown">Chinatown (2)</option><option value="Historic South-Central">Historic South-Central (2)</option><option value="Mar Vista">Mar Vista (2)</option><option value="North Hollywood Neighborhood Council District">North Hollywood Neighborhood Council District (2)</option><option value="Palms">Palms (2)</option><option value="Pico-Union">Pico-Union (2)</option><option value="Silver Lake Heights">Silver Lake Heights (2)</option><option value="Westchester">Westchester (2)</option><option value="Westlake">Westlake (2)</option><option value="Anaheim Resort District">Anaheim Resort District (1)</option><option value="Atwater Village">Atwater Village (1)</option><option value="Belmont Shore">Belmont Shore (1)</option><option value="Bixby Knolls">Bixby Knolls (1)</option><option value="Browning">Browning (1)</option><option value="Eagle Rock">Eagle Rock (1)</option><option value="East Whittier">East Whittier (1)</option><option value="Greater Toluca Lake Neighborhood Council District">Greater Toluca Lake Neighborhood Council District (1)</option><option value="Highland Park">Highland Park (1)</option><option value="Leimert Park Village">Leimert Park Village (1)</option><option value="Los Feliz Neighborhood Council District">Los Feliz Neighborhood Council District (1)</option><option value="Melrose Hill">Melrose Hill (1)</option><option value="Panorama City">Panorama City (1)</option><option value="Pico-Robertson">Pico-Robertson (1)</option><option value="Playa del Rey">Playa del Rey (1)</option><option value="Reseda">Reseda (1)</option><option value="Sawtelle">Sawtelle (1)</option><option value="Universal City">Universal City (1)</option><option value="Valley Village Neighborhood Council District">Valley Village Neighborhood Council District (1)</option><option value="West Adams">West Adams (1)</option><option value="Westwood">Westwood (1)</option></select>
-<button class="fclear" id="fclear" type="button" hidden>Borrar filtros</button>
+<button class="fbtn" id="ffree" aria-pressed="false">✨ Solo gratis</button>
+<button class="fbtn" id="nextHourBtn" type="button" aria-pressed="false">⏱ Empieza pronto</button>
+<button class="fbtn fmore" id="fmore" type="button" aria-expanded="false" aria-controls="fextra">Más filtros</button>
+</div>
+<div class="frow fextra" id="fextra" hidden>
+<select id="fafter" autocomplete="off" aria-label="Empieza después de"><option value="">Empieza después de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Empieza antes de"><option value="">Empieza antes de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select>
+</div>
+<div class="frow fmeta">
+<span id="resCount"></span>
 <span id="hiddenBar"><span id="hiddenN">0</span> ocultos · <button id="unhide">mostrarlos</button></span>
+<button class="fclear" id="fclear" type="button" hidden>Borrar filtros</button>
 </div>
 </div>
-<div class="picks" id="picksBar"><strong>★ Mis planes: <span id="pickCount">0</span></strong><br>
+<section id="topTonight" aria-labelledby="ttHead"><h2 id="ttHead">Lo mejor del martes</h2><ol class="tt-list"></ol><p class="tt-empty" hidden>Nada más que destacar con estos filtros. Todo está abajo.</p><a class="tt-all" href="#allEvents">Ver los 117 eventos →</a></section><div class="picks" id="picksBar"><strong>★ Mis planes: <span id="pickCount">0</span></strong><br>
 <span style="font-size:13px;color:#6b6b6b;">Las marcas se guardan solas y dan forma a lo de mañana. ¿Vas con amigos? Mándales tu lista.</span><br><br>
 <button class="btn btn-gold" id="textGroupBtn">💬 Mandar al grupo →</button>
 <div id="shareMsg" style="font-size:13px;margin-top:10px;min-height:18px;"></div>
 </div>
-<main class="wrap">
+<main class="wrap" id="allEvents">
 <div id="tonightWrap">
 <div class="tonight-head"><h2>⚡ Esta noche</h2><p id="tonightCount"></p></div>
 <div id="tonightList"></div>
@@ -4304,7 +4480,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 </article>
 </section>
-</main>
+</main></div></div>
 <footer>
 <div class="serif">Elegido para ti por Tonight.</div>
 <p>Cada marca se guarda:<br>lo de mañana aprende lo que te encanta.</p>
@@ -4323,6 +4499,10 @@ const EDAYS = EDATE ? [...new Set(EDATE)] : null;
 const RECUR = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "Every Tuesday", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "Every Tuesday", "", "", "", "", "Every Tuesday", "Every Tuesday", "Also on other days", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 const KIDS = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const PRICES = ["", "", "", "", "", "", "", "$18.80", "", "", "", "", "$39.64", "$19.04", "", "", "", "", "", "", "", "", "$26.25", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$25.00", "$18.00", "", "$25.00", "", "", "$99.00", "", "$20.00", "", "", "$25.00", "$20.00", "$30.00", "", "$20.00", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$32.71", "$24.72", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+// how good each event is for anyone (1-10, null = not scored) + why, and its flags (ingest/quality.py)
+const QUAL = [5, 4, 8, 5, 5, 7, 7, 6, 5, 5, 6, 8, 6, 7, 6, 6, 6, 6, 8, 5, 5, 7, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 1, 3, 2, 2, 1, 2, 4, 2, 2, 3, 6, 4, 6, 1, 3, 2, 4, 9, 8, 8, 5, 6, 5, 6, 8, 5, 6, 5, 8, 5, 9, 5, 7, 8, 8, 5, 3, 1, 5, 7, 2, 2, 4, 4, 5, 1, 2, 5, 4, 6, 3, 3, 2, 3, 4, 7, 4, 6, 2, 5, 1, 5, 5, 5, 4, 7, 3, 4, 8, 4, 7, 5, 4, 6, 6, 5];
+const WHY = ["Homestyle Dinner Rolls playing an intimate all-ages show.", "The Belasco's all-ages Monday night music event.", "Michael Wolff and Joanna Coles live on Trump's inner circle.", "Jenna Raine's tour stop at The Echo.", "Cameron Whitcomb's Kingdom of Fear tour at the Wiltern.", "Puppet comedian Randy Feltface's Gimmick show at historic Ebell.", "Modest Mouse, a long-running indie rock act, at the Palladium.", "R&B singer Eric Bellinger in Blue Note's dinner-and-show room.", "Indie duo Hovvdy in an intimate auditorium setting.", "Scottish blues songwriter Joshua Burnside at an intimate club.", "Stella Lefty in the GRAMMY Museum's outdoor Spotlight series.", "Bonnie Raitt live at the Pantages with Jon Cleary.", "Phone-free comedy night with Ben Bankas at the Hollywood Improv.", "Craig Robinson and Mary Lynn Rajskub in a Plant Mob improv lineup.", "Brazilian comedian Raphael Ghanem's stand-up show at the Regent.", "Hablando Huevadas touring show at the historic Orpheum.", "underscores live at The Novo, a small, well-regarded room.", "Adrian Younge's Cortex project, live at the United Theater.", "Jessie Ware's Superbloom tour at the Greek Theatre.", "New Constellations with Vox Rea at El Rey.", "Ella Boh live at the Roxy on Sunset.", "Monsta X's big-arena world tour stop at the Kia Forum.", "John Campanelli headlines a late Hollywood Improv Lab set.", "Walking tour of the historic Coliseum, covering Olympic history and renovations.", "Behind-the-scenes walk through the Oscars venue.", "Weekly Geeks Who Drink pub quiz in Pasadena.", "Weekly Geeks Who Drink pub quiz at Verdugo Bar.", "Weekly Geeks Who Drink trivia at El Tejano in North Hollywood.", "Weekly Geeks Who Drink quiz at an arcade bar.", "Weekly Jeopardy-style bar league quiz, North Hollywood.", "Weekly Geeks Who Drink pub quiz at Biergarten LA.", "Weekly Geeks Who Drink pub quiz in North Hollywood.", "Weekly Jeopardy-style bar league quiz in Long Beach.", "Weekly Geeks Who Drink quiz at Rance's, Long Beach.", "Weekly Geeks Who Drink pub quiz in Long Beach.", "Weekly Jeopardy-style bar league quiz on the Westside.", "Weekly Jeopardy-style bar league quiz in Playa Vista.", "Weekly Jeopardy-style bar league quiz in El Segundo.", "Weekly Geeks Who Drink quiz at Firestone Walker's Marina del Rey taproom.", "Weekly Geeks Who Drink pub quiz at Hacienda Playa.", "", "", "", "", "", "", "", "Single vocal embodiment masterclass for singers, one session.", "", "", "", "Silent reading party for book lovers, no commitment required.", "Embroidery basics taught by artist Jamie Maloney at a NA bottle shop.", "Immersive exhibit testing what positive futures feel like today.", "", "", "", "Recurring men's gathering at Wende Museum; first-timers welcome.", "Ken Russell's controversial The Devils, new 4K director's cut restoration.", "Tyrone Power noir from 1947, screened at Los Feliz 3.", "Marx Brothers' 1935 classic in Mel Brooks-programmed centenary series.", "Freak Nature's main-stage show at the Elysian.", "Dylan Adler, Sam Morrison and Kylie Vincent in one Skunk Room bill.", "Late-night comedy set from The Nightmare at the Vault.", "Tokyo Kanpai Boys stand-up in the Comedy Store's Belly Room.", "Chelsea Handler, Bobby Lee and TJ Miller on one Main Room bill.", "Stand-up in the Comedy Store's historic Original Room.", "Brian Moses headlines a roast battle in the Comedy Store's Belly Room.", "", "1983 cult slasher spoof screening on the New Beverly's repertory screen.", "Olympus Tour stop with GALXARA and Kyle Payne supporting.", "Nosferatu's 1922 silent film scored live by Paz Lenchantin.", "Gorden Campbell and Friends play a club night at The Mint.", "Artist Phil Chang leads an after-hours tour of Grunwald Center's 70th anniversary show.", "Altman's 1975 Nashville screened at Vidiots as part of a series.", "Spencer Krug of Wolf Parade and Sunset Rubdown plays solo at Lodge Room.", "", "", "", "Nara Aziza Smith signs HOMEMADE at The Grove.", "Bestselling romance author Lisa Kleypas launches Queen of Lombard Street in person.", "", "", "", "", "Interactive murder mystery dinner with clue-solving at The New Deal.", "", "", "Four working episodic directors share how they broke into TV.", "Make your own sterling silver stacking rings in a small group.", "Maya K'iche' architect Aurora Nohemi Chaj on geometry, textiles and music.", "", "", "", "", "Chinatown and Olvera Street tour across five independent family-owned food stops.", "Humanitarian Kathi Zellweger and journalist Mike Chinoy discuss her North Korea memoir.", "Yale scholar's book on trusteeship and Native land dispossession.", "Nik Sharma's new flavor-science cookbook, with a signing.", "", "Soul singer Brenda Lee Eager leads a one-off vocal workshop.", "", "Two stand-up comedians splitting a single hour-long set.", "Autobiographical queer solo show about family and speaking up.", "Stand-up sets turned into improvised scenes on the spot.", "Weekly cheap open mic, recurring rather than special.", "Premiere of Christmas rom-com with cast and crew attending.", "", "Cohort short films screened, followed by a live podcast recording.", "Rare screening of 1973 cult horror Messiah of Evil.", "Outdoor Halloween movie night with popcorn, under the stars.", "Caroline Rose live at the historic Hollywood Palladium.", "Use All Five CEO talks on design studio work, free.", "Student zines and videos recovering Bunker Hill's erased history.", "Basement playing a live set at Shrine Expo Hall.", "Diaspora-studies pioneer T\u00f6l\u00f6lyan lectures, in Armenian, at USC.", "LA public artist April Banks talks about her place-based practice."];
+const FLAGS = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "networking", "networking,members_only", "", "kids", "kids,class_slot", "sales", "sales", "", "networking", "sales", "", "", "", "", "networking", "spam", "networking,members_only", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "sales,members_only", "", "", "networking", "networking", "class_slot", "", "", "service", "spam", "", "", "", "", "", "", "", "", "", "", "", "service,sales", "", "sales,service", "", "", "", "", "", "spam", "", "", "", "", "", "", "", "", ""];
 // parents can bring kids' events into story mode, Next hour and Toni's suggestions
 function kidsOn() { try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } }
 addEventListener("DOMContentLoaded", () => {
@@ -4353,7 +4533,7 @@ function cardFor(hash) {
 function revealCard(art) {
   if (!art) return false;
   if (window.__unfold) window.__unfold(art);
-  if (art.style.display === "ninguna") return false;  // filtered out or hidden by you
+  if (art.style.display === "none") return false;  // filtered out or hidden by you
   // instant and direct (a smooth scroll gets cut short while the section unfolds)
   art.scrollIntoView({block: "center"});
   art.classList.remove("flash"); void art.offsetWidth; art.classList.add("flash");
@@ -4370,6 +4550,8 @@ addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash
 const CATS = ["Music", "Music", "Theater", "Music", "Music", "Comedy", "Music", "Music", "Music", "Music", "Music", "Music", "Arts & Play", "Comedy", "Comedy", "Theater", "Arts & Play", "Music", "Music", "Music", "Arts & Play", "Music", "Arts & Play", "Arts & Play", "Tours", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Fitness & Outdoors", "Meetups & Mixers", "Tech", "Classes & Workshops", "Tech", "Classes & Workshops", "Talks", "Talks", "Classes & Workshops", "Meetups & Mixers", "Tech", "Film", "Meetups & Mixers", "Arts & Play", "Film", "Film", "Film", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Film", "Music", "Music", "Music", "Talks", "Film", "Music", "Comedy", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Talks", "Food & Drink", "Food & Drink", "Classes & Workshops", "Trivia & Games", "Food & Drink", "Tech", "Tech", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Classes & Workshops", "Fitness & Outdoors", "Tours", "Tours", "Talks", "Talks", "Talks", "Talks", "Classes & Workshops", "Talks", "Comedy", "Comedy", "Comedy", "Comedy", "Film", "Film", "Film", "Film", "Film", "Music", "Arts & Play", "Meetups & Mixers", "Music", "Talks", "Arts & Play"];
 const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, true, false, true, true, false, true, false, true, true, false, false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, true];
 const HOODS = ["Chinatown", "Downtown", "Westlake", "Echo Park", "Koreatown", "Koreatown", "Hollywood", "Hollywood", "", "", "Downtown", "Hollywood", "Fairfax", "Fairfax", "Downtown", "Downtown", "Downtown", "Downtown", "Los Feliz Neighborhood Council District", "Fairfax", "", "", "Fairfax", "Exposition Park", "Hollywood", "", "", "Greater Toluca Lake Neighborhood Council District", "North Hollywood Neighborhood Council District", "North Hollywood Neighborhood Council District", "Koreatown", "Valley Village Neighborhood Council District", "Bixby Knolls", "Belmont Shore", "", "Palms", "Westchester", "", "Mar Vista", "Playa del Rey", "", "Venice", "", "Anaheim Resort District", "", "Sherman Oaks Neighborhood Council District", "", "West Adams", "", "Downtown Santa Monica", "Downtown Santa Monica", "", "", "Venice", "Downtown Santa Monica", "Venice", "Venice", "", "", "Los Feliz", "Los Feliz", "Echo Park", "Echo Park", "Echo Park", "", "", "", "", "", "Fairfax", "Hollywood", "", "Pico-Robertson", "Westwood", "Eagle Rock", "Highland Park", "Westlake", "", "Universal City", "Fairfax", "Palms", "East Whittier", "", "Sawtelle", "Fairfax", "", "Reseda", "Browning", "Hollywood", "Mar Vista", "Los Feliz", "Silver Lake Heights", "Panorama City", "Pico-Union", "Hollywood", "Chinatown", "Downtown", "Historic South-Central", "Silver Lake Heights", "", "Leimert Park Village", "Sherman Oaks Neighborhood Council District", "Atwater Village", "Los Feliz", "", "Sherman Oaks Neighborhood Council District", "", "Melrose Hill", "Pico-Union", "Los Feliz", "Westchester", "Hollywood", "Downtown", "Exposition Park", "Historic South-Central", "Exposition Park", "Downtown"];
+const AREA_GROUP = ["Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "", "", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "", "", "Central L.A.", "South L.A.", "Central L.A.", "", "", "San Fernando Valley", "San Fernando Valley", "San Fernando Valley", "Central L.A.", "San Fernando Valley", "Harbor", "Harbor", "", "Westside", "South Bay", "", "Westside", "South Bay", "", "Westside", "", "Orange County", "", "San Fernando Valley", "", "South L.A.", "", "Westside", "Westside", "", "", "Westside", "Westside", "Westside", "Westside", "", "", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "", "", "", "", "", "Central L.A.", "Central L.A.", "", "Westside", "Westside", "Northeast L.A.", "Northeast L.A.", "Central L.A.", "", "San Fernando Valley", "Central L.A.", "Westside", "San Gabriel Valley", "", "Westside", "Central L.A.", "", "San Fernando Valley", "Orange County", "Central L.A.", "Westside", "Central L.A.", "Central L.A.", "San Fernando Valley", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "South L.A.", "Central L.A.", "", "South L.A.", "San Fernando Valley", "Northeast L.A.", "Central L.A.", "", "San Fernando Valley", "", "Central L.A.", "Central L.A.", "Central L.A.", "South Bay", "Central L.A.", "Central L.A.", "South L.A.", "South L.A.", "South L.A.", "Central L.A."];  // each event's borough / region ("" = no neighbourhood)
+const AREA_ORDER = ["Central L.A.", "Westside", "Northeast L.A.", "Eastside", "South L.A.", "San Fernando Valley", "Verdugos", "San Gabriel Valley", "South Bay", "Harbor", "Southeast", "Santa Monica Mountains", "Pomona Valley", "Northwest County", "Antelope Valley", "Angeles Forest", "Orange County", "Ventura County", "Riverside County", "San Bernardino County", "Otros lugares"];
 const TZ = "America/Los_Angeles";
 const STARTS = [1110, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1170, 1170, 1170, 1170, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1290, null, null, 1140, 1110, 1140, 1140, 1080, 1140, 1140, 1110, 1050, 1080, 1080, 1110, 1020, 1080, 1140, 1080, 540, 570, 600, 690, 930, 960, 960, 1050, 1050, 1050, 1080, 1080, 1080, 1080, 1110, 1125, 1140, 1170, 1320, 1140, 1110, 1200, 1230, 1200, 1200, 1260, 1350, 1410, 1170, 1140, 1200, 1200, 1080, 1170, 1200, 1140, 240, 1020, 1140, 1140, 1140, 1140, 1080, 1200, 1080, 570, 900, 1110, 720, 1140, 1110, 1140, 1110, 780, 660, 1050, 600, 1080, 1110, 1110, 1110, 1260, 1170, 1260, 1080, 1110, 1185, 1080, 1170, 1110, null, 720, 1020, 1050, 1110, 1140];   // minutes since midnight, or null
 const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1230, 600, 690, 720, 750, 1020, 1080, 1200, 1170, 1230, 1200, 1200, 1200, 1200, 1200, 1320, 1290, 1230, null, null, null, null, null, null, null, null, null, null, null, null, 1380, 1380, 1425, null, null, null, null, null, 1230, 1260, 1260, 1320, 1320, 1230, 1320, 1200, 630, 1020, 1320, 840, 1230, 1170, 1260, 1260, 960, 840, 1155, 690, 1200, 1200, 1230, 1230, 1350, 1260, 1320, 1320, 1320, 1350, 1230, 1260, 1260, null, null, 1140, null, 1230, null];       // from end_time, or null (-> start + 2h)
@@ -4384,6 +4566,7 @@ function render() {
   if (EDAYS) EDAYS.forEach(d => saveIds("tonight-picks-" + CITY + "-" + d, new Set([...picks].filter(i => EDATE[+i] === d))));
   else saveIds(KEY, picks);
   reportTaps();
+  if (window.__topTonight) window.__topTonight();
 }
 // "I'm going": stronger than a tick (it ticks too). Saved per event day; headcounts shown from 3 up.
 const going = new Set();
@@ -4476,6 +4659,12 @@ const _shareBtn = document.getElementById("shareBtn");
 if (_shareBtn) _shareBtn.addEventListener("click", async () => {
   const r = await shareOrCopy("Things to do today in Los Ángeles, hand-picked by Tonight:", location.href.split("#")[0]);
   if (r === "copied") shareMsg("Enlace copiado: pégalo donde quieras.");
+});
+// the header's ⋯ menu closes once something in it is picked, or on a click elsewhere
+document.addEventListener("click", e => {
+  document.querySelectorAll("details.tmore[open]").forEach(m => {
+    if (!m.contains(e.target) || e.target.closest(".tm-item")) m.removeAttribute("open");
+  });
 });
 function fmtStart(i) {
   const s = STARTS[i]; if (s == null) return "";
@@ -4574,31 +4763,46 @@ window.__applyFilters = (function () {
     if (s < 1020) return "afternoon";   // 12–5 PM
     return "evening";                   // 5 PM+
   }
+  // Evening is the default on today's page after noon (city time); other days show any time
+  const TOD0 = !EDAYS && DATE === cityToday() && cityNowMinutes() >= 720 ? "evening" : "all";
+  function todMatch(i, tod) {
+    const t = todOf(i);
+    if (tod === "all" || t === "tba") return true;  // a listing without a time could be any time
+    return tod === "day" ? t !== "evening" : t === tod;
+  }
+  function todOk(i) { return todMatch(i, F.tod); }
+  const hay = {};  // search text per card, read once
+  // each filter on its own (the sidebar counts what each box would show with all the others)
+  function dims(i, a) {
+    let base = !hidden.has(String(i));
+    if (base && F.only && !F.only.has(EIDS[i])) base = false;  // a friend's shared picks (?only=)
+    if (base && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) base = false;
+    if (base && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) base = false;
+    if (base && F.q) {
+      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
+      if (!hay[i].includes(F.q)) base = false;
+    }
+    return {base: base,
+      cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
+      free: !F.free || FREE[i],
+      tod: todOk(i),
+      hood: !F.hood || F.hood.split("|").includes(HOODS[i])};  // one or several neighbourhoods
+  }
+  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
     let n = 0;
     cards.forEach(a => {
-      const i = a.dataset.idx;
-      let ok = !hidden.has(i);
-      if (ok && F.only && !F.only.has(EIDS[+i])) ok = false;  // a friend's shared picks (?only=)
-      if (ok && F.cat && !F.cat.split(",").includes(CATS[+i])) ok = false;  // one or several categories
-      if (ok && F.free && !FREE[+i]) ok = false;
-      if (ok && F.tod !== "all" && todOf(+i) !== F.tod) ok = false;
-      if (ok && F.after != null && !(STARTS[+i] != null && STARTS[+i] >= F.after)) ok = false;
-      if (ok && F.before != null && !(STARTS[+i] != null && STARTS[+i] < F.before)) ok = false;
-      if (ok && F.hood && HOODS[+i] !== F.hood) ok = false;
-      if (ok && F.q) {
-        const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
-        if (!hay.includes(F.q)) ok = false;
-      }
-      a.style.display = ok ? "" : "ninguna";
+      const i = a.dataset.idx, d = dims(+i, a);
+      const ok = d.base && d.cat && d.free && d.tod && d.hood;
+      a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
     });
     document.querySelectorAll("section.cat").forEach(s => {
       const vis = [...s.querySelectorAll("article.event")]
-        .some(a => a.style.display !== "ninguna");
-      s.style.display = vis ? "" : "ninguna";
+        .some(a => a.style.display !== "none");
+      s.style.display = vis ? "" : "none";
     });
     const fh = document.querySelector("section.cat.free > h2");
     if (fh) {
@@ -4606,10 +4810,12 @@ window.__applyFilters = (function () {
       const opt = v => { const o = document.querySelector('#fcat option[value="' + v + '"]'); return o ? o.textContent : v; };
       fh.textContent = F.cat ? "✨ Free · " + F.cat.split(",").map(opt).join(" + ") : fh.dataset.orig;
     }
-    document.getElementById("resCount").textContent = n + " de " + cards.length + " events";
+    document.getElementById("resCount").textContent = n + " de " + cards.length + " eventos";
     window.__clamp && window.__clamp();
-    document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "ninguna";
+    document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
     document.getElementById("hiddenN").textContent = hidden.size;
+    if (window.__topTonight) window.__topTonight();
+    if (window.__fside) window.__fside();
   }
   document.getElementById("fq").addEventListener("input", e => {
     F.q = e.target.value.trim().toLowerCase(); applyFilters();
@@ -4628,13 +4834,18 @@ window.__applyFilters = (function () {
     e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
     applyFilters();
   });
+  const setTod = t => {
+    document.querySelectorAll("#ftod button").forEach(x => x.classList.toggle("on", x.dataset.t === t));
+    F.tod = t;
+  };
   document.querySelectorAll("#ftod button").forEach(b => {
-    b.addEventListener("click", () => {
-      document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
-      b.classList.add("on");
-      F.tod = b.dataset.t; applyFilters();
-    });
+    b.addEventListener("click", () => { setTod(b.dataset.t); applyFilters(); });
   });
+  setTod(TOD0);
+  // the start-time pickers live behind "More filters"
+  const _fm = document.getElementById("fmore"), _fx = document.getElementById("fextra");
+  const showExtra = on => { if (!_fm || !_fx) return; _fx.hidden = !on; _fm.setAttribute("aria-expanded", on ? "true" : "false"); };
+  if (_fm) _fm.addEventListener("click", () => showExtra(_fx.hidden));
   function toast(msg, action, onAction) {
     let t = document.getElementById("tnToast");
     if (!t) { t = document.createElement("div"); t.id = "tnToast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
@@ -4701,16 +4912,16 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || F.tod !== "all" || F.after != null || F.before != null || F.hood;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
-        a.style.display !== "ninguna" || a.dataset.clamped === "1");
+        a.style.display !== "none" || a.dataset.clamped === "1");
       let more = sec.querySelector(":scope > .more-btn");
       const cut = !filtering && !opened.has(key) && vis.length > CLAMP + 2;
       vis.forEach((a, k) => {
         const hide = cut && k >= CLAMP;
-        if (hide) { a.style.display = "ninguna"; a.dataset.clamped = "1"; }
+        if (hide) { a.style.display = "none"; a.dataset.clamped = "1"; }
         else if (a.dataset.clamped === "1") { a.style.display = ""; delete a.dataset.clamped; }
       });
       if (cut) {
@@ -4754,7 +4965,9 @@ window.__applyFilters = (function () {
   function syncFilterUI() {
     ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || F.tod !== "all" || F.after != null || F.before != null || F.hood);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood);
+    if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
+    if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
   _fb.addEventListener("change", syncFilterUI);
   _fb.addEventListener("input", syncFilterUI);
@@ -4859,7 +5072,8 @@ function restoreCards() {
     }
   });
   homeSpot.clear();
-  document.getElementById("tonightWrap").style.display = "ninguna";
+  document.documentElement.classList.remove("listmode");
+  document.getElementById("tonightWrap").style.display = "none";
   document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
   const fb = document.getElementById("filterBar");
   if (fb) fb.style.display = "";
@@ -4915,11 +5129,12 @@ function setTonight(on) {
     list.appendChild(o.art);
     if (o.status !== "tba") live++;
   });
-  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "ninguna"; });
+  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
   const fbOn = document.getElementById("filterBar");
-  if (fbOn) fbOn.style.display = "ninguna";
+  if (fbOn) fbOn.style.display = "none";
+  document.documentElement.classList.add("listmode");
   wrap.style.display = "block";
-  empty.style.display = live ? "ninguna" : "block";
+  empty.style.display = live ? "none" : "block";
   count.textContent = live ? live + (live === 1 ? " plan" : " planes") + " ahora o por empezar" : "";
   wrap.scrollIntoView({behavior: "smooth", block: "start"});
 }
@@ -4954,7 +5169,7 @@ function setNextHour(on) {
   const wrap = document.getElementById("tonightWrap"), list = document.getElementById("tonightList");
   const empty = document.getElementById("tonightEmpty"), count = document.getElementById("tonightCount");
   const head = wrap.querySelector(".tonight-head h2");
-  if (head) { if (!head.dataset.orig) head.dataset.orig = head.textContent; head.textContent = "⏱ Próxima hora"; }
+  if (head) { if (!head.dataset.orig) head.dataset.orig = head.textContent; head.textContent = "⏱ Empieza pronto"; }
   const today = (typeof cityToday === "function") ? cityToday() : DATE;
   const now = cityNowMinutes();
   const items = [], hiddenByYou = new Set(loadIds("tonight-hidden-" + CITY + "-" + DATE));
@@ -4984,10 +5199,11 @@ function setNextHour(on) {
     addBadge(o.art, o.kind === "soon" ? "now" : "free", bits.join(" · "));
     list.appendChild(o.art);
   });
-  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "ninguna"; });
-  const fb = document.getElementById("filterBar"); if (fb) fb.style.display = "ninguna";
+  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
+  // the Starting soon chip sits in the filter row, so the row stays (to switch it off)
+  document.documentElement.classList.add("listmode");
   wrap.style.display = "block";
-  empty.style.display = items.length ? "ninguna" : "block";
+  empty.style.display = items.length ? "none" : "block";
   if (!items.length) empty.textContent = DATE !== today ? "Próxima hora funciona en la página de hoy." :
     "Nada a lo que llegues en la próxima hora. Prueba ⚡ Esta noche para más tarde.";
   count.textContent = (items.length ? items.length + (items.length === 1 ? " plan" : " planes") + " a los que aún llegas" : "") +
@@ -5343,13 +5559,52 @@ function isToday(){
   catch (e) { return false; }
 }
 
-// Warm Concierge: a note that hands you a plan for the night.
+// Toni's plan, compact: a title, then a line per stop, "6:00 PM · MAIN EVENT: <title> (Neighbourhood · Free)".
+var PLAN_SKIP = ["networking", "sales", "spam", "service", "internal", "members_only", "online"];
+function hm(m){  // 1080 -> "6:00 PM"
+  var h = Math.floor(m / 60) % 24, mm = m % 60;
+  return (h % 12 || 12) + ":" + String(mm).padStart(2, "0") + " " + (h >= 12 ? "PM" : "AM");
+}
+function quality(i){ return window.Tonight && Tonight.quality ? Tonight.quality(i) : 5; }
+function priceOf(i){ return FREE[i] ? "Gratis" : (typeof PRICES !== "undefined" && PRICES[i] || "").replace(/\.00(?!\d)/g, ""); }
+function planBox(host, lines){
+  host.innerHTML = "";
+  var eye = document.createElement("div"); eye.className = "cn-eye"; eye.textContent = "El plan de Toni para ti";
+  host.appendChild(eye); var hi = greeting(); if (hi) host.appendChild(hi);
+  var ol = document.createElement("ol"); ol.className = "cn-plan";
+  lines.forEach(function(l){ ol.appendChild(l); }); host.appendChild(ol);
+}
+function planLine(time, role, extra){
+  var li = document.createElement("li"), t = document.createElement("span"), r = document.createElement("span");
+  t.className = "cn-t"; t.textContent = time; r.className = "cn-role"; r.textContent = role;
+  li.appendChild(t); li.appendChild(document.createTextNode(" \u00b7 ")); li.appendChild(r);
+  if (extra) li.appendChild(document.createTextNode(" (" + extra + ")"));
+  li.appendChild(document.createTextNode(": "));
+  return li;
+}
+function eventLine(time, role, i, name, href){
+  var li = planLine(time, role), a = document.createElement("a");
+  a.href = href; a.textContent = name; li.appendChild(a);
+  var bits = i != null ? [HOODS[i], priceOf(i)].filter(Boolean) : [];
+  if (bits.length) li.appendChild(document.createTextNode(" (" + bits.join(" \u00b7 ") + ")"));
+  return li;
+}
+function adjustLink(){
+  var adj = document.createElement("a"); adj.className = "cn-adjust"; adj.href = "#"; adj.setAttribute("data-tune", "1");
+  adj.textContent = "¿No acaba de encajar? Ajusta"; return adj;
+}
+
+// Warm Concierge: a plan for the night, from the page itself (Toni's own plan replaces it when it arrives).
 function concierge(){
   var host = document.getElementById("conciergeNote"); if (!host) return;
   var now = isToday() && typeof cityNowMinutes === "function" ? cityNowMinutes() - 15 : -1;
   var score = function(i){ return (window.Tonight && Tonight.score) ? Tonight.score(i) : 0; };
+  var kidsOK = typeof kidsOn === "function" && kidsOn();
+  var flagged = function(i){ var f = typeof FLAGS !== "undefined" && FLAGS[i] ? FLAGS[i].split(",") : [];
+    return f.some(function(x){ return PLAN_SKIP.indexOf(x) >= 0; }) || (f.indexOf("kids") >= 0 && !kidsOK); };
   var cands = events().map(function(a){ return {a: a, i: +a.dataset.idx}; })
-    .filter(function(o){ var s = STARTS[o.i]; return s != null && s >= Math.max(now, 15 * 60 - 60); })
+    .filter(function(o){ var s = STARTS[o.i]; return s != null && s >= Math.max(now, 15 * 60 - 60) &&
+      quality(o.i) > 3 && !flagged(o.i) && !(KIDS[o.i] && !kidsOK); })
     .sort(function(x, y){ return (score(y.i) - score(x.i)) || (FREE[y.i] - FREE[x.i]) || (STARTS[x.i] - STARTS[y.i]); });
   // One main event (6:00-9:30 PM), one thing before it at a different venue,
   // and a late option only as an aside. Two things is a night; three is a lot.
@@ -5372,8 +5627,11 @@ function concierge(){
   }).map(function(f){ return f.venue; });
   var fresh = function(o){ return recent.indexOf(venue(o)) < 0; };
   var evening = function(o){ return STARTS[o.i] >= 18 * 60 && STARTS[o.i] <= 21 * 60 + 30; };
-  var main = cands.filter(function(o){ return evening(o) && fresh(o); })[0] ||
-             cands.filter(fresh)[0] || cands.filter(evening)[0] || cands[0];
+  // the main event is one of the day's standouts (quality 7+) whenever one fits
+  var best = cands.filter(function(o){ return quality(o.i) >= 7; });
+  var main = best.filter(function(o){ return evening(o) && fresh(o); })[0] || best.filter(evening)[0] ||
+             cands.filter(function(o){ return evening(o) && fresh(o); })[0] ||
+             best.filter(fresh)[0] || cands.filter(fresh)[0] || cands.filter(evening)[0] || cands[0];
   if (main) {
     featured = featured.filter(function(f){ return f.date !== DATE; })
       .concat([{date: DATE, venue: venue(main)}]).slice(-7);
@@ -5391,51 +5649,38 @@ function concierge(){
       return o !== main && o !== before && STARTS[o.i] - STARTS[main.i] >= 150 && venue(o) !== venue(main) && near(o, main);
     })[0] || null;
   }
-  var day = new Date(DATE + "T12:00:00").toLocaleDateString("es-MX", {weekday: "long"});
-  var p = document.createElement("p");
-  function link(o){
-    var a = document.createElement("a"); a.href = (typeof EIDS !== "undefined" && EIDS[o.i]) ? "#e-" + EIDS[o.i] : "#event-" + o.i; a.textContent = NAMES[o.i]; return a;
-  }
-  function bit(o){
-    var v = venueOf(o.a), frag = document.createDocumentFragment();
-    frag.appendChild(link(o));
-    frag.appendChild(document.createTextNode((v ? " at " + v : "") + ", " + fmt(STARTS[o.i]) + (FREE[o.i] ? " (free)" : "")));
-    return frag;
-  }
-  function say(t){ p.appendChild(document.createTextNode(t)); }
+  var href = function(o){ return (typeof EIDS !== "undefined" && EIDS[o.i]) ? "#e-" + EIDS[o.i] : "#event-" + o.i; };
+  var line = function(o, role){ return eventLine(hm(STARTS[o.i]), role, o.i, NAMES[o.i], href(o)); };
   if (!main) {
+    host.innerHTML = "";
+    var p = document.createElement("p");
     p.textContent = "Día tranquilo por ahora. Todo lo que hay está abajo; marca lo que te guste.";
-  } else {
-    if (before) { say("Calienta motores con "); p.appendChild(bit(before)); say(". Luego, el evento principal: "); }
-    else { say("El plan de esta noche: "); }
-    p.appendChild(bit(main)); say(".");
-    if (late) {
-      var aside = document.createElement("span"); aside.className = "cn-late";
-      aside.appendChild(document.createTextNode(" ¿Sigues con ganas? "));
-      aside.appendChild(bit(late)); aside.appendChild(document.createTextNode("."));
-      p.appendChild(aside);
-    }
-    if (!before && window.TonightToni) {
-      var ask = document.createElement("button"); ask.type = "button"; ask.className = "cn-ask";
-      ask.textContent = "Planea una noche en torno a esto →";
-      ask.addEventListener("click", function(){
-        TonightToni.ask("Plan a night around " + NAMES[main.i] + " at " + venueOf(main.a) + " (" + fmt(STARTS[main.i]) +
-          "): add one thing before or after it at a different venue. Keep it to two things.",
-          "Planea mi noche en torno a " + NAMES[main.i].split(/[,:(]/)[0].trim());
-      });
-      p.appendChild(document.createTextNode(" ")); p.appendChild(ask);
-    }
+    host.appendChild(p);
+    return;
   }
-  host.innerHTML = "";
-  var eye = document.createElement("div"); eye.className = "cn-eye"; eye.textContent = "Una nota para tu " + day;
-  var sign = document.createElement("div"); sign.className = "cn-sign";
-  var tasted = window.Tonight && Tonight.describe && Tonight.taste && (Tonight.taste.likes.length || Tonight.taste.free_only);
-  var adj = document.createElement("a"); adj.href = "#"; adj.setAttribute("data-tune", "1");
-  adj.textContent = tasted ? "Not quite right? Adjust" : "Tell Tonight what you like";
-  sign.appendChild(document.createTextNode(tasted ? "Picked with your taste in mind. " : ""));
-  sign.appendChild(adj);
-  if (!tasted) sign.appendChild(document.createTextNode(" and this note gets more personal."));
-  host.appendChild(eye); var hi = greeting(); if (hi) host.appendChild(hi); host.appendChild(p); host.appendChild(sign);
+  var lines = [];
+  if (before) lines.push(line(before, "Para empezar"));
+  lines.push(line(main, "Evento principal"));
+  if (late) lines.push(line(late, "Después"));
+  planBox(host, lines);
+  var row = document.createElement("div"); row.className = "cn-actions";
+  if (!before && window.TonightToni) {
+    var ask = document.createElement("button"); ask.type = "button"; ask.className = "cn-ask";
+    ask.textContent = "Planea una noche en torno a esto →";
+    ask.addEventListener("click", function(){
+      TonightToni.ask("Plan a night around " + NAMES[main.i] + " at " + venueOf(main.a) + " (" + fmt(STARTS[main.i]) +
+        "): add one thing before or after it at a different venue. Keep it to two things.",
+        "Planea mi noche en torno a " + NAMES[main.i].split(/[,:(]/)[0].trim());
+    });
+    row.appendChild(ask);
+  }
+  var tasted = window.Tonight && Tonight.taste && (Tonight.taste.likes.length || Tonight.taste.free_only);
+  if (tasted) row.appendChild(adjustLink());
+  else {
+    var tell = document.createElement("a"); tell.className = "cn-adjust"; tell.href = "#"; tell.setAttribute("data-tune", "1");
+    tell.textContent = "Dile a Tonight qué te gusta"; row.appendChild(tell);
+  }
+  host.appendChild(row);
 }
 
 // Vertical Timeline: one list, grouped by start hour, on a rail.
@@ -5489,61 +5734,56 @@ function aiNote(){
       .concat([{date: DATE, venue: (main.venue || "").toLowerCase()}]).slice(-7);
     try { localStorage.setItem("tonight-featured-" + CITY, JSON.stringify(featured)); } catch (e) {}
     var el = function(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
-    var day = new Date(DATE + "T12:00:00").toLocaleDateString("es-MX", {weekday: "long"});
-    host.innerHTML = "";
-    host.appendChild(el("div", "cn-eye", "Una nota para tu " + day));
-    var hi = greeting(); if (hi) host.appendChild(hi);
-    host.appendChild(el("p", "", d.note || main.why));
-    var ol = el("ol", "cn-plan");
     var label = {before: "Para empezar", main: "Evento principal", after: "Después"};
-    d.picks.forEach(function(p, k){
-      var li = el("li"), t = el("span", "cn-t", (p.start_time || "").replace(":00", ""));
-      var body = el("span", "cn-b"); body.appendChild(el("span", "cn-role", label[p.role] || ""));
-      var a = el("a", "", p.name); a.href = p.eid ? "#e-" + p.eid : "#event-" + p.id; body.appendChild(a);
-      body.appendChild(el("span", "cn-v", [p.venue, p.price === "free" ? "free" : (p.price !== "price unknown" ? p.price : "")].filter(Boolean).join(" · ")));
-      if (p.why) body.appendChild(el("span", "cn-why", p.why));
-      li.appendChild(t); li.appendChild(body); ol.appendChild(li);
-      if (p.gap_after && k < d.picks.length - 1) ol.appendChild(el("li", "cn-gap", p.gap_after));
+    // this page's own index for a pick (the weekend page lists three days, so go by permanent id)
+    var idxOf = function(p){ var j = p.eid && typeof EIDS !== "undefined" ? EIDS.indexOf(p.eid) : -1;
+      return j >= 0 ? j : (typeof EDATE !== "undefined" && EDATE ? null : (p.id != null && p.id < NAMES.length ? p.id : null)); };
+    var lines = d.picks.map(function(p){
+      return eventLine(p.start_time || "", label[p.role] || "", idxOf(p), p.name, p.eid ? "#e-" + p.eid : "#event-" + p.id);
     });
-    host.appendChild(ol);
     var dn = d.dinner;
     if (dn && dn.time) {
-      var dl = el("div", "cn-dine");
-      dl.appendChild(el("b", "", "Cena: " + dn.time + ", " + dn.why + ". "));
       var rs = dn.restaurants || [];
+      var li = planLine(dn.time, "Cena", rs.length && rs[0].walk ? rs[0].walk : "");
       // each suggestion opens the real place on Google Maps (with "Reserve" where it takes bookings);
       // OpenStreetMap places are often not on OpenTable at all
-      var cityName = (document.querySelector(".hero h1") || {textContent: ""}).textContent.trim();
+      var cityName = (document.querySelector(".hero h1 .h-city") || document.querySelector(".hero h1") || {textContent: ""}).textContent.trim();
       rs.forEach(function(r, k){
         var a = el("a", "", r.name); a.target = "_blank"; a.rel = "noopener";
         a.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + (dn.area || dn.venue || "") + " " + cityName);
-        dl.appendChild(a); dl.appendChild(document.createTextNode(" (" + [r.cuisine, r.walk].filter(Boolean).join(", ") + ")" + (k < rs.length - 1 ? " o " : ". ")));
+        if (k) li.appendChild(document.createTextNode(" o "));
+        li.appendChild(a);
       });
+      if (!rs.length) li.appendChild(document.createTextNode(dn.why || ""));
       var ot = {nyc: "https://www.opentable.com", la: "https://www.opentable.com", london: "https://www.opentable.co.uk"}[CITY];
       var where = dn.area || dn.venue;
       if (ot && where) {
         var hh = String(Math.floor(dn.mins / 60)).padStart(2, "0"), mm = String(dn.mins % 60).padStart(2, "0");
         var party = 2; try { party = Math.min(12, Math.max(1, +localStorage.getItem("tonight-party") || 2)); } catch (e) {}
         // OpenTable ignores map coordinates in the address; its search box takes a place name
-        var bk = el("a", "", "Reservar mesa cerca de " + where + " →");
+        var bk = el("a", "cn-book", "Reservar mesa ↗");
         bk.href = ot + "/s?dateTime=" + encodeURIComponent(DATE + "T" + hh + ":" + mm) + "&covers=" + party +
           "&term=" + encodeURIComponent(where);
-        bk.target = "_blank"; bk.rel = "noopener"; dl.appendChild(bk);
+        bk.target = "_blank"; bk.rel = "noopener";
+        li.appendChild(document.createTextNode(" ")); li.appendChild(bk);
       }
-      host.appendChild(dl);
+      lines.push(li);
     }
+    // in time order: dinner sits between the stops it fits around
+    var mins = function(li){ var m = /^(\d{1,2})(?::(\d{2}))?\s*([AP])M/i.exec(li.querySelector(".cn-t").textContent || "");
+      return m ? (+m[1] % 12 + (m[3].toUpperCase() === "P" ? 12 : 0)) * 60 + (+m[2] || 0) : 9999; };
+    lines.sort(function(a, b){ return mins(a) - mins(b); });
+    planBox(host, lines);
     var row = el("div", "cn-actions");
     if (window.TonightToni) {
-      var ch = el("button", "cn-ask", "Pídele a Toni que lo cambie →"); ch.type = "button";
+      var ch = el("button", "cn-ask", "Otro plan ↻"); ch.type = "button";
       var used = d.picks.map(function(p){ return p.name + " (" + p.venue + ")"; }).join(", ");
       ch.addEventListener("click", function(){ TonightToni.ask("Give me a different plan for tonight. Don't use any of these: " +
         used + ". Pick a new main event at a different venue, plus one thing before or after it. Keep it to two things.",
         "Cambiar el plan de esta noche", d.picks.map(function(p){ return p.venue; })); });
       row.appendChild(ch);
     }
-    row.appendChild(el("span", "cn-sign", "Elegido por Toni según tu gusto."));
-    var adj = el("a", "cn-adjust", "Not quite right? Adjust"); adj.href = "#"; adj.setAttribute("data-tune", "1");
-    row.appendChild(adj);
+    row.appendChild(adjustLink());
     host.appendChild(row);
   }).catch(function(){});
 }
@@ -5577,7 +5817,7 @@ function grid(){
     left.appendChild(el("div", "gr-cat", cat + (hood ? " · " + hood : "")));
     left.appendChild(el("div", "gr-time", STARTS[i] != null ? fmt(STARTS[i]) : "Any time"));
     art.appendChild(left);
-    var svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", "0 0 24 24"); svg.setAttribute("fill", "ninguna");
+    var svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", "0 0 24 24"); svg.setAttribute("fill", "none");
     svg.setAttribute("stroke", "currentColor"); svg.setAttribute("stroke-width", "1.8"); svg.setAttribute("aria-hidden", "true");
     var p = document.createElementNS(NS, "path"); p.setAttribute("d", c[2]); svg.appendChild(p); art.appendChild(svg);
     a.insertBefore(art, a.firstChild);
@@ -5717,7 +5957,7 @@ function look_tonightfirst(){
     later: "Todo lo de hoy, por categoría", laterSub: "Lo que está en curso va primero en cada sección."
   } : {
     now: "Happening now", sub: " on or starting soon · it's ", on: "Ahora", until: " · until ", soon: "Empieza en ",
-    nowShort: "now", inShort: "in ", tba: "TBA", free: "Gratis", tix: "Tickets & info", pick: "Pick", hide: "Hide",
+    nowShort: "now", inShort: "in ", tba: "Por confirmar", free: "Gratis", tix: "Tickets & info", pick: "Elegir", hide: "Hide",
     empty: "Nothing on right now that matches your filters.", none: "Nothing on or starting in the next two hours. The rest of the day is below.",
     later: "Everything today, by category", laterSub: "What's on now leads each section."
   };
@@ -5806,7 +6046,7 @@ function look_tonightfirst(){
     var shown = 0;
     items.forEach(function(it){
       var c = cardOf(it.i);
-      var vis = !!c && (c.style.display !== "ninguna" || c.getAttribute("data-clamped") === "1");
+      var vis = !!c && (c.style.display !== "none" || c.getAttribute("data-clamped") === "1");
       setCls(it.node, "lk-gone", !vis); if (vis) shown++;
       var tg = c && c.querySelector(".toggle"), on = tg && tg.getAttribute("aria-pressed") === "true" ? "true" : "false";
       var pb = it.node.querySelector(".lk-pick"); if (pb.getAttribute("aria-pressed") !== on) pb.setAttribute("aria-pressed", on);
@@ -5876,7 +6116,7 @@ function look_tabs(){
     s.setAttribute("data-lk-tab", k);
     return k;
   }
-  function shown(a){ return a.style.display !== "ninguna" || a.getAttribute("data-clamped") === "1"; }
+  function shown(a){ return a.style.display !== "none" || a.getAttribute("data-clamped") === "1"; }
   function count(s){ var n = 0; [].forEach.call(s.querySelectorAll("article.event"), function(a){ if (shown(a)) n++; }); return n; }
   function isToday(){
     try { return typeof cityToday === "function" && typeof cityNowMinutes === "function" && DATE === cityToday(); }
@@ -5970,7 +6210,7 @@ function look_tabs(){
       setCls(s, "lk-off", k !== active);
     });
     var cur = list[keys.indexOf(active)];
-    setCls(empty, "lk-show", !special && !!cur && (cur.style.display === "ninguna" || counts[keys.indexOf(active)] === 0));
+    setCls(empty, "lk-show", !special && !!cur && (cur.style.display === "none" || counts[keys.indexOf(active)] === 0));
     var fc = document.getElementById("fclear");
     setCls(clr, "lk-gone", !fc || fc.hidden);
   }
@@ -6120,6 +6360,111 @@ function look_appplain(){
   }
 }
 var f={'editorial':typeof look_editorial==='function'?look_editorial:null,'zen':typeof look_zen==='function'?look_zen:null,'tonightfirst':typeof look_tonightfirst==='function'?look_tonightfirst:null,'tabs':typeof look_tabs==='function'?look_tabs:null,'app':typeof look_app==='function'?look_app:null,'tonightapp':typeof look_tonightapp==='function'?look_tonightapp:null,'appeditorial':typeof look_appeditorial==='function'?look_appeditorial:null,'appplain':typeof look_appplain==='function'?look_appplain:null}[L];if(f)document.addEventListener('DOMContentLoaded',function(){try{f();}catch(e){console.error(e);}});})();</script><script>
+(function(){
+"use strict";
+var host = document.getElementById("topTonight");
+if (!host || typeof NAMES === "undefined") return;
+var list = host.querySelector(".tt-list"), empty = host.querySelector(".tt-empty");
+var SIZE = 15, SKIP = ["networking", "sales", "spam", "service", "internal", "members_only", "online"];
+function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+function T(){ return window.Tonight || {}; }
+function quality(i){ return T().quality ? T().quality(i) : (typeof QUAL[i] === "number" ? QUAL[i] : 5); }
+function personal(i){ return T().personal ? T().personal(i) : 0; }
+function flags(i){ return FLAGS[i] ? FLAGS[i].split(",") : []; }
+function card(i){ return document.querySelector('article.event[data-idx="' + i + '"]'); }
+// the filter row decides for the list below; Top tonight follows it (collapsed "Show all" cards still count)
+function shown(a){ return a.style.display !== "none" || a.dataset.clamped === "1"; }
+function nameKey(i){ return NAMES[i].toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 40); }
+function pick(){
+  var today = !EDAYS && typeof cityToday === "function" && DATE === cityToday();
+  var now = today ? cityNowMinutes() : 0, kids = typeof kidsOn === "function" && kidsOn();
+  var cands = [];
+  NAMES.forEach(function(n, i){
+    var a = card(i), q = quality(i), f = flags(i);
+    if (!a || !shown(a) || q <= 3) return;
+    if (f.some(function(x){ return SKIP.indexOf(x) >= 0; })) return;
+    if ((KIDS[i] || f.indexOf("kids") >= 0) && !kids) return;
+    var s = STARTS[i];
+    if (today && s != null) {
+      var end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
+      if (now - s > 60 || (end != null && end <= now)) return;  // started over an hour ago, or over
+    }
+    cands.push({i: i, r: (q - 5) * 3 + personal(i), q: q});
+  });
+  cands.sort(function(x, y){ return (y.r - x.r) || (y.q - x.q) || (x.i - y.i); });
+  var catOn = (document.getElementById("fcat") || {}).value;  // one kind picked: no cap on it
+  var out = [], venues = {}, shows = {}, names = {}, perCat = {}, flex = 0, slots = 0;
+  for (var k = 0; k < cands.length && out.length < SIZE; k++) {
+    var i = cands[k].i, f = flags(i), v = (VENUES[i] || "").toLowerCase().trim(), sk = SERIES[i], nk = nameKey(i);
+    if (v && venues[v]) continue;
+    if ((sk && shows[sk]) || names[nk]) continue;
+    if (!catOn && (perCat[CATS[i]] || 0) >= 3) continue;
+    if (f.indexOf("flex_entry") >= 0 && flex) continue;
+    if (f.indexOf("class_slot") >= 0 && slots) continue;
+    if (v) venues[v] = 1; if (sk) shows[sk] = 1; names[nk] = 1;
+    perCat[CATS[i]] = (perCat[CATS[i]] || 0) + 1;
+    if (f.indexOf("flex_entry") >= 0) flex = 1;
+    if (f.indexOf("class_slot") >= 0) slots = 1;
+    out.push(i);
+  }
+  return out;
+}
+function when(i){
+  var t = STARTS[i] != null && typeof hmLabel === "function" ? hmLabel(STARTS[i]) : "Por confirmar";
+  if (EDATE) {  // the weekend page: say which day
+    var d = new Date(EDATE[i] + "T12:00:00").toLocaleDateString(document.documentElement.lang === "es" ? "es-MX" : "es-MX", {weekday: "short"});
+    t = d.replace(".", "") + " " + t;
+  }
+  return t;
+}
+function row(i){
+  var a = card(i), li = el("li", "tt-row"); li.dataset.idx = i;
+  var tick = a && a.querySelector(".toggle"), on = !!tick && tick.getAttribute("aria-pressed") === "true";
+  var star = el("button", "tt-star", on ? "★" : "☆"); star.type = "button";
+  star.setAttribute("aria-pressed", on ? "true" : "false"); star.setAttribute("aria-label", "Elegir");
+  star.addEventListener("click", function(){ var t = card(i) && card(i).querySelector(".toggle"); if (t) t.click(); });
+  li.appendChild(star);
+  li.appendChild(el("span", "tt-time", when(i)));
+  var main = el("div", "tt-main"), name = el("a", "tt-name", NAMES[i]);
+  name.href = EIDS[i] ? "#e-" + EIDS[i] : "#event-" + i;
+  main.appendChild(name);
+  if (HOODS[i]) main.appendChild(el("span", "tt-hood", " · " + HOODS[i]));
+  if (WHY[i]) main.appendChild(el("div", "tt-why", WHY[i]));
+  li.appendChild(main);
+  var tix = a && a.querySelector("a.tickets"), label = FREE[i] ? "Gratis" : (PRICES[i] || "").replace(/\.00(?!\d)/g, "");
+  if (!label && tix) label = "Boletos";
+  var price = el(tix ? "a" : "span", "tt-price" + (FREE[i] ? " free" : ""), label || null);
+  if (tix) { price.href = tix.href; price.target = "_blank"; price.rel = "noopener"; }
+  if (!label) price.style.visibility = "hidden";
+  li.appendChild(price);
+  var x = el("button", "tt-x", "×"); x.type = "button";
+  x.setAttribute("aria-label", "No es para mí"); x.title = "No es para mí";
+  x.addEventListener("click", function(){ var h = card(i) && card(i).querySelector(".hide"); if (h) h.click(); });
+  li.appendChild(x);
+  return li;
+}
+function draw(){
+  var ids = pick(), frag = document.createDocumentFragment();
+  ids.forEach(function(i){ frag.appendChild(row(i)); });
+  list.innerHTML = ""; list.appendChild(frag);
+  if (empty) empty.hidden = ids.length > 0;
+}
+var queued = false;
+window.__topTonight = function(){
+  if (queued) return; queued = true;
+  setTimeout(function(){ queued = false; draw(); }, 0);
+};
+// "Include kids' events" changes who's in; the list below stays where it is
+document.addEventListener("click", function(e){ if (e.target.closest && e.target.closest("#kidsToggle")) window.__topTonight(); });
+var all = host.querySelector(".tt-all");
+if (all) all.addEventListener("click", function(e){
+  var m = document.getElementById("allEvents"); if (!m) return;
+  e.preventDefault(); m.scrollIntoView({behavior: "smooth", block: "start"});
+});
+document.addEventListener("DOMContentLoaded", window.__topTonight);
+setInterval(window.__topTonight, 5 * 60 * 1000);  // today: what's started drops off
+})();
+</script><script>
 (function(){
 // An older day's page: go to today's page for the same city (keeping filters), unless this is a
 // shared link to one event (#e-...) or Toni is open mid-conversation; then just say so.
@@ -6361,7 +6706,7 @@ function applyPageFilters(f){
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
   set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || "");
   var n = 0;
-  document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "ninguna") n++; });
+  document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;
 }
 // "Send to friends": a plan becomes one "are you in?" vote, a list becomes a pick-one vote.
@@ -6388,7 +6733,7 @@ function textGroup(m, st){
   if (m.plan) {
     if (m.dinner && m.dinner.time) {
       var rs = (m.dinner.restaurants || []).slice(0, 2).map(function(r){ return r.name; });
-      stops.push({t: m.dinner.time, line: "Dinner" + (rs.length ? " at " + rs.join(" o ") : m.dinner.venue ? " near " + m.dinner.venue : "")});
+      stops.push({t: m.dinner.time, line: "Cena" + (rs.length ? " at " + rs.join(" o ") : m.dinner.venue ? " near " + m.dinner.venue : "")});
     }
     stops.sort(function(a, b){ return toMins(a.t) - toMins(b.t); });
     text = "Tonight's plan 👇\n" + stops.map(function(x){ return (x.t ? x.t + " " : "") + x.line; }).join("\n") + "\nYou in? " + url;
@@ -6593,6 +6938,208 @@ sel.addEventListener("change", fromSelect);
 document.addEventListener("click", function(e){ if (box.hasAttribute("open") && !box.contains(e.target)) box.removeAttribute("open"); });
 sel.hidden = true; sel.parentNode.insertBefore(box, sel.nextSibling);
 fromSelect();
+})();
+</script><script>
+(function(){
+"use strict";
+var FX = window.__facet, side = document.getElementById("fside"), bar = document.getElementById("filterBar");
+if (!FX || !side || !bar || typeof CATS === "undefined") return;
+var L = {when: "Cuándo", evening: "Noche 5pm+", day: "De día", any: "Todo", soon: "Empieza pronto", exact: "Horas exactas",
+  price: "Precio", free: "Solo gratis", cat: "Categoría", area: "Zona", clear: "Borrar", clearAll: "Borrar filtros",
+  show: "Ver {n} eventos", show1: "Ver 1 evento", filters: "Filtros", filtersN: "Filtros ({n})", elsewhere: "Otros lugares",
+  more: "Ver los {n}", fewer: "Ver menos", close: "Cerrar"};
+var root = document.documentElement; root.classList.add("fs-on");
+function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+function $(id){ return document.getElementById(id); }
+var catSel = $("fcat"), hoodSel = $("fhood"), soonBtn = $("nextHourBtn");
+var cards = [].slice.call(document.querySelectorAll("article.event"));
+var N = NAMES.length, cardOf = {};
+cards.forEach(function(a){ cardOf[+a.dataset.idx] = a; });
+// set a filter-row select (several values join with "," for categories, "|" for areas) and let the row react
+function setSel(sel, v){
+  if (!sel) return;
+  if (v && ![].slice.call(sel.options).some(function(o){ return o.value === v; })) {
+    var o = document.createElement("option"); o.value = v; o.textContent = v; o.dataset.multi = "1"; sel.appendChild(o);
+  }
+  sel.value = v; sel.dispatchEvent(new Event("change", {bubbles: true}));
+}
+function vals(sel, sep){ return sel && sel.value ? sel.value.split(sep).filter(Boolean) : []; }
+function toggle(list, v, on){ var i = list.indexOf(v); if (on && i < 0) list.push(v); else if (!on && i >= 0) list.splice(i, 1); return list; }
+function soonShown(){ return !!soonBtn && !EDAYS && typeof cityToday === "function" && DATE === cityToday(); }
+function soonOn(){ return !!soonBtn && soonBtn.getAttribute("aria-pressed") === "true"; }
+
+var groups = el("div", "fsg"); groups.id = "fsGroups";
+var top = el("div", "fs-top"), title = el("span", "fs-title", L.filters), clearAll = el("button", "fs-link", L.clearAll);
+clearAll.type = "button"; top.appendChild(title); top.appendChild(clearAll); groups.appendChild(top);
+function section(name, onClear){
+  var s = el("section", "fs-sec"), h = el("div", "fs-head"), hh = el("h3", "fs-h", name);
+  h.appendChild(hh);
+  var c = null;
+  if (onClear) { c = el("button", "fs-link", L.clear); c.type = "button"; c.addEventListener("click", onClear); h.appendChild(c); }
+  s.appendChild(h); groups.appendChild(s);
+  return {s: s, clear: c};
+}
+function row(parent, type, name, label, onChange){
+  var r = el("label", "fs-row"), i = document.createElement("input"), l = el("span", "fs-l", label), n = el("span", "fs-n");
+  i.type = type; if (name) i.name = name;
+  i.addEventListener("change", function(){ onChange(i.checked); });
+  r.appendChild(i); r.appendChild(l); r.appendChild(n); parent.appendChild(r);
+  return {r: r, i: i, n: n};
+}
+function setRow(o, count, checked){
+  o.i.checked = checked; o.n.textContent = count;
+  var zero = !count && !checked;
+  o.r.classList.toggle("zero", zero); o.i.disabled = zero;
+}
+
+// When
+var todBtn = function(t){ return document.querySelector('#ftod button[data-t="' + t + '"]'); };
+var when = section(L.when, function(){
+  if (soonOn()) soonBtn.click();
+  ["fafter", "fbefore"].forEach(function(id){ var s = $(id); if (s && s.value !== "") setSel(s, ""); });
+  var b = todBtn(FX.TOD0()); if (b) b.click();
+});
+var tods = [["evening", L.evening], ["day", L.day], ["all", L.any]].map(function(t){
+  var b = todBtn(t[0]), lab = b ? b.textContent : t[1];
+  return {t: t[0], o: row(when.s, "radio", "fs-tod", lab, function(on){ var x = todBtn(t[0]); if (on && x) x.click(); })};
+});
+var soon = null;
+if (soonShown()) soon = row(when.s, "checkbox", null, L.soon, function(){ soonBtn.click(); setTimeout(draw, 0); });
+var times = el("details", "fs-x"), tsum = el("summary", null, L.exact), tbox = el("div", "fs-times");
+times.appendChild(tsum); times.appendChild(tbox);
+["fafter", "fbefore"].forEach(function(id){
+  var s = $(id); if (!s) return;
+  tbox.appendChild(s);  // the row's own pickers move here (same ids, same listeners)
+  s.addEventListener("change", function(){ bar.dispatchEvent(new Event("change")); });
+});
+if (tbox.children.length) when.s.appendChild(times);
+
+// Price
+var price = section(L.price, null), freeBtn = $("ffree");
+var free = row(price.s, "checkbox", null, L.free, function(on){ if (freeBtn && FX.F.free !== on) freeBtn.click(); });
+
+// Category: busiest first
+var catOpts = catSel ? [].slice.call(catSel.options).filter(function(o){ return o.value && !o.dataset.multi && o.value.indexOf(",") < 0; }) : [];
+var dayCat = {}; CATS.forEach(function(c){ dayCat[c] = (dayCat[c] || 0) + 1; });
+catOpts.sort(function(a, b){ return (dayCat[b.value] || 0) - (dayCat[a.value] || 0); });
+var catSec = catOpts.length ? section(L.cat, function(){ setSel(catSel, ""); }) : null;
+var catRows = catOpts.map(function(o){
+  return {v: o.value, o: row(catSec.s, "checkbox", null, o.textContent, function(on){
+    setSel(catSel, toggle(vals(catSel, ","), o.value, on).join(","));
+  })};
+});
+
+// Area: borough / region groups, neighbourhoods inside (busiest first); a city without groups gets one list
+var dayHood = {}, hoodGroup = {};
+HOODS.forEach(function(h, i){ if (!h) return; dayHood[h] = (dayHood[h] || 0) + 1;
+  if (!hoodGroup[h]) hoodGroup[h] = (typeof AREA_GROUP !== "undefined" && AREA_GROUP[i]) || ""; });
+var hoodNames = Object.keys(dayHood).sort(function(a, b){ return (dayHood[b] - dayHood[a]) || a.localeCompare(b); });
+var areaSec = hoodSel && hoodNames.length ? section(L.area, function(){ setSel(hoodSel, ""); }) : null;
+var hoodRows = [], grpBoxes = [];
+function hoodRow(parent, h){
+  hoodRows.push({v: h, g: hoodGroup[h], o: row(parent, "checkbox", null, h, function(on){
+    setSel(hoodSel, toggle(vals(hoodSel, "|"), h, on).join("|"));
+  })});
+}
+if (areaSec) {
+  var order = (typeof AREA_ORDER !== "undefined" && AREA_ORDER) || [];
+  var used = order.filter(function(g){ return hoodNames.some(function(h){ return hoodGroup[h] === g; }); });
+  if (used.length) {
+    used.forEach(function(g){
+      var d = el("details", "fs-grp"), s = el("summary"), dot = el("span", "fs-dot"), n = el("span", "fs-n");
+      s.appendChild(el("span", "fs-l", g === order[order.length - 1] ? L.elsewhere : g)); s.appendChild(dot); s.appendChild(n);
+      d.appendChild(s); var sub = el("div", "fs-sub"); d.appendChild(sub);
+      hoodNames.forEach(function(h){ if (hoodGroup[h] === g) hoodRow(sub, h); });
+      areaSec.s.appendChild(d); grpBoxes.push({g: g, d: d, n: n, dot: dot});
+    });
+  } else {  // no borough map for this city: the busiest dozen, then the rest behind "Show all"
+    var wrap = el("div"), rest = el("div"); rest.hidden = true;
+    hoodNames.forEach(function(h, k){ hoodRow(k < 12 ? wrap : rest, h); });
+    areaSec.s.appendChild(wrap); areaSec.s.appendChild(rest);
+    if (hoodNames.length > 12) {
+      var mb = el("button", "fs-link fs-morebtn", L.more.replace("{n}", hoodNames.length)); mb.type = "button";
+      mb.addEventListener("click", function(){ rest.hidden = !rest.hidden;
+        mb.textContent = rest.hidden ? L.more.replace("{n}", hoodNames.length) : L.fewer; });
+      areaSec.s.appendChild(mb);
+    }
+  }
+}
+
+clearAll.addEventListener("click", function(){
+  var fc = $("fclear"); if (fc) fc.click();
+  if (soonOn()) soonBtn.click();
+  var b = todBtn(FX.TOD0()); if (b) b.click();  // back to the page's default (Evening after noon today)
+  setTimeout(draw, 0);
+});
+
+// Filters (n) button for narrow screens + the bottom sheet
+var fsBtn = el("button", null, L.filters); fsBtn.id = "fsBtn"; fsBtn.type = "button";
+fsBtn.setAttribute("aria-haspopup", "dialog");
+var srch = bar.querySelector(".fsearch"); if (srch) srch.parentNode.insertBefore(fsBtn, srch.nextSibling);
+var sheet = el("div"); sheet.id = "fsSheet"; sheet.hidden = true; sheet.setAttribute("role", "dialog"); sheet.setAttribute("aria-modal", "true");
+sheet.setAttribute("aria-label", L.filters);
+var panel = el("div", "fs-panel"), scroll = el("div", "fs-scroll"), foot = el("div", "fs-foot"), show = el("button", "fs-show");
+var x = el("button", "fs-close", "×"); x.type = "button"; x.setAttribute("aria-label", L.close); show.type = "button";
+panel.appendChild(x); panel.appendChild(scroll); foot.appendChild(show); panel.appendChild(foot); sheet.appendChild(panel);
+document.body.appendChild(sheet);
+var wide = matchMedia("(min-width:1100px)");
+function place(){
+  if (wide.matches) { if (!sheet.hidden) closeSheet(); if (groups.parentNode !== side) side.appendChild(groups); }
+  else if (groups.parentNode !== scroll) scroll.appendChild(groups);
+}
+function openSheet(){ place(); sheet.hidden = false; root.classList.add("fs-lock"); draw(); x.focus(); }
+function closeSheet(){ sheet.hidden = true; root.classList.remove("fs-lock"); }
+fsBtn.addEventListener("click", openSheet);
+x.addEventListener("click", closeSheet);
+show.addEventListener("click", function(){ closeSheet(); var m = $("topTonight") || $("allEvents"); if (m && m.offsetParent) m.scrollIntoView({block: "start"}); });
+sheet.addEventListener("click", function(e){ if (e.target === sheet) closeSheet(); });
+document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !sheet.hidden) closeSheet(); });
+if (wide.addEventListener) wide.addEventListener("change", place); else wide.addListener(place);
+place();
+
+// live counts: what each box would show with all the other filters as they are
+function draw(){
+  var F = FX.F, cats = vals(catSel, ","), hoods = vals(hoodSel, "|");
+  var cc = {}, hc = {}, gc = {}, tc = {evening: 0, day: 0, all: 0}, fr = 0, total = 0;
+  for (var i = 0; i < N; i++) {
+    var a = cardOf[i]; if (!a) continue;
+    var d = FX.dims(i, a); if (!d.base) continue;
+    if (d.cat && d.free && d.tod && d.hood) total++;
+    if (d.hood && d.free && d.tod) cc[CATS[i]] = (cc[CATS[i]] || 0) + 1;
+    if (d.cat && d.free && d.tod && HOODS[i]) { hc[HOODS[i]] = (hc[HOODS[i]] || 0) + 1; var g = hoodGroup[HOODS[i]]; gc[g] = (gc[g] || 0) + 1; }
+    if (d.cat && d.hood && d.tod && FREE[i]) fr++;
+    if (d.cat && d.hood && d.free) { if (FX.todMatch(i, "evening")) tc.evening++; if (FX.todMatch(i, "day")) tc.day++; tc.all++; }
+  }
+  tods.forEach(function(t){ setRow(t.o, tc[t.t], F.tod === t.t); });
+  if (soon) soon.i.checked = soonOn();
+  var tOn = F.after != null || F.before != null;
+  ["fafter", "fbefore"].forEach(function(id){ var s = $(id); if (s) s.classList.toggle("on", s.value !== ""); });
+  if (tOn && !times.open) times.open = true;
+  setRow(free, fr, !!F.free);
+  catRows.forEach(function(r){ setRow(r.o, cc[r.v] || 0, cats.indexOf(r.v) >= 0); });
+  hoodRows.forEach(function(r){ setRow(r.o, hc[r.v] || 0, hoods.indexOf(r.v) >= 0); });
+  grpBoxes.forEach(function(b){
+    var sel = hoods.some(function(h){ return hoodGroup[h] === b.g; });
+    b.n.textContent = gc[b.g] || 0; b.dot.hidden = !sel;
+    b.d.classList.toggle("zero", !gc[b.g] && !sel);
+    if (sel && !b.d.dataset.seen) { b.d.open = true; }
+    b.d.dataset.seen = sel ? "1" : "";
+  });
+  var nOn = cats.length + hoods.length + (F.free ? 1 : 0) + (F.tod !== FX.TOD0() ? 1 : 0) +
+    (F.after != null ? 1 : 0) + (F.before != null ? 1 : 0) + (soonOn() ? 1 : 0);
+  var any = nOn > 0 || !!F.q;
+  clearAll.hidden = !any;
+  if (when.clear) when.clear.hidden = !(F.tod !== FX.TOD0() || tOn || soonOn());
+  if (catSec) catSec.clear.hidden = !cats.length;
+  if (areaSec) areaSec.clear.hidden = !hoods.length;
+  fsBtn.textContent = nOn ? L.filtersN.replace("{n}", nOn) : L.filters;
+  fsBtn.classList.toggle("on", nOn > 0);
+  show.textContent = total === 1 ? L.show1 : L.show.replace("{n}", total);
+}
+var queued = false;
+window.__fside = function(){ if (queued) return; queued = true; setTimeout(function(){ queued = false; draw(); }, 0); };
+document.addEventListener("click", function(e){ if (e.target.closest && e.target.closest("#nextHourBtn,#ftod button,#ffree")) window.__fside(); });
+draw();
 })();
 </script><script>
 (function(){

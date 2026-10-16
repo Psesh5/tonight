@@ -144,9 +144,10 @@ font-family:inherit;color:var(--ink,#14201A);background:var(--field);margin:6px 
 .sv-note{font-size:13px;opacity:.8;line-height:1.5;margin:10px 0 0;}
 .sv-save{margin-left:10px;}
 </style><style>
-#conciergeNote{display:block;max-width:760px;margin:16px auto 4px;background:var(--card);color:var(--ink);
-border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:16px 22px;}
+#conciergeNote{display:block;max-width:1040px;margin:16px auto 4px;background:var(--card);color:var(--ink);
+border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:12px 18px 12px;box-sizing:border-box;}
 #conciergeNote:empty{display:none;}
+@media(max-width:640px){#conciergeNote{margin-left:12px;margin-right:12px;padding:10px 14px;}}
 :root[data-layout="concierge"] #conciergeNote{display:block;max-width:760px;margin:16px auto 4px;background:var(--card);
 color:var(--ink);border-radius:20px;padding:16px 22px;box-shadow:0 10px 30px rgba(0,0,0,.08);
 border:1px solid var(--muted);}
@@ -157,18 +158,21 @@ color:var(--accent);filter:brightness(.8);}
 #conciergeNote a{color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 #conciergeNote .cn-late{font-size:.8em;opacity:.8;}
 #conciergeNote .cn-hi{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:22px;margin-top:8px;}
-#conciergeNote .cn-plan{list-style:none;margin:10px 0 2px;padding:0;display:flex;flex-direction:column;gap:6px;}
-#conciergeNote .cn-plan li{display:flex;gap:14px;align-items:flex-start;}
-#conciergeNote .cn-t{flex:none;width:74px;font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:16px;}
-#conciergeNote .cn-b{display:flex;flex-direction:column;gap:1px;min-width:0;}
-#conciergeNote .cn-role{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.6;}
-#conciergeNote .cn-b a{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:18px;}
+#conciergeNote .cn-plan{list-style:none;margin:6px 0 2px;padding:0;display:flex;flex-direction:column;gap:4px;}
+#conciergeNote .cn-plan li{font-size:14.5px;line-height:1.45;}
+#conciergeNote .cn-t{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;}
+#conciergeNote .cn-role{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;}
+#conciergeNote .cn-plan a{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:16.5px;}
+#conciergeNote .cn-plan a.cn-book{font:800 11.5px/1.2 'Inter',sans-serif;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;
+border:2px solid var(--ink);padding:2px 7px;text-decoration:none;vertical-align:1px;}
+#conciergeNote .cn-plan a.cn-book:hover{background:var(--accent);color:var(--on-accent,var(--ink));}
+#conciergeNote .cn-adjust{font-size:13.5px;font-weight:600;}
 #conciergeNote .cn-v{font-size:13px;opacity:.75;}
 #conciergeNote .cn-why{font-size:14px;}
 #conciergeNote li.cn-gap{font-size:12px;font-weight:700;opacity:.65;padding-left:88px;}
 #conciergeNote .cn-dine{margin-top:8px;padding-top:8px;border-top:1px solid var(--muted);font-size:14.5px;line-height:1.5;}
 #conciergeNote .cn-dine a{font-weight:700;}
-#conciergeNote .cn-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:8px;}
+#conciergeNote .cn-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:6px;}
 #conciergeNote .cn-actions .cn-sign{margin:0;}
 #conciergeNote .cn-ask{font:700 13px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent);
 border:none;border-radius:999px;padding:7px 14px;cursor:pointer;vertical-align:middle;}
@@ -262,6 +266,10 @@ background:var(--field,#fff);color:var(--ink,#14201A);border-radius:0;}
 :root[data-layout="grid"] #conciergeNote{max-width:1060px;border-radius:14px;border:none;box-shadow:none;background-color:var(--accent);color:var(--on-accent,#14201A);
 background-image:repeating-linear-gradient(135deg,rgba(20,32,26,.08) 0 2px,transparent 2px 14px);}
 :root[data-layout="grid"] #conciergeNote a{color:inherit;}
+:root[data-layout="grid"] #conciergeNote .cn-eye{color:inherit;filter:none;opacity:.75;}
+:root[data-layout="grid"] #conciergeNote .cn-ask{background:var(--ink);color:var(--paper);}
+:root[data-layout="grid"] #topTonight{max-width:1060px;border-radius:16px;border-width:1.5px;box-shadow:4px 4px 0 var(--ink);}
+:root[data-layout="concierge"] #topTonight{border-radius:20px;border:1px solid var(--muted);box-shadow:0 8px 24px rgba(0,0,0,.06);}
 :root[data-layout="grid"] #filterBar{border-radius:16px;border-width:1.5px;box-shadow:none;}
 :root[data-layout="grid"] #filterBar .fsearch,:root[data-layout="grid"] #filterBar .fbtn,:root[data-layout="grid"] #filterBar select,:root[data-layout="grid"] .filters .fmulti summary{border-radius:10px;border-width:1.5px;box-shadow:none;}
 :root[data-layout="grid"] #filterBar .seg{border-radius:10px;border:none;background:var(--muted);padding:3px;gap:2px;box-shadow:none;}
@@ -1455,7 +1463,7 @@ padding:8px 0 calc(16px + env(safe-area-inset-bottom,0px));border-width:1px 0 0;
 :root[data-layout="appplain"] #toniPanel{border-width:1px 0 0;border-radius:12px 12px 0 0;}
 }
 </style><style>
-.daystrip{display:flex;gap:8px;overflow-x:auto;max-width:1100px;margin:14px auto 0;padding:0 16px 6px;scrollbar-width:none;box-sizing:border-box;}
+.daystrip{display:flex;gap:8px;overflow-x:auto;max-width:1072px;margin:14px auto 0;padding:0 16px 6px;scrollbar-width:none;box-sizing:border-box;}
 .daystrip::-webkit-scrollbar{display:none;}
 .daystrip .ds{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:64px;padding:8px 12px;
 border:2px solid var(--ink);background:var(--card);color:var(--ink);text-decoration:none;font:800 12px/1.15 'Inter',sans-serif;
@@ -1465,7 +1473,58 @@ letter-spacing:.06em;text-transform:uppercase;box-sizing:border-box;}
 .daystrip .ds.cur{background:var(--accent);color:var(--on-accent,#14201A);}
 .daystrip .ds.cur span{opacity:.85;}
 .daystrip .ds.wk{background:var(--ink);color:var(--paper);text-transform:none;letter-spacing:0;}
+.daystrip .ds-x{display:none;}
+.daystrip.open .ds-x{display:flex;}
+.daystrip .ds-more{cursor:pointer;font:800 12px/1.15 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;background:var(--paper);border-style:dashed;}
+.daystrip.open .ds-more{display:none;}
 .ds-note{max-width:1100px;margin:8px auto 0;padding:0 16px;font-size:13px;opacity:.75;box-sizing:border-box;}
+</style><style>
+#topTonight{max-width:1040px;margin:16px auto 0;padding:14px 16px 12px;background:var(--card);color:var(--ink);
+border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);box-sizing:border-box;}
+.listmode #topTonight{display:none;}
+#topTonight h2{margin:0 0 6px;font:900 clamp(1.35rem,3vw,1.75rem)/1.1 'Fraunces',Georgia,serif;text-transform:uppercase;letter-spacing:.5px;}
+.tt-list{list-style:none;margin:0;padding:0;}
+.tt-row{position:relative;display:grid;grid-template-columns:30px 76px minmax(0,1fr) auto 30px;column-gap:10px;align-items:baseline;
+padding:9px 0;border-top:2px solid var(--muted);}
+.tt-row:first-child{border-top:0;}
+.tt-star{align-self:start;width:30px;height:30px;margin-top:-4px;padding:0;border:0;background:none;color:var(--ink);font-size:22px;line-height:30px;cursor:pointer;}
+.tt-star[aria-pressed="true"]{color:var(--accent);}
+.tt-star:hover{transform:scale(1.12);}
+.tt-time{font:800 13.5px/1.3 'Inter',sans-serif;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.tt-main{min-width:0;}
+.tt-name{font:700 17px/1.3 'Fraunces',Georgia,serif;color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);
+text-decoration-thickness:2px;text-underline-offset:3px;}
+.tt-hood{font-size:13px;font-weight:600;opacity:.7;}
+.tt-why{font-size:13px;line-height:1.4;opacity:.68;margin-top:2px;}
+.tt-price{align-self:start;justify-self:end;white-space:nowrap;padding:3px 9px;border:2px solid var(--ink);background:var(--field,#fff);
+color:var(--ink);font:800 12px/1.3 'Inter',sans-serif;text-decoration:none;}
+a.tt-price:hover{background:var(--muted);}
+.tt-price.free{background:var(--accent);color:var(--on-accent,var(--ink));}
+.tt-x{align-self:start;width:30px;height:30px;margin-top:-3px;padding:0;border:0;background:none;color:var(--ink);font-size:22px;line-height:30px;
+cursor:pointer;opacity:0;transition:opacity .12s;}
+.tt-row:hover .tt-x,.tt-x:focus-visible{opacity:.55;}
+.tt-x:hover{opacity:1!important;}
+@media (hover:none){.tt-x{opacity:.5;}}
+.tt-empty{margin:4px 0 8px;font-size:14px;font-weight:600;opacity:.75;}
+.tt-all{display:inline-block;margin-top:8px;font:800 13px 'Inter',sans-serif;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);
+text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:4px;}
+#allEvents{scroll-margin-top:70px;}
+/* the default look: the full list lines up with the boxes above it */
+:root:not([data-layout]) main#allEvents,:root[data-layout="brutalist"] main#allEvents{max-width:1080px;}
+:root:not([data-layout]) #allEvents .event-body p,:root[data-layout="brutalist"] #allEvents .event-body p{max-width:76ch;}
+@media (max-width:640px){
+#topTonight{margin:14px 12px 0;padding:10px 12px 10px;}
+.tt-row{grid-template-columns:26px minmax(0,1fr) auto 26px;column-gap:8px;}
+.tt-star,.tt-x{width:26px;}
+.tt-time{grid-column:2;grid-row:1;font-size:12px;}
+.tt-main{grid-column:2;grid-row:2;}
+.tt-star{grid-row:1/3;}
+.tt-price{grid-column:3;grid-row:1/3;}
+.tt-x{grid-column:4;grid-row:1/3;}
+.tt-name{font-size:15.5px;}
+.tt-hood,.tt-why{font-size:12.5px;}
+.tt-x{opacity:.5;}
+}
 </style><style>
 #toniBtn{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:120;
 background:var(--accent);color:var(--on-accent,var(--ink));border:3px solid var(--ink);
@@ -1563,6 +1622,83 @@ text-transform:uppercase;padding:0 14px;cursor:pointer;}
 font:700 14.5px 'Inter',sans-serif;padding:11px 16px;text-align:center;}
 #staleBar a{color:inherit;font-weight:800;text-decoration:underline;text-decoration-thickness:2px;margin-left:6px;}
 </style><style>
+#fsLayout{box-sizing:border-box;}
+#fside{display:none;}
+:root.fs-on #filterBar .fchips > :not(.fsearch):not(#fsBtn){display:none!important;}
+:root.fs-on #filterBar .fextra{display:none!important;}
+:root.fs-on #filterBar .fchips{flex-wrap:nowrap;}
+:root.fs-on #filterBar .fchips .fsearch{flex:1 1 auto;}
+#fsBtn{flex:none;height:34px;padding:0 12px;border:2px solid var(--ink);background:var(--field,#fff);color:var(--ink);
+font:800 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+#fsBtn.on{background:var(--accent);color:var(--on-accent,var(--ink));}
+/* the groups: calm, thin rules, small caps headings, muted counts */
+.fsg{color:var(--ink);font-family:'Inter',-apple-system,'Segoe UI',sans-serif;font-size:14px;}
+.fs-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:2px 0 10px;}
+.fs-title{font:800 12px/1.2 'Inter',sans-serif;letter-spacing:1.5px;text-transform:uppercase;}
+.fs-link{background:none;border:0;padding:0;font:600 12.5px 'Inter',sans-serif;color:var(--ink);opacity:.7;cursor:pointer;
+text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+.fs-link:hover{opacity:1;}
+.fs-link[hidden]{display:none;}
+.fs-sec{border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent);padding:12px 0 10px;}
+.fs-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 6px;}
+.fs-h{margin:0;font:700 11px/1.2 'Inter',sans-serif;letter-spacing:1.4px;text-transform:uppercase;opacity:.62;}
+.fs-row{display:flex;align-items:flex-start;gap:9px;padding:4px 0;cursor:pointer;line-height:1.3;}
+.fs-row input{flex:none;width:15px;height:15px;margin:1px 0 0;accent-color:var(--ink);cursor:pointer;}
+.fs-row .fs-l{flex:1;min-width:0;overflow-wrap:anywhere;}
+.fs-row .fs-n{flex:none;padding-top:1px;font-size:12px;font-variant-numeric:tabular-nums;opacity:.5;}
+.fs-row.zero{opacity:.38;cursor:default;}
+.fs-row.zero input{cursor:default;}
+.fs-row:not(.zero):hover .fs-l{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;}
+.fs-sub{padding-left:24px;}
+.fs-x{margin:6px 0 0;}
+.fs-x summary,.fs-grp summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:7px;padding:5px 0;}
+.fs-x summary::-webkit-details-marker,.fs-grp summary::-webkit-details-marker{display:none;}
+.fs-x summary::before,.fs-grp summary::before{content:"";flex:none;width:6px;height:6px;margin:0 4px 0 3px;border:solid currentColor;
+border-width:0 1.5px 1.5px 0;transform:rotate(-45deg);opacity:.55;transition:transform .12s;}
+.fs-x[open] > summary::before,.fs-grp[open] > summary::before{transform:rotate(45deg);}
+.fs-x summary{font-size:13px;opacity:.8;}
+.fs-x .fs-times{display:flex;flex-direction:column;gap:6px;padding:4px 0 2px 20px;}
+.fs-x select{height:32px;padding:0 8px;border:1px solid color-mix(in srgb,var(--ink) 30%,transparent);background:var(--field,#fff);
+color:var(--ink);font:500 13px 'Inter',sans-serif;border-radius:0;max-width:100%;}
+.fs-x select.on{border-color:var(--ink);outline:2px solid var(--accent);outline-offset:-1px;}
+.fs-grp summary .fs-l{flex:1;font-weight:600;}
+.fs-grp summary .fs-n{font-size:12px;opacity:.5;font-variant-numeric:tabular-nums;}
+.fs-grp summary .fs-dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent);}
+.fs-grp.zero > summary{opacity:.38;}
+.fs-grp .fs-sub{padding:0 0 4px 20px;}
+.fs-morebtn{margin:4px 0 0;}
+/* wide screens: the sidebar beside Top tonight and the list */
+@media (min-width:1100px){
+:root.fs-on #fsLayout{display:grid;grid-template-columns:248px minmax(0,1fr);column-gap:28px;align-items:start;
+max-width:1360px;margin:0 auto;padding:0 24px;}
+:root.fs-on #fside{display:block;position:sticky;top:76px;margin-top:16px;max-height:calc(100vh - 92px);overflow-y:auto;
+overscroll-behavior:contain;padding:14px 16px 18px;box-sizing:border-box;background:var(--card);
+border:1px solid color-mix(in srgb,var(--ink) 18%,transparent);scrollbar-width:thin;}
+:root.fs-on #fsCol{min-width:0;}
+:root.fs-on #fsCol > #filterBar,:root.fs-on #fsCol > #topTonight,:root.fs-on #fsCol > #picksBar{max-width:none;margin-left:0!important;margin-right:0!important;}
+:root.fs-on #fsCol > main#allEvents{max-width:none;}
+:root.fs-on #fsBtn,:root.fs-on #filterBar .fclear{display:none!important;}
+:root.fs-on.listmode #fside{display:block;}
+}
+/* phones and narrow windows: one Filters button, the groups in a bottom sheet */
+#fsSheet{position:fixed;inset:0;z-index:130;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(0,0,0,.42);}
+#fsSheet[hidden]{display:none;}
+#fsSheet .fs-panel{position:relative;max-height:88vh;display:flex;flex-direction:column;background:var(--card);color:var(--ink);
+border-top:3px solid var(--ink);box-shadow:0 -6px 24px rgba(0,0,0,.18);}
+#fsSheet .fs-scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:14px 18px 8px;-webkit-overflow-scrolling:touch;}
+#fsSheet .fs-close{position:absolute;top:6px;right:8px;width:38px;height:38px;border:0;background:none;color:var(--ink);font-size:24px;
+cursor:pointer;z-index:1;}
+#fsSheet .fs-top{padding-right:44px;}
+#fsSheet .fs-row{padding:7px 0;font-size:15px;}
+#fsSheet .fs-row input{width:18px;height:18px;}
+#fsSheet .fs-foot{position:sticky;bottom:0;padding:10px 18px calc(10px + env(safe-area-inset-bottom));background:var(--card);
+border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent);}
+#fsSheet .fs-show{width:100%;height:46px;border:3px solid var(--ink);background:var(--ink);color:var(--paper);
+font:800 14px 'Inter',sans-serif;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 var(--accent);}
+:root.fs-lock,:root.fs-lock body{overflow:hidden;}
+@media (prefers-reduced-motion:no-preference){#fsSheet:not([hidden]) .fs-panel{animation:fsUp .18s ease-out;}}
+@keyframes fsUp{from{transform:translateY(40px);opacity:.6;}to{transform:none;opacity:1;}}
+</style><style>
 #storyLayer{position:fixed;inset:0;z-index:90;display:none;flex-direction:column;align-items:center;
 background:var(--banner,var(--ink));color:var(--paper);padding:14px 16px 20px;overscroll-behavior:contain;}
 #storyLayer.on{display:flex;}
@@ -1642,11 +1778,21 @@ text-transform:uppercase;line-height:1.02;}
 .hero p,.bhero p{opacity:.9;font-weight:500;}
 .hero h1 b{color:var(--accent);}
 .home .hero h1{text-transform:none;font-size:clamp(3.2rem,11vw,5.2rem);}
-/* day pages: one tight band (date, city, actions) so events show on the first screen */
-.dayhero{padding:20px 20px 18px;}
-.dayhero h1{font-size:clamp(1.9rem,5vw,2.8rem);margin:10px 0 12px;}
-.dayhero .toolbar{padding:0;}
+/* day pages: one tight band, "NEW YORK CITY - THURSDAY, OCTOBER 15" with Share and a ⋯ menu beside it */
+.dayhero{display:flex;align-items:center;justify-content:space-between;gap:10px 18px;flex-wrap:wrap;text-align:left;
+padding:16px max(16px,calc((100% - 1040px) / 2));}
+.dayhero > .eyebrow{display:none!important;}  /* the title carries the day (scripts still read it) */
+.dayhero h1{font-size:clamp(1.25rem,3vw,2rem);margin:0;line-height:1.1;min-width:0;}
+.dayhero .toolbar{padding:0;flex-wrap:nowrap;justify-content:flex-end;}
 .dayhero .toolbar .btn{padding:8px 14px;font-size:12px;}
+.tmore{position:relative;}
+.tmore summary{list-style:none;cursor:pointer;font-size:16px!important;line-height:1.05!important;letter-spacing:1px!important;}
+.tmore summary::-webkit-details-marker{display:none;}
+.tmenu{position:absolute;right:0;top:calc(100% + 10px);z-index:70;min-width:240px;display:flex;flex-direction:column;padding:6px 0;
+background:var(--card);color:var(--ink);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--accent);text-align:left;}
+.tm-item{display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:0;font:700 14px/1.3 'Inter',sans-serif;
+letter-spacing:0;text-transform:none;color:var(--ink);text-decoration:none;cursor:pointer;}
+.tm-item:hover{background:var(--muted);}
 .dayhero .btn-dark{background:transparent;color:var(--on-banner);border-color:var(--on-banner);}
 .langmenu{position:relative;margin-left:14px;}
 .langmenu summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 10px;
@@ -1662,23 +1808,30 @@ font-weight:700;text-transform:none;letter-spacing:0;color:var(--ink);text-decor
 .langlist .soon i{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
 @media (max-width:640px){.langmenu{margin-left:8px;}.langmenu summary{padding:4px 7px;}}
 /* filter panel: search on top, one row of same-height chips below */
-#filterBar{max-width:760px;margin:16px auto 0;padding:14px;display:flex;flex-direction:column;align-items:stretch;gap:10px;
+#filterBar{max-width:1040px;margin:16px auto 0;padding:12px 14px 10px;display:flex;flex-direction:column;align-items:stretch;gap:8px;box-sizing:border-box;
 background:var(--card);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);}
 #filterBar .frow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-#filterBar .fsearch{flex:1;display:flex;align-items:center;gap:9px;height:42px;padding:0 14px;
+#filterBar .frow[hidden]{display:none;}
+#filterBar .fsearch{flex:1 1 110px;display:flex;align-items:center;gap:9px;height:34px;padding:0 14px;
 border:2px solid var(--ink);background:var(--field,#fff);color:var(--ink);}
 #filterBar .fsearch:focus-within{outline:3px solid var(--accent);outline-offset:1px;}
 #filterBar .fsearch svg{width:17px;height:17px;flex:none;opacity:.55;}
 #filterBar .fsearch input{flex:1;min-width:0;height:100%;padding:0;border:0;outline:0;background:transparent;
 box-shadow:none;font-size:14.5px;font-weight:500;color:var(--ink);}
-#filterBar #resCount{margin:0 2px 0 6px;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+#filterBar .fmeta{gap:4px 12px;min-height:0;}
+#filterBar .fmeta #hiddenBar,#filterBar .fmeta .fclear{height:26px;}
+#filterBar .fmore.on{background-color:var(--accent);color:var(--on-accent,var(--ink));}
+#filterBar .fchips{gap:6px;}
+#filterBar #fhood{max-width:150px;}
+#filterBar .seg button,#filterBar .fbtn{white-space:nowrap;}
+#filterBar #resCount{margin:0 2px 0 0;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
 opacity:.65;white-space:nowrap;}
 #filterBar .seg{display:inline-flex;flex:none;gap:0;border:2px solid var(--ink);overflow:hidden;}
-#filterBar .seg button{height:30px;padding:0 12px;border:0;border-right:2px solid var(--ink);border-radius:0;
+#filterBar .seg button{height:30px;padding:0 9px;border:0;border-right:2px solid var(--ink);border-radius:0;
 background:var(--field,#fff);font-size:11.5px;letter-spacing:.3px;}
 #filterBar .seg button:last-child{border-right:0;}
 #filterBar .seg button.on{background:var(--ink);color:var(--paper);}
-#filterBar .fbtn,#filterBar select{height:34px;padding:0 12px;border:2px solid var(--ink);background-color:var(--field,#fff);
+#filterBar .fbtn,#filterBar select{height:34px;padding:0 10px;border:2px solid var(--ink);background-color:var(--field,#fff);
 color:var(--ink);font-size:12.5px;font-weight:700;letter-spacing:0;text-transform:none;cursor:pointer;}
 #filterBar select{-webkit-appearance:none;appearance:none;max-width:210px;padding-right:30px;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23888' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;background-size:11px;}
@@ -1733,7 +1886,7 @@ box-shadow:4px 4px 0 var(--accent);transition:transform .2s ease;}
 #tnToast button{background:var(--accent);color:var(--on-accent,var(--ink));border:0;padding:5px 11px;font-weight:800;cursor:pointer;font-size:13px;}
 @media (prefers-reduced-motion: reduce){#tnToast{transition:none;}}
 /* My picks: a slim tray under the filters */
-#picksBar{max-width:760px;margin:10px auto 0!important;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+#picksBar{max-width:1040px;box-sizing:border-box;margin:12px auto 0!important;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
 padding:8px 10px 8px 16px!important;text-align:left;background:transparent;border:2px dashed var(--ink);box-shadow:none;}
 #picksBar > br,#picksBar > span{display:none;}
 #picksBar strong{font-size:14px;margin-right:auto;}
@@ -1748,9 +1901,11 @@ text-decoration:underline;text-decoration-color:var(--accent);text-decoration-th
 #picksBar #shareMsg a{font-weight:800;color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 @media (max-width:640px){
 #filterBar{margin-left:12px;margin-right:12px;padding:12px;}
-#filterBar .fchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -12px;padding:0 12px 3px;}
-#filterBar .fchips::-webkit-scrollbar{display:none;}
-#filterBar .fchips > *{flex:none;}
+#filterBar .fchips{flex-wrap:wrap;}
+#filterBar .fchips .fsearch{flex-basis:100%;}
+#filterBar .fchips > select,#filterBar .fchips > .fmulti{flex:1 1 40%;max-width:none!important;min-width:0;}
+#filterBar .fchips > .fmulti summary{max-width:none;}
+#filterBar .fchips > .fmulti .fmenu{left:auto;right:0;max-width:calc(100vw - 32px);}
 #picksBar{margin-left:12px!important;margin-right:12px!important;}
 }
 .wrap > section.cat.free{margin-top:4px;}
@@ -1953,7 +2108,18 @@ function pull(){
     })
     .catch(function(){});
 }
+// how good the event is for anyone (ingest/quality.py: 1-10, 5 when not scored)
+function quality(i){
+  var q = typeof QUAL !== "undefined" ? QUAL[i] : null;
+  return typeof q === "number" ? q : 5;
+}
+// the list's order: your taste, nudged by quality
 function score(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  return personal(i) + (quality(i) - 5) * 1.5;
+}
+// the personal half: categories, ticks, venues, friends, regulars, when you go out
+function personal(i){
   if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
   var cat = CATS[i], s = 0;
   if (taste.likes.indexOf(cat) >= 0) s += 10;
@@ -2022,8 +2188,10 @@ function sortChildren(container){
     .sort(function(x, y){ return (x.p - y.p) || (y.k - x.k) || (x.n - y.n); })
     .forEach(function(o){ container.appendChild(o.a); });
 }
+function scored(){ return typeof QUAL !== "undefined" && QUAL.some(function(q){ return q != null; }); }
 function applyRanking(){
-  if (!hasTaste() || typeof CATS === "undefined") return;
+  if (window.__topTonight) window.__topTonight();  // Top tonight re-ranks whatever the layout
+  if ((!hasTaste() && !scored()) || typeof CATS === "undefined") return;
   // the timeline layout orders by start time, not taste
   if (document.documentElement.getAttribute("data-layout") === "timeline") return;
   var wrap = document.querySelector("main.wrap");
@@ -2055,7 +2223,7 @@ function applyRanking(){
   }
 }
 /* ---------------- quiz ---------------- */
-var SURP = {low: "none", med: "a few", high: "lots"};
+var SURP = {low: "Surprises: none", med: "Surprises: a few", high: "Surprises: lots"};  // whole labels: a bare "none" literal would be translated everywhere (style.display) on /es/
 var sheet = null, sel = {};
 function guessCity(){
   var saved = null;
@@ -2105,7 +2273,7 @@ function buildSheet(){
   var surpB = document.createElement("button");
   surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
   var paintSurp = function(){
-    surpB.textContent = "Surprises: " + SURP[surp];
+    surpB.textContent = SURP[surp];
     surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
   };
   paintSurp();
@@ -2213,7 +2381,7 @@ function setCat(cat, mode){
 }
 window.Tonight = {
   taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
-  score: score, save: save, applyRanking: applyRanking,
+  score: score, personal: personal, quality: quality, save: save, applyRanking: applyRanking,
   openQuiz: openQuiz, describe: describe, setCat: setCat
 };
 document.addEventListener("DOMContentLoaded", function(){
@@ -2230,42 +2398,50 @@ document.addEventListener("DOMContentLoaded", function(){
   if (window.TonightPage && TonightPage.init) TonightPage.init();
 });
 })();
-</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Preferences</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="../account.html">Account</a></span><span class="citylinks"><a class="cur" href="../nyc/2026-10-16.html">NYC</a> <a class="" href="../london/2026-10-16.html">London</a> <a class="" href="../la/2026-10-16.html">LA</a></span><a class="browselink" href="../browse-nyc-2026-10-16.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="../" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
+</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Preferences</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="../account.html">Account</a></span><span class="citylinks"><a class="cur" href="../nyc/2026-10-16.html">NYC</a> <a class="" href="../london/2026-10-16.html">London</a> <a class="" href="../la/2026-10-16.html">LA</a></span><a class="browselink" href="../browse-nyc-2026-10-16.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="../" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
 <header class="hero dayhero">
 <div class="eyebrow">Friday, October 16 · New York City</div>
-<h1>New York City</h1>
+<h1><span class="h-city">New York City</span><span class="h-date"> — Friday, October 16</span></h1>
 <div class="toolbar">
 <button class="btn btn-dark" id="shareBtn">Share →</button>
-<a class="btn btn-gold" href="https://psesh5.github.io/tonight/nyc/2026-10-16.ics" download>📅 Add all to calendar</a>
-<button class="btn btn-dark" id="tonightBtn" aria-pressed="false">⚡ Tonight</button>
-<button class="btn btn-dark" id="nextHourBtn" aria-pressed="false">⏱ Next hour</button>
-<button class="btn btn-gold" id="storyBtn" type="button">♥ Swipe tonight</button>
+<details class="tmore"><summary class="btn btn-dark" aria-label="More actions">⋯</summary>
+<div class="tmenu">
+<a class="tm-item" href="https://psesh5.github.io/tonight/nyc/2026-10-16.ics" download>📅 Add all to calendar</a>
+<button class="tm-item" id="storyBtn" type="button">♥ Swipe tonight</button>
+<button class="tm-item" id="tonightBtn" type="button" aria-pressed="false">⚡ Tonight</button>
 </div>
-</header><nav class="daystrip" aria-label="Pick a day"><a class="ds cur" href="2026-10-16.html" aria-current="page"><b>Tonight</b><span>Fri 16</span></a><a class="ds" href="2026-10-17.html"><b>Tomorrow</b><span>Sat 17</span></a><a class="ds" href="2026-10-18.html"><b>Sun</b><span>18</span></a><a class="ds" href="2026-10-19.html"><b>Mon</b><span>19</span></a><a class="ds" href="2026-10-20.html"><b>Tue</b><span>20</span></a><a class="ds" href="2026-10-21.html"><b>Wed</b><span>21</span></a><a class="ds" href="2026-10-22.html"><b>Thu</b><span>22</span></a></nav><div id="conciergeNote" aria-live="polite"></div>
+</details>
+</div>
+</header><nav class="daystrip" aria-label="Pick a day"><a class="ds cur" href="2026-10-16.html" aria-current="page"><b>Today</b><span>Fri 16</span></a><a class="ds" href="2026-10-17.html"><b>Tomorrow</b><span>Sat 17</span></a><a class="ds" href="2026-10-18.html"><b>Sun</b><span>18</span></a><a class="ds" href="2026-10-19.html"><b>Mon</b><span>19</span></a><a class="ds ds-x" href="2026-10-20.html"><b>Tue</b><span>20</span></a><a class="ds ds-x" href="2026-10-21.html"><b>Wed</b><span>21</span></a><a class="ds ds-x" href="2026-10-22.html"><b>Thu</b><span>22</span></a><button type="button" class="ds ds-more" aria-expanded="false" onclick="var s=this.parentNode;s.classList.toggle('open');this.setAttribute('aria-expanded',s.classList.contains('open'))">More ▾</button></nav><div id="conciergeNote" aria-live="polite"></div>
 
-<div class="filters" id="filterBar">
-<div class="frow">
+<div id="fsLayout"><aside id="fside" aria-label="Filters"></aside><div id="fsCol"><div class="filters" id="filterBar">
+<div class="frow fchips">
 <label class="fsearch"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
 <input id="fq" type="search" autocomplete="off" placeholder="Search events, venues…" aria-label="Search events"></label>
-<span id="resCount"></span>
-</div>
-<div class="frow fchips">
 <div class="seg" id="ftod">
-<button data-t="all" class="on">Any time</button><button data-t="morning">Morning</button><button data-t="afternoon">Afternoon</button><button data-t="evening">Evening</button>
+<button data-t="evening">Evening 5pm+</button><button data-t="day">Daytime</button><button data-t="all" class="on">Any</button>
 </div>
-<button class="fbtn" id="ffree" aria-pressed="false">✨ Free only</button>
+<select id="fhood" autocomplete="off" aria-label="Neighborhood"><option value="">All neighborhoods</option><option value="Midtown-Times Square">Midtown-Times Square (50)</option><option value="Hell&#x27;s Kitchen">Hell&#x27;s Kitchen (45)</option><option value="Greenwich Village">Greenwich Village (40)</option><option value="SoHo-Little Italy-Hudson Square">SoHo-Little Italy-Hudson Square (35)</option><option value="Chelsea-Hudson Yards">Chelsea-Hudson Yards (28)</option><option value="Midtown South-Flatiron-Union Square">Midtown South-Flatiron-Union Square (26)</option><option value="East Village">East Village (25)</option><option value="Williamsburg">Williamsburg (22)</option><option value="Financial District-Battery Park City">Financial District-Battery Park City (18)</option><option value="Chinatown-Two Bridges">Chinatown-Two Bridges (16)</option><option value="Lower East Side">Lower East Side (16)</option><option value="Tribeca-Civic Center">Tribeca-Civic Center (14)</option><option value="East Williamsburg">East Williamsburg (13)</option><option value="Upper West Side-Lincoln Square">Upper West Side-Lincoln Square (11)</option><option value="Bushwick (West)">Bushwick (West) (10)</option><option value="Long Island City-Hunters Point">Long Island City-Hunters Point (8)</option><option value="Astoria (North)-Ditmars-Steinway">Astoria (North)-Ditmars-Steinway (7)</option><option value="Downtown Brooklyn-DUMBO-Boerum Hill">Downtown Brooklyn-DUMBO-Boerum Hill (7)</option><option value="East Midtown-Turtle Bay">East Midtown-Turtle Bay (7)</option><option value="Morningside Heights">Morningside Heights (6)</option><option value="Sunset Park (West)">Sunset Park (West) (6)</option><option value="Astoria (Central)">Astoria (Central) (5)</option><option value="Carroll Gardens-Cobble Hill-Gowanus-Red Hook">Carroll Gardens-Cobble Hill-Gowanus-Red Hook (5)</option><option value="Central Park">Central Park (5)</option><option value="Fort Greene">Fort Greene (5)</option><option value="Gramercy">Gramercy (5)</option><option value="Park Slope">Park Slope (5)</option><option value="Prospect Park">Prospect Park (5)</option><option value="Tottenville-Charleston">Tottenville-Charleston (5)</option><option value="West Village">West Village (5)</option><option value="Crown Heights (North)">Crown Heights (North) (4)</option><option value="Upper East Side-Lenox Hill-Roosevelt Island">Upper East Side-Lenox Hill-Roosevelt Island (4)</option><option value="Upper West Side (Central)">Upper West Side (Central) (4)</option><option value="Washington Heights (South)">Washington Heights (South) (4)</option><option value="Bedford-Stuyvesant (East)">Bedford-Stuyvesant (East) (3)</option><option value="Bedford-Stuyvesant (West)">Bedford-Stuyvesant (West) (3)</option><option value="Bushwick (East)">Bushwick (East) (3)</option><option value="Greenpoint">Greenpoint (3)</option><option value="Harlem (South)">Harlem (South) (3)</option><option value="Murray Hill-Kips Bay">Murray Hill-Kips Bay (3)</option><option value="Richmond Hill">Richmond Hill (3)</option><option value="Snug Harbor">Snug Harbor (3)</option><option value="Upper East Side-Yorkville">Upper East Side-Yorkville (3)</option><option value="Brownsville">Brownsville (2)</option><option value="Clinton Hill">Clinton Hill (2)</option><option value="Dyker Heights">Dyker Heights (2)</option><option value="East Flatbush-Farragut">East Flatbush-Farragut (2)</option><option value="East Harlem (North)">East Harlem (North) (2)</option><option value="Flushing-Willets Point">Flushing-Willets Point (2)</option><option value="Forest Hills">Forest Hills (2)</option><option value="Green-Wood Cemetery">Green-Wood Cemetery (2)</option><option value="Manhattanville-West Harlem">Manhattanville-West Harlem (2)</option><option value="Prospect Heights">Prospect Heights (2)</option><option value="Prospect Lefferts Gardens-Wingate">Prospect Lefferts Gardens-Wingate (2)</option><option value="Queensbridge-Ravenswood-Dutch Kills">Queensbridge-Ravenswood-Dutch Kills (2)</option><option value="South Ozone Park">South Ozone Park (2)</option><option value="Van Cortlandt Park">Van Cortlandt Park (2)</option><option value="Astoria (East)-Woodside (North)">Astoria (East)-Woodside (North) (1)</option><option value="Bensonhurst">Bensonhurst (1)</option><option value="Brooklyn Heights">Brooklyn Heights (1)</option><option value="Brooklyn Navy Yard">Brooklyn Navy Yard (1)</option><option value="Canarsie">Canarsie (1)</option><option value="East Flatbush-Erasmus">East Flatbush-Erasmus (1)</option><option value="East Flatbush-Remsen Village">East Flatbush-Remsen Village (1)</option><option value="East Harlem (South)">East Harlem (South) (1)</option><option value="Forest Park">Forest Park (1)</option><option value="Gravesend (East)-Homecrest">Gravesend (East)-Homecrest (1)</option><option value="Gravesend (West)">Gravesend (West) (1)</option><option value="Maspeth">Maspeth (1)</option><option value="Mott Haven-Port Morris">Mott Haven-Port Morris (1)</option><option value="Norwood">Norwood (1)</option><option value="Ridgewood">Ridgewood (1)</option><option value="Sunnyside">Sunnyside (1)</option><option value="The Battery-Governors Island-Ellis Island-Liberty Island">The Battery-Governors Island-Ellis Island-Liberty Island (1)</option><option value="Upper East Side-Carnegie Hill">Upper East Side-Carnegie Hill (1)</option><option value="Upper West Side-Manhattan Valley">Upper West Side-Manhattan Valley (1)</option><option value="Washington Heights (North)">Washington Heights (North) (1)</option><option value="West New Brighton-Silver Lake-Grymes Hill">West New Brighton-Silver Lake-Grymes Hill (1)</option><option value="Williamsbridge-Olinville">Williamsbridge-Olinville (1)</option><option value="Yankee Stadium-Macombs Dam Park">Yankee Stadium-Macombs Dam Park (1)</option></select>
 <select id="fcat" autocomplete="off" aria-label="Filter by category"><option value="">All categories</option><option value="Arts &amp; Play">Arts &amp; Play</option><option value="Theater">Theater</option><option value="Music">Music</option><option value="Comedy">Comedy</option><option value="Sports">Sports</option><option value="Fitness &amp; Outdoors">Fitness &amp; Outdoors</option><option value="Meetups &amp; Mixers">Meetups &amp; Mixers</option><option value="Talks">Talks</option><option value="Tours">Tours</option><option value="Classes &amp; Workshops">Classes &amp; Workshops</option><option value="Film">Film</option><option value="Tech">Tech</option><option value="Food &amp; Drink">Food &amp; Drink</option><option value="Trivia &amp; Games">Trivia &amp; Games</option></select>
-<select id="fafter" autocomplete="off" aria-label="Starts after"><option value="">Starts after…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Starts before"><option value="">Starts before…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Neighborhood"><option value="">All neighborhoods</option><option value="Midtown-Times Square">Midtown-Times Square (50)</option><option value="Hell&#x27;s Kitchen">Hell&#x27;s Kitchen (45)</option><option value="Greenwich Village">Greenwich Village (40)</option><option value="SoHo-Little Italy-Hudson Square">SoHo-Little Italy-Hudson Square (35)</option><option value="Chelsea-Hudson Yards">Chelsea-Hudson Yards (28)</option><option value="Midtown South-Flatiron-Union Square">Midtown South-Flatiron-Union Square (26)</option><option value="East Village">East Village (25)</option><option value="Williamsburg">Williamsburg (22)</option><option value="Financial District-Battery Park City">Financial District-Battery Park City (18)</option><option value="Chinatown-Two Bridges">Chinatown-Two Bridges (16)</option><option value="Lower East Side">Lower East Side (16)</option><option value="Tribeca-Civic Center">Tribeca-Civic Center (14)</option><option value="East Williamsburg">East Williamsburg (13)</option><option value="Upper West Side-Lincoln Square">Upper West Side-Lincoln Square (11)</option><option value="Bushwick (West)">Bushwick (West) (10)</option><option value="Long Island City-Hunters Point">Long Island City-Hunters Point (8)</option><option value="Astoria (North)-Ditmars-Steinway">Astoria (North)-Ditmars-Steinway (7)</option><option value="Downtown Brooklyn-DUMBO-Boerum Hill">Downtown Brooklyn-DUMBO-Boerum Hill (7)</option><option value="East Midtown-Turtle Bay">East Midtown-Turtle Bay (7)</option><option value="Morningside Heights">Morningside Heights (6)</option><option value="Sunset Park (West)">Sunset Park (West) (6)</option><option value="Astoria (Central)">Astoria (Central) (5)</option><option value="Carroll Gardens-Cobble Hill-Gowanus-Red Hook">Carroll Gardens-Cobble Hill-Gowanus-Red Hook (5)</option><option value="Central Park">Central Park (5)</option><option value="Fort Greene">Fort Greene (5)</option><option value="Gramercy">Gramercy (5)</option><option value="Park Slope">Park Slope (5)</option><option value="Prospect Park">Prospect Park (5)</option><option value="Tottenville-Charleston">Tottenville-Charleston (5)</option><option value="West Village">West Village (5)</option><option value="Crown Heights (North)">Crown Heights (North) (4)</option><option value="Upper East Side-Lenox Hill-Roosevelt Island">Upper East Side-Lenox Hill-Roosevelt Island (4)</option><option value="Upper West Side (Central)">Upper West Side (Central) (4)</option><option value="Washington Heights (South)">Washington Heights (South) (4)</option><option value="Bedford-Stuyvesant (East)">Bedford-Stuyvesant (East) (3)</option><option value="Bedford-Stuyvesant (West)">Bedford-Stuyvesant (West) (3)</option><option value="Bushwick (East)">Bushwick (East) (3)</option><option value="Greenpoint">Greenpoint (3)</option><option value="Harlem (South)">Harlem (South) (3)</option><option value="Murray Hill-Kips Bay">Murray Hill-Kips Bay (3)</option><option value="Richmond Hill">Richmond Hill (3)</option><option value="Snug Harbor">Snug Harbor (3)</option><option value="Upper East Side-Yorkville">Upper East Side-Yorkville (3)</option><option value="Brownsville">Brownsville (2)</option><option value="Clinton Hill">Clinton Hill (2)</option><option value="Dyker Heights">Dyker Heights (2)</option><option value="East Flatbush-Farragut">East Flatbush-Farragut (2)</option><option value="East Harlem (North)">East Harlem (North) (2)</option><option value="Flushing-Willets Point">Flushing-Willets Point (2)</option><option value="Forest Hills">Forest Hills (2)</option><option value="Green-Wood Cemetery">Green-Wood Cemetery (2)</option><option value="Manhattanville-West Harlem">Manhattanville-West Harlem (2)</option><option value="Prospect Heights">Prospect Heights (2)</option><option value="Prospect Lefferts Gardens-Wingate">Prospect Lefferts Gardens-Wingate (2)</option><option value="Queensbridge-Ravenswood-Dutch Kills">Queensbridge-Ravenswood-Dutch Kills (2)</option><option value="South Ozone Park">South Ozone Park (2)</option><option value="Van Cortlandt Park">Van Cortlandt Park (2)</option><option value="Astoria (East)-Woodside (North)">Astoria (East)-Woodside (North) (1)</option><option value="Bensonhurst">Bensonhurst (1)</option><option value="Brooklyn Heights">Brooklyn Heights (1)</option><option value="Brooklyn Navy Yard">Brooklyn Navy Yard (1)</option><option value="Canarsie">Canarsie (1)</option><option value="East Flatbush-Erasmus">East Flatbush-Erasmus (1)</option><option value="East Flatbush-Remsen Village">East Flatbush-Remsen Village (1)</option><option value="East Harlem (South)">East Harlem (South) (1)</option><option value="Forest Park">Forest Park (1)</option><option value="Gravesend (East)-Homecrest">Gravesend (East)-Homecrest (1)</option><option value="Gravesend (West)">Gravesend (West) (1)</option><option value="Maspeth">Maspeth (1)</option><option value="Mott Haven-Port Morris">Mott Haven-Port Morris (1)</option><option value="Norwood">Norwood (1)</option><option value="Ridgewood">Ridgewood (1)</option><option value="Sunnyside">Sunnyside (1)</option><option value="The Battery-Governors Island-Ellis Island-Liberty Island">The Battery-Governors Island-Ellis Island-Liberty Island (1)</option><option value="Upper East Side-Carnegie Hill">Upper East Side-Carnegie Hill (1)</option><option value="Upper West Side-Manhattan Valley">Upper West Side-Manhattan Valley (1)</option><option value="Washington Heights (North)">Washington Heights (North) (1)</option><option value="West New Brighton-Silver Lake-Grymes Hill">West New Brighton-Silver Lake-Grymes Hill (1)</option><option value="Williamsbridge-Olinville">Williamsbridge-Olinville (1)</option><option value="Yankee Stadium-Macombs Dam Park">Yankee Stadium-Macombs Dam Park (1)</option></select>
-<button class="fclear" id="fclear" type="button" hidden>Clear all</button>
+<button class="fbtn" id="ffree" aria-pressed="false">✨ Free only</button>
+<button class="fbtn" id="nextHourBtn" type="button" aria-pressed="false">⏱ Starting soon</button>
+<button class="fbtn fmore" id="fmore" type="button" aria-expanded="false" aria-controls="fextra">More filters</button>
+</div>
+<div class="frow fextra" id="fextra" hidden>
+<select id="fafter" autocomplete="off" aria-label="Starts after"><option value="">Starts after…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Starts before"><option value="">Starts before…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select>
+</div>
+<div class="frow fmeta">
+<span id="resCount"></span>
 <span id="hiddenBar"><span id="hiddenN">0</span> hidden · <button id="unhide">show them</button></span>
+<button class="fclear" id="fclear" type="button" hidden>Clear all</button>
 </div>
 </div>
-<div class="picks" id="picksBar"><strong>★ My picks: <span id="pickCount">0</span></strong><br>
+<section id="topTonight" aria-labelledby="ttHead"><h2 id="ttHead">Top tonight</h2><ol class="tt-list"></ol><p class="tt-empty" hidden>Nothing to single out with these filters. Everything is below.</p><a class="tt-all" href="#allEvents">See all 579 events →</a></section><div class="picks" id="picksBar"><strong>★ My picks: <span id="pickCount">0</span></strong><br>
 <span style="font-size:13px;color:#6b6b6b;">Ticks save automatically and shape tomorrow's picks. Going with friends? Send them your list.</span><br><br>
 <button class="btn btn-gold" id="textGroupBtn">💬 Text the group →</button>
 <div id="shareMsg" style="font-size:13px;margin-top:10px;min-height:18px;"></div>
 </div>
-<main class="wrap">
+<main class="wrap" id="allEvents">
 <div id="tonightWrap">
 <div class="tonight-head"><h2>⚡ Tonight</h2><p id="tonightCount"></p></div>
 <div id="tonightList"></div>
@@ -12174,7 +12350,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 </article>
 </section>
-</main>
+</main></div></div>
 <footer>
 <div class="serif">Hand-picked for you by Tonight.</div>
 <p>Every tick is saved —<br>tomorrow's picks learn what you love.</p>
@@ -12193,6 +12369,10 @@ const EDAYS = EDATE ? [...new Set(EDATE)] : null;
 const RECUR = ["Most days", "Most days", "Most days", "Most days", "Most days", "", "Most days", "", "", "", "", "", "Most days", "", "", "Most days", "", "Most days", "", "", "", "", "", "Most days", "Most days", "Most days", "", "Most days", "Most days", "Most days", "", "Most days", "Most days", "Most days", "Most days", "Most days", "Also on other days", "Most days", "Most days", "Also on other days", "", "Most days", "", "Most days", "Most days", "Most days", "Most days", "Most days", "Also on other days", "Most days", "", "Most days", "", "", "Most days", "", "", "Most days", "Most days", "Most days", "Most days", "Also on other days", "Most days", "Also on other days", "", "", "", "Most days", "Every Friday", "", "", "", "", "Also on other days", "", "Also on other days", "", "", "Most days", "", "Most days", "Most days", "", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "", "Most days", "", "", "", "", "", "", "Most days", "Most days", "Every Friday", "Most days", "Also on other days", "Every Friday", "Most days", "Most days", "Most days", "", "", "Also on other days", "Most days", "Most days", "Most days", "Every Friday", "Also on other days", "Also on other days", "Also on other days", "Every Friday", "", "", "", "", "", "", "Also on other days", "", "Most days", "Every Friday", "Also on other days", "Most days", "Most days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "Also on other days", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "Also on other days", "Also on other days", "Also on other days", "", "", "", "Also on other days", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Every Friday", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Every Friday", "", "Most days", "Also on other days", "", "", "", "", "", "", "", "Also on other days", "", "", "", "Also on other days", "", "Also on other days", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "Also on other days", "", "", "", "Most days", "Every Friday", "", "", "Every Friday", "", "", "", "", "Also on other days", "", "", "", "Every Friday", "Most days", "Every Friday", "", "", "Also on other days", "Most days", "", "Also on other days", "", "Also on other days", "", "", "", "", "", "", "Also on other days", "Also on other days", "", "", "", "", "Also on other days", "Also on other days", "Also on other days", "Also on other days", "Also on other days", "Also on other days", "", "", "", "", "", "", "Every Friday", "", "Every Friday", "Every Friday", "", "", "", "", "", "", "", "Also on other days", "Also on other days", "Also on other days", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "Also on other days", "Also on other days", "", "Also on other days", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "Also on other days", "Also on other days", "", "", "", "", "", "Also on other days", "", "Also on other days", "", "", "", "", "", "Also on other days", "Also on other days", "", "Also on other days", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "Also on other days", "", "", "Also on other days", "Also on other days", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", ""];
 const KIDS = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const PRICES = ["", "", "", "", "", "", "", "", "", "", "$15.81", "", "", "$13.22", "$39.07", "", "", "", "", "", "", "$39.83", "$26.76", "", "", "", "", "", "", "", "$35.46", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$24.88", "$27.22", "", "", "", "", "", "", "", "$55.30", "", "", "", "", "", "$77.65", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$46.41", "", "", "", "", "", "", "", "", "$32.78", "", "$19.34", "$20.01", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$3.00", "", "", "", "$20.00", "$25.00", "$25.00", "$25.00", "$25.00", "$25.00", "$20.00", "$15.00", "$25.00", "$30.00", "$30.00", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$9.00", "", "", "$9.00", "", "", "", "", "$5.00", "$18.00", "$35.00", "$10.00", "", "", "", "", "$37.00", "$65.00", "", "", "", "", "", "$50.00", "", "", "", "", "", "", "", "", "", "", "", "$15.00", "$30.00", "", "", "", "", "", "", "", "", "", "", "", "$38.00", "", "", "$10.00", "", "", "$27.00", "$20.00", "", "", "", "", "", "$105.00", "", "$15.00", "", "$20.00", "$85.00", "", "", "$20.00", "", "", "", "", "", "", "$16.33", "", "", "$25.00", "", "", "", "$5.00", "", "$10.89", "", "$13.61", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+// how good each event is for anyone (1-10, null = not scored) + why, and its flags (ingest/quality.py)
+const QUAL = [5, 3, 3, 3, 4, 3, 5, 7, 6, 8, 5, 7, 6, 3, 4, 4, 4, 6, 6, 5, 6, 5, 5, 5, 4, 5, 8, 6, 4, 5, 7, 5, 4, 4, 8, 5, 7, 4, 6, 5, 4, 6, 4, 5, 5, 4, 4, 5, 5, 4, 5, 5, 6, 4, 5, 7, 6, 5, 5, 5, 5, 6, 6, 7, 7, 8, 6, 8, 4, 4, 5, 2, 5, 8, 6, 6, 7, 5, 7, 5, 7, 5, 5, 4, 4, 6, 4, 6, 5, 6, 4, 6, 5, 5, 3, 4, 5, 4, 2, 3, 6, 3, 2, 1, 1, 5, 2, 2, 2, 4, 3, 4, 2, 5, 5, 4, 3, 6, 4, 5, 2, 6, 4, 5, 1, 2, 4, 2, 4, 3, 1, 6, 6, 5, 6, 5, 4, 5, 4, 4, 4, 5, 4, 7, 7, 6, 6, 7, 7, 7, 8, 8, 8, 7, 7, 6, 6, 6, 5, 5, 5, 3, 7, 5, 7, 7, 7, 5, 5, 5, 7, 5, 6, 6, 8, 8, 6, 5, 7, 6, 6, 5, 7, 6, 4, 8, 8, 8, 5, 4, 4, 5, 4, 6, 7, 4, 2, 3, 2, 1, 2, 2, 2, 2, 3, 3, 1, 3, 1, 1, 2, 3, 2, 2, 2, 4, 2, 2, 2, 1, 2, 2, 3, 6, 3, 6, 2, 3, 3, 1, 5, 1, 3, 1, 2, 3, 1, 2, 6, 3, 4, 4, 4, 4, 4, 3, 2, 1, 5, 3, 5, 1, 4, 2, 3, 3, 4, 3, 3, 5, 2, 3, 2, 4, 3, 2, 4, 5, 4, 5, 3, 5, 6, 8, 5, 8, 3, 5, 4, 5, 3, 4, 3, 2, 7, 4, 3, 5, 7, 6, 4, 4, 1, 5, 3, 3, 8, 6, 4, 3, 4, 6, 2, 3, 7, 4, 3, 7, 5, 2, 6, 8, 2, 5, 4, 4, 4, 4, 2, 5, 6, 4, 4, 2, 6, 3, 6, 5, 3, 4, 4, 7, 5, 3, 3, 2, 3, 3, 2, 3, 2, 3, 2, 3, 4, 3, 2, 2, 4, 2, 4, 3, 2, 3, 5, 2, 3, 1, 4, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3, 5, 2, 2, 2, 2, 1, 3, 2, 2, 3, 1, 5, 6, 1, 3, 1, 2, 2, 3, 3, 2, 5, 4, 3, 2, 2, 2, 3, 3, 2, 2, 2, 3, 2, 3, 1, 4, 3, 3, 5, 2, 2, 3, 2, 5, 1, 3, 3, 3, 2, 2, 4, 2, 2, 3, 1, 4, 2, 2, 2, 3, 3, 3, 2, 5, 6, 5, 6, 3, 4, 4, 3, 7, 4, 4, 5, 4, 5, 2, 3, 2, 4, 3, 3, 6, 3, 8, 4, 4, 2, 5, 4, 3, 4, 6, 4, 8, 8, 5, 6, 5, 2, 4, 2, 3, 1, 5, 3, 2, 2, 6, 6, 5, 4, 4, 4, 4, 3, 3, 4, 5, 3, 5, 4, 1, 4, 2, 4, 3, 1, 1, 4, 3, 3, 2, 2, 3, 1, 4, 5, 4, 2, 4, 2, 6, 5, 6, 3, 5, 5, 5, 1, 3, 3, 1, 6, 1, 1, 6, 1, 6, 6, 1, 5, 3, 4, 4, 3, 6, 1, 2, 6, 4, 2, 1, 1, 2, 1, 3, 2, 2, 1, 1, 2, 1, 1, 6, 3, 1, 1, 4, 3, 3, 3, 4, 2, 6, 6, 4, 1, 3, 3, 8, 8, 3, 8, 6, 5, 7, 6];
+const WHY = ["Flexible-entry admission to the Museum of Chinese in America.", "", "", "", "Off-Broadway staging at St. Luke's Theatre; listing gives little detail.", "", "New play, Pre-Existing Condition, at intimate Greenwich House Theater.", "Fisher's electronic set at the open-air Forest Hills Stadium.", "Zach John King's Get To Drinkin' tour at Mercury Lounge.", "Igorrr's genre-blending metal paired with Secret Chiefs 3 at Webster Hall.", "Six up-and-coming comics in one showcase at Brooklyn Improv.", "MOCA Performs presents Echoes of Arrival: Becoming at the museum.", "Ghost-story play set in a sound studio, staged at Minetta Lane.", "", "Lauren Ash's pop-punk tour stop at Drom, heavy VIP upselling.", "One-off Slam Frank show at the Orpheum Theatre.", "Free Nameless Reading night paired with The Silver Cherry.", "Fitzgerald's Benjamin Button story adapted at the Public Theater.", "Rocket From The Crypt's Scream, Frankenstein, Scream! tour at Irving Plaza.", "Nine Vicious headline at the Brooklyn Paramount.", "BRIC JazzFest 2026 evening program at BRIC House.", "Justin Silva headlining the Brooklyn Improv Main Room.", "Barnaby Bright's alt-Americana set at the Cutting Room.", "Unauthorized musical parody of the hit series Heated Rivalry.", "Broadway musical at the Nederlander, homage to golden-age musicals.", "Sherri Shepherd takes over as Genie through January 2027.", "Kathy Griffin's new tour, premiering live at Town Hall.", "Tony-winning robot romance musical at the Belasco.", "Disney's long-running Lion King, a tourist staple.", "Cuban son and bolero music staged as a Broadway musical.", "Carole J. Bufford sings Streisand and Garland's Bon Soir-era torch songs at Birdland.", "Broadway musical adaptation of S.E. Hinton's Outsiders.", "Pop-infused musical about Henry VIII's six wives.", "Off-Broadway musical staged at St. Luke's Theatre.", "Billy Crystal's solo Broadway show, a rare limited engagement.", "Immersive ballroom-style reimagining of Cats at the Broadhurst.", "Unknown Mortal Orchestra performs alongside the Lost Boys musical.", "Long-running Harry Potter stage sequel, a tourist favorite.", "Tony-winning folk opera retelling Orpheus and Eurydice.", "Hamilton, the hip-hop history musical, still a Broadway staple.", "Stranger Things prequel stage show on Broadway.", "Tony-nominated Jocelyn Bioh play about boarding school rivalries.", "Jazz writers Jeff McGregor and Spike Wilner at Jazzcultural, free.", "Long-running slapstick comedy where the show keeps collapsing.", "Jamie Allan's mentalism show, with strobes and haze.", "Long-running Wicked, a tourist staple.", "Michael Jackson biomusical, a long-running Broadway hit.", "Fitzgerald's Great Gatsby reimagined as a Broadway musical.", "Cult-favorite dark teen satire musical at New World Stages.", "Long-running Book of Mormon, a Broadway staple.", "KOOM Live showcase at Terminal 5, a major Manhattan venue.", "Off-Broadway Little Shop revival in the intimate Westside upstairs room.", "Seattle cult band Young Fresh Fellows, with Scott McCaughey, at Bowery Palace.", "Dogwood Tales and Mer Marcum at a small 21+ club.", "Off-Broadway play at the Daryl Roth Theatre, a small intimate house.", "Josh Thomas, creator of Please Like Me, live at Gramercy Theatre.", "Live Blank Check taping on early-career Hollywood director passion projects.", "Broadway comedy Oh, Mary!, a recurring Broadway run.", "Play The Heart at Laura Pels Theatre, a mid-size nonprofit house.", "Broadway play at the Longacre Theatre, a standard commercial run.", "Operation Mincemeat, a long-running Broadway musical comedy.", "Intimate acoustic jazz in a restored 19th-century Bed-Stuy brownstone.", "New play creation stories at Lincoln Center's smaller Claire Tow Theater.", "Eclectic mixed bill of New York City Ballet works at the Koch Theater.", "Puccini's La Boh\u00e8me at the Metropolitan Opera House.", "Fred Armisen's comedy set aimed at musicians, at the Beacon Theatre.", "Alana Springsteen at Bowery Ballroom, a well-regarded small-hall show.", "Grammy-winning pianist Robert Glasper live at the Blue Note.", "Free recurring live-band country karaoke night at Lucinda's.", "Scene Queen club night at Racket NYC, 18 and over.", "Johnny Blue Skies and the Dark Clouds on tour at Barclays Center.", "", "2010s EDM classics from Avicii to Calvin Harris at Brooklyn Bowl.", "Harry Styles' Together, Together tour at Madison Square Garden.", "Rapper Alvaro Diaz's Omakase Tour at Hammerstein Ballroom.", "One actor, five shots, and an unhinged retelling of Dracula.", "Bob Mould's Sugar at Brooklyn Steel, with J. Robbins.", "Emei's Night at the Opera tour stop at Sony Hall.", "Moli\u00e8re's hypochondriac satire staged at Todd Haimes Theatre.", "Broadway staging at the James Earl Jones Theatre; limited detail listed.", "Jon Robin Baitz's family drama staged at the Hudson Theatre.", "Long-running Broadway jukebox musical; easy to catch any night.", "Emei tour stop with special guest Madelline at Sony Hall.", "Long-running Broadway revival; available most nights.", "Long-running Off-Broadway whodunit comedy; easy default option.", "Bobby Darin musical at Circle in the Square.", "Stage adaptation of the Paranormal Activity horror franchise.", "Aaron Sorkin's courtroom drama staged at Lincoln Center.", "Cajun reimagining of Little Red Riding Hood, 21+ performance.", "Mexican pop band Sin Bandera on US tour at United Palace.", "Musical parody of Friends, fun mainly for fans.", "Blues guitarist Jeff Pitchell at the Iridium.", "Magoo live at the Mercury Lounge, an 18+ downtown rock night.", "Sameer Naseem headlining a Friday comedy showcase at Brooklyn Improv.", "", "Recurring 21+ club night at Pacha New York.", "Rapper Jack Marlow live at Elsewhere, with Marsolo.", "Guided 60-minute behind-the-scenes tour of Yankee Stadium.", "", "", "Eleven artists' show on trees, plus street-tree tarot readings.", "", "", "", "", "America 250 exhibit on the 1776 Staten Island Peace Conference.", "", "", "", "Outdoor garden of antique Tottenville terra cotta architectural ornaments.", "", "Local exhibit on Tottenville's A.C. Brown shipyard and maritime heritage.", "", "Historic Old Stone House, Battle of Brooklyn site, open for visits.", "Snug Harbor residency artists' new work in a group show.", "Free drop-in artmaking under Washington Square trees, varied mediums.", "", "Open House NY tour of 1643 Gravesend Cemetery, founded by Lady Deborah Moody.", "Costumed Halloween haunted walk in Harlem park.", "Opening reception for Snug Harbor residency artists' group show.", "", "Candlelit true ghost tales inside the preserved Merchant's House Museum.", "Free outdoor movie screening at Inwood's Dyckman Marina.", "Nighttime walking tour of Snug Harbor's darkest history and legends.", "", "", "Guided morning loop through Prospect Park's Lullwater and Peninsula trails.", "", "Prospect Park's 1912 hand-carved carousel, open Thursdays through Sundays.", "", "", "Little Island's lighting designer leads an evening tour of its illumination.", "Judah Friedlander of 30 Rock headlines a multi-comic Upper West Side showcase.", "Jackie Fabulous and touring comics in a nightly showcase.", "Rachel Feinstein and Judah Friedlander at the newly expanded East Village club.", "Jackie Fabulous and Marion Grodin in a multi-comic Upper West Side show.", "Mostly up-and-coming comics in a late-evening club showcase.", "Liz Miele and Graham Kay on a late East Village showcase bill.", "Late Upper West Side showcase with mostly emerging comics.", "Late showcase with a surprise guest slot, lineup mostly emerging.", "Comedy benefit show supporting Brooklyn's uninsured-patient free clinic.", "Corinne Fisher leads a prime-time Brooklyn comedy lineup.", "Late Friday Brooklyn showcase, lineup still being finalized.", "Colin Quinn and Lynne Koplitz at the Comedy Cellar's Village Underground room.", "Colin Quinn and Lynne Koplitz at the Comedy Cellar's MacDougal Street room.", "Marina Franklin and Ethan Simmons-Patterson at Comedy Cellar's Fat Black Pussycat.", "Tom Cotter and Marina Franklin at Comedy Cellar's Fat Black Pussycat.", "Melissa Rauch and Janelle James at the Comedy Cellar's Village Underground.", "Janelle James and Dov Davidoff at the Comedy Cellar's MacDougal Street room.", "Melissa Rauch and Wayne Federman at Comedy Cellar's Fat Black Pussycat.", "Janelle James and Petey DeAbreu headline a strong Comedy Cellar lineup.", "Janelle James and Jared Waters lead a Comedy Cellar Village Underground lineup.", "Melissa Rauch, known from Big Bang Theory, headlines a Comedy Cellar set.", "Simeon Goodson and Dov Davidoff on a solid late Comedy Cellar bill.", "Eleanor Kerrigan and Andre D Thompson on an 11:30 Comedy Cellar bill.", "Ordinary late-night Comedy Cellar lineup with Ardie Fuqua and Chloe Hilliard.", "Ordinary late-night Comedy Cellar lineup with James Mattern and Isiah Kelly.", "Ordinary late-night Comedy Cellar lineup with Simeon Goodson and Julio Diaz.", "Gotham All-Stars showcase of club regulars at Chelsea's Gotham Comedy Club.", "Gotham All-Stars showcase of club regulars at Chelsea's Gotham Comedy Club.", "Free walk tracing Washington, Hamilton, and Woodhull through the Financial District.", "", "After-dark cemetery walk including the Catacombs, normally locked to the public.", "Free solo piano recital of Bach, Brahms, Chopin and Debussy.", "Merhige's 1990 avant-garde cult film, rare late-night screening at IFC.", "Ken Russell's controversial 1971 The Devils on the IFC screen.", "Friedkin's 1973 The Exorcist, a late-night classic horror screening.", "Fjord screens at IFC Center, a fairly ordinary evening showtime.", "The Great Experiment screens at IFC Center; an ordinary evening showing.", "The History of Concrete documentary screens at IFC Center this evening.", "Pupi Avati's 1976 giallo, a rare late-night screening at IFC.", "Naza screens at IFC Center; an ordinary evening showtime.", "Redline anime screens late at IFC; a cult animated title.", "Bong Joon Ho's Okja in 4K at Metrograph, a well-regarded venue.", "Hitchcock's 1951 thriller on 35mm at Metrograph.", "Rossellini's 1970 Socrates, rarely screened, on DCP at Metrograph.", "Midnight in Paris on 35mm, a rare format for a recent film.", "Spielberg's Minority Report, a solid mainstream sci-fi thriller.", "Documentary on Paris's 1920s expatriate lesbian writers and artists.", "Cameron Crowe's Almost Famous, a rock-era classic in 4K.", "James Cameron's The Terminator, a cult 1980s action classic.", "Crime drama set in Harlem, with multiple showtimes.", "Exile, the second part of a long Philippine epic, first three chapters.", "Documentary on fashion designer Isaac Mizrahi's creative process.", "Afternoon screening with little listed context.", "Wajda's 1977 Man of Marble, part of the Wajda 100 retrospective.", "Wajda's 1981 Man of Iron, Palme d'Or winner, in the Wajda 100 retrospective.", "Wajda's 1975 Lodz industrial epic, part of the centenary retrospective.", "Facebook whistleblower drama, a timely but mainstream release.", "Crime thriller with a missing father and grisly discovery.", "Haunted school security guard horror, a modest genre pick.", "Chris Hansen of To Catch a Predator stars in this thriller.", "Apocalyptic horror with disappearances and violent creatures.", "Cult Halloween anthology, a fitting late-night seasonal screening.", "Bertrand Mandico's new genre film, a late-night auteur screening.", "Cyber thriller about a hacker running a snuff film circuit.", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Guided community walk through Yantacaw Brook Park, Montclair.", "", "", "", "", "", "", "", "Artist-run library of cybernetics writing, open as a reading room.", "", "Private preview of Tsuyoshi Anzai's studio work, a one-off look.", "", "", "", "", "Artist Ursula D\u00e1vila-Villa's behind-the-scenes look at New York Graphic Workshop.", "", "", "", "", "", "", "", "Spooky movie night and BBQ in a Brooklyn community garden.", "", "Soup Sessions, a free neighborhood supper with Sana Kitchen.", "Drop-in tea, chat and meditation at Dharma Drum Center.", "Launch party for SOMA, a low-ABV Kerala-inspired ferment.", "First look at Maayan's wine spot during its soft opening.", "Practitioner meetup on securing AI agents, with no vendor pitches.", "", "", "", "Star Trek costume party, a themed night at Mayday Space.", "", "", "", "Queer social yoga session with a different format each time.", "", "", "", "Casual evening badminton with a social crowd in Queens.", "", "", "Craft night themed around a real oven fire and gas leak story.", "", "", "", "", "", "", "", "D\u00eda de los Muertos themed salsa social in Long Island City.", "", "Documentary on a grandfather's spy past, with the book's author.", "", "Ayendy Bonifacio reads his coming-of-age novel about grief and a phantom.", "Alexander Maksik reads Passengers, a novel of a father and daughter.", "Franny Choi's cyborg-themed essay collection, joined by poet Sarah Kay.", "Jessica Hische launches her hand-lettered book at Powerhouse Arena.", "Cartoonist Ben Katchor discusses new book Hotel and Farm, moderated by David Yazbek.", "", "Over 100 vintage dealers across all eras at Metropolitan Pavilion.", "", "Full Elsewhere venue takeover with DJ_Dave and several electronic acts.", "", "", "", "", "Live taping marking ten years of Buffering the Vampire Slayer podcast.", "", "", "Ukrainian band Yaktak performing at a charity concert party.", "Archival look at Houdini's legacy, co-presented with Society of American Magicians.", "Play imagining cartoonist Ernie Bushmiller drawing Nancy in 1976.", "", "", "", "Brooklyn-born Chicago comic Anthony Fuentes returns home for a stand-up set.", "", "", "Final Making Latinidad day staging Tijuana by Lagartijas Tiradas al Sol.", "Tribute to the Swans of Harlem, the Black ballet company, at 14th Street Y.", "", "", "Bollywood dance party with a Sands of Persia Astoria skyline setting.", "Perc and Frankie Bones lineup at Refuge's weekly techno night.", "", "", "Opening night of the South Asian Comedy Festival, with stand-up and DJ afterparty.", "Halloween R&B party at Birch Hoboken, a recurring party night.", "", "Ionesco's absurdist comedy The Bald Soprano, in Donald Allen's translation, at Sheen Center.", "Stand-up comedy night at Union Hall, lineup unlisted.", "", "Marsolo and Natalia Roth lineup at Elsewhere's Bushwick club night.", "Sarah Kane's Crave staged by OBIE-winning Hoi Polloi, runs to Oct 24.", "", "Dinner staged with cirque aerial acrobatics and storytelling at Paradise Club.", "Eva Evans performs in a cabaret-style night at Chelsea Table & Stage.", "Traitors-style interactive murder-mystery dinner at Flying Fox Tavern.", "Fall R&B party for women who love women across Partake NYC.", "Underground reggaeton warehouse night at the Brooklyn Monarch.", "", "Seventh Doubles pairing of Amelia Rose Larson and Celine Bassman at Green Lung.", "Hiroko Ohno's cosmic-themed Event Horizon show opens at Amos Eno Gallery.", "Casual social chess night for all skill levels at Olly Olly Market.", "Fifth annual all-white Milk party with a dress-code theme.", "", "Caitlin Starr's EP release show with BOYSCOUTMARIE and Adult Human Females.", "", "Village Preservation director Andrew Berman on Greenwich Village preservation battles.", "Weekly showcase of NYC stand-up comics at Black Cat.", "", "BTS-themed birthday rave for Jung Kook, RM and Jimin.", "Friday house band set at Cafe Wha?, no featured guest.", "Up-and-coming genre filmmakers' Halloween shorts at Anthology Film Archives.", "Cacao tasting tracing its origins from Ecuador to Mesoamerica.", "", "", "", "", "", "", "", "", "", "", "", "Rare vertical of L'Oratoire des Papes Ch\u00e2teauneuf-du-Pape wines.", "", "", "", "Oyster shucking lesson paired with three different drinks.", "", "Free ping pong, pool and DJ at a casual bar social.", "", "", "", "Pizza, hidden speakeasies and a comedy stop in Greenwich Village.", "", "", "", "Thai and Korean fusion menu at Industry City's Bangkok Bar.", "", "", "", "", "", "", "", "", "", "", "Intimate Domaine Belargus masterclass on Loire Chenin Blanc terroir.", "", "", "", "", "", "", "", "", "", "", "Live DJs and dancers in an immersive, light-filled Brooklyn party.", "Behind-the-scenes talk on making the film \"Wild Inside.\"", "", "", "", "", "", "", "", "", "Writing salon on literary difficulty and translating complex thought.", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Seasonal one-off Halloween ice cream decorating, costumes welcome.", "", "", "Kink-themed life drawing with live models, a distinctive niche take.", "", "", "", "", "Instructor-led evening life drawing session with a male nude model.", "", "", "", "", "", "", "Mosaic lamp making taught by a native Turkish artist.", "", "", "", "", "Learn the Thriller dance across three evening classes.", "", "", "", "", "", "", "", "Bensonhurst ghost stories, cemeteries, and vanished relics on foot.", "Forgotten Jewish history of Harlem, led by guide Bradley Shaw.", "Modern true crime stories across the Lower East Side on foot.", "Retired NYPD detective's mafia stories, ending with a Sicilian cannoli.", "", "Ghostly tales of Greenwich Village on a nightly evening walk.", "Free Spanish-language walk through Times Square, Grand Central, and the library.", "", "Rare look inside The Players and Edwin Booth's untouched bedroom.", "Guided Chinatown food tour with barbecue tastings by a local guide.", "Guided Chinatown food tour with dim sum tastings by a local guide.", "Extended behind-the-scenes access to Lincoln Center's performance halls.", "Interactive puzzle hunt through Manhattan's famous movie locations.", "Live Met tour linking the ancient world to biblical history.", "", "", "", "Free phone-based ghost hunt through Central Park.", "", "", "Chaim Gross's historic home and studio, with his art collection.", "", "Tim Stewart-Winter's OUTED launch, on the LBJ-era queer scandal.", "Chinatown food tasting with stories behind the dishes.", "Black history talk series; venue and details unclear.", "", "Hands-on pulp painting inside a working handmade paper studio.", "Four-course pairing dinner with two Italian wine estates.", "", "Revolutionary-era Old Stone House open to visitors.", "Iconic Comic Strip room, recurring classic comedy lineup.", "Weekly Haitian community gathering with a radical tech class.", "Comic Strip's 50th anniversary lineup with HBO and Tonight Show comics.", "Rare screening of Wan-go Weng's hidden 16mm films, recovered from original reels.", "Romantic and Impressionist French music across two dates.", "Architect Ziad Jamaleddine discusses his book on Islamic architecture.", "Sketch duo Honey, Drop It screens their new short film.", "", "Talk on ten films that shaped fashion, in Russian.", "", "", "", "Rio Chen's Blocks sculptural lamp series, rare in-person showing.", "", "", "", "Boucheron's ten-day monograph exhibition inside Christie's New York galleries.", "Herrin-Ferri's book on Queens gardens, discussed at Kingsland Homestead.", "", "", "Karina Halle's standalone gothic horror romance discussed with readers.", "", "", "", "", "", "Zach Zimmerman and Blythe Roberson reading from Funny Pages.", "", "Drag queen bingo with live drag performance.", "", "", "", "", "", "", "", "", "Late-night stand-up at a Sunset Park club; no headliner named.", "", "", "", "", "", "", "Weekly reggaeton and dembow rooftop party in the LES.", "Leonard Marcus on researching his award-winning Margaret Wise Brown biography.", "Superhero-themed Halloween scavenger hunt through Bryant Park.", "", "Free Lindy Hop class in Chinatown, one Friday evening.", "", "Free open studio at a biolab showing microbe-made paintings.", "Open House New York tour tied to NYU Grey Art Museum.", "Gedi Sibony's installation inside Chaim Gross's historic studio home.", "", "Food tour across Chinatown, Koreatown and a Ganesha temple.", "Open House New York behind-the-scenes tour of the BAT Factory.", "Open House New York walking tour of the Meatpacking District.", "", "", "", "", "Designer Zesty Meyers on material manipulation and craft in automation.", "", "", "Panel on who gets paid as AI collides with music copyright.", "", "Speed-dating format built around quick board game rounds.", "Screening of Ivy Meeropol's film on gonzo journalist and advice columnist E. Jean.", "", "Friday Grand Prix bracket with a cash prize.", "", "Visiting teacher Drupon Chongwol-la leads select sessions.", "Live Transcendental Music paired with a vegetarian dinner and talk.", "", "Three-day independent film festival with panels at Billie Holiday Theatre.", "", "", "Ivana Daki\u0107 and Milo\u0161 Veljkovi\u0107 perform Rai\u010dkovi\u0107's New Classicism works for oboe.", "Solo show by artist Rolandas Dabrukas at SLA Art Space.", "", "", "", "", "", "", "", "", "", "", "", "", "", "Lineup of underground NY comedians at a dedicated Queens comedy club.", "", "", "", "Karachi-themed late-night party bringing Pakistani music and culture to EDEN.", "", "", "", "Recurring Friday reggaeton party, a regular night out.", "", "Staged reading of a brand-new musical by Rebekah Melocik, of How To Dance in Ohio.", "Liszt, Glass, Alkan and Beach programme plus an original Nickell composition.", "", "", "", "", "Cacoyannis's 1956 Hydra drama, his feature debut, screened digitally.", "Coppola's Marie Antoinette in 4K restoration for its 20th anniversary.", "", "Danish singer-pianist Agnes Obel playing an intimate Rough Trade show.", "Lynn Nottage's Pulitzer-winning Sweat, staged by Fordham's theatre program.", "Haddaway of 'What Is Love' fame, live at Palladium Times Square.", "Phil Elverum's Mount Eerie in a rare, intimate hall setting.", "Grammy-winning rapper Rapsody live at Crown Hill Theatre."];
+const FLAGS = ["flex_entry", "flex_entry", "flex_entry", "flex_entry", "", "networking", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "kids", "", "", "kids", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "service", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "service", "", "", "", "service", "kids,service", "kids,service", "", "service", "service", "service", "", "", "", "service,members_only", "", "", "", "", "", "", "", "kids,members_only", "", "", "", "members_only", "class_slot", "", "kids,service", "kids", "kids", "service,spam", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "kids", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "networking,spam", "", "spam", "networking", "sales", "service", "sales", "networking", "", "", "networking,sales", "", "networking", "networking,members_only", "sales", "class_slot", "networking", "networking", "networking", "", "networking", "sales,networking", "networking", "sales,service", "networking", "sales", "", "", "", "", "spam", "", "", "networking,sales", "", "networking,sales", "", "networking,members_only", "networking", "", "networking", "networking", "", "", "", "", "", "", "", "members_only", "networking", "sales,spam", "", "class_slot", "", "networking,members_only", "", "networking", "class_slot", "", "", "", "members_only", "", "networking", "", "networking", "", "", "networking", "", "", "", "", "kids", "", "", "", "kids", "", "", "", "", "", "", "", "", "spam", "", "", "", "", "", "", "", "", "spam", "", "", "", "", "", "", "", "", "", "spam", "", "", "", "", "", "", "spam", "", "", "spam", "", "", "", "", "", "service", "", "", "", "", "spam", "", "", "", "", "", "", "", "", "", "class_slot", "", "networking", "class_slot", "class_slot", "spam", "class_slot", "networking", "class_slot", "", "", "sales", "", "networking", "networking", "", "spam", "", "class_slot", "class_slot", "class_slot", "", "class_slot", "class_slot", "kids,class_slot", "", "networking", "", "", "", "", "sales,spam", "", "", "", "networking", "", "class_slot", "class_slot", "class_slot", "class_slot", "service", "class_slot,kids", "online,service", "sales", "", "sales,online", "", "", "networking", "networking", "networking", "networking", "internal", "", "class_slot", "spam", "", "", "class_slot", "service", "service", "service", "class_slot", "", "sales,service", "service", "class_slot", "class_slot", "class_slot", "class_slot", "class_slot", "", "", "class_slot", "", "class_slot", "class_slot", "class_slot", "class_slot", "", "service", "", "class_slot", "class_slot", "", "class_slot", "", "", "", "", "class_slot", "class_slot", "class_slot", "class_slot", "class_slot", "class_slot", "", "", "class_slot,sales", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "sales", "", "spam", "", "", "", "", "", "", "", "", "kids", "", "", "", "", "", "", "", "", "", "", "", "members_only", "", "sales", "", "networking", "", "networking", "spam", "spam", "", "", "", "", "", "", "", "class_slot", "class_slot", "", "", "class_slot", "", "", "service,sales", "", "networking", "", "sales", "sales,service", "service,sales", "", "spam", "networking", "spam", "service", "sales", "networking,sales", "", "online", "", "spam", "", "service,kids", "", "", "", "", "", "", "", "service,members_only", "sales", "service", "service", "", "service,sales", "sales", "", "service,sales", "", "", "networking", "", "networking", "", "", "internal", "", "sales", "networking,sales", "", "", "internal", "networking,internal", "networking", "networking", "networking", "networking", "networking", "networking", "networking,sales", "networking,sales", "spam", "networking,sales", "networking,sales", "", "", "networking,members_only", "networking,sales", "", "", "", "", "", "networking,sales", "", "", "", "service,kids", "", "", "", "", "internal", "", "", "", "", ""];
 // parents can bring kids' events into story mode, Next hour and Toni's suggestions
 function kidsOn() { try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } }
 addEventListener("DOMContentLoaded", () => {
@@ -12240,6 +12420,8 @@ addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash
 const CATS = ["Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Music", "Music", "Music", "Arts & Play", "Arts & Play", "Theater", "Music", "Music", "Theater", "Arts & Play", "Arts & Play", "Music", "Music", "Music", "Arts & Play", "Music", "Arts & Play", "Theater", "Theater", "Comedy", "Theater", "Theater", "Theater", "Music", "Theater", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Arts & Play", "Theater", "Arts & Play", "Arts & Play", "Arts & Play", "Comedy", "Arts & Play", "Theater", "Theater", "Theater", "Theater", "Theater", "Arts & Play", "Theater", "Music", "Music", "Arts & Play", "Comedy", "Theater", "Comedy", "Arts & Play", "Arts & Play", "Theater", "Music", "Theater", "Arts & Play", "Theater", "Comedy", "Music", "Music", "Music", "Music", "Music", "Arts & Play", "Music", "Music", "Music", "Arts & Play", "Music", "Music", "Arts & Play", "Arts & Play", "Theater", "Theater", "Music", "Theater", "Theater", "Theater", "Theater", "Theater", "Arts & Play", "Music", "Comedy", "Music", "Music", "Arts & Play", "Music", "Arts & Play", "Arts & Play", "Sports", "Arts & Play", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Arts & Play", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Meetups & Mixers", "Arts & Play", "Fitness & Outdoors", "Talks", "Tours", "Meetups & Mixers", "Meetups & Mixers", "Tours", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Tours", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Tours", "Arts & Play", "Arts & Play", "Arts & Play", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Meetups & Mixers", "Classes & Workshops", "Classes & Workshops", "Tech", "Tech", "Tech", "Tech", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Tech", "Meetups & Mixers", "Fitness & Outdoors", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Tours", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Talks", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Film", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Food & Drink", "Tech", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Arts & Play", "Tech", "Fitness & Outdoors", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Classes & Workshops", "Arts & Play", "Meetups & Mixers", "Food & Drink", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Comedy", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Tours", "Comedy", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Theater", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Food & Drink", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Comedy", "Meetups & Mixers", "Meetups & Mixers", "Music", "Arts & Play", "Food & Drink", "Classes & Workshops", "Food & Drink", "Food & Drink", "Classes & Workshops", "Classes & Workshops", "Food & Drink", "Classes & Workshops", "Food & Drink", "Classes & Workshops", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Trivia & Games", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Food & Drink", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Tours", "Tours", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Trivia & Games", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Food & Drink", "Food & Drink", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Classes & Workshops", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Classes & Workshops", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Trivia & Games", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Classes & Workshops", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Talks", "Talks", "Talks", "Talks", "Talks", "Classes & Workshops", "Talks", "Talks", "Classes & Workshops", "Trivia & Games", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Film", "Film", "Film", "Talks", "Music", "Arts & Play", "Music", "Music", "Music"];
 const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true, true, true, true, false, true, true, false, true, true, false, false, true, true, true, true, true, false, true, false, true, false, false, true, true, false, true, true, true, true, true, true, false, true, true, false, true, true, true, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false];
 const HOODS = ["SoHo-Little Italy-Hudson Square", "Financial District-Battery Park City", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "Hell's Kitchen", "Hell's Kitchen", "Financial District-Battery Park City", "Forest Hills", "Lower East Side", "East Village", "Williamsburg", "SoHo-Little Italy-Hudson Square", "Greenwich Village", "East Village", "East Village", "East Village", "East Village", "East Village", "Gramercy", "Fort Greene", "Fort Greene", "Williamsburg", "Midtown South-Flatiron-Union Square", "Chelsea-Hudson Yards", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Upper West Side (Central)", "East Village", "East Village", "East Village", "Gramercy", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Midtown-Times Square", "Bedford-Stuyvesant (West)", "Upper West Side-Lincoln Square", "Upper West Side-Lincoln Square", "Upper West Side-Lincoln Square", "Upper West Side (Central)", "Lower East Side", "SoHo-Little Italy-Hudson Square", "East Village", "Chelsea-Hudson Yards", "Park Slope", "Williamsburg", "Williamsburg", "Midtown South-Flatiron-Union Square", "Chelsea-Hudson Yards", "Chelsea-Hudson Yards", "Greenpoint", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Upper West Side-Lincoln Square", "Bushwick (West)", "Washington Heights (South)", "Midtown-Times Square", "Midtown-Times Square", "Lower East Side", "Williamsburg", "East Village", "Hell's Kitchen", "Bushwick (West)", "Yankee Stadium-Macombs Dam Park", "Central Park", "Greenwich Village", "Central Park", "Brownsville", "Van Cortlandt Park", "Crown Heights (North)", "East Flatbush-Farragut", "Tottenville-Charleston", "Forest Park", "Williamsbridge-Olinville", "Tottenville-Charleston", "Tottenville-Charleston", "Tottenville-Charleston", "Tottenville-Charleston", "Norwood", "Park Slope", "Snug Harbor", "Greenwich Village", "Midtown South-Flatiron-Union Square", "Gravesend (East)-Homecrest", "Washington Heights (South)", "Snug Harbor", "Van Cortlandt Park", "Greenwich Village", "Washington Heights (North)", "Snug Harbor", "West New Brighton-Silver Lake-Grymes Hill", "Midtown-Times Square", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Upper West Side-Manhattan Valley", "West Village", "", "", "", "", "", "", "", "", "", "", "", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Chelsea-Hudson Yards", "Chelsea-Hudson Yards", "", "Green-Wood Cemetery", "Green-Wood Cemetery", "West Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "Williamsburg", "Williamsburg", "Williamsburg", "Williamsburg", "Williamsburg", "Williamsburg", "Williamsburg", "Williamsburg", "SoHo-Little Italy-Hudson Square", "Williamsburg", "Williamsburg", "Midtown South-Flatiron-Union Square", "Midtown-Times Square", "", "Upper West Side-Lincoln Square", "Williamsburg", "Hell's Kitchen", "Tribeca-Civic Center", "East Village", "Crown Heights (North)", "Midtown-Times Square", "Financial District-Battery Park City", "Greenpoint", "Financial District-Battery Park City", "Midtown South-Flatiron-Union Square", "Williamsburg", "Clinton Hill", "", "SoHo-Little Italy-Hudson Square", "Murray Hill-Kips Bay", "Long Island City-Hunters Point", "Gramercy", "SoHo-Little Italy-Hudson Square", "Greenpoint", "Lower East Side", "Hell's Kitchen", "", "East Williamsburg", "Williamsburg", "", "Chelsea-Hudson Yards", "Midtown South-Flatiron-Union Square", "Tribeca-Civic Center", "Financial District-Battery Park City", "Upper West Side (Central)", "Hell's Kitchen", "Downtown Brooklyn-DUMBO-Boerum Hill", "", "Tribeca-Civic Center", "Mott Haven-Port Morris", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Financial District-Battery Park City", "Harlem (South)", "Chelsea-Hudson Yards", "Midtown South-Flatiron-Union Square", "SoHo-Little Italy-Hudson Square", "Hell's Kitchen", "Financial District-Battery Park City", "Midtown South-Flatiron-Union Square", "Hell's Kitchen", "Bushwick (West)", "SoHo-Little Italy-Hudson Square", "Midtown South-Flatiron-Union Square", "SoHo-Little Italy-Hudson Square", "Greenwich Village", "East Village", "Midtown-Times Square", "", "Maspeth", "SoHo-Little Italy-Hudson Square", "Long Island City-Hunters Point", "Washington Heights (South)", "Midtown-Times Square", "", "Midtown South-Flatiron-Union Square", "Midtown South-Flatiron-Union Square", "Midtown-Times Square", "Midtown South-Flatiron-Union Square", "Long Island City-Hunters Point", "Sunnyside", "Midtown South-Flatiron-Union Square", "Crown Heights (North)", "Midtown South-Flatiron-Union Square", "Washington Heights (South)", "Midtown South-Flatiron-Union Square", "Brooklyn Heights", "Downtown Brooklyn-DUMBO-Boerum Hill", "Greenwich Village", "Bushwick (West)", "Chelsea-Hudson Yards", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "East Williamsburg", "Chinatown-Two Bridges", "Hell's Kitchen", "Sunset Park (West)", "Hell's Kitchen", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "East Williamsburg", "Astoria (Central)", "Gravesend (West)", "Upper West Side-Lincoln Square", "Downtown Brooklyn-DUMBO-Boerum Hill", "Midtown South-Flatiron-Union Square", "Lower East Side", "Midtown-Times Square", "Bedford-Stuyvesant (East)", "Lower East Side", "Lower East Side", "East Harlem (South)", "East Village", "East Williamsburg", "Lower East Side", "Astoria (East)-Woodside (North)", "East Williamsburg", "Hell's Kitchen", "Chelsea-Hudson Yards", "Midtown South-Flatiron-Union Square", "", "Lower East Side", "Greenwich Village", "Park Slope", "Richmond Hill", "East Williamsburg", "East Village", "Long Island City-Hunters Point", "Midtown-Times Square", "Chelsea-Hudson Yards", "Ridgewood", "Long Island City-Hunters Point", "East Williamsburg", "South Ozone Park", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Chinatown-Two Bridges", "Chelsea-Hudson Yards", "Brownsville", "Richmond Hill", "East Williamsburg", "Hell's Kitchen", "Greenwich Village", "Lower East Side", "Chelsea-Hudson Yards", "Midtown South-Flatiron-Union Square", "Greenwich Village", "East Village", "SoHo-Little Italy-Hudson Square", "Midtown-Times Square", "Hell's Kitchen", "Midtown South-Flatiron-Union Square", "Hell's Kitchen", "Financial District-Battery Park City", "Bushwick (West)", "Hell's Kitchen", "Lower East Side", "Midtown South-Flatiron-Union Square", "East Williamsburg", "Richmond Hill", "Upper East Side-Lenox Hill-Roosevelt Island", "East Flatbush-Remsen Village", "Forest Hills", "Downtown Brooklyn-DUMBO-Boerum Hill", "Upper East Side-Lenox Hill-Roosevelt Island", "SoHo-Little Italy-Hudson Square", "Lower East Side", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "Astoria (North)-Ditmars-Steinway", "Greenwich Village", "Astoria (North)-Ditmars-Steinway", "SoHo-Little Italy-Hudson Square", "Astoria (North)-Ditmars-Steinway", "Sunset Park (West)", "", "Chinatown-Two Bridges", "East Village", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Midtown South-Flatiron-Union Square", "Midtown South-Flatiron-Union Square", "East Village", "West Village", "Lower East Side", "Upper East Side-Lenox Hill-Roosevelt Island", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "", "Upper East Side-Lenox Hill-Roosevelt Island", "South Ozone Park", "Tribeca-Civic Center", "East Williamsburg", "Midtown South-Flatiron-Union Square", "Financial District-Battery Park City", "Chelsea-Hudson Yards", "Financial District-Battery Park City", "Financial District-Battery Park City", "Morningside Heights", "Manhattanville-West Harlem", "Tribeca-Civic Center", "SoHo-Little Italy-Hudson Square", "Prospect Heights", "Financial District-Battery Park City", "Williamsburg", "Tribeca-Civic Center", "Tribeca-Civic Center", "Tribeca-Civic Center", "East Village", "East Village", "Chelsea-Hudson Yards", "SoHo-Little Italy-Hudson Square", "East Flatbush-Erasmus", "Midtown-Times Square", "Williamsburg", "Midtown-Times Square", "Tribeca-Civic Center", "Astoria (North)-Ditmars-Steinway", "Bushwick (West)", "Astoria (North)-Ditmars-Steinway", "SoHo-Little Italy-Hudson Square", "Queensbridge-Ravenswood-Dutch Kills", "SoHo-Little Italy-Hudson Square", "East Midtown-Turtle Bay", "Tribeca-Civic Center", "East Williamsburg", "Prospect Lefferts Gardens-Wingate", "East Village", "Midtown-Times Square", "Downtown Brooklyn-DUMBO-Boerum Hill", "East Midtown-Turtle Bay", "East Midtown-Turtle Bay", "Hell's Kitchen", "Downtown Brooklyn-DUMBO-Boerum Hill", "Upper West Side-Lincoln Square", "East Williamsburg", "Upper East Side-Yorkville", "Sunset Park (West)", "Tribeca-Civic Center", "Tribeca-Civic Center", "Tribeca-Civic Center", "Prospect Park", "Dyker Heights", "Dyker Heights", "Hell's Kitchen", "Bensonhurst", "Harlem (South)", "East Village", "East Village", "Midtown-Times Square", "Greenwich Village", "Midtown-Times Square", "Midtown-Times Square", "Gramercy", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Upper West Side-Lincoln Square", "Chelsea-Hudson Yards", "Central Park", "Midtown-Times Square", "Midtown-Times Square", "", "Central Park", "", "", "Greenwich Village", "West Village", "West Village", "Lower East Side", "Chelsea-Hudson Yards", "Sunset Park (West)", "Brooklyn Navy Yard", "Financial District-Battery Park City", "The Battery-Governors Island-Ellis Island-Liberty Island", "Park Slope", "Upper East Side-Yorkville", "East Flatbush-Farragut", "Upper East Side-Yorkville", "Morningside Heights", "Midtown-Times Square", "Morningside Heights", "Williamsburg", "Canarsie", "Prospect Heights", "Midtown-Times Square", "Upper West Side (Central)", "Financial District-Battery Park City", "Fort Greene", "Clinton Hill", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Flushing-Willets Point", "Bedford-Stuyvesant (East)", "Bushwick (East)", "Williamsburg", "Sunset Park (West)", "Bushwick (West)", "Hell's Kitchen", "Greenwich Village", "Bushwick (West)", "Lower East Side", "Upper West Side-Lincoln Square", "Hell's Kitchen", "East Midtown-Turtle Bay", "Bushwick (West)", "Bushwick (West)", "Financial District-Battery Park City", "Long Island City-Hunters Point", "Queensbridge-Ravenswood-Dutch Kills", "Chelsea-Hudson Yards", "Chelsea-Hudson Yards", "Sunset Park (West)", "Upper East Side-Carnegie Hill", "", "Midtown-Times Square", "Bedford-Stuyvesant (West)", "Astoria (North)-Ditmars-Steinway", "Murray Hill-Kips Bay", "Lower East Side", "Morningside Heights", "Midtown-Times Square", "East Village", "Chinatown-Two Bridges", "Fort Greene", "Fort Greene", "Chelsea-Hudson Yards", "Greenwich Village", "Central Park", "Flushing-Willets Point", "Chelsea-Hudson Yards", "Chelsea-Hudson Yards", "Prospect Lefferts Gardens-Wingate", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Tribeca-Civic Center", "Chelsea-Hudson Yards", "East Midtown-Turtle Bay", "East Williamsburg", "Chelsea-Hudson Yards", "Bushwick (East)", "Financial District-Battery Park City", "Financial District-Battery Park City", "Bushwick (East)", "Long Island City-Hunters Point", "East Harlem (North)", "Murray Hill-Kips Bay", "Greenwich Village", "Bedford-Stuyvesant (West)", "Chelsea-Hudson Yards", "Harlem (South)", "Midtown South-Flatiron-Union Square", "Chelsea-Hudson Yards", "Morningside Heights", "Morningside Heights", "Financial District-Battery Park City", "East Midtown-Turtle Bay", "Chelsea-Hudson Yards", "Long Island City-Hunters Point", "Midtown South-Flatiron-Union Square", "", "Bedford-Stuyvesant (East)", "East Midtown-Turtle Bay", "Chelsea-Hudson Yards", "Midtown South-Flatiron-Union Square", "", "Astoria (Central)", "East Village", "East Harlem (North)", "Hell's Kitchen", "Midtown-Times Square", "Downtown Brooklyn-DUMBO-Boerum Hill", "Park Slope", "Midtown-Times Square", "Astoria (North)-Ditmars-Steinway", "Gramercy", "SoHo-Little Italy-Hudson Square", "Greenwich Village", "Midtown-Times Square", "Manhattanville-West Harlem", "", "Astoria (Central)", "Astoria (Central)", "Astoria (Central)", "", "Midtown-Times Square", "Upper West Side-Lincoln Square", "Midtown-Times Square", "Upper West Side-Lincoln Square", "Crown Heights (North)"];
+const AREA_GROUP = ["Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Queens", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Bronx", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Bronx", "Brooklyn", "Brooklyn", "Staten Island", "Queens", "Bronx", "Staten Island", "Staten Island", "Staten Island", "Staten Island", "Bronx", "Brooklyn", "Staten Island", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Staten Island", "Bronx", "Manhattan", "Manhattan", "Staten Island", "Staten Island", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "", "", "", "", "", "", "", "", "", "", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "", "Manhattan", "Manhattan", "Queens", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "", "Brooklyn", "Brooklyn", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "", "Manhattan", "Bronx", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "Queens", "Manhattan", "Queens", "Manhattan", "Manhattan", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Queens", "Queens", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Brooklyn", "Queens", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Queens", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "", "Manhattan", "Manhattan", "Brooklyn", "Queens", "Brooklyn", "Manhattan", "Queens", "Manhattan", "Manhattan", "Queens", "Queens", "Brooklyn", "Queens", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Queens", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Queens", "Manhattan", "Brooklyn", "Queens", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Queens", "Manhattan", "Queens", "Manhattan", "Queens", "Brooklyn", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "Manhattan", "Queens", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Queens", "Brooklyn", "Queens", "Manhattan", "Queens", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "Manhattan", "", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Queens", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Queens", "Queens", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "", "Manhattan", "Brooklyn", "Queens", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Queens", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Queens", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Queens", "Manhattan", "", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "", "Queens", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Queens", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "Queens", "Queens", "Queens", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn"];  // each event's borough / region ("" = no neighbourhood)
+const AREA_ORDER = ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island", "Elsewhere"];
 const TZ = "America/New_York";
 const STARTS = [660, 600, 600, 600, 1020, 1020, 1050, 1065, 1080, 1110, 1125, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1170, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1230, 1230, 1260, 1275, 1320, 1320, 1350, null, 0, 510, 540, 540, 540, 600, 600, 600, 600, 600, 600, 660, 660, 660, 660, 720, 720, 780, 840, 840, 960, 1080, 1080, 1110, 1140, 1170, 1215, 720, 600, 600, 720, 960, 540, 1065, 1095, 1140, 1215, 1230, 1275, 1350, 1365, 1410, 1080, 1200, 1320, 1080, 1125, 1141, 1170, 1200, 1245, 1260, 1290, 1320, 1365, 1380, 1410, 1435, 30, 55, 1110, 1170, 540, 840, 1080, 1140, 1420, 1130, 1425, 1140, 1155, 1100, 1435, 1055, 1430, 825, 855, 975, 990, 1120, 1120, 1260, 1290, 1080, 1155, 740, 850, 750, 960, 1150, 1105, 960, 975, 1140, 1125, 1275, 1425, 1435, 1080, 1110, 1110, 540, 540, 540, 540, 570, 570, 570, 570, 600, 600, 600, 600, 600, 600, 600, 600, 630, 660, 720, 720, 720, 720, 720, 720, 780, 780, 840, 930, 930, 960, 1020, 1020, 1020, 1020, 1050, 1050, 1050, 1050, 1050, 1080, 1080, 1080, 1080, 1080, 1080, 1080, 1080, 1080, 1080, 1080, 1110, 1110, 1110, 1110, 1110, 1110, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1170, 1170, 1170, 1245, 1290, 840, 960, 960, 1080, 1140, 1140, 1170, 1200, 720, 1380, 1140, 1320, 1320, 960, 1380, 1200, 1080, 1380, 1260, 1140, 1140, 1080, 1080, 1260, 1140, 1140, 1320, 1140, 1140, 960, 1320, 1320, 1320, 1320, 660, 1140, 1320, 1320, 1140, 1170, 1320, 1350, 1170, 1320, 1200, 1200, 1140, 1140, 1380, 1140, 1170, 1080, 1080, 1260, 1320, 1200, 1320, 960, 1260, 1350, 1200, 1260, 1185, 1140, 1110, 1020, 1080, 1110, 1080, 1320, 1110, 1110, 840, 900, 1200, 1050, 1200, 1140, 1140, 1140, 1080, 1110, 1080, 660, 780, 1020, 780, 1080, 780, 1050, 1140, 900, 690, 900, 900, 690, 690, 690, 690, 1110, 1050, 660, 660, 660, 660, 660, 660, 660, 1020, 1200, 600, 1200, 1080, 1140, 1110, 1140, 1080, 660, 840, 1080, 960, 1110, 1080, 720, 675, 675, 675, 1140, 1080, 1050, 1020, 1170, 780, 540, 930, 1125, 990, 1140, 780, 960, 780, 600, 600, 675, 1140, 1080, 1140, 1110, 1140, 1110, 600, 660, 840, 660, 960, 600, 1110, 675, 675, 675, 495, 720, 720, 570, 1140, 600, 900, 600, 600, 1170, 630, 600, 840, 900, 900, 885, 540, 660, 1140, 480, 480, 480, 480, 480, 780, 600, 1140, 660, 1080, 840, 840, 1110, 1140, 720, 1200, 1140, 1200, 1080, 1170, 840, 1140, 1140, 1170, 1140, 750, 660, 1080, 1020, 1140, 1140, 600, 1140, 1080, 1080, 1200, 1110, 1110, 1110, 1140, 1140, 1110, 990, 1140, 1140, 540, 1140, 1140, 1140, 1380, 930, 1260, 1320, 1140, 1140, 900, 540, 1320, 1140, 1260, 1050, 600, 1140, 1200, 1140, 1080, 810, 900, 600, 660, 690, 840, 660, 960, 600, 720, 720, 540, 1080, 1140, 540, 1260, 1170, 1140, 1140, 1080, 480, 1140, 540, 1080, 600, 1020, 1200, 1020, 690, 780, 1140, 1020, 1140, 1140, 1140, 1140, 1140, 1140, 1110, 1140, 1140, 1170, 1140, 1140, 1140, 1320, 1260, 1260, 1200, 1320, 1140, 930, 1140, 720, 600, 1140, 840, 1140, 1170, 930, 1080, 1200, 1200, 1200, 1200];   // minutes since midnight, or null
 const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1170, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 720, 570, 1020, 900, 720, 1080, 1080, 900, 720, 720, 840, 900, 900, 900, 720, 960, 1140, 900, 900, 1080, 1140, 1200, 420, 1320, 1260, 1260, 1275, 780, 720, 900, 1020, 1320, 660, 1140, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 660, 960, 1200, 1200, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1200, 1230, 1200, 720, 1020, 960, null, 720, 1020, 690, 1050, 660, 720, 690, 1080, 645, 1020, 690, 1080, 750, 1080, 780, 840, 840, 1020, null, null, 1020, 855, null, 1050, 1140, 1200, 1170, 1110, 1140, 1200, 1260, 1200, 1200, 1260, 1230, 1290, 1200, 1200, 1200, 1320, 1380, 1260, 1260, 1230, 1260, 1230, 1230, 1230, 1230, 1200, 1410, 1230, 1320, 1260, 1260, 1260, 1410, 1260, 1260, 1380, 1215, 1290, 1290, 1260, null, 1410, 960, 1080, 1050, 1185, 1200, 1260, 1290, null, null, null, 1350, null, null, null, null, null, 1320, null, null, 1230, 1230, null, 1320, 1380, 1260, 1260, null, 1260, 1320, 1020, null, null, null, null, 840, 1410, null, null, 1200, 1260, null, null, 1230, null, 1380, 1275, 1320, null, null, null, 1290, 1200, 1320, null, null, 1410, null, 1080, 1350, null, 1380, 1380, 1320, 1260, 1230, 1200, 1260, 1230, 1200, null, 1260, 1200, 915, null, null, 1170, null, 1320, 1320, 1320, 1140, 1320, 1140, 900, 870, 1200, 870, 1260, 870, 1200, 1320, 1110, 870, 1080, 1110, 870, 870, 870, 870, 1320, 1170, 900, 900, 900, 900, 900, 900, 690, 1140, null, 720, null, 1200, 1260, 1230, 1260, 1380, 720, 960, 1320, 1020, 1260, 1200, 780, 735, 735, 735, 1245, 1140, 1170, 1080, 1230, 825, 600, 1050, 1170, 1050, 1260, 870, 1080, 930, 720, 720, 735, 1260, 1215, 1260, 1170, 1260, 1200, 720, 780, 960, 720, 1020, 650, 1170, 735, 735, 735, 555, 900, 900, 1140, 1260, 720, 1080, 750, 960, 1290, 780, 750, 900, 1080, 1080, null, 660, 750, 1320, 1080, 1080, 1080, 1080, 1080, 840, 720, 1260, 840, 1200, 960, 1080, 1230, 1200, 960, 1320, 1320, 1320, 1260, 1290, 1080, 1215, 1439, 1290, 1230, 840, 1020, 1200, 1200, 1200, 1200, 1020, 1260, 1200, 1200, 1260, 1320, 1230, 1230, 1260, 1260, 1200, 1110, 1230, 1320, 780, 1155, 1260, 1380, null, 990, 1290, 1410, 1320, 1320, 1020, 1020, null, 1320, null, 1110, 720, 1320, 1290, 1320, 1200, 855, 1080, 720, 840, 780, 900, 840, 1200, 780, 780, 780, 1020, 1140, 1320, 1020, 1410, 1290, 1260, 1260, 1200, 540, 1200, 1080, 1290, 1080, 1320, 1320, 1260, 780, 840, 1320, 1140, 1320, 1320, 1320, 1320, 1320, 1320, 1140, 1320, 1320, 1260, 1320, 1320, 1320, null, 1380, 1380, 1320, null, 1320, 1020, 1230, 1080, 660, 1320, null, null, null, 990, null, 1350, null, null, null];       // from end_time, or null (-> start + 2h)
@@ -12254,6 +12436,7 @@ function render() {
   if (EDAYS) EDAYS.forEach(d => saveIds("tonight-picks-" + CITY + "-" + d, new Set([...picks].filter(i => EDATE[+i] === d))));
   else saveIds(KEY, picks);
   reportTaps();
+  if (window.__topTonight) window.__topTonight();
 }
 // "I'm going": stronger than a tick (it ticks too). Saved per event day; headcounts shown from 3 up.
 const going = new Set();
@@ -12346,6 +12529,12 @@ const _shareBtn = document.getElementById("shareBtn");
 if (_shareBtn) _shareBtn.addEventListener("click", async () => {
   const r = await shareOrCopy("Things to do today in New York City, hand-picked by Tonight:", location.href.split("#")[0]);
   if (r === "copied") shareMsg("Link copied — paste it anywhere.");
+});
+// the header's ⋯ menu closes once something in it is picked, or on a click elsewhere
+document.addEventListener("click", e => {
+  document.querySelectorAll("details.tmore[open]").forEach(m => {
+    if (!m.contains(e.target) || e.target.closest(".tm-item")) m.removeAttribute("open");
+  });
 });
 function fmtStart(i) {
   const s = STARTS[i]; if (s == null) return "";
@@ -12444,23 +12633,38 @@ window.__applyFilters = (function () {
     if (s < 1020) return "afternoon";   // 12–5 PM
     return "evening";                   // 5 PM+
   }
+  // Evening is the default on today's page after noon (city time); other days show any time
+  const TOD0 = !EDAYS && DATE === cityToday() && cityNowMinutes() >= 720 ? "evening" : "all";
+  function todMatch(i, tod) {
+    const t = todOf(i);
+    if (tod === "all" || t === "tba") return true;  // a listing without a time could be any time
+    return tod === "day" ? t !== "evening" : t === tod;
+  }
+  function todOk(i) { return todMatch(i, F.tod); }
+  const hay = {};  // search text per card, read once
+  // each filter on its own (the sidebar counts what each box would show with all the others)
+  function dims(i, a) {
+    let base = !hidden.has(String(i));
+    if (base && F.only && !F.only.has(EIDS[i])) base = false;  // a friend's shared picks (?only=)
+    if (base && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) base = false;
+    if (base && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) base = false;
+    if (base && F.q) {
+      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
+      if (!hay[i].includes(F.q)) base = false;
+    }
+    return {base: base,
+      cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
+      free: !F.free || FREE[i],
+      tod: todOk(i),
+      hood: !F.hood || F.hood.split("|").includes(HOODS[i])};  // one or several neighbourhoods
+  }
+  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
     let n = 0;
     cards.forEach(a => {
-      const i = a.dataset.idx;
-      let ok = !hidden.has(i);
-      if (ok && F.only && !F.only.has(EIDS[+i])) ok = false;  // a friend's shared picks (?only=)
-      if (ok && F.cat && !F.cat.split(",").includes(CATS[+i])) ok = false;  // one or several categories
-      if (ok && F.free && !FREE[+i]) ok = false;
-      if (ok && F.tod !== "all" && todOf(+i) !== F.tod) ok = false;
-      if (ok && F.after != null && !(STARTS[+i] != null && STARTS[+i] >= F.after)) ok = false;
-      if (ok && F.before != null && !(STARTS[+i] != null && STARTS[+i] < F.before)) ok = false;
-      if (ok && F.hood && HOODS[+i] !== F.hood) ok = false;
-      if (ok && F.q) {
-        const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
-        if (!hay.includes(F.q)) ok = false;
-      }
+      const i = a.dataset.idx, d = dims(+i, a);
+      const ok = d.base && d.cat && d.free && d.tod && d.hood;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
@@ -12480,6 +12684,8 @@ window.__applyFilters = (function () {
     window.__clamp && window.__clamp();
     document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
     document.getElementById("hiddenN").textContent = hidden.size;
+    if (window.__topTonight) window.__topTonight();
+    if (window.__fside) window.__fside();
   }
   document.getElementById("fq").addEventListener("input", e => {
     F.q = e.target.value.trim().toLowerCase(); applyFilters();
@@ -12498,13 +12704,18 @@ window.__applyFilters = (function () {
     e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
     applyFilters();
   });
+  const setTod = t => {
+    document.querySelectorAll("#ftod button").forEach(x => x.classList.toggle("on", x.dataset.t === t));
+    F.tod = t;
+  };
   document.querySelectorAll("#ftod button").forEach(b => {
-    b.addEventListener("click", () => {
-      document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
-      b.classList.add("on");
-      F.tod = b.dataset.t; applyFilters();
-    });
+    b.addEventListener("click", () => { setTod(b.dataset.t); applyFilters(); });
   });
+  setTod(TOD0);
+  // the start-time pickers live behind "More filters"
+  const _fm = document.getElementById("fmore"), _fx = document.getElementById("fextra");
+  const showExtra = on => { if (!_fm || !_fx) return; _fx.hidden = !on; _fm.setAttribute("aria-expanded", on ? "true" : "false"); };
+  if (_fm) _fm.addEventListener("click", () => showExtra(_fx.hidden));
   function toast(msg, action, onAction) {
     let t = document.getElementById("tnToast");
     if (!t) { t = document.createElement("div"); t.id = "tnToast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
@@ -12571,7 +12782,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || F.tod !== "all" || F.after != null || F.before != null || F.hood;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -12624,7 +12835,9 @@ window.__applyFilters = (function () {
   function syncFilterUI() {
     ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || F.tod !== "all" || F.after != null || F.before != null || F.hood);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood);
+    if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
+    if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
   _fb.addEventListener("change", syncFilterUI);
   _fb.addEventListener("input", syncFilterUI);
@@ -12729,6 +12942,7 @@ function restoreCards() {
     }
   });
   homeSpot.clear();
+  document.documentElement.classList.remove("listmode");
   document.getElementById("tonightWrap").style.display = "none";
   document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
   const fb = document.getElementById("filterBar");
@@ -12788,6 +13002,7 @@ function setTonight(on) {
   document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
   const fbOn = document.getElementById("filterBar");
   if (fbOn) fbOn.style.display = "none";
+  document.documentElement.classList.add("listmode");
   wrap.style.display = "block";
   empty.style.display = live ? "none" : "block";
   count.textContent = live ? live + (live === 1 ? " thing" : " things") + " on now or starting soon" : "";
@@ -12824,7 +13039,7 @@ function setNextHour(on) {
   const wrap = document.getElementById("tonightWrap"), list = document.getElementById("tonightList");
   const empty = document.getElementById("tonightEmpty"), count = document.getElementById("tonightCount");
   const head = wrap.querySelector(".tonight-head h2");
-  if (head) { if (!head.dataset.orig) head.dataset.orig = head.textContent; head.textContent = "⏱ Next hour"; }
+  if (head) { if (!head.dataset.orig) head.dataset.orig = head.textContent; head.textContent = "⏱ Starting soon"; }
   const today = (typeof cityToday === "function") ? cityToday() : DATE;
   const now = cityNowMinutes();
   const items = [], hiddenByYou = new Set(loadIds("tonight-hidden-" + CITY + "-" + DATE));
@@ -12855,7 +13070,8 @@ function setNextHour(on) {
     list.appendChild(o.art);
   });
   document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
-  const fb = document.getElementById("filterBar"); if (fb) fb.style.display = "none";
+  // the Starting soon chip sits in the filter row, so the row stays (to switch it off)
+  document.documentElement.classList.add("listmode");
   wrap.style.display = "block";
   empty.style.display = items.length ? "none" : "block";
   if (!items.length) empty.textContent = DATE !== today ? "Next hour works on today's page." :
@@ -13213,13 +13429,52 @@ function isToday(){
   catch (e) { return false; }
 }
 
-// Warm Concierge: a note that hands you a plan for the night.
+// Toni's plan, compact: a title, then a line per stop, "6:00 PM · MAIN EVENT: <title> (Neighbourhood · Free)".
+var PLAN_SKIP = ["networking", "sales", "spam", "service", "internal", "members_only", "online"];
+function hm(m){  // 1080 -> "6:00 PM"
+  var h = Math.floor(m / 60) % 24, mm = m % 60;
+  return (h % 12 || 12) + ":" + String(mm).padStart(2, "0") + " " + (h >= 12 ? "PM" : "AM");
+}
+function quality(i){ return window.Tonight && Tonight.quality ? Tonight.quality(i) : 5; }
+function priceOf(i){ return FREE[i] ? "Free" : (typeof PRICES !== "undefined" && PRICES[i] || "").replace(/\.00(?!\d)/g, ""); }
+function planBox(host, lines){
+  host.innerHTML = "";
+  var eye = document.createElement("div"); eye.className = "cn-eye"; eye.textContent = "Toni's plan for you";
+  host.appendChild(eye); var hi = greeting(); if (hi) host.appendChild(hi);
+  var ol = document.createElement("ol"); ol.className = "cn-plan";
+  lines.forEach(function(l){ ol.appendChild(l); }); host.appendChild(ol);
+}
+function planLine(time, role, extra){
+  var li = document.createElement("li"), t = document.createElement("span"), r = document.createElement("span");
+  t.className = "cn-t"; t.textContent = time; r.className = "cn-role"; r.textContent = role;
+  li.appendChild(t); li.appendChild(document.createTextNode(" \u00b7 ")); li.appendChild(r);
+  if (extra) li.appendChild(document.createTextNode(" (" + extra + ")"));
+  li.appendChild(document.createTextNode(": "));
+  return li;
+}
+function eventLine(time, role, i, name, href){
+  var li = planLine(time, role), a = document.createElement("a");
+  a.href = href; a.textContent = name; li.appendChild(a);
+  var bits = i != null ? [HOODS[i], priceOf(i)].filter(Boolean) : [];
+  if (bits.length) li.appendChild(document.createTextNode(" (" + bits.join(" \u00b7 ") + ")"));
+  return li;
+}
+function adjustLink(){
+  var adj = document.createElement("a"); adj.className = "cn-adjust"; adj.href = "#"; adj.setAttribute("data-tune", "1");
+  adj.textContent = "Not quite right? Adjust"; return adj;
+}
+
+// Warm Concierge: a plan for the night, from the page itself (Toni's own plan replaces it when it arrives).
 function concierge(){
   var host = document.getElementById("conciergeNote"); if (!host) return;
   var now = isToday() && typeof cityNowMinutes === "function" ? cityNowMinutes() - 15 : -1;
   var score = function(i){ return (window.Tonight && Tonight.score) ? Tonight.score(i) : 0; };
+  var kidsOK = typeof kidsOn === "function" && kidsOn();
+  var flagged = function(i){ var f = typeof FLAGS !== "undefined" && FLAGS[i] ? FLAGS[i].split(",") : [];
+    return f.some(function(x){ return PLAN_SKIP.indexOf(x) >= 0; }) || (f.indexOf("kids") >= 0 && !kidsOK); };
   var cands = events().map(function(a){ return {a: a, i: +a.dataset.idx}; })
-    .filter(function(o){ var s = STARTS[o.i]; return s != null && s >= Math.max(now, 15 * 60 - 60); })
+    .filter(function(o){ var s = STARTS[o.i]; return s != null && s >= Math.max(now, 15 * 60 - 60) &&
+      quality(o.i) > 3 && !flagged(o.i) && !(KIDS[o.i] && !kidsOK); })
     .sort(function(x, y){ return (score(y.i) - score(x.i)) || (FREE[y.i] - FREE[x.i]) || (STARTS[x.i] - STARTS[y.i]); });
   // One main event (6:00-9:30 PM), one thing before it at a different venue,
   // and a late option only as an aside. Two things is a night; three is a lot.
@@ -13242,8 +13497,11 @@ function concierge(){
   }).map(function(f){ return f.venue; });
   var fresh = function(o){ return recent.indexOf(venue(o)) < 0; };
   var evening = function(o){ return STARTS[o.i] >= 18 * 60 && STARTS[o.i] <= 21 * 60 + 30; };
-  var main = cands.filter(function(o){ return evening(o) && fresh(o); })[0] ||
-             cands.filter(fresh)[0] || cands.filter(evening)[0] || cands[0];
+  // the main event is one of the day's standouts (quality 7+) whenever one fits
+  var best = cands.filter(function(o){ return quality(o.i) >= 7; });
+  var main = best.filter(function(o){ return evening(o) && fresh(o); })[0] || best.filter(evening)[0] ||
+             cands.filter(function(o){ return evening(o) && fresh(o); })[0] ||
+             best.filter(fresh)[0] || cands.filter(fresh)[0] || cands.filter(evening)[0] || cands[0];
   if (main) {
     featured = featured.filter(function(f){ return f.date !== DATE; })
       .concat([{date: DATE, venue: venue(main)}]).slice(-7);
@@ -13261,51 +13519,38 @@ function concierge(){
       return o !== main && o !== before && STARTS[o.i] - STARTS[main.i] >= 150 && venue(o) !== venue(main) && near(o, main);
     })[0] || null;
   }
-  var day = new Date(DATE + "T12:00:00").toLocaleDateString("en-US", {weekday: "long"});
-  var p = document.createElement("p");
-  function link(o){
-    var a = document.createElement("a"); a.href = (typeof EIDS !== "undefined" && EIDS[o.i]) ? "#e-" + EIDS[o.i] : "#event-" + o.i; a.textContent = NAMES[o.i]; return a;
-  }
-  function bit(o){
-    var v = venueOf(o.a), frag = document.createDocumentFragment();
-    frag.appendChild(link(o));
-    frag.appendChild(document.createTextNode((v ? " at " + v : "") + ", " + fmt(STARTS[o.i]) + (FREE[o.i] ? " (free)" : "")));
-    return frag;
-  }
-  function say(t){ p.appendChild(document.createTextNode(t)); }
+  var href = function(o){ return (typeof EIDS !== "undefined" && EIDS[o.i]) ? "#e-" + EIDS[o.i] : "#event-" + o.i; };
+  var line = function(o, role){ return eventLine(hm(STARTS[o.i]), role, o.i, NAMES[o.i], href(o)); };
   if (!main) {
+    host.innerHTML = "";
+    var p = document.createElement("p");
     p.textContent = "Quiet day so far. Everything that's on is below; tick what looks good.";
-  } else {
-    if (before) { say("Warm up with "); p.appendChild(bit(before)); say(". Then the main event: "); }
-    else { say("Tonight's pick: "); }
-    p.appendChild(bit(main)); say(".");
-    if (late) {
-      var aside = document.createElement("span"); aside.className = "cn-late";
-      aside.appendChild(document.createTextNode(" Still up after? "));
-      aside.appendChild(bit(late)); aside.appendChild(document.createTextNode("."));
-      p.appendChild(aside);
-    }
-    if (!before && window.TonightToni) {
-      var ask = document.createElement("button"); ask.type = "button"; ask.className = "cn-ask";
-      ask.textContent = "Plan a night around it →";
-      ask.addEventListener("click", function(){
-        TonightToni.ask("Plan a night around " + NAMES[main.i] + " at " + venueOf(main.a) + " (" + fmt(STARTS[main.i]) +
-          "): add one thing before or after it at a different venue. Keep it to two things.",
-          "Plan my night around " + NAMES[main.i].split(/[,:(]/)[0].trim());
-      });
-      p.appendChild(document.createTextNode(" ")); p.appendChild(ask);
-    }
+    host.appendChild(p);
+    return;
   }
-  host.innerHTML = "";
-  var eye = document.createElement("div"); eye.className = "cn-eye"; eye.textContent = "A note for your " + day;
-  var sign = document.createElement("div"); sign.className = "cn-sign";
-  var tasted = window.Tonight && Tonight.describe && Tonight.taste && (Tonight.taste.likes.length || Tonight.taste.free_only);
-  var adj = document.createElement("a"); adj.href = "#"; adj.setAttribute("data-tune", "1");
-  adj.textContent = tasted ? "Not quite right? Adjust" : "Tell Tonight what you like";
-  sign.appendChild(document.createTextNode(tasted ? "Picked with your taste in mind. " : ""));
-  sign.appendChild(adj);
-  if (!tasted) sign.appendChild(document.createTextNode(" and this note gets more personal."));
-  host.appendChild(eye); var hi = greeting(); if (hi) host.appendChild(hi); host.appendChild(p); host.appendChild(sign);
+  var lines = [];
+  if (before) lines.push(line(before, "Warm-up"));
+  lines.push(line(main, "Main event"));
+  if (late) lines.push(line(late, "After"));
+  planBox(host, lines);
+  var row = document.createElement("div"); row.className = "cn-actions";
+  if (!before && window.TonightToni) {
+    var ask = document.createElement("button"); ask.type = "button"; ask.className = "cn-ask";
+    ask.textContent = "Plan a night around it \u2192";
+    ask.addEventListener("click", function(){
+      TonightToni.ask("Plan a night around " + NAMES[main.i] + " at " + venueOf(main.a) + " (" + fmt(STARTS[main.i]) +
+        "): add one thing before or after it at a different venue. Keep it to two things.",
+        "Plan my night around " + NAMES[main.i].split(/[,:(]/)[0].trim());
+    });
+    row.appendChild(ask);
+  }
+  var tasted = window.Tonight && Tonight.taste && (Tonight.taste.likes.length || Tonight.taste.free_only);
+  if (tasted) row.appendChild(adjustLink());
+  else {
+    var tell = document.createElement("a"); tell.className = "cn-adjust"; tell.href = "#"; tell.setAttribute("data-tune", "1");
+    tell.textContent = "Tell Tonight what you like"; row.appendChild(tell);
+  }
+  host.appendChild(row);
 }
 
 // Vertical Timeline: one list, grouped by start hour, on a rail.
@@ -13359,61 +13604,56 @@ function aiNote(){
       .concat([{date: DATE, venue: (main.venue || "").toLowerCase()}]).slice(-7);
     try { localStorage.setItem("tonight-featured-" + CITY, JSON.stringify(featured)); } catch (e) {}
     var el = function(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
-    var day = new Date(DATE + "T12:00:00").toLocaleDateString("en-US", {weekday: "long"});
-    host.innerHTML = "";
-    host.appendChild(el("div", "cn-eye", "A note for your " + day));
-    var hi = greeting(); if (hi) host.appendChild(hi);
-    host.appendChild(el("p", "", d.note || main.why));
-    var ol = el("ol", "cn-plan");
     var label = {before: "Warm-up", main: "Main event", after: "After"};
-    d.picks.forEach(function(p, k){
-      var li = el("li"), t = el("span", "cn-t", (p.start_time || "").replace(":00", ""));
-      var body = el("span", "cn-b"); body.appendChild(el("span", "cn-role", label[p.role] || ""));
-      var a = el("a", "", p.name); a.href = p.eid ? "#e-" + p.eid : "#event-" + p.id; body.appendChild(a);
-      body.appendChild(el("span", "cn-v", [p.venue, p.price === "free" ? "free" : (p.price !== "price unknown" ? p.price : "")].filter(Boolean).join(" · ")));
-      if (p.why) body.appendChild(el("span", "cn-why", p.why));
-      li.appendChild(t); li.appendChild(body); ol.appendChild(li);
-      if (p.gap_after && k < d.picks.length - 1) ol.appendChild(el("li", "cn-gap", p.gap_after));
+    // this page's own index for a pick (the weekend page lists three days, so go by permanent id)
+    var idxOf = function(p){ var j = p.eid && typeof EIDS !== "undefined" ? EIDS.indexOf(p.eid) : -1;
+      return j >= 0 ? j : (typeof EDATE !== "undefined" && EDATE ? null : (p.id != null && p.id < NAMES.length ? p.id : null)); };
+    var lines = d.picks.map(function(p){
+      return eventLine(p.start_time || "", label[p.role] || "", idxOf(p), p.name, p.eid ? "#e-" + p.eid : "#event-" + p.id);
     });
-    host.appendChild(ol);
     var dn = d.dinner;
     if (dn && dn.time) {
-      var dl = el("div", "cn-dine");
-      dl.appendChild(el("b", "", "Dinner: " + dn.time + ", " + dn.why + ". "));
       var rs = dn.restaurants || [];
+      var li = planLine(dn.time, "Dinner", rs.length && rs[0].walk ? rs[0].walk : "");
       // each suggestion opens the real place on Google Maps (with "Reserve" where it takes bookings);
       // OpenStreetMap places are often not on OpenTable at all
-      var cityName = (document.querySelector(".hero h1") || {textContent: ""}).textContent.trim();
+      var cityName = (document.querySelector(".hero h1 .h-city") || document.querySelector(".hero h1") || {textContent: ""}).textContent.trim();
       rs.forEach(function(r, k){
         var a = el("a", "", r.name); a.target = "_blank"; a.rel = "noopener";
         a.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + (dn.area || dn.venue || "") + " " + cityName);
-        dl.appendChild(a); dl.appendChild(document.createTextNode(" (" + [r.cuisine, r.walk].filter(Boolean).join(", ") + ")" + (k < rs.length - 1 ? " or " : ". ")));
+        if (k) li.appendChild(document.createTextNode(" or "));
+        li.appendChild(a);
       });
+      if (!rs.length) li.appendChild(document.createTextNode(dn.why || ""));
       var ot = {nyc: "https://www.opentable.com", la: "https://www.opentable.com", london: "https://www.opentable.co.uk"}[CITY];
       var where = dn.area || dn.venue;
       if (ot && where) {
         var hh = String(Math.floor(dn.mins / 60)).padStart(2, "0"), mm = String(dn.mins % 60).padStart(2, "0");
         var party = 2; try { party = Math.min(12, Math.max(1, +localStorage.getItem("tonight-party") || 2)); } catch (e) {}
         // OpenTable ignores map coordinates in the address; its search box takes a place name
-        var bk = el("a", "", "Book a table near " + where + " →");
+        var bk = el("a", "cn-book", "Book table \u2197");
         bk.href = ot + "/s?dateTime=" + encodeURIComponent(DATE + "T" + hh + ":" + mm) + "&covers=" + party +
           "&term=" + encodeURIComponent(where);
-        bk.target = "_blank"; bk.rel = "noopener"; dl.appendChild(bk);
+        bk.target = "_blank"; bk.rel = "noopener";
+        li.appendChild(document.createTextNode(" ")); li.appendChild(bk);
       }
-      host.appendChild(dl);
+      lines.push(li);
     }
+    // in time order: dinner sits between the stops it fits around
+    var mins = function(li){ var m = /^(\d{1,2})(?::(\d{2}))?\s*([AP])M/i.exec(li.querySelector(".cn-t").textContent || "");
+      return m ? (+m[1] % 12 + (m[3].toUpperCase() === "P" ? 12 : 0)) * 60 + (+m[2] || 0) : 9999; };
+    lines.sort(function(a, b){ return mins(a) - mins(b); });
+    planBox(host, lines);
     var row = el("div", "cn-actions");
     if (window.TonightToni) {
-      var ch = el("button", "cn-ask", "Ask Toni to change it →"); ch.type = "button";
+      var ch = el("button", "cn-ask", "Shuffle plan \u21bb"); ch.type = "button";
       var used = d.picks.map(function(p){ return p.name + " (" + p.venue + ")"; }).join(", ");
       ch.addEventListener("click", function(){ TonightToni.ask("Give me a different plan for tonight. Don't use any of these: " +
         used + ". Pick a new main event at a different venue, plus one thing before or after it. Keep it to two things.",
         "Change tonight's plan", d.picks.map(function(p){ return p.venue; })); });
       row.appendChild(ch);
     }
-    row.appendChild(el("span", "cn-sign", "Picked by Toni for your taste."));
-    var adj = el("a", "cn-adjust", "Not quite right? Adjust"); adj.href = "#"; adj.setAttribute("data-tune", "1");
-    row.appendChild(adj);
+    row.appendChild(adjustLink());
     host.appendChild(row);
   }).catch(function(){});
 }
@@ -13991,6 +14231,111 @@ function look_appplain(){
 }
 var f={'editorial':typeof look_editorial==='function'?look_editorial:null,'zen':typeof look_zen==='function'?look_zen:null,'tonightfirst':typeof look_tonightfirst==='function'?look_tonightfirst:null,'tabs':typeof look_tabs==='function'?look_tabs:null,'app':typeof look_app==='function'?look_app:null,'tonightapp':typeof look_tonightapp==='function'?look_tonightapp:null,'appeditorial':typeof look_appeditorial==='function'?look_appeditorial:null,'appplain':typeof look_appplain==='function'?look_appplain:null}[L];if(f)document.addEventListener('DOMContentLoaded',function(){try{f();}catch(e){console.error(e);}});})();</script><script>
 (function(){
+"use strict";
+var host = document.getElementById("topTonight");
+if (!host || typeof NAMES === "undefined") return;
+var list = host.querySelector(".tt-list"), empty = host.querySelector(".tt-empty");
+var SIZE = 15, SKIP = ["networking", "sales", "spam", "service", "internal", "members_only", "online"];
+function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+function T(){ return window.Tonight || {}; }
+function quality(i){ return T().quality ? T().quality(i) : (typeof QUAL[i] === "number" ? QUAL[i] : 5); }
+function personal(i){ return T().personal ? T().personal(i) : 0; }
+function flags(i){ return FLAGS[i] ? FLAGS[i].split(",") : []; }
+function card(i){ return document.querySelector('article.event[data-idx="' + i + '"]'); }
+// the filter row decides for the list below; Top tonight follows it (collapsed "Show all" cards still count)
+function shown(a){ return a.style.display !== "none" || a.dataset.clamped === "1"; }
+function nameKey(i){ return NAMES[i].toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 40); }
+function pick(){
+  var today = !EDAYS && typeof cityToday === "function" && DATE === cityToday();
+  var now = today ? cityNowMinutes() : 0, kids = typeof kidsOn === "function" && kidsOn();
+  var cands = [];
+  NAMES.forEach(function(n, i){
+    var a = card(i), q = quality(i), f = flags(i);
+    if (!a || !shown(a) || q <= 3) return;
+    if (f.some(function(x){ return SKIP.indexOf(x) >= 0; })) return;
+    if ((KIDS[i] || f.indexOf("kids") >= 0) && !kids) return;
+    var s = STARTS[i];
+    if (today && s != null) {
+      var end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
+      if (now - s > 60 || (end != null && end <= now)) return;  // started over an hour ago, or over
+    }
+    cands.push({i: i, r: (q - 5) * 3 + personal(i), q: q});
+  });
+  cands.sort(function(x, y){ return (y.r - x.r) || (y.q - x.q) || (x.i - y.i); });
+  var catOn = (document.getElementById("fcat") || {}).value;  // one kind picked: no cap on it
+  var out = [], venues = {}, shows = {}, names = {}, perCat = {}, flex = 0, slots = 0;
+  for (var k = 0; k < cands.length && out.length < SIZE; k++) {
+    var i = cands[k].i, f = flags(i), v = (VENUES[i] || "").toLowerCase().trim(), sk = SERIES[i], nk = nameKey(i);
+    if (v && venues[v]) continue;
+    if ((sk && shows[sk]) || names[nk]) continue;
+    if (!catOn && (perCat[CATS[i]] || 0) >= 3) continue;
+    if (f.indexOf("flex_entry") >= 0 && flex) continue;
+    if (f.indexOf("class_slot") >= 0 && slots) continue;
+    if (v) venues[v] = 1; if (sk) shows[sk] = 1; names[nk] = 1;
+    perCat[CATS[i]] = (perCat[CATS[i]] || 0) + 1;
+    if (f.indexOf("flex_entry") >= 0) flex = 1;
+    if (f.indexOf("class_slot") >= 0) slots = 1;
+    out.push(i);
+  }
+  return out;
+}
+function when(i){
+  var t = STARTS[i] != null && typeof hmLabel === "function" ? hmLabel(STARTS[i]) : "TBA";
+  if (EDATE) {  // the weekend page: say which day
+    var d = new Date(EDATE[i] + "T12:00:00").toLocaleDateString(document.documentElement.lang === "es" ? "es-MX" : "en-US", {weekday: "short"});
+    t = d.replace(".", "") + " " + t;
+  }
+  return t;
+}
+function row(i){
+  var a = card(i), li = el("li", "tt-row"); li.dataset.idx = i;
+  var tick = a && a.querySelector(".toggle"), on = !!tick && tick.getAttribute("aria-pressed") === "true";
+  var star = el("button", "tt-star", on ? "★" : "☆"); star.type = "button";
+  star.setAttribute("aria-pressed", on ? "true" : "false"); star.setAttribute("aria-label", "Pick");
+  star.addEventListener("click", function(){ var t = card(i) && card(i).querySelector(".toggle"); if (t) t.click(); });
+  li.appendChild(star);
+  li.appendChild(el("span", "tt-time", when(i)));
+  var main = el("div", "tt-main"), name = el("a", "tt-name", NAMES[i]);
+  name.href = EIDS[i] ? "#e-" + EIDS[i] : "#event-" + i;
+  main.appendChild(name);
+  if (HOODS[i]) main.appendChild(el("span", "tt-hood", " · " + HOODS[i]));
+  if (WHY[i]) main.appendChild(el("div", "tt-why", WHY[i]));
+  li.appendChild(main);
+  var tix = a && a.querySelector("a.tickets"), label = FREE[i] ? "Free" : (PRICES[i] || "").replace(/\.00(?!\d)/g, "");
+  if (!label && tix) label = "Tickets";
+  var price = el(tix ? "a" : "span", "tt-price" + (FREE[i] ? " free" : ""), label || null);
+  if (tix) { price.href = tix.href; price.target = "_blank"; price.rel = "noopener"; }
+  if (!label) price.style.visibility = "hidden";
+  li.appendChild(price);
+  var x = el("button", "tt-x", "×"); x.type = "button";
+  x.setAttribute("aria-label", "Not for me"); x.title = "Not for me";
+  x.addEventListener("click", function(){ var h = card(i) && card(i).querySelector(".hide"); if (h) h.click(); });
+  li.appendChild(x);
+  return li;
+}
+function draw(){
+  var ids = pick(), frag = document.createDocumentFragment();
+  ids.forEach(function(i){ frag.appendChild(row(i)); });
+  list.innerHTML = ""; list.appendChild(frag);
+  if (empty) empty.hidden = ids.length > 0;
+}
+var queued = false;
+window.__topTonight = function(){
+  if (queued) return; queued = true;
+  setTimeout(function(){ queued = false; draw(); }, 0);
+};
+// "Include kids' events" changes who's in; the list below stays where it is
+document.addEventListener("click", function(e){ if (e.target.closest && e.target.closest("#kidsToggle")) window.__topTonight(); });
+var all = host.querySelector(".tt-all");
+if (all) all.addEventListener("click", function(e){
+  var m = document.getElementById("allEvents"); if (!m) return;
+  e.preventDefault(); m.scrollIntoView({behavior: "smooth", block: "start"});
+});
+document.addEventListener("DOMContentLoaded", window.__topTonight);
+setInterval(window.__topTonight, 5 * 60 * 1000);  // today: what's started drops off
+})();
+</script><script>
+(function(){
 // An older day's page: go to today's page for the same city (keeping filters), unless this is a
 // shared link to one event (#e-...) or Toni is open mid-conversation; then just say so.
 function today(tz){ try { return new Intl.DateTimeFormat("en-CA", {timeZone: tz}).format(new Date()); } catch (e) { return null; } }
@@ -14463,6 +14808,208 @@ sel.addEventListener("change", fromSelect);
 document.addEventListener("click", function(e){ if (box.hasAttribute("open") && !box.contains(e.target)) box.removeAttribute("open"); });
 sel.hidden = true; sel.parentNode.insertBefore(box, sel.nextSibling);
 fromSelect();
+})();
+</script><script>
+(function(){
+"use strict";
+var FX = window.__facet, side = document.getElementById("fside"), bar = document.getElementById("filterBar");
+if (!FX || !side || !bar || typeof CATS === "undefined") return;
+var L = {when: "When", evening: "Evening 5pm+", day: "Daytime", any: "Any", soon: "Starting soon", exact: "Exact times",
+  price: "Price", free: "Free only", cat: "Category", area: "Area", clear: "Clear", clearAll: "Clear all",
+  show: "Show {n} events", show1: "Show 1 event", filters: "Filters", filtersN: "Filters ({n})", elsewhere: "Elsewhere",
+  more: "Show all {n}", fewer: "Show fewer", close: "Close"};
+var root = document.documentElement; root.classList.add("fs-on");
+function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+function $(id){ return document.getElementById(id); }
+var catSel = $("fcat"), hoodSel = $("fhood"), soonBtn = $("nextHourBtn");
+var cards = [].slice.call(document.querySelectorAll("article.event"));
+var N = NAMES.length, cardOf = {};
+cards.forEach(function(a){ cardOf[+a.dataset.idx] = a; });
+// set a filter-row select (several values join with "," for categories, "|" for areas) and let the row react
+function setSel(sel, v){
+  if (!sel) return;
+  if (v && ![].slice.call(sel.options).some(function(o){ return o.value === v; })) {
+    var o = document.createElement("option"); o.value = v; o.textContent = v; o.dataset.multi = "1"; sel.appendChild(o);
+  }
+  sel.value = v; sel.dispatchEvent(new Event("change", {bubbles: true}));
+}
+function vals(sel, sep){ return sel && sel.value ? sel.value.split(sep).filter(Boolean) : []; }
+function toggle(list, v, on){ var i = list.indexOf(v); if (on && i < 0) list.push(v); else if (!on && i >= 0) list.splice(i, 1); return list; }
+function soonShown(){ return !!soonBtn && !EDAYS && typeof cityToday === "function" && DATE === cityToday(); }
+function soonOn(){ return !!soonBtn && soonBtn.getAttribute("aria-pressed") === "true"; }
+
+var groups = el("div", "fsg"); groups.id = "fsGroups";
+var top = el("div", "fs-top"), title = el("span", "fs-title", L.filters), clearAll = el("button", "fs-link", L.clearAll);
+clearAll.type = "button"; top.appendChild(title); top.appendChild(clearAll); groups.appendChild(top);
+function section(name, onClear){
+  var s = el("section", "fs-sec"), h = el("div", "fs-head"), hh = el("h3", "fs-h", name);
+  h.appendChild(hh);
+  var c = null;
+  if (onClear) { c = el("button", "fs-link", L.clear); c.type = "button"; c.addEventListener("click", onClear); h.appendChild(c); }
+  s.appendChild(h); groups.appendChild(s);
+  return {s: s, clear: c};
+}
+function row(parent, type, name, label, onChange){
+  var r = el("label", "fs-row"), i = document.createElement("input"), l = el("span", "fs-l", label), n = el("span", "fs-n");
+  i.type = type; if (name) i.name = name;
+  i.addEventListener("change", function(){ onChange(i.checked); });
+  r.appendChild(i); r.appendChild(l); r.appendChild(n); parent.appendChild(r);
+  return {r: r, i: i, n: n};
+}
+function setRow(o, count, checked){
+  o.i.checked = checked; o.n.textContent = count;
+  var zero = !count && !checked;
+  o.r.classList.toggle("zero", zero); o.i.disabled = zero;
+}
+
+// When
+var todBtn = function(t){ return document.querySelector('#ftod button[data-t="' + t + '"]'); };
+var when = section(L.when, function(){
+  if (soonOn()) soonBtn.click();
+  ["fafter", "fbefore"].forEach(function(id){ var s = $(id); if (s && s.value !== "") setSel(s, ""); });
+  var b = todBtn(FX.TOD0()); if (b) b.click();
+});
+var tods = [["evening", L.evening], ["day", L.day], ["all", L.any]].map(function(t){
+  var b = todBtn(t[0]), lab = b ? b.textContent : t[1];
+  return {t: t[0], o: row(when.s, "radio", "fs-tod", lab, function(on){ var x = todBtn(t[0]); if (on && x) x.click(); })};
+});
+var soon = null;
+if (soonShown()) soon = row(when.s, "checkbox", null, L.soon, function(){ soonBtn.click(); setTimeout(draw, 0); });
+var times = el("details", "fs-x"), tsum = el("summary", null, L.exact), tbox = el("div", "fs-times");
+times.appendChild(tsum); times.appendChild(tbox);
+["fafter", "fbefore"].forEach(function(id){
+  var s = $(id); if (!s) return;
+  tbox.appendChild(s);  // the row's own pickers move here (same ids, same listeners)
+  s.addEventListener("change", function(){ bar.dispatchEvent(new Event("change")); });
+});
+if (tbox.children.length) when.s.appendChild(times);
+
+// Price
+var price = section(L.price, null), freeBtn = $("ffree");
+var free = row(price.s, "checkbox", null, L.free, function(on){ if (freeBtn && FX.F.free !== on) freeBtn.click(); });
+
+// Category: busiest first
+var catOpts = catSel ? [].slice.call(catSel.options).filter(function(o){ return o.value && !o.dataset.multi && o.value.indexOf(",") < 0; }) : [];
+var dayCat = {}; CATS.forEach(function(c){ dayCat[c] = (dayCat[c] || 0) + 1; });
+catOpts.sort(function(a, b){ return (dayCat[b.value] || 0) - (dayCat[a.value] || 0); });
+var catSec = catOpts.length ? section(L.cat, function(){ setSel(catSel, ""); }) : null;
+var catRows = catOpts.map(function(o){
+  return {v: o.value, o: row(catSec.s, "checkbox", null, o.textContent, function(on){
+    setSel(catSel, toggle(vals(catSel, ","), o.value, on).join(","));
+  })};
+});
+
+// Area: borough / region groups, neighbourhoods inside (busiest first); a city without groups gets one list
+var dayHood = {}, hoodGroup = {};
+HOODS.forEach(function(h, i){ if (!h) return; dayHood[h] = (dayHood[h] || 0) + 1;
+  if (!hoodGroup[h]) hoodGroup[h] = (typeof AREA_GROUP !== "undefined" && AREA_GROUP[i]) || ""; });
+var hoodNames = Object.keys(dayHood).sort(function(a, b){ return (dayHood[b] - dayHood[a]) || a.localeCompare(b); });
+var areaSec = hoodSel && hoodNames.length ? section(L.area, function(){ setSel(hoodSel, ""); }) : null;
+var hoodRows = [], grpBoxes = [];
+function hoodRow(parent, h){
+  hoodRows.push({v: h, g: hoodGroup[h], o: row(parent, "checkbox", null, h, function(on){
+    setSel(hoodSel, toggle(vals(hoodSel, "|"), h, on).join("|"));
+  })});
+}
+if (areaSec) {
+  var order = (typeof AREA_ORDER !== "undefined" && AREA_ORDER) || [];
+  var used = order.filter(function(g){ return hoodNames.some(function(h){ return hoodGroup[h] === g; }); });
+  if (used.length) {
+    used.forEach(function(g){
+      var d = el("details", "fs-grp"), s = el("summary"), dot = el("span", "fs-dot"), n = el("span", "fs-n");
+      s.appendChild(el("span", "fs-l", g === order[order.length - 1] ? L.elsewhere : g)); s.appendChild(dot); s.appendChild(n);
+      d.appendChild(s); var sub = el("div", "fs-sub"); d.appendChild(sub);
+      hoodNames.forEach(function(h){ if (hoodGroup[h] === g) hoodRow(sub, h); });
+      areaSec.s.appendChild(d); grpBoxes.push({g: g, d: d, n: n, dot: dot});
+    });
+  } else {  // no borough map for this city: the busiest dozen, then the rest behind "Show all"
+    var wrap = el("div"), rest = el("div"); rest.hidden = true;
+    hoodNames.forEach(function(h, k){ hoodRow(k < 12 ? wrap : rest, h); });
+    areaSec.s.appendChild(wrap); areaSec.s.appendChild(rest);
+    if (hoodNames.length > 12) {
+      var mb = el("button", "fs-link fs-morebtn", L.more.replace("{n}", hoodNames.length)); mb.type = "button";
+      mb.addEventListener("click", function(){ rest.hidden = !rest.hidden;
+        mb.textContent = rest.hidden ? L.more.replace("{n}", hoodNames.length) : L.fewer; });
+      areaSec.s.appendChild(mb);
+    }
+  }
+}
+
+clearAll.addEventListener("click", function(){
+  var fc = $("fclear"); if (fc) fc.click();
+  if (soonOn()) soonBtn.click();
+  var b = todBtn(FX.TOD0()); if (b) b.click();  // back to the page's default (Evening after noon today)
+  setTimeout(draw, 0);
+});
+
+// Filters (n) button for narrow screens + the bottom sheet
+var fsBtn = el("button", null, L.filters); fsBtn.id = "fsBtn"; fsBtn.type = "button";
+fsBtn.setAttribute("aria-haspopup", "dialog");
+var srch = bar.querySelector(".fsearch"); if (srch) srch.parentNode.insertBefore(fsBtn, srch.nextSibling);
+var sheet = el("div"); sheet.id = "fsSheet"; sheet.hidden = true; sheet.setAttribute("role", "dialog"); sheet.setAttribute("aria-modal", "true");
+sheet.setAttribute("aria-label", L.filters);
+var panel = el("div", "fs-panel"), scroll = el("div", "fs-scroll"), foot = el("div", "fs-foot"), show = el("button", "fs-show");
+var x = el("button", "fs-close", "×"); x.type = "button"; x.setAttribute("aria-label", L.close); show.type = "button";
+panel.appendChild(x); panel.appendChild(scroll); foot.appendChild(show); panel.appendChild(foot); sheet.appendChild(panel);
+document.body.appendChild(sheet);
+var wide = matchMedia("(min-width:1100px)");
+function place(){
+  if (wide.matches) { if (!sheet.hidden) closeSheet(); if (groups.parentNode !== side) side.appendChild(groups); }
+  else if (groups.parentNode !== scroll) scroll.appendChild(groups);
+}
+function openSheet(){ place(); sheet.hidden = false; root.classList.add("fs-lock"); draw(); x.focus(); }
+function closeSheet(){ sheet.hidden = true; root.classList.remove("fs-lock"); }
+fsBtn.addEventListener("click", openSheet);
+x.addEventListener("click", closeSheet);
+show.addEventListener("click", function(){ closeSheet(); var m = $("topTonight") || $("allEvents"); if (m && m.offsetParent) m.scrollIntoView({block: "start"}); });
+sheet.addEventListener("click", function(e){ if (e.target === sheet) closeSheet(); });
+document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !sheet.hidden) closeSheet(); });
+if (wide.addEventListener) wide.addEventListener("change", place); else wide.addListener(place);
+place();
+
+// live counts: what each box would show with all the other filters as they are
+function draw(){
+  var F = FX.F, cats = vals(catSel, ","), hoods = vals(hoodSel, "|");
+  var cc = {}, hc = {}, gc = {}, tc = {evening: 0, day: 0, all: 0}, fr = 0, total = 0;
+  for (var i = 0; i < N; i++) {
+    var a = cardOf[i]; if (!a) continue;
+    var d = FX.dims(i, a); if (!d.base) continue;
+    if (d.cat && d.free && d.tod && d.hood) total++;
+    if (d.hood && d.free && d.tod) cc[CATS[i]] = (cc[CATS[i]] || 0) + 1;
+    if (d.cat && d.free && d.tod && HOODS[i]) { hc[HOODS[i]] = (hc[HOODS[i]] || 0) + 1; var g = hoodGroup[HOODS[i]]; gc[g] = (gc[g] || 0) + 1; }
+    if (d.cat && d.hood && d.tod && FREE[i]) fr++;
+    if (d.cat && d.hood && d.free) { if (FX.todMatch(i, "evening")) tc.evening++; if (FX.todMatch(i, "day")) tc.day++; tc.all++; }
+  }
+  tods.forEach(function(t){ setRow(t.o, tc[t.t], F.tod === t.t); });
+  if (soon) soon.i.checked = soonOn();
+  var tOn = F.after != null || F.before != null;
+  ["fafter", "fbefore"].forEach(function(id){ var s = $(id); if (s) s.classList.toggle("on", s.value !== ""); });
+  if (tOn && !times.open) times.open = true;
+  setRow(free, fr, !!F.free);
+  catRows.forEach(function(r){ setRow(r.o, cc[r.v] || 0, cats.indexOf(r.v) >= 0); });
+  hoodRows.forEach(function(r){ setRow(r.o, hc[r.v] || 0, hoods.indexOf(r.v) >= 0); });
+  grpBoxes.forEach(function(b){
+    var sel = hoods.some(function(h){ return hoodGroup[h] === b.g; });
+    b.n.textContent = gc[b.g] || 0; b.dot.hidden = !sel;
+    b.d.classList.toggle("zero", !gc[b.g] && !sel);
+    if (sel && !b.d.dataset.seen) { b.d.open = true; }
+    b.d.dataset.seen = sel ? "1" : "";
+  });
+  var nOn = cats.length + hoods.length + (F.free ? 1 : 0) + (F.tod !== FX.TOD0() ? 1 : 0) +
+    (F.after != null ? 1 : 0) + (F.before != null ? 1 : 0) + (soonOn() ? 1 : 0);
+  var any = nOn > 0 || !!F.q;
+  clearAll.hidden = !any;
+  if (when.clear) when.clear.hidden = !(F.tod !== FX.TOD0() || tOn || soonOn());
+  if (catSec) catSec.clear.hidden = !cats.length;
+  if (areaSec) areaSec.clear.hidden = !hoods.length;
+  fsBtn.textContent = nOn ? L.filtersN.replace("{n}", nOn) : L.filters;
+  fsBtn.classList.toggle("on", nOn > 0);
+  show.textContent = total === 1 ? L.show1 : L.show.replace("{n}", total);
+}
+var queued = false;
+window.__fside = function(){ if (queued) return; queued = true; setTimeout(function(){ queued = false; draw(); }, 0); };
+document.addEventListener("click", function(e){ if (e.target.closest && e.target.closest("#nextHourBtn,#ftod button,#ffree")) window.__fside(); });
+draw();
 })();
 </script><script>
 (function(){

@@ -275,11 +275,21 @@ text-transform:uppercase;line-height:1.02;}
 .hero p,.bhero p{opacity:.9;font-weight:500;}
 .hero h1 b{color:var(--accent);}
 .home .hero h1{text-transform:none;font-size:clamp(3.2rem,11vw,5.2rem);}
-/* day pages: one tight band (date, city, actions) so events show on the first screen */
-.dayhero{padding:20px 20px 18px;}
-.dayhero h1{font-size:clamp(1.9rem,5vw,2.8rem);margin:10px 0 12px;}
-.dayhero .toolbar{padding:0;}
+/* day pages: one tight band, "NEW YORK CITY - THURSDAY, OCTOBER 15" with Share and a ⋯ menu beside it */
+.dayhero{display:flex;align-items:center;justify-content:space-between;gap:10px 18px;flex-wrap:wrap;text-align:left;
+padding:16px max(16px,calc((100% - 1040px) / 2));}
+.dayhero > .eyebrow{display:none!important;}  /* the title carries the day (scripts still read it) */
+.dayhero h1{font-size:clamp(1.25rem,3vw,2rem);margin:0;line-height:1.1;min-width:0;}
+.dayhero .toolbar{padding:0;flex-wrap:nowrap;justify-content:flex-end;}
 .dayhero .toolbar .btn{padding:8px 14px;font-size:12px;}
+.tmore{position:relative;}
+.tmore summary{list-style:none;cursor:pointer;font-size:16px!important;line-height:1.05!important;letter-spacing:1px!important;}
+.tmore summary::-webkit-details-marker{display:none;}
+.tmenu{position:absolute;right:0;top:calc(100% + 10px);z-index:70;min-width:240px;display:flex;flex-direction:column;padding:6px 0;
+background:var(--card);color:var(--ink);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--accent);text-align:left;}
+.tm-item{display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:0;font:700 14px/1.3 'Inter',sans-serif;
+letter-spacing:0;text-transform:none;color:var(--ink);text-decoration:none;cursor:pointer;}
+.tm-item:hover{background:var(--muted);}
 .dayhero .btn-dark{background:transparent;color:var(--on-banner);border-color:var(--on-banner);}
 .langmenu{position:relative;margin-left:14px;}
 .langmenu summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 10px;
@@ -295,23 +305,30 @@ font-weight:700;text-transform:none;letter-spacing:0;color:var(--ink);text-decor
 .langlist .soon i{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
 @media (max-width:640px){.langmenu{margin-left:8px;}.langmenu summary{padding:4px 7px;}}
 /* filter panel: search on top, one row of same-height chips below */
-#filterBar{max-width:760px;margin:16px auto 0;padding:14px;display:flex;flex-direction:column;align-items:stretch;gap:10px;
+#filterBar{max-width:1040px;margin:16px auto 0;padding:12px 14px 10px;display:flex;flex-direction:column;align-items:stretch;gap:8px;box-sizing:border-box;
 background:var(--card);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);}
 #filterBar .frow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-#filterBar .fsearch{flex:1;display:flex;align-items:center;gap:9px;height:42px;padding:0 14px;
+#filterBar .frow[hidden]{display:none;}
+#filterBar .fsearch{flex:1 1 110px;display:flex;align-items:center;gap:9px;height:34px;padding:0 14px;
 border:2px solid var(--ink);background:var(--field,#fff);color:var(--ink);}
 #filterBar .fsearch:focus-within{outline:3px solid var(--accent);outline-offset:1px;}
 #filterBar .fsearch svg{width:17px;height:17px;flex:none;opacity:.55;}
 #filterBar .fsearch input{flex:1;min-width:0;height:100%;padding:0;border:0;outline:0;background:transparent;
 box-shadow:none;font-size:14.5px;font-weight:500;color:var(--ink);}
-#filterBar #resCount{margin:0 2px 0 6px;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+#filterBar .fmeta{gap:4px 12px;min-height:0;}
+#filterBar .fmeta #hiddenBar,#filterBar .fmeta .fclear{height:26px;}
+#filterBar .fmore.on{background-color:var(--accent);color:var(--on-accent,var(--ink));}
+#filterBar .fchips{gap:6px;}
+#filterBar #fhood{max-width:150px;}
+#filterBar .seg button,#filterBar .fbtn{white-space:nowrap;}
+#filterBar #resCount{margin:0 2px 0 0;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
 opacity:.65;white-space:nowrap;}
 #filterBar .seg{display:inline-flex;flex:none;gap:0;border:2px solid var(--ink);overflow:hidden;}
-#filterBar .seg button{height:30px;padding:0 12px;border:0;border-right:2px solid var(--ink);border-radius:0;
+#filterBar .seg button{height:30px;padding:0 9px;border:0;border-right:2px solid var(--ink);border-radius:0;
 background:var(--field,#fff);font-size:11.5px;letter-spacing:.3px;}
 #filterBar .seg button:last-child{border-right:0;}
 #filterBar .seg button.on{background:var(--ink);color:var(--paper);}
-#filterBar .fbtn,#filterBar select{height:34px;padding:0 12px;border:2px solid var(--ink);background-color:var(--field,#fff);
+#filterBar .fbtn,#filterBar select{height:34px;padding:0 10px;border:2px solid var(--ink);background-color:var(--field,#fff);
 color:var(--ink);font-size:12.5px;font-weight:700;letter-spacing:0;text-transform:none;cursor:pointer;}
 #filterBar select{-webkit-appearance:none;appearance:none;max-width:210px;padding-right:30px;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23888' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;background-size:11px;}
@@ -366,7 +383,7 @@ box-shadow:4px 4px 0 var(--accent);transition:transform .2s ease;}
 #tnToast button{background:var(--accent);color:var(--on-accent,var(--ink));border:0;padding:5px 11px;font-weight:800;cursor:pointer;font-size:13px;}
 @media (prefers-reduced-motion: reduce){#tnToast{transition:none;}}
 /* My picks: a slim tray under the filters */
-#picksBar{max-width:760px;margin:10px auto 0!important;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+#picksBar{max-width:1040px;box-sizing:border-box;margin:12px auto 0!important;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
 padding:8px 10px 8px 16px!important;text-align:left;background:transparent;border:2px dashed var(--ink);box-shadow:none;}
 #picksBar > br,#picksBar > span{display:none;}
 #picksBar strong{font-size:14px;margin-right:auto;}
@@ -381,9 +398,11 @@ text-decoration:underline;text-decoration-color:var(--accent);text-decoration-th
 #picksBar #shareMsg a{font-weight:800;color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 @media (max-width:640px){
 #filterBar{margin-left:12px;margin-right:12px;padding:12px;}
-#filterBar .fchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -12px;padding:0 12px 3px;}
-#filterBar .fchips::-webkit-scrollbar{display:none;}
-#filterBar .fchips > *{flex:none;}
+#filterBar .fchips{flex-wrap:wrap;}
+#filterBar .fchips .fsearch{flex-basis:100%;}
+#filterBar .fchips > select,#filterBar .fchips > .fmulti{flex:1 1 40%;max-width:none!important;min-width:0;}
+#filterBar .fchips > .fmulti summary{max-width:none;}
+#filterBar .fchips > .fmulti .fmenu{left:auto;right:0;max-width:calc(100vw - 32px);}
 #picksBar{margin-left:12px!important;margin-right:12px!important;}
 }
 .wrap > section.cat.free{margin-top:4px;}
@@ -586,7 +605,18 @@ function pull(){
     })
     .catch(function(){});
 }
+// how good the event is for anyone (ingest/quality.py: 1-10, 5 when not scored)
+function quality(i){
+  var q = typeof QUAL !== "undefined" ? QUAL[i] : null;
+  return typeof q === "number" ? q : 5;
+}
+// the list's order: your taste, nudged by quality
 function score(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  return personal(i) + (quality(i) - 5) * 1.5;
+}
+// the personal half: categories, ticks, venues, friends, regulars, when you go out
+function personal(i){
   if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
   var cat = CATS[i], s = 0;
   if (taste.likes.indexOf(cat) >= 0) s += 10;
@@ -655,8 +685,10 @@ function sortChildren(container){
     .sort(function(x, y){ return (x.p - y.p) || (y.k - x.k) || (x.n - y.n); })
     .forEach(function(o){ container.appendChild(o.a); });
 }
+function scored(){ return typeof QUAL !== "undefined" && QUAL.some(function(q){ return q != null; }); }
 function applyRanking(){
-  if (!hasTaste() || typeof CATS === "undefined") return;
+  if (window.__topTonight) window.__topTonight();  // Top tonight re-ranks whatever the layout
+  if ((!hasTaste() && !scored()) || typeof CATS === "undefined") return;
   // the timeline layout orders by start time, not taste
   if (document.documentElement.getAttribute("data-layout") === "timeline") return;
   var wrap = document.querySelector("main.wrap");
@@ -688,7 +720,7 @@ function applyRanking(){
   }
 }
 /* ---------------- quiz ---------------- */
-var SURP = {low: "ninguna", med: "algunas", high: "muchas"};
+var SURP = {low: "Sorpresas: ninguna", med: "Sorpresas: algunas", high: "Sorpresas: muchas"};  // whole labels: a bare "none" literal would be translated everywhere (style.display) on /es/
 var sheet = null, sel = {};
 function guessCity(){
   var saved = null;
@@ -738,7 +770,7 @@ function buildSheet(){
   var surpB = document.createElement("button");
   surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
   var paintSurp = function(){
-    surpB.textContent = "Sorpresas: " + SURP[surp];
+    surpB.textContent = SURP[surp];
     surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
   };
   paintSurp();
@@ -846,7 +878,7 @@ function setCat(cat, mode){
 }
 window.Tonight = {
   taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
-  score: score, save: save, applyRanking: applyRanking,
+  score: score, personal: personal, quality: quality, save: save, applyRanking: applyRanking,
   openQuiz: openQuiz, describe: describe, setCat: setCat
 };
 document.addEventListener("DOMContentLoaded", function(){
@@ -864,7 +896,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 })();
 </script>
-<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt=""><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferencias</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span><span class="citylinks"><a class="cur" href="./nyc/2026-10-18.html">NYC</a> <a class="" href="./london/2026-10-18.html">Londres</a> <a class="" href="./la/2026-10-18.html">LA</a></span><a class="browselink" href="./browse-nyc-2026-10-18.html">Ver todo →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Pronto</i></span><span class="soon" lang="pt">Português <i>Pronto</i></span><span class="soon" lang="de">Deutsch <i>Pronto</i></span><span class="soon" lang="it">Italiano <i>Pronto</i></span><span class="soon" lang="ja">日本語 <i>Pronto</i></span></div></details></nav>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferencias</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span><span class="citylinks"><a class="cur" href="./nyc/2026-10-18.html">NYC</a> <a class="" href="./london/2026-10-18.html">Londres</a> <a class="" href="./la/2026-10-18.html">LA</a></span><a class="browselink" href="./browse-nyc-2026-10-18.html">Ver todo →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Pronto</i></span><span class="soon" lang="pt">Português <i>Pronto</i></span><span class="soon" lang="de">Deutsch <i>Pronto</i></span><span class="soon" lang="it">Italiano <i>Pronto</i></span><span class="soon" lang="ja">日本語 <i>Pronto</i></span></div></details></nav>
 <header class="bhero">
 <div class="eyebrow">Domingo, 18 de octubre · Nueva York</div>
 <h1>Ver todo</h1>
@@ -7557,6 +7589,10 @@ const EDAYS = EDATE ? [...new Set(EDATE)] : null;
 const RECUR = ["Most days", "Most days", "", "Most days", "Most days", "Also on other days", "", "Every Sunday", "", "", "Most days", "Also on other days", "Every Sunday", "Most days", "Most days", "Most days", "", "Most days", "Most days", "", "", "Also on other days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Also on other days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Also on other days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Most days", "Also on other days", "", "Also on other days", "", "", "Every Sunday", "", "Every Sunday", "Most days", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "Every Sunday", "", "", "", "Most days", "", "Most days", "Every Sunday", "Most days", "Every Sunday", "Every Sunday", "Every Sunday", "Every Sunday", "", "", "Every Sunday", "", "", "", "", "", "", "Most days", "", "", "", "", "", "", "", "", "Every Sunday", "", "Every Sunday", "", "", "", "", "", "", "", "Every Sunday", "", "", "", "", "", "Every Sunday", "Every Sunday", "", "", "", "", "", "", "", "", "", "", "Every Sunday", "Every Sunday", "Every Sunday", "Every Sunday", "", "Most days", "Also on other days", "Every Sunday", "Every Sunday", "", "", "Every Sunday", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "Also on other days", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "Also on other days", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Every Sunday", "", "Every Sunday", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Every Sunday", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Also on other days", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 const KIDS = [false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, true, false, true, false, false, false, false, true, true, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, true, false, true, false, true, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const PRICES = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$54.27", "", "", "", "$35.46", "", "", "", "$12.44", "", "", "$26.76", "$20.01", "$43.19", "$39.83", "$35.46", "", "", "", "", "$66.32", "", "", "", "", "$35.46", "$9.08", "$27.22", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$3.00", "", "", "", "", "$3.00", "", "", "", "", "", "$18.00", "", "$25.00", "$35.00", "$35.00", "$25.00", "$9.00", "$25.00", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "$9.00", "$9.00", "$9.00", "$9.00", "$9.00", "$9.00", "$9.00", "$9.00", "$9.00", "$9.00", "$9.00", "$9.00", "", "", "$38.00", "", "$20.00", "$80.00", "", "", "$45.00", "$10.00", "", "", "$35.00", "", "", "$10.00", "$53.35", "$5.00", "", "$25.00", "$5.00", "$25.00", "$25.00", "", "$45.00", "$35.00", "", "$100.00", "$35.00", "$60.00", "$30.00", "", "$15.00", "", "$45.00", "", "", "", "$75.00", "$5.44", "", "", "", "$65.00", "", "", "", "", "", "$20.00", "", "$15.00", "$9.00", "$20.00", "$5.00", "", "$48.00", "$5.00", "$16.33", "", "", "$155.00", "", "$45.00", "$19.99", "$75.00", "$65.00", "$25.00", "", "", "", "$30.00", "$75.00", "$10.00", "", "", "$105.00", "$50.00", "$85.00", "", "$35.00", "$30.00", "$35.00", "", "", "", "", "$40.87", "$10.00", "", "$39.72", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+// how good each event is for anyone (1-10, null = not scored) + why, and its flags (ingest/quality.py)
+const QUAL = [5, 3, 6, 3, 3, 2, 2, 4, 2, 5, 5, 2, 2, 6, 5, 4, 5, 4, 5, 5, 4, 5, 4, 5, 5, 6, 4, 4, 6, 5, 4, 4, 4, 5, 4, 5, 6, 5, 6, 4, 5, 5, 5, 7, 5, 5, 7, 6, 5, 8, 4, 6, 5, 4, 5, 5, 9, 4, 4, 3, 6, 6, 6, 4, 7, 6, 4, 5, 4, 4, 5, 5, 5, 5, 5, 7, 4, 7, 4, 8, 8, 5, 5, 6, 4, 6, 4, 5, 3, 3, 3, 4, 5, 2, 3, 3, 3, 2, 4, 3, 2, 2, 2, 6, 2, 2, 2, 4, 5, 7, 4, 3, 3, 4, 2, 4, 5, 4, 5, 6, 5, 3, 4, 2, 3, 2, 5, 5, 6, 4, 3, 2, 5, 5, 4, 6, 6, 2, 5, 6, 2, 6, 1, 5, 4, 4, 3, 5, 1, 3, 4, 6, 3, 5, 6, 4, 6, 4, 8, 6, 7, 5, 5, 7, 6, 5, 8, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 3, 7, 4, 4, 4, 3, 7, 5, 5, 5, 5, 8, 5, 6, 7, 2, 5, 6, 7, 8, 7, 8, 2, 5, 7, 6, 4, 9, 8, 8, 6, 5, 6, 6, 5, 7, 5, 4, 7, 5, 7, 4, 5, 2, 4, 3, 6, 3, 2, 4, 3, 2, 3, 2, 4, 2, 3, 3, 4, 5, 3, 4, 3, 3, 5, 5, 3, 5, 2, 3, 3, 5, 4, 5, 1, 4, 3, 2, 4, 5, 5, 4, 5, 3, 3, 4, 4, 5, 3, 1, 2, 5, 2, 4, 6, 3, 3, 3, 4, 3, 2, 5, 2, 3, 2, 2, 7, 2, 2, 3, 5, 3, 5, 2, 2, 1, 3, 4, 3, 2, 3, 1, 3, 7, 6, 2, 3, 4, 2, 8, 6, 5, 8, 5, 6, 2, 4, 4, 3, 2, 2, 6, 6, 6, 2, 3, 5, 2, 6, 3, 3, 4, 2, 2, 2, 3, 2, 3, 4, 3, 5, 2, 2, 6, 5, 5, 7, 6, 4, 5, 5, 5, 5, 3, 3, 3, 2, 5, 6, 3, 2, 3, 2, 7, 6, 2, 5, 2, 2, 2, 2, 4, 2, 5, 5, 3, 4, 3, 6, 4, 4, 3, 5, 4, 6, 6, 5, 5, 5, 3, 7, 8, 7, 5, 4];
+const WHY = ["Flexible-entry admission to the Museum of Chinese in America.", "", "BRIC JazzFest 2026 evening program at BRIC House.", "", "", "", "", "Free Nashville-style in-the-round songwriter open mic every Sunday.", "", "Rick Pitino's St. John's team in an October exhibition against Rutgers.", "Jamie Allan's mentalism show, with strobes and haze.", "", "", "Fitzgerald's Benjamin Button story adapted at the Public Theater.", "Sherri Shepherd takes over as Genie through January 2027.", "Disney's long-running Lion King, a tourist staple.", "Broadway staging at the James Earl Jones Theatre; limited detail listed.", "Long-running Harry Potter stage sequel, a tourist favorite.", "Long-running Broadway jukebox musical; easy to catch any night.", "Hamilton, the hip-hop history musical, still a Broadway staple.", "Stranger Things prequel stage show on Broadway.", "Seinfeld parody musical, a niche spin for fans of the show.", "One-off Slam Frank show at the Orpheum Theatre.", "Off-Broadway play at the Daryl Roth Theatre, a small intimate house.", "Unauthorized musical parody of the hit series Heated Rivalry.", "Tony-winning robot romance musical at the Belasco.", "Pop-infused musical about Henry VIII's six wives.", "Off-Broadway musical staged at St. Luke's Theatre.", "Tony-nominated Jocelyn Bioh play about boarding school rivalries.", "Operation Mincemeat, a long-running Broadway musical comedy.", "Long-running Broadway revival; available most nights.", "Long-running Wicked, a tourist staple.", "Stage adaptation of the Paranormal Activity horror franchise.", "Rocky Horror Show stage production at Studio 54.", "Long-running Book of Mormon, a Broadway staple.", "The Unbelievers at New York City Center; description is sparse.", "New play creation stories at Lincoln Center's smaller Claire Tow Theater.", "Off-Broadway Little Shop revival in the intimate Westside upstairs room.", "Ghost-story play set in a sound studio, staged at Minetta Lane.", "Broadway musical at the Nederlander, homage to golden-age musicals.", "Broadway comedy Oh, Mary!, a recurring Broadway run.", "Cuban son and bolero music staged as a Broadway musical.", "Broadway musical adaptation of S.E. Hinton's Outsiders.", "Moli\u00e8re's hypochondriac satire staged at Todd Haimes Theatre.", "Play The Heart at Laura Pels Theatre, a mid-size nonprofit house.", "Immersive ballroom-style reimagining of Cats at the Broadhurst.", "Unknown Mortal Orchestra performs alongside the Lost Boys musical.", "Tony-winning folk opera retelling Orpheus and Eurydice.", "Broadway play at the Longacre Theatre, a standard commercial run.", "Billy Crystal's solo Broadway show, a rare limited engagement.", "Long-running Off-Broadway whodunit comedy; easy default option.", "Bobby Darin musical at Circle in the Square.", "Long-running slapstick comedy where the show keeps collapsing.", "Michael Jackson biomusical, a long-running Broadway hit.", "Fitzgerald's Great Gatsby reimagined as a Broadway musical.", "Cult-favorite dark teen satire musical at New World Stages.", "Farewell performance for NYCB dancer Adrian Danchig-Waring at Koch Theater.", "Musical parody of Friends, fun mainly for fans.", "Free 21-plus hootenanny with an unlisted lineup.", "", "Intimate acoustic jazz trio in a restored 19th-century Victorian brownstone.", "Valories headlining Mercury Lounge, with Yankeegirl and Nate Livingston.", "One actor, five shots, and an unhinged retelling of Dracula.", "Off-Broadway staging at St. Luke's Theatre; listing gives little detail.", "Thirteen-piece orchestra with vocalist Jennifer Grimm at Birdland.", "Guitarist Plini's North American tour stop at Irving Plaza.", "All-ages metal bill with no further detail given.", "Cajun reimagining of Little Red Riding Hood, 21+ performance.", "Three local indie bands sharing one bill at Bowery Palace.", "Marathon event built around Sylvia Plath's The Bell Jar; details sparse.", "Nick Cheo's tour film, paired with a live event at Bowery Ballroom.", "Folk songwriters Robby Hecht and Antje Duvekot on a shared bill.", "Dani Offline performing her Lover's Discourse project live, with Margaux.", "SIMRIT backed by the Live Room Orchestra at Gramercy Theatre.", "Justin Silva headlining the Brooklyn Improv Main Room.", "Carole J. Bufford sings Streisand and Garland's Bon Soir-era torch songs at Birdland.", "Rebecca Black live at Webster Hall, the viral-era pop singer.", "Superstore and 21 Jump Street actor doing stand-up at The Bell House.", "Guardin with kennedyxoxo and Fijimar, a multi-act indie bill.", "Aziz Ansari's Hypothetical tour stand-up at the Beacon Theatre.", "Grammy-winning pianist Robert Glasper live at the Blue Note.", "The Suitcase Junket playing a late-night set at Mercury Lounge.", "Cannons headlining Brooklyn Steel, ages 16 and up.", "Marco Carola closes the Open Air season at Pacha.", "Kranium live at Sony Hall, though the listed date looks outdated.", "The Birdland Latin Jazz Orchestra playing at Birdland jazz club.", "Kiki Kramer on a multi-act bill at Bowery Palace.", "Giovannie and the Hired Guns playing Night Club 101 with The Breaks Inc.", "", "", "", "Guided 60-minute behind-the-scenes tour of Yankee Stadium.", "Snug Harbor residency artists' new work in a group show.", "", "", "", "", "", "Annual vintage car show on the Castle lawn at Fort Totten.", "", "", "", "", "Open House weekend access to the Revolutionary War prison ship martyrs' monument.", "", "", "", "Outdoor garden of antique Tottenville terra cotta architectural ornaments.", "Ranger-led history of a Staten Island historic burial ground.", "Open House New York tour of Fort Totten's century-old military structures.", "", "", "", "", "", "", "Circa-1680 fieldstone house of Royal Navy Captain Christopher Billopp, seen on a docent tour.", "", "Historic Old Stone House, Battle of Brooklyn site, open for visits.", "Rare interior access to the Billings Estate gatehouse in Fort Tryon Park.", "Free guided tours of The Castle in Fort Totten Park during Open House.", "", "Paintings by South Shore Artists Group inspired by American songs.", "", "", "", "Guided seasonal stroll through Wave Hill's Palisades gardens.", "Civil War-era Fort Totten battery, guided by Urban Park Rangers during Open House weekend.", "Restored 19th-century fire watchtower open to climb this afternoon.", "", "", "", "Free outdoor jazz with local musicians at Ralph Ellison Plaza.", "Brownstone Brass and Manhattan School of Music performers at the 116th Street overlook.", "", "Brewster discusses her Sunroom project on backbends with the curator.", "Sociologist's talk on plant myths and magic, followed by a herbal garden tour.", "", "Six new short plays by five writers, staged in Riverside Park.", "Master accordionist Berto Reyes playing traditional perico ripiao in Forest Park.", "", "Ten short films on climate's emotional side, selected by Edward Norton.", "", "Guided ranger hike to see nocturnal insects emerging at dusk.", "Recurring Sunday market with fresh produce, baked goods, and fish.", "Spooky trail and after-dark animal visits on October weekends.", "", "Smorgasburg's 2026 season opens with over 60 local food vendors.", "", "", "Prospect Park's 1912 hand-carved carousel, open Thursdays through Sundays.", "New exhibit on Shirley Chisholm's fight for Brooklyn and Congress.", "", "Celebrates 45 years of the Garden People's landmark Riverside Park garden.", "Little Island's lighting designer leads an evening tour of its illumination.", "Weekly Jeopardy-style team quiz at the Alamo Drafthouse bar.", "Spanish-language stand-up showcase featuring top NYC comedians, no translation needed.", "Weekly open mic with rotating newer and seasoned comics.", "Katie Boyle records her new special after a successful Edinburgh Fringe run.", "Angelo Colina's Spanish stand-up after his first international tour.", "Chris Redd and Drew Lynch lead a combined east and west coast comedy lineup.", "Nightly showcase of city comics, with possible celebrity surprise guests.", "Comics test unfinished material in a low-cost, changing nightly lineup.", "Blaq Ron's one-night Brooklyn stop with his latest material.", "Comedy Cellar's main room, with Jon Laster and Isiah Kelly on the bill.", "Roast Battle League format at Comedy Cellar, with Brian Moses.", "Louis C.K. workshops very new material live at Comedy Cellar.", "Judah Friedlander and Drew Lynch on the Village Underground bill.", "Ryan Reiss and Sharief Johnson on the Fat Black Pussycat bill.", "Drew Lynch and Petey DeAbreu lead a Comedy Cellar lineup.", "Richie Redding and Zahid Dewji on the Comedy Cellar MacDougal bill.", "Matt Richards and Mia Jackson at Comedy Cellar's Village Underground room.", "Sean Donnelly and Harrison Greenbaum on the Fat Black Pussycat bill.", "Dave Temple and Julio Diaz headline a Comedy Cellar late bill.", "Kevin Dombrowski and Michael Rowland on the Comedy Cellar MacDougal bill.", "James Mattern and Maddie Wiener at Comedy Cellar's Village Underground room.", "Simeon Goodson and Lev Fer on the late Fat Black Pussycat bill.", "", "Ljova's WhEE ensemble performs two song cycles setting folkloric poetry.", "Five Points history tour, linked to the Gangs of New York film.", "Walking tour of the Seaport between Brooklyn Bridge and Financial District.", "Bus trip to Hudson Valley potters' studios with lunch.", "", "Ken Russell's controversial 1971 The Devils on the IFC screen.", "Fjord screens at IFC Center, a fairly ordinary evening showtime.", "The Great Experiment screens at IFC Center; an ordinary evening showing.", "The History of Concrete documentary screens at IFC Center this evening.", "Naza screens at IFC Center; an ordinary evening showtime.", "Bergman's 1978 chamber drama with Ingrid Bergman and Liv Ullmann.", "Disney's 1970 cartoon screened on 35mm at Metrograph.", "Gillian Armstrong's 1994 Little Women, screened in 4K.", "Pakula's 1976 Watergate thriller, screened in 4K at Metrograph.", "", "Pakula's 1974 Parallax View, in a members-only screening.", "Gen-X New York comedy Reality Bites, screened on 35mm.", "Documentary on Paris's 1920s expatriate lesbian writers and artists.", "Dovzhenko's 1932 Soviet drama, screened on 35mm at Metrograph.", "Tsui Hark's 1991 wuxia classic, with Jet Li, on DCP.", "Dovzhenko's unfinished last film, completed by Solntseva, on 35mm.", "", "Crime drama set in Harlem, with multiple showtimes.", "Exile, the second part of a long Philippine epic, first three chapters.", "Documentary on fashion designer Isaac Mizrahi's creative process.", "Afternoon screening with little listed context.", "Wajda's 2007 Katy\u0144, part of the Andrzej Wajda 100 retrospective.", "Wajda's Samson, part of the Andrzej Wajda 100 retrospective.", "Wajda's epic The Ashes, a Napoleonic-era drama in the Wajda 100 retrospective.", "Indie horror where a girl bonds with a sinister mother-lookalike.", "Classic 1991 Addams Family comedy on Nitehawk's big screen.", "Facebook whistleblower drama revealing the company's guarded secrets.", "Romanian immigrant family's ordeal under Norway's judicial scrutiny.", "Chris Hansen of To Catch a Predator gets a closer look.", "Nicolas Cage's unhinged 1988 cult classic, a noon screening.", "A catastrophic comedy screening at Nitehawk's afternoon slot.", "Two friends stranded in a mystical world, escape costs memories.", "Elizabeth Holmes lets a skeptical crew document her before prison.", "A devout hitman balancing work, faith and fatherhood.", "John Wilson's quirky essay film on New York's bedrock and structure.", "Resident Evil reboot following a courier in a nonstop survival race.", "Gay Greek comedy about a psychic reading that curses a man.", "", "Plushie taxidermy workshop at a Williamsburg crafting studio.", "", "AAPI film festival screenings at telos.haus, a one-off festival.", "", "", "Weekly inclusive disc golf league at Highland Park, all skill levels.", "", "", "", "", "Outdoor bouldering session in Central Park, open to newcomers.", "", "", "", "Met tour themed on ghost stories, with a social group format.", "Walking crawl through Crown Heights bookstores, five dollars.", "", "Halloween mask-making workshop raising funds for a food pantry.", "", "", "Recurring group discussing Aristotle's Ethics in Lower East Side.", "Scientist-led brunch talk on droplets, oceans, and earth systems.", "", "Breathwork session in a Williamsburg listening room with sub-bass sound.", "", "", "", "Intimate live-to-tape comedy show built for a studio audience.", "Bushwick open studios tour paired with street art and brunch.", "Free yerba mate picnic on Sheep Meadow, a social cultural ritual.", "", "Free queer social outing at Prospect Park's Dog Beach.", "", "", "Free disc golf field day in Highland Park, casual and social.", "Curated vintage sellers at a free Bleecker Street market.", "Monthly book club reading a newly chosen title.", "Beginner intro to tabletop roleplaying in Chinatown.", "Global gender forum followed by author book signing.", "", "", "One-off October workshop on handstands and flying poses.", "Casual outdoor knitting meetup in Rockefeller Park.", "Hanfu costume showcase at Flushing Library.", "", "", "", "Yoga paired with a listening room built for sub-bass sound.", "", "Drop-in art studio hours in Long Island City.", "Philosophy discussion among medieval works at The Cloisters.", "", "", "", "Playing a tabletop roleplaying session in Chinatown.", "", "", "Guggenheim visit paired with a bagel breakfast.", "", "", "", "", "Anthony Cohen's album release concert at The Jazz Gallery.", "", "", "", "Upcycled one-of-a-kind wearable art by McCannon Studio at Fridman Gallery.", "", "Kim Ye's performance piece 'Choreographies of Care,' free outdoors.", "", "", "", "", "Watch party for 'Wage Gap' at a comedy club.", "", "", "", "", "", "ZiMMT spatial sub-bass listening session in a dedicated listening room.", "Abigail Ryu's solo live show at experimental venue Dixon Place.", "", "", "Grace Byers reads from her picture book 'I Am Wonderfully Me.'", "", "Malcolm Gladwell discusses his book The American Way of Killing in person.", "Suzanne McConnell's short story collection, in conversation with Terese Svoboda.", "Queer leather tradition reading series on political theory, discussed collectively.", "Release conversation for Buehlman's new novel with speculative author P Dj\u00e8l\u00ed Clark.", "Harbor boat tour explaining the port's scale, led by an expert guide.", "Techno DJ HAAi headlines Refuge's Sunday open-to-close party.", "", "Free community potluck under the Brooklyn Bridge, open to all New Yorkers.", "Recurring Sunday pasta-making class with a social, relaxed vibe.", "", "", "", "Closing tasting of sotol expressions from leading brands, presented by Panorama Mezcal.", "Local cooks compete with mac and cheese; you taste and vote.", "Chef Zachary Swenson's three-course dinner with wine pairing, volume two.", "", "", "Hands-on pasta workshop paired with a guided cheese tasting at Murray's.", "", "Artist Tajah Ellis leads a fermentation workshop using herbs and honey.", "", "", "Behind-the-scenes look at NYC's electricity grid, past and future.", "", "", "", "", "", "", "Soca-themed fitness pop-up at BKLYN Commons.", "", "Life drawing session led by artist John MacConnell.", "", "", "Walk visiting graves of Bay Ridge's historical figures at Green-Wood.", "Ninety-minute guided walk through historic Green-Wood Cemetery.", "Classic highlights walk through iconic Green-Wood Cemetery.", "Walk tracing East Village and Gramercy nightlife history and performance culture.", "Personal ghost anecdotes and unsolved murders in Bay Ridge, seasonal timing.", "Walking history of New Amsterdam starting at the Staten Island Ferry.", "Five-mile ride tracing the proposed Newtown Creek sewer tunnel route.", "Queens food stroll spanning South Asian, Tibetan and Latin American cuisines.", "Centenary talk on Poland's 1926 declarations of friendship with the US.", "Melville lecture on crisis and art, delivered in a bar.", "", "", "", "", "Architecture tour of Vanderbilt-era buildings, part of an OHNY weekend series.", "Debut memoir Landscape in Lavender, about reconciling divided identities.", "", "", "", "", "Rare public access to Fort Tryon Park's historic cottage during Open House NY.", "Author M.A. Knight discusses FEVERCHAIN, a novel about lesbian werewolves.", "", "Monthly queer lit club led by a bookseller, reading queer authors.", "", "", "", "", "Weekly group meditation followed by Q&A with a former Buddhist monk.", "", "One-week artist activation of works by Nathalie Jean-Baptiste in Bushwick.", "Secret-location jazz performance paired with a home-cooked BBQ dinner.", "", "Evening of poetry and storytelling by Joshua Luke Smith on contentment.", "", "Staged readings of plays written by neurodivergent and disabled playwrights.", "Soundbath healing session paired with herbal tea blends at a community library.", "Tarot readings over cocktails at a bar.", "", "Talk and performance on French music's Romantic-to-Impressionist shift, Oct 16 and 18.", "Witchy festival with market and magic-themed activities in Astoria.", "Poetry Sunday showcase featuring DIVINE and SYD at Brooklyn Music Kitchen.", "Adults-only carnival of absurd, sexy stations and offbeat games.", "Monthly queer reading group; October pick is Machado's Her Body and Other Parties.", "Developmental reading of Erin Proctor's new play at The Tank.", "Strangers lend themselves as living books for one-on-one conversations.", "", "Disney's 1940 cartoon-classical experiment, screened in 35mm-era DCP.", "Melina Mercouri stars in Cacoyannis's 1955 Greek drama, a rare screening.", "Cacoyannis's 1954 Athens comedy about a winning lottery ticket.", "Doom band S.P.Y's live set at Saint Vitus; no further details listed.", "Multi-act hip-hop festival; lineup not listed."];
+const FLAGS = ["flex_entry", "flex_entry", "", "flex_entry", "flex_entry", "kids", "class_slot", "", "service", "", "", "kids", "class_slot,flex_entry", "", "kids", "kids", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "kids", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "flex_entry", "flex_entry", "", "", "service", "", "", "", "service", "", "", "service", "service", "service", "", "service", "kids", "kids", "", "", "", "", "", "service", "kids", "service", "", "", "", "", "", "", "", "", "kids", "", "kids", "", "", "", "", "", "kids", "", "", "", "", "", "kids", "", "", "service", "", "members_only", "", "", "", "kids", "", "service,kids", "kids", "kids", "", "kids", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "kids", "", "", "", "", "class_slot", "", "", "", "", "", "", "", "", "", "kids", "members_only", "", "", "", "", "", "kids", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "spam", "class_slot", "networking", "", "networking", "service", "", "class_slot", "kids,class_slot,service", "", "sales", "", "members_only", "sales", "", "networking", "", "", "", "", "class_slot,sales", "", "", "", "", "kids", "class_slot", "", "", "", "", "networking", "", "", "sales", "", "", "", "", "", "", "", "", "", "", "sales", "networking,sales", "networking,members_only", "", "service", "", "", "", "networking", "networking", "", "", "spam,networking", "", "networking", "sales", "networking", "class_slot", "", "class_slot", "class_slot", "", "", "networking", "", "networking,sales", "service", "networking,sales", "networking", "", "class_slot", "service", "class_slot", "networking,sales", "", "", "", "kids", "kids", "kids", "kids", "", "", "", "", "", "", "spam", "", "class_slot", "", "spam", "spam", "", "", "", "spam", "", "", "spam", "", "class_slot", "", "", "networking", "service", "kids", "class_slot", "", "class_slot", "", "class_slot", "", "class_slot", "kids", "", "", "", "", "", "", "", "", "", "", "service", "", "", "spam", "", "", "", "spam", "", "kids", "", "", "kids", "", "kids,service", "networking", "kids,service", "sales,spam", "", "service", "", "", "kids", "", "kids", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 // parents can bring kids' events into story mode, Next hour and Toni's suggestions
 function kidsOn() { try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } }
 addEventListener("DOMContentLoaded", () => {
@@ -7587,7 +7623,7 @@ function cardFor(hash) {
 function revealCard(art) {
   if (!art) return false;
   if (window.__unfold) window.__unfold(art);
-  if (art.style.display === "ninguna") return false;  // filtered out or hidden by you
+  if (art.style.display === "none") return false;  // filtered out or hidden by you
   // instant and direct (a smooth scroll gets cut short while the section unfolds)
   art.scrollIntoView({block: "center"});
   art.classList.remove("flash"); void art.offsetWidth; art.classList.add("flash");
@@ -7604,6 +7640,8 @@ addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash
 const CATS = ["Arts & Play", "Arts & Play", "Music", "Arts & Play", "Arts & Play", "Theater", "Arts & Play", "Music", "Arts & Play", "Sports", "Arts & Play", "Theater", "Classes & Workshops", "Arts & Play", "Theater", "Theater", "Arts & Play", "Theater", "Theater", "Theater", "Arts & Play", "Comedy", "Theater", "Arts & Play", "Arts & Play", "Theater", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Arts & Play", "Theater", "Theater", "Theater", "Theater", "Comedy", "Theater", "Theater", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Theater", "Comedy", "Theater", "Theater", "Theater", "Arts & Play", "Comedy", "Music", "Music", "Music", "Music", "Arts & Play", "Arts & Play", "Music", "Music", "Music", "Arts & Play", "Music", "Arts & Play", "Music", "Music", "Music", "Music", "Arts & Play", "Music", "Music", "Comedy", "Music", "Comedy", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Arts & Play", "Arts & Play", "Sports", "Meetups & Mixers", "Arts & Play", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Talks", "Fitness & Outdoors", "Classes & Workshops", "Meetups & Mixers", "Fitness & Outdoors", "Talks", "Fitness & Outdoors", "Arts & Play", "Arts & Play", "Arts & Play", "Talks", "Talks", "Meetups & Mixers", "Fitness & Outdoors", "Talks", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Talks", "Talks", "Arts & Play", "Talks", "Talks", "Music", "Arts & Play", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Talks", "Fitness & Outdoors", "Music", "Fitness & Outdoors", "Fitness & Outdoors", "Music", "Music", "Arts & Play", "Arts & Play", "Fitness & Outdoors", "Fitness & Outdoors", "Theater", "Music", "Talks", "Arts & Play", "Meetups & Mixers", "Fitness & Outdoors", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Food & Drink", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Music", "Meetups & Mixers", "Trivia & Games", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Talks", "Tours", "Tours", "Classes & Workshops", "Classes & Workshops", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Theater", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Tours", "Meetups & Mixers", "Fitness & Outdoors", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Fitness & Outdoors", "Meetups & Mixers", "Tours", "Meetups & Mixers", "Arts & Play", "Classes & Workshops", "Meetups & Mixers", "Fitness & Outdoors", "Talks", "Classes & Workshops", "Meetups & Mixers", "Food & Drink", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Comedy", "Food & Drink", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Fitness & Outdoors", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Tech", "Meetups & Mixers", "Fitness & Outdoors", "Meetups & Mixers", "Classes & Workshops", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Arts & Play", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Fitness & Outdoors", "Music", "Fitness & Outdoors", "Fitness & Outdoors", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Tech", "Tech", "Meetups & Mixers", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Meetups & Mixers", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Classes & Workshops", "Food & Drink", "Classes & Workshops", "Classes & Workshops", "Food & Drink", "Tech", "Tech", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Tours", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Classes & Workshops", "Talks", "Tours", "Tours", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Fitness & Outdoors", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Film", "Film", "Film", "Film", "Music", "Music"];
 const FREE = [false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, true, true, true, true, false, true, true, true, true, true, true, false, true, true, true, false, false, true, true, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, true, false, false, true, true, false, false, true, true, false, true, true, false, false, false, true, false, false, false, false, true, false, false, true, false, false, false, false, true, false, true, false, true, true, true, false, false, true, true, true, false, true, true, true, true, true, false, true, false, false, false, false, true, false, false, false, true, true, false, true, false, false, false, false, false, true, true, true, false, false, false, true, true, false, false, false, true, false, false, false, true, true, true, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const HOODS = ["SoHo-Little Italy-Hudson Square", "Financial District-Battery Park City", "Fort Greene", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "Gramercy", "Tribeca-Civic Center", "East Village", "Park Slope", "Midtown South-Flatiron-Union Square", "Hell's Kitchen", "Hell's Kitchen", "SoHo-Little Italy-Hudson Square", "East Village", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Midtown-Times Square", "East Village", "East Village", "Chelsea-Hudson Yards", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Upper West Side-Lincoln Square", "Upper West Side (Central)", "Greenwich Village", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Upper West Side-Lincoln Square", "Midtown-Times Square", "East Village", "Midtown-Times Square", "Bedford-Stuyvesant (West)", "Lower East Side", "Chelsea-Hudson Yards", "Hell's Kitchen", "Hell's Kitchen", "Gramercy", "Greenpoint", "Bushwick (West)", "East Village", "East Village", "Lower East Side", "Greenwich Village", "East Village", "Gramercy", "Williamsburg", "Hell's Kitchen", "East Village", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Bedford-Stuyvesant (East)", "Upper West Side (Central)", "SoHo-Little Italy-Hudson Square", "Lower East Side", "Greenpoint", "Hell's Kitchen", "Midtown-Times Square", "Hell's Kitchen", "East Village", "East Village", "East Village", "Midtown South-Flatiron-Union Square", "Midtown-Times Square", "Yankee Stadium-Macombs Dam Park", "Snug Harbor", "Central Park", "Tottenville-Charleston", "Marine Park-Plumb Island", "Cunningham Park", "Flushing Meadows-Corona Park", "Fort Totten", "Riverdale-Spuyten Duyvil", "Alley Pond Park", "Washington Heights (North)", "Mott Haven-Port Morris", "Fort Greene", "Inwood Hill Park", "Park Slope", "Todt Hill-Emerson Hill-Lighthouse Hill-Manor Heights", "Tottenville-Charleston", "New Springville-Willowbrook-Bulls Head-Travis", "Bay Terrace-Clearview", "Pelham Bay Park", "Brownsville", "Park Slope", "East Flatbush-Rugby", "Coney Island-Sea Gate", "Riverdale-Spuyten Duyvil", "Tottenville-Charleston", "Marine Park-Mill Basin-Bergen Beach", "Park Slope", "Washington Heights (North)", "Fort Totten", "Windsor Terrace-South Slope", "Tottenville-Charleston", "East Village", "East New York (North)", "East Williamsburg", "Riverdale-Spuyten Duyvil", "Fort Totten", "East Harlem (North)", "Upper West Side (Central)", "Morningside Heights", "Riverdale-Spuyten Duyvil", "Upper West Side-Manhattan Valley", "Morningside Heights", "Marine Park-Plumb Island", "Riverdale-Spuyten Duyvil", "Windsor Terrace-South Slope", "East Village", "Upper West Side-Manhattan Valley", "Forest Park", "Windsor Terrace-South Slope", "Wakefield-Woodlawn", "West New Brighton-Silver Lake-Grymes Hill", "Van Cortlandt Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Upper West Side-Manhattan Valley", "West Village", "Financial District-Battery Park City", "", "", "", "", "", "", "", "", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Chelsea-Hudson Yards", "", "", "", "", "", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "", "Greenwich Village", "Williamsburg", "Midtown South-Flatiron-Union Square", "East Williamsburg", "Midtown South-Flatiron-Union Square", "Far Rockaway-Bayswater", "Highland Park-Cypress Hills Cemeteries (North)", "Midtown South-Flatiron-Union Square", "Chelsea-Hudson Yards", "Central Park", "Williamsburg", "Central Park", "Central Park", "East Village", "Midtown South-Flatiron-Union Square", "Central Park", "Crown Heights (North)", "East Williamsburg", "Sunset Park (West)", "", "SoHo-Little Italy-Hudson Square", "Chinatown-Two Bridges", "East Williamsburg", "Midtown-Times Square", "Williamsburg", "Upper East Side-Yorkville", "Williamsburg", "Coney Island-Sea Gate", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "East Williamsburg", "Central Park", "Upper East Side-Carnegie Hill", "Prospect Park", "East Williamsburg", "Williamsburg", "Highland Park-Cypress Hills Cemeteries (North)", "Greenwich Village", "Midtown-Times Square", "Chinatown-Two Bridges", "Upper West Side-Lincoln Square", "Park Slope", "Marine Park-Mill Basin-Bergen Beach", "Midtown South-Flatiron-Union Square", "Financial District-Battery Park City", "Flushing-Willets Point", "Midtown South-Flatiron-Union Square", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Midtown-Times Square", "Williamsburg", "Chelsea-Hudson Yards", "Queensbridge-Ravenswood-Dutch Kills", "Washington Heights (North)", "Hunts Point", "Hell's Kitchen", "", "Chinatown-Two Bridges", "Chelsea-Hudson Yards", "Upper East Side-Lenox Hill-Roosevelt Island", "Upper East Side-Yorkville", "", "Fort Greene", "Greenpoint", "Upper East Side-Carnegie Hill", "Midtown South-Flatiron-Union Square", "Upper West Side-Lincoln Square", "Highland Park-Cypress Hills Cemeteries (South)", "Greenwich Village", "Lower East Side", "Central Park", "Flushing Meadows-Corona Park", "Midtown South-Flatiron-Union Square", "Midtown South-Flatiron-Union Square", "Midtown South-Flatiron-Union Square", "Greenwich Village", "Bushwick (East)", "SoHo-Little Italy-Hudson Square", "Highland Park-Cypress Hills Cemeteries (South)", "Midtown-Times Square", "Midtown South-Flatiron-Union Square", "SoHo-Little Italy-Hudson Square", "Williamsburg", "Lower East Side", "Tribeca-Civic Center", "Midtown South-Flatiron-Union Square", "Crown Heights (North)", "Tribeca-Civic Center", "Midtown South-Flatiron-Union Square", "Lower East Side", "Bushwick (West)", "Prospect Heights", "Hell's Kitchen", "East Williamsburg", "Lower East Side", "Tribeca-Civic Center", "Tribeca-Civic Center", "Hell's Kitchen", "Hell's Kitchen", "Richmond Hill", "Williamsburg", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Bedford-Stuyvesant (West)", "Hell's Kitchen", "East Williamsburg", "West Village", "Midtown South-Flatiron-Union Square", "Crown Heights (South)", "Midtown South-Flatiron-Union Square", "Astoria (East)-Woodside (North)", "Financial District-Battery Park City", "Hell's Kitchen", "West Farms", "Ridgewood", "Greenwich Village", "Lower East Side", "East Village", "Prospect Lefferts Gardens-Wingate", "Prospect Park", "SoHo-Little Italy-Hudson Square", "East Harlem (South)", "Long Island City-Hunters Point", "Green-Wood Cemetery", "Sunset Park (West)", "Green-Wood Cemetery", "East Village", "Bay Ridge", "Financial District-Battery Park City", "East Williamsburg", "Jackson Heights", "Upper East Side-Carnegie Hill", "Financial District-Battery Park City", "Chelsea-Hudson Yards", "SoHo-Little Italy-Hudson Square", "Fort Greene", "Midtown-Times Square", "Chelsea-Hudson Yards", "West Village", "Midtown-Times Square", "Midtown-Times Square", "The Battery-Governors Island-Ellis Island-Liberty Island", "Flushing-Willets Point", "Washington Heights (North)", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Upper West Side (Central)", "Park Slope", "Crown Heights (South)", "Downtown Brooklyn-DUMBO-Boerum Hill", "Hell's Kitchen", "Midtown South-Flatiron-Union Square", "Chelsea-Hudson Yards", "Harlem (South)", "East Williamsburg", "Upper East Side-Yorkville", "Midtown South-Flatiron-Union Square", "Hell's Kitchen", "Bedford-Stuyvesant (West)", "Williamsburg", "Bedford-Stuyvesant (East)", "East Village", "Midtown South-Flatiron-Union Square", "Greenwich Village", "Astoria (North)-Ditmars-Steinway", "Clinton Hill", "Tribeca-Civic Center", "Ridgewood", "Chelsea-Hudson Yards", "Park Slope", "Astoria (Central)", "Astoria (Central)", "Astoria (Central)", "Astoria (Central)", "Bushwick (West)", ""];
+const AREA_GROUP = ["Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Bronx", "Staten Island", "Manhattan", "Staten Island", "Brooklyn", "Queens", "Queens", "Queens", "Bronx", "Queens", "Manhattan", "Bronx", "Brooklyn", "Manhattan", "Brooklyn", "Staten Island", "Staten Island", "Staten Island", "Queens", "Bronx", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Bronx", "Staten Island", "Brooklyn", "Brooklyn", "Manhattan", "Queens", "Brooklyn", "Staten Island", "Manhattan", "Brooklyn", "Brooklyn", "Bronx", "Queens", "Manhattan", "Manhattan", "Manhattan", "Bronx", "Manhattan", "Manhattan", "Brooklyn", "Bronx", "Brooklyn", "Manhattan", "Manhattan", "Queens", "Brooklyn", "Bronx", "Staten Island", "Bronx", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "", "", "", "", "", "", "", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "", "", "", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Queens", "Queens", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Queens", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Queens", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Queens", "Manhattan", "Bronx", "Manhattan", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Queens", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Queens", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Queens", "Manhattan", "Manhattan", "Bronx", "Queens", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Queens", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Queens", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Queens", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Queens", "Brooklyn", "Manhattan", "Queens", "Manhattan", "Brooklyn", "Queens", "Queens", "Queens", "Queens", "Brooklyn", ""];  // each event's borough / region ("" = no neighbourhood)
+const AREA_ORDER = ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island", "Otros lugares"];
 const TZ = "America/New_York";
 const STARTS = [660, 600, 1140, 600, 600, 600, 660, 720, 720, 720, 720, 720, 780, 780, 780, 780, 780, 780, 780, 780, 780, 780, 840, 840, 840, 840, 840, 840, 840, 840, 840, 840, 840, 840, 840, 840, 840, 840, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 930, 960, 960, 960, 1020, 1020, 1020, 1050, 1080, 1080, 1080, 1110, 1110, 1140, 1140, 1140, 1140, 1140, 1140, 1170, 1170, 1170, 1170, 1200, 1200, 1200, 1200, 1200, 1230, 1290, 1320, 1435, null, null, null, 0, 0, 525, 525, 525, 540, 540, 570, 570, 600, 600, 600, 600, 600, 630, 660, 660, 660, 660, 660, 660, 660, 660, 690, 720, 720, 720, 720, 720, 720, 720, 720, 720, 750, 780, 780, 780, 780, 780, 810, 840, 840, 840, 840, 840, 900, 900, 900, 900, 960, 1020, 1140, 540, 600, 600, 660, 660, 660, 720, 720, 720, 780, 1065, 1200, 1020, 1050, 1080, 1140, 1200, 1290, 1305, 1080, 810, 960, 1020, 1080, 1110, 1140, 1170, 1200, 1230, 1260, 1290, 1320, 1350, 840, 960, 420, 540, 540, 660, 1130, 1245, 1145, 1100, 1055, 660, 675, 780, 780, 930, 990, 995, 1125, 1130, 1230, 1245, 660, 1080, 1155, 740, 850, 780, 930, 1080, 1140, 660, 1125, 1030, 1045, 720, 735, 795, 1105, 1080, 1245, 1180, 900, 690, 720, 780, 900, 1110, 480, 570, 600, 600, 600, 600, 600, 600, 600, 600, 650, 660, 660, 660, 660, 660, 660, 660, 690, 690, 690, 690, 720, 720, 720, 720, 720, 720, 720, 720, 720, 720, 780, 780, 780, 780, 780, 780, 780, 780, 810, 810, 840, 840, 840, 840, 840, 840, 840, 840, 900, 900, 900, 900, 900, 900, 930, 930, 960, 960, 960, 960, 960, 990, 1035, 1050, 1080, 1080, 1080, 1080, 1110, 1110, 1110, 1140, 1170, 1170, 1200, 690, 840, 840, 870, 900, 1050, 1080, 1140, 920, 960, 1020, 780, 780, 840, 840, 1140, 840, 780, 1110, 840, 780, 840, 840, 840, 810, 1320, 690, 960, 720, 630, 720, 780, 810, 660, 555, 960, 1020, 780, 780, 600, 780, 900, 1080, 660, 600, 750, 900, 1110, 840, 960, 660, 840, 810, 1050, 1020, 1140, 1140, 660, 720, 840, 660, 1155, 720, 1140, 660, 690, 630, 600, 1110, 840, 690, 1140, 840, 960, 960, 1020, 855, 1140, 1080, 960, 1140, 990, 1140, 870, 675, 750, 900, 1080, 1080, 1140];   // minutes since midnight, or null
 const ENDS = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1020, 720, 660, 660, 660, 810, 780, 600, 690, 720, 840, 840, 780, 780, 750, 900, 750, 750, 750, 900, 840, 900, 960, 750, 960, 960, 960, 960, 960, 960, 960, 900, 780, 1050, 825, 900, 900, 900, 1020, 870, 1020, 930, 930, 960, 900, 1020, 1020, 960, 960, 1110, 1110, 1230, 840, 1050, 780, 1080, 780, 1320, 1020, 1020, 960, 900, 1140, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1050, 540, 660, 1020, 1020, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 780, 900, 960, 1200, 1290, 750, 720, 660, 660, 660, 645, 750, 690, 720, 750, 810, 990, 1140, 780, 750, 750, 840, 780, 780, 750, 810, 810, 900, 900, 990, 840, 810, 780, 900, 840, 1080, 1080, 930, 855, 1000, 900, 900, 900, 900, 870, 990, 990, 960, 1020, 1080, 1080, 960, 1080, 960, 960, 1110, 1080, 990, 1080, 1020, 1080, 990, 1050, 1080, 1080, 1080, 1140, 1080, 1170, 1095, 1170, 1200, 1320, 1260, 1290, 1230, 1200, 1230, 1350, 1410, 1260, 1290, 780, 960, 960, 960, 1020, 1140, 1200, 1260, 1080, null, 1320, 900, 960, 1320, 1320, null, 1020, 900, 1260, 1320, 1200, 930, 1320, 960, 930, null, 900, 1140, null, 750, 840, 930, 885, 780, 615, 1080, 1140, 960, 900, 690, 870, 1050, 1200, 750, 720, 930, 1050, 1230, 960, 1080, 1020, 930, 870, 1140, 1140, 1200, 1320, 780, 960, 900, 900, 1215, 840, 1320, 780, 870, 720, 900, 1260, 1020, 810, 1260, 960, 1080, 1020, 1200, 960, 1290, 1320, 1020, 1320, 1140, 1260, 960, null, null, null, null, null, null];       // from end_time, or null (-> start + 2h)
@@ -7618,6 +7656,7 @@ function render() {
   if (EDAYS) EDAYS.forEach(d => saveIds("tonight-picks-" + CITY + "-" + d, new Set([...picks].filter(i => EDATE[+i] === d))));
   else saveIds(KEY, picks);
   reportTaps();
+  if (window.__topTonight) window.__topTonight();
 }
 // "I'm going": stronger than a tick (it ticks too). Saved per event day; headcounts shown from 3 up.
 const going = new Set();
@@ -7710,6 +7749,12 @@ const _shareBtn = document.getElementById("shareBtn");
 if (_shareBtn) _shareBtn.addEventListener("click", async () => {
   const r = await shareOrCopy("Things to do today in Nueva York, hand-picked by Tonight:", location.href.split("#")[0]);
   if (r === "copied") shareMsg("Enlace copiado: pégalo donde quieras.");
+});
+// the header's ⋯ menu closes once something in it is picked, or on a click elsewhere
+document.addEventListener("click", e => {
+  document.querySelectorAll("details.tmore[open]").forEach(m => {
+    if (!m.contains(e.target) || e.target.closest(".tm-item")) m.removeAttribute("open");
+  });
 });
 function fmtStart(i) {
   const s = STARTS[i]; if (s == null) return "";
@@ -7808,31 +7853,46 @@ window.__applyFilters = (function () {
     if (s < 1020) return "afternoon";   // 12–5 PM
     return "evening";                   // 5 PM+
   }
+  // Evening is the default on today's page after noon (city time); other days show any time
+  const TOD0 = !EDAYS && DATE === cityToday() && cityNowMinutes() >= 720 ? "evening" : "all";
+  function todMatch(i, tod) {
+    const t = todOf(i);
+    if (tod === "all" || t === "tba") return true;  // a listing without a time could be any time
+    return tod === "day" ? t !== "evening" : t === tod;
+  }
+  function todOk(i) { return todMatch(i, F.tod); }
+  const hay = {};  // search text per card, read once
+  // each filter on its own (the sidebar counts what each box would show with all the others)
+  function dims(i, a) {
+    let base = !hidden.has(String(i));
+    if (base && F.only && !F.only.has(EIDS[i])) base = false;  // a friend's shared picks (?only=)
+    if (base && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) base = false;
+    if (base && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) base = false;
+    if (base && F.q) {
+      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
+      if (!hay[i].includes(F.q)) base = false;
+    }
+    return {base: base,
+      cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
+      free: !F.free || FREE[i],
+      tod: todOk(i),
+      hood: !F.hood || F.hood.split("|").includes(HOODS[i])};  // one or several neighbourhoods
+  }
+  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
     let n = 0;
     cards.forEach(a => {
-      const i = a.dataset.idx;
-      let ok = !hidden.has(i);
-      if (ok && F.only && !F.only.has(EIDS[+i])) ok = false;  // a friend's shared picks (?only=)
-      if (ok && F.cat && !F.cat.split(",").includes(CATS[+i])) ok = false;  // one or several categories
-      if (ok && F.free && !FREE[+i]) ok = false;
-      if (ok && F.tod !== "all" && todOf(+i) !== F.tod) ok = false;
-      if (ok && F.after != null && !(STARTS[+i] != null && STARTS[+i] >= F.after)) ok = false;
-      if (ok && F.before != null && !(STARTS[+i] != null && STARTS[+i] < F.before)) ok = false;
-      if (ok && F.hood && HOODS[+i] !== F.hood) ok = false;
-      if (ok && F.q) {
-        const hay = (NAMES[+i] + " " + CATS[+i] + " " + a.textContent).toLowerCase();
-        if (!hay.includes(F.q)) ok = false;
-      }
-      a.style.display = ok ? "" : "ninguna";
+      const i = a.dataset.idx, d = dims(+i, a);
+      const ok = d.base && d.cat && d.free && d.tod && d.hood;
+      a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
     });
     document.querySelectorAll("section.cat").forEach(s => {
       const vis = [...s.querySelectorAll("article.event")]
-        .some(a => a.style.display !== "ninguna");
-      s.style.display = vis ? "" : "ninguna";
+        .some(a => a.style.display !== "none");
+      s.style.display = vis ? "" : "none";
     });
     const fh = document.querySelector("section.cat.free > h2");
     if (fh) {
@@ -7840,10 +7900,12 @@ window.__applyFilters = (function () {
       const opt = v => { const o = document.querySelector('#fcat option[value="' + v + '"]'); return o ? o.textContent : v; };
       fh.textContent = F.cat ? "✨ Free · " + F.cat.split(",").map(opt).join(" + ") : fh.dataset.orig;
     }
-    document.getElementById("resCount").textContent = n + " de " + cards.length + " events";
+    document.getElementById("resCount").textContent = n + " de " + cards.length + " eventos";
     window.__clamp && window.__clamp();
-    document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "ninguna";
+    document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
     document.getElementById("hiddenN").textContent = hidden.size;
+    if (window.__topTonight) window.__topTonight();
+    if (window.__fside) window.__fside();
   }
   document.getElementById("fq").addEventListener("input", e => {
     F.q = e.target.value.trim().toLowerCase(); applyFilters();
@@ -7862,13 +7924,18 @@ window.__applyFilters = (function () {
     e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
     applyFilters();
   });
+  const setTod = t => {
+    document.querySelectorAll("#ftod button").forEach(x => x.classList.toggle("on", x.dataset.t === t));
+    F.tod = t;
+  };
   document.querySelectorAll("#ftod button").forEach(b => {
-    b.addEventListener("click", () => {
-      document.querySelectorAll("#ftod button").forEach(x => x.classList.remove("on"));
-      b.classList.add("on");
-      F.tod = b.dataset.t; applyFilters();
-    });
+    b.addEventListener("click", () => { setTod(b.dataset.t); applyFilters(); });
   });
+  setTod(TOD0);
+  // the start-time pickers live behind "More filters"
+  const _fm = document.getElementById("fmore"), _fx = document.getElementById("fextra");
+  const showExtra = on => { if (!_fm || !_fx) return; _fx.hidden = !on; _fm.setAttribute("aria-expanded", on ? "true" : "false"); };
+  if (_fm) _fm.addEventListener("click", () => showExtra(_fx.hidden));
   function toast(msg, action, onAction) {
     let t = document.getElementById("tnToast");
     if (!t) { t = document.createElement("div"); t.id = "tnToast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
@@ -7935,16 +8002,16 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || F.tod !== "all" || F.after != null || F.before != null || F.hood;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
-        a.style.display !== "ninguna" || a.dataset.clamped === "1");
+        a.style.display !== "none" || a.dataset.clamped === "1");
       let more = sec.querySelector(":scope > .more-btn");
       const cut = !filtering && !opened.has(key) && vis.length > CLAMP + 2;
       vis.forEach((a, k) => {
         const hide = cut && k >= CLAMP;
-        if (hide) { a.style.display = "ninguna"; a.dataset.clamped = "1"; }
+        if (hide) { a.style.display = "none"; a.dataset.clamped = "1"; }
         else if (a.dataset.clamped === "1") { a.style.display = ""; delete a.dataset.clamped; }
       });
       if (cut) {
@@ -7988,7 +8055,9 @@ window.__applyFilters = (function () {
   function syncFilterUI() {
     ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || F.tod !== "all" || F.after != null || F.before != null || F.hood);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood);
+    if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
+    if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
   _fb.addEventListener("change", syncFilterUI);
   _fb.addEventListener("input", syncFilterUI);
@@ -8093,7 +8162,8 @@ function restoreCards() {
     }
   });
   homeSpot.clear();
-  document.getElementById("tonightWrap").style.display = "ninguna";
+  document.documentElement.classList.remove("listmode");
+  document.getElementById("tonightWrap").style.display = "none";
   document.querySelectorAll("section.cat").forEach(s => { s.style.display = ""; });
   const fb = document.getElementById("filterBar");
   if (fb) fb.style.display = "";
@@ -8149,11 +8219,12 @@ function setTonight(on) {
     list.appendChild(o.art);
     if (o.status !== "tba") live++;
   });
-  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "ninguna"; });
+  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
   const fbOn = document.getElementById("filterBar");
-  if (fbOn) fbOn.style.display = "ninguna";
+  if (fbOn) fbOn.style.display = "none";
+  document.documentElement.classList.add("listmode");
   wrap.style.display = "block";
-  empty.style.display = live ? "ninguna" : "block";
+  empty.style.display = live ? "none" : "block";
   count.textContent = live ? live + (live === 1 ? " plan" : " planes") + " ahora o por empezar" : "";
   wrap.scrollIntoView({behavior: "smooth", block: "start"});
 }
@@ -8188,7 +8259,7 @@ function setNextHour(on) {
   const wrap = document.getElementById("tonightWrap"), list = document.getElementById("tonightList");
   const empty = document.getElementById("tonightEmpty"), count = document.getElementById("tonightCount");
   const head = wrap.querySelector(".tonight-head h2");
-  if (head) { if (!head.dataset.orig) head.dataset.orig = head.textContent; head.textContent = "⏱ Próxima hora"; }
+  if (head) { if (!head.dataset.orig) head.dataset.orig = head.textContent; head.textContent = "⏱ Empieza pronto"; }
   const today = (typeof cityToday === "function") ? cityToday() : DATE;
   const now = cityNowMinutes();
   const items = [], hiddenByYou = new Set(loadIds("tonight-hidden-" + CITY + "-" + DATE));
@@ -8218,10 +8289,11 @@ function setNextHour(on) {
     addBadge(o.art, o.kind === "soon" ? "now" : "free", bits.join(" · "));
     list.appendChild(o.art);
   });
-  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "ninguna"; });
-  const fb = document.getElementById("filterBar"); if (fb) fb.style.display = "ninguna";
+  document.querySelectorAll("section.cat").forEach(s => { s.style.display = "none"; });
+  // the Starting soon chip sits in the filter row, so the row stays (to switch it off)
+  document.documentElement.classList.add("listmode");
   wrap.style.display = "block";
-  empty.style.display = items.length ? "ninguna" : "block";
+  empty.style.display = items.length ? "none" : "block";
   if (!items.length) empty.textContent = DATE !== today ? "Próxima hora funciona en la página de hoy." :
     "Nada a lo que llegues en la próxima hora. Prueba ⚡ Esta noche para más tarde.";
   count.textContent = (items.length ? items.length + (items.length === 1 ? " plan" : " planes") + " a los que aún llegas" : "") +
@@ -8266,11 +8338,11 @@ function applyFilters() {
       const hay = (NAMES[i] + " " + CATS[i] + " " + a.textContent).toLowerCase();
       if (!hay.includes(F.q)) ok = false;
     }
-    a.style.display = ok ? "" : "ninguna";
+    a.style.display = ok ? "" : "none";
     if (ok) n++;
   });
-  document.getElementById("resCount").textContent = n + " de " + cards.length + " events";
-  document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "ninguna";
+  document.getElementById("resCount").textContent = n + " de " + cards.length + " eventos";
+  document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
   document.getElementById("hiddenN").textContent = hidden.size;
 }
 document.getElementById("fq").addEventListener("input", e => {
@@ -8857,7 +8929,7 @@ function applyPageFilters(f){
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
   set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || "");
   var n = 0;
-  document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "ninguna") n++; });
+  document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;
 }
 // "Send to friends": a plan becomes one "are you in?" vote, a list becomes a pick-one vote.
@@ -8884,7 +8956,7 @@ function textGroup(m, st){
   if (m.plan) {
     if (m.dinner && m.dinner.time) {
       var rs = (m.dinner.restaurants || []).slice(0, 2).map(function(r){ return r.name; });
-      stops.push({t: m.dinner.time, line: "Dinner" + (rs.length ? " at " + rs.join(" o ") : m.dinner.venue ? " near " + m.dinner.venue : "")});
+      stops.push({t: m.dinner.time, line: "Cena" + (rs.length ? " at " + rs.join(" o ") : m.dinner.venue ? " near " + m.dinner.venue : "")});
     }
     stops.sort(function(a, b){ return toMins(a.t) - toMins(b.t); });
     text = "Tonight's plan 👇\n" + stops.map(function(x){ return (x.t ? x.t + " " : "") + x.line; }).join("\n") + "\nYou in? " + url;
