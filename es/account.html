@@ -532,7 +532,7 @@ function build(){
   c.appendChild(el("h2", {}, "¿Conoces algo bueno?"));
   c.appendChild(el("p", {}, "Pega el enlace de un evento: una charla, un tour, una clase, un show. Revisamos cada uno antes de publicarlo."));
   var u = el("input", {type: "url", id: "sgUrl", placeholder: "https://…", "aria-label": "Link to the event"});
-  var n = el("textarea", {id: "sgNote", placeholder: "¿Algo que debamos saber? (opcional)", "aria-label": "Note"});
+  var n = el("textarea", {id: "sgNote", placeholder: "¿Algo que debamos saber? (opcional)", "aria-label": "Nota"});
   var m = el("input", {type: "email", id: "sgEmail", placeholder: "Tu correo, si quieres un gracias (opcional)", "aria-label": "Your email"});
   c.appendChild(u); c.appendChild(n); c.appendChild(m);
   var row = el("div", {"class": "sg-row"});
@@ -550,7 +550,7 @@ function build(){
     var base = window.__tonight_api;
     if (!base) { msg.textContent = "No pudimos conectar con Tonight. Inténtalo en un rato."; return; }
     var city = (typeof CITY !== "undefined" && CITY) || (function(){ try { return localStorage.getItem("tonight-city"); } catch (e) { return null; } })() || "nyc";
-    go.disabled = true; msg.textContent = "Sending…";
+    go.disabled = true; msg.textContent = "Enviando…";
     fetch(base + "/suggest", {method: "POST", headers: {"Content-Type": "application/json"},
       body: JSON.stringify({url: url, note: n.value.trim(), email: m.value.trim(), city: city})})
       .then(function(r){ return r.json(); })
