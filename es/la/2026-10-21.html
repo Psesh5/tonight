@@ -23,6 +23,16 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system
 .event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:20px;position:relative;}
 .hide{position:absolute;top:10px;right:0;background:none;border:none;color:#a89f8a;font-size:22px;line-height:1;cursor:pointer;padding:8px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
 .hide:hover{color:var(--ink);}
+
+#hideMenu{position:fixed;z-index:1000;min-width:236px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:4px;
+background:var(--card,#fff);color:var(--ink,#14201A);border:2px solid var(--ink,#14201A);box-shadow:4px 4px 0 var(--ink,#14201A);}
+#hideMenu[hidden]{display:none;}
+#hideMenu button{display:block;width:100%;min-height:42px;padding:10px 12px;border:0;background:none;color:inherit;text-align:left;
+font:600 14px/1.3 inherit;font-family:inherit;cursor:pointer;}
+#hideMenu button:hover,#hideMenu button:focus-visible{background:var(--muted,#efe9dc);outline:none;}
+#hideMenu button[disabled]{opacity:.45;cursor:default;}
+#hideMenu .hm-sub{display:block;font-weight:500;font-size:12px;opacity:.7;margin-top:2px;}
+
 .filters{max-width:680px;margin:0 auto;padding:16px 20px 4px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
 .filters input[type=search]{flex:1;min-width:170px;padding:10px 16px;border-radius:999px;border:1px solid #d8d2c2;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;background:#fff;color:var(--ink);}
 .filters select{padding:10px 14px;border-radius:999px;border:1px solid #d8d2c2;font-size:14px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;background:#fff;color:var(--ink);}
@@ -2211,6 +2221,7 @@ function personal(i){
   if (tb > 0) s += Math.min(tb, 3); else if (tb < 0) s += Math.max(tb * 2, -6);
   var vb = (typeof VENUES !== "undefined" && VENUES[i]) ? venueBonus[VENUES[i].toLowerCase()] : 0;
   if (vb > 0) s += Math.min(vb * 2, 4); else if (vb < 0) s -= 5;  // places you like / crossed out
+  if (window.TonightHide) s += TonightHide.penalty(i);  // "never show this again": that venue and family sink
   if (freeShare >= 0.6 && FREE[i]) s += 2;  // you mostly tick free things
   if (window.FRIENDS_GOING && typeof EIDS !== "undefined" && FRIENDS_GOING[EIDS[i]]) s += 6;  // friends are going
   if (typeof SERIES !== "undefined" && SERIES[i]) {
@@ -2256,6 +2267,7 @@ function hasTaste(){
     (window.FRIENDS_GOING && Object.keys(window.FRIENDS_GOING).length > 0) ||
     Object.keys(regulars).length > 0 ||
     Object.keys(venueBonus).length > 0 ||
+    (window.TonightHide && TonightHide.list().length > 0) ||
     taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
 }
 function sortChildren(container){
@@ -2536,7 +2548,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-33fe9640" data-idx="28" data-eid="33fe9640" data-name="In Case You Missed It: Counterculture Photography of the 60s and 70s" data-series="00114d29bf" data-start-local="2026-10-21T12:15:00" data-cal-start="20261021T191500Z" data-cal-end="20261021T211500Z" data-loc="Central Library" data-url="https://www.lapl.org/events/case-you-missed-it-counterculture-photography-60s-and-70s">
 <button class="toggle" data-idx="28" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="28" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="28" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.lapl.org/events/case-you-missed-it-counterculture-photography-60s-and-70s">In Case You Missed It: Counterculture Photography of the 60s and 70s</a></h3>
 <div class="meta">12:15 PM – 1:15 PM · Central Library · Free</div>
@@ -2553,7 +2565,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-aba7317c" data-idx="29" data-eid="aba7317c" data-name="Amityville and Beyond: Ghosts, Hauntings, and Other Halloween Horrors" data-series="787801c059" data-start-local="2026-10-21T18:30:00" data-cal-start="20261022T013000Z" data-cal-end="20261022T033000Z" data-loc="West Valley" data-url="https://www.lapl.org/events/amityville-and-beyond-ghosts-hauntings-and-other-halloween-horrors">
 <button class="toggle" data-idx="29" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="29" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="29" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.lapl.org/events/amityville-and-beyond-ghosts-hauntings-and-other-halloween-horrors">Amityville and Beyond: Ghosts, Hauntings, and Other Halloween Horrors</a></h3>
 <div class="meta">6:30 PM – 7:30 PM · West Valley · Free</div>
@@ -2570,7 +2582,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-f2482533" data-idx="37" data-eid="f2482533" data-name="DTLA Tech Happy Hour" data-series="d0624ccdf4" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Arts District, Downtown" data-url="https://luma.com/ti26zm9o" data-lat="34.04484382209896" data-lng="-118.23841250771603">
 <button class="toggle" data-idx="37" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="37" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="37" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/ti26zm9o">DTLA Tech Happy Hour</a></h3>
 <div class="meta">6:00 PM – 8:00 PM · Arts District, Downtown · Free</div>
@@ -2587,7 +2599,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-4cab10cc" data-idx="38" data-eid="4cab10cc" data-name="Lakers Opening Night Watch Party" data-series="911918bff3" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Ocean Park, Santa Monica" data-url="https://luma.com/4i2yplhx" data-lat="34.0019624507597" data-lng="-118.48475939464986">
 <button class="toggle" data-idx="38" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="38" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="38" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/4i2yplhx">Lakers Opening Night Watch Party</a></h3>
 <div class="meta">6:00 PM – 10:00 PM · Ocean Park, Santa Monica · Free</div>
@@ -2604,7 +2616,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-3d46126b" data-idx="39" data-eid="3d46126b" data-name="Startup Cafe: Finding Familiar Spirits: Turning Fandom Into A Business" data-series="4e9f51b0cb" data-start-local="2026-10-21T08:45:00" data-cal-start="20261021T154500Z" data-cal-end="20261021T174500Z" data-loc="The KINN, Venice" data-url="https://luma.com/StartupCafeOct21" data-lat="33.98915" data-lng="-118.472268">
 <button class="toggle" data-idx="39" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="39" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="39" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/StartupCafeOct21">Startup Cafe: Finding Familiar Spirits: Turning Fandom Into A Business</a></h3>
 <div class="meta">8:45 AM – 10:30 AM · The KINN, Venice · Free</div>
@@ -2621,7 +2633,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-a2bbb079" data-idx="40" data-eid="a2bbb079" data-name="Mommy And Me Swapathon" data-series="e109c09ead" data-start-local="2026-10-21T09:00:00" data-cal-start="20261021T160000Z" data-cal-end="20261021T180000Z" data-loc="East Los Angeles" data-url="https://luma.com/cdkjrt98" data-lat="34.0342922395619" data-lng="-118.16606701880663">
 <button class="toggle" data-idx="40" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="40" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="40" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/cdkjrt98">Mommy And Me Swapathon</a></h3>
 <div class="meta">9:00 AM – 12:00 PM · East Los Angeles · Free</div>
@@ -2638,7 +2650,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-f9e5ff1f" data-idx="42" data-eid="f9e5ff1f" data-name="Fell Knives Studio Visit: Sloyd from Forge to Finish" data-series="a99bb98a32" data-start-local="2026-10-21T10:00:00" data-cal-start="20261021T170000Z" data-cal-end="20261021T190000Z" data-loc="East Los Angeles" data-url="https://luma.com/9mdyygzb" data-lat="34.058996746759156" data-lng="-118.18194802405031">
 <button class="toggle" data-idx="42" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="42" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="42" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/9mdyygzb">Fell Knives Studio Visit: Sloyd from Forge to Finish</a></h3>
 <div class="meta">10:00 AM – 3:00 PM · East Los Angeles · Free</div>
@@ -2655,7 +2667,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-693736a8" data-idx="44" data-eid="693736a8" data-name="Cozy Reading Club by J3 Foundation @ sister dreamer." data-series="9da53073b8" data-start-local="2026-10-21T15:00:00" data-cal-start="20261021T220000Z" data-cal-end="20261022T000000Z" data-loc="sister dreamer lauren halsey’s architectural ode, Manchester Square" data-url="https://luma.com/1iwq6y0v" data-weekly="1" data-lat="33.9706991" data-lng="-118.3092989">
 <button class="toggle" data-idx="44" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="44" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="44" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/1iwq6y0v">Cozy Reading Club by J3 Foundation @ sister dreamer.</a></h3>
 <div class="meta">3:00 PM – 4:00 PM · sister dreamer lauren halsey’s architectural ode, Manchester Square · Free · ↻ Every Wednesday</div>
@@ -2672,7 +2684,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-1a5300fa" data-idx="45" data-eid="1a5300fa" data-name="Thriving Leader Monthly Workshop with Paul M. Vincent" data-series="1ddd30dc3b" data-start-local="2026-10-21T15:00:00" data-cal-start="20261021T220000Z" data-cal-end="20261022T000000Z" data-loc="The KINN, Venice" data-url="https://luma.com/ThrivingLeaderMonthlyWorkshopOct14" data-lat="33.9891503" data-lng="-118.4722678">
 <button class="toggle" data-idx="45" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="45" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="45" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/ThrivingLeaderMonthlyWorkshopOct14">Thriving Leader Monthly Workshop with Paul M. Vincent</a></h3>
 <div class="meta">3:00 PM – 4:30 PM · The KINN, Venice · Free</div>
@@ -2689,7 +2701,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-17984a2c" data-idx="46" data-eid="17984a2c" data-name="Iconic Open House Event" data-series="d33185ee1d" data-start-local="2026-10-21T17:00:00" data-cal-start="20261022T000000Z" data-cal-end="20261022T020000Z" data-loc="West Hollywood, West Hollywood" data-url="https://luma.com/otbxnj5u" data-lat="34.0907087" data-lng="-118.37032839999998">
 <button class="toggle" data-idx="46" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="46" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="46" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/otbxnj5u">Iconic Open House Event</a></h3>
 <div class="meta">5:00 PM – 8:00 PM · West Hollywood, West Hollywood · Free</div>
@@ -2706,7 +2718,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-c48f7750" data-idx="47" data-eid="c48f7750" data-name="Soonr Sessions: #TTC Walk + Talk" data-series="ef12b9dfd6" data-start-local="2026-10-21T17:30:00" data-cal-start="20261022T003000Z" data-cal-end="20261022T023000Z" data-loc="North of Montana, Santa Monica" data-url="https://luma.com/xv7jbdn6" data-lat="34.024884039672415" data-lng="-118.51158432027292">
 <button class="toggle" data-idx="47" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="47" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="47" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/xv7jbdn6">Soonr Sessions: #TTC Walk + Talk</a></h3>
 <div class="meta">5:30 PM – 7:00 PM · North of Montana, Santa Monica · Free</div>
@@ -2723,7 +2735,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-5afcb887" data-idx="48" data-eid="5afcb887" data-name="Topgolf with Dstillery" data-series="f410a7188c" data-start-local="2026-10-21T17:30:00" data-cal-start="20261022T003000Z" data-cal-end="20261022T023000Z" data-loc="Topgolf El Segundo, El Segundo" data-url="https://luma.com/e4rwbhgl" data-lat="33.9102637" data-lng="-118.39433329999999">
 <button class="toggle" data-idx="48" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="48" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="48" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/e4rwbhgl">Topgolf with Dstillery</a></h3>
 <div class="meta">5:30 PM – 8:30 PM · Topgolf El Segundo, El Segundo · Free</div>
@@ -2740,7 +2752,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-bbf8bfee" data-idx="56" data-eid="bbf8bfee" data-name="SHE-com After Hours — LA" data-series="7d93452177" data-start-local="2026-10-21T18:30:00" data-cal-start="20261022T013000Z" data-cal-end="20261022T033000Z" data-loc="Ethos Society Koreatown, Koreatown" data-url="https://luma.com/shecomafterhoursla" data-lat="34.062265499999995" data-lng="-118.298496">
 <button class="toggle" data-idx="56" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="56" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="56" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/shecomafterhoursla">SHE-com After Hours — LA</a></h3>
 <div class="meta">6:30 PM – 9:00 PM · Ethos Society Koreatown, Koreatown · Free</div>
@@ -2757,7 +2769,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-2b2ca7a9" data-idx="57" data-eid="2b2ca7a9" data-name="Tech Leader Premium Series - Los Angeles (Golden State Warriors @ Los Angeles Lakers)" data-series="d4ea52cc67" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="South Park, Downtown" data-url="https://luma.com/revelo-premium-los-angeles-102126" data-lat="34.0417295254375" data-lng="-118.26946140570915">
 <button class="toggle" data-idx="57" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="57" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="57" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/revelo-premium-los-angeles-102126">Tech Leader Premium Series - Los Angeles (Golden State Warriors @ Los Angeles Lakers)</a></h3>
 <div class="meta">7:00 PM – 9:00 PM · South Park, Downtown · Free · Full · waitlist open</div>
@@ -2774,7 +2786,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-7bde93db" data-idx="68" data-eid="7bde93db" data-name="Josh Jacobson &amp; Friends x Gold Diggers Residency" data-series="9ccfa3a3dd" data-start-local="2026-10-21T22:30:00" data-cal-start="20261022T053000Z" data-cal-end="20261022T073000Z" data-loc="Gold-Diggers, Hollywood" data-url="https://dice.fm/event/6ac35a5afac310000126ad3f" data-lat="34.09054" data-lng="-118.31256">
 <button class="toggle" data-idx="68" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="68" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="68" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://dice.fm/event/6ac35a5afac310000126ad3f">Josh Jacobson &amp; Friends x Gold Diggers Residency</a></h3>
 <div class="meta">10:30 PM · Gold-Diggers, Hollywood · Free</div>
@@ -2795,7 +2807,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-b2c3cd01" data-idx="0" data-eid="b2c3cd01" data-name="Smile Empty Soul, Revis, Yellow No. 5, Fuz Lip, Andronika" data-series="81c799f756" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Whisky A Go Go, West Hollywood" data-url="https://www.ticketweb.com/event/smile-empty-soul-revis-yellow-whisky-a-go-go-tickets/14990873" data-lat="34.090897" data-lng="-118.385693">
 <button class="toggle" data-idx="0" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="0" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="0" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/smile-empty-soul-revis-yellow-whisky-a-go-go-tickets/14990873">Smile Empty Soul, Revis, Yellow No. 5, Fuz Lip, Andronika</a></h3>
 <div class="meta">6:00 PM · Whisky A Go Go, West Hollywood · $28.30</div>
@@ -2812,7 +2824,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-5b421761" data-idx="2" data-eid="5b421761" data-name="Pouya: The Forever Glades Tour" data-series="0d682ef333" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="The Wiltern, Koreatown" data-url="https://www.ticketmaster.com/pouya-the-forever-glades-tour-los-angeles-california-10-21-2026/event/090064C5BD791540" data-lat="34.06141494" data-lng="-118.30879207">
 <button class="toggle" data-idx="2" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="2" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="2" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/pouya-the-forever-glades-tour-los-angeles-california-10-21-2026/event/090064C5BD791540">Pouya: The Forever Glades Tour</a></h3>
 <div class="meta">7:00 PM · The Wiltern, Koreatown</div>
@@ -2829,7 +2841,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-15a8b7bc" data-idx="3" data-eid="15a8b7bc" data-name="Talib Kweli" data-series="8435aa3fe7" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Blue Note Los Angeles, Hollywood" data-url="https://www.ticketweb.com/event/talib-kweli-blue-note-los-angeles-tickets/14341714" data-lat="34.09772" data-lng="-118.32871">
 <button class="toggle" data-idx="3" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="3" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="3" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/talib-kweli-blue-note-los-angeles-tickets/14341714">Talib Kweli</a></h3>
 <div class="meta">7:00 PM · Blue Note Los Angeles, Hollywood · $18.80</div>
@@ -2846,7 +2858,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-effa63f6" data-idx="4" data-eid="effa63f6" data-name="Post Sex Nachos" data-series="aefff1796f" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="The Peppermint Club, West Hollywood" data-url="https://www.ticketmaster.com/post-sex-nachos-los-angeles-california-10-21-2026/event/090064A74B5B92F4" data-lat="34.076851" data-lng="-118.381072">
 <button class="toggle" data-idx="4" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="4" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="4" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/post-sex-nachos-los-angeles-california-10-21-2026/event/090064A74B5B92F4">Post Sex Nachos</a></h3>
 <div class="meta">7:00 PM · The Peppermint Club, West Hollywood</div>
@@ -2863,7 +2875,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-ce06e24b" data-idx="6" data-eid="ce06e24b" data-name="Logic &amp; G-Eazy: The Endless Summer Tour Part II" data-series="3aa26792dc" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="YouTube Theater, Inglewood" data-url="https://www.ticketmaster.com/logic-geazy-the-endless-summer-tour-inglewood-california-10-21-2026/event/0A006496ABA0B4F9" data-lat="33.94982" data-lng="-118.3436">
 <button class="toggle" data-idx="6" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="6" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="6" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/logic-geazy-the-endless-summer-tour-inglewood-california-10-21-2026/event/0A006496ABA0B4F9">Logic &amp; G-Eazy: The Endless Summer Tour Part II</a></h3>
 <div class="meta">7:00 PM · YouTube Theater, Inglewood</div>
@@ -2880,7 +2892,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-3f0c3f59" data-idx="7" data-eid="3f0c3f59" data-name="Modest Mouse" data-series="d3650cc714" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="House of Blues Anaheim, Anaheim" data-url="https://www.ticketmaster.com/modest-mouse-anaheim-california-10-21-2026/event/090064D1F4793FD4" data-lat="33.8095868" data-lng="-117.9229975">
 <button class="toggle" data-idx="7" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="7" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="7" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/modest-mouse-anaheim-california-10-21-2026/event/090064D1F4793FD4">Modest Mouse</a></h3>
 <div class="meta">7:00 PM · House of Blues Anaheim, Anaheim</div>
@@ -2897,7 +2909,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-7dd15b2b" data-idx="8" data-eid="7dd15b2b" data-name="Bonnie Raitt: Live 2026 with Special Guest Jon Cleary" data-series="131fcdc017" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Hollywood Pantages Theatre, Hollywood" data-url="https://www.ticketmaster.com/bonnie-raitt-live-2026-with-special-los-angeles-california-10-21-2026/event/0B006468F6E75258" data-lat="34.10200961" data-lng="-118.32586552">
 <button class="toggle" data-idx="8" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="8" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="8" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/bonnie-raitt-live-2026-with-special-los-angeles-california-10-21-2026/event/0B006468F6E75258">Bonnie Raitt: Live 2026 with Special Guest Jon Cleary</a></h3>
 <div class="meta">7:30 PM · Hollywood Pantages Theatre, Hollywood</div>
@@ -2914,7 +2926,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-347b81bd" data-idx="14" data-eid="347b81bd" data-name="Easy Star All-Stars w/Special Guest: Double Tiger, DJ Boss Harmony" data-series="d1046a9fb3" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="The Regent Theater, Downtown" data-url="https://www.ticketmaster.com/easy-star-allstars-wspecial-guest-double-los-angeles-california-10-21-2026/event/090064E9DDB1CBDB" data-lat="34.0473" data-lng="-118.24799">
 <button class="toggle" data-idx="14" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="14" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="14" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/easy-star-allstars-wspecial-guest-double-los-angeles-california-10-21-2026/event/090064E9DDB1CBDB">Easy Star All-Stars w/Special Guest: Double Tiger, DJ Boss Harmony</a></h3>
 <div class="meta">8:00 PM · The Regent Theater, Downtown</div>
@@ -2931,7 +2943,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-2a034941" data-idx="16" data-eid="2a034941" data-name="My Chemical Romance The Black Parade 2026" data-series="8c99c0ea48" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="Hollywood Bowl, Hollywood Hills" data-url="https://www.ticketmaster.com/my-chemical-romance-the-black-parade-hollywood-california-10-21-2026/event/0B006332CBDC3993" data-lat="34.11177334" data-lng="-118.33851469">
 <button class="toggle" data-idx="16" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="16" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="16" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/my-chemical-romance-the-black-parade-hollywood-california-10-21-2026/event/0B006332CBDC3993">My Chemical Romance The Black Parade 2026</a></h3>
 <div class="meta">8:00 PM · Hollywood Bowl, Hollywood Hills</div>
@@ -2948,7 +2960,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-a900cdb3" data-idx="17" data-eid="a900cdb3" data-name="beabadoobee: The Powerlines Tour" data-series="5700a1c2c4" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="Kia Forum, Inglewood" data-url="https://www.ticketmaster.com/beabadoobee-the-powerlines-tour-inglewood-california-10-21-2026/event/090064D3B945BAFD" data-lat="33.9583" data-lng="-118.341868">
 <button class="toggle" data-idx="17" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="17" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="17" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/beabadoobee-the-powerlines-tour-inglewood-california-10-21-2026/event/090064D3B945BAFD">beabadoobee: The Powerlines Tour</a></h3>
 <div class="meta">8:00 PM · Kia Forum, Inglewood</div>
@@ -2965,7 +2977,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-c9b3c023" data-idx="19" data-eid="c9b3c023" data-name="California Screamin ft. The Pine, Antioch Arrow, Allure, Nuzzle" data-series="e52b2bda90" data-start-local="2026-10-21T20:30:00" data-cal-start="20261022T033000Z" data-cal-end="20261022T053000Z" data-loc="The Moroccan Lounge, Downtown" data-url="https://www.ticketmaster.com/california-screamin-ft-the-pine-antioch-los-angeles-california-10-21-2026/event/0900650BE55CEA28" data-lat="34.04898" data-lng="-118.23365">
 <button class="toggle" data-idx="19" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="19" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="19" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/california-screamin-ft-the-pine-antioch-los-angeles-california-10-21-2026/event/0900650BE55CEA28">California Screamin ft. The Pine, Antioch Arrow, Allure, Nuzzle</a></h3>
 <div class="meta">8:30 PM · The Moroccan Lounge, Downtown</div>
@@ -2982,7 +2994,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-30f42981" data-idx="20" data-eid="30f42981" data-name="Cuco" data-series="a4135d49fe" data-start-local="2026-10-21T20:30:00" data-cal-start="20261022T033000Z" data-cal-end="20261022T053000Z" data-loc="The Fonda Theatre, Hollywood" data-url="https://www.ticketmaster.com/event/Z7r9jZ1AAvxPt" data-lat="34.0998" data-lng="-118.326897">
 <button class="toggle" data-idx="20" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="20" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="20" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAvxPt">Cuco</a></h3>
 <div class="meta">8:30 PM · The Fonda Theatre, Hollywood</div>
@@ -2999,7 +3011,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-d000574f" data-idx="21" data-eid="d000574f" data-name="Jazz Up Your Wine Wednesdays Presents: Andy Dominguez Quartet: Celebrating Jazz Trumpet Legends (Miles Davis - Dizzy Gillespie - Clifford Brown)" data-series="d9b9841884" data-start-local="2026-10-21T20:30:00" data-cal-start="20261022T033000Z" data-cal-end="20261022T053000Z" data-loc="Catalina Jazz Club, Hollywood" data-url="https://catalinajazzclub.com/tm-event/jazz-up-your-wine-wednesdays-presents-andy-dominguez-quartet-celebrating-jazz-trumpet-legends-miles-davis-dizzy-gillespie-clifford-brown/" data-lat="34.098337" data-lng="-118.337228">
 <button class="toggle" data-idx="21" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="21" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="21" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://catalinajazzclub.com/tm-event/jazz-up-your-wine-wednesdays-presents-andy-dominguez-quartet-celebrating-jazz-trumpet-legends-miles-davis-dizzy-gillespie-clifford-brown/">Jazz Up Your Wine Wednesdays Presents: Andy Dominguez Quartet: Celebrating Jazz Trumpet Legends (Miles Davis - Dizzy Gillespie - Clifford Brown)</a></h3>
 <div class="meta">8:30 PM · Catalina Jazz Club, Hollywood · $35.90</div>
@@ -3016,7 +3028,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-411d2606" data-idx="25" data-eid="411d2606" data-name="BEYOND THE BEAT A Celebration of True Music Hosted by  Brian Collier" data-series="991c107b67" data-start-local="2026-10-21T22:00:00" data-cal-start="20261022T050000Z" data-cal-end="20261022T070000Z" data-loc="B-Side at Blue Note Los Angeles, Hollywood" data-url="https://www.ticketweb.com/event/beyond-the-beat-a-celebration-b-side-at-blue-note-tickets/14313444" data-lat="34.097677" data-lng="-118.337727">
 <button class="toggle" data-idx="25" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="25" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="25" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/beyond-the-beat-a-celebration-b-side-at-blue-note-tickets/14313444">BEYOND THE BEAT A Celebration of True Music Hosted by  Brian Collier</a></h3>
 <div class="meta">10:00 PM · B-Side at Blue Note Los Angeles, Hollywood · $18.80</div>
@@ -3033,7 +3045,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-25c957b6" data-idx="55" data-eid="25c957b6" data-name="Reading Rhythms Los Angeles + Free Book: Sense and Sensibility (Movie Tie-In Special)" data-series="944dec4965" data-start-local="2026-10-21T18:30:00" data-cal-start="20261022T013000Z" data-cal-end="20261022T033000Z" data-loc="Anima Mundi Apothecary, Venice" data-url="https://luma.com/reading-1329" data-lat="33.9979638" data-lng="-118.4745764">
 <button class="toggle" data-idx="55" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="55" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="55" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/reading-1329">Reading Rhythms Los Angeles + Free Book: Sense and Sensibility (Movie Tie-In Special)</a></h3>
 <div class="meta">6:30 PM – 9:00 PM · Anima Mundi Apothecary, Venice · $40.00</div>
@@ -3050,7 +3062,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-b5415652" data-idx="67" data-eid="b5415652" data-name="Fenne Lily, Hayfitz" data-series="3e0d118d83" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Gold-Diggers, Hollywood" data-url="https://dice.fm/event/6a7a989bd3da94000122d9b1" data-lat="34.09054" data-lng="-118.31256">
 <button class="toggle" data-idx="67" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="67" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="67" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://dice.fm/event/6a7a989bd3da94000122d9b1">Fenne Lily, Hayfitz</a></h3>
 <div class="meta">7:00 PM – 11:00 PM · Gold-Diggers, Hollywood · $28.23</div>
@@ -3067,7 +3079,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-a51312ef" data-idx="69" data-eid="a51312ef" data-name="Faux Real, Kyra Machida, Bryce Xavier" data-series="9813e4a1e1" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Zebulon, Elysian Valley" data-url="https://dice.fm/event/6a0cec93d348b40001ff15df" data-lat="34.10719" data-lng="-118.25473">
 <button class="toggle" data-idx="69" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="69" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="69" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://dice.fm/event/6a0cec93d348b40001ff15df">Faux Real, Kyra Machida, Bryce Xavier</a></h3>
 <div class="meta">7:00 PM – 11:00 PM · Zebulon, Elysian Valley · $26.78</div>
@@ -3084,7 +3096,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-7db634a0" data-idx="70" data-eid="7db634a0" data-name="little luna EP Release Show, Orion Sisters" data-series="0ce8130e7e" data-start-local="2026-10-21T19:15:00" data-cal-start="20261022T021500Z" data-cal-end="20261022T041500Z" data-loc="The Mint, Mid-City" data-url="https://dice.fm/event/6a8f87214415ed0001a9d12f" data-lat="34.0522" data-lng="-118.37161">
 <button class="toggle" data-idx="70" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="70" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="70" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://dice.fm/event/6a8f87214415ed0001a9d12f">little luna EP Release Show, Orion Sisters</a></h3>
 <div class="meta">7:15 PM – 11:15 PM · The Mint, Mid-City</div>
@@ -3101,7 +3113,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-4bb43cdf" data-idx="76" data-eid="4bb43cdf" data-name="Frankie Cosmos – Celebrating 10 Years of Next Thing" data-series="4744e065ab" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="Lodge Room, Highland Park" data-url="https://www.lodgeroomhlp.com/shows/frankie-cosmos-celebrating-10-years-of-next-thing/" data-lat="34.1091" data-lng="-118.1946">
 <button class="toggle" data-idx="76" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="76" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="76" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.lodgeroomhlp.com/shows/frankie-cosmos-celebrating-10-years-of-next-thing/">Frankie Cosmos – Celebrating 10 Years of Next Thing</a></h3>
 <div class="meta">8:00 PM · Lodge Room, Highland Park</div>
@@ -3122,7 +3134,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-9e5e628c" data-idx="1" data-eid="9e5e628c" data-name="Los Angeles Lakers vs. Golden State Warriors" data-series="d6b4ea213f" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Crypto.com Arena, Downtown" data-url="https://www.ticketmaster.com/los-angeles-lakers-vs-golden-state-los-angeles-california-10-21-2026/event/2C00650CC2FF0DEE" data-lat="34.043003" data-lng="-118.267253">
 <button class="toggle" data-idx="1" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="1" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="1" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/los-angeles-lakers-vs-golden-state-los-angeles-california-10-21-2026/event/2C00650CC2FF0DEE">Los Angeles Lakers vs. Golden State Warriors</a></h3>
 <div class="meta">7:00 PM · Crypto.com Arena, Downtown</div>
@@ -3139,7 +3151,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-76643ba1" data-idx="10" data-eid="76643ba1" data-name="LA Clippers vs Sacramento Kings" data-series="d526ee829c" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Intuit Dome, Inglewood" data-url="https://www.ticketmaster.com/la-clippers-vs-sacramento-kings-inglewood-california-10-21-2026/event/0900650BF913156F" data-lat="33.94432" data-lng="-118.34285">
 <button class="toggle" data-idx="10" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="10" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="10" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/la-clippers-vs-sacramento-kings-inglewood-california-10-21-2026/event/0900650BF913156F">LA Clippers vs Sacramento Kings</a></h3>
 <div class="meta">7:30 PM · Intuit Dome, Inglewood</div>
@@ -3160,7 +3172,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-4436a726" data-idx="5" data-eid="4436a726" data-name="Avery Cochrane" data-series="7c385a7ff6" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Troubadour, Hollywood Hills West" data-url="https://www.ticketmaster.com/event/Z7r9jZ1AA76-f" data-lat="34.0942" data-lng="-118.3815">
 <button class="toggle" data-idx="5" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="5" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="5" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AA76-f">Avery Cochrane</a></h3>
 <div class="meta">7:00 PM · Troubadour, Hollywood Hills West</div>
@@ -3177,7 +3189,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-5d503783" data-idx="12" data-eid="5d503783" data-name="Upsell: Mezzanine Bleachers - Not A Ticket" data-series="de5d9498b5" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="The Regent Theater, Downtown" data-url="https://www.ticketmaster.com/upsell-mezzanine-bleachers-not-a-ticket-los-angeles-california-10-21-2026/event/090064F1A779A743" data-lat="34.0473" data-lng="-118.24799">
 <button class="toggle" data-idx="12" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="12" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="12" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/upsell-mezzanine-bleachers-not-a-ticket-los-angeles-california-10-21-2026/event/090064F1A779A743">Upsell: Mezzanine Bleachers - Not A Ticket</a></h3>
 <div class="meta">8:00 PM · The Regent Theater, Downtown</div>
@@ -3194,7 +3206,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-d0d01d0d" data-idx="13" data-eid="d0d01d0d" data-name="Upsell: Premium Viewing - NOT A TICKET" data-series="d583b2cf51" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="The Regent Theater, Downtown" data-url="https://www.ticketmaster.com/upsell-premium-viewing-not-a-ticket-los-angeles-california-10-21-2026/event/090064F1A8F0AA73" data-lat="34.0473" data-lng="-118.24799">
 <button class="toggle" data-idx="13" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="13" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="13" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/upsell-premium-viewing-not-a-ticket-los-angeles-california-10-21-2026/event/090064F1A8F0AA73">Upsell: Premium Viewing - NOT A TICKET</a></h3>
 <div class="meta">8:00 PM · The Regent Theater, Downtown</div>
@@ -3211,7 +3223,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-f964fcfd" data-idx="18" data-eid="f964fcfd" data-name="Joe Fenti" data-series="ce776882a0" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="Brea Improv, Brea" data-url="https://www.ticketweb.com/event/joe-fenti-brea-improv-tickets/14890523" data-lat="33.919902" data-lng="-117.897147">
 <button class="toggle" data-idx="18" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="18" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="18" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/joe-fenti-brea-improv-tickets/14890523">Joe Fenti</a></h3>
 <div class="meta">8:00 PM · Brea Improv, Brea · $31.14</div>
@@ -3228,7 +3240,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-b38c3724" data-idx="27" data-eid="b38c3724" data-name="Intuit Dome Tours" data-series="ed5127ec70" data-lat="33.94432" data-lng="-118.34285">
 <button class="toggle" data-idx="27" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="27" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="27" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/intuit-dome-tours-inglewood-california-10-21-2026/event/090064E8FE45FD69">Intuit Dome Tours</a></h3>
 <div class="meta">Time TBA · Intuit Dome Tours, Inglewood</div>
@@ -3243,7 +3255,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-c5d542a8" data-idx="9" data-eid="c5d542a8" data-name="Tonight at the Improv ft. Anthony Jeselnik, Donnell Rawlings, Kira Soltanovich, Paul Elia, Saul Trujillo and more TBA" data-series="1ec11b5ec1" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Hollywood Improv (The Main Room) , Beverly Grove" data-url="https://improv.com/hollywood/event/tonight+at+the+improv+ft.+anthony+jeselnik%2c+donnell+rawlings%2c+kira+soltanovich%2c+paul+elia%2c+saul+trujillo+and+more+tba/14339924/" data-lat="34.083418" data-lng="-118.366556">
 <button class="toggle" data-idx="9" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="9" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="9" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://improv.com/hollywood/event/tonight+at+the+improv+ft.+anthony+jeselnik%2c+donnell+rawlings%2c+kira+soltanovich%2c+paul+elia%2c+saul+trujillo+and+more+tba/14339924/">Tonight at the Improv ft. Anthony Jeselnik, Donnell Rawlings, Kira Soltanovich, Paul Elia, Saul Trujillo and more TBA</a></h3>
 <div class="meta">7:30 PM · Hollywood Improv (The Main Room) , Beverly Grove · $22.13</div>
@@ -3260,7 +3272,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-59a51b53" data-idx="22" data-eid="59a51b53" data-name="Shaw-some Show ft. Cristela Alonzo, Forrest Shaw, Ryan O&#x27;Flanagan, Lisa Curry, Billy Wayne Davis, Ryan Stalder, Elijah Nevels and more TBA" data-series="614d9f1fc1" data-start-local="2026-10-21T20:30:00" data-cal-start="20261022T033000Z" data-cal-end="20261022T053000Z" data-loc="Hollywood Improv (The Lab), Beverly Grove" data-url="https://improv.com/hollywood/event/shaw-some+show+ft.+cristela+alonzo%2c+forrest+shaw%2c+ryan+o%27flanagan%2c+lisa+curry%2c+billy+wayne+davis%2c+ryan+stalder%2c+elijah+nevels+and+more+tba/14245184/" data-lat="34.0834329" data-lng="-118.367284">
 <button class="toggle" data-idx="22" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="22" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="22" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://improv.com/hollywood/event/shaw-some+show+ft.+cristela+alonzo%2c+forrest+shaw%2c+ryan+o%27flanagan%2c+lisa+curry%2c+billy+wayne+davis%2c+ryan+stalder%2c+elijah+nevels+and+more+tba/14245184/">Shaw-some Show ft. Cristela Alonzo, Forrest Shaw, Ryan O&#x27;Flanagan, Lisa Curry, Billy Wayne Davis, Ryan Stalder, Elijah Nevels and more TBA</a></h3>
 <div class="meta">8:30 PM · Hollywood Improv (The Lab), Beverly Grove · $19.04</div>
@@ -3277,7 +3289,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-b53a4481" data-idx="23" data-eid="b53a4481" data-name="Elliott Brothers Present COMEDY BLOCK PARTY Hosted by Chris Spencer" data-series="53daa07b88" data-start-local="2026-10-21T20:30:00" data-cal-start="20261022T033000Z" data-cal-end="20261022T053000Z" data-loc="The Miracle Theater, Inglewood" data-url="https://www.ticketmaster.com/elliott-brothers-present-comedy-block-party-inglewood-california-10-21-2026/event/0B00652103F07EE4" data-lat="33.965252" data-lng="-118.351508">
 <button class="toggle" data-idx="23" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="23" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="23" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/elliott-brothers-present-comedy-block-party-inglewood-california-10-21-2026/event/0B00652103F07EE4">Elliott Brothers Present COMEDY BLOCK PARTY Hosted by Chris Spencer</a></h3>
 <div class="meta">8:30 PM · The Miracle Theater, Inglewood</div>
@@ -3294,7 +3306,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-c114cb19" data-idx="24" data-eid="c114cb19" data-name="Chaunte Wayans &amp; Friends" data-series="1ae366ba49" data-start-local="2026-10-21T21:00:00" data-cal-start="20261022T040000Z" data-cal-end="20261022T060000Z" data-loc="The Stand Up Comedy Club, Bellflower" data-url="https://www.ticketweb.com/event/chaunte-wayans-friends-the-stand-up-comedy-club-tickets/14356014" data-lat="33.88378" data-lng="-118.12405">
 <button class="toggle" data-idx="24" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="24" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="24" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/chaunte-wayans-friends-the-stand-up-comedy-club-tickets/14356014">Chaunte Wayans &amp; Friends</a></h3>
 <div class="meta">9:00 PM · The Stand Up Comedy Club, Bellflower · $41.42</div>
@@ -3311,7 +3323,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-b55d8fb4" data-idx="61" data-eid="b55d8fb4" data-name="Freak Nature Presents: Freak Nature" data-series="37446c1f4b" data-start-local="2026-10-21T18:30:00" data-cal-start="20261022T013000Z" data-cal-end="20261022T033000Z" data-loc="The Elysian Theater, Echo Park" data-url="https://calendar.elysiantheater.com/shows/freak-nature-presents-freak-nature-october-21-2026-754735" data-lat="34.098" data-lng="-118.2481">
 <button class="toggle" data-idx="61" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="61" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="61" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://calendar.elysiantheater.com/shows/freak-nature-presents-freak-nature-october-21-2026-754735">Freak Nature Presents: Freak Nature</a></h3>
 <div class="meta">6:30 PM · The Elysian Theater, Echo Park</div>
@@ -3328,7 +3340,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-acd48eb3" data-idx="62" data-eid="acd48eb3" data-name="CoPilots" data-series="9f2d639e35" data-start-local="2026-10-21T20:30:00" data-cal-start="20261022T033000Z" data-cal-end="20261022T053000Z" data-loc="The Elysian Theater, Echo Park" data-url="https://calendar.elysiantheater.com/shows/copilots-october-21-2026-752854" data-lat="34.098" data-lng="-118.2481">
 <button class="toggle" data-idx="62" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="62" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="62" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://calendar.elysiantheater.com/shows/copilots-october-21-2026-752854">CoPilots</a></h3>
 <div class="meta">8:30 PM · The Elysian Theater, Echo Park</div>
@@ -3345,7 +3357,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-585d8a84" data-idx="63" data-eid="585d8a84" data-name="Headliners of the OR" data-series="dd43521928" data-start-local="2026-10-21T21:00:00" data-cal-start="20261022T040000Z" data-cal-end="20261022T060000Z" data-loc="The Comedy Store (Original Room), West Hollywood" data-url="https://thecomedystore.com/calendar/show/3381/2026-10-21t210000-0700-headliners-of-the-or" data-lat="34.0952" data-lng="-118.374">
 <button class="toggle" data-idx="63" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="63" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="63" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/3381/2026-10-21t210000-0700-headliners-of-the-or">Headliners of the OR</a></h3>
 <div class="meta">9:00 PM · The Comedy Store (Original Room), West Hollywood · ↻ Also on other days</div>
@@ -3362,7 +3374,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-690166f9" data-idx="64" data-eid="690166f9" data-name="Set of the Night" data-series="06b07c7fbb" data-start-local="2026-10-21T22:00:00" data-cal-start="20261022T050000Z" data-cal-end="20261022T070000Z" data-loc="The Comedy Store (Belly Room), West Hollywood" data-url="https://thecomedystore.com/calendar/show/4048/2026-10-21t220000-0700-set-of-the-night" data-weekly="1" data-lat="34.0952" data-lng="-118.374">
 <button class="toggle" data-idx="64" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="64" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="64" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/4048/2026-10-21t220000-0700-set-of-the-night">Set of the Night</a></h3>
 <div class="meta">10:00 PM · The Comedy Store (Belly Room), West Hollywood · ↻ Every Wednesday</div>
@@ -3379,7 +3391,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-f4a80383" data-idx="65" data-eid="f4a80383" data-name="Late Night at The Store" data-series="e3969c0e43" data-start-local="2026-10-21T23:30:00" data-cal-start="20261022T063000Z" data-cal-end="20261022T083000Z" data-loc="The Comedy Store (Original Room), West Hollywood" data-url="https://thecomedystore.com/calendar/show/3874/2026-10-21t233000-0700-late-night-at-the-store" data-lat="34.0952" data-lng="-118.374">
 <button class="toggle" data-idx="65" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="65" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="65" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/3874/2026-10-21t233000-0700-late-night-at-the-store">Late Night at The Store</a></h3>
 <div class="meta">11:30 PM · The Comedy Store (Original Room), West Hollywood · ↻ Also on other days</div>
@@ -3396,7 +3408,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-c8b44dff" data-idx="77" data-eid="c8b44dff" data-name="Jamie Wolf: Psycho" data-series="5a2b2af4ed" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Dynasty Typewriter, Westlake" data-url="https://calendar.dynastytypewriter.com/shows/jamie-wolf-21-oct" data-lat="34.0605" data-lng="-118.2806">
 <button class="toggle" data-idx="77" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="77" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="77" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://calendar.dynastytypewriter.com/shows/jamie-wolf-21-oct">Jamie Wolf: Psycho</a></h3>
 <div class="meta">7:00 PM · Dynasty Typewriter, Westlake</div>
@@ -3413,7 +3425,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-0bc9fef6" data-idx="78" data-eid="0bc9fef6" data-name="HOLLYWOOD DARLINGS ft Maggie Winters, Zavior Phillips, Laura Peek, and Mark Thomson!" data-series="e967b0e218" data-start-local="2026-10-21T21:30:00" data-cal-start="20261022T043000Z" data-cal-end="20261022T063000Z" data-loc="Dynasty Typewriter, Westlake" data-url="https://calendar.dynastytypewriter.com/shows/maggie-winters-zavior-phillips-hollywood-darlings-21-oct" data-lat="34.0605" data-lng="-118.2806">
 <button class="toggle" data-idx="78" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="78" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="78" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://calendar.dynastytypewriter.com/shows/maggie-winters-zavior-phillips-hollywood-darlings-21-oct">HOLLYWOOD DARLINGS ft Maggie Winters, Zavior Phillips, Laura Peek, and Mark Thomson!</a></h3>
 <div class="meta">9:30 PM · Dynasty Typewriter, Westlake</div>
@@ -3430,7 +3442,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-8d3f400c" data-idx="109" data-eid="8d3f400c" data-name="Wednesday All-Star Comedy 9:45PM" data-series="207a5681a8" data-start-local="2026-10-21T21:45:00" data-cal-start="20261022T044500Z" data-cal-end="20261022T064500Z" data-loc="Laugh Factory - Hollywood, Hollywood Hills West" data-url="https://www.eventbrite.com/e/wednesday-all-star-comedy-945pm-tickets-1994718726407" data-weekly="1" data-lat="34.098159" data-lng="-118.364516">
 <button class="toggle" data-idx="109" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="109" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="109" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/wednesday-all-star-comedy-945pm-tickets-1994718726407">Wednesday All-Star Comedy 9:45PM</a></h3>
 <div class="meta">9:45 PM – 11:15 PM · Laugh Factory - Hollywood, Hollywood Hills West · ↻ Every Wednesday</div>
@@ -3447,7 +3459,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-282263af" data-idx="110" data-eid="282263af" data-name="Fat Fish and Friends 7:30 PM" data-series="60d3521ed5" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Laugh Factory - Hollywood, Hollywood Hills West" data-url="https://www.eventbrite.com/e/fat-fish-and-friends-730-pm-tickets-1994595006357" data-lat="34.098159" data-lng="-118.364516">
 <button class="toggle" data-idx="110" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="110" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="110" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/fat-fish-and-friends-730-pm-tickets-1994595006357">Fat Fish and Friends 7:30 PM</a></h3>
 <div class="meta">7:30 PM – 9:00 PM · Laugh Factory - Hollywood, Hollywood Hills West</div>
@@ -3464,7 +3476,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-b38e850b" data-idx="111" data-eid="b38e850b" data-name="INTERRUPTED at CINEOPERA: SCREAM" data-series="97c1cf5df5" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="CineOpera, Downtown" data-url="https://www.eventbrite.com/e/interrupted-at-cineopera-scream-tickets-2002075240940" data-lat="34.0457315" data-lng="-118.2358282">
 <button class="toggle" data-idx="111" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="111" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="111" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/interrupted-at-cineopera-scream-tickets-2002075240940">INTERRUPTED at CINEOPERA: SCREAM</a></h3>
 <div class="meta">7:30 PM – 10:00 PM · CineOpera, Downtown</div>
@@ -3481,7 +3493,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-6fc1d2fb" data-idx="112" data-eid="6fc1d2fb" data-name="HOUSE IMPROV: Sledgehammer &amp; New Pope" data-series="7ecf245963" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="The Pack Theater, East Hollywood" data-url="https://www.eventbrite.com/e/house-improv-sledgehammer-new-pope-tickets-1999008302645" data-lat="34.10066270000001" data-lng="-118.2926985">
 <button class="toggle" data-idx="112" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="112" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="112" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/house-improv-sledgehammer-new-pope-tickets-1999008302645">HOUSE IMPROV: Sledgehammer &amp; New Pope</a></h3>
 <div class="meta">8:00 PM – 9:00 PM · The Pack Theater, East Hollywood</div>
@@ -3498,7 +3510,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-ccfceed2" data-idx="113" data-eid="ccfceed2" data-name="HOUSE SKETCH: Picture Day &amp; Contraband" data-series="2ba1e4aae5" data-start-local="2026-10-21T21:00:00" data-cal-start="20261022T040000Z" data-cal-end="20261022T060000Z" data-loc="The Pack Theater, East Hollywood" data-url="https://www.eventbrite.com/e/house-sketch-picture-day-contraband-tickets-1965649313009" data-lat="34.10066270000001" data-lng="-118.2926985">
 <button class="toggle" data-idx="113" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="113" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="113" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/house-sketch-picture-day-contraband-tickets-1965649313009">HOUSE SKETCH: Picture Day &amp; Contraband</a></h3>
 <div class="meta">9:00 PM – 10:30 PM · The Pack Theater, East Hollywood</div>
@@ -3515,7 +3527,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-108b8bec" data-idx="114" data-eid="108b8bec" data-name="Reroll" data-series="16b2e52aa3" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Lyric Hyperion Theater &amp; Cafe, Silver Lake" data-url="https://www.eventbrite.com/e/reroll-tickets-1999829974287" data-lat="34.098814" data-lng="-118.2736858">
 <button class="toggle" data-idx="114" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="114" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="114" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/reroll-tickets-1999829974287">Reroll</a></h3>
 <div class="meta">7:30 PM – 9:00 PM · Lyric Hyperion Theater &amp; Cafe, Silver Lake</div>
@@ -3536,7 +3548,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-efbe4c52" data-idx="11" data-eid="efbe4c52" data-name="Drag Show: &quot;Wild Wednesdays&quot; @ Hamburger Mary&#x27;s Long Beach" data-series="887a154c0d" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Hamburger Mary&#x27;s - Long Beach, Long Beach" data-url="https://www.universe.com/events/drag-show-wild-wednesdays-hamburger-marys-long-beach-tickets-MFHJ3W?ref=ticketmaster" data-weekly="1" data-lat="33.77204414" data-lng="-118.1916944">
 <button class="toggle" data-idx="11" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="11" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="11" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/drag-show-wild-wednesdays-hamburger-marys-long-beach-tickets-MFHJ3W?ref=ticketmaster">Drag Show: &quot;Wild Wednesdays&quot; @ Hamburger Mary&#x27;s Long Beach</a></h3>
 <div class="meta">7:30 PM · Hamburger Mary&#x27;s - Long Beach, Long Beach · ↻ Every Wednesday</div>
@@ -3553,7 +3565,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-cbd1c4a1" data-idx="15" data-eid="cbd1c4a1" data-name="Hablando Huevadas - US Tour 2026" data-series="57711877ce" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="Orpheum Theatre, Downtown" data-url="https://www.ticketmaster.com/hablando-huevadas-us-tour-2026-los-angeles-california-10-21-2026/event/090064ED93F94F18" data-lat="34.04263554" data-lng="-118.25558624">
 <button class="toggle" data-idx="15" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="15" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="15" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/hablando-huevadas-us-tour-2026-los-angeles-california-10-21-2026/event/090064ED93F94F18">Hablando Huevadas - US Tour 2026</a></h3>
 <div class="meta">8:00 PM · Orpheum Theatre, Downtown</div>
@@ -3574,7 +3586,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-aa61051a" data-idx="26" data-eid="aa61051a" data-name="Dolby Theatre Guided Tour" data-series="ea734f5041" data-lat="34.102707" data-lng="-118.340464">
 <button class="toggle" data-idx="26" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="26" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="26" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/dolby-theatre-guided-tour-hollywood-california-10-21-2026/event/090064D697355307">Dolby Theatre Guided Tour</a></h3>
 <div class="meta">Time TBA · Dolby Tours, Hollywood</div>
@@ -3585,7 +3597,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-da049167" data-idx="98" data-eid="da049167" data-name="Silver Lake Food Tour with To Live and Dine in LA Food Tours" data-series="023adc2e64" data-start-local="2026-10-21T12:30:00" data-cal-start="20261021T193000Z" data-cal-end="20261021T213000Z" data-loc="2847 Sunset Blvd, Silver Lake" data-url="https://www.eventbrite.com/e/silver-lake-food-tour-with-to-live-and-dine-in-la-food-tours-tickets-1984826668997" data-lat="34.0827526" data-lng="-118.2725283">
 <button class="toggle" data-idx="98" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="98" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="98" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/silver-lake-food-tour-with-to-live-and-dine-in-la-food-tours-tickets-1984826668997">Silver Lake Food Tour with To Live and Dine in LA Food Tours</a></h3>
 <div class="meta">12:30 PM – 3:30 PM · 2847 Sunset Blvd, Silver Lake · ↻ Also on other days</div>
@@ -3602,7 +3614,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-ff179bad" data-idx="99" data-eid="ff179bad" data-name="Adventure Park Guided Walking Tour" data-series="9b5b3dda4c" data-start-local="2026-10-21T09:30:00" data-cal-start="20261021T163000Z" data-cal-end="20261021T183000Z" data-loc="Adventure Park, South Whittier" data-url="https://www.eventbrite.com/e/adventure-park-guided-walking-tour-tickets-2000198661039" data-lat="33.9422877" data-lng="-118.0360879">
 <button class="toggle" data-idx="99" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="99" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="99" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/adventure-park-guided-walking-tour-tickets-2000198661039">Adventure Park Guided Walking Tour</a></h3>
 <div class="meta">9:30 AM – 11:30 AM · Adventure Park, South Whittier</div>
@@ -3619,7 +3631,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-723a8033" data-idx="100" data-eid="723a8033" data-name="La Kretz Innovation Campus (LKIC) Guided Tour" data-series="8a2fe84545" data-start-local="2026-10-21T10:00:00" data-cal-start="20261021T170000Z" data-cal-end="20261021T190000Z" data-loc="La Kretz Innovation Campus, Downtown" data-url="https://www.eventbrite.com/e/la-kretz-innovation-campus-lkic-guided-tour-registration-1978196981423" data-weekly="1" data-lat="34.0409639" data-lng="-118.2355207">
 <button class="toggle" data-idx="100" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="100" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="100" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/la-kretz-innovation-campus-lkic-guided-tour-registration-1978196981423">La Kretz Innovation Campus (LKIC) Guided Tour</a></h3>
 <div class="meta">10:00 AM – 11:00 AM · La Kretz Innovation Campus, Downtown · ↻ Every Wednesday</div>
@@ -3636,7 +3648,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-3480521f" data-idx="101" data-eid="3480521f" data-name="Glendale Walk Club" data-series="2752c343f7" data-start-local="2026-10-21T18:30:00" data-cal-start="20261022T013000Z" data-cal-end="20261022T033000Z" data-loc="lululemon, Glendale" data-url="https://www.eventbrite.ca/e/glendale-walk-club-tickets-1277398676829" data-lat="34.1438017" data-lng="-118.2573164">
 <button class="toggle" data-idx="101" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="101" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="101" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.ca/e/glendale-walk-club-tickets-1277398676829">Glendale Walk Club</a></h3>
 <div class="meta">6:30 PM – 7:30 PM · lululemon, Glendale</div>
@@ -3657,7 +3669,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-6c7b8012" data-idx="43" data-eid="6c7b8012" data-name="Long Beach Rising: Building Partnerships For Economic Growth and Legacy" data-series="6f320a2ffe" data-start-local="2026-10-21T10:00:00" data-cal-start="20261021T170000Z" data-cal-end="20261021T190000Z" data-loc="Art Theatre of Long Beach, Long Beach" data-url="https://luma.com/5f76rim8" data-lat="33.7718507" data-lng="-118.1670012">
 <button class="toggle" data-idx="43" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="43" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="43" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/5f76rim8">Long Beach Rising: Building Partnerships For Economic Growth and Legacy</a></h3>
 <div class="meta">10:00 AM – 12:00 PM · Art Theatre of Long Beach, Long Beach · $50.00</div>
@@ -3674,7 +3686,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-c73559a5" data-idx="52" data-eid="c73559a5" data-name="LA RE Principals/Developers Dinner" data-series="7e1283d8e5" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="République, Hancock Park" data-url="https://luma.com/cohorts-2f3z" data-lat="34.064158899999995" data-lng="-118.343697">
 <button class="toggle" data-idx="52" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="52" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="52" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/cohorts-2f3z">LA RE Principals/Developers Dinner</a></h3>
 <div class="meta">6:00 PM – 7:30 PM · République, Hancock Park · $50.00</div>
@@ -3691,7 +3703,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-02b52c69" data-idx="53" data-eid="02b52c69" data-name="Make A Film Based On A New Book: Witches Of Calabasas! 🔮 with author Frank Elaridi" data-series="654238b0a5" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Atwater Village, Atwater Village" data-url="https://luma.com/kmj0r38x" data-lat="34.11542838227548" data-lng="-118.25443262082841">
 <button class="toggle" data-idx="53" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="53" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="53" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/kmj0r38x">Make A Film Based On A New Book: Witches Of Calabasas! 🔮 with author Frank Elaridi</a></h3>
 <div class="meta">6:00 PM – 10:00 PM · Atwater Village, Atwater Village · $15.00</div>
@@ -3708,7 +3720,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-e33423ed" data-idx="81" data-eid="e33423ed" data-name="Women Founders Network 14th Annual Fast Pitch Event" data-series="4365fad9fd" data-start-local="2026-10-21T17:00:00" data-cal-start="20261022T000000Z" data-cal-end="20261022T020000Z" data-loc="UCLA Covel Commons, Westwood" data-url="https://www.eventbrite.com/e/women-founders-network-14th-annual-fast-pitch-event-tickets-1992087083091" data-lat="34.0729953" data-lng="-118.4499786">
 <button class="toggle" data-idx="81" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="81" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="81" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/women-founders-network-14th-annual-fast-pitch-event-tickets-1992087083091">Women Founders Network 14th Annual Fast Pitch Event</a></h3>
 <div class="meta">5:00 PM – 9:00 PM · UCLA Covel Commons, Westwood</div>
@@ -3725,7 +3737,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-ac5a623a" data-idx="86" data-eid="ac5a623a" data-name="Long Beach 300th Install Celebration" data-series="ea63dcf0e6" data-start-local="2026-10-21T10:30:00" data-cal-start="20261021T173000Z" data-cal-end="20261021T193000Z" data-loc="3241 Fashion Ave, Long Beach" data-url="https://www.eventbrite.com/e/long-beach-300th-install-celebration-tickets-2002961062456" data-lat="33.8160443" data-lng="-118.2091939">
 <button class="toggle" data-idx="86" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="86" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="86" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/long-beach-300th-install-celebration-tickets-2002961062456">Long Beach 300th Install Celebration</a></h3>
 <div class="meta">10:30 AM – 12:00 PM · 3241 Fashion Ave, Long Beach</div>
@@ -3742,7 +3754,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-b27c3839" data-idx="87" data-eid="b27c3839" data-name="Lunch &amp; Learn: Water, Wellness, and Sustainability" data-series="f2b6844b19" data-start-local="2026-10-21T12:00:00" data-cal-start="20261021T190000Z" data-cal-end="20261021T210000Z" data-loc="AIA Santa Barbara Chapter House" data-url="https://www.eventbrite.com/e/lunch-learn-water-wellness-and-sustainability-tickets-2000950586067" data-lat="34.42746899999999" data-lng="-119.70269200000001">
 <button class="toggle" data-idx="87" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="87" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="87" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/lunch-learn-water-wellness-and-sustainability-tickets-2000950586067">Lunch &amp; Learn: Water, Wellness, and Sustainability</a></h3>
 <div class="meta">12:00 PM – 1:00 PM · AIA Santa Barbara Chapter House</div>
@@ -3759,7 +3771,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-bc66ad2a" data-idx="88" data-eid="bc66ad2a" data-name="Adapted to Survive" data-series="5381d258d6" data-start-local="2026-10-21T12:00:00" data-cal-start="20261021T190000Z" data-cal-end="20261021T210000Z" data-loc="Oceanside Art Collective" data-url="https://www.eventbrite.com/e/adapted-to-survive-tickets-2003330731145" data-weekly="1" data-lat="33.190802" data-lng="-117.3755793">
 <button class="toggle" data-idx="88" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="88" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="88" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/adapted-to-survive-tickets-2003330731145">Adapted to Survive</a></h3>
 <div class="meta">12:00 PM – 1:00 PM · Oceanside Art Collective · ↻ Every Wednesday</div>
@@ -3776,7 +3788,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-795834a5" data-idx="89" data-eid="795834a5" data-name="OWASP OC October 2026 Monthly Meeting" data-series="76a464ad4e" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="The Duck Club (IRWD), Irvine" data-url="https://www.eventbrite.com/e/owasp-oc-october-2026-monthly-meeting-tickets-2001780219523" data-lat="33.6605693" data-lng="-117.8414418">
 <button class="toggle" data-idx="89" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="89" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="89" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/owasp-oc-october-2026-monthly-meeting-tickets-2001780219523">OWASP OC October 2026 Monthly Meeting</a></h3>
 <div class="meta">6:00 PM – 8:00 PM · The Duck Club (IRWD), Irvine</div>
@@ -3793,7 +3805,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-414a713a" data-idx="90" data-eid="414a713a" data-name="Introduction to Data Cleaning with Python, Pandas, and AI" data-series="1ebcafa06c" data-start-local="2026-10-21T15:00:00" data-cal-start="20261021T220000Z" data-cal-end="20261022T000000Z" data-loc="Orbach Science Library - Room 122 and Zoom (Hybrid), Riverside" data-url="https://www.eventbrite.com/e/introduction-to-data-cleaning-with-python-pandas-and-ai-tickets-2000280011360" data-lat="33.9753669" data-lng="-117.3316296">
 <button class="toggle" data-idx="90" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="90" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="90" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/introduction-to-data-cleaning-with-python-pandas-and-ai-tickets-2000280011360">Introduction to Data Cleaning with Python, Pandas, and AI</a></h3>
 <div class="meta">3:00 PM – 4:00 PM · Orbach Science Library - Room 122 and Zoom (Hybrid), Riverside</div>
@@ -3810,7 +3822,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-1dfc94ee" data-idx="91" data-eid="1dfc94ee" data-name="After Hours Tech Social" data-series="d1a9c138d1" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Hangar 24 Orange County, Irvine" data-url="https://www.eventbrite.com/e/after-hours-tech-social-tickets-1985331340483" data-lat="33.6855295" data-lng="-117.8479787">
 <button class="toggle" data-idx="91" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="91" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="91" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/after-hours-tech-social-tickets-1985331340483">After Hours Tech Social</a></h3>
 <div class="meta">6:00 PM – 8:00 PM · Hangar 24 Orange County, Irvine</div>
@@ -3827,7 +3839,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-8a7ec8e8" data-idx="92" data-eid="8a7ec8e8" data-name="Tech Cafe &amp; Computer Assistance" data-series="553b5f3197" data-start-local="2026-10-21T13:00:00" data-cal-start="20261021T200000Z" data-cal-end="20261021T220000Z" data-loc="Sunkist Branch Library, Anaheim" data-url="https://www.eventbrite.com/e/tech-cafe-computer-assistance-tickets-2002459861350" data-lat="33.8281384" data-lng="-117.8810032">
 <button class="toggle" data-idx="92" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="92" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="92" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/tech-cafe-computer-assistance-tickets-2002459861350">Tech Cafe &amp; Computer Assistance</a></h3>
 <div class="meta">1:00 PM – 2:00 PM · Sunkist Branch Library, Anaheim</div>
@@ -3848,7 +3860,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-028e5cbb" data-idx="41" data-eid="028e5cbb" data-name="The Health Equity Innovation Summit" data-series="dd63f5d30b" data-start-local="2026-10-21T09:00:00" data-cal-start="20261021T160000Z" data-cal-end="20261021T180000Z" data-loc="North Arroyo, Pasadena" data-url="https://luma.com/o1zeythe" data-lat="34.14839872526661" data-lng="-118.1621315176242">
 <button class="toggle" data-idx="41" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="41" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="41" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/o1zeythe">The Health Equity Innovation Summit</a></h3>
 <div class="meta">9:00 AM – 7:00 PM · North Arroyo, Pasadena · $50.00</div>
@@ -3865,7 +3877,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-46bb3107" data-idx="49" data-eid="46bb3107" data-name="Bloom Fall Series - Part II: RELEASE to Make Space" data-series="979c9d05fd" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Ocean Park, Santa Monica" data-url="https://luma.com/swqmnlvd" data-lat="33.998566805471896" data-lng="-118.48256088248726">
 <button class="toggle" data-idx="49" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="49" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="49" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/swqmnlvd">Bloom Fall Series - Part II: RELEASE to Make Space</a></h3>
 <div class="meta">6:00 PM – 9:00 PM · Ocean Park, Santa Monica · $169.00</div>
@@ -3882,7 +3894,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-ba944397" data-idx="51" data-eid="ba944397" data-name="Kinner" data-series="2f801cd052" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="The KINN, Venice" data-url="https://luma.com/KINNEROct21" data-lat="33.9891503" data-lng="-118.4722678">
 <button class="toggle" data-idx="51" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="51" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="51" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/KINNEROct21">Kinner</a></h3>
 <div class="meta">6:00 PM – 9:00 PM · The KINN, Venice · $35.00 · Full · waitlist open</div>
@@ -3899,7 +3911,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-3dd34652" data-idx="54" data-eid="3dd34652" data-name="EMBODIED EARTH: Yin &amp; Aromatherapy" data-series="70a7f79e8b" data-start-local="2026-10-21T18:30:00" data-cal-start="20261022T013000Z" data-cal-end="20261022T033000Z" data-loc="Central LA, Hollywood Hills" data-url="https://luma.com/ifzz1z65" data-lat="34.11971897495865" data-lng="-118.3468303729929">
 <button class="toggle" data-idx="54" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="54" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="54" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/ifzz1z65">EMBODIED EARTH: Yin &amp; Aromatherapy</a></h3>
 <div class="meta">6:30 PM – 8:00 PM · Central LA, Hollywood Hills · $30.00</div>
@@ -3916,7 +3928,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-3e7888c5" data-idx="79" data-eid="3e7888c5" data-name="SoCal Women&#x27;s Leadership Summit 2026" data-series="a41f6c7fa9" data-start-local="2026-10-21T09:00:00" data-cal-start="20261021T160000Z" data-cal-end="20261021T180000Z" data-loc="Directors Guild of America Theater, Hollywood Hills West" data-url="https://www.eventbrite.com/e/socal-womens-leadership-summit-2026-tickets-1991601208828" data-lat="34.0975482" data-lng="-118.3625977">
 <button class="toggle" data-idx="79" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="79" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="79" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/socal-womens-leadership-summit-2026-tickets-1991601208828">SoCal Women&#x27;s Leadership Summit 2026</a></h3>
 <div class="meta">9:00 AM – 7:00 PM · Directors Guild of America Theater, Hollywood Hills West</div>
@@ -3933,7 +3945,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-0bc3563c" data-idx="80" data-eid="0bc3563c" data-name="2026 LGBTQ Networking Mega Mixer" data-series="0e5c2662f0" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Sofitel Los Angeles at Beverly Hills, Beverly Grove" data-url="https://www.eventbrite.com/e/2026-lgbtq-networking-mega-mixer-tickets-2001420791464" data-lat="34.0764178" data-lng="-118.3775087">
 <button class="toggle" data-idx="80" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="80" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="80" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/2026-lgbtq-networking-mega-mixer-tickets-2001420791464">2026 LGBTQ Networking Mega Mixer</a></h3>
 <div class="meta">6:00 PM – 9:00 PM · Sofitel Los Angeles at Beverly Hills, Beverly Grove</div>
@@ -3954,7 +3966,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-47415948" data-idx="30" data-eid="47415948" data-name="Trivia Night at The Blind Donkey (Pasadena)" data-series="d0ba7899e0" data-start-local="2026-10-21T18:30:00" data-cal-start="20261022T013000Z" data-cal-end="20261022T033000Z" data-loc="The Blind Donkey (Pasadena), Pasadena" data-url="https://www.geekswhodrink.com/venues/87269140" data-weekly="1" data-lat="34.1468433" data-lng="-118.1492848">
 <button class="toggle" data-idx="30" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="30" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="30" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/87269140">Trivia Night at The Blind Donkey (Pasadena)</a></h3>
 <div class="meta">6:30 PM · The Blind Donkey (Pasadena), Pasadena · ↻ Every Wednesday</div>
@@ -3971,7 +3983,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-d90dc56b" data-idx="31" data-eid="d90dc56b" data-name="Trivia Night at The Bigfoot Lodge (East)" data-series="2eecee1aba" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="The Bigfoot Lodge (East), Atwater Village" data-url="https://www.geekswhodrink.com/venues/598328977" data-weekly="1" data-lat="34.1234922" data-lng="-118.2679693">
 <button class="toggle" data-idx="31" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="31" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="31" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/598328977">Trivia Night at The Bigfoot Lodge (East)</a></h3>
 <div class="meta">8:00 PM · The Bigfoot Lodge (East), Atwater Village · ↻ Every Wednesday</div>
@@ -3988,7 +4000,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-2a7d4dac" data-idx="32" data-eid="2a7d4dac" data-name="Jeopardy! Bar League at Magnolia Corner" data-series="d47d19c772" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Magnolia Corner, Burbank" data-url="https://www.geekswhodrink.com/venues/3238275197" data-weekly="1" data-lat="34.1714902" data-lng="-118.3368119">
 <button class="toggle" data-idx="32" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="32" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="32" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/3238275197">Jeopardy! Bar League at Magnolia Corner</a></h3>
 <div class="meta">6:00 PM · Magnolia Corner, Burbank · ↻ Every Wednesday</div>
@@ -4005,7 +4017,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-faca2e01" data-idx="33" data-eid="faca2e01" data-name="Trivia Night at Video Vortex @Alamo Drafthouse Los Angeles" data-series="84efa99f20" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Video Vortex @Alamo Drafthouse Los Angeles, Downtown" data-url="https://www.geekswhodrink.com/venues/1988221784" data-weekly="1" data-lat="34.0479433" data-lng="-118.2590337">
 <button class="toggle" data-idx="33" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="33" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="33" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/1988221784">Trivia Night at Video Vortex @Alamo Drafthouse Los Angeles</a></h3>
 <div class="meta">7:00 PM · Video Vortex @Alamo Drafthouse Los Angeles, Downtown · ↻ Every Wednesday</div>
@@ -4022,7 +4034,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-8f8b4575" data-idx="34" data-eid="8f8b4575" data-name="Trivia Night at R Bar" data-series="1e337a2e6a" data-start-local="2026-10-21T17:30:00" data-cal-start="20261022T003000Z" data-cal-end="20261022T023000Z" data-loc="R Bar, Long Beach" data-url="https://www.geekswhodrink.com/venues/2881452905" data-weekly="1" data-lat="33.7703576" data-lng="-118.1928222">
 <button class="toggle" data-idx="34" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="34" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="34" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/2881452905">Trivia Night at R Bar</a></h3>
 <div class="meta">5:30 PM · R Bar, Long Beach · ↻ Every Wednesday</div>
@@ -4039,7 +4051,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-0b200e3b" data-idx="35" data-eid="0b200e3b" data-name="Trivia Night at Monkish Brewing Co." data-series="1ef9aee536" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Monkish Brewing Co., Torrance" data-url="https://www.geekswhodrink.com/venues/2920193798" data-weekly="1" data-lat="33.8463322" data-lng="-118.3104412">
 <button class="toggle" data-idx="35" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="35" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="35" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/2920193798">Trivia Night at Monkish Brewing Co.</a></h3>
 <div class="meta">6:00 PM · Monkish Brewing Co., Torrance · ↻ Every Wednesday</div>
@@ -4056,7 +4068,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-c852d52a" data-idx="36" data-eid="c852d52a" data-name="Trivia Night at Hermosa Brewing Co." data-series="eb221fd048" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Hermosa Brewing Co., Hermosa Beach" data-url="https://www.geekswhodrink.com/venues/923336726" data-weekly="1" data-lat="33.8636677" data-lng="-118.4001763">
 <button class="toggle" data-idx="36" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="36" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="36" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/923336726">Trivia Night at Hermosa Brewing Co.</a></h3>
 <div class="meta">6:00 PM · Hermosa Brewing Co., Hermosa Beach · ↻ Every Wednesday</div>
@@ -4077,7 +4089,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-8e2f2da7" data-idx="73" data-eid="8e2f2da7" data-name="Lunchtime Art Talk on Huguette Caland" data-series="b57da8b233" data-start-local="2026-10-21T12:30:00" data-cal-start="20261021T193000Z" data-cal-end="20261021T213000Z" data-loc="Hammer Museum, Westwood" data-url="https://hammer.ucla.edu/programs-events/2026/lunchtime-art-talk-huguette-caland" data-lat="34.0595" data-lng="-118.4438">
 <button class="toggle" data-idx="73" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="73" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="73" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://hammer.ucla.edu/programs-events/2026/lunchtime-art-talk-huguette-caland">Lunchtime Art Talk on Huguette Caland</a></h3>
 <div class="meta">12:30 PM · Hammer Museum, Westwood</div>
@@ -4094,7 +4106,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-4c3f0dc8" data-idx="102" data-eid="4c3f0dc8" data-name="Jinn and the Hidden Realms: A Talk by Dr. Ali A Olomi" data-series="78330307ed" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Philosophical Research Society, Los Feliz" data-url="https://www.eventbrite.com/e/jinn-and-the-hidden-realms-a-talk-by-dr-ali-a-olomi-tickets-2000209771270" data-lat="34.1131212" data-lng="-118.27764890000003">
 <button class="toggle" data-idx="102" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="102" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="102" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/jinn-and-the-hidden-realms-a-talk-by-dr-ali-a-olomi-tickets-2000209771270">Jinn and the Hidden Realms: A Talk by Dr. Ali A Olomi</a></h3>
 <div class="meta">7:00 PM – 8:30 PM · Philosophical Research Society, Los Feliz</div>
@@ -4111,7 +4123,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-cb74ab06" data-idx="103" data-eid="cb74ab06" data-name="5 in 5 Faculty Teaching Talks" data-series="f28a9cc820" data-start-local="2026-10-21T12:00:00" data-cal-start="20261021T190000Z" data-cal-end="20261021T210000Z" data-loc="California State University Los Angeles, El Sereno" data-url="https://www.eventbrite.com/e/5-in-5-faculty-teaching-talks-tickets-1998496393511" data-lat="34.067228" data-lng="-118.16674">
 <button class="toggle" data-idx="103" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="103" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="103" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/5-in-5-faculty-teaching-talks-tickets-1998496393511">5 in 5 Faculty Teaching Talks</a></h3>
 <div class="meta">12:00 PM – 1:00 PM · California State University Los Angeles, El Sereno</div>
@@ -4128,7 +4140,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-2521dc73" data-idx="104" data-eid="2521dc73" data-name="Psychic Development Hour" data-series="e2a20f5a7e" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Sunset Park Provisions, Santa Monica" data-url="https://www.eventbrite.com/e/psychic-development-hour-tickets-1999628040297" data-weekly="1" data-lat="34.0125199" data-lng="-118.4664866">
 <button class="toggle" data-idx="104" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="104" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="104" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/psychic-development-hour-tickets-1999628040297">Psychic Development Hour</a></h3>
 <div class="meta">6:00 PM – 7:00 PM · Sunset Park Provisions, Santa Monica · ↻ Every Wednesday</div>
@@ -4145,7 +4157,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-dcb3448b" data-idx="107" data-eid="dcb3448b" data-name="Lectures on Tap - Heather Ann Thompson: FEAR &amp; FURY" data-series="01feacd27b" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Arts District, Downtown" data-url="https://www.eventbrite.com/e/lectures-on-tap-heather-ann-thompson-fear-fury-tickets-2001011371879" data-lat="34.0418947" data-lng="-118.2326448">
 <button class="toggle" data-idx="107" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="107" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="107" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/lectures-on-tap-heather-ann-thompson-fear-fury-tickets-2001011371879">Lectures on Tap - Heather Ann Thompson: FEAR &amp; FURY</a></h3>
 <div class="meta">7:30 PM – 9:30 PM · Arts District, Downtown</div>
@@ -4162,7 +4174,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-0a2225fb" data-idx="108" data-eid="0a2225fb" data-name="How Top Agents Use Funnels, Content, AI, &amp; YouTube to Close 4 Deals a Month" data-series="f30780c420" data-start-local="2026-10-21T10:00:00" data-cal-start="20261021T170000Z" data-cal-end="20261021T190000Z" data-loc="330 N Brand Blvd, Glendale" data-url="https://www.eventbrite.com/e/how-top-agents-use-funnels-content-ai-youtube-to-close-4-deals-a-month-tickets-2003059027472" data-lat="34.1511727" data-lng="-118.2547686">
 <button class="toggle" data-idx="108" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="108" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="108" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/how-top-agents-use-funnels-content-ai-youtube-to-close-4-deals-a-month-tickets-2003059027472">How Top Agents Use Funnels, Content, AI, &amp; YouTube to Close 4 Deals a Month</a></h3>
 <div class="meta">10:00 AM – 2:00 PM · 330 N Brand Blvd, Glendale</div>
@@ -4183,7 +4195,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-358b4596" data-idx="85" data-eid="358b4596" data-name="The Latte Lab: A Hands-On Latte Art Experience | Venice Beach" data-series="4b8f9d07d3" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="1307 Ocean Front Walk, Venice" data-url="https://www.eventbrite.com/e/the-latte-lab-a-hands-on-latte-art-experience-venice-beach-tickets-2002604796856" data-lat="33.9883276" data-lng="-118.4746798">
 <button class="toggle" data-idx="85" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="85" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="85" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/the-latte-lab-a-hands-on-latte-art-experience-venice-beach-tickets-2002604796856">The Latte Lab: A Hands-On Latte Art Experience | Venice Beach</a></h3>
 <div class="meta">7:00 PM – 9:00 PM · 1307 Ocean Front Walk, Venice · ↻ Also on other days</div>
@@ -4200,7 +4212,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-e2abdfe4" data-idx="93" data-eid="e2abdfe4" data-name="5Rhythms Wednesday Nights" data-series="44968ab01b" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="Brasil Brasil Cultural Center, Culver City" data-url="https://www.eventbrite.com/e/5rhythms-wednesday-nights-tickets-1978712283706" data-weekly="1" data-lat="33.99704149999999" data-lng="-118.4298746">
 <button class="toggle" data-idx="93" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="93" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="93" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/5rhythms-wednesday-nights-tickets-1978712283706">5Rhythms Wednesday Nights</a></h3>
 <div class="meta">8:00 PM – 9:30 PM · Brasil Brasil Cultural Center, Culver City · ↻ Every Wednesday</div>
@@ -4217,7 +4229,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-2ffb0709" data-idx="94" data-eid="2ffb0709" data-name="Your Business is Only as Healthy as You Are" data-series="d6ec36372b" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Sueños Social Club, Mid-Wilshire" data-url="https://www.eventbrite.com/e/your-business-is-only-as-healthy-as-you-are-tickets-2001594851081" data-lat="34.0484581" data-lng="-118.3530214">
 <button class="toggle" data-idx="94" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="94" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="94" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/your-business-is-only-as-healthy-as-you-are-tickets-2001594851081">Your Business is Only as Healthy as You Are</a></h3>
 <div class="meta">6:00 PM – 8:30 PM · Sueños Social Club, Mid-Wilshire</div>
@@ -4234,7 +4246,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-9f1c7318" data-idx="96" data-eid="9f1c7318" data-name="The Art of Lighting People Session 1 Window Light Mastery w/ George Simian" data-series="1e82dc3d19" data-start-local="2026-10-21T12:00:00" data-cal-start="20261021T190000Z" data-cal-end="20261021T210000Z" data-loc="Samy&#x27;s Camera Los Angeles, Beverly Grove" data-url="https://www.eventbrite.com/e/the-art-of-lighting-people-session-1-window-light-mastery-w-george-simian-tickets-1998970637989" data-lat="34.0689136" data-lng="-118.36173839999998">
 <button class="toggle" data-idx="96" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="96" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="96" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/the-art-of-lighting-people-session-1-window-light-mastery-w-george-simian-tickets-1998970637989">The Art of Lighting People Session 1 Window Light Mastery w/ George Simian</a></h3>
 <div class="meta">12:00 PM – 2:00 PM · Samy&#x27;s Camera Los Angeles, Beverly Grove</div>
@@ -4251,7 +4263,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-4ce6acb8" data-idx="97" data-eid="4ce6acb8" data-name="Hollywood Acting &amp; Improv Class | Get On Stage. Get Better. Have Fun." data-series="8d951d8d15" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Hollywood &amp; Gower Theater, Hollywood" data-url="https://www.eventbrite.com/e/hollywood-acting-improv-class-get-on-stage-get-better-have-fun-tickets-2001044302375" data-weekly="1" data-lat="34.102018" data-lng="-118.3219032">
 <button class="toggle" data-idx="97" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="97" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="97" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/hollywood-acting-improv-class-get-on-stage-get-better-have-fun-tickets-2001044302375">Hollywood Acting &amp; Improv Class | Get On Stage. Get Better. Have Fun.</a></h3>
 <div class="meta">7:00 PM – 9:30 PM · Hollywood &amp; Gower Theater, Hollywood · ↻ Every Wednesday</div>
@@ -4268,7 +4280,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-fbc39ad9" data-idx="105" data-eid="fbc39ad9" data-name="Guided Plant Identification Class (Playa Vista- West Los Angeles)" data-series="7c13ad55de" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Playa vista, Playa Vista" data-url="https://www.eventbrite.com/e/guided-plant-identification-class-playa-vista-west-los-angeles-tickets-2002980496584" data-lat="33.97448060000001" data-lng="-118.4177707">
 <button class="toggle" data-idx="105" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="105" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="105" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/guided-plant-identification-class-playa-vista-west-los-angeles-tickets-2002980496584">Guided Plant Identification Class (Playa Vista- West Los Angeles)</a></h3>
 <div class="meta">7:30 PM – 8:30 PM · Playa vista, Playa Vista · ↻ Most days</div>
@@ -4285,7 +4297,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-42c6bb57" data-idx="106" data-eid="42c6bb57" data-name="How to Make Your Own Dreams Come True (A Workshop Series)" data-series="d6d14820e4" data-start-local="2026-10-21T18:30:00" data-cal-start="20261022T013000Z" data-cal-end="20261022T033000Z" data-loc="Lyric Hyperion Theater &amp; Cafe, Silver Lake" data-url="https://www.eventbrite.ca/e/how-to-make-your-own-dreams-come-true-a-workshop-series-tickets-2002843087590" data-weekly="1" data-lat="34.098814" data-lng="-118.2736858">
 <button class="toggle" data-idx="106" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="106" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="106" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.ca/e/how-to-make-your-own-dreams-come-true-a-workshop-series-tickets-2002843087590">How to Make Your Own Dreams Come True (A Workshop Series)</a></h3>
 <div class="meta">6:30 PM – 8:30 PM · Lyric Hyperion Theater &amp; Cafe, Silver Lake · ↻ Every Wednesday</div>
@@ -4306,7 +4318,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-4d8f9b4b" data-idx="50" data-eid="4d8f9b4b" data-name="Burden of Proof Craft Night x Movie Night w/ Soft Seduction" data-series="7f31aa835d" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Burden of Proof, South Pasadena" data-url="https://luma.com/burdenof-zw82" data-lat="34.1159457" data-lng="-118.1565455">
 <button class="toggle" data-idx="50" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="50" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="50" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://luma.com/burdenof-zw82">Burden of Proof Craft Night x Movie Night w/ Soft Seduction</a></h3>
 <div class="meta">6:00 PM – 8:30 PM · Burden of Proof, South Pasadena · $15.00 · Full · waitlist open</div>
@@ -4323,7 +4335,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-84c3700a" data-idx="58" data-eid="84c3700a" data-name="The Game" data-series="05bf968dd6" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Los Feliz 3, Los Feliz" data-url="https://www.americancinematheque.com/now-showing/the-game-10-21-2026/" data-lat="34.1044" data-lng="-118.2916">
 <button class="toggle" data-idx="58" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="58" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="58" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.americancinematheque.com/now-showing/the-game-10-21-2026/">The Game</a></h3>
 <div class="meta">7:00 PM · Los Feliz 3, Los Feliz</div>
@@ -4340,7 +4352,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-5b3dd62f" data-idx="59" data-eid="5b3dd62f" data-name="Ken Russell&#x27;s The Devils" data-series="0f9a71275a" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Aero Theatre, Santa Monica" data-url="https://www.americancinematheque.com/now-showing/ken-russells-the-devils-10-21-2026/" data-lat="34.0319" data-lng="-118.4953">
 <button class="toggle" data-idx="59" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="59" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="59" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.americancinematheque.com/now-showing/ken-russells-the-devils-10-21-2026/">Ken Russell&#x27;s The Devils</a></h3>
 <div class="meta">7:30 PM · Aero Theatre, Santa Monica · ↻ Most days</div>
@@ -4357,7 +4369,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-7d83db76" data-idx="60" data-eid="7d83db76" data-name="Jigoku" data-series="6ad0e7da21" data-start-local="2026-10-21T22:00:00" data-cal-start="20261022T050000Z" data-cal-end="20261022T070000Z" data-loc="Los Feliz 3, Los Feliz" data-url="https://www.americancinematheque.com/now-showing/jigoku-10-21-2026/" data-lat="34.1044" data-lng="-118.2916">
 <button class="toggle" data-idx="60" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="60" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="60" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.americancinematheque.com/now-showing/jigoku-10-21-2026/">Jigoku</a></h3>
 <div class="meta">10:00 PM · Los Feliz 3, Los Feliz</div>
@@ -4374,7 +4386,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-a84b024d" data-idx="66" data-eid="a84b024d" data-name="Teenage Sex and Death at Camp Miasma" data-series="b08ef7c727" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="New Beverly Cinema, Fairfax" data-url="https://thenewbev.com/program/october-21-teenage-sex-and-death-at-camp-miasma/" data-lat="34.0764" data-lng="-118.3457">
 <button class="toggle" data-idx="66" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="66" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="66" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://thenewbev.com/program/october-21-teenage-sex-and-death-at-camp-miasma/">Teenage Sex and Death at Camp Miasma</a></h3>
 <div class="meta">7:30 PM · New Beverly Cinema, Fairfax</div>
@@ -4391,7 +4403,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-b39c26d0" data-idx="71" data-eid="b39c26d0" data-name="The Seven Year Itch" data-series="67d12e1a6d" data-start-local="2026-10-21T14:30:00" data-cal-start="20261021T213000Z" data-cal-end="20261021T233000Z" data-loc="Academy Museum (Ted Mann Theater), Mid-Wilshire" data-url="https://tickets.academymuseum.org/events/019fce23-b6d4-30f1-f929-524f24ec6cf3" data-lat="34.0638" data-lng="-118.3608">
 <button class="toggle" data-idx="71" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="71" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="71" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://tickets.academymuseum.org/events/019fce23-b6d4-30f1-f929-524f24ec6cf3">The Seven Year Itch</a></h3>
 <div class="meta">2:30 PM · Academy Museum (Ted Mann Theater), Mid-Wilshire</div>
@@ -4408,7 +4420,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-56d8b8d3" data-idx="72" data-eid="56d8b8d3" data-name="An Evening of Short Films by Women Directors" data-series="9f2f84d78b" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Academy Museum (David Geffen Theater), Mid-Wilshire" data-url="https://tickets.academymuseum.org/events/019fce2d-087e-1067-868a-6806c769079d" data-lat="34.0638" data-lng="-118.3608">
 <button class="toggle" data-idx="72" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="72" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="72" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://tickets.academymuseum.org/events/019fce2d-087e-1067-868a-6806c769079d">An Evening of Short Films by Women Directors</a></h3>
 <div class="meta">7:30 PM · Academy Museum (David Geffen Theater), Mid-Wilshire</div>
@@ -4425,7 +4437,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-6b34b5a3" data-idx="74" data-eid="6b34b5a3" data-name="Heaven Is Still Far Away / I Love Thee for Good" data-series="cfec1240ba" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Hammer Museum (Billy Wilder Theater), Westwood" data-url="https://hammer.ucla.edu/programs-events/2026/heaven-still-far-away-i-love-thee-good" data-lat="34.0595" data-lng="-118.4438">
 <button class="toggle" data-idx="74" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="74" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="74" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://hammer.ucla.edu/programs-events/2026/heaven-still-far-away-i-love-thee-good">Heaven Is Still Far Away / I Love Thee for Good</a></h3>
 <div class="meta">7:30 PM · Hammer Museum (Billy Wilder Theater), Westwood</div>
@@ -4442,7 +4454,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-6815072f" data-idx="75" data-eid="6815072f" data-name="Bones on 35mm" data-series="3f70d831b8" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="Vidiots, Eagle Rock" data-url="https://vidiotsfoundation.org/movies/bones/" data-lat="34.1349" data-lng="-118.2151">
 <button class="toggle" data-idx="75" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="75" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="75" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://vidiotsfoundation.org/movies/bones/">Bones on 35mm</a></h3>
 <div class="meta">7:30 PM · Vidiots, Eagle Rock</div>
@@ -4459,7 +4471,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-711d3a61" data-idx="115" data-eid="711d3a61" data-name="Classic Cinema Night at Cinegrill Theater" data-series="2d80557f58" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="The Hollywood Roosevelt hotel, Hollywood" data-url="https://www.eventbrite.com/e/classic-cinema-night-at-cinegrill-theater-tickets-1989439674621" data-weekly="1" data-lat="34.1013667" data-lng="-118.34180879999997">
 <button class="toggle" data-idx="115" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="115" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="115" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/classic-cinema-night-at-cinegrill-theater-tickets-1989439674621">Classic Cinema Night at Cinegrill Theater</a></h3>
 <div class="meta">7:00 PM – 10:00 PM · The Hollywood Roosevelt hotel, Hollywood · ↻ Every Wednesday</div>
@@ -4476,7 +4488,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-c61ba7a0" data-idx="116" data-eid="c61ba7a0" data-name="Reels &amp; Reveals: Ghouls Night Out" data-series="bb5b4f3e0d" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="Videotheque, Highland Park" data-url="https://www.eventbrite.com/e/reels-reveals-ghouls-night-out-tickets-2002748276006" data-lat="34.0928543" data-lng="-118.2095917">
 <button class="toggle" data-idx="116" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="116" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="116" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/reels-reveals-ghouls-night-out-tickets-2002748276006">Reels &amp; Reveals: Ghouls Night Out</a></h3>
 <div class="meta">8:00 PM – 10:00 PM · Videotheque, Highland Park</div>
@@ -4493,7 +4505,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-11597af6" data-idx="117" data-eid="11597af6" data-name="SLEEPY HOLLOW (1999) SCREENING" data-series="e6275ccd79" data-start-local="2026-10-21T20:00:00" data-cal-start="20261022T030000Z" data-cal-end="20261022T050000Z" data-loc="Killer Fitness, Burbank" data-url="https://www.eventbrite.com/e/sleepy-hollow-1999-screening-tickets-2002982133480" data-lat="34.1653319" data-lng="-118.3454415">
 <button class="toggle" data-idx="117" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="117" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="117" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/sleepy-hollow-1999-screening-tickets-2002982133480">SLEEPY HOLLOW (1999) SCREENING</a></h3>
 <div class="meta">8:00 PM – 10:00 PM · Killer Fitness, Burbank</div>
@@ -4510,7 +4522,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-ce617e3a" data-idx="118" data-eid="ce617e3a" data-name="It&#x27;s Never Been More Over: A Screening" data-series="babc649fc2" data-start-local="2026-10-21T19:30:00" data-cal-start="20261022T023000Z" data-cal-end="20261022T043000Z" data-loc="The Earl, Koreatown" data-url="https://www.eventbrite.com/e/its-never-been-more-over-a-screening-tickets-2003306460551" data-lat="34.0710343" data-lng="-118.3096141">
 <button class="toggle" data-idx="118" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="118" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="118" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/its-never-been-more-over-a-screening-tickets-2003306460551">It&#x27;s Never Been More Over: A Screening</a></h3>
 <div class="meta">7:30 PM – 11:00 PM · The Earl, Koreatown</div>
@@ -4527,7 +4539,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-69c56c71" data-idx="119" data-eid="69c56c71" data-name="Amy Winehouse, The Raincoats, Deerhunter, Belle and Sebastian Doc Screening" data-series="aa2dcc650a" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="2115 Sunset Blvd, Echo Park" data-url="https://www.eventbrite.com/e/amy-winehouse-the-raincoats-deerhunter-belle-and-sebastian-doc-screening-tickets-2003119406066" data-lat="34.0777676" data-lng="-118.2640511">
 <button class="toggle" data-idx="119" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="119" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="119" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/amy-winehouse-the-raincoats-deerhunter-belle-and-sebastian-doc-screening-tickets-2003119406066">Amy Winehouse, The Raincoats, Deerhunter, Belle and Sebastian Doc Screening</a></h3>
 <div class="meta">7:00 PM – 10:00 PM · 2115 Sunset Blvd, Echo Park</div>
@@ -4544,7 +4556,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-cbede729" data-idx="120" data-eid="cbede729" data-name="Lens on Life: A Monthly Film Screening by CD13" data-series="3f243a31bd" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Barnsdall Gallery Theatre, East Hollywood" data-url="https://www.eventbrite.com/e/lens-on-life-a-monthly-film-screening-by-cd13-tickets-1981045440240" data-lat="34.10013249999999" data-lng="-118.2936516">
 <button class="toggle" data-idx="120" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="120" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="120" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/lens-on-life-a-monthly-film-screening-by-cd13-tickets-1981045440240">Lens on Life: A Monthly Film Screening by CD13</a></h3>
 <div class="meta">7:00 PM – 10:00 PM · Barnsdall Gallery Theatre, East Hollywood</div>
@@ -4561,7 +4573,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-39d5468d" data-idx="121" data-eid="39d5468d" data-name="A GATHERING FOR JUSTICE" data-series="8634a92713" data-start-local="2026-10-21T16:00:00" data-cal-start="20261021T230000Z" data-cal-end="20261022T010000Z" data-loc="First Presbyterian Church of Hollywood, Hollywood" data-url="https://www.eventbrite.com/e/a-gathering-for-justice-tickets-2002166622264" data-lat="34.1032049" data-lng="-118.3220716">
 <button class="toggle" data-idx="121" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="121" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="121" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/a-gathering-for-justice-tickets-2002166622264">A GATHERING FOR JUSTICE</a></h3>
 <div class="meta">4:00 PM – 8:00 PM · First Presbyterian Church of Hollywood, Hollywood</div>
@@ -4582,7 +4594,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-981779f5" data-idx="82" data-eid="981779f5" data-name="Wine &amp; Romance Novels: A Tasting" data-series="e645feeb0f" data-start-local="2026-10-21T19:00:00" data-cal-start="20261022T020000Z" data-cal-end="20261022T040000Z" data-loc="Flow Wine &amp; Coffee, Burbank" data-url="https://www.eventbrite.com/e/wine-romance-novels-a-tasting-tickets-2001807141046" data-lat="34.1811087" data-lng="-118.3122782">
 <button class="toggle" data-idx="82" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="82" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="82" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/wine-romance-novels-a-tasting-tickets-2001807141046">Wine &amp; Romance Novels: A Tasting</a></h3>
 <div class="meta">7:00 PM – 9:00 PM · Flow Wine &amp; Coffee, Burbank</div>
@@ -4599,7 +4611,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-1debb4a9" data-idx="83" data-eid="1debb4a9" data-name="Fall Wine Mixer: Meet Your Neighbors at Stoa" data-series="c6381b80e8" data-start-local="2026-10-21T18:00:00" data-cal-start="20261022T010000Z" data-cal-end="20261022T030000Z" data-loc="Stoa Wine Bar &amp; Market, Marina del Rey" data-url="https://www.eventbrite.com/e/fall-wine-mixer-meet-your-neighbors-at-stoa-tickets-2003302429494" data-lat="33.9787614" data-lng="-118.4588451">
 <button class="toggle" data-idx="83" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="83" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="83" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/fall-wine-mixer-meet-your-neighbors-at-stoa-tickets-2003302429494">Fall Wine Mixer: Meet Your Neighbors at Stoa</a></h3>
 <div class="meta">6:00 PM – 8:00 PM · Stoa Wine Bar &amp; Market, Marina del Rey</div>
@@ -4616,7 +4628,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </article>
 <article class="event" id="e-aa452042" data-idx="84" data-eid="aa452042" data-name="Mahjong Open Play at HomeState Santa Monica x Mahjong Los Angeles" data-series="9bffe8649b" data-start-local="2026-10-21T17:00:00" data-cal-start="20261022T000000Z" data-cal-end="20261022T020000Z" data-loc="HomeState, Santa Monica" data-url="https://www.eventbrite.com/e/mahjong-open-play-at-homestate-santa-monica-x-mahjong-los-angeles-tickets-1998305226726" data-lat="34.0218597" data-lng="-118.4944888">
 <button class="toggle" data-idx="84" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="84" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="84" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/mahjong-open-play-at-homestate-santa-monica-x-mahjong-los-angeles-tickets-1998305226726">Mahjong Open Play at HomeState Santa Monica x Mahjong Los Angeles</a></h3>
 <div class="meta">5:00 PM – 8:00 PM · HomeState, Santa Monica</div>
@@ -4637,7 +4649,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <article class="event" id="e-1e98b3ec" data-idx="95" data-eid="1e98b3ec" data-name="Free Queer Candlelit Yoga" data-series="4ceac0315d" data-start-local="2026-10-21T20:30:00" data-cal-start="20261022T033000Z" data-cal-end="20261022T053000Z" data-loc="AT Center, Griffith Park Boulevard, Los Angeles, CA, USA, Silver Lake" data-url="https://www.eventbrite.com/e/free-queer-candlelit-yoga-tickets-1982048388084" data-weekly="1" data-lat="34.0953981" data-lng="-118.2766232">
 <button class="toggle" data-idx="95" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
-<button class="hide" data-idx="95" aria-label="Ocultar este evento" title="No me interesa">×</button>
+<button class="hide" data-idx="95" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/free-queer-candlelit-yoga-tickets-1982048388084">Free Queer Candlelit Yoga</a></h3>
 <div class="meta">8:30 PM – 9:30 PM · AT Center, Griffith Park Boulevard, Los Angeles, CA, USA, Silver Lake · ↻ Every Wednesday</div>
@@ -4666,6 +4678,7 @@ const NAMES = ["Smile Empty Soul, Revis, Yellow No. 5, Fuz Lip, Andronika", "Los
 const EIDS = ["b2c3cd01", "9e5e628c", "5b421761", "15a8b7bc", "effa63f6", "4436a726", "ce06e24b", "3f0c3f59", "7dd15b2b", "c5d542a8", "76643ba1", "efbe4c52", "5d503783", "d0d01d0d", "347b81bd", "cbd1c4a1", "2a034941", "a900cdb3", "f964fcfd", "c9b3c023", "30f42981", "d000574f", "59a51b53", "b53a4481", "c114cb19", "411d2606", "aa61051a", "b38c3724", "33fe9640", "aba7317c", "47415948", "d90dc56b", "2a7d4dac", "faca2e01", "8f8b4575", "0b200e3b", "c852d52a", "f2482533", "4cab10cc", "3d46126b", "a2bbb079", "028e5cbb", "f9e5ff1f", "6c7b8012", "693736a8", "1a5300fa", "17984a2c", "c48f7750", "5afcb887", "46bb3107", "4d8f9b4b", "ba944397", "c73559a5", "02b52c69", "3dd34652", "25c957b6", "bbf8bfee", "2b2ca7a9", "84c3700a", "5b3dd62f", "7d83db76", "b55d8fb4", "acd48eb3", "585d8a84", "690166f9", "f4a80383", "a84b024d", "b5415652", "7bde93db", "a51312ef", "7db634a0", "b39c26d0", "56d8b8d3", "8e2f2da7", "6b34b5a3", "6815072f", "4bb43cdf", "c8b44dff", "0bc9fef6", "3e7888c5", "0bc3563c", "e33423ed", "981779f5", "1debb4a9", "aa452042", "358b4596", "ac5a623a", "b27c3839", "bc66ad2a", "795834a5", "414a713a", "1dfc94ee", "8a7ec8e8", "e2abdfe4", "2ffb0709", "1e98b3ec", "9f1c7318", "4ce6acb8", "da049167", "ff179bad", "723a8033", "3480521f", "4c3f0dc8", "cb74ab06", "2521dc73", "fbc39ad9", "42c6bb57", "dcb3448b", "0a2225fb", "8d3f400c", "282263af", "b38e850b", "6fc1d2fb", "ccfceed2", "108b8bec", "711d3a61", "c61ba7a0", "11597af6", "ce617e3a", "69c56c71", "cbede729", "39d5468d"];  // permanent ids (index -> id)
 const VENUES = ["Whisky A Go Go", "Crypto.com Arena", "The Wiltern", "Blue Note Los Angeles", "The Peppermint Club", "Troubadour", "YouTube Theater", "House of Blues Anaheim", "Hollywood Pantages Theatre", "Hollywood Improv (The Main Room) ", "Intuit Dome", "Hamburger Mary's - Long Beach", "The Regent Theater", "The Regent Theater", "The Regent Theater", "Orpheum Theatre", "Hollywood Bowl", "Kia Forum", "Brea Improv", "The Moroccan Lounge", "The Fonda Theatre", "Catalina Jazz Club", "Hollywood Improv (The Lab)", "The Miracle Theater", "The Stand Up Comedy Club", "B-Side at Blue Note Los Angeles", "Dolby Tours", "Intuit Dome Tours", "Central Library", "West Valley", "The Blind Donkey (Pasadena)", "The Bigfoot Lodge (East)", "Magnolia Corner", "Video Vortex @Alamo Drafthouse Los Angeles", "R Bar", "Monkish Brewing Co.", "Hermosa Brewing Co.", "Arts District", "Ocean Park", "The KINN", "", "North Arroyo", "", "Art Theatre of Long Beach", "sister dreamer lauren halsey\u2019s architectural ode", "The KINN", "West Hollywood", "North of Montana", "Topgolf El Segundo", "Ocean Park", "Burden of Proof", "The KINN", "R\u00e9publique", "Atwater Village", "Central LA", "Anima Mundi Apothecary", "Ethos Society Koreatown", "South Park", "Los Feliz 3", "Aero Theatre", "Los Feliz 3", "The Elysian Theater", "The Elysian Theater", "The Comedy Store (Original Room)", "The Comedy Store (Belly Room)", "The Comedy Store (Original Room)", "New Beverly Cinema", "Gold-Diggers", "Gold-Diggers", "Zebulon", "The Mint", "Academy Museum (Ted Mann Theater)", "Academy Museum (David Geffen Theater)", "Hammer Museum", "Hammer Museum (Billy Wilder Theater)", "Vidiots", "Lodge Room", "Dynasty Typewriter", "Dynasty Typewriter", "Directors Guild of America Theater", "Sofitel Los Angeles at Beverly Hills", "UCLA Covel Commons", "Flow Wine & Coffee", "Stoa Wine Bar & Market", "HomeState", "1307 Ocean Front Walk", "3241 Fashion Ave", "AIA Santa Barbara Chapter House", "Oceanside Art Collective", "The Duck Club (IRWD)", "Orbach Science Library - Room 122 and Zoom (Hybrid)", "Hangar 24 Orange County", "Sunkist Branch Library", "Brasil Brasil Cultural Center", "Sue\u00f1os Social Club", "AT Center, Griffith Park Boulevard, Los Angeles, CA, USA", "Samy's Camera Los Angeles", "Hollywood & Gower Theater", "2847 Sunset Blvd", "Adventure Park", "La Kretz Innovation Campus", "lululemon", "Philosophical Research Society", "California State University Los Angeles", "Sunset Park Provisions", "Playa vista", "Lyric Hyperion Theater & Cafe", "Arts District", "330 N Brand Blvd", "Laugh Factory - Hollywood", "Laugh Factory - Hollywood", "CineOpera", "The Pack Theater", "The Pack Theater", "Lyric Hyperion Theater & Cafe", "The Hollywood Roosevelt hotel", "Videotheque", "Killer Fitness", "The Earl", "2115 Sunset Blvd", "Barnsdall Gallery Theatre", "First Presbyterian Church of Hollywood"];
 const SERIES = ["81c799f756", "d6b4ea213f", "0d682ef333", "8435aa3fe7", "aefff1796f", "7c385a7ff6", "3aa26792dc", "d3650cc714", "131fcdc017", "1ec11b5ec1", "d526ee829c", "887a154c0d", "de5d9498b5", "d583b2cf51", "d1046a9fb3", "57711877ce", "8c99c0ea48", "5700a1c2c4", "ce776882a0", "e52b2bda90", "a4135d49fe", "d9b9841884", "614d9f1fc1", "53daa07b88", "1ae366ba49", "991c107b67", "ea734f5041", "ed5127ec70", "00114d29bf", "787801c059", "d0ba7899e0", "2eecee1aba", "d47d19c772", "84efa99f20", "1e337a2e6a", "1ef9aee536", "eb221fd048", "d0624ccdf4", "911918bff3", "4e9f51b0cb", "e109c09ead", "dd63f5d30b", "a99bb98a32", "6f320a2ffe", "9da53073b8", "1ddd30dc3b", "d33185ee1d", "ef12b9dfd6", "f410a7188c", "979c9d05fd", "7f31aa835d", "2f801cd052", "7e1283d8e5", "654238b0a5", "70a7f79e8b", "944dec4965", "7d93452177", "d4ea52cc67", "05bf968dd6", "0f9a71275a", "6ad0e7da21", "37446c1f4b", "9f2d639e35", "dd43521928", "06b07c7fbb", "e3969c0e43", "b08ef7c727", "3e0d118d83", "9ccfa3a3dd", "9813e4a1e1", "0ce8130e7e", "67d12e1a6d", "9f2f84d78b", "b57da8b233", "cfec1240ba", "3f70d831b8", "4744e065ab", "5a2b2af4ed", "e967b0e218", "a41f6c7fa9", "0e5c2662f0", "4365fad9fd", "e645feeb0f", "c6381b80e8", "9bffe8649b", "4b8f9d07d3", "ea63dcf0e6", "f2b6844b19", "5381d258d6", "76a464ad4e", "1ebcafa06c", "d1a9c138d1", "553b5f3197", "44968ab01b", "d6ec36372b", "4ceac0315d", "1e82dc3d19", "8d951d8d15", "023adc2e64", "9b5b3dda4c", "8a2fe84545", "2752c343f7", "78330307ed", "f28a9cc820", "e2a20f5a7e", "7c13ad55de", "d6d14820e4", "01feacd27b", "f30780c420", "207a5681a8", "60d3521ed5", "97c1cf5df5", "7ecf245963", "2ba1e4aae5", "16b2e52aa3", "2d80557f58", "bb5b4f3e0d", "e6275ccd79", "babc649fc2", "aa2dcc650a", "3f243a31bd", "8634a92713"];  // same show + place on any day
+const FAM = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];  // organiser + kind ("the dram shop: happy hour"), ingest/quality.py
 // weekend page: each event's own day (ticks are saved on that day, so the day pages show them too)
 const EDATE = null;
 const EDAYS = EDATE ? [...new Set(EDATE)] : null;
@@ -4696,6 +4709,202 @@ function loadIds(k) {
     return j >= 0 ? String(j) : (/^\d+$/.test(String(x)) && +x < EIDS.length ? String(+x) : null); }).filter(x => x != null);
 }
 function saveIds(k, set) { try { localStorage.setItem(k, JSON.stringify([...set].map(i => EIDS[+i] || String(i)))); } catch (e) {} }
+
+// ---------------- Hidden for good ----------------
+window.TonightHide = (function(){
+  var LKEY = "tonight-forever-" + CITY, GKEY = "tonight-forever-gone-" + CITY;
+  var FAMS = typeof FAM !== "undefined" ? FAM : [];
+  function ls(k, d){ try { var v = JSON.parse(localStorage.getItem(k) || "null"); return v == null ? d : v; } catch (e) { return d; } }
+  function lset(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  var items = ls(LKEY, []); if (!Array.isArray(items)) items = [];
+  items = items.filter(function(x){ return x && x.key && (x.kind === "series" || x.kind === "family"); });
+  // ---- the matcher: ingest/family.py, line for line ----
+  var STOP = {}; "the a an at in on of for and with w by to this from our your".split(" ").forEach(function(w){ STOP[w] = 1; });
+  var GENERIC = {}; ["", "manhattan", "midtown manhattan", "downtown manhattan", "lower manhattan", "brooklyn", "queens",
+    "bronx", "the bronx", "staten island", "new york", "new york city", "new york ny", "nyc", "london",
+    "central london", "los angeles", "la", "online", "virtual", "online event", "tba", "venue tba",
+    "various", "various locations", "multiple locations", "see website"].forEach(function(w){ GENERIC[w] = 1; });
+  var BADORG = {"unknown": 1, "none": 1, "n a": 1, "independent": 1, "various organizers": 1};
+  var MONTHS = "jan(uary)?|feb(ruary)?|mar(ch)?|apr(il)?|may|june?|july?|aug(ust)?|sep(t(ember)?)?|oct(ober)?|nov(ember)?|dec(ember)?";
+  var STRIP = [/[™®©]/g, /\([^)]*\)|\[[^\]]*\]/g, /(us)?[$£€]\s?\d+(?:[.,]\d+)?\+?/gi,
+    /\b(sm|small)[\s-]*groups?\b/gi, /\b\d{1,2}[\/.]\d{1,2}([\/.]\d{2,4})?\b/g,
+    new RegExp("\\b(" + MONTHS + ")\\.?\\s+\\d{1,2}(st|nd|rd|th)?\\b", "gi"),
+    new RegExp("\\b\\d{1,2}(st|nd|rd|th)?\\s+(" + MONTHS + ")\\b", "gi"),
+    /\b(mon|tues?|wed(nes)?|thu(rs)?|fri|sat(ur)?|sun)(day)?s?\b/gi, /\b\d{1,2}(:\d{2})?\s*[ap]\.?m\.?\b/gi,
+    /\b20\d\d\b/g, /\bthis\s+(fall|autumn|spring|summer|winter|week|weekend)\b/gi];
+  var ENT = {amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " "};
+  function unesc(s){ return String(s || "").replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, function(m, c){
+    if (c[0] === "#") { var n = c[1] === "x" || c[1] === "X" ? parseInt(c.slice(2), 16) : +c.slice(1); return isNaN(n) ? m : String.fromCharCode(n); }
+    return ENT[c.toLowerCase()] != null ? ENT[c.toLowerCase()] : m; }); }
+  function clean(s){ return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
+  function normName(n){ n = unesc(unesc(n)); STRIP.forEach(function(rx){ n = n.replace(rx, " "); });
+    return clean(n).split(" ").filter(function(w){ return w && !STOP[w]; }).join(" "); }
+  function normVenue(v){ v = clean(unesc(v)); return GENERIC[v] ? "" : v; }
+  function bigrams(s){ s = s.replace(/ /g, ""); var g = {}, n = 0;
+    for (var k = 0; k < s.length - 1; k++) { var b = s.substr(k, 2); g[b] = (g[b] || 0) + 1; n++; } return {g: g, n: n}; }
+  function similarity(a, b){
+    if (!a || !b) return 0; if (a === b) return 1;
+    var x = bigrams(a), y = bigrams(b); if (!x.n || !y.n) return 0;
+    var both = 0; for (var k in x.g) both += Math.min(x.g[k], y.g[k] || 0);
+    return 2 * both / (x.n + y.n); }
+  function familyKey(l){
+    var k = String(l || "").replace(/\s+/g, " ").trim().toLowerCase().replace(/^[ .;,]+|[ .;,]+$/g, "");
+    var c = k.indexOf(":"); if (c < 0) return "";
+    var org = k.slice(0, c).trim(), kind = k.slice(c + 1).trim();
+    if (org.length < 3 || !kind || GENERIC[clean(org)] || BADORG[clean(org)]) return "";
+    return org + ": " + kind; }
+  function ruleN(na, va, nb, vb){  // rule a on normalised names / venues
+    if (!na || !nb) return false;
+    var s = similarity(na, nb);
+    if (va && va === vb && s >= 0.6) return true;
+    return s >= 0.85 && Math.min(na.split(" ").length, nb.split(" ").length) >= 3; }
+  var NN = [], NV = [], FK = [];
+  function prep(i){ if (NN[i] == null) { NN[i] = normName(NAMES[i]); NV[i] = normVenue(VENUES[i]); FK[i] = familyKey(FAMS[i]); } }
+  function prepItem(it){ if (it._nn == null) { it._nn = normName(it.name); it._nv = normVenue(it.venue); it._fk = familyKey(it.family); } }
+  function covers(it, i){
+    if (it.key && SERIES[i] === it.key) return true;
+    if (it.kind !== "family") return false;
+    prep(i); prepItem(it);
+    if (it._fk && it._fk === FK[i]) return true;
+    return ruleN(it._nn, it._nv, NN[i], NV[i]); }
+  // ---- state ----
+  var hid = new Set(), subs = [];
+  function compute(){
+    hid = new Set();
+    for (var i = 0; i < NAMES.length; i++)
+      for (var k = 0; k < items.length; k++) if (covers(items[k], i)) { hid.add(String(i)); break; }
+  }
+  function plain(it){ return {kind: it.kind, key: it.key, family: it.family || "", name: it.name || "", venue: it.venue || "",
+    created: it.created || 0, day: it.day || "", pending: it.pending || undefined}; }
+  function persist(){ lset(LKEY, items.map(plain)); }
+  function changed(){ compute(); subs.forEach(function(f){ try { f(); } catch (e) {} }); }
+  function api(){ return window.__tonight_api || null; }
+  function uid(){ try { return localStorage.getItem("tonight-user-id"); } catch (e) { return null; } }
+  function hdrs(h){ return window.TonightAuth ? TonightAuth.headers(h || {}) : (h || {}); }
+  function send(method, body){
+    var b = api(); if (!b) return Promise.reject(new Error("offline"));
+    body.user_id = uid(); body.city = CITY;
+    return fetch(b + "/hidden", {method: method, headers: hdrs({"Content-Type": "application/json"}), body: JSON.stringify(body)})
+      .then(function(r){ if (!r.ok) throw new Error("http " + r.status); return r.json(); });
+  }
+  function push(it){
+    send("POST", {kind: it.kind, key: it.key, family: it.family, name: it.name, venue: it.venue})
+      .then(function(){ delete it.pending; persist(); }).catch(function(){});
+  }
+  function add(i, kind){
+    var key = SERIES[i]; if (!key) return null;
+    var before = hid;
+    items = items.filter(function(x){ return x.key !== key; });
+    var it = {kind: kind, key: key, family: FAMS[i] || "", name: NAMES[i], venue: VENUES[i] || "",
+      created: Date.now() / 1000, day: typeof EDATE !== "undefined" && EDATE ? EDATE[i] : DATE, pending: "add"};
+    items.unshift(it); persist();
+    var gone = ls(GKEY, {}); if (gone[key]) { delete gone[key]; lset(GKEY, gone); }
+    changed(); push(it);
+    var extra = 0; hid.forEach(function(j){ if (!before.has(j) && SERIES[+j] !== key) extra++; });
+    return {item: it, extra: extra};
+  }
+  function remove(key, city){
+    city = city || CITY;
+    if (city === CITY) { items = items.filter(function(x){ return x.key !== key; }); persist(); changed(); }
+    var gk = "tonight-forever-gone-" + city, gone = ls(gk, {}); gone[key] = 1; lset(gk, gone);
+    var b = api(); if (!b) return;
+    fetch(b + "/hidden", {method: "DELETE", headers: hdrs({"Content-Type": "application/json"}),
+      body: JSON.stringify({user_id: uid(), city: city, key: key})})
+      .then(function(r){ if (r.ok) { var g = ls(gk, {}); delete g[key]; lset(gk, g); } }).catch(function(){});
+  }
+  // the saved list, once per page load (after the API address resolves); silent when offline
+  function sync(n){
+    var b = api();
+    if (!b) { if (n > 0) setTimeout(function(){ sync(n - 1); }, 200); return; }
+    var u = uid(); if (!u && !(window.TonightAuth && TonightAuth.token())) return;
+    fetch(b + "/hidden?city=" + encodeURIComponent(CITY) + "&user_id=" + encodeURIComponent(u || ""), {headers: hdrs({})})
+      .then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+        if (!d || !d.ok || !Array.isArray(d.items)) return;
+        var gone = ls(GKEY, {}), by = {};
+        d.items.forEach(function(x){ if (!gone[x.key]) by[x.key] = plain(x); });
+        items.forEach(function(x){ if (x.pending === "add" && !by[x.key]) { by[x.key] = x; push(x); } });
+        Object.keys(gone).forEach(function(k){ remove(k); });
+        var next = Object.keys(by).map(function(k){ return by[k]; }).sort(function(a, b){ return (b.created || 0) - (a.created || 0); });
+        var sig = function(a){ return a.map(function(x){ return x.kind + x.key; }).join(","); };
+        var same = sig(next) === sig(items);
+        items = next; persist();
+        if (!same) changed();
+      }).catch(function(){});
+  }
+  // "No volver a mostrar esto" is a strong signal for that venue and that family, not for the category
+  function penalty(i){
+    if (!items.length) return 0;
+    prep(i); var s = 0;
+    items.forEach(function(it){ prepItem(it);
+      if (NV[i] && it._nv === NV[i]) s -= 6;
+      if (FK[i] && it._fk === FK[i]) s -= 8; });
+    return Math.max(s, -14);
+  }
+  // events hidden for good on this page's day(s) today: each sends one light "not for me" tap, on that day only
+  function freshIds(){
+    var out = [];
+    items.forEach(function(it){ if (!it.day) return;
+      for (var i = 0; i < NAMES.length; i++)
+        if (SERIES[i] === it.key && (typeof EDATE !== "undefined" && EDATE ? EDATE[i] : DATE) === it.day) out.push(String(i)); });
+    return out;
+  }
+  // ---- the menu ----
+  var menuEl = null, menuAnchor = null, menuPick = null, menuY = 0;
+  function closeMenu(back){
+    if (!menuEl || menuEl.hidden) return;
+    menuEl.hidden = true;
+    if (back && menuAnchor && menuAnchor.focus) menuAnchor.focus();
+    if (menuAnchor) menuAnchor.setAttribute("aria-expanded", "false");
+    menuAnchor = null;
+  }
+  function buildMenu(){
+    menuEl = document.createElement("div"); menuEl.id = "hideMenu"; menuEl.hidden = true;
+    menuEl.setAttribute("role", "menu"); menuEl.setAttribute("aria-label", "Ocultar este evento");
+    [["today", "Ocultar hoy"], ["series", "No volver a mostrar esto"], ["family", "No mostrar esto ni nada parecido"]].forEach(function(o){
+      var b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "menuitem"); b.dataset.k = o[0];
+      b.textContent = o[1]; b.tabIndex = -1;
+      b.addEventListener("click", function(){ var f = menuPick; closeMenu(true); if (f) f(o[0]); });
+      menuEl.appendChild(b);
+    });
+    menuEl.addEventListener("keydown", function(e){
+      var bs = [].slice.call(menuEl.querySelectorAll("button:not([disabled])")), k = bs.indexOf(document.activeElement);
+      if (e.key === "Escape") { e.preventDefault(); closeMenu(true); }
+      else if (e.key === "ArrowDown") { e.preventDefault(); bs[(k + 1) % bs.length].focus(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); bs[(k - 1 + bs.length) % bs.length].focus(); }
+      else if (e.key === "Home") { e.preventDefault(); bs[0].focus(); }
+      else if (e.key === "End") { e.preventDefault(); bs[bs.length - 1].focus(); }
+      else if (e.key === "Tab") closeMenu(false);
+    });
+    document.addEventListener("pointerdown", function(e){
+      if (menuEl.hidden || menuEl.contains(e.target) || (menuAnchor && menuAnchor.contains(e.target))) return;
+      closeMenu(false); }, true);
+    addEventListener("resize", function(){ closeMenu(false); });
+    addEventListener("scroll", function(){  // a page that scrolls away closes it (a nudge or a settling scroll doesn't)
+      if (menuAnchor && Math.abs(menuAnchor.getBoundingClientRect().top - menuY) > 40) closeMenu(false); }, {passive: true});
+    document.body.appendChild(menuEl);
+  }
+  function menu(anchor, i, pick){
+    if (!menuEl) buildMenu();
+    if (!menuEl.hidden && menuAnchor === anchor) { closeMenu(true); return; }
+    closeMenu(false);
+    menuAnchor = anchor; menuPick = pick;
+    anchor.setAttribute("aria-haspopup", "menu"); anchor.setAttribute("aria-expanded", "true");
+    menuEl.querySelectorAll("button").forEach(function(b){ b.disabled = b.dataset.k !== "today" && !SERIES[i]; });
+    menuEl.style.visibility = "hidden"; menuEl.hidden = false;
+    var r = anchor.getBoundingClientRect(), w = menuEl.offsetWidth, h = menuEl.offsetHeight; menuY = r.top;
+    var top = r.bottom + 4; if (top + h > innerHeight - 8 && r.top - h - 4 > 8) top = r.top - h - 4;
+    var left = Math.min(Math.max(8, r.right - w), innerWidth - w - 8);
+    menuEl.style.top = Math.max(8, top) + "px"; menuEl.style.left = Math.max(8, left) + "px"; menuEl.style.visibility = "";
+    menuEl.querySelector("button").focus({preventScroll: true});
+  }
+  compute();
+  addEventListener("load", function(){ setTimeout(function(){ sync(30); }, 300); });
+  return {hides: function(i){ return hid.has(String(i)); }, count: function(){ return hid.size; },
+    list: function(){ return items.map(plain); }, add: add, remove: remove, menu: menu, closeMenu: closeMenu,
+    onChange: function(f){ subs.push(f); }, penalty: penalty, freshIds: freshIds,
+    _match: {normName: normName, normVenue: normVenue, similarity: similarity, familyKey: familyKey, ruleN: ruleN}};
+})();
+
 // Links to an event on this page (#e-<id>, or older #event-<n>): unfold its section if it's
 // behind "Show all", scroll to it and flash it. Runs for clicks, for the address on load,
 // and when the address changes.
@@ -4801,7 +5010,8 @@ function reportTaps() {
   const hdrs = window.TonightAuth ? TonightAuth.headers({"Content-Type": "application/json"})
                                   : {"Content-Type": "application/json"};
   const row = i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i], venue: VENUES[+i]});
-  const hid = loadIds("tonight-hidden-" + CITY + "-" + DATE);
+  const hid = [...new Set(loadIds("tonight-hidden-" + CITY + "-" + DATE)
+    .concat(window.TonightHide ? TonightHide.freshIds() : []))];  // + hidden for good today (one light tap, that day only)
   (EDAYS || [DATE]).forEach(d => {  // weekend page: one report per day, so each tick counts on its own day
     const mine = i => !EDAYS || EDATE[+i] === d;
     fetch(window.__tonight_api + "/tap", {
@@ -4949,7 +5159,7 @@ window.__applyFilters = (function () {
   const hay = {};  // search text per card, read once
   // each filter on its own (the sidebar counts what each box would show with all the others)
   function dims(i, a) {
-    let base = !hidden.has(String(i));
+    let base = !hidden.has(String(i)) && !(window.TonightHide && TonightHide.hides(i));  // today, or for good
     if (base && window.__repHidden && window.__repHidden.has(String(i))) base = false;  // hidden after reports
     if (base && F.only && !F.only.has(EIDS[i])) base = false;  // a friend's shared picks (?only=)
     if (base && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) base = false;
@@ -5039,8 +5249,8 @@ window.__applyFilters = (function () {
     if (picks.has(i)) { picks.delete(i); render(); } else reportTaps();
     applyFilters();
   };
-  document.querySelectorAll(".hide").forEach(b => b.addEventListener("click", () => {
-    const i = b.dataset.idx, wasPick = picks.has(i);
+  function hideToday(i) {
+    const wasPick = picks.has(i);
     hidden.add(i);
     saveIds(HIDE_KEY, hidden);
     if (wasPick) { picks.delete(i); render(); } else reportTaps();
@@ -5051,7 +5261,39 @@ window.__applyFilters = (function () {
       if (wasPick) { picks.add(i); render(); } else reportTaps();
       applyFilters();
     }, window.TonightReport ? "Reportar un problema" : null, () => window.TonightReport && window.TonightReport.open(+i));
+  }
+  // "No volver a mostrar esto" (this series, every day) / "... or anything like it" (+ its family)
+  function hideForever(i, kind) {
+    const r = window.TonightHide && TonightHide.add(+i, kind);
+    if (!r) { hideToday(i); return; }
+    const wasPick = picks.has(i);
+    if (wasPick) { picks.delete(i); render(); } else reportTaps();
+    applyFilters();
+    if (window.Tonight && Tonight.applyRanking) Tonight.applyRanking();  // venue + family sink a lot
+    // two literals that read the same: one similar / several (the Spanish page translates them apart)
+    const msg = kind !== "family" ? "Oculto todos los días. " : r.extra ? "Oculto, junto con " + r.extra +
+      (r.extra === 1 ? " parecido." : " parecidos.") + " " : "Oculto todos los días, con todo lo parecido. ";
+    toast(msg, "Deshacer", () => {
+      TonightHide.remove(r.item.key);
+      if (wasPick) { picks.add(i); render(); } else reportTaps();
+      applyFilters();
+      if (window.Tonight && Tonight.applyRanking) Tonight.applyRanking();
+    });
+  }
+  // the x on cards, Top tonight's rows and Starting soon: Hide today / Never show this again / ... anything like it
+  window.__hideMenu = (i, anchor) => {
+    i = String(i);
+    if (!window.TonightHide) { hideToday(i); return; }
+    TonightHide.menu(anchor, +i, k => k === "today" ? hideToday(i) : hideForever(i, k));
+  };
+  document.querySelectorAll(".hide").forEach(b => b.addEventListener("click", e => {
+    e.stopPropagation(); window.__hideMenu(b.dataset.idx, b);
   }));
+  if (window.TonightHide) TonightHide.onChange(() => {
+    applyFilters();
+    if (window.Tonight && Tonight.applyRanking) Tonight.applyRanking();
+    try { if (nextOn) setNextHour(true, true); } catch (e) {}  // Starting soon is open: redraw it
+  });
   // Share one event: the phone's share sheet, or copy a ready-to-paste note
   document.querySelectorAll(".share-ev").forEach(b => b.addEventListener("click", async () => {
     const art = b.closest("article.event"), i = b.dataset.idx;
@@ -5335,6 +5577,7 @@ function soonKind(i, now) {
   if (s == null || now == null) return null;
   if (typeof KIDS !== "undefined" && KIDS[i] && !kidsOn()) return null;
   if (new Set(loadIds("tonight-hidden-" + CITY + "-" + DATE)).has(String(i))) return null;
+  if (window.TonightHide && TonightHide.hides(i)) return null;  // hidden for good
   const q = QUAL[i] == null ? 5 : QUAL[i];
   if (q <= 3 || SOON_SKIP.test(FLAGS[i] || "")) return null;
   if (s >= now - 10 && s <= now + 90) return "soon";
@@ -6036,6 +6279,7 @@ function aiNote(){
     return fetch(base + "/note", {method: "POST", headers: h, body: JSON.stringify({city: CITY, date: DATE,
       lang: document.documentElement.lang || "en",
       anon_id: anon, avoid_venues: avoid, dinner_prefs: prefs, dinner_day: TD ? TD.day(CITY, DATE) : {},
+      hidden: window.TonightHide ? TonightHide.list() : [],  // hidden for good: never in the note
       taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,
         kids: (function(){ try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } })()}})}).then(function(r){ return r.json(); });
   }).then(function(d){
@@ -6807,7 +7051,11 @@ function row(i){
   li.appendChild(price);
   var x = el("button", "tt-x", "×"); x.type = "button";
   x.setAttribute("aria-label", "No es para mí"); x.title = "No es para mí";
-  x.addEventListener("click", function(){ var h = card(i) && card(i).querySelector(".hide"); if (h) h.click(); });
+  x.setAttribute("aria-haspopup", "menu");
+  x.addEventListener("click", function(e){  // the card's own x menu, opened here: Hide today / Never show this again / ...
+    e.stopPropagation();
+    if (window.__hideMenu) { window.__hideMenu(i, x); return; }
+    var h = card(i) && card(i).querySelector(".hide"); if (h) h.click(); });
   li.appendChild(x);
   return li;
 }
@@ -7464,6 +7712,7 @@ function ask(q, display){
     return fetch(base + "/toni", {method: "POST", headers: headers, body: JSON.stringify({
       city: cur.slug, date: cur.date, lang: document.documentElement.lang || "en", anon_id: anon, avoid_venues: recentVenues(), dinner_prefs: dinnerPrefs(),
       dinner_day: window.TonightDinner ? TonightDinner.day(cur.slug, cur.date) : {},
+      hidden: window.TonightHide && typeof CITY !== "undefined" && CITY === cur.slug ? TonightHide.list() : [],
       exclude_venues: (function(){ var x = excludeNext || []; excludeNext = null; return x; })(),
       can_filter: !!document.getElementById("fq"),
       taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,
@@ -7790,6 +8039,7 @@ function pickDeck(){
   var c = [];
   NAMES.forEach(function(n, i){
     if (hid.has(String(i)) || !art(i) || (typeof KIDS !== "undefined" && KIDS[i] && !kidsOn())) return;
+    if (window.TonightHide && TonightHide.hides(i)) return;  // hidden for good
     var s = STARTS[i], e = ENDS[i] != null && s != null && ENDS[i] > s ? ENDS[i] : (s != null ? s + 120 : null);
     if (today && e != null && e < now + 20) return;            // over, or nearly
     var soon = s == null ? 0 : (s >= now ? Math.max(0, 6 - (s - now) / 60) : 4);  // tonight-ish first

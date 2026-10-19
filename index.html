@@ -630,6 +630,7 @@ function personal(i){
   if (tb > 0) s += Math.min(tb, 3); else if (tb < 0) s += Math.max(tb * 2, -6);
   var vb = (typeof VENUES !== "undefined" && VENUES[i]) ? venueBonus[VENUES[i].toLowerCase()] : 0;
   if (vb > 0) s += Math.min(vb * 2, 4); else if (vb < 0) s -= 5;  // places you like / crossed out
+  if (window.TonightHide) s += TonightHide.penalty(i);  // "never show this again": that venue and family sink
   if (freeShare >= 0.6 && FREE[i]) s += 2;  // you mostly tick free things
   if (window.FRIENDS_GOING && typeof EIDS !== "undefined" && FRIENDS_GOING[EIDS[i]]) s += 6;  // friends are going
   if (typeof SERIES !== "undefined" && SERIES[i]) {
@@ -675,6 +676,7 @@ function hasTaste(){
     (window.FRIENDS_GOING && Object.keys(window.FRIENDS_GOING).length > 0) ||
     Object.keys(regulars).length > 0 ||
     Object.keys(venueBonus).length > 0 ||
+    (window.TonightHide && TonightHide.list().length > 0) ||
     taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
 }
 function sortChildren(container){
@@ -1768,6 +1770,7 @@ function ask(q, display){
     return fetch(base + "/toni", {method: "POST", headers: headers, body: JSON.stringify({
       city: cur.slug, date: cur.date, lang: document.documentElement.lang || "en", anon_id: anon, avoid_venues: recentVenues(), dinner_prefs: dinnerPrefs(),
       dinner_day: window.TonightDinner ? TonightDinner.day(cur.slug, cur.date) : {},
+      hidden: window.TonightHide && typeof CITY !== "undefined" && CITY === cur.slug ? TonightHide.list() : [],
       exclude_venues: (function(){ var x = excludeNext || []; excludeNext = null; return x; })(),
       can_filter: !!document.getElementById("fq"),
       taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,

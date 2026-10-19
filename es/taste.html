@@ -110,6 +110,12 @@ cursor:pointer;font-family:inherit;display:flex;flex-direction:column;gap:5px;}
 .lk-see{font-size:14px;font-weight:600;margin:4px 0 6px;}
 .lk-see a{color:var(--ink);font-weight:800;text-decoration-color:var(--accent);text-decoration-thickness:2px;}
 @media(max-width:520px){.lk-grid{grid-template-columns:1fr;}}
+
+.hid-what{flex-direction:column;align-items:flex-start;gap:2px;}
+.hid-name{font-weight:700;overflow-wrap:anywhere;}
+.hid-sub{font-size:13px;font-weight:500;opacity:.75;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.hid-badge,.hid-city{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:1px 6px;border:2px solid currentColor;}
+.hid-row .fbtn{flex:none;white-space:nowrap;}
 </style>
 <link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
@@ -249,6 +255,7 @@ function personal(i){
   if (tb > 0) s += Math.min(tb, 3); else if (tb < 0) s += Math.max(tb * 2, -6);
   var vb = (typeof VENUES !== "undefined" && VENUES[i]) ? venueBonus[VENUES[i].toLowerCase()] : 0;
   if (vb > 0) s += Math.min(vb * 2, 4); else if (vb < 0) s -= 5;  // places you like / crossed out
+  if (window.TonightHide) s += TonightHide.penalty(i);  // "never show this again": that venue and family sink
   if (freeShare >= 0.6 && FREE[i]) s += 2;  // you mostly tick free things
   if (window.FRIENDS_GOING && typeof EIDS !== "undefined" && FRIENDS_GOING[EIDS[i]]) s += 6;  // friends are going
   if (typeof SERIES !== "undefined" && SERIES[i]) {
@@ -294,6 +301,7 @@ function hasTaste(){
     (window.FRIENDS_GOING && Object.keys(window.FRIENDS_GOING).length > 0) ||
     Object.keys(regulars).length > 0 ||
     Object.keys(venueBonus).length > 0 ||
+    (window.TonightHide && TonightHide.list().length > 0) ||
     taste.surprise !== "low" || Object.keys(tapBonus).length > 0;
 }
 function sortChildren(container){
@@ -560,6 +568,12 @@ document.addEventListener("DOMContentLoaded", function(){
 <button type="button" data-s="low" class="on">Solo lo mío</button><button type="button" data-s="med">Algunas</button><button type="button" data-s="high">Muchas</button>
 </div></div>
 </div></div></section>
+<section class="tsec" id="hiddenPrefs"><div class="tcard">
+<div class="tsec-head"><h2>Ocultos</h2></div>
+<div class="tsec-body">
+<p class="thint">Eventos que elegiste no volver a ver, ningún día. “Y parecidos” también oculta lo que se les parece: lo mismo en el mismo lugar, o lo demás de ese tipo del mismo organizador.</p>
+<div id="hiddenList"></div>
+</div></div></section>
 <section class="tsec" hidden><div class="tcard"><!-- looks live in the Style menu at the foot of every page -->
 <div class="tsec-head"><h2>Diseño y colores</h2></div>
 <div class="tsec-body">
@@ -721,6 +735,70 @@ window.TonightPage = {
       });
     });
     paintDinner();
+    // Hidden: what you hid for good with the x on any event ("No volver a mostrar esto" / "... or anything
+    // like it"), every city. This browser's copies (tonight-forever-<city>) show at once; the account's
+    // (or this browser id's) saved list replaces them once it loads. "Volver a mostrar" removes it everywhere.
+    (function hiddenList(){
+      var box = document.getElementById("hiddenList"); if (!box) return;
+      function ls(k, d){ try { var v = JSON.parse(localStorage.getItem(k) || "null"); return v == null ? d : v; } catch (e) { return d; } }
+      function lset(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+      function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+      function local(){
+        var out = [];
+        try {
+          for (var n = 0; n < localStorage.length; n++) {
+            var m = /^tonight-forever-([a-z]{2,12})$/.exec(localStorage.key(n) || "");
+            if (m) (ls(m[0], []) || []).forEach(function(x){ if (x && x.key) { x.city = m[1]; out.push(x); } });
+          }
+        } catch (e) {}
+        return out.sort(function(a, b){ return (b.created || 0) - (a.created || 0); });
+      }
+      var items = local();
+      function draw(){
+        box.innerHTML = "";
+        if (!items.length) { box.appendChild(el("p", "thint", "No tienes nada oculto para siempre. La × de cualquier evento lo oculta todos los días.")); return; }
+        var cities = {}; items.forEach(function(x){ cities[x.city] = 1; });
+        var multi = Object.keys(cities).length > 1;
+        items.forEach(function(it){
+          var row = el("div", "trow hid-row"), who = el("span", "tcat hid-what");
+          who.appendChild(el("b", "hid-name", it.name || ""));
+          var sub = el("span", "hid-sub");
+          if (it.venue) sub.appendChild(document.createTextNode(it.venue));
+          if (multi) sub.appendChild(el("span", "hid-city", it.city.toUpperCase()));
+          if (it.kind === "family") sub.appendChild(el("span", "hid-badge", "y parecidos"));
+          who.appendChild(sub); row.appendChild(who);
+          var b = el("button", "fbtn", "Volver a mostrar"); b.type = "button";
+          b.addEventListener("click", function(){ bringBack(it); });
+          row.appendChild(b); box.appendChild(row);
+        });
+      }
+      function bringBack(it){
+        items = items.filter(function(x){ return !(x.key === it.key && x.city === it.city); });
+        var k = "tonight-forever-" + it.city;
+        lset(k, (ls(k, []) || []).filter(function(x){ return x.key !== it.key; }));
+        var gk = "tonight-forever-gone-" + it.city, g = ls(gk, {}); g[it.key] = 1; lset(gk, g);  // the day page retries
+        draw(); refresh(true);
+        var b = dinnerBase(), h = {"Content-Type": "application/json"};
+        if (window.TonightAuth) h = TonightAuth.headers(h);
+        if (b) fetch(b + "/hidden", {method: "DELETE", headers: h, body: JSON.stringify({user_id: dinnerUid(), city: it.city, key: it.key})})
+          .then(function(r){ if (r.ok) { var g2 = ls(gk, {}); delete g2[it.key]; lset(gk, g2); } }).catch(function(){});
+      }
+      (function pull(n){
+        var b = dinnerBase();
+        if (!b) { if (n > 0) setTimeout(function(){ pull(n - 1); }, 150); return; }
+        var h = window.TonightAuth ? TonightAuth.headers({}) : {};
+        fetch(b + "/hidden?user_id=" + encodeURIComponent(dinnerUid() || ""), {headers: h})
+          .then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+            if (!d || !d.ok || !Array.isArray(d.items)) return;
+            var by = {};
+            d.items.forEach(function(x){ if (!(ls("tonight-forever-gone-" + x.city, {}) || {})[x.key]) by[x.city + "|" + x.key] = x; });
+            local().forEach(function(x){ if (x.pending === "add" && !by[x.city + "|" + x.key]) by[x.city + "|" + x.key] = x; });
+            items = Object.keys(by).map(function(k){ return by[k]; }).sort(function(a, b){ return (b.created || 0) - (a.created || 0); });
+            draw();
+          }).catch(function(){});
+      })(30);
+      draw();
+    })();
     this.refresh = refresh;
     refresh(false);
   }
