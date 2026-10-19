@@ -241,6 +241,33 @@ text-transform:uppercase;padding:0 14px;cursor:pointer;}
 #staleBar{background:var(--accent);color:var(--on-accent,var(--ink));border-bottom:3px solid var(--ink);
 font:700 14.5px 'Inter',sans-serif;padding:11px 16px;text-align:center;}
 #staleBar a{color:inherit;font-weight:800;text-decoration:underline;text-decoration-thickness:2px;margin-left:6px;}
+
+.dn-panel{border:2px solid var(--ink);background:var(--paper);color:var(--ink);padding:10px 12px;margin:8px 0 4px;
+font:500 13px/1.4 'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+.dn-panel .dn-h{font-weight:800;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:6px;}
+.dn-panel .dn-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;padding:5px 0;border-top:1px solid var(--muted);}
+.dn-panel .dn-row > span{font-weight:700;min-width:118px;}
+.dn-panel .dn-opts{display:flex;flex-wrap:wrap;gap:5px;}
+.dn-panel .dn-opts button{font:600 12.5px 'Inter',sans-serif;border:1.5px solid var(--ink);background:var(--card,#fff);color:var(--ink);
+padding:4px 10px;border-radius:999px;cursor:pointer;}
+.dn-panel .dn-opts button[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
+.dn-panel .dn-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:8px;}
+.dn-panel .dn-go{font:800 12.5px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent,var(--ink));border:2px solid var(--ink);
+padding:6px 12px;cursor:pointer;}
+.dn-panel .dn-act a,.dn-panel .dn-act .dn-close{font:600 12.5px 'Inter',sans-serif;color:var(--ink);background:none;border:0;
+text-decoration:underline;cursor:pointer;padding:0;}
+.dn-panel .dn-note{font-size:12px;opacity:.7;}
+.dn-x{font:700 12px/1 'Inter',sans-serif;background:none;border:1.5px solid currentColor;color:inherit;opacity:.6;cursor:pointer;
+padding:1px 5px;margin-left:4px;vertical-align:1px;}
+.dn-x:hover{opacity:1;}
+.dn-btn{font:700 12px 'Inter',sans-serif;background:none;border:1.5px solid var(--ink);color:var(--ink);cursor:pointer;
+padding:1px 7px;margin-left:6px;vertical-align:1px;white-space:nowrap;}
+#dnToast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,160%);z-index:140;display:flex;gap:14px;align-items:center;
+background:var(--ink);color:var(--paper);padding:11px 16px;font:600 14px 'Inter',sans-serif;border:2px solid var(--ink);
+box-shadow:4px 4px 0 var(--accent);transition:transform .2s ease;max-width:calc(100vw - 32px);box-sizing:border-box;}
+#dnToast.on{transform:translate(-50%,0);}
+#dnToast button{background:var(--accent);color:var(--on-accent,var(--ink));border:0;padding:5px 11px;font-weight:800;cursor:pointer;font-size:13px;}
+@media (prefers-reduced-motion: reduce){#dnToast{transition:none;}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -521,7 +548,7 @@ body{overflow-x:hidden;}
 .picks{margin-left:16px;margin-right:16px;}
 .wrap{padding-left:16px;padding-right:16px;}
 }
-</style><script>window.CAT_LABELS={"Music": "Música", "Comedy": "Comedia", "Arts & Play": "Arte y juego", "Talks": "Charlas", "Tech": "Tecnología", "Meetups & Mixers": "Encuentros", "Food & Drink": "Comida y bebida", "Trivia & Games": "Trivia y juegos", "Sports": "Deportes", "Theater": "Teatro", "Fitness & Outdoors": "Ejercicio y aire libre", "Classes & Workshops": "Clases y talleres", "Film": "Cine", "Tours": "Recorridos", "Italian": "Italiana", "Japanese": "Japonesa", "Chinese": "China", "Mexican": "Mexicana", "Indian": "India", "Thai": "Tailandesa", "Korean": "Coreana", "French": "Francesa", "American": "Estadounidense", "Mediterranean": "Mediterránea", "Vegetarian / vegan": "Vegetariana / vegana", "Seafood": "Mariscos"};</script></head>
+</style><script>window.CAT_LABELS={"Music": "Música", "Comedy": "Comedia", "Arts & Play": "Arte y juego", "Talks": "Charlas", "Tech": "Tecnología", "Meetups & Mixers": "Encuentros", "Food & Drink": "Comida y bebida", "Trivia & Games": "Trivia y juegos", "Sports": "Deportes", "Theater": "Teatro", "Fitness & Outdoors": "Ejercicio y aire libre", "Classes & Workshops": "Clases y talleres", "Film": "Cine", "Tours": "Recorridos", "Italian": "Italiana", "Japanese": "Japonesa", "Chinese": "China", "Mexican": "Mexicana", "Indian": "India", "Thai": "Tailandesa", "Korean": "Coreana", "French": "Francesa", "American": "Estadounidense", "Mediterranean": "Mediterránea", "Vegetarian / vegan": "Vegetariana / vegana", "Seafood": "Mariscos", "Vietnamese": "Vietnamita", "Spanish / tapas": "Española / tapas", "Latin American": "Latinoamericana"};</script></head>
 <body><script>
 /* Tonight taste: onboarding quiz, profile, personalized ranking */
 (function(){
@@ -9754,6 +9781,119 @@ setInterval(check, 10 * 60 * 1000);
 </script><script>
 (function(){
 "use strict";
+if (window.TonightDinner) return;
+var MOOD = ["Italian", "Japanese", "Mexican", "Thai", "Indian", "Chinese", "Korean", "Mediterranean", "American", "Seafood"];
+function base(){ return window.__tonight_api || null; }
+function hdr(){ var h = {"Content-Type": "application/json"}; return window.TonightAuth ? TonightAuth.headers(h) : h; }
+function anon(){
+  var u = null; try { u = localStorage.getItem("tonight-user-id"); } catch (e) {}
+  if (!u) { u = "dev-" + Math.random().toString(36).slice(2, 10); try { localStorage.setItem("tonight-user-id", u); } catch (e) {} }
+  return u;
+}
+function read(k, d){ try { var v = JSON.parse(localStorage.getItem(k) || "null"); return v && typeof v === "object" ? v : d; } catch (e) { return d; } }
+function usual(){ return read("tonight-dinner", {}); }
+function dayKey(c, d){ return "tonight-dinner-day-" + c + "-" + d; }
+function day(c, d){ return read(dayKey(c, d), {}); }
+function setDay(c, d, o, from){
+  var clean = {}; Object.keys(o || {}).forEach(function(k){ var v = o[k]; if (v != null && v !== "" && !(Array.isArray(v) && !v.length)) clean[k] = v; });
+  try { if (Object.keys(clean).length) localStorage.setItem(dayKey(c, d), JSON.stringify(clean)); else localStorage.removeItem(dayKey(c, d)); } catch (e) {}
+  try { window.dispatchEvent(new CustomEvent("tonight-dinner-day", {detail: {city: c, date: d, from: from || ""}})); } catch (e) {}
+}
+function rkey(r){ return r.src === "google" ? "g:" + r.id : "n:" + (r.name || "").toLowerCase(); }
+function nevers(){ var a = read("tonight-dinner-never", []); return Array.isArray(a) ? a : []; }
+function hidden(r){ return nevers().indexOf(rkey(r)) >= 0; }
+function setNever(r, on){
+  var a = nevers().filter(function(k){ return k !== rkey(r); }); if (on) a.push(rkey(r));
+  try { localStorage.setItem("tonight-dinner-never", JSON.stringify(a.slice(-300))); } catch (e) {}
+}
+function tap(r, kind){
+  var b = base(); if (!b) return Promise.resolve(null);
+  var g = r.src === "google";
+  return fetch(b + "/restaurant_tap", {method: "POST", headers: hdr(), body: JSON.stringify({user_id: anon(), src: g ? "google" : "osm",
+    place_id: g ? r.id : null, name: g ? "" : r.name, type: r.type || "", price: r.price || "", kind: kind})}).catch(function(){ return null; });
+}
+var toastTimer = null;
+function toast(msg, undo){
+  var t = document.getElementById("dnToast");
+  if (!t) { t = document.createElement("div"); t.id = "dnToast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+  t.innerHTML = ""; var s = document.createElement("span"); s.textContent = msg; t.appendChild(s);
+  if (undo) { var u = document.createElement("button"); u.type = "button"; u.textContent = "Deshacer";
+    u.addEventListener("click", function(){ t.classList.remove("on"); undo(); }); t.appendChild(u); }
+  t.classList.add("on"); clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.classList.remove("on"); }, 6000);
+}
+// "Este lugar no": never suggested to this person again (Undo puts it back). after(): redraw.
+function notThis(r, after){
+  setNever(r, true);
+  tap(r, "never").then(function(){ if (after) after(); });
+  toast("Este lugar no. Toni no lo volverá a sugerir.", function(){
+    setNever(r, false); tap(r, "undo").then(function(){ if (after) after(); });
+  });
+}
+function label(c){ return (window.CAT_LABELS && CAT_LABELS[c]) || c; }
+// The per-day panel: changes for this day only, over the usual settings. onApply() re-asks Toni.
+function panel(c, d, onApply){
+  var u = usual(), cur = day(c, d), box = document.createElement("div"); box.className = "dn-panel";
+  var sel = {timing: cur.timing || u.timing || "either", budget: String(cur.budget || u.budget || ""), vibe: cur.vibe || u.vibe || "",
+             mood: (cur.mood || []).slice()};
+  var h = document.createElement("div"); h.className = "dn-h"; h.textContent = "Cena, solo este día"; box.appendChild(h);
+  function row(title, key, opts, multi){
+    var r = document.createElement("div"); r.className = "dn-row";
+    var s = document.createElement("span"); s.textContent = title; r.appendChild(s);
+    var g = document.createElement("div"); g.className = "dn-opts"; r.appendChild(g);
+    opts.forEach(function(o){
+      var b = document.createElement("button"); b.type = "button"; b.textContent = o[1]; b.setAttribute("data-v", o[0]);
+      var on = function(){ return multi ? sel[key].indexOf(o[0]) >= 0 : sel[key] === o[0]; };
+      b.setAttribute("aria-pressed", on() ? "true" : "false");
+      b.addEventListener("click", function(){
+        if (multi) { var i = sel[key].indexOf(o[0]); if (i >= 0) sel[key].splice(i, 1); else sel[key].push(o[0]); }
+        else sel[key] = sel[key] === o[0] && key !== "timing" ? "" : o[0];
+        g.querySelectorAll("button").forEach(function(x){ var v = x.getAttribute("data-v");
+          x.setAttribute("aria-pressed", (multi ? sel[key].indexOf(v) >= 0 : sel[key] === v) ? "true" : "false"); });
+      });
+      g.appendChild(b);
+    });
+    box.appendChild(r);
+  }
+  row("Cuándo, esta noche", "timing", [["skip", "Sin cena esta noche"], ["before", "Antes del show"], ["after", "Después del show"], ["either", "Cualquiera"]]);
+  row("Presupuesto de hoy", "budget", [["1", "$"], ["2", "$$"], ["3", "$$$"], ["4", "$$$$"]]);
+  row("Se me antoja", "mood", MOOD.map(function(m){ return [m, label(m)]; }), true);
+  row("Ambiente de hoy", "vibe", [["casual", "Casual"], ["relaxed", "Tranqui pero lindo"], ["upscale", "Elegante"]]);
+  var act = document.createElement("div"); act.className = "dn-act";
+  var go = document.createElement("button"); go.type = "button"; go.className = "dn-go"; go.textContent = "Actualizar cena";
+  var reset = document.createElement("a"); reset.href = "#"; reset.textContent = "Volver a lo de siempre";
+  var close = document.createElement("button"); close.type = "button"; close.className = "dn-close"; close.textContent = "Cerrar";
+  var note = document.createElement("span"); note.className = "dn-note";
+  act.appendChild(go); act.appendChild(reset); act.appendChild(close); act.appendChild(note); box.appendChild(act);
+  go.addEventListener("click", function(){
+    // keep only what differs from the usual settings
+    var o = {};
+    if (sel.timing !== (u.timing || "either")) o.timing = sel.timing;
+    if (sel.budget !== String(u.budget || "")) o.budget = sel.budget ? +sel.budget : 0;  // 0: no limit tonight
+    if (sel.vibe !== (u.vibe || "")) o.vibe = sel.vibe || "any";
+    if (sel.mood.length) o.mood = sel.mood;
+    setDay(c, d, o); note.textContent = "Actualizando la cena…"; if (onApply) onApply();
+  });
+  reset.addEventListener("click", function(ev){ ev.preventDefault(); setDay(c, d, {}); note.textContent = "Actualizando la cena…"; if (onApply) onApply(); });
+  close.addEventListener("click", function(){ box.remove(); });
+  return box;
+}
+// One line for a day's changes ("tonight: $$ · Thai"), or "".
+function summary(c, d){
+  var o = day(c, d), bits = [];
+  if (o.timing === "skip") return "Sin cena esta noche";
+  if (o.timing === "before") bits.push("antes del show");
+  if (o.timing === "after") bits.push("después del show");
+  if (o.budget) bits.push("hasta " + "$$$$".slice(0, +o.budget));
+  if (o.mood && o.mood.length) bits.push(o.mood.map(label).join(", "));
+  if (o.vibe && o.vibe !== "any") bits.push({casual: "Casual", relaxed: "Tranqui pero lindo", upscale: "Elegante"}[o.vibe] || o.vibe);
+  return bits.length ? "Hoy: " + bits.join(" \u00b7 ") : "";
+}
+window.TonightDinner = {usual: usual, day: day, setDay: setDay, tap: tap, notThis: notThis, hidden: hidden, panel: panel,
+  summary: summary, toast: toast};
+})();
+</script><script>
+(function(){
+"use strict";
 // Where are we? A city/browse page has CITY + DATE; the home page has city cards.
 var onPage = typeof CITY !== "undefined" && typeof DATE !== "undefined";
 var homeCities = [];   // [{slug, name, date, href}] on the home page
@@ -9898,20 +10038,31 @@ function dinnerBlock(d){
   box.appendChild(sub);
   // named picks from the dinner engine (OpenStreetMap data), then the general booking links
   var dt = cur.date + "T" + hh + ":" + mm;
-  (d.restaurants || []).forEach(function(r){
+  var TD = window.TonightDinner;
+  (d.restaurants || []).filter(function(r){ return !(TD && TD.hidden(r)); }).forEach(function(r){
     var it = el("div", "tn-rest");
     it.appendChild(el("div", "rn", r.name + (r.match ? "  ★" : "")));
-    it.appendChild(el("div", "rm", [r.cuisine, r.walk, r.hours].filter(Boolean).join(" \u00b7 ")));
+    var stars = r.rating ? "\u2605 " + r.rating.toFixed(1) + (r.reviews ? " (" + r.reviews.toLocaleString() + ")" : "") : "";
+    it.appendChild(el("div", "rm", [stars, r.price, r.cuisine, r.walk, r.hours].filter(Boolean).join(" \u00b7 ")));
     var ln = el("div", "rl");
-    function link(label, href){ var a = el("a", "", label); a.href = href; a.target = "_blank"; a.rel = "noopener"; ln.appendChild(a); }
-    if (cfg.ot) link("Reservar →", cfg.ot + "/s?dateTime=" + encodeURIComponent(dt) + "&covers=" + party + "&term=" + encodeURIComponent(r.name));
+    function link(label, href){ var a = el("a", "", label); a.href = href; a.target = "_blank"; a.rel = "noopener";
+      if (TD) a.addEventListener("click", function(){ TD.tap(r, "pick"); });  // learning: what they look at
+      ln.appendChild(a); }
+    if (r.reservable === false) ln.appendChild(el("span", "", "Sin reserva"));
+    else if (cfg.ot && (r.reservable || r.src !== "google")) link("Reservar →", cfg.ot + "/s?dateTime=" + encodeURIComponent(dt) + "&covers=" + party + "&term=" + encodeURIComponent(r.name));
     if (r.website) link("Sitio →", r.website);
-    link("Mapa →", "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + (cur.name || "")));
+    link("Mapa →", r.maps_url || ("https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + (cur.name || ""))));
+    if (TD) {
+      var x = el("button", "dn-x", "✕ Este lugar no"); x.type = "button";
+      x.addEventListener("click", function(){ it.style.display = "none"; TD.notThis(r, function(){ if (!TD.hidden(r)) it.style.display = ""; }); });
+      ln.appendChild(x);
+    }
     it.appendChild(ln);
     box.appendChild(it);
   });
   if ((d.restaurants || []).length) {
-    box.appendChild(el("div", "tn-src", "Datos de restaurantes © colaboradores de OpenStreetMap. Los horarios pueden estar desactualizados; revísalos antes de ir."));
+    box.appendChild(el("div", "tn-src", (d.restaurants || []).some(function(r){ return r.src === "google"; })
+      ? "Info de restaurantes: Google Maps" : "Datos de restaurantes © colaboradores de OpenStreetMap. Los horarios pueden estar desactualizados; revísalos antes de ir."));
     box.appendChild(el("div", "t2", "Más opciones"));
   }
   var row = el("div", "b");
@@ -10094,6 +10245,7 @@ function ask(q, display){
     if (window.TonightAuth) headers = TonightAuth.headers(headers);
     return fetch(base + "/toni", {method: "POST", headers: headers, body: JSON.stringify({
       city: cur.slug, date: cur.date, lang: document.documentElement.lang || "en", anon_id: anon, avoid_venues: recentVenues(), dinner_prefs: dinnerPrefs(),
+      dinner_day: window.TonightDinner ? TonightDinner.day(cur.slug, cur.date) : {},
       exclude_venues: (function(){ var x = excludeNext || []; excludeNext = null; return x; })(),
       can_filter: !!document.getElementById("fq"),
       taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,
@@ -10112,6 +10264,11 @@ function ask(q, display){
       var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || [], plan: !!d.plan};
       // the server works out when and where dinner fits the plan
       if (d.dinner && d.dinner.venue) msg.dinner = d.dinner;
+      // "cheap dinner tonight": keep it for this day (Toni's plan box redraws with it)
+      if (d.dinner_day && window.TonightDinner) {
+        var dd = TonightDinner.day(cur.slug, cur.date); Object.keys(d.dinner_day).forEach(function(k){ dd[k] = d.dinner_day[k]; });
+        TonightDinner.setDay(cur.slug, cur.date, dd, "chat");
+      }
       rememberVenues(msg.cards);
       if (d.filters) {
         msg.fullCount = d.filters.count;
