@@ -1,0 +1,99 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tonight — mockup: picture cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A2272;--accent:#F78100;--paper:#F4F3F0;--card:#FDFCF8;--muted:#5b6788}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif}
+.top{display:flex;align-items:center;gap:22px;padding:14px 20px;background:var(--ink);color:#fff;border-bottom:3px solid var(--accent)}
+.brand{font:800 22px Fraunces,serif;color:#fff;text-decoration:none} .brand b{color:var(--accent)}
+.top nav{display:flex;gap:16px;font:800 12px Inter;letter-spacing:.1em;text-transform:uppercase} .top a{color:#fff;text-decoration:none}
+.top .cities{margin-left:auto} .top .cur{background:var(--accent);color:var(--ink);padding:4px 9px}
+.hero{max-width:1180px;margin:0 auto;padding:34px 20px 8px}
+.hero h1{font:800 clamp(30px,5vw,52px)/1.05 Fraunces,serif;margin:0 0 10px;letter-spacing:-.01em}
+.hero p{margin:0;color:var(--muted);font-size:17px}
+.days{display:flex;gap:8px;margin:18px 0 0;overflow-x:auto} .days a{border:2px solid var(--ink);padding:7px 13px;font:800 12px Inter;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);text-decoration:none;white-space:nowrap;background:var(--card)} .days a.on{background:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 20px 60px}
+h2{font:800 26px Fraunces,serif;margin:18px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.c{background:var(--card);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);display:flex;flex-direction:column;overflow:hidden}
+.c.big{grid-column:span 2} @media(max-width:620px){.c.big{grid-column:auto}}
+.m{position:relative;aspect-ratio:16/9;background:#dfe3ee;overflow:hidden} .c.big .m{aspect-ratio:21/9}
+.m img{width:100%;height:100%;object-fit:cover;display:block}
+.m.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#0A2272,#2b4aa8);color:#fff}
+.m .ico{font-size:40px;line-height:1} .m .pv{font:600 13px Inter;opacity:.85;margin-top:8px;padding:0 14px;text-align:center}
+.cat{position:absolute;left:10px;top:10px;background:var(--accent);color:var(--ink);font:800 10.5px Inter;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px}
+.b{padding:12px 14px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.t{font:800 12px Inter;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+h3{font:700 19px/1.2 Fraunces,serif;margin:0} h3 a{color:var(--ink);text-decoration:none} h3 a:hover{text-decoration:underline;text-decoration-color:var(--accent)}
+.w{margin:0;color:#3d476a;font-size:14px;line-height:1.4;flex:1}
+.f{display:flex;align-items:center;gap:10px;margin-top:6px} .st,.x{background:none;border:0;font-size:20px;cursor:pointer;color:var(--ink);padding:0} .x{margin-left:auto;font-size:15px;opacity:.5}
+.pr{border:2px solid var(--ink);font:800 12px Inter;padding:3px 8px}
+.more{display:inline-block;margin:26px 0 0;border:2px solid var(--ink);background:var(--accent);color:var(--ink);font:800 13px Inter;text-transform:uppercase;letter-spacing:.06em;padding:11px 18px;text-decoration:none;box-shadow:4px 4px 0 var(--ink)}
+.note{background:#fff6e8;border:2px dashed var(--accent);padding:10px 14px;font-size:13px;margin:0 0 18px}
+</style></head><body>
+<header class="top"><a class="brand" href="#">Tonight<b>.</b></a><nav><a href="#">Preferences</a><a href="#">Sign in</a></nav><nav class="cities"><a class="cur" href="#">NYC</a><a href="#">London</a><a href="#">LA</a></nav></header>
+<section class="hero"><h1>The best things to do in New York tonight.</h1><p>Picked from 544 events today. Tell us what you like and it gets sharper.</p>
+<div class="days"><a class="on" href="#">Tonight · Tue 20</a><a href="#">Wed 21</a><a href="#">Thu 22</a><a href="#">This weekend</a></div></section>
+<main class="wrap"><div class="note"><b>Mockup</b> with tonight's real NYC picks and their real images. Dark-blue cards are events with no image yet (mostly Ticketmaster, which would get its official images in the real build).</div>
+<h2>Top tonight</h2><div class="grid"><article class="c big"><div class="m"><img src="https://bookevents.nyc/api/images/og-share?url=https%3A%2F%2Fgyfmzxmbviowggjglbht.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fevent-images%2Fevent_image%2F1dd15a7f.webp&amp;ogv=1dd15a7f" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><span class="cat">Talks</span></div><div class="b">
+<div class="t">7:00 PM · Financial District-Battery Park City</div>
+<h3><a href="https://bookevents.nyc/events/layli-long-soldier-poets-house-oct-20-2026-t2300" target="_blank" rel="noopener">Book Launch: Layli Long Soldier We in Conversation With Natalie Diaz</a></h3>
+<p class="w">Layli Long Soldier&#x27;s new book &#x27;We&#x27; with Natalie Diaz in conversation.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">$10</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m"><img src="http://images.sk-static.com/images/media/img/col6/20240514-161445-426257.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><span class="cat">Music</span></div><div class="b">
+<div class="t">6:30 PM · Greenwich Village</div>
+<h3><a href="https://www.songkick.com/concerts/43327711-juana-molina-at-le-poisson-rouge" target="_blank" rel="noopener">Juana Molina @ Le Poisson Rouge</a></h3>
+<p class="w">Argentine songwriter Juana Molina plays live at Le Poisson Rouge.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m"><img src="https://i.ticketweb.com/i/00/13/51/20/13_Edp.jpg?v=3" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><span class="cat">Music</span></div><div class="b">
+<div class="t">5:30 PM · Hell&#x27;s Kitchen</div>
+<h3><a href="https://www.ticketweb.com/event/vince-giordano-and-the-nighthawks-birdland-theater-tickets/14916233" target="_blank" rel="noopener">Vince Giordano and the Nighthawks</a></h3>
+<p class="w">Grammy-winning Vince Giordano leads his 11-piece 1920s jazz band.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">$24.91</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m ph"><span class="ico">♪</span><span class="pv">Irving Plaza Powered By Verizon 5G</span><span class="cat">Music</span></div><div class="b">
+<div class="t">6:30 PM · Gramercy</div>
+<h3><a href="https://www.ticketmaster.com/allison-russell-in-the-hour-of-new-york-new-york-10-20-2026/event/0000650AC63E0A3F" target="_blank" rel="noopener">Allison Russell: In The Hour of Chaos Tour</a></h3>
+<p class="w">Grammy-winning Allison Russell on her Hour of Chaos tour.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m ph"><span class="ico">✦</span><span class="pv">Imperial Theatre - NY</span><span class="cat">Arts &amp; Play</span></div><div class="b">
+<div class="t">7:00 PM · Hell&#x27;s Kitchen</div>
+<h3><a href="https://www.ticketmaster.com/billy-crystal-860-new-york-new-york-10-20-2026/event/Z1r9uZruZqGZ1AvZapK" target="_blank" rel="noopener">Billy Crystal</a></h3>
+<p class="w">Billy Crystal&#x27;s solo Broadway show, a rare limited engagement.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m ph"><span class="ico">☺</span><span class="pv">The Bell House</span><span class="cat">Comedy</span></div><div class="b">
+<div class="t">7:30 PM · Carroll Gardens-Cobble Hill-Gowanus-Red Hook</div>
+<h3><a href="https://www.ticketmaster.com/a-benefit-for-little-essentials-with-brooklyn-new-york-10-20-2026/event/30006512E9FA7FBD" target="_blank" rel="noopener">A Benefit for Little Essentials with David Cross &amp; Friends</a></h3>
+<p class="w">David Cross headlines a benefit with Sean Patton and Jon Benjamin.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m"><img src="https://www.comedycellar.com/wp-content/uploads/2023/05/comedycellar_2drinkmin_icon_dark_60.svg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><span class="cat">Comedy</span></div><div class="b">
+<div class="t">7:00 PM · Greenwich Village</div>
+<h3><a href="https://www.comedycellar.com/reservations-newyork/?showid=1792522800" target="_blank" rel="noopener">Robert Kelly - A One Man Show at Comedy Cellar</a></h3>
+<p class="w">Robert Kelly&#x27;s one-man show at the Comedy Cellar.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m"><img src="https://filmforum.org/do-not-enter-or-modify-or-erase/client-uploads/SAMSON_thumbnail.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><span class="cat">Film</span></div><div class="b">
+<div class="t">5:20 PM · SoHo-Little Italy-Hudson Square</div>
+<h3><a href="https://filmforum.org/film/samson-wajda-100" target="_blank" rel="noopener">Samson</a></h3>
+<p class="w">Wajda&#x27;s Samson, part of the Andrzej Wajda 100 retrospective.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m"><img src="https://bookevents.nyc/images/nyc-book-events-social-share.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><span class="cat">Talks</span></div><div class="b">
+<div class="t">6:00 PM · </div>
+<h3><a href="https://bookevents.nyc/events/judy-torres-barnes-noble-walt-whitman-oct-20-2026" target="_blank" rel="noopener">Judy Torres discusses &amp; signs &quot;No Reason To Cry&quot;</a></h3>
+<p class="w">Queen of Freestyle Judy Torres discusses and signs her memoir.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Free</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m"><img src="https://bookevents.nyc/api/images/og-share?url=https%3A%2F%2Fgyfmzxmbviowggjglbht.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fevent-images%2Fevent_image%2Ffa7ed804.webp&amp;ogv=fa7ed804" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><span class="cat">Talks</span></div><div class="b">
+<div class="t">6:30 PM · Midtown-Times Square</div>
+<h3><a href="https://bookevents.nyc/events/marisa-meltzer-with-vanessa-friedman-it-girl-the-oct-20" target="_blank" rel="noopener">Marisa Meltzer with Vanessa Friedman | It Girl: The Life and Legacy of Jane Birkin</a></h3>
+<p class="w">Vanessa Friedman in conversation on Jane Birkin&#x27;s biography, It Girl.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Free</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m"><img src="https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194390104%252F2784572525091%252F1%252Foriginal.20260925-203437%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D55b5797cdbbdf1df22f305bd41ff0f2b&amp;w=940&amp;q=75" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><span class="cat">Theater</span></div><div class="b">
+<div class="t">7:30 PM · East Village</div>
+<h3><a href="https://www.eventbrite.com/e/crave-by-sarah-kane-tickets-2003142283493" target="_blank" rel="noopener">CRAVE, by Sarah Kane</a></h3>
+<p class="w">Sarah Kane&#x27;s Crave staged by OBIE-winning Hoi Polloi, runs to Oct 24.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m"><img src="https://movingimage.org/wp-content/uploads/2026/10/Dissolving-Views-Magic-Lantern-1600x900-1.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><span class="cat">Film</span></div><div class="b">
+<div class="t">6:30 PM · Astoria (Central)</div>
+<h3><a href="https://movingimage.org/event/making-marie-antoinette/" target="_blank" rel="noopener">Making Marie Antoinette</a></h3>
+<p class="w">Eleanor Coppola&#x27;s 2026 documentary on daughter Sofia&#x27;s Versailles film, screened on DCP.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m ph"><span class="ico">🎭</span><span class="pv">Hudson Theatre -NY</span><span class="cat">Theater</span></div><div class="b">
+<div class="t">7:00 PM · Hell&#x27;s Kitchen</div>
+<h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7PNvo" target="_blank" rel="noopener">Other Desert Cities</a></h3>
+<p class="w">Jon Robin Baitz&#x27;s family drama staged at the Hudson Theatre.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m ph"><span class="ico">✦</span><span class="pv">Palace Theatre-NY</span><span class="cat">Arts &amp; Play</span></div><div class="b">
+<div class="t">7:00 PM · Hell&#x27;s Kitchen</div>
+<h3><a href="https://www.ticketmaster.com/the-lost-boys-new-york-new-york-10-20-2026/event/Z1r9uZrrZbpZ1AvOA8b" target="_blank" rel="noopener">Lost Boys Musical w/ Unknown Mortal Orchestra</a></h3>
+<p class="w">Unknown Mortal Orchestra performs alongside the Lost Boys musical.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article><article class="c"><div class="m ph"><span class="ico">✦</span><span class="pv">Stern Auditorium / Perelman Stage at Carnegie Hall</span><span class="cat">Arts &amp; Play</span></div><div class="b">
+<div class="t">7:00 PM · Hell&#x27;s Kitchen</div>
+<h3><a href="https://www.carnegiehall.org/" target="_blank" rel="noopener">Richard Dawkins</a></h3>
+<p class="w">Richard Dawkins speaking live at Carnegie Hall&#x27;s Perelman Stage.</p>
+<div class="f"><button class="st" aria-label="Save">☆</button><span class="pr">Tickets</span><button class="x" aria-label="Hide">✕</button></div></div></article></div>
+<a class="more" href="#">See all 544 events →</a></main></body></html>
