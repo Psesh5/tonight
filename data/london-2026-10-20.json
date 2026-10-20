@@ -25,7 +25,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "twist museum: museum admission"
  },
  {
   "name": "London Eye - Standard Experience",
@@ -53,7 +54,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "london eye: observation wheel ticket"
  },
  {
   "name": "Madame Tussauds London - Standard Entry",
@@ -81,7 +83,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "madame tussauds london: attraction admission"
  },
  {
   "name": "London Dungeon - Standard Entry",
@@ -109,7 +112,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "the london dungeon: attraction admission"
  },
  {
   "name": "Larger Than Life: Starring Wallace & Gromit, Shaun & More",
@@ -163,7 +167,8 @@
    "royalty",
    "architecture"
   ],
-  "flags": []
+  "flags": [],
+  "family": "tower of london: attraction admission"
  },
  {
   "name": "The Paddington Bear Experience",
@@ -192,7 +197,8 @@
   "flags": [
    "kids",
    "flex_entry"
-  ]
+  ],
+  "family": "the paddington bear experience: attraction admission"
  },
  {
   "name": "Sea Life London - Standard Entry",
@@ -221,7 +227,8 @@
   "flags": [
    "kids",
    "flex_entry"
-  ]
+  ],
+  "family": "sea life london: aquarium admission"
  },
  {
   "name": "FRAMELESS 2026",
@@ -862,7 +869,8 @@
    "camden",
    "open mic"
   ],
-  "flags": []
+  "flags": [],
+  "family": "comedy in your eye: stand-up comedy"
  },
  {
   "name": "Peter Sandberg",
@@ -1137,6 +1145,7 @@
   "availability": null,
   "tm_id": "1AMZkowGkd0iMkH",
   "series": "ad35449662",
+  "recurring": "Also on other days",
   "quality": 5,
   "why": "Lloyd Webber's long-running musical at His Majesty's Theatre.",
   "topics": [
@@ -1638,27 +1647,27 @@
   "flags": []
  },
  {
-  "name": "L A V A G N A + GEORGE BONE + MOA",
+  "name": "L A V A G N A + GEORGE BONE + MOA + TIGGS + RO JORDAN",
   "category": "Arts & Play",
   "description": "",
   "neighborhood": "West Brompton",
   "price": null,
   "start_time": "7:30 PM",
   "end_time": null,
-  "url": "https://www.universe.com/events/l-a-v-a-g-n-a-george-bone-moa-tickets-B17XTP?ref=ticketmaster",
+  "url": "https://www.universe.com/events/l-a-v-a-g-n-a-george-bone-moa-tiggs-ro-jordan-tickets-B17XTP?ref=ticketmaster",
   "venue": "The Troubadour",
   "lat": 51.488695,
   "lng": -0.19197,
   "audience": null,
   "availability": null,
   "tm_id": "LvZ18QlIMAC7GCm7DGAwv",
-  "series": "1f7d5955ca",
-  "quality": 5,
-  "why": "Three-act bill at the historic Troubadour; acts little known.",
+  "series": "3de23f31f4",
+  "quality": 6,
+  "why": "Lavagna, George Bone, MOA, Tiggs and Ro Jordan bill at The Troubadour.",
   "topics": [
    "live music",
    "indie",
-   "triple bill"
+   "gig lineup"
   ],
   "flags": []
  },
@@ -1715,32 +1724,6 @@
   "flags": []
  },
  {
-  "name": "The Cherry Orchard",
-  "category": "Theater",
-  "description": "",
-  "neighborhood": "Strand, St James & Mayfair",
-  "price": null,
-  "start_time": "7:30 PM",
-  "end_time": null,
-  "url": "https://www.ticketmaster.co.uk/the-cherry-orchard-london-20-10-2026/event/Zor9uZKbZL4Ze3x4uZL",
-  "venue": "The Harold Pinter Theatre ",
-  "lat": 51.509326,
-  "lng": -0.131851,
-  "audience": null,
-  "availability": null,
-  "tm_id": "Zor9uZKbZL4Ze3x4uZL",
-  "series": "fd5099d5e0",
-  "recurring": "Most days",
-  "quality": 6,
-  "why": "Chekhov's classic play at the Harold Pinter Theatre.",
-  "topics": [
-   "chekhov",
-   "drama",
-   "theatre"
-  ],
-  "flags": []
- },
- {
   "name": "Fences",
   "category": "Theater",
   "description": "",
@@ -1788,6 +1771,31 @@
   "topics": [
    "musical",
    "sondheim",
+   "theatre"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Florian Henckel von Donnersmarck\u2019s The Lives of Others",
+  "category": "Theater",
+  "description": "(1) Suitable for ages 14 Years and older - This production contains themes of an adult nature.",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": null,
+  "url": "https://www.ticketmaster.co.uk/florian-henckel-von-donnersmarcks-the-lives-london-20-10-2026/event/Zor9uZKbZL4Zef7a5ZF",
+  "venue": "Adelphi Theatre",
+  "lat": 51.510676,
+  "lng": -0.122964,
+  "audience": "kids",
+  "availability": null,
+  "tm_id": "Zor9uZKbZL4Zef7a5ZF",
+  "series": "f28285be66",
+  "quality": 5,
+  "why": "Stage adaptation of the Stasi surveillance drama.",
+  "topics": [
+   "drama",
+   "historical",
    "theatre"
   ],
   "flags": []
@@ -1972,32 +1980,6 @@
   "flags": []
  },
  {
-  "name": "Shrek's Adventure - Standard Experience",
-  "category": "Theater",
-  "description": "",
-  "neighborhood": "Lambeth North, Waterloo & South Bank",
-  "price": null,
-  "start_time": null,
-  "end_time": null,
-  "url": "https://attractions.ticketmaster.co.uk/book/1J51E-TICKETMASTER/#date=2026-10-20",
-  "venue": "County Hall",
-  "lat": 51.50282,
-  "lng": -0.119252,
-  "audience": null,
-  "availability": null,
-  "tm_id": "G5vHZ_ubQ6cyg",
-  "series": "0256fbb3f8",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "theatre",
-   "family show"
-  ],
-  "flags": [
-   "kids"
-  ]
- },
- {
   "name": "SEV0 - The reliability conference (LDN)",
   "category": "Meetups & Mixers",
   "description": "The reliability platform for on-call, agentic root cause analysis, incident response, and status pages. We're hiring \ud83d\udd25",
@@ -2073,7 +2055,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "encode hub: coffee club"
  },
  {
   "name": "FinOps Hackathon",
@@ -2088,7 +2071,7 @@
   "lat": 51.51320152243212,
   "lng": -0.07253922461771466,
   "audience": null,
-  "availability": null,
+  "availability": "waitlist",
   "series": "ab91017428",
   "quality": 1,
   "why": "",
@@ -2114,7 +2097,7 @@
   "lat": 51.521965599999994,
   "lng": -0.0848193,
   "audience": null,
-  "availability": "waitlist",
+  "availability": null,
   "series": "795a0e1de2",
   "quality": 5,
   "why": "Quantum computing talk from UCL Engineering's monthly deeptech series.",
@@ -2149,7 +2132,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "capital run: run club"
  },
  {
   "name": "unlock VC Run & Coffee",
@@ -2176,7 +2160,8 @@
   "flags": [
    "networking",
    "sales"
-  ]
+  ],
+  "family": "unlock vc: run & coffee"
  },
  {
   "name": "CMO Circle Breakfast Roundtable: The Demand Gen Playbook: What's Working for Marketing Leaders in 2026",
@@ -2203,7 +2188,8 @@
   "flags": [
    "sales",
    "networking"
-  ]
+  ],
+  "family": "cmo circle: breakfast roundtable"
  },
  {
   "name": "London Chapter Meetup",
@@ -2255,7 +2241,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "peer suite: networking morning"
  },
  {
   "name": "Stream Forward London",
@@ -2281,7 +2268,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "stream forward: meetup"
  },
  {
   "name": "Softr + Corgi: Coworking for AI Builders & Operators",
@@ -2296,7 +2284,7 @@
   "lat": 51.525692199999995,
   "lng": -0.0824866,
   "audience": null,
-  "availability": "waitlist",
+  "availability": null,
   "series": "608a7a75bd",
   "quality": 1,
   "why": "",
@@ -2307,7 +2295,8 @@
   ],
   "flags": [
    "sales"
-  ]
+  ],
+  "family": "softr + corgi: coworking"
  },
  {
   "name": "Black Capital",
@@ -2322,7 +2311,7 @@
   "lat": 51.521900599999995,
   "lng": -0.07708440000000001,
   "audience": null,
-  "availability": null,
+  "availability": "waitlist",
   "series": "cd6dd49206",
   "quality": 2,
   "why": "",
@@ -2513,33 +2502,8 @@
   ],
   "flags": [
    "service"
-  ]
- },
- {
-  "name": "October AI Workshop",
-  "category": "Classes & Workshops",
-  "description": "The membership organisation for investors, entrepreneurs and professionals shaping the innovation economy.",
-  "neighborhood": "Holborn, St Giles & Bloomsbury South",
-  "price": 0.0,
-  "start_time": "6:00 PM",
-  "end_time": "8:30 PM",
-  "url": "https://luma.com/8ozcn5ry",
-  "venue": "",
-  "lat": 51.515299002851705,
-  "lng": -0.1246499460887924,
-  "audience": null,
-  "availability": null,
-  "series": "eb4ee1c840",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "ai",
-   "membership",
-   "workshop"
   ],
-  "flags": [
-   "sales"
-  ]
+  "family": "london workshop: workshop"
  },
  {
   "name": "CUR8 Open House: Now, Nature, Next",
@@ -2561,6 +2525,30 @@
   "topics": [
    "mixers",
    "open house"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Machine Learning 101: Teaching AI to Spot Cancer | AI Society Lecture Series",
+  "category": "Classes & Workshops",
+  "description": "",
+  "neighborhood": "Knightsbridge, Belgravia & Hyde Park",
+  "price": 0.0,
+  "start_time": "6:00 PM",
+  "end_time": "7:15 PM",
+  "url": "https://luma.com/eihknpt2",
+  "venue": "Department of Computing",
+  "lat": 51.498947,
+  "lng": -0.17911849999999999,
+  "audience": null,
+  "availability": null,
+  "series": "63d03a5bf7",
+  "quality": 4,
+  "why": "Public lecture on using machine learning to detect cancer.",
+  "topics": [
+   "ai",
+   "medicine",
+   "lecture"
   ],
   "flags": []
  },
@@ -2587,7 +2575,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "mindstone: ai meetup"
  },
  {
   "name": "Models That Matter: Third Edition",
@@ -2610,6 +2599,32 @@
    "ai",
    "microbiome",
    "company pitch"
+  ],
+  "flags": [
+   "sales"
+  ]
+ },
+ {
+  "name": "October AI Workshop",
+  "category": "Classes & Workshops",
+  "description": "The membership organisation for investors, entrepreneurs and professionals shaping the innovation economy.",
+  "neighborhood": "Holborn, St Giles & Bloomsbury South",
+  "price": 0.0,
+  "start_time": "6:00 PM",
+  "end_time": "8:30 PM",
+  "url": "https://luma.com/8ozcn5ry",
+  "venue": "",
+  "lat": 51.515299002851705,
+  "lng": -0.1246499460887924,
+  "audience": null,
+  "availability": null,
+  "series": "eb4ee1c840",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "ai",
+   "membership",
+   "workshop"
   ],
   "flags": [
    "sales"
@@ -2663,7 +2678,8 @@
    "social",
    "nightlife"
   ],
-  "flags": []
+  "flags": [],
+  "family": "undr house of flavaz: tuesdays"
  },
  {
   "name": "Why I Built This with Yazin Alirhayim",
@@ -2724,7 +2740,7 @@
   "lat": 51.5275865,
   "lng": -0.08377020000000002,
   "audience": null,
-  "availability": "waitlist",
+  "availability": null,
   "series": "944bda673b",
   "quality": 1,
   "why": "",
@@ -2839,7 +2855,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "devonshire terrace: networking"
  },
  {
   "name": "London Founders & Entrepreneurs Networking | Startups & Business Owners",
@@ -2864,7 +2881,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "devonshire terrace: networking"
  },
  {
   "name": "Marketing, Sales & Business Growth Networking | Founders & Professionals",
@@ -2891,7 +2909,8 @@
   "flags": [
    "networking",
    "sales"
-  ]
+  ],
+  "family": "devonshire terrace: networking"
  },
  {
   "name": "PaperJam Game Jam: Don't Look Up",
@@ -2966,7 +2985,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "grab a plate: dinner meetup"
  },
  {
   "name": "Day 11 - Tuesday - 20th Oct - Navratri Festival 2026",
@@ -3056,7 +3076,7 @@
   "audience": null,
   "availability": null,
   "series": "9a57af2c3f",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Barbican film screening of NAZA.",
   "topics": [
@@ -3489,7 +3509,7 @@
   "audience": null,
   "availability": null,
   "series": "c453ddc9b0",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 6,
   "why": "Kinky eco-reworking of Hamlet about meat, madness and shame.",
   "topics": [
@@ -3643,6 +3663,31 @@
   "flags": []
  },
  {
+  "name": "Naza",
+  "category": "Film",
+  "description": "\"We made this film out of a sense of obligation to use our position as Israelis to examine the systems behind the mass killing of Palestinian civilians for which our country is\u2026. Dir. Yuval Abraham & Rachel Szor, 80 min.",
+  "neighborhood": "Dalston Kingsland",
+  "price": null,
+  "start_time": "8:30 PM",
+  "end_time": null,
+  "url": "https://riocinema.org.uk/Rio.dll/WhatsOn?f=2949342",
+  "venue": "Rio Cinema",
+  "lat": 51.5496,
+  "lng": -0.0756,
+  "audience": null,
+  "availability": null,
+  "series": "c16cf59f5b",
+  "recurring": "Also on other days",
+  "quality": 7,
+  "why": "Israeli filmmakers examine the systems behind mass killings in Gaza.",
+  "topics": [
+   "documentary",
+   "gaza",
+   "israeli filmmakers"
+  ],
+  "flags": []
+ },
+ {
   "name": "The Social Reckoning",
   "category": "Film",
   "description": "A companion piece to the hit film The Social Network, Sorkin\u2019s original screenplay is based on the events that gave rise to the Wall Street Journal\u2019s shocking expos\u00e9 The Facebook\u2026. Dir. Aaron Sorkin, 112 min.",
@@ -3668,31 +3713,6 @@
   "flags": []
  },
  {
-  "name": "Naza",
-  "category": "Film",
-  "description": "\"We made this film out of a sense of obligation to use our position as Israelis to examine the systems behind the mass killing of Palestinian civilians for which our country is\u2026. Dir. Yuval Abraham & Rachel Szor, 80 min. Showtimes today: 6:45 PM, 8:30 PM.",
-  "neighborhood": "Dalston Kingsland",
-  "price": null,
-  "start_time": "6:45 PM",
-  "end_time": null,
-  "url": "https://riocinema.org.uk/Rio.dll/WhatsOn?f=2949342",
-  "venue": "Rio Cinema",
-  "lat": 51.5496,
-  "lng": -0.0756,
-  "audience": null,
-  "availability": null,
-  "series": "c16cf59f5b",
-  "recurring": "Also on other days",
-  "quality": 7,
-  "why": "Israeli filmmakers examine the systems behind mass killings in Gaza.",
-  "topics": [
-   "documentary",
-   "gaza",
-   "israeli filmmakers"
-  ],
-  "flags": []
- },
- {
   "name": "Winter of the Crow",
   "category": "Film",
   "description": "This gripping Soviet-era thriller features a mesmerising performance by Lesley Manville (Phantom Thread). Warsaw, 1981. Martial law shuts down the country. Overnight, a country\u2026. Dir. Kasia Adamik, 112 min.",
@@ -3707,61 +3727,12 @@
   "audience": null,
   "availability": null,
   "series": "a6768c5281",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 6,
   "why": "Lesley Manville leads this 1981 Warsaw martial-law thriller.",
   "topics": [
    "film",
    "thriller",
-   "history"
-  ],
-  "flags": []
- },
- {
-  "name": "Tenzing",
-  "category": "Film",
-  "description": "A determined man embarks on a high-stakes quest\u2014and defies seemingly impossible odds\u2014to fulfill his dream of being the first to reach the summit of Mount Everest. Dir. Jennifer Peedom, 126 min.",
-  "neighborhood": "East Finchley",
-  "price": null,
-  "start_time": "8:15 PM",
-  "end_time": null,
-  "url": "https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=759805",
-  "venue": "Phoenix Cinema",
-  "lat": 51.5885,
-  "lng": -0.1637,
-  "audience": null,
-  "availability": null,
-  "series": "b7a3f6329d",
-  "recurring": "Also on other days",
-  "quality": 5,
-  "why": "Jennifer Peedom's Everest feature about Tenzing Norgay's summit quest.",
-  "topics": [
-   "film",
-   "documentary",
-   "mountaineering"
-  ],
-  "flags": []
- },
- {
-  "name": "The Yellow Tie",
-  "category": "Film",
-  "description": "The extraordinary life of Sergiu Celibidache, from his childhood in Romania to his exile in pursuit of a career in music, his struggle for survival in wartime Germany and his\u2026. Dir. Serge Ioan Celebidachi, 145 min.",
-  "neighborhood": "East Finchley",
-  "price": null,
-  "start_time": "8:00 PM",
-  "end_time": null,
-  "url": "https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=759802",
-  "venue": "Phoenix Cinema",
-  "lat": 51.5885,
-  "lng": -0.1637,
-  "audience": null,
-  "availability": null,
-  "series": "9a81555cdb",
-  "quality": 6,
-  "why": "Life of conductor Sergiu Celibidache, from Romania to wartime Germany.",
-  "topics": [
-   "classical music",
-   "biopic",
    "history"
   ],
   "flags": []
@@ -3792,27 +3763,77 @@
   "flags": []
  },
  {
-  "name": "The Social Reckoning",
+  "name": "The Yellow Tie",
   "category": "Film",
-  "description": "Inspired by true events and the whistleblower who started the social media reckoning we\u2019re seeing play out today, this Aaron Sorkin original screenplay is a companion piece to the\u2026. Dir. Aaron Sorkin, 112 min.",
+  "description": "The extraordinary life of Sergiu Celibidache, from his childhood in Romania to his exile in pursuit of a career in music, his struggle for survival in wartime Germany and his\u2026. Dir. Serge Ioan Celebidachi, 145 min.",
+  "neighborhood": "East Finchley",
+  "price": null,
+  "start_time": "8:00 PM",
+  "end_time": null,
+  "url": "https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=759802",
+  "venue": "Phoenix Cinema",
+  "lat": 51.5885,
+  "lng": -0.1637,
+  "audience": null,
+  "availability": null,
+  "series": "9a81555cdb",
+  "recurring": "Also on other days",
+  "quality": 6,
+  "why": "Life of conductor Sergiu Celibidache, from Romania to wartime Germany.",
+  "topics": [
+   "classical music",
+   "biopic",
+   "history"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Tenzing",
+  "category": "Film",
+  "description": "A determined man embarks on a high-stakes quest\u2014and defies seemingly impossible odds\u2014to fulfill his dream of being the first to reach the summit of Mount Everest. Dir. Jennifer Peedom, 126 min.",
+  "neighborhood": "East Finchley",
+  "price": null,
+  "start_time": "8:15 PM",
+  "end_time": null,
+  "url": "https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=759805",
+  "venue": "Phoenix Cinema",
+  "lat": 51.5885,
+  "lng": -0.1637,
+  "audience": null,
+  "availability": null,
+  "series": "b7a3f6329d",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Jennifer Peedom's Everest feature about Tenzing Norgay's summit quest.",
+  "topics": [
+   "film",
+   "documentary",
+   "mountaineering"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Winter of the Crow",
+  "category": "Film",
+  "description": "Tightly wound British academic Joan, played by the always excellent Lesley Manville, travels to Cold War-era Warsaw to deliver a paper on the treatment of psychiatric illness.\u2026. Dir. Kasia Adamik, 112 min.",
   "neighborhood": "Brondesbury Park",
   "price": null,
-  "start_time": "8:40 PM",
+  "start_time": "6:10 PM",
   "end_time": null,
-  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10216489",
+  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10216457",
   "venue": "The Lexi Cinema",
   "lat": 51.5375,
   "lng": -0.2225,
   "audience": null,
   "availability": null,
-  "series": "7483689d56",
-  "recurring": "Also on other days",
-  "quality": 5,
-  "why": "Sorkin's Facebook whistleblower drama, screened at the Lexi.",
+  "series": "6485b9829d",
+  "recurring": "Most days",
+  "quality": 6,
+  "why": "Lesley Manville as a British academic in Cold War Warsaw.",
   "topics": [
    "film",
-   "drama",
-   "tech"
+   "thriller",
+   "history"
   ],
   "flags": []
  },
@@ -3841,27 +3862,27 @@
   "flags": []
  },
  {
-  "name": "Winter of the Crow",
+  "name": "The Social Reckoning",
   "category": "Film",
-  "description": "Tightly wound British academic Joan, played by the always excellent Lesley Manville, travels to Cold War-era Warsaw to deliver a paper on the treatment of psychiatric illness.\u2026. Dir. Kasia Adamik, 112 min.",
+  "description": "Inspired by true events and the whistleblower who started the social media reckoning we\u2019re seeing play out today, this Aaron Sorkin original screenplay is a companion piece to the\u2026. Dir. Aaron Sorkin, 112 min.",
   "neighborhood": "Brondesbury Park",
   "price": null,
-  "start_time": "6:10 PM",
+  "start_time": "8:40 PM",
   "end_time": null,
-  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10216457",
+  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10216489",
   "venue": "The Lexi Cinema",
   "lat": 51.5375,
   "lng": -0.2225,
   "audience": null,
   "availability": null,
-  "series": "6485b9829d",
-  "recurring": "Also on other days",
-  "quality": 6,
-  "why": "Lesley Manville as a British academic in Cold War Warsaw.",
+  "series": "7483689d56",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Sorkin's Facebook whistleblower drama, screened at the Lexi.",
   "topics": [
    "film",
-   "thriller",
-   "history"
+   "drama",
+   "tech"
   ],
   "flags": []
  },
@@ -4025,7 +4046,7 @@
   "audience": null,
   "availability": null,
   "series": "88f17aad3e",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 6,
   "why": "Night-shot film on Israel's targeting systems by journalist Yuval Abraham.",
   "topics": [
@@ -4074,7 +4095,7 @@
   "audience": null,
   "availability": null,
   "series": "6994275942",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Molly Manners' debut feature set at an English girls' school.",
   "topics": [
@@ -4148,7 +4169,7 @@
   "audience": null,
   "availability": null,
   "series": "212bfc391a",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 6,
   "why": "Dominik Moll's Paris-set thriller about an internal affairs investigator.",
   "topics": [
@@ -4173,7 +4194,7 @@
   "audience": null,
   "availability": null,
   "series": "57c1a65110",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 7,
   "why": "Aaron Sorkin's original screenplay on Frances Haugen's Facebook whistleblowing.",
   "topics": [
@@ -4198,7 +4219,7 @@
   "audience": null,
   "availability": null,
   "series": "528ab48f3a",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Yuval Abraham's night-shot film on Israel's targeting systems.",
   "topics": [
@@ -4223,7 +4244,7 @@
   "audience": null,
   "availability": null,
   "series": "b0d090d8ad",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Title only; no director or details given.",
   "topics": [
@@ -4247,7 +4268,7 @@
   "audience": null,
   "availability": null,
   "series": "549fc81600",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Dominik Moll's Paris internal affairs thriller at the Castle Cinema.",
   "topics": [
@@ -4297,7 +4318,7 @@
   "audience": null,
   "availability": null,
   "series": "532bd63bf1",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Austen's Sense and Sensibility at a local independent cinema; no details given.",
   "topics": [
@@ -4322,7 +4343,7 @@
   "audience": null,
   "availability": null,
   "series": "b348142f90",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Title only; no director or details given.",
   "topics": [
@@ -4376,30 +4397,6 @@
    "stand-up",
    "comedy",
    "live comedy"
-  ],
-  "flags": []
- },
- {
-  "name": "Tuesday Stand Up Comedy Show",
-  "category": "Comedy",
-  "description": "Stand-up at the Top Secret Comedy Club (170 Drury Lane).",
-  "neighborhood": "Holborn, St Giles & Bloomsbury South",
-  "price": 1.0,
-  "start_time": "8:00 PM",
-  "end_time": null,
-  "url": "https://thetopsecretcomedyclub.co.uk/events-listings/tuesday-drury-42/#2026-10-20-2000",
-  "venue": "The Top Secret Comedy Club",
-  "lat": 51.5154,
-  "lng": -0.123,
-  "audience": null,
-  "availability": null,
-  "series": "c7b1f0f09c",
-  "quality": 4,
-  "why": "",
-  "topics": [
-   "stand-up",
-   "comedy",
-   "open mic"
   ],
   "flags": []
  },
@@ -4572,6 +4569,31 @@
   "flags": []
  },
  {
+  "name": "RAASRANG 3.0 - NAVRATRI 2026",
+  "category": "Meetups & Mixers",
+  "description": "Experience the true spirit of Gujarat at Raasrang 3.0 \u2013 London\u2019s ultimate Navratri celebration! 10 nights of traditional Garba, live singers",
+  "neighborhood": "Creekmouth & Barking Riverside",
+  "price": null,
+  "start_time": "9:00 PM",
+  "end_time": null,
+  "url": "https://www.eventbrite.com/e/raasrang-30-navratri-2026-tickets-2001762858596",
+  "venue": "oasis banqueting",
+  "lat": 51.5249804,
+  "lng": 0.0994896,
+  "audience": null,
+  "availability": null,
+  "series": "bd06ecf7dc",
+  "recurring": "Most days",
+  "quality": 4,
+  "why": "Ten-night Navratri garba celebration with live singers.",
+  "topics": [
+   "garba",
+   "navratri",
+   "live music"
+  ],
+  "flags": []
+ },
+ {
   "name": "Navratri 2026 with SANTVANI TRIVEDI",
   "category": "Meetups & Mixers",
   "description": "\u2728\u2728 DREAMS UNLIMITED EVENTS PRESENTS \u2728 \u2728 London\u2019s Most Grand & Luxurious Navratri Celebration! \u2728 Experience the authentic Rang, T",
@@ -4593,6 +4615,54 @@
    "navratri",
    "gujarati music",
    "dance"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Stephanie Garber in conversation with Katherine Webber - London",
+  "category": "Talks",
+  "description": "Don't miss this event with bestselling author Stephanie Garber, hosted by Katherine Webber.",
+  "neighborhood": "Central Westminster",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "9:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/stephanie-garber-in-conversation-with-katherine-webber-london-tickets-1994577596283",
+  "venue": "Emmanuel Centre",
+  "lat": 51.4965184,
+  "lng": -0.1290258,
+  "audience": null,
+  "availability": null,
+  "series": "a387d26953",
+  "quality": 8,
+  "why": "Bestselling author Stephanie Garber in conversation with Katherine Webber.",
+  "topics": [
+   "books",
+   "fantasy",
+   "author talk"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Ocean Film Festival - London - 20 October 2026",
+  "category": "Arts & Play",
+  "description": "The Ocean Film Festival World Tour is back for autumn 2026 with a brand-new selection of captivating ocean films!",
+  "neighborhood": "Islington North & Canonbury West",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "10:15 PM",
+  "url": "https://www.eventbrite.co.uk/e/ocean-film-festival-london-20-october-2026-tickets-1983508475244",
+  "venue": "Union Chapel",
+  "lat": 51.54476469999999,
+  "lng": -0.10248100000001159,
+  "audience": null,
+  "availability": null,
+  "series": "1711e128cd",
+  "quality": 6,
+  "why": "Ocean Film Festival World Tour's autumn 2026 selection of ocean films.",
+  "topics": [
+   "film festival",
+   "ocean",
+   "documentary"
   ],
   "flags": []
  },
@@ -4645,6 +4715,31 @@
   "flags": []
  },
  {
+  "name": "Navratri Garba 2026",
+  "category": "Meetups & Mixers",
+  "description": "Hello Croydon, we are coming with Navratri 2026 again at Grand sapphire Banquet.",
+  "neighborhood": "Waddon South",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": null,
+  "url": "https://www.eventbrite.co.uk/e/navratri-garba-2026-tickets-2002425333075",
+  "venue": "Grand Sapphire Banqueting & Hotel",
+  "lat": 51.3560469,
+  "lng": -0.1196667,
+  "audience": null,
+  "availability": null,
+  "series": "6916a46a99",
+  "recurring": "Also on other days",
+  "quality": 5,
+  "why": "Navratri garba dance night in Croydon, a festive Indian celebration.",
+  "topics": [
+   "navratri",
+   "garba",
+   "cultural festival"
+  ],
+  "flags": []
+ },
+ {
   "name": "RUMBA LATINA UK - Cuban Salsa Class",
   "category": "Classes & Workshops",
   "description": "Cuban Salsa class for all levels, no experience needed. Group animations for everyone to enjoy and be involved.",
@@ -4668,107 +4763,8 @@
   ],
   "flags": [
    "class_slot"
-  ]
- },
- {
-  "name": "Book Signing with Min Jin Lee at Waterstones King's Road",
-  "category": "Meetups & Mixers",
-  "description": "Join us and acclaimed novelist Min Jin Lee, for a very special signing of her latest novel American Hagwon.",
-  "neighborhood": "Chelsea Riverside East",
-  "price": null,
-  "start_time": "12:30 PM",
-  "end_time": "1:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/book-signing-with-min-jin-lee-at-waterstones-kings-road-tickets-1996646576659",
-  "venue": "Waterstones",
-  "lat": 51.48889,
-  "lng": -0.1656110000000126,
-  "audience": null,
-  "availability": null,
-  "series": "21a1918ba0",
-  "quality": 7,
-  "why": "Min Jin Lee signs copies of her new novel American Hagwon.",
-  "topics": [
-   "literary fiction",
-   "book signing",
-   "novels"
   ],
-  "flags": []
- },
- {
-  "name": "City of London - People Planet Pint\u2122 Sustainability Meetup",
-  "category": "Meetups & Mixers",
-  "description": "A better future is possible today, and it starts at your local pub!",
-  "neighborhood": "City of London",
-  "price": null,
-  "start_time": "6:00 PM",
-  "end_time": "8:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/city-of-london-people-planet-pinttm-sustainability-meetup-tickets-1995902778940",
-  "venue": "Ye Olde Cheshire Cheese",
-  "lat": 51.5143677,
-  "lng": -0.1071699,
-  "audience": null,
-  "availability": null,
-  "series": "7f4ed987ee",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "sustainability",
-   "pub",
-   "networking"
-  ],
-  "flags": [
-   "networking"
-  ]
- },
- {
-  "name": "CNM London: Why Are You Always Tired?",
-  "category": "Meetups & Mixers",
-  "description": "Why Are You Always Tired? The Hidden Role of Iron, Copper, Magnesium & Microclots with Professor Douglas Kell and Morley M Robbins",
-  "neighborhood": "Pentonville",
-  "price": null,
-  "start_time": "6:30 PM",
-  "end_time": "8:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/cnm-london-why-are-you-always-tired-tickets-2000151101788",
-  "venue": "CNM - College of Naturopathic Medicine",
-  "lat": 51.5303023,
-  "lng": -0.1141168,
-  "audience": null,
-  "availability": null,
-  "series": "a64e28824d",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "health",
-   "fatigue",
-   "nutrition"
-  ],
-  "flags": [
-   "sales"
-  ]
- },
- {
-  "name": "Can cultural Christianity save the West?",
-  "category": "Meetups & Mixers",
-  "description": "Speaker Tobias Brown traces the rise of \"cultural Christianity\" and asks whether it\u2019s enough to save our fractured society.",
-  "neighborhood": "Lambeth North, Waterloo & South Bank",
-  "price": null,
-  "start_time": "7:30 PM",
-  "end_time": "9:15 PM",
-  "url": "https://www.eventbrite.co.uk/e/can-cultural-christianity-save-the-west-tickets-2001057441675",
-  "venue": "The London Nautical School",
-  "lat": 51.5066679,
-  "lng": -0.108495,
-  "audience": null,
-  "availability": null,
-  "series": "0f2f138910",
-  "quality": 4,
-  "why": "Speaker Tobias Brown asks if cultural Christianity can save society.",
-  "topics": [
-   "religion",
-   "society",
-   "culture"
-  ],
-  "flags": []
+  "family": "rumba latina uk: salsa class"
  },
  {
   "name": "Fortnum\u2019s Christmas Wine Tasting",
@@ -4871,58 +4867,6 @@
   ]
  },
  {
-  "name": "Traditional Tea Tasting Experience",
-  "category": "Food & Drink",
-  "description": "Discover the world of tea in London. Taste unique varieties, learn tea history, and master the perfect brew.",
-  "neighborhood": "South Bermondsey Central",
-  "price": null,
-  "start_time": "11:00 AM",
-  "end_time": "12:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/traditional-tea-tasting-experience-tickets-1990967777217",
-  "venue": "Tea2you | Spa Terminus",
-  "lat": 51.49604129999999,
-  "lng": -0.0693798,
-  "audience": null,
-  "availability": null,
-  "series": "1015bfe6dd",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "tea",
-   "tasting",
-   "food and drink"
-  ],
-  "flags": [
-   "class_slot"
-  ]
- },
- {
-  "name": "Matcha Making Experience",
-  "category": "Food & Drink",
-  "description": "Immerse yourself in the world of matcha with a hands-on experience in London. Learn all about authentic matcha preparation and tasting.",
-  "neighborhood": "South Bermondsey Central",
-  "price": null,
-  "start_time": "11:00 AM",
-  "end_time": "12:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/matcha-making-experience-tickets-1991187537526",
-  "venue": "Tea2you | Spa Terminus",
-  "lat": 51.49604129999999,
-  "lng": -0.0693798,
-  "audience": null,
-  "availability": null,
-  "series": "9762748fe0",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "matcha",
-   "tea",
-   "food and drink"
-  ],
-  "flags": [
-   "class_slot"
-  ]
- },
- {
   "name": "World of Wine Tasting: Piedmont, Italy with Podere Ruggeri Corsini",
   "category": "Food & Drink",
   "description": "Let us whisk you away to Piedmont (Italy) with Francesca Argamante from Podere Ruggeri Corsini at Humble Grape Canary Wharf.",
@@ -4944,32 +4888,8 @@
    "italian wine",
    "tasting"
   ],
-  "flags": []
- },
- {
-  "name": "JAPANESE INSPIRED AFTERNOON TEA WITH COCKTAIL FLIGHT",
-  "category": "Food & Drink",
-  "description": "Our afternoon tea will can be served on our exclusive roof terrace with outdoor and indoor casual seating, followed by a flight of cocktails",
-  "neighborhood": "Fitzrovia West & Soho",
-  "price": null,
-  "start_time": "12:00 PM",
-  "end_time": "6:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/japanese-inspired-afternoon-tea-with-cocktail-flight-tickets-1521728554069",
-  "venue": "Karma Sanctum Soho London",
-  "lat": 51.51162350000001,
-  "lng": -0.1383634000000029,
-  "audience": null,
-  "availability": null,
-  "series": "eef09a8ec5",
-  "recurring": "Also on other days",
-  "quality": 4,
-  "why": "Japanese-inspired afternoon tea and cocktail flight on a Soho roof terrace.",
-  "topics": [
-   "afternoon tea",
-   "cocktails",
-   "rooftop"
-  ],
-  "flags": []
+  "flags": [],
+  "family": "humble grape: wine tasting"
  },
  {
   "name": "Hojicha and Matcha Making and Tasting Experience",
@@ -4995,6 +4915,32 @@
   ],
   "flags": [
    "class_slot"
+  ]
+ },
+ {
+  "name": "PIZZA PARTY AT SAN PIETRO",
+  "category": "Food & Drink",
+  "description": "Kids create their own pizza with our chef, then enjoy it! A fun, hands-on experience at San Pietro. Children must be accompanied by parents.",
+  "neighborhood": "Kensington Abingdon",
+  "price": null,
+  "start_time": "3:45 PM",
+  "end_time": "5:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/pizza-party-at-san-pietro-tickets-1985504700006",
+  "venue": "San Pietro London - Italian Restaurant Kensington",
+  "lat": 51.496791,
+  "lng": -0.193161,
+  "audience": null,
+  "availability": null,
+  "series": "d8d5966925",
+  "quality": 1,
+  "why": "",
+  "topics": [
+   "kids",
+   "cooking",
+   "pizza"
+  ],
+  "flags": [
+   "kids"
   ]
  },
  {
@@ -5043,7 +4989,8 @@
    "workshops",
    "card game"
   ],
-  "flags": []
+  "flags": [],
+  "family": "climate fresk: workshop"
  },
  {
   "name": "Create your MS Access Database, 1-Day, 1-to-1, Enhanced with Generative AI",
@@ -5070,7 +5017,8 @@
   ],
   "flags": [
    "service"
-  ]
+  ],
+  "family": "pcworkshops: it training course"
  },
  {
   "name": "Imperial College London 2026 Frontiers in Natural Sciences \u2013 Dean\u2019s Lecture",
@@ -5093,6 +5041,54 @@
    "mathematics",
    "artificial intelligence",
    "public lectures"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Sex is a Spectrum: The Biological Limits of the Binary",
+  "category": "Tech",
+  "description": "A book talk and discussion with Agustin Fuentes, Anthropology Department University of Pennsylvania, USA",
+  "neighborhood": "Shoreditch",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/sex-is-a-spectrum-the-biological-limits-of-the-binary-tickets-2002223974807",
+  "venue": "TBC",
+  "lat": 51.5246107,
+  "lng": -0.081424,
+  "audience": null,
+  "availability": null,
+  "series": "aa744acca7",
+  "quality": 6,
+  "why": "Anthropologist Agustin Fuentes discusses his book on biological sex.",
+  "topics": [
+   "biology",
+   "sex and gender",
+   "anthropology"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Inaugural Georgina Mace Lecture",
+  "category": "Tech",
+  "description": "What happens when economics meets nature? Ian Bateman explores how science can improve decisions for people and the planet.",
+  "neighborhood": "Mill Meads",
+  "price": null,
+  "start_time": "4:00 PM",
+  "end_time": "5:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/inaugural-georgina-mace-lecture-tickets-2002135734879",
+  "venue": "UCL East - Marshgate",
+  "lat": 51.5373206,
+  "lng": -0.0116013,
+  "audience": null,
+  "availability": null,
+  "series": "347cb5bf98",
+  "quality": 6,
+  "why": "Inaugural Georgina Mace lecture by economist Ian Bateman on nature.",
+  "topics": [
+   "economics",
+   "nature",
+   "lectures"
   ],
   "flags": []
  },
@@ -5141,6 +5137,30 @@
    "planetary science",
    "geology",
    "lectures"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Tower Hamlets Climate Emergency Briefing Screening",
+  "category": "Tech",
+  "description": "Join us in Tower Hamlets for a chill screening and chat about tackling the climate emergency together!",
+  "neighborhood": "Whitechapel",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.com/e/tower-hamlets-climate-emergency-briefing-screening-tickets-1999666482278",
+  "venue": "Tower Hamlets Town Hall",
+  "lat": 51.51868810000001,
+  "lng": -0.0600644,
+  "audience": null,
+  "availability": null,
+  "series": "0c46ecf6d9",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "climate",
+   "community",
+   "screening"
   ],
   "flags": []
  },
@@ -5195,6 +5215,56 @@
   "flags": []
  },
  {
+  "name": "EAGE London: Beyond EPICA - the search for the oldest ice on earth",
+  "category": "Tech",
+  "description": "Beyond EPICA - the search for the oldest ice on earth",
+  "neighborhood": "Knightsbridge, Belgravia & Hyde Park",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/eage-london-beyond-epica-the-search-for-the-oldest-ice-on-earth-tickets-2001396686365",
+  "venue": "Imperial College London - Royal School of Mines, Lecture Theatre 2.28",
+  "lat": 51.4998661,
+  "lng": -0.17716350000000602,
+  "audience": null,
+  "availability": null,
+  "series": "6462390291",
+  "quality": 4,
+  "why": "Talk on searching for Earth's oldest ice beyond the EPICA core.",
+  "topics": [
+   "glaciology",
+   "climate science",
+   "ice cores"
+  ],
+  "flags": []
+ },
+ {
+  "name": "CNM London: Why Are You Always Tired?",
+  "category": "Classes & Workshops",
+  "description": "Why Are You Always Tired? The Hidden Role of Iron, Copper, Magnesium & Microclots with Professor Douglas Kell and Morley M Robbins",
+  "neighborhood": "Pentonville",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/cnm-london-why-are-you-always-tired-tickets-2000151101788",
+  "venue": "CNM - College of Naturopathic Medicine",
+  "lat": 51.5303023,
+  "lng": -0.1141168,
+  "audience": null,
+  "availability": null,
+  "series": "a64e28824d",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "health",
+   "fatigue",
+   "nutrition"
+  ],
+  "flags": [
+   "sales"
+  ]
+ },
+ {
   "name": "Life Drawing Workshop in Hampstead Village",
   "category": "Classes & Workshops",
   "description": "Join our friendly, inclusive group of life drawers. All levels welcome. Meet every week upstairs at a beautiful Hampstead pub.",
@@ -5216,59 +5286,8 @@
    "art",
    "drawing"
   ],
-  "flags": []
- },
- {
-  "name": "Postnatal - Recover & Rebuild (Bring your Baby)",
-  "category": "Classes & Workshops",
-  "description": "This class is about reconnecting with your body and mind, tuning in to what it needs to recover and to support you starting to move again.",
-  "neighborhood": "Loampit & Hilly Fields",
-  "price": null,
-  "start_time": "10:30 AM",
-  "end_time": "11:30 AM",
-  "url": "https://www.eventbrite.co.uk/e/postnatal-recover-rebuild-bring-your-baby-tickets-1999985747208",
-  "venue": "The Sunflower Centre, 81 Tressillian Rd, London SE4 1XZ",
-  "lat": 51.4616783,
-  "lng": -0.029444,
-  "audience": null,
-  "availability": null,
-  "series": "849504dca6",
-  "quality": 1,
-  "why": "",
-  "topics": [
-   "postnatal",
-   "fitness",
-   "parenting"
-  ],
-  "flags": [
-   "kids",
-   "service"
-  ]
- },
- {
-  "name": "Yoga at New Road Hotel",
-  "category": "Fitness & Outdoors",
-  "description": "Vinyasa flow yoga at New Road Hotel, London, E1. Join me at 10.15am on Saturdays and/or 6pm on Tuesdays",
-  "neighborhood": "Aldgate",
-  "price": null,
-  "start_time": "6:00 PM",
-  "end_time": "7:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/yoga-at-new-road-hotel-tickets-1991726810506",
-  "venue": "New Road Hotel",
-  "lat": 51.5175235,
-  "lng": -0.06266949999999999,
-  "audience": null,
-  "availability": null,
-  "series": "a3b2bf7944",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "yoga",
-   "fitness"
-  ],
-  "flags": [
-   "class_slot"
-  ]
+  "flags": [],
+  "family": "the old white bear: life drawing workshop"
  },
  {
   "name": "Meditation classes in Piccadilly",
@@ -5320,6 +5339,33 @@
   ],
   "flags": [
    "class_slot"
+  ],
+  "family": "3o6 studios: sewing class"
+ },
+ {
+  "name": "Halloween Slime Lab @Frothycoffeeriverside",
+  "category": "Classes & Workshops",
+  "description": "Get messy at our Halloween Slime Lab! Create, mix and customise your own spooky slime to take home. Perfect half-term fun!",
+  "neighborhood": "Downham West",
+  "price": null,
+  "start_time": "11:00 AM",
+  "end_time": "12:00 PM",
+  "url": "https://www.eventbrite.com/e/halloween-slime-lab-frothycoffeeriverside-tickets-2000963142624",
+  "venue": "118 Old Bromley Rd",
+  "lat": 51.4223211,
+  "lng": -0.0051941,
+  "audience": null,
+  "availability": null,
+  "series": "af3eaa21f6",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "kids",
+   "slime",
+   "half-term"
+  ],
+  "flags": [
+   "kids"
   ]
  },
  {
@@ -5368,7 +5414,8 @@
    "architecture",
    "history"
   ],
-  "flags": []
+  "flags": [],
+  "family": "curious london: walking tour"
  },
  {
   "name": "'Haunted Hampstead' guided walking tour",
@@ -5392,30 +5439,6 @@
    "ghost tour",
    "hampstead",
    "walking"
-  ],
-  "flags": []
- },
- {
-  "name": "Walking Tour - Historic Westminster SMALL GROUP HIGHLIGHTS",
-  "category": "Tours",
-  "description": "An entertaining introduction to the history of Westminster - royals, conflict and the power struggles that shaped Britain and Empire.",
-  "neighborhood": "Central Westminster",
-  "price": null,
-  "start_time": "1:00 PM",
-  "end_time": "2:45 PM",
-  "url": "https://www.eventbrite.co.uk/e/walking-tour-historic-westminster-small-group-highlights-tickets-1997329465197",
-  "venue": "Victoria Embankment Gardens - Watergate",
-  "lat": 51.5074755,
-  "lng": -0.1227307,
-  "audience": null,
-  "availability": null,
-  "series": "6ab8893943",
-  "quality": 5,
-  "why": "Small-group walk through royals, conflict and empire in Westminster.",
-  "topics": [
-   "history",
-   "walking tour",
-   "westminster"
   ],
   "flags": []
  },
@@ -5444,6 +5467,30 @@
   "flags": []
  },
  {
+  "name": "Walking Tour - Historic Westminster SMALL GROUP HIGHLIGHTS",
+  "category": "Tours",
+  "description": "An entertaining introduction to the history of Westminster - royals, conflict and the power struggles that shaped Britain and Empire.",
+  "neighborhood": "Central Westminster",
+  "price": null,
+  "start_time": "1:00 PM",
+  "end_time": "2:45 PM",
+  "url": "https://www.eventbrite.co.uk/e/walking-tour-historic-westminster-small-group-highlights-tickets-1997329465197",
+  "venue": "Victoria Embankment Gardens - Watergate",
+  "lat": 51.5074755,
+  "lng": -0.1227307,
+  "audience": null,
+  "availability": null,
+  "series": "6ab8893943",
+  "quality": 5,
+  "why": "Small-group walk through royals, conflict and empire in Westminster.",
+  "topics": [
+   "history",
+   "walking tour",
+   "westminster"
+  ],
+  "flags": []
+ },
+ {
   "name": "Revolting London: 2000 years of rebellion and retribution",
   "category": "Tours",
   "description": "A walking tour of London uncovering two thousand years of rebellion and retribution in aid of charities we support",
@@ -5465,53 +5512,109 @@
    "rebellion",
    "walking tour"
   ],
-  "flags": []
+  "flags": [],
+  "family": "revolting london: walking tour",
+  "link_ok": false,
+  "link_why": "HTTP 404"
  },
  {
-  "name": "Jewish London \u2013 1,000 Years of History",
+  "name": "City of London Highlights Tour",
   "category": "Tours",
-  "description": "A walking tour in aid of World Jewish Relief, MDA, Israel's emergency ambulance service, or Doctors Without Borders.",
-  "neighborhood": "City of London",
+  "description": "Walking tour of the must-see attractions of the City of London, from its Roman origins to the present. Includes art gallery and church visit",
+  "neighborhood": "Tower Hill & Wapping South",
   "price": null,
-  "start_time": "2:15 PM",
-  "end_time": "4:45 PM",
-  "url": "https://www.eventbrite.co.uk/e/jewish-london-1000-years-of-history-tickets-1994537658829",
-  "venue": "Royal Exchange",
-  "lat": 51.51338800000001,
-  "lng": -0.0889145,
+  "start_time": "10:00 AM",
+  "end_time": "12:00 PM",
+  "url": "https://www.eventbrite.com/e/city-of-london-highlights-tour-tickets-1999394837782",
+  "venue": "Tower of London",
+  "lat": 51.50811239999999,
+  "lng": -0.0759493,
   "audience": null,
   "availability": null,
-  "series": "4f24d78137",
-  "quality": 5,
-  "why": "A thousand years of Jewish London history, starting at Royal Exchange.",
+  "series": "590b550807",
+  "recurring": "Most days",
+  "quality": 4,
+  "why": "Roman origins to modern City, with an art gallery and church visit.",
   "topics": [
-   "jewish history",
-   "walking tour",
-   "london history"
+   "city of london",
+   "roman history",
+   "architecture"
+  ],
+  "flags": [],
+  "family": "tower of london: guided tour"
+ },
+ {
+  "name": "FREE Sherlock Holmes Literary and Film Walking Tour",
+  "category": "Tours",
+  "description": "Follow in the footsteps of the world\u2019s greatest detective on this immersive Sherlock Holmes walking tour through central London.",
+  "neighborhood": "Central Westminster",
+  "price": null,
+  "start_time": "5:30 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.com/e/free-sherlock-holmes-literary-and-film-walking-tour-tickets-1983196222287",
+  "venue": "Embankment station",
+  "lat": 51.5073016,
+  "lng": -0.1221873,
+  "audience": null,
+  "availability": null,
+  "series": "8a8235aceb",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Sherlock Holmes literary and screen locations across central London.",
+  "topics": [
+   "sherlock holmes",
+   "literature",
+   "film"
   ],
   "flags": []
  },
  {
-  "name": "Walking UCL: Explore UCL\u2019s history, story and community in a campus tour",
+  "name": "London: Shoreditch Street Art & Graffiti Walking Tour",
   "category": "Tours",
-  "description": "Created for UCL\u2019s Bicentenary celebrations in 2026, this guided walking tour explores UCL\u2019s past, present, and future.",
-  "neighborhood": "Fitzrovia East & Bloomsbury West",
+  "description": "Immerse yourself in the dynamic street art scene of Shoreditch on a guided walking tour. Explore iconic murals and graffiti hotspots.",
+  "neighborhood": "Shoreditch",
   "price": null,
-  "start_time": "11:00 AM",
-  "end_time": "12:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/walking-ucl-explore-ucls-history-story-and-community-in-a-campus-tour-tickets-2003337607713",
-  "venue": "UCL Main Campus",
-  "lat": 51.5244928,
-  "lng": -0.1344218,
+  "start_time": "2:30 PM",
+  "end_time": "4:00 PM",
+  "url": "https://www.eventbrite.com/e/london-shoreditch-street-art-graffiti-walking-tour-tickets-1983197168116",
+  "venue": "Shoreditch High Street Station",
+  "lat": 51.5230961,
+  "lng": -0.07785059999999999,
   "audience": null,
   "availability": null,
-  "series": "02af598c6b",
-  "quality": 4,
-  "why": "Walking tour through UCL's history, created for its 2026 bicentenary.",
+  "series": "97fda59fc7",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Shoreditch's murals and graffiti hotspots on foot.",
   "topics": [
-   "university history",
-   "walking tours",
-   "london architecture"
+   "street art",
+   "shoreditch",
+   "graffiti"
+  ],
+  "flags": []
+ },
+ {
+  "name": "East London: FREE Immersive Jack the Ripper Guided Walking Tour",
+  "category": "Tours",
+  "description": "Explore the dark history of Jack the Ripper on a walking tour of London\u2019s East End. Learn about the victims, the investigation, and theory.",
+  "neighborhood": "Aldgate",
+  "price": null,
+  "start_time": "5:30 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.com/e/east-london-free-immersive-jack-the-ripper-guided-walking-tour-tickets-1983200012624",
+  "venue": "Aldgate East Station",
+  "lat": 51.5152638,
+  "lng": -0.0718345,
+  "audience": null,
+  "availability": null,
+  "series": "4be1fc0bb9",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Immersive East End Ripper walk covering victims and the investigation.",
+  "topics": [
+   "jack the ripper",
+   "true crime",
+   "east london"
   ],
   "flags": []
  },
@@ -5561,7 +5664,8 @@
    "bible",
    "talks"
   ],
-  "flags": []
+  "flags": [],
+  "family": "st botolph's-without-aldersgate: lunchtime talk"
  },
  {
   "name": "St Olave Lecture - For the Love of Tea",
@@ -5584,6 +5688,30 @@
    "tea",
    "history",
    "talks"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Can cultural Christianity save the West?",
+  "category": "Talks",
+  "description": "Speaker Tobias Brown traces the rise of \"cultural Christianity\" and asks whether it\u2019s enough to save our fractured society.",
+  "neighborhood": "Lambeth North, Waterloo & South Bank",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "9:15 PM",
+  "url": "https://www.eventbrite.co.uk/e/can-cultural-christianity-save-the-west-tickets-2001057441675",
+  "venue": "The London Nautical School",
+  "lat": 51.5066679,
+  "lng": -0.108495,
+  "audience": null,
+  "availability": null,
+  "series": "0f2f138910",
+  "quality": 4,
+  "why": "Speaker Tobias Brown asks if cultural Christianity can save society.",
+  "topics": [
+   "religion",
+   "society",
+   "culture"
   ],
   "flags": []
  },
@@ -5659,7 +5787,8 @@
    "pub talks",
    "local history"
   ],
-  "flags": []
+  "flags": [],
+  "family": "bowl of chalk: talk club"
  },
  {
   "name": "Repair and Reinvention: Hans D\u00f6llgast",
@@ -5686,6 +5815,82 @@
   "flags": []
  },
  {
+  "name": "Poetry Without Rules with Anthony Anaxagorou",
+  "category": "Talks",
+  "description": "Discover Fleet Street Quarter: Join award-winning poet Anthony Anaxagorou for a fun poetry writing workshop.",
+  "neighborhood": "City of London",
+  "price": null,
+  "start_time": "5:00 PM",
+  "end_time": "6:30 PM",
+  "url": "https://www.eventbrite.com/e/poetry-without-rules-with-anthony-anaxagorou-tickets-2002613785742",
+  "venue": "Shoe Lane Library",
+  "lat": 51.515468,
+  "lng": -0.106491,
+  "audience": null,
+  "availability": null,
+  "series": "a4782546db",
+  "quality": 5,
+  "why": "Award-winning poet Anthony Anaxagorou leads a poetry writing workshop.",
+  "topics": [
+   "poetry",
+   "writing workshop",
+   "spoken word"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Soho Comedy Factory - London's best comedians every night!",
+  "category": "Comedy",
+  "description": "Comedy in the heart of Central London! Previous shows have included acts seen on Taskmaster, Live at the Apollo, Mock the Week and more.",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/soho-comedy-factory-londons-best-comedians-every-night-tickets-2002379739704",
+  "venue": "The Coach House",
+  "lat": 51.509739,
+  "lng": -0.1320046,
+  "audience": null,
+  "availability": null,
+  "series": "14f8c73977",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Nightly lineups of comics seen on Taskmaster and Live at the Apollo.",
+  "topics": [
+   "stand-up",
+   "comedy club",
+   "soho"
+  ],
+  "flags": [],
+  "family": "soho comedy factory: comedy night"
+ },
+ {
+  "name": "Soho Comedy Factory - \u00a38 stand up comedy every night of the week",
+  "category": "Comedy",
+  "description": "Stand up comedy in the heart of Central London. Acts seen on Taskmaster, Live at the Apollo and more. As recommended by The Evening Standard",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/soho-comedy-factory-8-stand-up-comedy-every-night-of-the-week-tickets-1995305871574",
+  "venue": "The Coach House",
+  "lat": 51.509739,
+  "lng": -0.1320046,
+  "audience": null,
+  "availability": null,
+  "series": "e5a06c6490",
+  "recurring": "Most days",
+  "quality": 4,
+  "why": "Taskmaster and Live at the Apollo acts, recommended by Evening Standard.",
+  "topics": [
+   "stand-up",
+   "comedy club",
+   "soho"
+  ],
+  "flags": [],
+  "family": "soho comedy factory: comedy night"
+ },
+ {
   "name": "The Halloween Debate Social! Villains Special - Victoria Debates",
   "category": "Comedy",
   "description": "A debate free for all as you vote reality TV style for the most entertaining conspiracies.",
@@ -5710,100 +5915,26 @@
   "flags": []
  },
  {
-  "name": "Bring Your Own Baby Comedy Crystal Palace daytime comedy club for parents",
+  "name": "Stand Up Comedy Improvers Showcase",
   "category": "Comedy",
-  "description": "Grown up comedy, babies welcome. A funny, friendly afternoon of top comedy and... you can bring your baby!",
-  "neighborhood": "Crystal Palace Park",
+  "description": "Join us for a night of laughing out loud and new comedy as our Stand Up Comedy Improvers students take to the stage!",
+  "neighborhood": "Clerkenwell",
   "price": null,
-  "start_time": "12:00 PM",
-  "end_time": "1:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/bring-your-own-baby-comedy-crystal-palace-daytime-comedy-club-for-parents-tickets-1995908003567",
-  "venue": "Bridge House",
-  "lat": 51.4181015,
-  "lng": -0.060465,
+  "start_time": "8:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/stand-up-comedy-improvers-showcase-tickets-2001888043026",
+  "venue": "The Slaughtered Lamb",
+  "lat": 51.523353,
+  "lng": -0.10124489999998332,
   "audience": null,
   "availability": null,
-  "series": "0f08e8eeec",
-  "quality": 4,
-  "why": "Daytime grown-up comedy where babies are welcome.",
-  "topics": [
-   "comedy",
-   "parenting",
-   "daytime"
-  ],
-  "flags": [
-   "kids"
-  ]
- },
- {
-  "name": "Award Winning Comedy in Camden Town - \u00a33 - Comedy in Your Eye",
-  "category": "Comedy",
-  "description": "Critically Acclaimed, Award Winning Stand Up Comedy Night every Tuesday, Wednesday and night in Camden Town, London for just \u00a33",
-  "neighborhood": "Camden Town & Mornington Crescent",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/award-winning-comedy-in-camden-town-3-comedy-in-your-eye-tickets-1975786574832",
-  "venue": "The Camden Eye",
-  "lat": 51.5394953,
-  "lng": -0.1422158,
-  "audience": null,
-  "availability": null,
-  "series": "7d778388f9",
-  "quality": 5,
-  "why": "Cheap, critically acclaimed stand-up, recurring midweek nights.",
+  "series": "49954e9f03",
+  "quality": 3,
+  "why": "",
   "topics": [
    "stand-up",
-   "comedy",
-   "camden"
-  ],
-  "flags": []
- },
- {
-  "name": "Comedy Virgins: London's most famous open mic night!",
-  "category": "Comedy",
-  "description": "London's legendary open mic night for new acts and fresh material! Free entry stand up, with multiple shows a week.",
-  "neighborhood": "Stockwell North",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "8:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/comedy-virgins-londons-most-famous-open-mic-night-tickets-2002313390251",
-  "venue": "The Cavendish Arms",
-  "lat": 51.47653319999999,
-  "lng": -0.1276872,
-  "audience": null,
-  "availability": null,
-  "series": "b335ce2d96",
-  "quality": 5,
-  "why": "Long-running open mic where new comics try fresh material for free.",
-  "topics": [
-   "open mic",
-   "stand-up",
-   "new comedy"
-  ],
-  "flags": []
- },
- {
-  "name": "Tuesday Night Comedy",
-  "category": "Comedy",
-  "description": "Start the week right with world-class comedy in the heart of Soho. Rated 5 stars on Google!",
-  "neighborhood": "Fitzrovia West & Soho",
-  "price": null,
-  "start_time": "7:30 PM",
-  "end_time": "9:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/tuesday-night-comedy-tickets-1991201780126",
-  "venue": "Soho Comedy House",
-  "lat": 51.5139314,
-  "lng": -0.1325214,
-  "audience": null,
-  "availability": null,
-  "series": "dde6937adc",
-  "quality": 4,
-  "why": "Regular Tuesday comedy night in Soho.",
-  "topics": [
-   "stand-up",
-   "comedy",
-   "soho"
+   "student showcase",
+   "comedy"
   ],
   "flags": []
  },
@@ -5834,30 +5965,6 @@
   ]
  },
  {
-  "name": "Stand Up Comedy Improvers Showcase",
-  "category": "Comedy",
-  "description": "Join us for a night of laughing out loud and new comedy as our Stand Up Comedy Improvers students take to the stage!",
-  "neighborhood": "Clerkenwell",
-  "price": null,
-  "start_time": "8:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/stand-up-comedy-improvers-showcase-tickets-2001888043026",
-  "venue": "The Slaughtered Lamb",
-  "lat": 51.523353,
-  "lng": -0.10124489999998332,
-  "audience": null,
-  "availability": null,
-  "series": "49954e9f03",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "stand-up",
-   "student showcase",
-   "comedy"
-  ],
-  "flags": []
- },
- {
   "name": "T\u00fcrk\u00e7e Komedi Gecesi | Eren Erdo\u011fan & Emre Can \u00c7al\u0131\u015fkan | Londra",
   "category": "Comedy",
   "description": "T\u00fcrk\u00e7e Komedi Gecesi | Eren Erdo\u011fan & Emrecan \u00c7al\u0131\u015fkan | Londra",
@@ -5880,6 +5987,134 @@
    "live comedy"
   ],
   "flags": []
+ },
+ {
+  "name": "Bring Your Own Baby Comedy Crystal Palace daytime comedy club for parents",
+  "category": "Comedy",
+  "description": "Grown up comedy, babies welcome. A funny, friendly afternoon of top comedy and... you can bring your baby!",
+  "neighborhood": "Crystal Palace Park",
+  "price": null,
+  "start_time": "12:00 PM",
+  "end_time": "1:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/bring-your-own-baby-comedy-crystal-palace-daytime-comedy-club-for-parents-tickets-1995908003567",
+  "venue": "Bridge House",
+  "lat": 51.4181015,
+  "lng": -0.060465,
+  "audience": null,
+  "availability": null,
+  "series": "0f08e8eeec",
+  "quality": 4,
+  "why": "Daytime grown-up comedy where babies are welcome.",
+  "topics": [
+   "comedy",
+   "parenting",
+   "daytime"
+  ],
+  "flags": [
+   "kids"
+  ],
+  "family": "bring your own baby: comedy club"
+ },
+ {
+  "name": "Soho Comedy House - \u00a35 Live Stand-up London's Best Comedians Every Night!",
+  "category": "Comedy",
+  "description": "Comedy in the heart of Soho Central London! Shows have included acts seen on Taskmaster, Live at Apollo, Mock the week and more.",
+  "neighborhood": "Fitzrovia West & Soho",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/soho-comedy-house-5-live-stand-up-londons-best-comedians-every-night-tickets-1980416193145",
+  "venue": "Soho Comedy House",
+  "lat": 51.5139314,
+  "lng": -0.1325214,
+  "audience": null,
+  "availability": null,
+  "series": "5fe8aa5650",
+  "recurring": "Most days",
+  "quality": 4,
+  "why": "Taskmaster and Live at the Apollo acts, five-pound live tickets.",
+  "topics": [
+   "stand-up",
+   "soho",
+   "comedy club"
+  ],
+  "flags": [],
+  "family": "soho comedy house: comedy night"
+ },
+ {
+  "name": "Award Winning Comedy in Camden Town - \u00a33 - Comedy in Your Eye",
+  "category": "Comedy",
+  "description": "Critically Acclaimed, Award Winning Stand Up Comedy Night every Tuesday, Wednesday and night in Camden Town, London for just \u00a33",
+  "neighborhood": "Camden Town & Mornington Crescent",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/award-winning-comedy-in-camden-town-3-comedy-in-your-eye-tickets-1975786574832",
+  "venue": "The Camden Eye",
+  "lat": 51.5394953,
+  "lng": -0.1422158,
+  "audience": null,
+  "availability": null,
+  "series": "7d778388f9",
+  "quality": 5,
+  "why": "Cheap, critically acclaimed stand-up, recurring midweek nights.",
+  "topics": [
+   "stand-up",
+   "comedy",
+   "camden"
+  ],
+  "flags": [],
+  "family": "the camden eye: comedy night"
+ },
+ {
+  "name": "Comedy Virgins: London's most famous open mic night!",
+  "category": "Comedy",
+  "description": "London's legendary open mic night for new acts and fresh material! Free entry stand up, with multiple shows a week.",
+  "neighborhood": "Stockwell North",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/comedy-virgins-londons-most-famous-open-mic-night-tickets-2002313390251",
+  "venue": "The Cavendish Arms",
+  "lat": 51.47653319999999,
+  "lng": -0.1276872,
+  "audience": null,
+  "availability": null,
+  "series": "b335ce2d96",
+  "quality": 5,
+  "why": "Long-running open mic where new comics try fresh material for free.",
+  "topics": [
+   "open mic",
+   "stand-up",
+   "new comedy"
+  ],
+  "flags": [],
+  "family": "comedy virgins: open mic night"
+ },
+ {
+  "name": "Tuesday Night Comedy",
+  "category": "Comedy",
+  "description": "Start the week right with world-class comedy in the heart of Soho. Rated 5 stars on Google!",
+  "neighborhood": "Fitzrovia West & Soho",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/tuesday-night-comedy-tickets-1991201780126",
+  "venue": "Soho Comedy House",
+  "lat": 51.5139314,
+  "lng": -0.1325214,
+  "audience": null,
+  "availability": null,
+  "series": "dde6937adc",
+  "quality": 4,
+  "why": "Regular Tuesday comedy night in Soho.",
+  "topics": [
+   "stand-up",
+   "comedy",
+   "soho"
+  ],
+  "flags": [],
+  "family": "soho comedy house: comedy night"
  },
  {
   "name": "FILM NIGHTS at The Source 'Don't Look Now'",
@@ -6046,78 +6281,6 @@
    "african history",
    "politics",
    "film"
-  ],
-  "flags": []
- },
- {
-  "name": "Driving Home",
-  "category": "Film",
-  "description": "Dante or Die invites you into the passenger seat of a black cab to watch Driving Home, an intimate and immersive 20-minute documentary.",
-  "neighborhood": "Central Romford",
-  "price": null,
-  "start_time": "1:00 PM",
-  "end_time": "1:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/driving-home-tickets-2002792902485",
-  "venue": "The Mercury Shopping Centre",
-  "lat": 51.5794515,
-  "lng": 0.1856615,
-  "audience": null,
-  "availability": null,
-  "series": "240acce6a3",
-  "quality": 5,
-  "why": "Immersive 20-minute documentary screened inside a black cab.",
-  "topics": [
-   "documentary",
-   "immersive film",
-   "london stories"
-  ],
-  "flags": []
- },
- {
-  "name": "16mm Projector Workshop",
-  "category": "Film",
-  "description": "Led by Liam Saint-Pierre & \u00dcmit Mesut. How to lace 16mm projectors and 35mm projectors",
-  "neighborhood": "Hackney Central",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/16mm-projector-workshop-tickets-2002803751936",
-  "venue": "Umit & Son",
-  "lat": 51.5508637,
-  "lng": -0.0525727,
-  "audience": null,
-  "availability": null,
-  "series": "cd0130bced",
-  "quality": 4,
-  "why": "Hands-on session on lacing 16mm and 35mm projectors.",
-  "topics": [
-   "analogue film",
-   "craft",
-   "workshop"
-  ],
-  "flags": []
- },
- {
-  "name": "Remembering ELBWO: Documentary Screening",
-  "category": "Film",
-  "description": "A screening of the Young Historians Project documentary exploring the history, work and legacy of the East London Black Women\u2019s Organisation",
-  "neighborhood": "Burgess Park",
-  "price": null,
-  "start_time": "5:30 PM",
-  "end_time": "7:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/remembering-elbwo-documentary-screening-tickets-2002423295982",
-  "venue": "Una Marson Library",
-  "lat": 51.48766080000001,
-  "lng": -0.0861663,
-  "audience": null,
-  "availability": null,
-  "series": "0f25fb105c",
-  "quality": 5,
-  "why": "Young Historians documentary on the East London Black Women's Organisation's legacy.",
-  "topics": [
-   "black history",
-   "community",
-   "documentary"
   ],
   "flags": []
  },

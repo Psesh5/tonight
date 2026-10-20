@@ -74,7 +74,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "twist museum: museum admission"
  },
  {
   "name": "Larger Than Life: Starring Wallace & Gromit, Shaun & More",
@@ -130,7 +131,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "london eye: observation wheel ticket"
  },
  {
   "name": "Madame Tussauds London - Standard Entry",
@@ -158,7 +160,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "madame tussauds london: attraction admission"
  },
  {
   "name": "London Dungeon - Standard Entry",
@@ -186,7 +189,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "the london dungeon: attraction admission"
  },
  {
   "name": "Hampton Court Palace - Standard All Day Entry",
@@ -212,7 +216,8 @@
    "tudor history",
    "gardens"
   ],
-  "flags": []
+  "flags": [],
+  "family": "historic royal palaces: palace admission"
  },
  {
   "name": "Kensington Palace - Standard Admission",
@@ -238,7 +243,8 @@
    "royalty",
    "architecture"
   ],
-  "flags": []
+  "flags": [],
+  "family": "historic royal palaces: palace admission"
  },
  {
   "name": "The Tower of London - Standard All Day Entry",
@@ -264,7 +270,8 @@
    "royalty",
    "architecture"
   ],
-  "flags": []
+  "flags": [],
+  "family": "tower of london: attraction admission"
  },
  {
   "name": "The Paddington Bear Experience",
@@ -293,7 +300,8 @@
   "flags": [
    "kids",
    "flex_entry"
-  ]
+  ],
+  "family": "the paddington bear experience: attraction admission"
  },
  {
   "name": "Sea Life London - Standard Entry",
@@ -322,7 +330,8 @@
   "flags": [
    "kids",
    "flex_entry"
-  ]
+  ],
+  "family": "sea life london: aquarium admission"
  },
  {
   "name": "FRAMELESS 2026",
@@ -368,7 +377,7 @@
   "availability": null,
   "tm_id": "LvZ18QIUao1xHUKmmd04n",
   "series": "5e31e5f476",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 3,
   "why": "",
   "topics": [
@@ -1404,7 +1413,8 @@
    "soul",
    "club night"
   ],
-  "flags": []
+  "flags": [],
+  "family": "boisdale: dj night"
  },
  {
   "name": "The Secret Sax Party",
@@ -1731,6 +1741,7 @@
   "availability": null,
   "tm_id": "1AMZkowGkdPx6GA",
   "series": "ad35449662",
+  "recurring": "Also on other days",
   "quality": 5,
   "why": "Lloyd Webber's long-running musical at His Majesty's Theatre.",
   "topics": [
@@ -2767,30 +2778,27 @@
   ]
  },
  {
-  "name": "Human x Artificial Intelligence (Day 1 of 3)",
-  "category": "Meetups & Mixers",
+  "name": "The Roaming Table Soft Launch - Supper in the Greenhouse",
+  "category": "Food & Drink",
   "description": "",
-  "neighborhood": "Strand, St James & Mayfair",
-  "price": 0.0,
-  "start_time": "10:00 AM",
-  "end_time": "4:00 PM",
-  "url": "https://luma.com/b5krt9mp",
-  "venue": "LSE Centre Building (CBG)",
-  "lat": 51.5141408,
-  "lng": -0.11626470000000001,
+  "neighborhood": "Chingford Green West",
+  "price": 40.0,
+  "start_time": "7:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://luma.com/c8mk9aof",
+  "venue": "OrganicLea",
+  "lat": 51.6407239,
+  "lng": -0.0028366,
   "audience": null,
-  "availability": "waitlist",
-  "series": "71e3c6d788",
-  "quality": 3,
-  "why": "",
+  "availability": null,
+  "series": "f1d8388971",
+  "quality": 5,
+  "why": "Soft-launch supper in OrganicLea's greenhouse for a new dining project.",
   "topics": [
-   "artificial intelligence",
-   "conference",
-   "networking"
+   "supper",
+   "food"
   ],
-  "flags": [
-   "networking"
-  ]
+  "flags": []
  },
  {
   "name": "Mum & Little one Yoga",
@@ -2817,6 +2825,33 @@
   "flags": [
    "kids",
    "class_slot"
+  ],
+  "family": "dancewest studio: yoga class"
+ },
+ {
+  "name": "Manifold 3.0 Symposium",
+  "category": "Talks",
+  "description": "",
+  "neighborhood": "New Cross South",
+  "price": 0.0,
+  "start_time": "11:00 AM",
+  "end_time": "5:30 PM",
+  "url": "https://luma.com/4kta9ls8",
+  "venue": "Professor Stuart Hall Building",
+  "lat": 51.472553299999994,
+  "lng": -0.0370725,
+  "audience": null,
+  "availability": null,
+  "series": "45df367cdd",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "symposium",
+   "academic",
+   "daytime talks"
+  ],
+  "flags": [
+   "internal"
   ]
  },
  {
@@ -2873,6 +2908,32 @@
   ]
  },
  {
+  "name": "KXHL: Build & Demo (with ElevenLabs)",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Somers Town",
+  "price": 0.0,
+  "start_time": "12:00 PM",
+  "end_time": "3:00 PM",
+  "url": "https://luma.com/i513bp9m",
+  "venue": "52 Charrington St",
+  "lat": 51.5345084,
+  "lng": -0.1331268,
+  "audience": null,
+  "availability": null,
+  "series": "c3c5a62702",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "tech",
+   "ai",
+   "demo meetup"
+  ],
+  "flags": [
+   "networking"
+  ]
+ },
+ {
   "name": "The African & Caribbean Health Show: Kw\u00e9y\u00f2l Heritage Month Edition",
   "category": "Meetups & Mixers",
   "description": "",
@@ -2903,7 +2964,7 @@
   "category": "Arts & Play",
   "description": "",
   "neighborhood": "Primrose Hill",
-  "price": 37.0,
+  "price": 40.0,
   "start_time": "5:00 PM",
   "end_time": "9:00 PM",
   "url": "https://luma.com/5kufp8xg",
@@ -3110,7 +3171,7 @@
   "lat": 51.52310843538867,
   "lng": -0.10229932896785955,
   "audience": null,
-  "availability": "waitlist",
+  "availability": null,
   "series": "41e6861110",
   "quality": 2,
   "why": "",
@@ -3120,7 +3181,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "[chill] robotics: networking meetup"
  },
  {
   "name": "Do More LinkedIn celebration",
@@ -3172,27 +3234,30 @@
   "flags": []
  },
  {
-  "name": "The Read and Reflect Club - Chapter 7",
+  "name": "Paper Club #7 (Robot Learning Collective)",
   "category": "Meetups & Mixers",
   "description": "",
-  "neighborhood": "Holborn, St Giles & Bloomsbury South",
-  "price": 15.0,
-  "start_time": "6:30 PM",
-  "end_time": "9:30 PM",
-  "url": "https://luma.com/tmlaek1m",
-  "venue": "Palestine House",
-  "lat": 51.517838,
-  "lng": -0.11978229999999998,
+  "neighborhood": "Barnsbury West",
+  "price": 0.0,
+  "start_time": "6:00 PM",
+  "end_time": "8:00 PM",
+  "url": "https://luma.com/0iux35ra",
+  "venue": "",
+  "lat": 51.537409797702594,
+  "lng": -0.1208619399512602,
   "audience": null,
   "availability": null,
-  "series": "dcc3fa69a6",
-  "quality": 4,
-  "why": "Ongoing book club; this session is Chapter 7 at Palestine House.",
+  "series": "1022d37d5d",
+  "quality": 3,
+  "why": "",
   "topics": [
-   "book club",
-   "reading"
+   "machine learning",
+   "paper reading",
+   "robotics"
   ],
-  "flags": []
+  "flags": [
+   "networking"
+  ]
  },
  {
   "name": "Debate: 'This house would boycott all the Frontier labs'",
@@ -3287,6 +3352,30 @@
   "flags": []
  },
  {
+  "name": "The Read and Reflect Club - Chapter 7",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Holborn, St Giles & Bloomsbury South",
+  "price": 15.0,
+  "start_time": "6:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://luma.com/tmlaek1m",
+  "venue": "Palestine House",
+  "lat": 51.517838,
+  "lng": -0.11978229999999998,
+  "audience": null,
+  "availability": "waitlist",
+  "series": "dcc3fa69a6",
+  "quality": 4,
+  "why": "Ongoing book club; this session is Chapter 7 at Palestine House.",
+  "topics": [
+   "book club",
+   "reading"
+  ],
+  "flags": [],
+  "family": "palestine house: reading club"
+ },
+ {
   "name": "B/deshi London Friday Social!",
   "category": "Meetups & Mixers",
   "description": "",
@@ -3307,7 +3396,8 @@
    "bangladeshi diaspora",
    "social"
   ],
-  "flags": []
+  "flags": [],
+  "family": "b/deshi london: friday social"
  },
  {
   "name": "Sniser launch event",
@@ -3335,29 +3425,6 @@
   ]
  },
  {
-  "name": "The Roaming Table Soft Launch - Supper in the Greenhouse",
-  "category": "Food & Drink",
-  "description": "",
-  "neighborhood": "Chingford Green West",
-  "price": 40.0,
-  "start_time": "7:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://luma.com/c8mk9aof",
-  "venue": "OrganicLea",
-  "lat": 51.6407239,
-  "lng": -0.0028366,
-  "audience": null,
-  "availability": null,
-  "series": "f1d8388971",
-  "quality": 5,
-  "why": "Soft-launch supper in OrganicLea's greenhouse for a new dining project.",
-  "topics": [
-   "supper",
-   "food"
-  ],
-  "flags": []
- },
- {
   "name": "Friday Badminton 8.30pm - 10pm",
   "category": "Meetups & Mixers",
   "description": "Weekly sessions",
@@ -3377,6 +3444,31 @@
   "topics": [
    "badminton",
    "sport"
+  ],
+  "flags": []
+ },
+ {
+  "name": "The Social Reckoning",
+  "category": "Film",
+  "description": "Showtimes today: 1:50 PM, 8:15 PM.",
+  "neighborhood": "City of London",
+  "price": null,
+  "start_time": "8:15 PM",
+  "end_time": null,
+  "url": "https://tickets.barbican.org.uk/choose-seats/3798002",
+  "venue": "Barbican Centre",
+  "lat": 51.5207,
+  "lng": -0.0938,
+  "audience": null,
+  "availability": null,
+  "series": "b8efc1f661",
+  "recurring": "Also on other days",
+  "quality": 6,
+  "why": "Barbican screening of The Social Reckoning.",
+  "topics": [
+   "film",
+   "documentary",
+   "barbican"
   ],
   "flags": []
  },
@@ -3568,6 +3660,30 @@
   "flags": []
  },
  {
+  "name": "NAZA",
+  "category": "Film",
+  "description": "",
+  "neighborhood": "City of London",
+  "price": null,
+  "start_time": "8:45 PM",
+  "end_time": null,
+  "url": "https://tickets.barbican.org.uk/choose-seats/3797802",
+  "venue": "Barbican Centre",
+  "lat": 51.5207,
+  "lng": -0.0938,
+  "audience": null,
+  "availability": null,
+  "series": "9a57af2c3f",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Barbican film screening of NAZA.",
+  "topics": [
+   "film",
+   "barbican"
+  ],
+  "flags": []
+ },
+ {
   "name": "Fatherland",
   "category": "Film",
   "description": "Showtimes today: 12:05 PM, 5:00 PM.",
@@ -3592,9 +3708,58 @@
   "flags": []
  },
  {
-  "name": "Naza",
+  "name": "Case 137",
   "category": "Film",
   "description": "",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "12:30 PM",
+  "end_time": null,
+  "url": "https://buy.ica.art/ica/website/ChooseSeats.aspx?EventInstanceId=1986601",
+  "venue": "ICA",
+  "lat": 51.5062,
+  "lng": -0.131,
+  "audience": null,
+  "availability": null,
+  "series": "6ed117d16a",
+  "recurring": "Also on other days",
+  "quality": 7,
+  "why": "New Dardenne brothers film, Case 137, at the ICA.",
+  "topics": [
+   "film",
+   "european cinema",
+   "ica"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Possible Love",
+  "category": "Film",
+  "description": "Showtimes today: 2:30 PM, 8:00 PM.",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "8:00 PM",
+  "end_time": null,
+  "url": "https://buy.ica.art/ica/website/ChooseSeats.aspx?EventInstanceId=1960202",
+  "venue": "ICA",
+  "lat": 51.5062,
+  "lng": -0.131,
+  "audience": null,
+  "availability": null,
+  "series": "72af6e8f6d",
+  "quality": 7,
+  "why": "Lee Chang-dong's new 164-minute drama starring Jeon Do-yeon.",
+  "topics": [
+   "korean cinema",
+   "arthouse film",
+   "lee chang-dong"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Naza",
+  "category": "Film",
+  "description": "Showtimes today: 3:00 PM, 6:00 PM.",
   "neighborhood": "Strand, St James & Mayfair",
   "price": null,
   "start_time": "6:00 PM",
@@ -3684,30 +3849,6 @@
    "live music",
    "indie",
    "gig"
-  ],
-  "flags": []
- },
- {
-  "name": "Possible Love",
-  "category": "Film",
-  "description": "",
-  "neighborhood": "Strand, St James & Mayfair",
-  "price": null,
-  "start_time": "8:00 PM",
-  "end_time": null,
-  "url": "https://buy.ica.art/ica/website/ChooseSeats.aspx?EventInstanceId=1960202",
-  "venue": "ICA",
-  "lat": 51.5062,
-  "lng": -0.131,
-  "audience": null,
-  "availability": null,
-  "series": "72af6e8f6d",
-  "quality": 7,
-  "why": "Lee Chang-dong's new 164-minute drama starring Jeon Do-yeon.",
-  "topics": [
-   "korean cinema",
-   "arthouse film",
-   "lee chang-dong"
   ],
   "flags": []
  },
@@ -3929,6 +4070,31 @@
   "flags": []
  },
  {
+  "name": "Naza",
+  "category": "Film",
+  "description": "\"We made this film out of a sense of obligation to use our position as Israelis to examine the systems behind the mass killing of Palestinian civilians for which our country is\u2026. Dir. Yuval Abraham & Rachel Szor, 80 min.",
+  "neighborhood": "Dalston Kingsland",
+  "price": null,
+  "start_time": "6:45 PM",
+  "end_time": null,
+  "url": "https://riocinema.org.uk/Rio.dll/WhatsOn?f=2949342",
+  "venue": "Rio Cinema",
+  "lat": 51.5496,
+  "lng": -0.0756,
+  "audience": null,
+  "availability": null,
+  "series": "c16cf59f5b",
+  "recurring": "Also on other days",
+  "quality": 7,
+  "why": "Israeli filmmakers examine the systems behind mass killings in Gaza.",
+  "topics": [
+   "documentary",
+   "gaza",
+   "israeli filmmakers"
+  ],
+  "flags": []
+ },
+ {
   "name": "Fatherland",
   "category": "Film",
   "description": "At the height of the Cold War, the writer Thomas Mann and his daughter\u2014actress, writer, and rally driver\u2014Erika embark on a road trip in a black Buick cruiser across a divided\u2026. Dir. Pawe\u0142 Pawlikowski, 82 min. Showtimes today: 6:30 PM, 8:50 PM.",
@@ -4001,6 +4167,31 @@
   "flags": []
  },
  {
+  "name": "The Social Reckoning",
+  "category": "Film",
+  "description": "Frances Haugen, a young Facebook engineer, enlists the help of Jeff Horwitz, a Wall Street Journal reporter, to go on a dangerous journey that ends up blowing the whistle on the\u2026. Dir. Aaron Sorkin, 112 min.",
+  "neighborhood": "East Finchley",
+  "price": null,
+  "start_time": "8:00 PM",
+  "end_time": null,
+  "url": "https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=759791",
+  "venue": "Phoenix Cinema",
+  "lat": 51.5885,
+  "lng": -0.1637,
+  "audience": null,
+  "availability": null,
+  "series": "4727794167",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Sorkin's Facebook whistleblower drama, screened at the Phoenix.",
+  "topics": [
+   "film",
+   "drama",
+   "tech"
+  ],
+  "flags": []
+ },
+ {
   "name": "Naza",
   "category": "Film",
   "description": "Filmed at night from Tel Aviv rooftops, this investigative documentary examines the civilian casualties of Israel's military operations in Gaza and the systems behind targeted\u2026. Dir. Yuval Abraham, Rachel Szor, 77 min.",
@@ -4021,6 +4212,30 @@
    "documentary",
    "gaza",
    "investigative journalism"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Fatherland",
+  "category": "Film",
+  "description": "In 1949, German writer Thomas Mann and his daughter Erika embark on a road trip across a Germany in ruins, from US-dominated Frankfurt to Soviet-controlled Weimar. Dir. Pawe\u0142 Pawlikowski, 82 min.",
+  "neighborhood": "East Finchley",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": null,
+  "url": "https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=771260",
+  "venue": "Phoenix Cinema",
+  "lat": 51.5885,
+  "lng": -0.1637,
+  "audience": null,
+  "availability": null,
+  "series": "767f1d5afa",
+  "quality": 8,
+  "why": "Pawlikowski's road drama, Thomas Mann and daughter through postwar Germany.",
+  "topics": [
+   "film",
+   "german history",
+   "arthouse"
   ],
   "flags": []
  },
@@ -4074,6 +4289,30 @@
   "flags": []
  },
  {
+  "name": "The Cycle of Love",
+  "category": "Film",
+  "description": "The film follows the extraordinary true story of PK, a 23-year-old street artist from Delhi who sets off with a handful of paint brushes and a second-hand bicycle on a 6,000 mile\u2026. Dir. Orlando von Einsiedel, 98 min.",
+  "neighborhood": "Brondesbury Park",
+  "price": null,
+  "start_time": "8:00 PM",
+  "end_time": null,
+  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10143837",
+  "venue": "The Lexi Cinema",
+  "lat": 51.5375,
+  "lng": -0.2225,
+  "audience": null,
+  "availability": null,
+  "series": "da6026fcb8",
+  "quality": 5,
+  "why": "Documentary following Delhi street artist PK on a 6,000-mile bicycle journey.",
+  "topics": [
+   "documentary",
+   "street art",
+   "india"
+  ],
+  "flags": []
+ },
+ {
   "name": "Ghosts: The Possession of Button House",
   "category": "Film",
   "description": "The beloved and award-winning BBC comedy GHOSTS arrives on the big screen this Halloween. Starring writers and creators Mathew Baynton, Simon Farnaby, Martha Howe-Douglas, Jim\u2026. Dir. Simon Hynd, 97 min. Showtimes today: 3:15 PM, 6:15 PM.",
@@ -4123,30 +4362,6 @@
   ]
  },
  {
-  "name": "The Shining [UK Version]",
-  "category": "Film",
-  "description": "1980, 119mins.",
-  "neighborhood": "Strand, St James & Mayfair",
-  "price": null,
-  "start_time": "3:05 PM",
-  "end_time": null,
-  "url": "https://princecharlescinema.com/film/1865481/the-shining-uk-version",
-  "venue": "Prince Charles Cinema",
-  "lat": 51.5115,
-  "lng": -0.1302,
-  "audience": null,
-  "availability": null,
-  "series": "53ad9bf932",
-  "quality": 7,
-  "why": "Kubrick's The Shining in the UK cut, on a repertory screen.",
-  "topics": [
-   "horror",
-   "kubrick",
-   "repertory"
-  ],
-  "flags": []
- },
- {
   "name": "Halloween (1978)",
   "category": "Film",
   "description": "1978, 91mins.",
@@ -4190,6 +4405,30 @@
   "topics": [
    "horror",
    "cult film",
+   "repertory"
+  ],
+  "flags": []
+ },
+ {
+  "name": "The Shining [UK Version]",
+  "category": "Film",
+  "description": "1980, 119mins.",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "3:05 PM",
+  "end_time": null,
+  "url": "https://princecharlescinema.com/film/1865481/the-shining-uk-version",
+  "venue": "Prince Charles Cinema",
+  "lat": 51.5115,
+  "lng": -0.1302,
+  "audience": null,
+  "availability": null,
+  "series": "53ad9bf932",
+  "quality": 7,
+  "why": "Kubrick's The Shining in the UK cut, on a repertory screen.",
+  "topics": [
+   "horror",
+   "kubrick",
    "repertory"
   ],
   "flags": []
@@ -4291,6 +4530,31 @@
   "flags": []
  },
  {
+  "name": "Sense and Sensibility",
+  "category": "Film",
+  "description": "From Georgia Oakley (Blue Jean) comes an irresistible new take on Jane Austen\u2019s iconic Sense and Sensibility: a charming, witty, and. Georgia Oakley, UK, USA, 2026, 131m.",
+  "neighborhood": "Holborn, St Giles & Bloomsbury South",
+  "price": null,
+  "start_time": "11:50 AM",
+  "end_time": null,
+  "url": "https://www.thegardencinema.co.uk/film/sense-and-sensibility-2/",
+  "venue": "The Garden Cinema",
+  "lat": 51.5162,
+  "lng": -0.1213,
+  "audience": null,
+  "availability": null,
+  "series": "a8acb019ef",
+  "recurring": "Most days",
+  "quality": 6,
+  "why": "Georgia Oakley's new Austen adaptation, following her acclaimed Blue Jean.",
+  "topics": [
+   "austen",
+   "period drama",
+   "film"
+  ],
+  "flags": []
+ },
+ {
   "name": "London Breeze Industry Event: Festival Formula Meet the Festivals Marketplace",
   "category": "Film",
   "description": "Join London Breeze Film Festival and Festival Formula for a unique opportunity to meet festivals. After the great success of last year\u2019s. 90m.",
@@ -4316,6 +4580,31 @@
    "networking",
    "sales"
   ]
+ },
+ {
+  "name": "Naza",
+  "category": "Film",
+  "description": "Shot at night on the rooftops of Tel Aviv, the film reveals in detail the systems behind Israel\u2019s calculated mass killing. Yuval Abraham, Rachel Szor, UK, 2026, 80m. Showtimes today: 12:25 PM, 8:45 PM.",
+  "neighborhood": "Holborn, St Giles & Bloomsbury South",
+  "price": null,
+  "start_time": "8:45 PM",
+  "end_time": null,
+  "url": "https://www.thegardencinema.co.uk/film/naza/",
+  "venue": "The Garden Cinema",
+  "lat": 51.5162,
+  "lng": -0.1213,
+  "audience": null,
+  "availability": null,
+  "series": "88f17aad3e",
+  "recurring": "Most days",
+  "quality": 6,
+  "why": "Night-shot film on Israel's targeting systems by journalist Yuval Abraham.",
+  "topics": [
+   "documentary",
+   "middle east",
+   "film"
+  ],
+  "flags": []
  },
  {
   "name": "London Breeze: Home is Where the Heart Is",
@@ -4366,6 +4655,31 @@
   "flags": []
  },
  {
+  "name": "The Social Reckoning",
+  "category": "Film",
+  "description": "A companion piece to the hit film, The Social Network, Sorkin's original screenplay tells the true story of how Frances Haugen. Aaron Sorkin, USA, 2026, 112m.",
+  "neighborhood": "Holborn, St Giles & Bloomsbury South",
+  "price": null,
+  "start_time": "2:30 PM",
+  "end_time": null,
+  "url": "https://www.thegardencinema.co.uk/film/the-social-reckoning/",
+  "venue": "The Garden Cinema",
+  "lat": 51.5162,
+  "lng": -0.1213,
+  "audience": null,
+  "availability": null,
+  "series": "57c1a65110",
+  "recurring": "Most days",
+  "quality": 7,
+  "why": "Aaron Sorkin's original screenplay on Frances Haugen's Facebook whistleblowing.",
+  "topics": [
+   "screenwriting",
+   "tech",
+   "film"
+  ],
+  "flags": []
+ },
+ {
   "name": "Possible Love",
   "category": "Film",
   "description": "Possible Love follows the intertwined relationship of two married couples facing different paths and hidden desires. Mi-ok (Jeon Do-yeon) lives quietly with. Lee Chang-dong, South Korea, USA, 2026, 164m.",
@@ -4390,6 +4704,153 @@
   "flags": []
  },
  {
+  "name": "NAZA",
+  "category": "Film",
+  "description": "Showtimes today: 11:00 AM, 6:45 PM.",
+  "neighborhood": "Homerton North",
+  "price": null,
+  "start_time": "6:45 PM",
+  "end_time": null,
+  "url": "https://thecastlecinema.com/programme/115766/?programme_slug=naza",
+  "venue": "The Castle Cinema",
+  "lat": 51.5513,
+  "lng": -0.0432,
+  "audience": null,
+  "availability": null,
+  "series": "528ab48f3a",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Yuval Abraham's night-shot film on Israel's targeting systems.",
+  "topics": [
+   "documentary",
+   "middle east",
+   "film"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Wildwood",
+  "category": "Film",
+  "description": "Showtimes today: 11:15 AM, 6:15 PM.",
+  "neighborhood": "Homerton North",
+  "price": null,
+  "start_time": "6:15 PM",
+  "end_time": null,
+  "url": "https://thecastlecinema.com/programme/113504/?programme_slug=wildwood",
+  "venue": "The Castle Cinema",
+  "lat": 51.5513,
+  "lng": -0.0432,
+  "audience": null,
+  "availability": null,
+  "series": "c0911fb10a",
+  "quality": 5,
+  "why": "",
+  "topics": [
+   "film",
+   "animation",
+   "independent cinema"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Possible Love",
+  "category": "Film",
+  "description": "Showtimes today: 12:50 PM, 9:00 PM.",
+  "neighborhood": "Homerton North",
+  "price": null,
+  "start_time": "9:00 PM",
+  "end_time": null,
+  "url": "https://thecastlecinema.com/programme/115207/?programme_slug=possible-love",
+  "venue": "The Castle Cinema",
+  "lat": 51.5513,
+  "lng": -0.0432,
+  "audience": null,
+  "availability": null,
+  "series": "62dab82bff",
+  "quality": 5,
+  "why": "",
+  "topics": [
+   "film",
+   "romance",
+   "independent cinema"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Fatherland",
+  "category": "Film",
+  "description": "Showtimes today: 2:00 PM, 8:45 PM.",
+  "neighborhood": "Homerton North",
+  "price": null,
+  "start_time": "8:45 PM",
+  "end_time": null,
+  "url": "https://thecastlecinema.com/programme/115208/?programme_slug=fatherland",
+  "venue": "The Castle Cinema",
+  "lat": 51.5513,
+  "lng": -0.0432,
+  "audience": null,
+  "availability": null,
+  "series": "88131de593",
+  "quality": 7,
+  "why": "Pawlikowski's road drama, Thomas Mann and daughter through postwar Germany.",
+  "topics": [
+   "film",
+   "german history",
+   "arthouse"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Sense And Sensibility",
+  "category": "Film",
+  "description": "",
+  "neighborhood": "Homerton North",
+  "price": null,
+  "start_time": "4:00 PM",
+  "end_time": null,
+  "url": "https://thecastlecinema.com/programme/112473/?programme_slug=sense-and-sensibility",
+  "venue": "The Castle Cinema",
+  "lat": 51.5513,
+  "lng": -0.0432,
+  "audience": null,
+  "availability": null,
+  "series": "532bd63bf1",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Austen's Sense and Sensibility at a local independent cinema; no details given.",
+  "topics": [
+   "austen",
+   "period drama",
+   "film"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Extra Geography",
+  "category": "Film",
+  "description": "",
+  "neighborhood": "Homerton North",
+  "price": null,
+  "start_time": "4:10 PM",
+  "end_time": null,
+  "url": "https://thecastlecinema.com/programme/115200/?programme_slug=extra-geography",
+  "venue": "The Castle Cinema",
+  "lat": 51.5513,
+  "lng": -0.0432,
+  "audience": null,
+  "availability": null,
+  "series": "fe79009d5f",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Molly Manners' English girls' school debut at the Castle Cinema.",
+  "topics": [
+   "debut film",
+   "british cinema",
+   "film"
+  ],
+  "flags": []
+ },
+ {
   "name": "Friday Stand Up Comedy Early Show",
   "category": "Comedy",
   "description": "Stand-up at the Top Secret Comedy Club (170 Drury Lane).",
@@ -4397,7 +4858,7 @@
   "price": 15.0,
   "start_time": "7:00 PM",
   "end_time": null,
-  "url": "https://thetopsecretcomedyclub.co.uk/events-listings/friday-early-54/#2026-10-23-1900",
+  "url": "https://thetopsecretcomedyclub.co.uk/events-listings/friday-late-show-61/#2026-10-23-2100",
   "venue": "The Top Secret Comedy Club",
   "lat": 51.5154,
   "lng": -0.123,
@@ -4513,6 +4974,31 @@
   ]
  },
  {
+  "name": "Anime District's Halloween Party",
+  "category": "Meetups & Mixers",
+  "description": "Come join us after MCM for the ultimate anime halloween party. We'll be bringing you the best anime music and entertainment!",
+  "neighborhood": "Haggerston West & Kingsland Basin",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": null,
+  "url": "https://www.eventbrite.com/e/anime-districts-halloween-party-tickets-2001363166105",
+  "venue": "Signature Brew Haggerston",
+  "lat": 51.5367064,
+  "lng": -0.0758493,
+  "audience": null,
+  "availability": null,
+  "series": "0047bd0fae",
+  "quality": 4,
+  "why": "Post-MCM anime Halloween party with anime music and entertainment.",
+  "topics": [
+   "anime",
+   "halloween",
+   "party"
+  ],
+  "flags": [],
+  "family": "anime district: anime party"
+ },
+ {
   "name": "Verka Serduchka | 23 October | London",
   "category": "Arts & Play",
   "description": "Get ready to dance all night with Verka Serduchka\u2019s wild and unforgettable show!",
@@ -4612,6 +5098,30 @@
   ]
  },
  {
+  "name": "DJ EDDIES FUNKY BIRTHDAY BASH with Guest DJ",
+  "category": "Music",
+  "description": "Come and join me and celebrate my birthday at Caffe Italia Banstead",
+  "neighborhood": null,
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "10:59 PM",
+  "url": "https://www.eventbrite.co.uk/e/dj-eddies-funky-birthday-bash-with-guest-dj-tickets-1992912061624",
+  "venue": "Caffe Italia",
+  "lat": 51.3225875,
+  "lng": -0.2020492,
+  "audience": null,
+  "availability": null,
+  "series": "213dd991ba",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "birthday",
+   "dj",
+   "party"
+  ],
+  "flags": []
+ },
+ {
   "name": "Neurodiversity Conference at St Mary's University , Twickenham",
   "category": "Meetups & Mixers",
   "description": "Join us on the 23rd October for a day of amazing speakers discussing dyslexia, dyscalculia and ADHD.",
@@ -4632,54 +5142,6 @@
    "neurodiversity",
    "adhd",
    "dyslexia"
-  ],
-  "flags": []
- },
- {
-  "name": "Padel Play Dates",
-  "category": "Meetups & Mixers",
-  "description": "Meet your match.",
-  "neighborhood": "North End",
-  "price": null,
-  "start_time": "6:30 PM",
-  "end_time": "9:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/padel-play-dates-tickets-1995445749954",
-  "venue": "Padel Social Club",
-  "lat": 51.4871784,
-  "lng": -0.1975662,
-  "audience": null,
-  "availability": null,
-  "series": "b27c667c86",
-  "quality": 4,
-  "why": "Social padel sessions to meet other players.",
-  "topics": [
-   "padel",
-   "sport",
-   "social"
-  ],
-  "flags": []
- },
- {
-  "name": "HALLOWEEN FRIGHT NIGHT - Shoreditch's ULTIMATE Halloween PARTY",
-  "category": "Meetups & Mixers",
-  "description": "HALLOWEEN FRIGHT NIGHT - Shoreditch's ULTIMATE Halloween PARTY",
-  "neighborhood": "Shoreditch",
-  "price": null,
-  "start_time": "10:00 PM",
-  "end_time": null,
-  "url": "https://www.eventbrite.com/e/halloween-fright-night-shoreditchs-ultimate-halloween-party-tickets-2003160801882",
-  "venue": "Trapeze Bar",
-  "lat": 51.52573659999999,
-  "lng": -0.0833574,
-  "audience": null,
-  "availability": null,
-  "series": "89e2dddd43",
-  "quality": 4,
-  "why": "Halloween club night at Trapeze Bar, Shoreditch.",
-  "topics": [
-   "halloween",
-   "club night",
-   "shoreditch"
   ],
   "flags": []
  },
@@ -4708,6 +5170,33 @@
   "flags": []
  },
  {
+  "name": "Sobremesa by Campo Viejo",
+  "category": "Food & Drink",
+  "description": "Celebrate the Spanish tradition of Sobremesa with wine, food by Jos\u00e9 Pizarro, live music AND more money off your bill the longer you stay!",
+  "neighborhood": "Shoreditch",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "11:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/sobremesa-by-campo-viejo-tickets-2002051031529",
+  "venue": "83 Rivington St, Greater",
+  "lat": 51.5263468,
+  "lng": -0.0787394,
+  "audience": null,
+  "availability": null,
+  "series": "51db313a74",
+  "quality": 4,
+  "why": "Jos\u00e9 Pizarro food paired with Campo Viejo wine and live music.",
+  "topics": [
+   "spanish food",
+   "wine",
+   "live music"
+  ],
+  "flags": [
+   "sales"
+  ],
+  "family": "campo viejo: wine promotion"
+ },
+ {
   "name": "Fondue Night",
   "category": "Food & Drink",
   "description": "Raclettes & Fondue Nights are back! Book yours and enjoy yourself with the best that Switzerland has to offer",
@@ -4729,34 +5218,32 @@
    "fondue",
    "dinner"
   ],
-  "flags": []
+  "flags": [],
+  "family": "jumi cheese: fondue night"
  },
  {
-  "name": "Foodies + New Friends: Shoreditch",
-  "category": "Food & Drink",
-  "description": "You sign up. We book. Connect with new friends over dinner while supporting local businesses!",
-  "neighborhood": "Shoreditch",
+  "name": "World Champagne Day: Champagne Lanson Masterclass at Courtyard Wine Cellars",
+  "category": "Classes & Workshops",
+  "description": "Join us on World Champagne Day for an exclusive Champagne Lanson Masterclass at Courtyard Wine Cellars",
+  "neighborhood": "Strand, St James & Mayfair",
   "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://www.eventbrite.com/e/foodies-new-friends-shoreditch-tickets-1976258195462",
-  "venue": "Restaurant of the Week",
-  "lat": 51.5272401,
-  "lng": -0.0796187,
+  "start_time": "6:00 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/world-champagne-day-champagne-lanson-masterclass-at-courtyard-wine-cellars-tickets-2001184781552",
+  "venue": "Courtyard Wine Cellars",
+  "lat": 51.51196789999999,
+  "lng": -0.122655,
   "audience": null,
   "availability": null,
-  "series": "6700c5fd6b",
-  "recurring": "Also on other days",
-  "quality": 2,
-  "why": "",
+  "series": "ea845515e9",
+  "quality": 5,
+  "why": "Lanson Champagne masterclass marking World Champagne Day.",
   "topics": [
-   "dinner",
-   "new friends",
-   "social"
+   "champagne",
+   "wine tasting",
+   "masterclass"
   ],
-  "flags": [
-   "networking"
-  ]
+  "flags": []
  },
  {
   "name": "The Friday WFH Club: coworking for women, Portobello Road",
@@ -4781,7 +5268,8 @@
    "remote work",
    "women"
   ],
-  "flags": []
+  "flags": [],
+  "family": "the friday wfh club: coworking session"
  },
  {
   "name": "Closing Keynote & reception: China and the World - A New Global Order?",
@@ -4901,7 +5389,8 @@
    "dance",
    "beginners"
   ],
-  "flags": []
+  "flags": [],
+  "family": "pineapple dance studios: bollywood dance workshop"
  },
  {
   "name": "Practical Excel Pivot Tables: 1 Hour, Fast, Focused & Instructor-Led",
@@ -4929,58 +5418,8 @@
   "flags": [
    "online",
    "service"
-  ]
- },
- {
-  "name": "Complete Beginners (Caius House Youth Centre)",
-  "category": "Classes & Workshops",
-  "description": "Adult complete beginners coaching sessions in South London take place weekly at Caius House Youth Centre",
-  "neighborhood": "St Mary's & Cotton Row",
-  "price": null,
-  "start_time": "8:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/complete-beginners-caius-house-youth-centre-tickets-2002940470866",
-  "venue": "Caius House",
-  "lat": 51.470423,
-  "lng": -0.175917,
-  "audience": null,
-  "availability": null,
-  "series": "24dfab38fb",
-  "recurring": "Every Friday",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "beginners sport",
-   "coaching",
-   "youth centre"
   ],
-  "flags": [
-   "service"
-  ]
- },
- {
-  "name": "Mindfulness and Sound Bath Meditation",
-  "category": "Classes & Workshops",
-  "description": "Join us for a blissful Friday evening of relaxation, self-discovery and re-connection!",
-  "neighborhood": "Greenwich & Deptford Creekside",
-  "price": null,
-  "start_time": "6:00 PM",
-  "end_time": "7:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/mindfulness-and-sound-bath-meditation-tickets-2003290908033",
-  "venue": "Amitabha Garden",
-  "lat": 51.4828483,
-  "lng": -0.0138249,
-  "audience": null,
-  "availability": null,
-  "series": "bca131ab7a",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "meditation",
-   "sound bath",
-   "wellbeing"
-  ],
-  "flags": []
+  "family": "golden cross house: excel workshop"
  },
  {
   "name": "Lost Cinemas of the West End - a walking tour",
@@ -5007,30 +5446,6 @@
   "flags": []
  },
  {
-  "name": "Masonic Walking Tour",
-  "category": "Tours",
-  "description": "A fun and informative tour around the streets of London near Freemasons\u2019 Hall.",
-  "neighborhood": "Holborn, St Giles & Bloomsbury South",
-  "price": null,
-  "start_time": "2:00 PM",
-  "end_time": "3:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/masonic-walking-tour-tickets-1992279102426",
-  "venue": "Freemasons Hall",
-  "lat": 51.5150976,
-  "lng": -0.1208645,
-  "audience": null,
-  "availability": null,
-  "series": "6e3fe46b48",
-  "quality": 6,
-  "why": "Walking tour exploring Freemasonry history and streets around Freemasons' Hall.",
-  "topics": [
-   "freemasonry",
-   "walking tour",
-   "london history"
-  ],
-  "flags": []
- },
- {
   "name": "Hidden Stories of Kensington Gardens Walking Tour",
   "category": "Tours",
   "description": "Join us for an introduction to beautiful Kensington Gardens including exclusive access to the Albert Memorial.",
@@ -5051,6 +5466,30 @@
    "walking tour",
    "history",
    "kensington gardens"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Masonic Walking Tour",
+  "category": "Tours",
+  "description": "A fun and informative tour around the streets of London near Freemasons\u2019 Hall.",
+  "neighborhood": "Holborn, St Giles & Bloomsbury South",
+  "price": null,
+  "start_time": "2:00 PM",
+  "end_time": "3:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/masonic-walking-tour-tickets-1992279102426",
+  "venue": "Freemasons Hall",
+  "lat": 51.5150976,
+  "lng": -0.1208645,
+  "audience": null,
+  "availability": null,
+  "series": "6e3fe46b48",
+  "quality": 6,
+  "why": "Walking tour exploring Freemasonry history and streets around Freemasons' Hall.",
+  "topics": [
+   "freemasonry",
+   "walking tour",
+   "london history"
   ],
   "flags": []
  },
@@ -5201,55 +5640,6 @@
   "flags": []
  },
  {
-  "name": "Free Harry Potter Walking Tour - Welcome to the Wizarding World",
-  "category": "Tours",
-  "description": "Leave your inner muggle behind and discover the magical secrets hiding right under your nose.",
-  "neighborhood": "Fitzrovia West & Soho",
-  "price": null,
-  "start_time": "2:00 PM",
-  "end_time": "4:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/free-harry-potter-walking-tour-welcome-to-the-wizarding-world-tickets-1997559873354",
-  "venue": "Palace Theatre",
-  "lat": 51.5128879,
-  "lng": -0.1299325,
-  "audience": null,
-  "availability": null,
-  "series": "ce7860de25",
-  "recurring": "Also on other days",
-  "quality": 4,
-  "why": "Harry Potter filming locations, starting from the Palace Theatre.",
-  "topics": [
-   "harry potter",
-   "film locations",
-   "walking"
-  ],
-  "flags": []
- },
- {
-  "name": "Passeggiata guidata in italiano per Westminster",
-  "category": "Tours",
-  "description": "Passeggiata guidata in italiano per Westminster: da Buckingham Palace a Trafalgar Square",
-  "neighborhood": "Strand, St James & Mayfair",
-  "price": null,
-  "start_time": "4:00 PM",
-  "end_time": "5:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/passeggiata-guidata-in-italiano-per-westminster-tickets-2003457857383",
-  "venue": "Queen Victoria Memorial",
-  "lat": 51.50188139999999,
-  "lng": -0.1406225,
-  "audience": null,
-  "availability": null,
-  "series": "b4449b47d5",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "walking tours",
-   "westminster",
-   "italian"
-  ],
-  "flags": []
- },
- {
   "name": "The London Model Talk",
   "category": "Talks",
   "description": "Join us for a free lunchtime talk at The London Centre to learn about London\u2019s historical and physical development.",
@@ -5299,7 +5689,8 @@
   ],
   "flags": [
    "service"
-  ]
+  ],
+  "family": "john lewis oxford street: tech talk"
  },
  {
   "name": "WORK IN PROGRESS - A TALK WITH EWAN LESLIE",
@@ -5422,6 +5813,31 @@
   "flags": []
  },
  {
+  "name": "AFTER HOURS COMEDY - LATE NIGHT STAND UP COMEDY",
+  "category": "Comedy",
+  "description": "LATE NIGHT STAND UP COMEDY SHOWS AT SOHO COMEDY HOUSE EVERY WEEKEND. AGE 18+",
+  "neighborhood": "Fitzrovia West & Soho",
+  "price": null,
+  "start_time": "10:00 PM",
+  "end_time": null,
+  "url": "https://www.eventbrite.com/e/after-hours-comedy-late-night-stand-up-comedy-tickets-2002343392990",
+  "venue": "Soho Comedy House",
+  "lat": 51.5139314,
+  "lng": -0.1325214,
+  "audience": null,
+  "availability": null,
+  "series": "258c0c464e",
+  "recurring": "Every Friday",
+  "quality": 5,
+  "why": "Late-night weekend comedy shows at Soho Comedy House, 18 plus.",
+  "topics": [
+   "late night",
+   "stand-up",
+   "soho"
+  ],
+  "flags": []
+ },
+ {
   "name": "Friday Night Comedy in Kingston",
   "category": "Comedy",
   "description": "Brilliant live comedy in Kingston every Friday at Ram Jam Record in the Grey Horse.",
@@ -5495,6 +5911,31 @@
   "flags": []
  },
  {
+  "name": "Central London Comedy",
+  "category": "Comedy",
+  "description": "Come down and watch our PRO comedians, all for a great deal, in central London.",
+  "neighborhood": "Shoreditch",
+  "price": null,
+  "start_time": "8:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/central-london-comedy-tickets-1980258136393",
+  "venue": "City Comedy Club",
+  "lat": 51.5256992,
+  "lng": -0.0833529,
+  "audience": null,
+  "availability": null,
+  "series": "a087da7660",
+  "recurring": "Also on other days",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "stand-up",
+   "comedy club",
+   "central london"
+  ],
+  "flags": []
+ },
+ {
   "name": "DIAGNOSED : ART GALLERY / GROUP EXHIBITION",
   "category": "Film",
   "description": "Bringing together art, poetry, music and spoken word to create space for open, honest and meaningful conversations about mental health.",
@@ -5516,7 +5957,8 @@
    "group art show",
    "spoken word"
   ],
-  "flags": []
+  "flags": [],
+  "family": "indra gallery: exhibition"
  },
  {
   "name": "The Doings: Movie Night",
@@ -5709,78 +6151,6 @@
    "climate change",
    "documentary",
    "community screening"
-  ],
-  "flags": []
- },
- {
-  "name": "BHM Film Screening 'Out of Darkness' - Friday 23 October 2026",
-  "category": "Film",
-  "description": "Film Screening examining the untold history of African people, the African cultural contribution to the nations of the world.",
-  "neighborhood": "Lower Holloway",
-  "price": null,
-  "start_time": "6:30 PM",
-  "end_time": "10:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/bhm-film-screening-out-of-darkness-friday-23-october-2026-tickets-2001606801826",
-  "venue": "The Black Cultural Centre Islington",
-  "lat": 51.5532165,
-  "lng": -0.1111734,
-  "audience": null,
-  "availability": null,
-  "series": "7f2c208840",
-  "quality": 5,
-  "why": "Out of Darkness documentary on African cultural contributions worldwide.",
-  "topics": [
-   "black history",
-   "documentary",
-   "bhm"
-  ],
-  "flags": []
- },
- {
-  "name": "People's Emergency Briefing Screening",
-  "category": "Film",
-  "description": "Join us in person to watch the People's Emergency Briefing and chat about its findings.",
-  "neighborhood": "Brick Lane North",
-  "price": null,
-  "start_time": "6:00 PM",
-  "end_time": "8:00 PM",
-  "url": "https://www.eventbrite.com/e/peoples-emergency-briefing-screening-tickets-2003135723873",
-  "venue": "St. Hilda's East Community Centre",
-  "lat": 51.5250722,
-  "lng": -0.07425799999999999,
-  "audience": null,
-  "availability": null,
-  "series": "4c944cbd61",
-  "quality": 4,
-  "why": "People's Emergency Briefing film followed by group discussion.",
-  "topics": [
-   "climate change",
-   "documentary",
-   "discussion"
-  ],
-  "flags": []
- },
- {
-  "name": "Croydon Roots - A Soul-Full Celebration of Croydon's Black Heritage",
-  "category": "Film",
-  "description": "A three-day heritage celebration bringing Croydon's Black community together at Soul-Full in the heart of the town centre.",
-  "neighborhood": "Central Croydon",
-  "price": null,
-  "start_time": "6:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/croydon-roots-a-soul-full-celebration-of-croydons-black-heritage-tickets-2002096395213",
-  "venue": "Soul-Full Community Hub",
-  "lat": 51.373987,
-  "lng": -0.0974457,
-  "audience": null,
-  "availability": null,
-  "series": "0cf0aa5c24",
-  "quality": 5,
-  "why": "Three-day celebration of Croydon's Black heritage and community.",
-  "topics": [
-   "black heritage",
-   "community",
-   "local history"
   ],
   "flags": []
  }
