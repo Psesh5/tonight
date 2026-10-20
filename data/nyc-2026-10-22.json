@@ -25,7 +25,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "museum of chinese in america: museum admission"
  },
  {
   "name": "DAYDREAM | Air Becomes Art - Balloon Museum - Flexible Entry",
@@ -53,7 +54,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "balloon museum nyc: museum admission"
  },
  {
   "name": "The Banksy Museum New York!",
@@ -81,7 +83,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "banksy museum new york: museum admission"
  },
  {
   "name": "Banksy Museum - Flexiticket",
@@ -109,7 +112,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "banksy museum new york: museum admission"
  },
  {
   "name": "The Outsiders",
@@ -215,7 +219,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "banksy museum new york: museum offer"
  },
  {
   "name": "The High Society New Orleans Jazz Band",
@@ -360,7 +365,7 @@
   "availability": null,
   "tm_id": "Z7r9jZ1AAZAGs",
   "series": "003caeb253",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "New play, Pre-Existing Condition, at intimate Greenwich House Theater.",
   "topics": [
@@ -1906,6 +1911,7 @@
   "availability": null,
   "tm_id": "Z1r9uZruZqGZ1AvZ3GY",
   "series": "8e2c4ecdf7",
+  "recurring": "Also on other days",
   "quality": 4,
   "why": "Downstate plays a concert at the Booth Theatre.",
   "topics": [
@@ -2234,7 +2240,7 @@
   "availability": null,
   "tm_id": "G5diZ_AkoYeOz",
   "series": "06bedd1c67",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 3,
   "why": "",
   "topics": [
@@ -2244,7 +2250,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "madison square garden: stadium tour"
  },
  {
   "name": "Radio City Music Hall Tour Experience",
@@ -2271,7 +2278,8 @@
   ],
   "flags": [
    "flex_entry"
-  ]
+  ],
+  "family": "radio city music hall: tour"
  },
  {
   "name": "Classic Tour at Yankee Stadium",
@@ -2297,7 +2305,36 @@
    "stadium tour",
    "baseball history"
   ],
-  "flags": []
+  "flags": [],
+  "family": "yankee stadium: stadium tour"
+ },
+ {
+  "name": "Glimpse of Greatness",
+  "category": "Sports",
+  "description": "TOUR ENTRANCE: Guests will enter through the Hard Rock Cafe adjacent to Gate 6 (corner of 161st St. and River Ave). Glimpse of Greatness offers a quick peek inside Yankee Stadium's treasured New York Yankees Museum presented by Bank of America. This self-guided experience allows guests to explore the museum at their leisure. Knowledgeable tour guides will be on-hand to share stories about exhibit content and displayed memorabilia. Entry available 11:30 a.m. - 3:00 p.m. Schedule and availability may vary due to ballpark-wide events. IMPORTANT: Glimpse of Greatness does not offer any field visibility or interior views of Yankee Stadium. The Yankees reserve the right to cancel all or part of any tour. ALL tour dates, times, locations and routes are subject to change without notice.",
+  "neighborhood": "Yankee Stadium-Macombs Dam Park",
+  "price": null,
+  "start_time": null,
+  "end_time": null,
+  "url": "https://www.ticketmaster.com/glimpse-of-greatness-bronx-new-york-10-22-2026/event/1D006374F026727F",
+  "venue": "Yankee Stadium",
+  "lat": 40.8285237,
+  "lng": -73.9276264,
+  "audience": null,
+  "availability": null,
+  "tm_id": "G5vVZbMKYaEaT",
+  "series": "f0af0e30a7",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "sports",
+   "stadium tour",
+   "baseball history"
+  ],
+  "flags": [
+   "flex_entry"
+  ],
+  "family": "yankee stadium: stadium tour"
  },
  {
   "name": "NYC Parks\u2019 44th Annual Wreath Interpretations Open Call",
@@ -2349,7 +2386,8 @@
    "outdoors",
    "nature"
   ],
-  "flags": []
+  "flags": [],
+  "family": "forest fitness: outdoor fitness class"
  },
  {
   "name": "New Dendrology at the Arsenal Gallery",
@@ -2417,7 +2455,7 @@
   "audience": null,
   "availability": null,
   "series": "cb65f9a5b0",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "America 250 exhibit on the 1776 Staten Island Peace Conference.",
   "topics": [
@@ -2425,7 +2463,8 @@
    "american revolution",
    "exhibit"
   ],
-  "flags": []
+  "flags": [],
+  "family": "conference house museum: museum exhibit"
  },
  {
   "name": "It's My Park at Hunter's Point South Park",
@@ -2478,7 +2517,8 @@
   ],
   "flags": [
    "service"
-  ]
+  ],
+  "family": "conference house museum: volunteer day"
  },
  {
   "name": "Tiny Tots: Session 1",
@@ -2506,7 +2546,8 @@
   "flags": [
    "kids",
    "service"
-  ]
+  ],
+  "family": "tiny tots: kids' class"
  },
  {
   "name": "Ongoing Outdoor Museum Exhibit: Alice's Terracotta Garden",
@@ -2531,7 +2572,8 @@
    "terra cotta",
    "outdoor sculpture"
   ],
-  "flags": []
+  "flags": [],
+  "family": "conference house museum: museum exhibit"
  },
  {
   "name": "Ongoing Museum Exhibit: New York's Brick & Terra Cotta Industries",
@@ -2556,7 +2598,8 @@
    "bricks",
    "history"
   ],
-  "flags": []
+  "flags": [],
+  "family": "conference house museum: museum exhibit"
  },
  {
   "name": "Ongoing Museum Exhibit: Still Waters: Reflections of a Maritime Community",
@@ -2581,7 +2624,8 @@
    "staten island",
    "exhibit"
   ],
-  "flags": []
+  "flags": [],
+  "family": "conference house museum: museum exhibit"
  },
  {
   "name": "Riverside Field House: Fall Mat Pilates",
@@ -2605,7 +2649,8 @@
    "pilates",
    "free fitness"
   ],
-  "flags": []
+  "flags": [],
+  "family": "riverside field house: mat pilates"
  },
  {
   "name": "Craft & Chill",
@@ -2771,7 +2816,7 @@
   "audience": "kids",
   "availability": null,
   "series": "6fc17404e0",
-  "recurring": "Every Thursday",
+  "recurring": "Also on other days",
   "quality": 1,
   "why": "",
   "topics": [
@@ -2782,7 +2827,8 @@
   "flags": [
    "kids",
    "service"
-  ]
+  ],
+  "family": "lost battalion hall recreation center: youth recreation"
  },
  {
   "name": "Double Dutch",
@@ -2906,7 +2952,8 @@
    "fall migration",
    "nature"
   ],
-  "flags": []
+  "flags": [],
+  "family": "prospect park: guided walk"
  },
  {
   "name": "Sexual Health Mobile Medical Unit",
@@ -2923,7 +2970,7 @@
   "audience": null,
   "availability": null,
   "series": "cdbbdaab14",
-  "recurring": "Every Thursday",
+  "recurring": "Also on other days",
   "quality": 1,
   "why": "",
   "topics": [
@@ -2959,7 +3006,8 @@
   ],
   "flags": [
    "kids"
-  ]
+  ],
+  "family": "prospect park: guided walk"
  },
  {
   "name": "October Weekday Nature Exploration",
@@ -2987,7 +3035,8 @@
   "flags": [
    "kids",
    "service"
-  ]
+  ],
+  "family": "prospect park: guided walk"
  },
  {
   "name": "Carousel Rides",
@@ -3139,7 +3188,8 @@
    "pilates",
    "free fitness"
   ],
-  "flags": []
+  "flags": [],
+  "family": "riverside field house: mat pilates"
  },
  {
   "name": "Radical Compost Sifting Party: A Workshop on Soil and People Care in NYC",
@@ -3261,47 +3311,121 @@
   "flags": []
  },
  {
-  "name": "New York Comedy Club Presents",
+  "name": "Mike Britt, Liza Treyger, James Mattern",
   "category": "Comedy",
   "description": "Nothing says downtown NYC like a microphone, a stool, a brick wall and a comedian. Stand up comedy has been a staple of Village nightlife for decades! The newly expanded New York Comedy Club is proud to join the thriving arts and entertainment scene in the East Village, building on our strong presen",
   "neighborhood": null,
   "price": 29.0,
-  "start_time": "8:00 PM",
+  "start_time": "8:15 PM",
   "end_time": null,
-  "url": "https://newyorkcomedyclub.com/events/new-york-comedy-club-presents-2026-10-22200000",
+  "url": "https://newyorkcomedyclub.com/events/mike-britt-liza-treyger-james-mattern",
   "venue": "New York Comedy Club on 4th Street",
   "lat": null,
   "lng": null,
   "audience": null,
   "availability": null,
-  "series": "34b77cce81",
-  "quality": 4,
-  "why": "Downtown comedy showcase at the expanded East Village club.",
+  "series": "92283d9b64",
+  "quality": 5,
+  "why": "Liza Treyger headlines a Village comedy club lineup.",
   "topics": [
-   "stand-up comedy",
+   "stand-up",
+   "comedy club",
+   "east village"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Mike Britt, Ismael Loutfi, Riley Lassin, Matt Ruby",
+  "category": "Comedy",
+  "description": "Get the authentic NYC stand up comedy experience at New York Comedy Club! Enjoy a nightly showcase of the best comedians in the city, hot up-and-comers, plus hotshot celebrity drop ins, national and international touring comics and more surprises!FeaturingMike BrittIsmael LoutfiRiley LassinMatt Ruby",
+  "neighborhood": null,
+  "price": 29.0,
+  "start_time": "8:30 PM",
+  "end_time": null,
+  "url": "https://newyorkcomedyclub.com/events/mike-britt-ismael-loutfi-riley-lassin-matt-ruby",
+  "venue": "New York Comedy Club",
+  "lat": null,
+  "lng": null,
+  "audience": null,
+  "availability": null,
+  "series": "251bae5bee",
+  "quality": 4,
+  "why": "",
+  "topics": [
+   "stand-up",
+   "comedy club",
    "showcase"
   ],
   "flags": []
  },
  {
-  "name": "New York Comedy Club Presents",
+  "name": "James Mattern, Jonathan Randall & More!",
   "category": "Comedy",
   "description": "Spent the day exploring the Met or strolling through Central Park? Cap it off with a night of killer stand-up just around the corner. Each show is a fast-paced showcase of top-tier comics, big laughs, and good vibes only\u2014whether you\u2019re a local or in town for the weekend. It\u2019s intimate, unfiltered, a",
   "neighborhood": null,
   "price": 0.0,
   "start_time": "9:45 PM",
   "end_time": null,
-  "url": "https://newyorkcomedyclub.com/events/new-york-comedy-club-presents-2026-10-22214500",
+  "url": "https://newyorkcomedyclub.com/events/james-mattern-jonathan-randall-more",
   "venue": "New York Comedy Club Upper West Side",
   "lat": null,
   "lng": null,
   "audience": null,
   "availability": null,
-  "series": "872849b1bd",
+  "series": "80e02b876e",
   "quality": 4,
-  "why": "Late-night free comedy showcase on the Upper West Side.",
+  "why": "",
   "topics": [
-   "stand-up comedy",
+   "stand-up",
+   "comedy club",
+   "upper west side"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Tom Thakkar, Kate Sisk & More!",
+  "category": "Comedy",
+  "description": "Nothing says downtown NYC like a microphone, a stool, a brick wall and a comedian. Stand up comedy has been a staple of Village nightlife for decades! The newly expanded New York Comedy Club is proud to join the thriving arts and entertainment scene in the East Village, building on our strong presen",
+  "neighborhood": null,
+  "price": 15.0,
+  "start_time": "10:30 PM",
+  "end_time": null,
+  "url": "https://newyorkcomedyclub.com/events/tom-thakkar-kate-sisk-more",
+  "venue": "New York Comedy Club on 4th Street",
+  "lat": null,
+  "lng": null,
+  "audience": null,
+  "availability": null,
+  "series": "c06971386c",
+  "quality": 4,
+  "why": "",
+  "topics": [
+   "stand-up",
+   "comedy club",
+   "east village"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Ashley Austin Morris, Riley Lassin & More!",
+  "category": "Comedy",
+  "description": "Get the authentic NYC stand up comedy experience at New York Comedy Club! Enjoy a nightly showcase of the best comedians in the city, hot up-and-comers, plus hotshot celebrity drop ins, national and international touring comics and more surprises!",
+  "neighborhood": null,
+  "price": 15.0,
+  "start_time": "10:30 PM",
+  "end_time": null,
+  "url": "https://newyorkcomedyclub.com/events/ashley-austin-morris-riley-lassin",
+  "venue": "New York Comedy Club",
+  "lat": null,
+  "lng": null,
+  "audience": null,
+  "availability": null,
+  "series": "8467a1f7eb",
+  "quality": 4,
+  "why": "",
+  "topics": [
+   "stand-up",
+   "comedy club",
    "showcase"
   ],
   "flags": []
@@ -3328,7 +3452,8 @@
    "stand-up comedy",
    "emerging comics"
   ],
-  "flags": []
+  "flags": [],
+  "family": "eastville comedy club: open mic"
  },
  {
   "name": "Carmen Lagala, Talal Alyan, Julia Barnard, Mike Agunbiade, Joe Mahoney, John Bennett, Dave Temple",
@@ -3362,7 +3487,7 @@
   "price": null,
   "start_time": "6:00 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792432800",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792519200",
   "venue": "Comedy Cellar",
   "lat": 40.7302,
   "lng": -74.0006,
@@ -3386,7 +3511,7 @@
   "price": null,
   "start_time": "6:45 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792435500",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792521900",
   "venue": "Comedy Cellar (MacDougal Street)",
   "lat": 40.7302,
   "lng": -74.0006,
@@ -3410,7 +3535,7 @@
   "price": null,
   "start_time": "7:00 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792436400",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792522800",
   "venue": "Comedy Cellar (Fat Black Pussycat)",
   "lat": 40.7307,
   "lng": -74.0008,
@@ -3434,7 +3559,7 @@
   "price": null,
   "start_time": "7:30 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792438200",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792524600",
   "venue": "Comedy Cellar (Village Underground)",
   "lat": 40.7307,
   "lng": -74.0008,
@@ -3458,7 +3583,7 @@
   "price": null,
   "start_time": "8:30 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792441800",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792528200",
   "venue": "Comedy Cellar (Fat Black Pussycat)",
   "lat": 40.7307,
   "lng": -74.0008,
@@ -3482,7 +3607,7 @@
   "price": null,
   "start_time": "8:45 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792442700",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792529100",
   "venue": "Comedy Cellar (MacDougal Street)",
   "lat": 40.7302,
   "lng": -74.0006,
@@ -3506,7 +3631,7 @@
   "price": null,
   "start_time": "9:00 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792443600",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792530000",
   "venue": "Comedy Cellar (Fat Black Pussycat)",
   "lat": 40.7307,
   "lng": -74.0008,
@@ -3530,7 +3655,7 @@
   "price": null,
   "start_time": "9:30 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792445400",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792531800",
   "venue": "Comedy Cellar",
   "lat": 40.7302,
   "lng": -74.0006,
@@ -3557,7 +3682,7 @@
   "price": null,
   "start_time": "10:30 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792449000",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792535400",
   "venue": "Comedy Cellar (Fat Black Pussycat)",
   "lat": 40.7307,
   "lng": -74.0008,
@@ -3581,7 +3706,7 @@
   "price": null,
   "start_time": "10:45 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792449900",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792536300",
   "venue": "Comedy Cellar (MacDougal Street)",
   "lat": 40.7302,
   "lng": -74.0006,
@@ -3605,7 +3730,7 @@
   "price": null,
   "start_time": "11:00 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792450800",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792537200",
   "venue": "Comedy Cellar (Fat Black Pussycat)",
   "lat": 40.7307,
   "lng": -74.0008,
@@ -3629,7 +3754,7 @@
   "price": null,
   "start_time": "11:30 PM",
   "end_time": null,
-  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792452600",
+  "url": "https://www.comedycellar.com/reservations-newyork/?showid=1792539000",
   "venue": "Comedy Cellar (Village Underground)",
   "lat": 40.7307,
   "lng": -74.0008,
@@ -3781,7 +3906,7 @@
   "audience": null,
   "availability": null,
   "series": "2afd466f9b",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "The Great Experiment screens at IFC Center; an ordinary evening showing.",
   "topics": [
@@ -4001,7 +4126,7 @@
   "audience": null,
   "availability": null,
   "series": "a833ea3b4d",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Afternoon screening with little listed context.",
   "topics": [
@@ -4334,7 +4459,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "nanonite social: meetup"
  },
  {
   "name": "Pixel Eight x Ramp: Designer Pit Stop",
@@ -4458,7 +4584,8 @@
    "tech",
    "seminars"
   ],
-  "flags": []
+  "flags": [],
+  "family": "transit techies: meetup"
  },
  {
   "name": "Startup Scaries",
@@ -4485,7 +4612,8 @@
   "flags": [
    "networking",
    "sales"
-  ]
+  ],
+  "family": "startup scaries: meetup"
  },
  {
   "name": "Pitch and Run 730am Early Bird Battery Park",
@@ -4512,7 +4640,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "pitch and run: pitch session"
  },
  {
   "name": "Chief of Staff Connect - New York",
@@ -4538,33 +4667,8 @@
   "flags": [
    "networking",
    "sales"
-  ]
- },
- {
-  "name": "Colectivo Coffee Mixer x Bright Cup",
-  "category": "Tech",
-  "description": "We are the tech community for founders, investors, and operators that connects with a Latin flavor in NYC.",
-  "neighborhood": "SoHo-Little Italy-Hudson Square",
-  "price": 0.0,
-  "start_time": "9:00 AM",
-  "end_time": "11:00 AM",
-  "url": "https://luma.com/z26omxnk",
-  "venue": "South Village",
-  "lat": 40.72554863579691,
-  "lng": -74.00375681473913,
-  "audience": null,
-  "availability": null,
-  "series": "50df111e49",
-  "quality": 1,
-  "why": "",
-  "topics": [
-   "tech",
-   "founders",
-   "networking"
   ],
-  "flags": [
-   "networking"
-  ]
+  "family": "chief of staff connect: networking"
  },
  {
   "name": "Industrious Greenwich Coworking Day",
@@ -4767,7 +4871,8 @@
   ],
   "flags": [
    "sales"
-  ]
+  ],
+  "family": "nyaw: networking event"
  },
  {
   "name": "Subra Coffee Test Thursday Pop-Up",
@@ -4791,7 +4896,36 @@
    "coffee",
    "community"
   ],
-  "flags": []
+  "flags": [],
+  "family": "subra coffee: pop-up"
+ },
+ {
+  "name": "The Warehouse: Tech Coworking",
+  "category": "Tech",
+  "description": "A coworking space with creatives, technologists, and founders.",
+  "neighborhood": "Prospect Heights",
+  "price": 0.0,
+  "start_time": "10:00 AM",
+  "end_time": "6:00 PM",
+  "url": "https://luma.com/gq1j487m",
+  "venue": "Brooklyn",
+  "lat": 40.68076095431969,
+  "lng": -73.96564450058375,
+  "audience": null,
+  "availability": null,
+  "series": "aa910a502b",
+  "quality": 1,
+  "why": "",
+  "topics": [
+   "coworking",
+   "tech",
+   "founders"
+  ],
+  "flags": [
+   "networking",
+   "service"
+  ],
+  "family": "the warehouse: coworking"
  },
  {
   "name": "Sunset Yards Middle School Tour",
@@ -4843,7 +4977,8 @@
   "flags": [
    "networking",
    "sales"
-  ]
+  ],
+  "family": "bagels with bob: networking breakfast"
  },
  {
   "name": "New York ~ Corporate Talent Leaders Horror Stories Lunch",
@@ -4896,6 +5031,33 @@
    "networking",
    "sales"
   ]
+ },
+ {
+  "name": "Sub Club Live, live in NYC",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Midtown South-Flatiron-Union Square",
+  "price": 0.0,
+  "start_time": "11:30 AM",
+  "end_time": "12:30 PM",
+  "url": "https://luma.com/9iqkgeo5",
+  "venue": "Chelsea",
+  "lat": 40.7469520187202,
+  "lng": -73.9950644059799,
+  "audience": null,
+  "availability": null,
+  "series": "8235a0278e",
+  "quality": 1,
+  "why": "",
+  "topics": [
+   "networking",
+   "tech",
+   "meetup"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "family": "sub club live: networking meetup"
  },
  {
   "name": "CDMX Coffee Roaster Cupping",
@@ -4966,6 +5128,32 @@
    "summit"
   ],
   "flags": []
+ },
+ {
+  "name": "Designer Job-Hunt Co-working \u2615 Apply to 10 Jobs Worth Your Time (Thursday, NYC)",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Chelsea-Hudson Yards",
+  "price": 0.0,
+  "start_time": "2:00 PM",
+  "end_time": "6:00 PM",
+  "url": "https://luma.com/er51dyxr",
+  "venue": "Urbana Cafe & Gallery",
+  "lat": 40.7450198,
+  "lng": -74.0058523,
+  "audience": null,
+  "availability": null,
+  "series": "0b3ebcc520",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "job search",
+   "co-working",
+   "design careers"
+  ],
+  "flags": [
+   "service"
+  ]
  },
  {
   "name": "Intro to HTML & CSS",
@@ -5116,7 +5304,8 @@
   ],
   "flags": [
    "sales"
-  ]
+  ],
+  "family": "keller williams nyc: investment club"
  },
  {
   "name": "Ascent NYC Cocktail Event during NextPredict",
@@ -5324,7 +5513,8 @@
   ],
   "flags": [
    "sales"
-  ]
+  ],
+  "family": "all things open: community meetup"
  },
  {
   "name": "Autumn Harvest Happy Hour",
@@ -5431,30 +5621,32 @@
   ]
  },
  {
-  "name": "Mental Well-Being & Executive Resilience",
+  "name": "Orion x Equinox Hotels",
   "category": "Meetups & Mixers",
-  "description": "Delta and Industrious are teaming up to bring expert insights from leading executives to an Industrious near you. Eats, drinks, giveaways, and great times await!",
-  "neighborhood": "Midtown-Times Square",
+  "description": "",
+  "neighborhood": "Chelsea-Hudson Yards",
   "price": 0.0,
   "start_time": "5:00 PM",
-  "end_time": "7:30 PM",
-  "url": "https://luma.com/wnp3lfi3",
-  "venue": "Industrious",
-  "lat": 40.7572312,
-  "lng": -73.9769653,
+  "end_time": "8:00 PM",
+  "url": "https://luma.com/gjdc0abv",
+  "venue": "Midtown Manhattan",
+  "lat": 40.75321161365789,
+  "lng": -74.00275321397058,
   "audience": null,
   "availability": null,
-  "series": "874155f585",
+  "series": "8b06dbedf7",
   "quality": 2,
   "why": "",
   "topics": [
-   "well-being",
-   "executives",
-   "corporate"
+   "hotels",
+   "networking",
+   "brand event"
   ],
   "flags": [
+   "networking",
    "sales"
-  ]
+  ],
+  "family": "orion: networking mixer"
  },
  {
   "name": "Out in Climate x Build Out | NYC Fall Happy Hour with COOKFOX and USGBC",
@@ -5570,7 +5762,7 @@
   "lat": 40.74228874927898,
   "lng": -73.98889245571303,
   "audience": null,
-  "availability": null,
+  "availability": "waitlist",
   "series": "87cb1ef44a",
   "quality": 1,
   "why": "",
@@ -5633,32 +5825,6 @@
   ],
   "flags": [
    "class_slot"
-  ]
- },
- {
-  "name": "Danu & Atlas Works Group: Economic Defense as National Security",
-  "category": "Meetups & Mixers",
-  "description": "",
-  "neighborhood": "Chelsea-Hudson Yards",
-  "price": 0.0,
-  "start_time": "5:30 PM",
-  "end_time": "7:00 PM",
-  "url": "https://luma.com/6os62j43",
-  "venue": "Manhattan",
-  "lat": 40.747167907296905,
-  "lng": -74.0086294244135,
-  "audience": null,
-  "availability": null,
-  "series": "29a3ed6a46",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "economic policy",
-   "national security",
-   "networking"
-  ],
-  "flags": [
-   "networking"
   ]
  },
  {
@@ -5741,9 +5907,9 @@
  {
   "name": "La Bola Negra - NYC Screening - Queer Cinema Night",
   "category": "Film",
-  "description": "",
+  "description": "Bringing gay and queer men together through conversation, culture, adventures, and travel. Good people, shared experiences, and a more social life. Make other plans.",
   "neighborhood": "Greenwich Village",
-  "price": 40.0,
+  "price": 43.0,
   "start_time": "5:30 PM",
   "end_time": "9:00 PM",
   "url": "https://luma.com/17plchjq",
@@ -5790,32 +5956,6 @@
   ]
  },
  {
-  "name": "session 1: charmed x snail mail w/ martina calvi + kelsey armstrong",
-  "category": "Classes & Workshops",
-  "description": "@haricotvert's crafty community in williamsburg, brooklyn. check out our events & workshops \u2661",
-  "neighborhood": "Williamsburg",
-  "price": 28.0,
-  "start_time": "5:30 PM",
-  "end_time": "7:30 PM",
-  "url": "https://luma.com/craftnook-5pqs",
-  "venue": "haricot vert's dreamworld",
-  "lat": 40.7155365,
-  "lng": -73.9619548,
-  "audience": null,
-  "availability": "waitlist",
-  "series": "c9e693e3b2",
-  "quality": 4,
-  "why": "Crafty session with Martina Calvi and Kelsey Armstrong, Charmed-themed.",
-  "topics": [
-   "crafts",
-   "snail mail",
-   "workshop"
-  ],
-  "flags": [
-   "class_slot"
-  ]
- },
- {
   "name": "Community Happy Hour, hosted by CX Joe + Kodif",
   "category": "Meetups & Mixers",
   "description": "",
@@ -5836,6 +5976,32 @@
    "happy hour",
    "networking",
    "community"
+  ],
+  "flags": [
+   "networking"
+  ]
+ },
+ {
+  "name": "Danu & Atlas Works Group: Economic Defense as National Security",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Chelsea-Hudson Yards",
+  "price": 0.0,
+  "start_time": "5:30 PM",
+  "end_time": "7:00 PM",
+  "url": "https://luma.com/6os62j43",
+  "venue": "Manhattan",
+  "lat": 40.747167907296905,
+  "lng": -74.0086294244135,
+  "audience": null,
+  "availability": null,
+  "series": "29a3ed6a46",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "economic policy",
+   "national security",
+   "networking"
   ],
   "flags": [
    "networking"
@@ -5868,6 +6034,32 @@
   ]
  },
  {
+  "name": "session 1: charmed x snail mail w/ martina calvi + kelsey armstrong",
+  "category": "Classes & Workshops",
+  "description": "@haricotvert's crafty community in williamsburg, brooklyn. check out our events & workshops \u2661",
+  "neighborhood": "Williamsburg",
+  "price": 28.0,
+  "start_time": "5:30 PM",
+  "end_time": "7:30 PM",
+  "url": "https://luma.com/craftnook-5pqs",
+  "venue": "haricot vert's dreamworld",
+  "lat": 40.7155365,
+  "lng": -73.9619548,
+  "audience": null,
+  "availability": "waitlist",
+  "series": "c9e693e3b2",
+  "quality": 4,
+  "why": "Crafty session with Martina Calvi and Kelsey Armstrong, Charmed-themed.",
+  "topics": [
+   "crafts",
+   "snail mail",
+   "workshop"
+  ],
+  "flags": [
+   "class_slot"
+  ]
+ },
+ {
   "name": "Volunteer Build Night with Adaptive Design Association \u2014 ADA x Women in Design NYC",
   "category": "Meetups & Mixers",
   "description": "IDSA\u2019s Women in Design New York City chapter. Focused on advancing and supporting women in design. \ud83d\udce7 WIDNYC@idsa.org",
@@ -5880,7 +6072,7 @@
   "lat": 40.7538395,
   "lng": -73.99314890000001,
   "audience": null,
-  "availability": "waitlist",
+  "availability": null,
   "series": "08658adf9b",
   "quality": 2,
   "why": "",
@@ -5894,26 +6086,26 @@
   ]
  },
  {
-  "name": "A Home Worth Fighting For \u2014 Free Film Screening & Panel",
-  "category": "Film",
-  "description": "Events and program offers at Sixth Street Community Center.",
-  "neighborhood": "East Village",
+  "name": "Album for Joy: A Conversation with artist Chelsey Pettyjohn",
+  "category": "Talks",
+  "description": "",
+  "neighborhood": "Tribeca-Civic Center",
   "price": 0.0,
   "start_time": "6:00 PM",
-  "end_time": "8:30 PM",
-  "url": "https://luma.com/pesgr4fg",
-  "venue": "Sixth Street Community Center",
-  "lat": 40.7236828,
-  "lng": -73.9802517,
+  "end_time": "7:30 PM",
+  "url": "https://luma.com/2z7xisof",
+  "venue": "368 Broadway suite 411",
+  "lat": 40.7174943,
+  "lng": -74.0030249,
   "audience": null,
   "availability": null,
-  "series": "ca169233f6",
+  "series": "741227d2c6",
   "quality": 5,
-  "why": "Free screening of a housing documentary followed by a panel discussion.",
+  "why": "Artist Chelsey Pettyjohn discusses her album Album for Joy.",
   "topics": [
-   "housing",
-   "documentary",
-   "community panel"
+   "art",
+   "music",
+   "artist conversation"
   ],
   "flags": []
  },
@@ -6067,33 +6259,6 @@
   ],
   "flags": [
    "networking"
-  ]
- },
- {
-  "name": "Founder/VC Dinner at Norton Rose Fulbright",
-  "category": "Classes & Workshops",
-  "description": "Community of 200,000+ AI Founders & Builders connecting through events, workshops, and a weekly newsletter. Join now: foundersbay.com/membership",
-  "neighborhood": "Midtown-Times Square",
-  "price": 0.0,
-  "start_time": "6:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://luma.com/k20wqqls",
-  "venue": "Midtown West",
-  "lat": 40.761149640909615,
-  "lng": -73.97762905478844,
-  "audience": null,
-  "availability": null,
-  "series": "d3bd217845",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "venture capital",
-   "founders",
-   "dinner"
-  ],
-  "flags": [
-   "networking",
-   "sales"
   ]
  },
  {
@@ -6303,31 +6468,29 @@
   ]
  },
  {
-  "name": "Meet Your Network: Get Matched & Experience The New Her Workplace",
+  "name": "Mental Well-Being & Executive Resilience",
   "category": "Meetups & Mixers",
-  "description": "The private membership network where ambitious corporate women get to the next level, together. Apply for membership \u2192 www.herworkplace.com",
-  "neighborhood": "Midtown South-Flatiron-Union Square",
-  "price": 15.0,
+  "description": "Delta and Industrious are teaming up to bring expert insights from leading executives to an Industrious near you. Eats, drinks, giveaways, and great times await!",
+  "neighborhood": "Midtown-Times Square",
+  "price": 0.0,
   "start_time": "6:00 PM",
-  "end_time": "8:00 PM",
-  "url": "https://luma.com/01elyttn",
-  "venue": "Blu Dot",
-  "lat": 40.7440305,
-  "lng": -73.98547150000002,
+  "end_time": "8:30 PM",
+  "url": "https://luma.com/wnp3lfi3",
+  "venue": "Industrious",
+  "lat": 40.7572312,
+  "lng": -73.9769653,
   "audience": null,
-  "availability": null,
-  "series": "07b53b6a2a",
-  "quality": 1,
+  "availability": "waitlist",
+  "series": "874155f585",
+  "quality": 2,
   "why": "",
   "topics": [
-   "corporate careers",
-   "membership",
-   "networking"
+   "well-being",
+   "executives",
+   "corporate"
   ],
   "flags": [
-   "networking",
-   "sales",
-   "members_only"
+   "sales"
   ]
  },
  {
@@ -6488,30 +6651,6 @@
    "networking",
    "sales"
   ]
- },
- {
-  "name": "Private Gallery Night: The Women Who Shaped American Art",
-  "category": "Arts & Play",
-  "description": "Live your best, most culture-filled and socially connected life and help us build a more art-full world by attending an art-based event and joining our art-full membership.",
-  "neighborhood": "Upper East Side-Carnegie Hill",
-  "price": 10.0,
-  "start_time": "6:00 PM",
-  "end_time": "8:00 PM",
-  "url": "https://luma.com/TheWomenWhoShapedAmericanArt",
-  "venue": "17 E 67th St",
-  "lat": 40.7689236,
-  "lng": -73.9680869,
-  "audience": null,
-  "availability": null,
-  "series": "928a80e17c",
-  "quality": 5,
-  "why": "Gallery night focused on women who shaped American art.",
-  "topics": [
-   "women artists",
-   "american art",
-   "gallery night"
-  ],
-  "flags": []
  },
  {
   "name": "Rom-Com & Cheese Club: PRACTICAL MAGIC",
@@ -6745,53 +6884,83 @@
   "flags": []
  },
  {
-  "name": "Comics Critique Crew",
-  "category": "Classes & Workshops",
-  "description": "Access your creativity. Join us at our Long Island City art studio for workshops, meetups, private events, and craft-based community. Run by the folks behind Queens Collaborative. \u2b50\ufe0f",
-  "neighborhood": "Queensbridge-Ravenswood-Dutch Kills",
-  "price": 10.0,
-  "start_time": "6:30 PM",
+  "name": "A Home Worth Fighting For \u2014 Free Film Screening & Panel",
+  "category": "Film",
+  "description": "Events and program offers at Sixth Street Community Center.",
+  "neighborhood": "East Village",
+  "price": 0.0,
+  "start_time": "6:00 PM",
   "end_time": "8:30 PM",
-  "url": "https://luma.com/bfpqm80m",
-  "venue": "21-07 41st Ave",
-  "lat": 40.7539072,
-  "lng": -73.9419257,
+  "url": "https://luma.com/pesgr4fg",
+  "venue": "Sixth Street Community Center",
+  "lat": 40.7236828,
+  "lng": -73.9802517,
   "audience": null,
   "availability": null,
-  "series": "9dbfeb3173",
-  "quality": 3,
-  "why": "",
+  "series": "ca169233f6",
+  "quality": 5,
+  "why": "Free screening of a housing documentary followed by a panel discussion.",
   "topics": [
-   "comics",
-   "critique",
-   "art workshop"
+   "housing",
+   "documentary",
+   "community panel"
   ],
   "flags": []
  },
  {
-  "name": "Thursday Trivia Night!",
-  "category": "Trivia & Games",
-  "description": "The happiest place in NYC!",
-  "neighborhood": "East Village",
+  "name": "Founder/VC Dinner at Norton Rose Fulbright",
+  "category": "Classes & Workshops",
+  "description": "Community of 200,000+ AI Founders & Builders connecting through events, workshops, and a weekly newsletter. Join now: foundersbay.com/membership",
+  "neighborhood": "Midtown-Times Square",
   "price": 0.0,
-  "start_time": "6:30 PM",
-  "end_time": "7:30 PM",
-  "url": "https://luma.com/o5usjagv",
-  "venue": "Boris & Horton",
-  "lat": 40.7292874,
-  "lng": -73.98145629999999,
+  "start_time": "6:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://luma.com/k20wqqls",
+  "venue": "Midtown West",
+  "lat": 40.761149640909615,
+  "lng": -73.97762905478844,
   "audience": null,
   "availability": null,
-  "series": "a6d901cffe",
-  "recurring": "Every Thursday",
-  "quality": 4,
-  "why": "Weekly trivia at a neighborhood bar, low stakes.",
+  "series": "d3bd217845",
+  "quality": 2,
+  "why": "",
   "topics": [
-   "trivia",
-   "bar night",
-   "games"
+   "venture capital",
+   "founders",
+   "dinner"
   ],
-  "flags": []
+  "flags": [
+   "networking",
+   "sales"
+  ]
+ },
+ {
+  "name": "Meet Your Network: Get Matched & Experience The New Her Workplace",
+  "category": "Meetups & Mixers",
+  "description": "The private membership network where ambitious corporate women get to the next level, together. Apply for membership \u2192 www.herworkplace.com",
+  "neighborhood": "Midtown South-Flatiron-Union Square",
+  "price": 15.0,
+  "start_time": "6:00 PM",
+  "end_time": "8:00 PM",
+  "url": "https://luma.com/01elyttn",
+  "venue": "Blu Dot",
+  "lat": 40.7440305,
+  "lng": -73.98547150000002,
+  "audience": null,
+  "availability": null,
+  "series": "07b53b6a2a",
+  "quality": 1,
+  "why": "",
+  "topics": [
+   "corporate careers",
+   "membership",
+   "networking"
+  ],
+  "flags": [
+   "networking",
+   "sales",
+   "members_only"
+  ]
  },
  {
   "name": "A Chief of Staff Mixer on Asks and Offers (Thurs Oct 22)",
@@ -6824,7 +6993,7 @@
   "category": "Tech",
   "description": "Talk politics. Keep your friends.",
   "neighborhood": "West Village",
-  "price": 30.0,
+  "price": 10.0,
   "start_time": "6:30 PM",
   "end_time": "8:30 PM",
   "url": "https://luma.com/huj208eg",
@@ -6894,6 +7063,81 @@
   "flags": [
    "sales"
   ]
+ },
+ {
+  "name": "Chinese / HK Mahjong on the Upper West Side! (THURSDAY)",
+  "category": "Meetups & Mixers",
+  "description": "Weekly, friendly, Chinese / HK Mahjong on Manhattan\u2019s Upper West Side. Come join us\u2026Everyone welcome! Points or no points, you choose! \ud83d\udc95",
+  "neighborhood": "Upper West Side (Central)",
+  "price": 10.0,
+  "start_time": "6:30 PM",
+  "end_time": "8:30 PM",
+  "url": "https://luma.com/050hubqs",
+  "venue": "The Throwback",
+  "lat": 40.7932012,
+  "lng": -73.9713636,
+  "audience": null,
+  "availability": null,
+  "series": "faa1fd3494",
+  "quality": 4,
+  "why": "Weekly Hong Kong-style mahjong with optional points, all welcome.",
+  "topics": [
+   "mahjong",
+   "games",
+   "social"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Comics Critique Crew",
+  "category": "Classes & Workshops",
+  "description": "Access your creativity. Join us at our Long Island City art studio for workshops, meetups, private events, and craft-based community. Run by the folks behind Queens Collaborative. \u2b50\ufe0f",
+  "neighborhood": "Queensbridge-Ravenswood-Dutch Kills",
+  "price": 10.0,
+  "start_time": "6:30 PM",
+  "end_time": "8:30 PM",
+  "url": "https://luma.com/bfpqm80m",
+  "venue": "21-07 41st Ave",
+  "lat": 40.7539072,
+  "lng": -73.9419257,
+  "audience": null,
+  "availability": null,
+  "series": "9dbfeb3173",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "comics",
+   "critique",
+   "art workshop"
+  ],
+  "flags": []
+ },
+ {
+  "name": "\u26a1 Fractal Weekly Demo Party #11 \u26a1",
+  "category": "Meetups & Mixers",
+  "description": "Fractal Campus is a coworking space for friendly, ambitious nerds. Become a member at fractalnyc.com/campus",
+  "neighborhood": "East Williamsburg",
+  "price": 0.0,
+  "start_time": "6:30 PM",
+  "end_time": "9:00 PM",
+  "url": "https://luma.com/5qvhtqyl",
+  "venue": "Fractal Tech",
+  "lat": 40.7152269,
+  "lng": -73.9467208,
+  "audience": null,
+  "availability": null,
+  "series": "9443be3f19",
+  "quality": 1,
+  "why": "",
+  "topics": [
+   "tech",
+   "coworking",
+   "demo day"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "family": "fractal tech: demo party"
  },
  {
   "name": "Goddesses of Grace - A Biweekly Women's Wisdom Circle in NYC",
@@ -7152,6 +7396,31 @@
   ]
  },
  {
+  "name": "Thursday Trivia Night!",
+  "category": "Trivia & Games",
+  "description": "The happiest place in NYC!",
+  "neighborhood": "East Village",
+  "price": 0.0,
+  "start_time": "6:30 PM",
+  "end_time": "7:30 PM",
+  "url": "https://luma.com/o5usjagv",
+  "venue": "Boris & Horton",
+  "lat": 40.7292874,
+  "lng": -73.98145629999999,
+  "audience": null,
+  "availability": null,
+  "series": "a6d901cffe",
+  "recurring": "Every Thursday",
+  "quality": 4,
+  "why": "Weekly trivia at a neighborhood bar, low stakes.",
+  "topics": [
+   "trivia",
+   "bar night",
+   "games"
+  ],
+  "flags": []
+ },
+ {
   "name": "Witchy Sip & Shop Social \u2726 Glen Ridge \u2726 Wand & Willow Events",
   "category": "Meetups & Mixers",
   "description": "Networking events, walks, and socials for women entrepreneurs across Northern New Jersey. All events are open to the public, except members-only hangouts. Membership is optional.",
@@ -7164,7 +7433,7 @@
   "lat": 40.802398,
   "lng": -74.204692,
   "audience": null,
-  "availability": null,
+  "availability": "waitlist",
   "series": "9c58a13952",
   "quality": 2,
   "why": "",
@@ -7175,7 +7444,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "wand & willow events: social"
  },
  {
   "name": "Writing Rhythms @ Lightning Society",
@@ -7225,7 +7495,8 @@
   ],
   "flags": [
    "sales"
-  ]
+  ],
+  "family": "brooklyn running company: workshop"
  },
  {
   "name": "A Night with Notch at Zuma",
@@ -7279,30 +7550,6 @@
   ]
  },
  {
-  "name": "coolkyds Monthly Writer's Group",
-  "category": "Meetups & Mixers",
-  "description": "",
-  "neighborhood": "Bushwick (West)",
-  "price": 0.0,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://luma.com/66g5nn5g",
-  "venue": "Nook",
-  "lat": 40.7050172,
-  "lng": -73.9246024,
-  "audience": null,
-  "availability": null,
-  "series": "cd1b3c8db5",
-  "quality": 4,
-  "why": "Free monthly writers' group meeting at Nook.",
-  "topics": [
-   "writing",
-   "community",
-   "workshop"
-  ],
-  "flags": []
- },
- {
   "name": "Dine and Dissert: A Sugary Community Dinner (October 2026)",
   "category": "Food & Drink",
   "description": "Join 19,547+ New Yorkers who seek to build meaningful connections around the joys of art, music, culture, food and supportive unity.",
@@ -7341,7 +7588,7 @@
   "lat": 40.734246479385305,
   "lng": -74.00556750043161,
   "audience": null,
-  "availability": null,
+  "availability": "waitlist",
   "series": "a9618c956b",
   "quality": 5,
   "why": "Dinner paired with artists' works-in-progress in the West Village.",
@@ -7379,30 +7626,31 @@
   ]
  },
  {
-  "name": "Founder's meetup with Naz",
-  "category": "Tech",
+  "name": "Friends @ Firstmark + CORE!",
+  "category": "Meetups & Mixers",
   "description": "",
-  "neighborhood": "Chelsea-Hudson Yards",
+  "neighborhood": "Upper West Side (Central)",
   "price": 0.0,
   "start_time": "7:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://luma.com/2fbu4409",
-  "venue": "Mercado Little Spain",
-  "lat": 40.752918099999995,
-  "lng": -74.0018896,
+  "end_time": "9:00 PM",
+  "url": "https://luma.com/09o1vje1",
+  "venue": "Florentin",
+  "lat": 40.7859257,
+  "lng": -73.9766018,
   "audience": null,
   "availability": null,
-  "series": "6e7ad28e6c",
-  "quality": 2,
+  "series": "2bd388a963",
+  "quality": 1,
   "why": "",
   "topics": [
-   "tech",
-   "founders",
-   "networking"
+   "networking",
+   "venture",
+   "mixer"
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "firstmark: networking mixer"
  },
  {
   "name": "game night.",
@@ -7553,6 +7801,207 @@
   ],
   "flags": [
    "sales"
+  ],
+  "family": "not: shop-in-studio"
+ },
+ {
+  "name": "prediction market poker night",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Midtown-Times Square",
+  "price": 0.0,
+  "start_time": "7:00 PM",
+  "end_time": "11:00 PM",
+  "url": "https://luma.com/hp4mb0bv",
+  "venue": "Midtown South",
+  "lat": 40.753849692028076,
+  "lng": -73.99182535093229,
+  "audience": null,
+  "availability": null,
+  "series": "4290ecab55",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "prediction markets",
+   "poker",
+   "games"
+  ],
+  "flags": []
+ },
+ {
+  "name": "public fruit: music share",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "West Village",
+  "price": 0.0,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://luma.com/ldz3jzjm",
+  "venue": "Manhattan",
+  "lat": 40.73470303586221,
+  "lng": -74.0087889798677,
+  "audience": null,
+  "availability": null,
+  "series": "f97dab00e1",
+  "quality": 4,
+  "why": "Casual free night where people share music, in Manhattan.",
+  "topics": [
+   "music sharing",
+   "community",
+   "casual"
+  ],
+  "flags": [],
+  "family": "public fruit: music share"
+ },
+ {
+  "name": "Sonic Salon Vol 11",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Chelsea-Hudson Yards",
+  "price": 29.5,
+  "start_time": "7:00 PM",
+  "end_time": "10:30 PM",
+  "url": "https://luma.com/hj0lsrwu",
+  "venue": "Garment District",
+  "lat": 40.752596940255806,
+  "lng": -73.99432228846524,
+  "audience": null,
+  "availability": null,
+  "series": "ce7a90f87a",
+  "quality": 4,
+  "why": "",
+  "topics": [
+   "sound",
+   "music",
+   "salon"
+  ],
+  "flags": []
+ },
+ {
+  "name": "The Creatives Table | Musly Private Members Dinner | A Private Location in NYC",
+  "category": "Food & Drink",
+  "description": "",
+  "neighborhood": "East Williamsburg",
+  "price": 85.0,
+  "start_time": "7:00 PM",
+  "end_time": "9:30 PM",
+  "url": "https://luma.com/mso92au7",
+  "venue": "Casa Ora",
+  "lat": 40.7079427,
+  "lng": -73.9437667,
+  "audience": null,
+  "availability": null,
+  "series": "faa48671a1",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "private dinner",
+   "networking",
+   "food"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "family": "musly: private members dinner"
+ },
+ {
+  "name": "The Dinner Table at Ferdi Ristorante (West Village)",
+  "category": "Food & Drink",
+  "description": "The Dinner Table Club hosts dinner parties for strangers at partner restaurants in New York, DC, Los Angeles, Miami with San Francisco coming soon.",
+  "neighborhood": "West Village",
+  "price": 80.0,
+  "start_time": "7:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://luma.com/DinnerTableFerdi4",
+  "venue": "Ferdi",
+  "lat": 40.730099,
+  "lng": -74.004575,
+  "audience": null,
+  "availability": null,
+  "series": "947efac40d",
+  "quality": 4,
+  "why": "Shared dinner with strangers at a West Village Italian restaurant.",
+  "topics": [
+   "social dining",
+   "italian food",
+   "strangers"
+  ],
+  "flags": [],
+  "family": "ferdi: dinner table"
+ },
+ {
+  "name": "Who Get To Be Fully Human? Featuring Dr. Rachel Hardeman in Conversation with Dr. Menakem, Healer, Author and Founder of Somatic Abolition",
+  "category": "Tech",
+  "description": "",
+  "neighborhood": "Bedford-Stuyvesant (East)",
+  "price": 0.0,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://luma.com/FullyHuman",
+  "venue": "Gladys Books & Wine",
+  "lat": 40.6823385,
+  "lng": -73.9291851,
+  "audience": null,
+  "availability": null,
+  "series": "d5257178ba",
+  "quality": 7,
+  "why": "Resmaa Menakem, author of My Grandmother's Hands, in conversation with Rachel Hardeman.",
+  "topics": [
+   "race",
+   "healing",
+   "author talk"
+  ],
+  "flags": []
+ },
+ {
+  "name": "coolkyds Monthly Writer's Group",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Bushwick (West)",
+  "price": 0.0,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://luma.com/66g5nn5g",
+  "venue": "Nook",
+  "lat": 40.7050172,
+  "lng": -73.9246024,
+  "audience": null,
+  "availability": null,
+  "series": "cd1b3c8db5",
+  "quality": 4,
+  "why": "Free monthly writers' group meeting at Nook.",
+  "topics": [
+   "writing",
+   "community",
+   "workshop"
+  ],
+  "flags": [],
+  "family": "coolkyds: writers group"
+ },
+ {
+  "name": "Founder's meetup with Naz",
+  "category": "Tech",
+  "description": "",
+  "neighborhood": "Chelsea-Hudson Yards",
+  "price": 0.0,
+  "start_time": "7:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://luma.com/2fbu4409",
+  "venue": "Mercado Little Spain",
+  "lat": 40.752918099999995,
+  "lng": -74.0018896,
+  "audience": null,
+  "availability": null,
+  "series": "6e7ad28e6c",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "tech",
+   "founders",
+   "networking"
+  ],
+  "flags": [
+   "networking"
   ]
  },
  {
@@ -7583,30 +8032,6 @@
   ]
  },
  {
-  "name": "public fruit: music share",
-  "category": "Meetups & Mixers",
-  "description": "",
-  "neighborhood": "West Village",
-  "price": 0.0,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://luma.com/ldz3jzjm",
-  "venue": "Manhattan",
-  "lat": 40.73470303586221,
-  "lng": -74.0087889798677,
-  "audience": null,
-  "availability": null,
-  "series": "f97dab00e1",
-  "quality": 4,
-  "why": "Casual free night where people share music, in Manhattan.",
-  "topics": [
-   "music sharing",
-   "community",
-   "casual"
-  ],
-  "flags": []
- },
- {
   "name": "social deduction: a mystery game night! \ud83c\udfb2",
   "category": "Trivia & Games",
   "description": "\ud83d\udccd the bronx, nyc & beyond \u2022 a vibe. bipoc centered. for the queers. by the queers. \u2122 \ud83e\udef6\ud83c\udfff \u201cyour home & hub for connection & place \u221e\u201d \u2728",
@@ -7619,7 +8044,7 @@
   "lat": 40.8322597966523,
   "lng": -73.9013311744232,
   "audience": null,
-  "availability": null,
+  "availability": "waitlist",
   "series": "3a025b96f2",
   "quality": 5,
   "why": "",
@@ -7627,30 +8052,6 @@
    "social games",
    "community",
    "mystery games"
-  ],
-  "flags": []
- },
- {
-  "name": "Sonic Salon Vol 11",
-  "category": "Meetups & Mixers",
-  "description": "",
-  "neighborhood": "Chelsea-Hudson Yards",
-  "price": 29.5,
-  "start_time": "7:00 PM",
-  "end_time": "10:30 PM",
-  "url": "https://luma.com/hj0lsrwu",
-  "venue": "Garment District",
-  "lat": 40.752596940255806,
-  "lng": -73.99432228846524,
-  "audience": null,
-  "availability": null,
-  "series": "ce7a90f87a",
-  "quality": 4,
-  "why": "",
-  "topics": [
-   "sound",
-   "music",
-   "salon"
   ],
   "flags": []
  },
@@ -7708,80 +8109,6 @@
   ]
  },
  {
-  "name": "The Creatives Table | Musly Private Members Dinner | A Private Location in NYC",
-  "category": "Food & Drink",
-  "description": "",
-  "neighborhood": "East Williamsburg",
-  "price": 85.0,
-  "start_time": "7:00 PM",
-  "end_time": "9:30 PM",
-  "url": "https://luma.com/mso92au7",
-  "venue": "Casa Ora",
-  "lat": 40.7079427,
-  "lng": -73.9437667,
-  "audience": null,
-  "availability": null,
-  "series": "faa48671a1",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "private dinner",
-   "networking",
-   "food"
-  ],
-  "flags": [
-   "networking"
-  ]
- },
- {
-  "name": "The Dinner Table at Ferdi Ristorante (West Village)",
-  "category": "Food & Drink",
-  "description": "The Dinner Table Club hosts dinner parties for strangers at partner restaurants in New York, DC, Los Angeles, Miami with San Francisco coming soon.",
-  "neighborhood": "West Village",
-  "price": 80.0,
-  "start_time": "7:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://luma.com/DinnerTableFerdi4",
-  "venue": "Ferdi",
-  "lat": 40.730099,
-  "lng": -74.004575,
-  "audience": null,
-  "availability": null,
-  "series": "947efac40d",
-  "quality": 4,
-  "why": "Shared dinner with strangers at a West Village Italian restaurant.",
-  "topics": [
-   "social dining",
-   "italian food",
-   "strangers"
-  ],
-  "flags": []
- },
- {
-  "name": "Who Get To Be Fully Human? Featuring Dr. Rachel Hardeman in Conversation with Dr. Menakem, Healer, Author and Founder of Somatic Abolition",
-  "category": "Tech",
-  "description": "",
-  "neighborhood": "Bedford-Stuyvesant (East)",
-  "price": 0.0,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://luma.com/FullyHuman",
-  "venue": "Gladys Books & Wine",
-  "lat": 40.6823385,
-  "lng": -73.9291851,
-  "audience": null,
-  "availability": null,
-  "series": "d5257178ba",
-  "quality": 7,
-  "why": "Resmaa Menakem, author of My Grandmother's Hands, in conversation with Rachel Hardeman.",
-  "topics": [
-   "race",
-   "healing",
-   "author talk"
-  ],
-  "flags": []
- },
- {
   "name": "Yoga in the Community Room, Oct 22, 7pm - 8pm",
   "category": "Fitness & Outdoors",
   "description": "",
@@ -7802,6 +8129,31 @@
    "yoga",
    "fitness",
    "community"
+  ],
+  "flags": [],
+  "family": "downtown jersey city: yoga class"
+ },
+ {
+  "name": "Blue Hour: An Autumn Tea & Sound Ritual",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Williamsburg",
+  "price": 45.0,
+  "start_time": "7:30 PM",
+  "end_time": "10:00 PM",
+  "url": "https://luma.com/bluehour",
+  "venue": "Reforesters Laboratory",
+  "lat": 40.716237299999996,
+  "lng": -73.96192719999999,
+  "audience": null,
+  "availability": null,
+  "series": "9fbe814c59",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "tea",
+   "sound ritual",
+   "wellness"
   ],
   "flags": []
  },
@@ -7856,30 +8208,6 @@
   "flags": []
  },
  {
-  "name": "Blue Hour: An Autumn Tea & Sound Ritual",
-  "category": "Meetups & Mixers",
-  "description": "",
-  "neighborhood": "Williamsburg",
-  "price": 45.0,
-  "start_time": "7:30 PM",
-  "end_time": "10:00 PM",
-  "url": "https://luma.com/bluehour",
-  "venue": "Reforesters Laboratory",
-  "lat": 40.716237299999996,
-  "lng": -73.96192719999999,
-  "audience": null,
-  "availability": null,
-  "series": "9fbe814c59",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "tea",
-   "sound ritual",
-   "wellness"
-  ],
-  "flags": []
- },
- {
   "name": "GOOD MOVE x OTHERSHIP WELLNESS NIGHT",
   "category": "Meetups & Mixers",
   "description": "",
@@ -7901,7 +8229,8 @@
    "community",
    "social"
   ],
-  "flags": []
+  "flags": [],
+  "family": "good move: wellness night"
  },
  {
   "name": "Junk Journal Club",
@@ -8294,7 +8623,8 @@
    "lounge",
    "nightlife"
   ],
-  "flags": []
+  "flags": [],
+  "family": "hush cafe lounge and garden: r&b night"
  },
  {
   "name": "Pinch of Us - The Immigrant Artist Biennial and Talk & Taste Edition",
@@ -8343,7 +8673,8 @@
   ],
   "flags": [
    "class_slot"
-  ]
+  ],
+  "family": "red sauce studio: pasta class"
  },
  {
   "name": "Discover Piedmont, Alba and the Rolling Hills of Langhe with Pietro Romani.",
@@ -8367,7 +8698,8 @@
    "barolo",
    "wine tasting"
   ],
-  "flags": []
+  "flags": [],
+  "family": "veritas studio wines: wine tasting"
  },
  {
   "name": "Decorate & Sip: Halloween Mini Cake Decorating Night",
@@ -8391,32 +8723,61 @@
    "beer garden",
    "halloween"
   ],
-  "flags": []
+  "flags": [],
+  "family": "empire beer garden: decorate & sip"
  },
  {
-  "name": "In-Person Class: Japanese Ramen (NYC)",
+  "name": "In-Person Class: Classic and Creative Cocktails (NYC- Even Hotel)",
   "category": "Classes & Workshops",
-  "description": "Japanese Ramen",
-  "neighborhood": "Chelsea-Hudson Yards",
+  "description": "Classic and Creative Cocktails",
+  "neighborhood": "East Midtown-Turtle Bay",
   "price": null,
-  "start_time": "6:30 PM",
+  "start_time": "7:00 PM",
   "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.com/e/in-person-class-japanese-ramen-nyc-tickets-1997633948916",
-  "venue": "The Breakfast Room @ Fairfield Inn & Suites by Marriott New York Manhattan/Times Square South (338 West 36th Street, New York)",
-  "lat": 40.7540947,
-  "lng": -73.9942961,
+  "url": "https://www.eventbrite.com/e/in-person-class-classic-and-creative-cocktails-nyc-even-hotel-tickets-1997633955937",
+  "venue": "EVEN Hotel New York - Midtown East, an IHG Hotel",
+  "lat": 40.75183539999999,
+  "lng": -73.9723757,
   "audience": null,
   "availability": null,
-  "series": "4945b0c3a1",
+  "series": "62a84bf9f0",
+  "recurring": "Every Thursday",
   "quality": 2,
   "why": "",
   "topics": [
-   "ramen",
-   "cooking class"
+   "cocktail class",
+   "hotel",
+   "mixology"
   ],
   "flags": [
    "class_slot"
-  ]
+  ],
+  "family": "even hotel new york: cocktail class"
+ },
+ {
+  "name": "Rare & Seasonal Finds: Wine & Cheese Tasting",
+  "category": "Food & Drink",
+  "description": "Discover the tradition, craft, and fascinating stories behind some of Murray\u2019s rarest wheels in this exclusive cheese and wine pairing class",
+  "neighborhood": "West Village",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.com/e/rare-seasonal-finds-wine-cheese-tasting-tickets-1996471918251",
+  "venue": "Murray's Cheese Shop",
+  "lat": 40.73107,
+  "lng": -74.00304,
+  "audience": null,
+  "availability": null,
+  "series": "790c92c5f5",
+  "quality": 5,
+  "why": "Murray's rare cheese wheels paired with wine, with stories behind each.",
+  "topics": [
+   "cheese",
+   "wine pairing",
+   "tasting"
+  ],
+  "flags": [],
+  "family": "murray's cheese shop: tasting"
  },
  {
   "name": "Genspace Open Lab",
@@ -8440,7 +8801,8 @@
    "science",
    "open lab"
   ],
-  "flags": []
+  "flags": [],
+  "family": "genspace: open lab"
  },
  {
   "name": "ASCE Metropolitan Section Technical Lecture presented by Langan",
@@ -8482,7 +8844,7 @@
   "audience": null,
   "availability": null,
   "series": "7d6ddc4894",
-  "recurring": "Every Thursday",
+  "recurring": "Also on other days",
   "quality": 4,
   "why": "Open making night at a members' hackerspace with shared tools.",
   "topics": [
@@ -8490,33 +8852,8 @@
    "making",
    "electronics"
   ],
-  "flags": []
- },
- {
-  "name": "Certified Blockchain Associate | New York City",
-  "category": "Tech",
-  "description": "2-hours live online training on the introduction to blockchain technology!",
-  "neighborhood": "Tribeca-Civic Center",
-  "price": null,
-  "start_time": "10:00 AM",
-  "end_time": "12:00 PM",
-  "url": "https://www.eventbrite.com/e/certified-blockchain-associate-new-york-city-tickets-1968898388080",
-  "venue": "New York",
-  "lat": 40.7127753,
-  "lng": -74.0059728,
-  "audience": null,
-  "availability": null,
-  "series": "95cfe690de",
-  "quality": 1,
-  "why": "",
-  "topics": [
-   "blockchain",
-   "online training"
-  ],
-  "flags": [
-   "online",
-   "sales"
-  ]
+  "flags": [],
+  "family": "nyc resistor: craft night"
  },
  {
   "name": "Certified Crypto Associate | New York City",
@@ -8543,33 +8880,35 @@
   "flags": [
    "online",
    "sales"
-  ]
+  ],
+  "family": "certified blockchain associate: certification course"
  },
  {
-  "name": "Elevate Your EQ: 1 Day Emotional Intelligence Workshop | New York",
-  "category": "Classes & Workshops",
-  "description": "Master your emotions, build empathy & strengthen relationships. Boost leadership, teamwork & communication in just 1 day",
+  "name": "Certified Blockchain Associate | New York City",
+  "category": "Tech",
+  "description": "2-hours live online training on the introduction to blockchain technology!",
   "neighborhood": "Tribeca-Civic Center",
   "price": null,
-  "start_time": "9:00 AM",
-  "end_time": "5:00 PM",
-  "url": "https://www.eventbrite.sg/e/elevate-your-eq-1-day-emotional-intelligence-workshop-new-york-tickets-2002026271471",
-  "venue": "Regus - New York City - 100 Church Street",
-  "lat": 40.7131093,
-  "lng": -74.009733,
+  "start_time": "10:00 AM",
+  "end_time": "12:00 PM",
+  "url": "https://www.eventbrite.com/e/certified-blockchain-associate-new-york-city-tickets-1968898388080",
+  "venue": "New York",
+  "lat": 40.7127753,
+  "lng": -74.0059728,
   "audience": null,
   "availability": null,
-  "series": "ae7feffb1b",
+  "series": "95cfe690de",
   "quality": 1,
   "why": "",
   "topics": [
-   "emotional intelligence",
-   "corporate training"
+   "blockchain",
+   "online training"
   ],
   "flags": [
-   "service",
+   "online",
    "sales"
-  ]
+  ],
+  "family": "certified blockchain associate: certification course"
  },
  {
   "name": "PSC-CUNY Cycle 56 Research Awards Showcase",
@@ -8597,32 +8936,6 @@
   ]
  },
  {
-  "name": "Intro to Soldering",
-  "category": "Tech",
-  "description": "Get hands-on with the basics of soldering and electronics.",
-  "neighborhood": "Lower East Side",
-  "price": null,
-  "start_time": "4:30 PM",
-  "end_time": "6:00 PM",
-  "url": "https://www.eventbrite.com/e/intro-to-soldering-tickets-2002244612535",
-  "venue": "Best Buy Teen Tech Center",
-  "lat": 40.7168056,
-  "lng": -73.9855997,
-  "audience": null,
-  "availability": null,
-  "series": "d2d57ab5c5",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "soldering",
-   "electronics",
-   "teen workshop"
-  ],
-  "flags": [
-   "kids"
-  ]
- },
- {
   "name": "STEM Club",
   "category": "Tech",
   "description": "Explore exciting topics in science, technology, engineering, and math through hands-on activities and fun experiments! For youth ages 7\u201314.",
@@ -8647,7 +8960,8 @@
   ],
   "flags": [
    "kids"
-  ]
+  ],
+  "family": "queens library: stem club"
  },
  {
   "name": "Tech Gather NYC: Free Tech Networking Mixer",
@@ -8672,7 +8986,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "tech gather nyc: networking mixer"
  },
  {
   "name": "Tech Thursdays",
@@ -8697,7 +9012,8 @@
   ],
   "flags": [
    "networking"
-  ]
+  ],
+  "family": "lagos tsq: tech meetup"
  },
  {
   "name": "Climate Riskscapes: Living and Knowing Under Environmental Precarity",
@@ -8797,59 +9113,8 @@
    "sound bath",
    "wellness"
   ],
-  "flags": []
- },
- {
-  "name": "Thursday Queer Bodies: Nude Figure Drawing",
-  "category": "Classes & Workshops",
-  "description": "A 2.25hr long nude drawing session celebrating Queer Bodies (:30-20 min poses)!",
-  "neighborhood": "Bushwick (West)",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:15 PM",
-  "url": "https://www.eventbrite.com/e/thursday-queer-bodies-nude-figure-drawing-tickets-1998309840526",
-  "venue": "476 Jefferson St #307",
-  "lat": 40.70845389999999,
-  "lng": -73.92188469999999,
-  "audience": null,
-  "availability": null,
-  "series": "61199a9d42",
-  "recurring": "Every Thursday",
-  "quality": 5,
-  "why": "Recurring nude drawing session celebrating queer bodies, with varied pose lengths.",
-  "topics": [
-   "life drawing",
-   "queer community",
-   "figure art"
-  ],
-  "flags": []
- },
- {
-  "name": "Healthy Aging With Flow State Activated with Angela at Gotham Park",
-  "category": "Classes & Workshops",
-  "description": "Enjoy healthy snacks, wellness chats, and mindful movement with Flow State Activated.",
-  "neighborhood": "Tribeca-Civic Center",
-  "price": null,
-  "start_time": "4:30 PM",
-  "end_time": "5:30 PM",
-  "url": "https://www.eventbrite.com/e/healthy-aging-with-flow-state-activated-with-angela-at-gotham-park-tickets-2000664183429",
-  "venue": "Gotham Park",
-  "lat": 40.7115049,
-  "lng": -74.0031789,
-  "audience": null,
-  "availability": null,
-  "series": "279f79da76",
-  "recurring": "Every Thursday",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "wellness",
-   "aging",
-   "movement"
-  ],
-  "flags": [
-   "service"
-  ]
+  "flags": [],
+  "family": "restore & regulate: wellness class"
  },
  {
   "name": "The Sing Easy\u2122: A Guided Drop-In Singing Session (Chelsea)",
@@ -8875,34 +9140,8 @@
   ],
   "flags": [
    "class_slot"
-  ]
- },
- {
-  "name": "Fitness with Kelly at Gotham Park",
-  "category": "Fitness & Outdoors",
-  "description": "A fun, full-body outdoor workout at Gotham Park! Build strength, balance & community every Thursday from 5:30-6:30pm.",
-  "neighborhood": "Tribeca-Civic Center",
-  "price": null,
-  "start_time": "5:30 PM",
-  "end_time": "6:30 PM",
-  "url": "https://www.eventbrite.com/e/fitness-with-kelly-at-gotham-park-tickets-1991942737349",
-  "venue": "Gotham Park",
-  "lat": 40.7115049,
-  "lng": -74.0031789,
-  "audience": null,
-  "availability": null,
-  "series": "7498d94c8a",
-  "recurring": "Every Thursday",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "fitness",
-   "outdoors",
-   "strength training"
   ],
-  "flags": [
-   "class_slot"
-  ]
+  "family": "the sing easy: drop-in singing session"
  },
  {
   "name": "Handbuilding Pottery Workshop",
@@ -8929,7 +9168,8 @@
   ],
   "flags": [
    "class_slot"
-  ]
+  ],
+  "family": "255 mckibbin: pottery workshop"
  },
  {
   "name": "Reese's Book Club NYC Chapter Meeting",
@@ -8953,7 +9193,33 @@
    "fiction",
    "social"
   ],
-  "flags": []
+  "flags": [],
+  "family": "reese's book club: book club meeting"
+ },
+ {
+  "name": "Mahjong 102 - Guided Open Play",
+  "category": "Classes & Workshops",
+  "description": "Ready to put your tiles to the test? Join Keep Mahjing On for a fun & supportive Open Play for those with previous Mahjong experience!",
+  "neighborhood": null,
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:30 PM",
+  "url": "https://www.eventbrite.com/e/mahjong-102-guided-open-play-tickets-1997143302379",
+  "venue": "Mojo Coffee",
+  "lat": 40.7462341,
+  "lng": -74.0289221,
+  "audience": null,
+  "availability": null,
+  "series": "71fedb920c",
+  "quality": 4,
+  "why": "Intermediate mahjong open play with the Keep Mahjing On community at Mojo Coffee.",
+  "topics": [
+   "mahjong",
+   "games",
+   "open play"
+  ],
+  "flags": [],
+  "family": "mojo coffee: mahjong session"
  },
  {
   "name": "Artful Buzz: NYC Tour: Luxury in NYC \"From Hermes to Cartier\"",
@@ -8977,7 +9243,8 @@
    "fashion",
    "architecture"
   ],
-  "flags": []
+  "flags": [],
+  "family": "artful buzz: luxury tour"
  },
  {
   "name": "New Amsterdam History Walking Tour- TimeLens Phone App Launch Event- FREE!",
@@ -9025,7 +9292,8 @@
    "fashion",
    "walking tour"
   ],
-  "flags": []
+  "flags": [],
+  "family": "artful buzz: luxury tour"
  },
  {
   "name": "The UNION of Rock and Ocean :: A Contemplative Walk",
@@ -9075,7 +9343,8 @@
    "little italy",
    "food tours"
   ],
-  "flags": []
+  "flags": [],
+  "family": "cozymeal: food tour"
  },
  {
   "name": "Awesome Times Square Rock Music Tour",
@@ -9100,7 +9369,8 @@
    "tourism",
    "walking tour"
   ],
-  "flags": []
+  "flags": [],
+  "family": "awesome times square: rock music tour"
  },
  {
   "name": "Food Tour of Queens: \"Queens Culinary Stroll & Cultural Tour\"",
@@ -9125,7 +9395,8 @@
    "queens",
    "cultural tour"
   ],
-  "flags": []
+  "flags": [],
+  "family": "nepali bhanchha ghar: food tour"
  },
  {
   "name": "Pizza Making Class",
@@ -9152,7 +9423,8 @@
   ],
   "flags": [
    "class_slot"
-  ]
+  ],
+  "family": "77 fulton st: pizza making class"
  },
  {
   "name": "Haitian Dance (Folklore)",
@@ -9179,7 +9451,8 @@
   ],
   "flags": [
    "class_slot"
-  ]
+  ],
+  "family": "fit4dance: dance class"
  },
  {
   "name": "NYU Game Center Lecture Series Presents Warren Spector",
@@ -9206,6 +9479,31 @@
   "flags": []
  },
  {
+  "name": "Lectures on Tap - \"The Psychology of Psychopathy\"",
+  "category": "Talks",
+  "description": "Professors, experts, and storytellers giving thought-provoking lectures in NYC bars.",
+  "neighborhood": "Lower East Side",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:30 PM",
+  "url": "https://www.eventbrite.com/e/lectures-on-tap-the-psychology-of-psychopathy-tickets-2000010403957",
+  "venue": "Lower East Side",
+  "lat": 40.715033,
+  "lng": -73.9842724,
+  "audience": null,
+  "availability": null,
+  "series": "662b5e0334",
+  "quality": 5,
+  "why": "Psychopathy lecture from the recurring Lectures on Tap bar series.",
+  "topics": [
+   "psychology",
+   "lectures",
+   "bar talks"
+  ],
+  "flags": [],
+  "family": "lectures on tap: talk series"
+ },
+ {
   "name": "Lectures on Tap - \"A Political Scientist's Guide to the 2026 Midterms\"",
   "category": "Talks",
   "description": "Professors, experts, and storytellers giving thought-provoking lectures in NYC bars.",
@@ -9227,7 +9525,8 @@
    "elections",
    "bar talks"
   ],
-  "flags": []
+  "flags": [],
+  "family": "lectures on tap: talk series"
  },
  {
   "name": "THE INVESTIGATOR: Crimes of the Privileged",
@@ -9278,7 +9577,8 @@
   "flags": [
    "class_slot",
    "sales"
-  ]
+  ],
+  "family": "urbani truffles usa: pasta making class"
  },
  {
   "name": "In Conversation: Sable Elyse Smith and Johanna Fateman",
@@ -9373,6 +9673,30 @@
    "architecture",
    "book launch",
    "theory"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Hungarian Emerging Artists Concert Series presents pianist Csan\u00e1d Barbarics",
+  "category": "Talks",
+  "description": "The Liszt Institute New York is thrilled to welcome back its beloved Hungarian Emerging Artists Concert Series, showcasing Hungarian talent.",
+  "neighborhood": "East Midtown-Turtle Bay",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.com/e/hungarian-emerging-artists-concert-series-presents-pianist-csanad-barbarics-tickets-2002460912494",
+  "venue": "Consulate General of Hungary",
+  "lat": 40.756804,
+  "lng": -73.96858400000002,
+  "audience": null,
+  "availability": null,
+  "series": "940d83c85b",
+  "quality": 5,
+  "why": "Emerging Hungarian pianist Csan\u00e1d Barbarics in the Liszt Institute series.",
+  "topics": [
+   "classical piano",
+   "hungarian music",
+   "emerging artists"
   ],
   "flags": []
  },
@@ -9547,7 +9871,8 @@
    "corporate power",
    "live podcast"
   ],
-  "flags": []
+  "flags": [],
+  "family": "the collective brew: book social"
  },
  {
   "name": "Books & Besties Social: Books & Bags",
@@ -9571,7 +9896,8 @@
    "crafts",
    "tote bags"
   ],
-  "flags": []
+  "flags": [],
+  "family": "the collective brew: book social"
  },
  {
   "name": "Jim Emison presents Murder on the Hatchie, with Keith A. Beauchamp",
@@ -9619,7 +9945,8 @@
    "book club",
    "community"
   ],
-  "flags": []
+  "flags": [],
+  "family": "the little bookshop: book club"
  },
  {
   "name": "Taylor Grothe Brooklyn Event for Lethal Kiss",
@@ -9667,7 +9994,8 @@
    "distillery tour",
    "tasting"
   ],
-  "flags": []
+  "flags": [],
+  "family": "kings county distillery: distillery tour"
  },
  {
   "name": "Kings County Distillery Whiskey Tour",
@@ -9692,7 +10020,8 @@
    "distillery tour",
    "new york history"
   ],
-  "flags": []
+  "flags": [],
+  "family": "kings county distillery: distillery tour"
  },
  {
   "name": "Focus, Confidence & Small Talk: Acting Exercises Workshop | Midtown NYC",
@@ -9819,6 +10148,79 @@
   "flags": []
  },
  {
+  "name": "How Meditation Can Transform Your Life",
+  "category": "Talks",
+  "description": "How Meditation Can Transform Your Life",
+  "neighborhood": "Murray Hill-Kips Bay",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:30 PM",
+  "url": "https://www.eventbrite.com/e/how-meditation-can-transform-your-life-tickets-1999043534023",
+  "venue": "217 E 28th St",
+  "lat": 40.7417795,
+  "lng": -73.979959,
+  "audience": null,
+  "availability": null,
+  "series": "480dc836b7",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "meditation",
+   "wellness"
+  ],
+  "flags": [
+   "spam"
+  ]
+ },
+ {
+  "name": "\"Building a Green Wall: Irish American Resurgence Post-Brexit\"",
+  "category": "Talks",
+  "description": "Kimberly Cowell-Meyers and Carolyn Gallaher in conversation on their book, \"Building a Green Wall: Irish American Resurgence Post-Brexit\"",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.com/e/building-a-green-wall-irish-american-resurgence-post-brexit-tickets-1999537229680",
+  "venue": "Glucksman Ireland House NYU",
+  "lat": 40.7317275,
+  "lng": -73.99650299999996,
+  "audience": null,
+  "availability": null,
+  "series": "6bbba31466",
+  "quality": 5,
+  "why": "Authors on Irish Americans' post-Brexit political resurgence, at NYU's Glucksman House.",
+  "topics": [
+   "irish american politics",
+   "brexit",
+   "book talk"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Seven Curious Ants \u2014 JooHee Yoon in Conversation with Sophie Blackall",
+  "category": "Talks",
+  "description": "Join us for an evening with acclaimed artists and picture-book creators celebrating the launch of Seven Curious Ants",
+  "neighborhood": "West Village",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.com/e/seven-curious-ants-joohee-yoon-in-conversation-with-sophie-blackall-tickets-2002761377192",
+  "venue": "SULLALUNA bookshop & bistrot",
+  "lat": 40.7301476,
+  "lng": -74.00361699999999,
+  "audience": null,
+  "availability": null,
+  "series": "3dffc733d4",
+  "quality": 7,
+  "why": "Caldecott-winning illustrator Sophie Blackall talks Seven Curious Ants with JooHee Yoon.",
+  "topics": [
+   "children's books",
+   "illustration",
+   "author talk"
+  ],
+  "flags": []
+ },
+ {
   "name": "\"A Tiny Revolution\" screening + panel discussion",
   "category": "Talks",
   "description": "Join us for a screening of a new short docu, profiling the story of how NYC resident Meg Crane invented the first home pregnancy test",
@@ -9887,6 +10289,31 @@
    "documentary",
    "policing",
    "civil liberties"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Chimen - art works presented by Nathalie Jean-Baptiste",
+  "category": "Talks",
+  "description": "A one week artist activation with Nathalie Jean-Baptiste",
+  "neighborhood": "East Williamsburg",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.com/e/chimen-art-works-presented-by-nathalie-jean-baptiste-tickets-2001939558109",
+  "venue": "216 Bogart St",
+  "lat": 40.7113555,
+  "lng": -73.93534930000001,
+  "audience": null,
+  "availability": null,
+  "series": "fbe5c4595b",
+  "recurring": "Also on other days",
+  "quality": 5,
+  "why": "One-week artist activation of works by Nathalie Jean-Baptiste in Bushwick.",
+  "topics": [
+   "contemporary art",
+   "installation",
+   "bushwick"
   ],
   "flags": []
  },
@@ -10040,31 +10467,6 @@
   ]
  },
  {
-  "name": "HSVS Family & Friends Night",
-  "category": "Talks",
-  "description": "Join us for Family & Friends Night to learn about fostering teens, hear from foster parents, ask questions, enjoy food & connect!",
-  "neighborhood": "Brooklyn Heights",
-  "price": null,
-  "start_time": "5:30 PM",
-  "end_time": "7:30 PM",
-  "url": "https://www.eventbrite.com/e/hsvs-family-friends-night-tickets-2001896027909",
-  "venue": "66 Boerum Pl",
-  "lat": 40.6896901,
-  "lng": -73.9906298,
-  "audience": null,
-  "availability": null,
-  "series": "03e83f9b7a",
-  "quality": 1,
-  "why": "",
-  "topics": [
-   "foster care",
-   "family"
-  ],
-  "flags": [
-   "service"
-  ]
- },
- {
   "name": "[Jornadas profesionales] Ilustrando Nuestra Ni\u00f1ez",
   "category": "Talks",
   "description": "[Jornadas profesionales] Ilustrando Nuestra Ni\u00f1ez - El Desarrollo de Costumbres y Culturas por medio del Libro Infantil",
@@ -10090,6 +10492,31 @@
   ]
  },
  {
+  "name": "HSVS Family & Friends Night",
+  "category": "Talks",
+  "description": "Join us for Family & Friends Night to learn about fostering teens, hear from foster parents, ask questions, enjoy food & connect!",
+  "neighborhood": "Brooklyn Heights",
+  "price": null,
+  "start_time": "5:30 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.com/e/hsvs-family-friends-night-tickets-2001896027909",
+  "venue": "66 Boerum Pl",
+  "lat": 40.6896901,
+  "lng": -73.9906298,
+  "audience": null,
+  "availability": null,
+  "series": "03e83f9b7a",
+  "quality": 1,
+  "why": "",
+  "topics": [
+   "foster care",
+   "family"
+  ],
+  "flags": [
+   "service"
+  ]
+ },
+ {
   "name": "Activismo y literatura para ni\u00f1os y j\u00f3venes: Children in Crisis Project",
   "category": "Talks",
   "description": "Activismo y literatura para ni\u00f1os y j\u00f3venes: Children in Crisis Project",
@@ -10111,6 +10538,31 @@
    "activism"
   ],
   "flags": []
+ },
+ {
+  "name": "Immanuel Wallerstein and Columbia: Conference",
+  "category": "Talks",
+  "description": "This conference aims to explore transformations that influenced, and were influenced by, Immanuel Wallerstein during his years at Columbia.",
+  "neighborhood": "Morningside Heights",
+  "price": null,
+  "start_time": "3:00 PM",
+  "end_time": null,
+  "url": "https://www.eventbrite.com/e/immanuel-wallerstein-and-columbia-conference-tickets-1999796296556",
+  "venue": "Buell Hall",
+  "lat": 40.807717,
+  "lng": -73.96142809999999,
+  "audience": null,
+  "availability": null,
+  "series": "a6ac8162a2",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "sociology",
+   "academic conference"
+  ],
+  "flags": [
+   "internal"
+  ]
  },
  {
   "name": "OPEN STUDIOS | Curated by Anh Vo",
@@ -10156,30 +10608,6 @@
   "topics": [
    "fiction",
    "science fiction",
-   "author talk"
-  ],
-  "flags": []
- },
- {
-  "name": "Seven Curious Ants \u2014 JooHee Yoon in Conversation with Sophie Blackall",
-  "category": "Talks",
-  "description": "Join us for an evening with acclaimed artists and picture-book creators celebrating the launch of Seven Curious Ants",
-  "neighborhood": "West Village",
-  "price": null,
-  "start_time": "6:30 PM",
-  "end_time": "8:00 PM",
-  "url": "https://www.eventbrite.com/e/seven-curious-ants-joohee-yoon-in-conversation-with-sophie-blackall-tickets-2002761377192",
-  "venue": "SULLALUNA bookshop & bistrot",
-  "lat": 40.7301476,
-  "lng": -74.00361699999999,
-  "audience": null,
-  "availability": null,
-  "series": "3dffc733d4",
-  "quality": 7,
-  "why": "Caldecott-winning illustrator Sophie Blackall talks Seven Curious Ants with JooHee Yoon.",
-  "topics": [
-   "children's books",
-   "illustration",
    "author talk"
   ],
   "flags": []
@@ -10255,6 +10683,30 @@
    "holiday fiction",
    "book launch",
    "community"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Peyton Corinne discusses UNDONE at B&N Union Square",
+  "category": "Talks",
+  "description": "B&N Union Square in New York City welcomes Peyton Corinne to discuss UNDONE on Thursday, October 22nd at 6PM.",
+  "neighborhood": "Midtown South-Flatiron-Union Square",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.com/e/peyton-corinne-discusses-undone-at-bn-union-square-tickets-1992435742942",
+  "venue": "Barnes & Noble",
+  "lat": 40.7369416,
+  "lng": -73.9896278,
+  "audience": null,
+  "availability": null,
+  "series": "4313256aef",
+  "quality": 6,
+  "why": "Author Peyton Corinne discusses her novel UNDONE in person.",
+  "topics": [
+   "author talk",
+   "young adult fiction",
+   "book event"
   ],
   "flags": []
  },
@@ -10356,6 +10808,30 @@
   "flags": []
  },
  {
+  "name": "Encore Reading! Could You Patent the Sun? at Tompkins Square Park Library",
+  "category": "Talks",
+  "description": "ENCORE!! Thursday October 22nd, 6pm Curtain 5:30 Doors FREE \"Could You Patent the Sun?\" a developmental live reading by Galinsky",
+  "neighborhood": "East Village",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": "7:00 PM",
+  "url": "https://www.eventbrite.com/e/encore-reading-could-you-patent-the-sun-at-tompkins-square-park-library-tickets-2002975601944",
+  "venue": "Tompkins Square Library",
+  "lat": 40.72731539999999,
+  "lng": -73.9803838,
+  "audience": null,
+  "availability": null,
+  "series": "dcc6892b03",
+  "quality": 5,
+  "why": "Developmental live reading of Galinsky's play Could You Patent the Sun?",
+  "topics": [
+   "theater",
+   "new play",
+   "live reading"
+  ],
+  "flags": []
+ },
+ {
   "name": "Tarot and 'Tinis",
   "category": "Talks",
   "description": "Indulge in delicious food, cocktails, and a private 10-min tarot reading! Join us for fortunes & fun. Capacity is limited, book early!",
@@ -10382,50 +10858,26 @@
   ]
  },
  {
-  "name": "Encore Reading! Could You Patent the Sun? at Tompkins Square Park Library",
+  "name": "The Book Object: A Reading",
   "category": "Talks",
-  "description": "ENCORE!! Thursday October 22nd, 6pm Curtain 5:30 Doors FREE \"Could You Patent the Sun?\" a developmental live reading by Galinsky",
-  "neighborhood": "East Village",
+  "description": "The Book-Object, a session of reading artist books, exploring various formats, folding and unfolding narratives within pages.",
+  "neighborhood": "Upper West Side-Lincoln Square",
   "price": null,
-  "start_time": "6:00 PM",
-  "end_time": "7:00 PM",
-  "url": "https://www.eventbrite.com/e/encore-reading-could-you-patent-the-sun-at-tompkins-square-park-library-tickets-2002975601944",
-  "venue": "Tompkins Square Library",
-  "lat": 40.72731539999999,
-  "lng": -73.9803838,
+  "start_time": "12:00 PM",
+  "end_time": "1:30 PM",
+  "url": "https://www.eventbrite.com/e/the-book-object-a-reading-tickets-2003606294362",
+  "venue": "Anya and Andrew Shiva Gallery",
+  "lat": 40.7712109,
+  "lng": -73.9905141,
   "audience": null,
   "availability": null,
-  "series": "dcc6892b03",
-  "quality": 5,
-  "why": "Developmental live reading of Galinsky's play Could You Patent the Sun?",
+  "series": "54cdeca9fa",
+  "quality": 3,
+  "why": "",
   "topics": [
-   "theater",
-   "new play",
-   "live reading"
-  ],
-  "flags": []
- },
- {
-  "name": "NYC Magic Ensemble @ Young Ethel's (10/22)",
-  "category": "Talks",
-  "description": "Experience jaw-dropping professional magic and mentalism at Young Ethel\u2019s in Brooklyn.",
-  "neighborhood": "Park Slope",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "8:00 PM",
-  "url": "https://www.eventbrite.com/e/nyc-magic-ensemble-young-ethels-1022-tickets-1994947809601",
-  "venue": "Young Ethel's",
-  "lat": 40.6672152,
-  "lng": -73.9882714,
-  "audience": null,
-  "availability": null,
-  "series": "a8db9c1ef9",
-  "quality": 5,
-  "why": "Professional magic and mentalism show at Young Ethel's.",
-  "topics": [
-   "magic",
-   "mentalism",
-   "live performance"
+   "artist books",
+   "reading",
+   "gallery"
   ],
   "flags": []
  },
@@ -10450,6 +10902,30 @@
    "crochet",
    "workshop",
    "community"
+  ],
+  "flags": []
+ },
+ {
+  "name": "NYC Magic Ensemble @ Young Ethel's (10/22)",
+  "category": "Talks",
+  "description": "Experience jaw-dropping professional magic and mentalism at Young Ethel\u2019s in Brooklyn.",
+  "neighborhood": "Park Slope",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.com/e/nyc-magic-ensemble-young-ethels-1022-tickets-1994947809601",
+  "venue": "Young Ethel's",
+  "lat": 40.6672152,
+  "lng": -73.9882714,
+  "audience": null,
+  "availability": null,
+  "series": "a8db9c1ef9",
+  "quality": 5,
+  "why": "Professional magic and mentalism show at Young Ethel's.",
+  "topics": [
+   "magic",
+   "mentalism",
+   "live performance"
   ],
   "flags": []
  },
@@ -10502,7 +10978,8 @@
   ],
   "flags": [
    "kids"
-  ]
+  ],
+  "family": "museum of the moving image: guided tour"
  },
  {
   "name": "MoMI LAB Public Tours",
@@ -10529,6 +11006,7 @@
   ],
   "flags": [
    "service"
-  ]
+  ],
+  "family": "museum of the moving image: guided tour"
  }
 ]
