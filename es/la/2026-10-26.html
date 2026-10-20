@@ -23,6 +23,17 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system
 .event{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #e7e1d2;scroll-margin-top:20px;position:relative;}
 .hide{position:absolute;top:10px;right:0;background:none;border:none;color:#a89f8a;font-size:22px;line-height:1;cursor:pointer;padding:8px;font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;}
 .hide:hover{color:var(--ink);}
+.ev-th{position:relative;flex:0 0 64px;width:64px;height:64px;align-self:flex-start;overflow:hidden;background:var(--ink);color:var(--paper);
+display:flex;align-items:center;justify-content:center;}
+.ev-th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.ev-th .ev-ic{font-size:24px;line-height:1;}
+.ph-cr{position:absolute;right:3px;bottom:3px;z-index:1;width:16px;height:16px;padding:0;border:0;border-radius:50%;background:rgba(0,0,0,.55);
+color:#fff;font:700 10px/16px sans-serif;text-align:center;cursor:pointer;}
+#phPop{position:fixed;z-index:1001;max-width:min(320px,calc(100vw - 16px));padding:7px 10px;background:var(--card,#fff);color:var(--ink);
+border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font:500 12.5px/1.4 sans-serif;}
+#phPop a{color:var(--ink);font-weight:700;}
+.photo-credits{max-width:900px;margin:14px auto 0;font-size:11.5px;opacity:.7;line-height:1.6;}
+.photo-credits a{color:inherit;}
 
 #hideMenu{position:fixed;z-index:1000;min-width:236px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:4px;
 background:var(--card,#fff);color:var(--ink,#14201A);border:2px solid var(--ink,#14201A);box-shadow:4px 4px 0 var(--ink,#14201A);}
@@ -280,8 +291,11 @@ background-image:repeating-linear-gradient(135deg,rgba(20,32,26,.08) 0 2px,trans
 :root[data-layout="grid"] #conciergeNote a{color:inherit;}
 :root[data-layout="grid"] #conciergeNote .cn-eye{color:inherit;filter:none;opacity:.75;}
 :root[data-layout="grid"] #conciergeNote .cn-ask{background:var(--ink);color:var(--paper);}
-:root[data-layout="grid"] #topTonight{max-width:1060px;border-radius:16px;border-width:1.5px;box-shadow:4px 4px 0 var(--ink);}
-:root[data-layout="concierge"] #topTonight{border-radius:20px;border:1px solid var(--muted);box-shadow:0 8px 24px rgba(0,0,0,.06);}
+:root[data-layout="grid"] #topTonight{max-width:1060px;}
+:root[data-layout="grid"] #allEvents article.event .ev-th{width:auto;height:auto;flex:none;align-self:stretch;aspect-ratio:16/9;margin:0 0 4px;}
+:root[data-layout="grid"] #allEvents article.event .ev-th.ph{display:none;}
+:root[data-layout="grid"] #topTonight .tt-card{border-radius:16px;border-width:1.5px;box-shadow:4px 4px 0 var(--ink);}
+:root[data-layout="concierge"] #topTonight .tt-card{border-radius:20px;border:1px solid var(--muted);box-shadow:0 8px 24px rgba(0,0,0,.06);}
 :root[data-layout="grid"] #filterBar{border-radius:16px;border-width:1.5px;box-shadow:none;}
 :root[data-layout="grid"] #filterBar .fsearch,:root[data-layout="grid"] #filterBar .fbtn,:root[data-layout="grid"] #filterBar select,:root[data-layout="grid"] .filters .fmulti summary{border-radius:10px;border-width:1.5px;box-shadow:none;}
 :root[data-layout="grid"] #filterBar .seg{border-radius:10px;border:none;background:var(--muted);padding:3px;gap:2px;box-shadow:none;}
@@ -1518,51 +1532,59 @@ letter-spacing:.06em;text-transform:uppercase;box-sizing:border-box;}
 .daystrip.open .ds-more{display:none;}
 .ds-note{max-width:1100px;margin:8px auto 0;padding:0 16px;font-size:13px;opacity:.75;box-sizing:border-box;}
 #tonightBtn,#nextHourBtn{display:none!important;}</style><style>
-#topTonight{max-width:1040px;margin:16px auto 0;padding:14px 16px 12px;background:var(--card);color:var(--ink);
-border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);box-sizing:border-box;}
+#dayLead{max-width:1072px;margin:0 auto;padding:26px 16px 4px;box-sizing:border-box;color:var(--ink);}
+#dayLead .dl-h{margin:0 0 8px;font:800 clamp(28px,4.6vw,50px)/1.05 'Fraunces',Georgia,serif;letter-spacing:-.01em;text-transform:none;}
+#dayLead .dl-p{margin:0;font-size:17px;opacity:.72;}
+@media (max-width:640px){#dayLead{padding:18px 16px 2px;}#dayLead .dl-p{font-size:15px;}}
+</style><style>
+/* Top tonight: picture cards (the first one big), as in the approved mockup (preview/mock-images.html) */
+#topTonight{max-width:1040px;margin:18px auto 0;padding:0;background:none;color:var(--ink);border:0;box-shadow:none;box-sizing:border-box;}
 .listmode #topTonight{display:none;}
-#topTonight h2{margin:0 0 6px;font:900 clamp(1.35rem,3vw,1.75rem)/1.1 'Fraunces',Georgia,serif;text-transform:uppercase;letter-spacing:.5px;}
-.tt-list{list-style:none;margin:0;padding:0;}
-.tt-row{position:relative;display:grid;grid-template-columns:30px 76px minmax(0,1fr) auto 30px;column-gap:10px;align-items:baseline;
-padding:9px 0;border-top:2px solid var(--muted);}
-.tt-row:first-child{border-top:0;}
-.tt-star{align-self:start;width:30px;height:30px;margin-top:-4px;padding:0;border:0;background:none;color:var(--ink);font-size:22px;line-height:30px;cursor:pointer;}
+#topTonight h2{margin:0 0 12px;font:900 clamp(1.35rem,3vw,1.75rem)/1.1 'Fraunces',Georgia,serif;text-transform:uppercase;letter-spacing:.5px;}
+.tt-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;}
+.tt-card{position:relative;display:flex;flex-direction:column;min-width:0;overflow:hidden;background:var(--card);color:var(--ink);
+border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);}
+.tt-card.big{grid-column:span 2;}
+.tt-m{position:relative;aspect-ratio:16/9;overflow:hidden;display:flex;align-items:center;justify-content:center;
+background:linear-gradient(135deg,var(--ink),color-mix(in srgb,var(--ink) 72%,var(--accent)));color:var(--paper,#fff);}
+.tt-card.big .tt-m{aspect-ratio:21/9;}
+.tt-m img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.tt-ic{font-size:40px;line-height:1;opacity:.9;}
+.tt-cat{position:absolute;left:10px;top:10px;z-index:1;background:var(--accent);color:var(--on-accent,var(--ink));
+font:800 10.5px/1.2 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;}
+.tt-m .ph-cr{right:6px;bottom:6px;width:18px;height:18px;font-size:11px;line-height:18px;}
+.tt-b{display:flex;flex-direction:column;gap:6px;flex:1;padding:12px 14px;}
+.tt-t{font:800 12px/1.3 'Inter',sans-serif;letter-spacing:.05em;text-transform:uppercase;opacity:.72;}
+.tt-h{margin:0;font:700 19px/1.2 'Fraunces',Georgia,serif;}
+.tt-card.big .tt-h{font-size:23px;}
+.tt-name{color:var(--ink);text-decoration:none;}
+.tt-name:hover{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;}
+.tt-why{margin:0;flex:1;font-size:14px;line-height:1.4;opacity:.8;}
+.tt-f{display:flex;align-items:center;gap:10px;margin-top:4px;}
+.tt-star{width:30px;height:30px;padding:0;border:0;background:none;color:var(--ink);font-size:21px;line-height:30px;cursor:pointer;}
 .tt-star[aria-pressed="true"]{color:var(--accent);}
 .tt-star:hover{transform:scale(1.12);}
-.tt-time{font:800 13.5px/1.3 'Inter',sans-serif;white-space:nowrap;font-variant-numeric:tabular-nums;}
-.tt-main{min-width:0;}
-.tt-name{font:700 17px/1.3 'Fraunces',Georgia,serif;color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);
-text-decoration-thickness:2px;text-underline-offset:3px;}
-.tt-hood{font-size:13px;font-weight:600;opacity:.7;}
-.tt-why{font-size:13px;line-height:1.4;opacity:.68;margin-top:2px;}
-.tt-price{align-self:start;justify-self:end;white-space:nowrap;padding:3px 9px;border:2px solid var(--ink);background:var(--field,#fff);
-color:var(--ink);font:800 12px/1.3 'Inter',sans-serif;text-decoration:none;}
+.tt-price{white-space:nowrap;padding:3px 8px;border:2px solid var(--ink);background:var(--field,#fff);color:var(--ink);
+font:800 12px/1.3 'Inter',sans-serif;text-decoration:none;}
 a.tt-price:hover{background:var(--muted);}
 .tt-price.free{background:var(--accent);color:var(--on-accent,var(--ink));}
-.tt-x{align-self:start;width:30px;height:30px;margin-top:-3px;padding:0;border:0;background:none;color:var(--ink);font-size:22px;line-height:30px;
-cursor:pointer;opacity:0;transition:opacity .12s;}
-.tt-row:hover .tt-x,.tt-x:focus-visible{opacity:.55;}
-.tt-x:hover{opacity:1!important;}
-@media (hover:none){.tt-x{opacity:.5;}}
+.tt-x{margin-left:auto;width:30px;height:30px;padding:0;border:0;background:none;color:var(--ink);font-size:16px;line-height:30px;
+cursor:pointer;opacity:.5;}
+.tt-x:hover,.tt-x:focus-visible{opacity:1;}
 .tt-empty{margin:4px 0 8px;font-size:14px;font-weight:600;opacity:.75;}
-.tt-all{display:inline-block;margin-top:8px;font:800 13px 'Inter',sans-serif;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);
-text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:4px;}
+.tt-all{display:inline-block;margin-top:20px;border:2px solid var(--ink);background:var(--accent);color:var(--on-accent,var(--ink));
+font:800 13px 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:10px 16px;text-decoration:none;box-shadow:4px 4px 0 var(--ink);}
 #allEvents{scroll-margin-top:70px;}
 /* the default look: the full list lines up with the boxes above it */
 :root:not([data-layout]) main#allEvents,:root[data-layout="brutalist"] main#allEvents{max-width:1080px;}
 :root:not([data-layout]) #allEvents .event-body p,:root[data-layout="brutalist"] #allEvents .event-body p{max-width:76ch;}
 @media (max-width:640px){
-#topTonight{margin:14px 12px 0;padding:10px 12px 10px;}
-.tt-row{grid-template-columns:26px minmax(0,1fr) auto 26px;column-gap:8px;}
-.tt-star,.tt-x{width:26px;}
-.tt-time{grid-column:2;grid-row:1;font-size:12px;}
-.tt-main{grid-column:2;grid-row:2;}
-.tt-star{grid-row:1/3;}
-.tt-price{grid-column:3;grid-row:1/3;}
-.tt-x{grid-column:4;grid-row:1/3;}
-.tt-name{font-size:15.5px;}
-.tt-hood,.tt-why{font-size:12.5px;}
-.tt-x{opacity:.5;}
+#topTonight{margin:14px 12px 0;}
+.tt-list{grid-template-columns:1fr;gap:14px;}
+.tt-card.big{grid-column:auto;}
+.tt-card.big .tt-m{aspect-ratio:16/9;}
+.tt-h,.tt-card.big .tt-h{font-size:18px;}
+.tt-why{font-size:13.5px;}
 }
 </style><style>
 .rep-link{background:none;border:0;padding:4px 0;margin-left:auto;font:600 11.5px/1.2 'Inter',sans-serif;color:var(--ink,#14201A);
@@ -1759,6 +1781,35 @@ color:var(--ink);font:500 13px 'Inter',sans-serif;border-radius:0;max-width:100%
 .fs-grp.zero > summary{opacity:.38;}
 .fs-grp .fs-sub{padding:0 0 4px 20px;}
 .fs-morebtn{margin:4px 0 0;}
+/* For you / Everything (people with settings or ticks) */
+.fs-mode{display:flex;border:2px solid var(--ink);margin:0 0 10px;}
+.fs-mode[hidden]{display:none;}
+.fs-mode button{flex:1;min-width:0;border:0;background:var(--field,#fff);color:var(--ink);font:800 11.5px/1.2 'Inter',sans-serif;padding:8px 4px;cursor:pointer;white-space:nowrap;}
+.fs-mode button.on{background:var(--ink);color:var(--paper);}
+.fs-row.muted{opacity:.55;}
+.fs-row[hidden],.fs-sec[hidden]{display:none;}
+.fs-lk{color:var(--accent);margin-left:4px;}
+.fs-tag{display:inline-block;margin-left:6px;padding:1px 5px;font:700 10px/1.3 'Inter',sans-serif;letter-spacing:.3px;
+background:color-mix(in srgb,var(--ink) 10%,transparent);color:var(--ink);vertical-align:1px;}
+.fs-lk[hidden],.fs-tag[hidden]{display:none;}
+.fs-set{cursor:default;opacity:.62;}
+.fs-tag2{margin-left:auto;}
+.fs-mnote{max-width:1040px;margin:10px auto 0;padding:8px 12px;box-sizing:border-box;background:var(--card);color:var(--ink);
+border-left:4px solid var(--ink);font-size:13.5px;}
+.fs-mnote[hidden]{display:none;}
+.fs-mnote .fs-link{font-weight:800;opacity:1;font-size:13.5px;}
+:root.fs-on #fsCol > .fs-mnote{max-width:none;margin-left:0;margin-right:0;}
+/* phones: the chip row */
+.fs-chips{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:2px 0 4px;}
+.fs-chips::-webkit-scrollbar{display:none;}
+.fs-chip{flex:none;border:2px solid var(--ink);background:var(--field,#fff);color:var(--ink);font:700 13px/1.2 'Inter',sans-serif;
+padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;}
+.fs-chip.on{background:var(--ink);color:var(--paper);}
+.fs-chip[hidden]{display:none;}
+.fs-chipf{margin-left:auto;background:var(--accent);color:var(--on-accent,var(--ink));}
+.fs-chipf.on{background:var(--accent);color:var(--on-accent,var(--ink));box-shadow:inset 0 0 0 2px var(--ink);}
+:root.fs-on #filterBar .fs-chips{display:flex!important;}
+:root.fs-on #fsBtn{display:none!important;}
 /* wide screens: the sidebar beside Top tonight and the list */
 @media (min-width:1100px){
 :root.fs-on #fsLayout{display:grid;grid-template-columns:248px minmax(0,1fr);column-gap:28px;align-items:start;
@@ -1769,7 +1820,7 @@ border:1px solid color-mix(in srgb,var(--ink) 18%,transparent);scrollbar-width:t
 :root.fs-on #fsCol{min-width:0;}
 :root.fs-on #fsCol > #filterBar,:root.fs-on #fsCol > #topTonight,:root.fs-on #fsCol > #picksBar{max-width:none;margin-left:0!important;margin-right:0!important;}
 :root.fs-on #fsCol > main#allEvents{max-width:none;}
-:root.fs-on #fsBtn,:root.fs-on #filterBar .fclear{display:none!important;}
+:root.fs-on #fsBtn,:root.fs-on #filterBar .fclear,:root.fs-on #filterBar .fs-chips{display:none!important;}
 :root.fs-on.listmode #fside{display:block;}
 }
 /* phones and narrow windows: one Filters button, the groups in a bottom sheet */
@@ -2118,6 +2169,64 @@ body{overflow-x:hidden;}
 }
 </style><script>window.CAT_LABELS={"Music": "Música", "Comedy": "Comedia", "Arts & Play": "Arte y juego", "Talks": "Charlas", "Tech": "Tecnología", "Meetups & Mixers": "Encuentros", "Food & Drink": "Comida y bebida", "Trivia & Games": "Trivia y juegos", "Sports": "Deportes", "Theater": "Teatro", "Fitness & Outdoors": "Ejercicio y aire libre", "Classes & Workshops": "Clases y talleres", "Film": "Cine", "Tours": "Recorridos", "Italian": "Italiana", "Japanese": "Japonesa", "Chinese": "China", "Mexican": "Mexicana", "Indian": "India", "Thai": "Tailandesa", "Korean": "Coreana", "French": "Francesa", "American": "Estadounidense", "Mediterranean": "Mediterránea", "Vegetarian / vegan": "Vegetariana / vegana", "Seafood": "Mariscos", "Vietnamese": "Vietnamita", "Spanish / tapas": "Española / tapas", "Latin American": "Latinoamericana"};</script></head>
 <body><script>
+var Rank = (function(){
+"use strict";
+var JUNK = ["networking", "sales", "spam", "service", "internal", "members_only", "online", "class_slot"];
+var W = {quality: 2, like: 12, topic: 6, area: 5, timeFit: 3, timeMiss: -8, late: 4, free: 6};
+var BUDGETS = [0, 20, 40, 75, 150];
+function lower(a){ return (a || []).map(function(x){ return String(x).toLowerCase(); }).filter(Boolean); }
+function profile(o){
+  o = o || {};
+  var b = o.budget;
+  b = (b === null || b === undefined || b === "" || b === "any" || isNaN(+b)) ? null : Math.max(0, Math.floor(+b));
+  var topics = Array.isArray(o.topics) ? o.topics : Object.keys(o.topics || {});
+  return {likes: (o.likes || []).slice(), mutes: (o.mutes || []).slice(), free_only: !!o.free_only, budget: b,
+    areas: lower(o.areas), times: (o.times || []).slice(), topics: lower(topics), kids: !!o.kids, ticks: o.ticks || {}};
+}
+function hasSettings(p){
+  return !!(p.likes.length || p.mutes.length || p.free_only || p.budget !== null || p.areas.length || p.times.length ||
+    p.topics.length || Object.keys(p.ticks).some(function(k){ return p.ticks[k]; }));
+}
+function isJunk(e){
+  if (typeof e.quality === "number" && e.quality <= 3) return true;
+  return (e.flags || []).some(function(f){ return JUNK.indexOf(f) >= 0; });
+}
+function isKids(e){ return !!e.kids || (e.flags || []).indexOf("kids") >= 0; }
+function exclude(e, p){
+  if (isJunk(e)) return "junk";
+  if (isKids(e) && !p.kids) return "kids";
+  if (!hasSettings(p)) return "";
+  if (p.mutes.indexOf(e.category) >= 0) return "silenciada";
+  var price = typeof e.price === "number" ? e.price : null;
+  if (p.budget !== null) {
+    if (p.budget === 0 && !e.free) return "over budget";
+    if (price !== null && price > p.budget) return "over budget";
+  }
+  if (p.free_only && !e.free && price === null && e.big) return "ticketed";
+  return "";
+}
+function inArea(e, p){
+  if (!p.areas.length) return false;
+  var h = String(e.hood || "").toLowerCase(), g = String(e.area || "").toLowerCase();
+  return (!!h && p.areas.indexOf(h) >= 0) || (!!g && p.areas.indexOf(g) >= 0);
+}
+function win(st){ return st < 1020 ? "day" : (st < 1260 ? "evening" : "late"); }
+function score(e, p){
+  var q = typeof e.quality === "number" ? e.quality : 5, s = q * W.quality;
+  if (p.likes.indexOf(e.category) >= 0) s += W.like;
+  if (p.topics.length && (e.topics || []).some(function(t){ return p.topics.indexOf(String(t).toLowerCase()) >= 0; })) s += W.topic;
+  if (inArea(e, p)) s += W.area;
+  var st = e.start;
+  if (p.times.length && st != null) s += p.times.indexOf(win(st)) >= 0 ? W.timeFit : W.timeMiss;
+  if (p.times.indexOf("late") >= 0 && st != null && st >= 1260) s += W.late;
+  if (p.free_only && e.free) s += W.free;
+  var tb = p.ticks[e.category] || 0;
+  s += tb > 0 ? Math.min(tb, 3) : Math.max(tb * 2, -6);
+  return s;
+}
+return {profile: profile, hasSettings: hasSettings, exclude: exclude, score: score, inArea: inArea, BUDGETS: BUDGETS};
+})();
+
 /* Tonight taste: onboarding quiz, profile, personalized ranking */
 (function(){
 "use strict";
@@ -2126,7 +2235,15 @@ var CITY = "la";
 var CITIES_ALL = ["nyc", "london", "la"];
 var TKEY = "tonight-taste";
 var OKEY = "tonight-onboarded";
-function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low"}; }
+// budget: Preferences > Event budget (up to; null = any, 0 = free only); areas: {city: [borough / area / neighbourhood]}
+function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low", budget:null, areas:{}}; }
+function cleanBudget(b){ return (b === null || b === undefined || b === "" || isNaN(+b)) ? null : Math.max(0, Math.floor(+b)); }
+function cleanAreas(a){
+  var out = {};
+  if (a && typeof a === "object" && !Array.isArray(a)) Object.keys(a).forEach(function(c){
+    if (Array.isArray(a[c])) out[c] = a[c].map(String).filter(Boolean).slice(0, 40); });
+  return out;
+}
 function cleanList(a){
   if (!Array.isArray(a)) return [];
   return a.filter(function(c){ return CATS_ALL.indexOf(c) >= 0; });
@@ -2139,6 +2256,7 @@ function load(){
       b.likes = cleanList(t.likes); b.mutes = cleanList(t.mutes);
       b.free_only = !!t.free_only;
       b.surprise = (t.surprise === "med" || t.surprise === "high") ? t.surprise : "low";
+      b.budget = cleanBudget(t.budget); b.areas = cleanAreas(t.areas);
       return b;
     }
   } catch (e) {}
@@ -2161,19 +2279,68 @@ function uid(){
 function apiBase(){ return window.__tonight_api || null; }
 function authHeaders(h){ return window.TonightAuth ? TonightAuth.headers(h) : (h || {}); }
 function save(sync){
+  PROF = null;
   try { localStorage.setItem(TKEY, JSON.stringify(taste)); } catch (e) {}
   if (sync === false) return;
   var base = apiBase();
   if (!base) return;
   var targets = CITY ? [CITY] : CITIES_ALL;
-  var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
-    free_only: taste.free_only, surprise: taste.surprise});
   targets.forEach(function(c){
+    var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
+      free_only: taste.free_only, surprise: taste.surprise, budget: taste.budget, areas: taste.areas[c] || []});
     fetch(base + "/taste/" + encodeURIComponent(c),
       {method: "POST", headers: authHeaders({"Content-Type": "application/json"}), body: payload}
     ).catch(function(){});
   });
 }
+// topics of what you tick (ingest/quality.py), for 60 days: this device's ticks + the account's (/api/taste)
+var TOPKEY = "tonight-topics-" + CITY, serverTopics = {}, PROF = null;
+function localTopics(){
+  var t = {}, cut = Date.now() - 60 * 86400000;
+  try { t = JSON.parse(localStorage.getItem(TOPKEY) || "{}") || {}; } catch (e) {}
+  Object.keys(t).forEach(function(k){ if (!(t[k] > cut)) delete t[k]; });
+  return t;
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest && e.target.closest("article.event .toggle");
+  if (!b || typeof TOPICS === "undefined" || b.getAttribute("aria-pressed") !== "true") return;
+  var t = localTopics(), now = Date.now();
+  (TOPICS[+b.dataset.idx] || []).forEach(function(k){ t[k] = now; });
+  try { localStorage.setItem(TOPKEY, JSON.stringify(t)); } catch (err) {}
+  PROF = null;
+});
+function kidsIn(){ return typeof kidsOn === "function" && kidsOn(); }
+// this person's settings and ticks, as the ranking reads them (RANK_JS)
+function prof(){
+  if (PROF) return PROF;
+  var topics = Object.keys(localTopics());
+  Object.keys(serverTopics).forEach(function(k){ if (topics.indexOf(k) < 0) topics.push(k); });
+  PROF = Rank.profile({likes: taste.likes, mutes: taste.mutes, free_only: taste.free_only, budget: taste.budget,
+    areas: (CITY && taste.areas[CITY]) || [], times: goOutTimes(), topics: topics, kids: kidsIn(), ticks: tapBonus});
+  return PROF;
+}
+function hasProfile(){ return Rank.hasSettings(prof()); }
+function ev(i){
+  return {category: CATS[i], quality: typeof QUAL !== "undefined" ? QUAL[i] : null,
+    price: typeof PRICEN !== "undefined" ? PRICEN[i] : null, free: !!FREE[i],
+    big: typeof BIGTIX !== "undefined" && !!BIGTIX[i], flags: typeof FLAGS !== "undefined" && FLAGS[i] ? FLAGS[i].split(",") : [],
+    kids: typeof KIDS !== "undefined" && !!KIDS[i], start: typeof STARTS !== "undefined" ? STARTS[i] : null,
+    topics: typeof TOPICS !== "undefined" ? TOPICS[i] : [], hood: typeof HOODS !== "undefined" ? HOODS[i] : "",
+    area: typeof AREA_GROUP !== "undefined" ? AREA_GROUP[i] : ""};
+}
+// why this event is out of your "Para ti" ("" = in): muted / over budget / ticketed / junk / kids / hidden
+function excluded(i){
+  if (typeof CATS === "undefined" || !hasProfile()) return "";
+  if (window.TonightHide && TonightHide.hides(i)) return "hidden";
+  return Rank.exclude(ev(i), prof());
+}
+// the list's For you filter: kids' events keep their own section; a muted category you tick in Filters shows anyway
+function forYouOut(i, cats){
+  var why = excluded(i);
+  if (!why || why === "kids" || why === "hidden") return false;
+  return !(why === "silenciada" && cats && cats.indexOf(CATS[i]) >= 0);
+}
+function inArea(i){ return typeof CATS !== "undefined" && Rank.inArea(ev(i), prof()); }
 function pull(){
   var base = apiBase();
   if (!base || !CITY || typeof CATS === "undefined") return;
@@ -2188,14 +2355,19 @@ function pull(){
         taste.likes = cleanList(d.likes); taste.mutes = cleanList(d.mutes);
         taste.free_only = !!d.free_only;
         taste.surprise = (d.surprise === "med" || d.surprise === "high") ? d.surprise : "low";
+        if ("budget" in d) taste.budget = cleanBudget(d.budget);
+        if (Array.isArray(d.areas)) taste.areas[CITY] = d.areas.map(String);
         save(false);
       }
+      serverTopics = d.topics && typeof d.topics === "object" ? d.topics : {};
       if (d.categories) tapBonus = d.categories;
       if (d.venues) venueBonus = d.venues;
       seriesRecent = {}; (d.series_recent || []).forEach(function(k){ seriesRecent[k] = 1; });
       (d.regulars || []).forEach(function(k){ regulars[k] = 1; });
       paintRegulars();
       freeShare = +d.free_share || 0;
+      PROF = null;
+      if (window.__facet && window.__facet.apply) window.__facet.apply();  // For you may have just started to apply
       applyRanking();
     })
     .catch(function(){});
@@ -2205,10 +2377,32 @@ function quality(i){
   var q = typeof QUAL !== "undefined" ? QUAL[i] : null;
   return typeof q === "number" ? q : 5;
 }
-// the list's order: your taste, nudged by quality
+// the list's order: with settings or ticks, the personal ranking (quality breaks ties); else quality-led as before
 function score(i){
   if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  if (hasProfile()) return rank(i);
   return personal(i) + (quality(i) - 5) * 1.5;
+}
+// Top tonight's order (and the list's, with a profile): RANK_JS's score plus the signals only the page knows
+function rank(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  if (!hasProfile()) return (quality(i) - 5) * 3 + personal(i);
+  return Rank.score(ev(i), prof()) + extras(i);
+}
+function extras(i){
+  var s = 0, cat = CATS[i];
+  var vb = (typeof VENUES !== "undefined" && VENUES[i]) ? venueBonus[VENUES[i].toLowerCase()] : 0;
+  if (vb > 0) s += Math.min(vb * 2, 4); else if (vb < 0) s -= 5;
+  if (window.TonightHide) s += TonightHide.penalty(i);
+  if (freeShare >= 0.6 && FREE[i]) s += 2;
+  if (window.FRIENDS_GOING && typeof EIDS !== "undefined" && FRIENDS_GOING[EIDS[i]]) s += 6;
+  if (typeof SERIES !== "undefined" && SERIES[i]) {
+    if (regulars[SERIES[i]]) s += 15;
+    else if (RECUR[i] && seriesRecent[SERIES[i]]) s -= 8;
+  }
+  if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
+    s += (taste.surprise === "high" ? 4 : 2);
+  return s;
 }
 // the personal half: categories, ticks, venues, friends, regulars, when you go out
 function personal(i){
@@ -2262,6 +2456,9 @@ document.addEventListener("click", function(e){
       name: i >= 0 && typeof NAMES !== "undefined" ? NAMES[i] : "", venue: i >= 0 && typeof VENUES !== "undefined" ? VENUES[i] : ""})}).catch(function(){});
 });
 document.addEventListener("DOMContentLoaded", paintRegulars);
+document.addEventListener("click", function(e){  // "Include kids' events" changes who's in
+  if (e.target.closest && e.target.closest("#kidsToggle")) setTimeout(function(){ PROF = null;
+    if (window.__facet && window.__facet.apply) window.__facet.apply(); }, 0); });
 function hasTaste(){
   return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only || goOutTimes().length > 0 ||
     (window.FRIENDS_GOING && Object.keys(window.FRIENDS_GOING).length > 0) ||
@@ -2284,8 +2481,9 @@ function sortChildren(container){
 }
 function scored(){ return typeof QUAL !== "undefined" && QUAL.some(function(q){ return q != null; }); }
 function applyRanking(){
+  PROF = null;
   if (window.__topTonight) window.__topTonight();  // Top tonight re-ranks whatever the layout
-  if ((!hasTaste() && !scored()) || typeof CATS === "undefined") return;
+  if ((!hasTaste() && !hasProfile() && !scored()) || typeof CATS === "undefined") return;
   // the timeline layout orders by start time, not taste
   if (document.documentElement.getAttribute("data-layout") === "timeline") return;
   var wrap = document.querySelector("main.wrap");
@@ -2476,6 +2674,8 @@ function setCat(cat, mode){
 window.Tonight = {
   taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
   score: score, personal: personal, quality: quality, save: save, applyRanking: applyRanking,
+  rank: rank, excluded: excluded, forYouOut: forYouOut, inArea: inArea, hasProfile: hasProfile, profile: prof,
+  reset: function(){ PROF = null; },
   openQuiz: openQuiz, describe: describe, setCat: setCat
 };
 document.addEventListener("DOMContentLoaded", function(){
@@ -2506,7 +2706,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 </details>
 </div>
-</header><nav class="daystrip open" aria-label="Pick a day"><a class="ds" href="2026-10-20.html"><b>Hoy</b><span>Mar 20</span></a><a class="ds" href="2026-10-21.html"><b>Mañana</b><span>Mié 21</span></a><a class="ds" href="2026-10-22.html"><b>Jue</b><span>22</span></a><a class="ds" href="2026-10-23.html"><b>Vie</b><span>23</span></a><a class="ds ds-x" href="2026-10-24.html"><b>Sáb</b><span>24</span></a><a class="ds ds-x" href="2026-10-25.html"><b>Dom</b><span>25</span></a><a class="ds cur ds-x" href="2026-10-26.html" aria-current="page"><b>Lun</b><span>26</span></a><a class="ds wk" href="weekend-2026-10-23.html">Este fin de semana →</a><button type="button" class="ds ds-more" aria-expanded="false" onclick="var s=this.parentNode;s.classList.toggle('open');this.setAttribute('aria-expanded',s.classList.contains('open'))">Más ▾</button></nav><p class="ds-note">Se agregan más planes a medida que se acerca el día (algunas comedias y charlas se publican uno o dos días antes).</p><div id="conciergeNote" aria-live="polite"></div>
+</header><section id="dayLead" aria-label="Lo mejor para hacer en Los Ángeles el lunes."><h2 class="dl-h">Lo mejor para hacer en Los Ángeles el lunes.</h2><p class="dl-p">Elegido entre 71 eventos del lunes.</p></section><nav class="daystrip open" aria-label="Pick a day"><a class="ds" href="2026-10-20.html"><b>Hoy</b><span>Mar 20</span></a><a class="ds" href="2026-10-21.html"><b>Mañana</b><span>Mié 21</span></a><a class="ds" href="2026-10-22.html"><b>Jue</b><span>22</span></a><a class="ds" href="2026-10-23.html"><b>Vie</b><span>23</span></a><a class="ds ds-x" href="2026-10-24.html"><b>Sáb</b><span>24</span></a><a class="ds ds-x" href="2026-10-25.html"><b>Dom</b><span>25</span></a><a class="ds cur ds-x" href="2026-10-26.html" aria-current="page"><b>Lun</b><span>26</span></a><a class="ds wk" href="weekend-2026-10-23.html">Este fin de semana →</a><button type="button" class="ds ds-more" aria-expanded="false" onclick="var s=this.parentNode;s.classList.toggle('open');this.setAttribute('aria-expanded',s.classList.contains('open'))">Más ▾</button></nav><p class="ds-note">Se agregan más planes a medida que se acerca el día (algunas comedias y charlas se publican uno o dos días antes).</p><div id="conciergeNote" aria-live="polite"></div>
 
 <div id="fsLayout"><aside id="fside" aria-label="Filtros"></aside><div id="fsCol"><div class="filters" id="filterBar">
 <div class="frow fchips">
@@ -2549,6 +2749,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-283e5efb" data-idx="24" data-eid="283e5efb" data-name="ALO Wellness Club + 1 Hotel West Hollywood: Sculpt with Lexi Bader" data-series="f018fb9b46" data-start-local="2026-10-26T11:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="1 Hotel West Hollywood, West Hollywood" data-url="https://luma.com/4f0up5kf" data-lat="34.094242" data-lng="-118.375604">
 <button class="toggle" data-idx="24" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="24" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/4f0up5kf">ALO Wellness Club + 1 Hotel West Hollywood: Sculpt with Lexi Bader</a></h3>
 <div class="meta">11:00 AM – 12:00 PM · 1 Hotel West Hollywood, West Hollywood · Free · Full · waitlist open</div>
@@ -2566,6 +2767,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a023cec2" data-idx="25" data-eid="a023cec2" data-name="Free Curls &amp; Color Education with Paula Peralta" data-series="67f803d1d3" data-start-local="2026-10-26T11:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="1450 2nd St, Santa Monica" data-url="https://luma.com/v7elyqxz" data-lat="34.013663099999995" data-lng="-118.4960956">
 <button class="toggle" data-idx="25" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="25" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/v7elyqxz">Free Curls &amp; Color Education with Paula Peralta</a></h3>
 <div class="meta">11:00 AM – 4:00 PM · 1450 2nd St, Santa Monica · Free</div>
@@ -2583,6 +2785,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-9ef93dbf" data-idx="26" data-eid="9ef93dbf" data-name="MIXUE Los Angeles Info Session" data-series="2a5bb034f3" data-start-local="2026-10-26T12:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="303 E Valley Blvd, San Gabriel" data-url="https://luma.com/c2mgz4np" data-lat="34.0804931" data-lng="-118.096791">
 <button class="toggle" data-idx="26" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="26" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/c2mgz4np">MIXUE Los Angeles Info Session</a></h3>
 <div class="meta">12:00 PM – 4:00 PM · 303 E Valley Blvd, San Gabriel · Free</div>
@@ -2600,6 +2803,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-c95226d5" data-idx="29" data-eid="c95226d5" data-name="Vent-ilator Rounds" data-series="15565bc6ef" data-start-local="2026-10-26T18:00:00" data-cal-start="20261027T010000Z" data-cal-end="20261027T030000Z" data-loc="The Wicked Wolf Cocktail Bar + Tea Lounge &amp; Café, Long Beach" data-url="https://luma.com/ntfqq1f8" data-lat="33.7995917" data-lng="-118.1934689">
 <button class="toggle" data-idx="29" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="29" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/ntfqq1f8">Vent-ilator Rounds</a></h3>
 <div class="meta">6:00 PM – 9:00 PM · The Wicked Wolf Cocktail Bar + Tea Lounge &amp; Café, Long Beach · Free</div>
@@ -2617,6 +2821,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-cbf25c13" data-idx="30" data-eid="cbf25c13" data-name="A Talk with Layla Shaikley" data-series="9134f39264" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="Taper Hall (THH), University Park" data-url="https://luma.com/vr56pmeq" data-lat="34.0222316" data-lng="-118.2845619">
 <button class="toggle" data-idx="30" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="30" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/vr56pmeq">A Talk with Layla Shaikley</a></h3>
 <div class="meta">7:00 PM – 8:00 PM · Taper Hall (THH), University Park · Free</div>
@@ -2638,6 +2843,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-ef07686d" data-idx="0" data-eid="ef07686d" data-name="Taste Of Chaos" data-series="280c2bfd04" data-start-local="2026-10-26T17:00:00" data-cal-start="20261027T000000Z" data-cal-end="20261027T020000Z" data-loc="House of Blues Anaheim, Anaheim" data-url="https://www.ticketmaster.com/taste-of-chaos-anaheim-california-10-26-2026/event/090064BBE214EAFF" data-lat="33.8095868" data-lng="-117.9229975">
 <button class="toggle" data-idx="0" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="0" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/taste-of-chaos-anaheim-california-10-26-2026/event/090064BBE214EAFF">Taste Of Chaos</a></h3>
 <div class="meta">5:00 PM · House of Blues Anaheim, Anaheim</div>
@@ -2655,6 +2861,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-01c04f80" data-idx="1" data-eid="01c04f80" data-name="The Jet Stone Conspiracy Presents: Welcome to America - Night Four" data-series="8db4b3c18b" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="The Moroccan Lounge, Downtown" data-url="https://www.ticketmaster.com/the-jet-stone-conspiracy-presents-welcome-los-angeles-california-10-26-2026/event/0900651BBF8B8B6B" data-lat="34.04898" data-lng="-118.23365">
 <button class="toggle" data-idx="1" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="1" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/the-jet-stone-conspiracy-presents-welcome-los-angeles-california-10-26-2026/event/0900651BBF8B8B6B">The Jet Stone Conspiracy Presents: Welcome to America - Night Four</a></h3>
 <div class="meta">7:00 PM · The Moroccan Lounge, Downtown</div>
@@ -2672,6 +2879,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-bf3b3e26" data-idx="2" data-eid="bf3b3e26" data-name="PBW &amp; Perfectly Imperfect Presents: iKeda" data-series="530fabeb01" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="The Echo, Echo Park" data-url="https://www.ticketmaster.com/pbw-perfectly-imperfect-presents-ikeda-los-angeles-california-10-26-2026/event/090065301517DA3F" data-lat="34.077729" data-lng="-118.260108">
 <button class="toggle" data-idx="2" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="2" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/pbw-perfectly-imperfect-presents-ikeda-los-angeles-california-10-26-2026/event/090065301517DA3F">PBW &amp; Perfectly Imperfect Presents: iKeda</a></h3>
 <div class="meta">7:00 PM · The Echo, Echo Park</div>
@@ -2689,6 +2897,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-8b7db045" data-idx="4" data-eid="8b7db045" data-name="Reuben James featuring Ethan Farmer and Eric Walls" data-series="e087a839b0" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="Blue Note Los Angeles, Hollywood" data-url="https://www.ticketweb.com/event/reuben-james-featuring-ethan-farmer-blue-note-los-angeles-tickets/15047123" data-lat="34.09772" data-lng="-118.32871">
 <button class="toggle" data-idx="4" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="4" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/reuben-james-featuring-ethan-farmer-blue-note-los-angeles-tickets/15047123">Reuben James featuring Ethan Farmer and Eric Walls</a></h3>
 <div class="meta">7:00 PM · Blue Note Los Angeles, Hollywood · $18.80</div>
@@ -2706,6 +2915,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-bb9392ed" data-idx="9" data-eid="bb9392ed" data-name="Strawberry Fuzz x Plague Vendor w/ Bitchkiss (18+)" data-series="5b2d093531" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="The Regent Theater, Downtown" data-url="https://www.ticketmaster.com/strawberry-fuzz-x-plague-vendor-w-los-angeles-california-10-26-2026/event/0900652FE632E2DB" data-lat="34.0473" data-lng="-118.24799">
 <button class="toggle" data-idx="9" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="9" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/strawberry-fuzz-x-plague-vendor-w-los-angeles-california-10-26-2026/event/0900652FE632E2DB">Strawberry Fuzz x Plague Vendor w/ Bitchkiss (18+)</a></h3>
 <div class="meta">8:00 PM · The Regent Theater, Downtown</div>
@@ -2723,6 +2933,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a5ebd670" data-idx="10" data-eid="a5ebd670" data-name="Gary Clark Jr.with special guest Xavier Lynn" data-series="fe0b48f33b" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="Orpheum Theatre, Downtown" data-url="https://www.ticketmaster.com/gary-clark-jrwith-special-guest-xavier-los-angeles-california-10-26-2026/event/090064BACEC1C60F" data-lat="34.04263554" data-lng="-118.25558624">
 <button class="toggle" data-idx="10" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="10" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/gary-clark-jrwith-special-guest-xavier-los-angeles-california-10-26-2026/event/090064BACEC1C60F">Gary Clark Jr.with special guest Xavier Lynn</a></h3>
 <div class="meta">8:00 PM · Orpheum Theatre, Downtown</div>
@@ -2740,6 +2951,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-359df680" data-idx="11" data-eid="359df680" data-name="Tom Jones : Come Gather Round Tour" data-series="0460221744" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="Greek Theatre, Griffith Park" data-url="https://www.ticketmaster.com/tom-jones-come-gather-round-tour-los-angeles-california-10-26-2026/event/090064B43E17B4D1" data-lat="34.11948811" data-lng="-118.29629093">
 <button class="toggle" data-idx="11" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="11" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/tom-jones-come-gather-round-tour-los-angeles-california-10-26-2026/event/090064B43E17B4D1">Tom Jones : Come Gather Round Tour</a></h3>
 <div class="meta">8:00 PM · Greek Theatre, Griffith Park</div>
@@ -2757,6 +2969,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-80308232" data-idx="12" data-eid="80308232" data-name="Julia Wolf w/ Bee Blackwell" data-series="0d8af7938a" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="The Fonda Theatre, Hollywood" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A7x8Az" data-lat="34.0998" data-lng="-118.326897">
 <button class="toggle" data-idx="12" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="12" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7x8Az">Julia Wolf w/ Bee Blackwell</a></h3>
 <div class="meta">8:00 PM · The Fonda Theatre, Hollywood</div>
@@ -2774,6 +2987,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-8eb7cb7f" data-idx="14" data-eid="8eb7cb7f" data-name="The WLDLFE" data-series="5181f91e87" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="Roxy Theatre-CA, Hollywood Hills West" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A7PIx9" data-lat="34.0942" data-lng="-118.3815">
 <button class="toggle" data-idx="14" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="14" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7PIx9">The WLDLFE</a></h3>
 <div class="meta">8:00 PM · Roxy Theatre-CA, Hollywood Hills West</div>
@@ -2791,6 +3005,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-5909df48" data-idx="15" data-eid="5909df48" data-name="TOM KUBIS BIG BAND" data-series="39d391f670" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="Gaslamp Long Beach, Long Beach" data-url="https://www.ticketweb.com/event/tom-kubis-big-band-gaslamp-long-beach-tickets/14786413" data-lat="33.767095" data-lng="-118.116275">
 <button class="toggle" data-idx="15" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="15" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/tom-kubis-big-band-gaslamp-long-beach-tickets/14786413">TOM KUBIS BIG BAND</a></h3>
 <div class="meta">8:00 PM · Gaslamp Long Beach, Long Beach · $24.17</div>
@@ -2808,6 +3023,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a9d21ddf" data-idx="44" data-eid="a9d21ddf" data-name="very good mondays" data-series="1983ccd6a2" data-start-local="2026-10-26T21:00:00" data-cal-start="20261027T040000Z" data-cal-end="20261027T060000Z" data-loc="Gold-Diggers, Hollywood" data-url="https://dice.fm/event/6a9da99d7c2ded0001a5578b" data-weekly="1" data-lat="34.09054" data-lng="-118.31256">
 <button class="toggle" data-idx="44" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="44" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://dice.fm/event/6a9da99d7c2ded0001a5578b">very good mondays</a></h3>
 <div class="meta">9:00 PM · Gold-Diggers, Hollywood · $15.87 · ↻ Every Monday</div>
@@ -2825,6 +3041,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-7a975013" data-idx="45" data-eid="7a975013" data-name="The Well, Pink Fuzz" data-series="bdf227edc9" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="Zebulon, Elysian Valley" data-url="https://dice.fm/event/6a5e77918c4b420001d2bc01" data-lat="34.10719" data-lng="-118.25473">
 <button class="toggle" data-idx="45" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="45" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://dice.fm/event/6a5e77918c4b420001d2bc01">The Well, Pink Fuzz</a></h3>
 <div class="meta">8:00 PM – 11:00 PM · Zebulon, Elysian Valley · $26.78</div>
@@ -2842,6 +3059,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-771f3944" data-idx="46" data-eid="771f3944" data-name="Sgt. Splendor feat. Kate Vargas &amp; Eric McFadden with special guests" data-series="fa340d989d" data-start-local="2026-10-26T19:15:00" data-cal-start="20261027T021500Z" data-cal-end="20261027T041500Z" data-loc="The Mint, Mid-City" data-url="https://dice.fm/event/6aa9d16422f3b90001aef462" data-lat="34.0522" data-lng="-118.37161">
 <button class="toggle" data-idx="46" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="46" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://dice.fm/event/6aa9d16422f3b90001aef462">Sgt. Splendor feat. Kate Vargas &amp; Eric McFadden with special guests</a></h3>
 <div class="meta">7:15 PM – 11:15 PM · The Mint, Mid-City · $18.54</div>
@@ -2859,6 +3077,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-e8aa93e7" data-idx="52" data-eid="e8aa93e7" data-name="Great Lake Swimmers – Caught Light Tour 2026" data-series="dbe145ac2e" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="Lodge Room, Highland Park" data-url="https://www.lodgeroomhlp.com/shows/great-lake-swimmers-caught-light-tour-2026/" data-lat="34.1091" data-lng="-118.1946">
 <button class="toggle" data-idx="52" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="52" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.lodgeroomhlp.com/shows/great-lake-swimmers-caught-light-tour-2026/">Great Lake Swimmers – Caught Light Tour 2026</a></h3>
 <div class="meta">8:00 PM · Lodge Room, Highland Park</div>
@@ -2880,6 +3099,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a70b163f" data-idx="3" data-eid="a70b163f" data-name="The Rocky Horror Picture Show Spooktacular Tour with Barry Bostwick" data-series="9c628babf0" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="The Wiltern, Koreatown" data-url="https://www.ticketmaster.com/the-rocky-horror-picture-show-spooktacular-los-angeles-california-10-26-2026/event/090064B3D19C1D19" data-lat="34.06141494" data-lng="-118.30879207">
 <button class="toggle" data-idx="3" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="3" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/the-rocky-horror-picture-show-spooktacular-los-angeles-california-10-26-2026/event/090064B3D19C1D19">The Rocky Horror Picture Show Spooktacular Tour with Barry Bostwick</a></h3>
 <div class="meta">7:00 PM · The Wiltern, Koreatown</div>
@@ -2897,6 +3117,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-270422e9" data-idx="5" data-eid="270422e9" data-name="Tonight at the Improv" data-series="447adc5ca0" data-start-local="2026-10-26T19:15:00" data-cal-start="20261027T021500Z" data-cal-end="20261027T041500Z" data-loc="Hollywood Improv (The Main Room) , Beverly Grove" data-url="https://www.ticketweb.com/event/tonight-at-the-improv-hollywood-improv-the-main-room-tickets/14340834" data-lat="34.083418" data-lng="-118.366556">
 <button class="toggle" data-idx="5" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="5" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/tonight-at-the-improv-hollywood-improv-the-main-room-tickets/14340834">Tonight at the Improv</a></h3>
 <div class="meta">7:15 PM · Hollywood Improv (The Main Room) , Beverly Grove · $19.04</div>
@@ -2914,6 +3135,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-b7784f8e" data-idx="7" data-eid="b7784f8e" data-name="Upgrade: Mezzanine Bleachers" data-series="c205b15196" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="The Regent Theater, Downtown" data-url="https://www.ticketmaster.com/upgrade-mezzanine-bleachers-los-angeles-california-10-26-2026/event/0900652FE72DE4F9" data-lat="34.0473" data-lng="-118.24799">
 <button class="toggle" data-idx="7" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="7" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/upgrade-mezzanine-bleachers-los-angeles-california-10-26-2026/event/0900652FE72DE4F9">Upgrade: Mezzanine Bleachers</a></h3>
 <div class="meta">8:00 PM · The Regent Theater, Downtown</div>
@@ -2931,6 +3153,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-9cd6647c" data-idx="8" data-eid="9cd6647c" data-name="Upgrade: Premium Viewing Deck" data-series="9548963ef7" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="The Regent Theater, Downtown" data-url="https://www.ticketmaster.com/upgrade-premium-viewing-deck-los-angeles-california-10-26-2026/event/0900652FE78BE596" data-lat="34.0473" data-lng="-118.24799">
 <button class="toggle" data-idx="8" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="8" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/upgrade-premium-viewing-deck-los-angeles-california-10-26-2026/event/0900652FE78BE596">Upgrade: Premium Viewing Deck</a></h3>
 <div class="meta">8:00 PM · The Regent Theater, Downtown</div>
@@ -2948,6 +3171,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-7a736811" data-idx="13" data-eid="7a736811" data-name="ButtTootKing: Lydia B Kollins, Suzie Toot, and Kori King (18 and Over)" data-series="e1be2e6a7b" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="El Rey Theatre - Los Angeles, Fairfax" data-url="https://www.ticketmaster.com/event/Z7r9jZ1A70-G_" data-lat="34.070202" data-lng="-118.349998">
 <button class="toggle" data-idx="13" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="13" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A70-G_">ButtTootKing: Lydia B Kollins, Suzie Toot, and Kori King (18 and Over)</a></h3>
 <div class="meta">8:00 PM · El Rey Theatre - Los Angeles, Fairfax</div>
@@ -2965,6 +3189,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-766990bc" data-idx="17" data-eid="766990bc" data-name="Los Angeles Coliseum Historic Tours" data-series="d481ad7c02" data-lat="34.014053" data-lng="-118.287865">
 <button class="toggle" data-idx="17" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="17" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/los-angeles-coliseum-historic-tours-los-angeles-california-10-26-2026/event/0A006521058A53E1">Los Angeles Coliseum Historic Tours</a></h3>
 <div class="meta">Time TBA · Los Angeles Memorial Coliseum, Exposition Park · ↻ Every Monday</div>
@@ -2980,6 +3205,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-3295c849" data-idx="6" data-eid="3295c849" data-name="Comedy and Cocktails ft. Bill Devlin, Murray Valeriano, Dwayne Perkins, Jeffrey Lewis and more TBA" data-series="50dcc60685" data-start-local="2026-10-26T19:30:00" data-cal-start="20261027T023000Z" data-cal-end="20261027T043000Z" data-loc="Hollywood Improv (The Lab), Beverly Grove" data-url="https://improv.com/hollywood/event/comedy+and+cocktails+ft.+bill+devlin%2c+murray+valeriano%2c+dwayne+perkins%2c+jeffrey+lewis+and+more+tba/14315054/" data-lat="34.0834329" data-lng="-118.367284">
 <button class="toggle" data-idx="6" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="6" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://improv.com/hollywood/event/comedy+and+cocktails+ft.+bill+devlin%2c+murray+valeriano%2c+dwayne+perkins%2c+jeffrey+lewis+and+more+tba/14315054/">Comedy and Cocktails ft. Bill Devlin, Murray Valeriano, Dwayne Perkins, Jeffrey Lewis and more TBA</a></h3>
 <div class="meta">7:30 PM · Hollywood Improv (The Lab), Beverly Grove · $19.04</div>
@@ -2997,6 +3223,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-ac84b6f6" data-idx="16" data-eid="ac84b6f6" data-name="Improv Presents: MONDERAYS with Deray Davis &amp; more" data-series="1f3536858c" data-start-local="2026-10-26T21:30:00" data-cal-start="20261027T043000Z" data-cal-end="20261027T063000Z" data-loc="Hollywood Improv (The Main Room) , Beverly Grove" data-url="https://www.ticketweb.com/event/improv-presents-monderays-with-deray-hollywood-improv-the-main-room-tickets/14301174" data-lat="34.083418" data-lng="-118.366556">
 <button class="toggle" data-idx="16" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="16" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/improv-presents-monderays-with-deray-hollywood-improv-the-main-room-tickets/14301174">Improv Presents: MONDERAYS with Deray Davis &amp; more</a></h3>
 <div class="meta">9:30 PM · Hollywood Improv (The Main Room) , Beverly Grove · $24.19</div>
@@ -3014,6 +3241,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-f61fb80e" data-idx="34" data-eid="f61fb80e" data-name="JOEY DARDANO: ANOTHER DIRECTION" data-series="2b8e7d85f2" data-start-local="2026-10-26T19:30:00" data-cal-start="20261027T023000Z" data-cal-end="20261027T043000Z" data-loc="The Elysian Theater, Echo Park" data-url="https://calendar.elysiantheater.com/shows/joey-dardano-another-direction-october-26-2026-752874" data-lat="34.098" data-lng="-118.2481">
 <button class="toggle" data-idx="34" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="34" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://calendar.elysiantheater.com/shows/joey-dardano-another-direction-october-26-2026-752874">JOEY DARDANO: ANOTHER DIRECTION</a></h3>
 <div class="meta">7:30 PM · The Elysian Theater, Echo Park</div>
@@ -3031,6 +3259,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-cd3fc02b" data-idx="35" data-eid="cd3fc02b" data-name="Superbloom Comedy" data-series="2765e0700e" data-start-local="2026-10-26T20:30:00" data-cal-start="20261027T033000Z" data-cal-end="20261027T053000Z" data-loc="The Elysian Theater, Echo Park" data-url="https://calendar.elysiantheater.com/shows/superbloom-comedy-october-26-2026-752872" data-weekly="1" data-lat="34.098" data-lng="-118.2481">
 <button class="toggle" data-idx="35" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="35" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://calendar.elysiantheater.com/shows/superbloom-comedy-october-26-2026-752872">Superbloom Comedy</a></h3>
 <div class="meta">8:30 PM · The Elysian Theater, Echo Park · ↻ Every Monday</div>
@@ -3048,6 +3277,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-3593c382" data-idx="36" data-eid="3593c382" data-name="MAKE FASCISM FUN AGAIN" data-series="a1bc1c208e" data-start-local="2026-10-26T21:30:00" data-cal-start="20261027T043000Z" data-cal-end="20261027T063000Z" data-loc="The Elysian Theater, Echo Park" data-url="https://calendar.elysiantheater.com/shows/make-fascism-fun-again-october-26-2026-752875" data-lat="34.098" data-lng="-118.2481">
 <button class="toggle" data-idx="36" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="36" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://calendar.elysiantheater.com/shows/make-fascism-fun-again-october-26-2026-752875">MAKE FASCISM FUN AGAIN</a></h3>
 <div class="meta">9:30 PM · The Elysian Theater, Echo Park</div>
@@ -3065,6 +3295,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-1fd0fd2f" data-idx="37" data-eid="1fd0fd2f" data-name="Monday Potluck Hosted by Logan Guntzelman" data-series="a99f27fabb" data-start-local="2026-10-26T18:00:00" data-cal-start="20261027T010000Z" data-cal-end="20261027T030000Z" data-loc="The Comedy Store (Original Room), West Hollywood" data-url="https://thecomedystore.com/calendar/show/3287/2026-10-26t180000-0700-monday-potluck-free-entry" data-lat="34.0952" data-lng="-118.374">
 <button class="toggle" data-idx="37" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="37" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/3287/2026-10-26t180000-0700-monday-potluck-free-entry">Monday Potluck Hosted by Logan Guntzelman</a></h3>
 <div class="meta">6:00 PM · The Comedy Store (Original Room), West Hollywood</div>
@@ -3082,6 +3313,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-021a0d01" data-idx="38" data-eid="021a0d01" data-name="Potluck: Friends &amp; Family" data-series="0202527a94" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="The Comedy Store (Original Room), West Hollywood" data-url="https://thecomedystore.com/calendar/show/3342/2026-10-26t190000-0700-potluck-friends-family-with-40-comics-huge-surprise-guests-free-entry" data-weekly="1" data-lat="34.0952" data-lng="-118.374">
 <button class="toggle" data-idx="38" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="38" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/3342/2026-10-26t190000-0700-potluck-friends-family-with-40-comics-huge-surprise-guests-free-entry">Potluck: Friends &amp; Family</a></h3>
 <div class="meta">7:00 PM · The Comedy Store (Original Room), West Hollywood · ↻ Every Monday</div>
@@ -3099,6 +3331,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-2322ad61" data-idx="39" data-eid="2322ad61" data-name="The Comedy Store Presents..." data-series="5e79888c4c" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="The Comedy Store (Main Room), West Hollywood" data-url="https://thecomedystore.com/calendar/show/3952/2026-10-26t200000-0700-the-comedy-store-presents" data-weekly="1" data-lat="34.0952" data-lng="-118.374">
 <button class="toggle" data-idx="39" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="39" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/3952/2026-10-26t200000-0700-the-comedy-store-presents">The Comedy Store Presents...</a></h3>
 <div class="meta">8:00 PM · The Comedy Store (Main Room), West Hollywood · ↻ Every Monday</div>
@@ -3116,6 +3349,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a630169a" data-idx="40" data-eid="a630169a" data-name="Michael Rowland" data-series="25af5ee422" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="The Comedy Store (Belly Room), West Hollywood" data-url="https://thecomedystore.com/calendar/show/4524/2026-10-26t200000-0700-michael-rowland" data-lat="34.0952" data-lng="-118.374">
 <button class="toggle" data-idx="40" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="40" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/4524/2026-10-26t200000-0700-michael-rowland">Michael Rowland</a></h3>
 <div class="meta">8:00 PM · The Comedy Store (Belly Room), West Hollywood</div>
@@ -3133,6 +3367,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-9135a9b3" data-idx="41" data-eid="9135a9b3" data-name="Potluck: Pop-Ins Continued! Hosted by Frazer Smith" data-series="8896ab5d3e" data-start-local="2026-10-26T21:30:00" data-cal-start="20261027T043000Z" data-cal-end="20261027T063000Z" data-loc="The Comedy Store (Original Room), West Hollywood" data-url="https://thecomedystore.com/calendar/show/3325/2026-10-26t213000-0700-potluck-pop-ins-continued-hosted-by-frazer-smith" data-weekly="1" data-lat="34.0952" data-lng="-118.374">
 <button class="toggle" data-idx="41" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="41" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/3325/2026-10-26t213000-0700-potluck-pop-ins-continued-hosted-by-frazer-smith">Potluck: Pop-Ins Continued! Hosted by Frazer Smith</a></h3>
 <div class="meta">9:30 PM · The Comedy Store (Original Room), West Hollywood · ↻ Every Monday</div>
@@ -3150,6 +3385,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-96485392" data-idx="42" data-eid="96485392" data-name="The Ding Dong Show" data-series="42b7519c73" data-start-local="2026-10-26T22:30:00" data-cal-start="20261027T053000Z" data-cal-end="20261027T073000Z" data-loc="The Comedy Store (Belly Room), West Hollywood" data-url="https://thecomedystore.com/calendar/show/3268/2026-10-26t223000-0700-the-ding-dong-show-with-don-barris" data-weekly="1" data-lat="34.0952" data-lng="-118.374">
 <button class="toggle" data-idx="42" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="42" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/3268/2026-10-26t223000-0700-the-ding-dong-show-with-don-barris">The Ding Dong Show</a></h3>
 <div class="meta">10:30 PM · The Comedy Store (Belly Room), West Hollywood · ↻ Every Monday</div>
@@ -3167,6 +3403,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-5d8d4fdc" data-idx="53" data-eid="5d8d4fdc" data-name="Sasquatch Presents: Mountain Time Live!" data-series="524ba23adb" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="Dynasty Typewriter, Westlake" data-url="https://calendar.dynastytypewriter.com/shows/sasquatch-presents-mountain-time-live-26-oct" data-lat="34.0605" data-lng="-118.2806">
 <button class="toggle" data-idx="53" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="53" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://calendar.dynastytypewriter.com/shows/sasquatch-presents-mountain-time-live-26-oct">Sasquatch Presents: Mountain Time Live!</a></h3>
 <div class="meta">7:00 PM · Dynasty Typewriter, Westlake</div>
@@ -3184,6 +3421,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-34e68dbe" data-idx="65" data-eid="34e68dbe" data-name="Improv Resident Teams! Fope Zoo &amp; Top 40" data-series="dfcf39e29d" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="Westside Comedy Theater, Santa Monica" data-url="https://www.eventbrite.com/e/improv-resident-teams-fope-zoo-top-40-tickets-1996734397333" data-lat="34.01695379999999" data-lng="-118.4968376">
 <button class="toggle" data-idx="65" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="65" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/improv-resident-teams-fope-zoo-top-40-tickets-1996734397333">Improv Resident Teams! Fope Zoo &amp; Top 40</a></h3>
 <div class="meta">8:00 PM – 9:00 PM · Westside Comedy Theater, Santa Monica</div>
@@ -3201,6 +3439,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-995c7843" data-idx="66" data-eid="995c7843" data-name="Improv Resident Teams! Platonic Shrimp &amp; BMC Improv" data-series="bd277e941f" data-start-local="2026-10-26T21:00:00" data-cal-start="20261027T040000Z" data-cal-end="20261027T060000Z" data-loc="Westside Comedy Theater, Santa Monica" data-url="https://www.eventbrite.com/e/improv-resident-teams-platonic-shrimp-bmc-improv-tickets-1996741985028" data-lat="34.01695379999999" data-lng="-118.4968376">
 <button class="toggle" data-idx="66" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="66" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/improv-resident-teams-platonic-shrimp-bmc-improv-tickets-1996741985028">Improv Resident Teams! Platonic Shrimp &amp; BMC Improv</a></h3>
 <div class="meta">9:00 PM – 10:00 PM · Westside Comedy Theater, Santa Monica</div>
@@ -3218,6 +3457,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-bcf7a1cc" data-idx="67" data-eid="bcf7a1cc" data-name="The Improv Jam!" data-series="dfa45d1783" data-start-local="2026-10-26T22:00:00" data-cal-start="20261027T050000Z" data-cal-end="20261027T070000Z" data-loc="Westside Comedy Theater, Santa Monica" data-url="https://www.eventbrite.com/e/the-improv-jam-tickets-1987868339716" data-weekly="1" data-lat="34.01695379999999" data-lng="-118.4968376">
 <button class="toggle" data-idx="67" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="67" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/the-improv-jam-tickets-1987868339716">The Improv Jam!</a></h3>
 <div class="meta">10:00 PM – 11:00 PM · Westside Comedy Theater, Santa Monica · ↻ Every Monday</div>
@@ -3239,6 +3479,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-3a62c360" data-idx="18" data-eid="3a62c360" data-name="Dolby Theatre Guided Tour" data-series="ea734f5041" data-lat="34.102707" data-lng="-118.340464">
 <button class="toggle" data-idx="18" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="18" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">➜</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/dolby-theatre-guided-tour-hollywood-california-10-26-2026/event/090064D6974D5340">Dolby Theatre Guided Tour</a></h3>
 <div class="meta">Time TBA · Dolby Tours, Hollywood · ↻ Every Monday</div>
@@ -3254,6 +3495,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-5c2da8ee" data-idx="19" data-eid="5c2da8ee" data-name="Trivia Night at Therapy at the Roar Room" data-series="626fda1c36" data-start-local="2026-10-26T18:00:00" data-cal-start="20261027T010000Z" data-cal-end="20261027T030000Z" data-loc="Therapy at the Roar Room, Glendale" data-url="https://www.geekswhodrink.com/venues/2330287487" data-weekly="1" data-lat="34.2362255" data-lng="-118.2589778">
 <button class="toggle" data-idx="19" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="19" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">?</span></div>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/2330287487">Trivia Night at Therapy at the Roar Room</a></h3>
 <div class="meta">6:00 PM · Therapy at the Roar Room, Glendale · ↻ Every Monday</div>
@@ -3271,6 +3513,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-ce22989e" data-idx="20" data-eid="ce22989e" data-name="Trivia Night at The Red Lion Tavern" data-series="8747c62e16" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="The Red Lion Tavern, Silver Lake" data-url="https://www.geekswhodrink.com/venues/597626299" data-weekly="1" data-lat="34.0992074" data-lng="-118.2589245">
 <button class="toggle" data-idx="20" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="20" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">?</span></div>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/597626299">Trivia Night at The Red Lion Tavern</a></h3>
 <div class="meta">7:00 PM · The Red Lion Tavern, Silver Lake · ↻ Every Monday</div>
@@ -3288,6 +3531,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-95a566a4" data-idx="21" data-eid="95a566a4" data-name="Trivia Night at El Tejano Tex Mex" data-series="d014ede9f9" data-start-local="2026-10-26T19:15:00" data-cal-start="20261027T021500Z" data-cal-end="20261027T041500Z" data-loc="El Tejano Tex Mex, North Hollywood" data-url="https://www.geekswhodrink.com/venues/844462918" data-weekly="1" data-lat="34.1646307" data-lng="-118.3732448">
 <button class="toggle" data-idx="21" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="21" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">?</span></div>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/844462918">Trivia Night at El Tejano Tex Mex</a></h3>
 <div class="meta">7:15 PM · El Tejano Tex Mex, North Hollywood · ↻ Every Monday</div>
@@ -3305,6 +3549,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-786d38e7" data-idx="22" data-eid="786d38e7" data-name="Trivia Night at Brews Brothers" data-series="5f5557ab19" data-start-local="2026-10-26T18:00:00" data-cal-start="20261027T010000Z" data-cal-end="20261027T030000Z" data-loc="Brews Brothers, North Hollywood" data-url="https://www.geekswhodrink.com/venues/2549306044" data-weekly="1" data-lat="34.1640823" data-lng="-118.3738382">
 <button class="toggle" data-idx="22" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="22" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">?</span></div>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/2549306044">Trivia Night at Brews Brothers</a></h3>
 <div class="meta">6:00 PM · Brews Brothers, North Hollywood · ↻ Every Monday</div>
@@ -3322,6 +3567,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-2d475d6a" data-idx="23" data-eid="2d475d6a" data-name="Trivia Night at The Penmar" data-series="7a95830886" data-start-local="2026-10-26T18:00:00" data-cal-start="20261027T010000Z" data-cal-end="20261027T030000Z" data-loc="The Penmar, Venice" data-url="https://www.geekswhodrink.com/venues/3209676785" data-weekly="1" data-lat="34.0064723" data-lng="-118.4590959">
 <button class="toggle" data-idx="23" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="23" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">?</span></div>
 <div class="event-body">
 <h3><a href="https://www.geekswhodrink.com/venues/3209676785">Trivia Night at The Penmar</a></h3>
 <div class="meta">6:00 PM · The Penmar, Venice · ↻ Every Monday</div>
@@ -3343,6 +3589,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-0e6d3d60" data-idx="47" data-eid="0e6d3d60" data-name="Book Signing with Nathan Gelgud and A. S. Hamrah" data-series="18f0573a6f" data-start-local="2026-10-26T18:30:00" data-cal-start="20261027T013000Z" data-cal-end="20261027T033000Z" data-loc="Academy Museum of Motion Pictures, Mid-Wilshire" data-url="https://tickets.academymuseum.org/events/01a11d01-b023-3345-3225-4bb7a2fd8b5d" data-lat="34.0638" data-lng="-118.3608">
 <button class="toggle" data-idx="47" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="47" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.academymuseum.org/events/01a11d01-b023-3345-3225-4bb7a2fd8b5d">Book Signing with Nathan Gelgud and A. S. Hamrah</a></h3>
 <div class="meta">6:30 PM · Academy Museum of Motion Pictures, Mid-Wilshire</div>
@@ -3360,6 +3607,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-dde74ee0" data-idx="54" data-eid="dde74ee0" data-name="Lil Jon discusses I ONLY SHOUT SO YOU CAN HEAR ME at B&amp;N The Grove" data-series="6864abf9e2" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="Barnes &amp; Noble The Grove, Fairfax" data-url="https://www.eventbrite.com/e/lil-jon-discusses-i-only-shout-so-you-can-hear-me-at-bn-the-grove-tickets-1994520632904" data-lat="34.0731591" data-lng="-118.3593894">
 <button class="toggle" data-idx="54" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="54" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/lil-jon-discusses-i-only-shout-so-you-can-hear-me-at-bn-the-grove-tickets-1994520632904">Lil Jon discusses I ONLY SHOUT SO YOU CAN HEAR ME at B&amp;N The Grove</a></h3>
 <div class="meta">7:00 PM – 9:00 PM · Barnes &amp; Noble The Grove, Fairfax</div>
@@ -3381,6 +3629,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-7274d0c1" data-idx="27" data-eid="7274d0c1" data-name="Ben Abraham w/ Special Guests" data-series="163e4f3901" data-start-local="2026-10-26T18:00:00" data-cal-start="20261027T010000Z" data-cal-end="20261027T030000Z" data-loc="Reunion &amp; Company, Los Feliz" data-url="https://luma.com/2nytijw8" data-weekly="1" data-lat="34.0973833" data-lng="-118.2757648">
 <button class="toggle" data-idx="27" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="27" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/2nytijw8">Ben Abraham w/ Special Guests</a></h3>
 <div class="meta">6:00 PM – 10:00 PM · Reunion &amp; Company, Los Feliz · $15.00 · ↻ Every Monday</div>
@@ -3398,6 +3647,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-db7cf507" data-idx="28" data-eid="db7cf507" data-name="Dinner And A Story" data-series="627eb9c5fe" data-start-local="2026-10-26T18:00:00" data-cal-start="20261027T010000Z" data-cal-end="20261027T030000Z" data-loc="Rancho Cucamonga" data-url="https://luma.com/ja3bjwmx" data-lat="34.10929736735547" data-lng="-117.5850818065141">
 <button class="toggle" data-idx="28" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="28" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/ja3bjwmx">Dinner And A Story</a></h3>
 <div class="meta">6:00 PM – 7:30 PM · Rancho Cucamonga · $4.00</div>
@@ -3415,6 +3665,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-f906c56d" data-idx="55" data-eid="f906c56d" data-name="The Art of Sourdough &amp; Flavored Butter" data-series="e30a4c1b47" data-start-local="2026-10-26T18:00:00" data-cal-start="20261027T010000Z" data-cal-end="20261027T030000Z" data-loc="Saute Academy, Monrovia" data-url="https://www.eventbrite.com/e/the-art-of-sourdough-flavored-butter-tickets-2002956892985" data-lat="34.1457508" data-lng="-117.9989083">
 <button class="toggle" data-idx="55" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="55" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/the-art-of-sourdough-flavored-butter-tickets-2002956892985">The Art of Sourdough &amp; Flavored Butter</a></h3>
 <div class="meta">6:00 PM – 9:00 PM · Saute Academy, Monrovia</div>
@@ -3432,6 +3683,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-75c5592c" data-idx="56" data-eid="75c5592c" data-name="Medium Monday Manhattan Beach- October 26th, 2026" data-series="427299ffe3" data-start-local="2026-10-26T17:45:00" data-cal-start="20261027T004500Z" data-cal-end="20261027T024500Z" data-loc="1000 Manhattan Ave, Manhattan Beach" data-url="https://www.eventbrite.com/e/medium-monday-manhattan-beach-october-26th-2026-tickets-2002463652690" data-lat="33.8836317" data-lng="-118.4098721">
 <button class="toggle" data-idx="56" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="56" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/medium-monday-manhattan-beach-october-26th-2026-tickets-2002463652690">Medium Monday Manhattan Beach- October 26th, 2026</a></h3>
 <div class="meta">5:45 PM – 8:00 PM · 1000 Manhattan Ave, Manhattan Beach</div>
@@ -3449,6 +3701,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-365aa4a1" data-idx="57" data-eid="365aa4a1" data-name="Latte Art. Learn the craft." data-series="da3fe97557" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="1307 Ocean Front Walk, Venice" data-url="https://www.eventbrite.com/e/latte-art-learn-the-craft-tickets-2002605042591" data-weekly="1" data-lat="33.9883276" data-lng="-118.4746798">
 <button class="toggle" data-idx="57" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="57" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/latte-art-learn-the-craft-tickets-2002605042591">Latte Art. Learn the craft.</a></h3>
 <div class="meta">7:00 PM – 9:00 PM · 1307 Ocean Front Walk, Venice · ↻ Every Monday</div>
@@ -3470,6 +3723,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-ade7a359" data-idx="60" data-eid="ade7a359" data-name="Spa &amp; The Bag Reset: Beauty Pro Edition" data-series="45f035b8f9" data-start-local="2026-10-26T10:00:00" data-cal-start="20261026T170000Z" data-cal-end="20261026T190000Z" data-loc="milk + honey | Culver City, Culver City" data-url="https://www.eventbrite.com/e/spa-the-bag-reset-beauty-pro-edition-tickets-2002403753530" data-lat="34.0288371" data-lng="-118.3881208">
 <button class="toggle" data-idx="60" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="60" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/spa-the-bag-reset-beauty-pro-edition-tickets-2002403753530">Spa &amp; The Bag Reset: Beauty Pro Edition</a></h3>
 <div class="meta">10:00 AM – 2:00 PM · milk + honey | Culver City, Culver City</div>
@@ -3487,6 +3741,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-c6baf606" data-idx="61" data-eid="c6baf606" data-name="Writers Bloc Presents Sam Wasson and Todd Purdum on Frank Capra" data-series="d7bc10ccdd" data-start-local="2026-10-26T19:30:00" data-cal-start="20261027T023000Z" data-cal-end="20261027T043000Z" data-loc="The Ebell of Los Angeles - Lounge, Mid-Wilshire" data-url="https://www.eventbrite.com/e/writers-bloc-presents-sam-wasson-and-todd-purdum-on-frank-capra-tickets-1997543414124" data-lat="34.061356" data-lng="-118.3245799">
 <button class="toggle" data-idx="61" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="61" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/writers-bloc-presents-sam-wasson-and-todd-purdum-on-frank-capra-tickets-1997543414124">Writers Bloc Presents Sam Wasson and Todd Purdum on Frank Capra</a></h3>
 <div class="meta">7:30 PM – 8:30 PM · The Ebell of Los Angeles - Lounge, Mid-Wilshire</div>
@@ -3504,6 +3759,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-d9f61976" data-idx="62" data-eid="d9f61976" data-name="Book Soup Presents: Susan Orlean discusses &amp; signs Joyride: A Memoir" data-series="632bca7ed3" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="First Congregational Church of Los Angeles, Westlake" data-url="https://www.eventbrite.com/e/book-soup-presents-susan-orlean-discusses-signs-joyride-a-memoir-tickets-1998580334581" data-lat="34.06433500000001" data-lng="-118.28481699999998">
 <button class="toggle" data-idx="62" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="62" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/book-soup-presents-susan-orlean-discusses-signs-joyride-a-memoir-tickets-1998580334581">Book Soup Presents: Susan Orlean discusses &amp; signs Joyride: A Memoir</a></h3>
 <div class="meta">7:00 PM – 8:30 PM · First Congregational Church of Los Angeles, Westlake</div>
@@ -3521,6 +3777,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-1f3bfe5d" data-idx="63" data-eid="1f3bfe5d" data-name="IN-PERSON: Individual Counseling in Bankruptcy" data-series="c4443cd288" data-start-local="2026-10-26T17:30:00" data-cal-start="20261027T003000Z" data-cal-end="20261027T023000Z" data-loc="Law Library, Downtown" data-url="https://www.eventbrite.com/e/in-person-individual-counseling-in-bankruptcy-tickets-2002955498815" data-lat="34.0542204" data-lng="-118.2458278">
 <button class="toggle" data-idx="63" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="63" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/in-person-individual-counseling-in-bankruptcy-tickets-2002955498815">IN-PERSON: Individual Counseling in Bankruptcy</a></h3>
 <div class="meta">5:30 PM – 7:00 PM · Law Library, Downtown</div>
@@ -3542,6 +3799,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-4edcbb9f" data-idx="31" data-eid="4edcbb9f" data-name="Being Heumann" data-series="96803fc5f4" data-start-local="2026-10-26T19:30:00" data-cal-start="20261027T023000Z" data-cal-end="20261027T043000Z" data-loc="Aero Theatre, Santa Monica" data-url="https://www.americancinematheque.com/now-showing/being-heumann-10-26-2026/" data-lat="34.0319" data-lng="-118.4953">
 <button class="toggle" data-idx="31" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="31" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.americancinematheque.com/now-showing/being-heumann-10-26-2026/">Being Heumann</a></h3>
 <div class="meta">7:30 PM · Aero Theatre, Santa Monica</div>
@@ -3559,6 +3817,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-950bae02" data-idx="32" data-eid="950bae02" data-name="Killer Klowns From Outer Space" data-series="86ba809308" data-start-local="2026-10-26T22:00:00" data-cal-start="20261027T050000Z" data-cal-end="20261027T070000Z" data-loc="Los Feliz 3, Los Feliz" data-url="https://www.americancinematheque.com/now-showing/killer-klowns-from-outer-space-10-26-2026/" data-lat="34.1044" data-lng="-118.2916">
 <button class="toggle" data-idx="32" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="32" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.americancinematheque.com/now-showing/killer-klowns-from-outer-space-10-26-2026/">Killer Klowns From Outer Space</a></h3>
 <div class="meta">10:00 PM · Los Feliz 3, Los Feliz</div>
@@ -3576,6 +3835,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-ac5bc996" data-idx="33" data-eid="ac5bc996" data-name="Cinematic Void Presents EVILSPEAK" data-series="d15339926a" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="Los Feliz 3, Los Feliz" data-url="https://www.americancinematheque.com/now-showing/cinematic-void-presents-evilspeak-10-26-2026/" data-lat="34.1044" data-lng="-118.2916">
 <button class="toggle" data-idx="33" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="33" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.americancinematheque.com/now-showing/cinematic-void-presents-evilspeak-10-26-2026/">Cinematic Void Presents EVILSPEAK</a></h3>
 <div class="meta">7:00 PM · Los Feliz 3, Los Feliz</div>
@@ -3593,6 +3853,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-762a68e4" data-idx="43" data-eid="762a68e4" data-name="Funeral Home / Blue Monkey" data-series="b8673ddd44" data-start-local="2026-10-26T19:30:00" data-cal-start="20261027T023000Z" data-cal-end="20261027T043000Z" data-loc="New Beverly Cinema, Fairfax" data-url="https://thenewbev.com/program/october-26-funeral-home-blue-monkey/" data-lat="34.0764" data-lng="-118.3457">
 <button class="toggle" data-idx="43" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="43" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thenewbev.com/program/october-26-funeral-home-blue-monkey/">Funeral Home / Blue Monkey</a></h3>
 <div class="meta">7:30 PM · New Beverly Cinema, Fairfax</div>
@@ -3610,6 +3871,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-f9ba4b01" data-idx="48" data-eid="f9ba4b01" data-name="They Live by Night" data-series="08d333426d" data-start-local="2026-10-26T19:30:00" data-cal-start="20261027T023000Z" data-cal-end="20261027T043000Z" data-loc="Academy Museum (Ted Mann Theater), Mid-Wilshire" data-url="https://tickets.academymuseum.org/events/019fce87-a827-bf83-b8a9-0fc6ac7bc84d" data-lat="34.0638" data-lng="-118.3608">
 <button class="toggle" data-idx="48" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="48" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.academymuseum.org/events/019fce87-a827-bf83-b8a9-0fc6ac7bc84d">They Live by Night</a></h3>
 <div class="meta">7:30 PM · Academy Museum (Ted Mann Theater), Mid-Wilshire</div>
@@ -3627,6 +3889,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-c12ac0c6" data-idx="49" data-eid="c12ac0c6" data-name="Colony" data-series="25fbcbb089" data-start-local="2026-10-26T19:00:00" data-cal-start="20261027T020000Z" data-cal-end="20261027T040000Z" data-loc="Vidiots, Eagle Rock" data-url="https://vidiotsfoundation.org/movies/colony/" data-lat="34.1349" data-lng="-118.2151">
 <button class="toggle" data-idx="49" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="49" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://vidiotsfoundation.org/movies/colony/">Colony</a></h3>
 <div class="meta">7:00 PM · Vidiots, Eagle Rock</div>
@@ -3644,6 +3907,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-9430d17a" data-idx="50" data-eid="9430d17a" data-name="Insiang" data-series="bb0f978447" data-start-local="2026-10-26T19:30:00" data-cal-start="20261027T023000Z" data-cal-end="20261027T043000Z" data-loc="Vidiots, Eagle Rock" data-url="https://vidiotsfoundation.org/movies/insiang/" data-lat="34.1349" data-lng="-118.2151">
 <button class="toggle" data-idx="50" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="50" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://vidiotsfoundation.org/movies/insiang/">Insiang</a></h3>
 <div class="meta">7:30 PM · Vidiots, Eagle Rock</div>
@@ -3661,6 +3925,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-4ee7ee05" data-idx="51" data-eid="4ee7ee05" data-name="The Crow (1994)" data-series="228c6fc4a4" data-start-local="2026-10-26T21:00:00" data-cal-start="20261027T040000Z" data-cal-end="20261027T060000Z" data-loc="Brain Dead Studios, Fairfax" data-url="https://studios.wearebraindead.com/movies/the-crow-1994/" data-lat="34.082" data-lng="-118.3616">
 <button class="toggle" data-idx="51" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="51" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://studios.wearebraindead.com/movies/the-crow-1994/">The Crow (1994)</a></h3>
 <div class="meta">9:00 PM · Brain Dead Studios, Fairfax</div>
@@ -3678,6 +3943,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-dfb67f7b" data-idx="68" data-eid="dfb67f7b" data-name="Movie Night @ Bacari W. Adams (Halloween (2018))" data-series="707a692894" data-start-local="2026-10-26T19:30:00" data-cal-start="20261027T023000Z" data-cal-end="20261027T043000Z" data-loc="Bacari W. Adams, University Park" data-url="https://www.eventbrite.com/e/movie-night-bacari-w-adams-halloween-2018-tickets-1999961216837" data-lat="34.03450139999999" data-lng="-118.2834681">
 <button class="toggle" data-idx="68" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="68" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/movie-night-bacari-w-adams-halloween-2018-tickets-1999961216837">Movie Night @ Bacari W. Adams (Halloween (2018))</a></h3>
 <div class="meta">7:30 PM – 10:00 PM · Bacari W. Adams, University Park</div>
@@ -3695,6 +3961,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-2f1ad7de" data-idx="69" data-eid="2f1ad7de" data-name="FREAK IT Film Festival | short films premiering @ baby battista LA" data-series="5b6488d128" data-start-local="2026-10-26T20:00:00" data-cal-start="20261027T030000Z" data-cal-end="20261027T050000Z" data-loc="nico&#x27;s, Atwater Village" data-url="https://www.eventbrite.com/e/freak-it-film-festival-short-films-premiering-baby-battista-la-tickets-2002963301152" data-lat="34.1165044" data-lng="-118.2630091">
 <button class="toggle" data-idx="69" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="69" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/freak-it-film-festival-short-films-premiering-baby-battista-la-tickets-2002963301152">FREAK IT Film Festival | short films premiering @ baby battista LA</a></h3>
 <div class="meta">8:00 PM – 9:30 PM · nico&#x27;s, Atwater Village</div>
@@ -3712,6 +3979,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-99564174" data-idx="70" data-eid="99564174" data-name="City of Angels Film Festival Red Carpet Awards Gala" data-series="872e99fbd9" data-start-local="2026-10-26T17:30:00" data-cal-start="20261027T003000Z" data-cal-end="20261027T023000Z" data-loc="Harmony Gold, Hollywood" data-url="https://www.eventbrite.com/e/city-of-angels-film-festival-red-carpet-awards-gala-tickets-2002479791963" data-lat="34.0982845" data-lng="-118.3564016">
 <button class="toggle" data-idx="70" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="70" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/city-of-angels-film-festival-red-carpet-awards-gala-tickets-2002479791963">City of Angels Film Festival Red Carpet Awards Gala</a></h3>
 <div class="meta">5:30 PM – 11:00 PM · Harmony Gold, Hollywood</div>
@@ -3733,6 +4001,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-92351403" data-idx="58" data-eid="92351403" data-name="mahjong mondays at zinqué venice" data-series="7c42c154e8" data-start-local="2026-10-26T18:00:00" data-cal-start="20261027T010000Z" data-cal-end="20261027T030000Z" data-loc="Zinqué, Venice" data-url="https://www.eventbrite.com/e/mahjong-mondays-at-zinque-venice-tickets-2000951770610" data-lat="33.9978505" data-lng="-118.4599806">
 <button class="toggle" data-idx="58" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="58" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✎</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/mahjong-mondays-at-zinque-venice-tickets-2000951770610">mahjong mondays at zinqué venice</a></h3>
 <div class="meta">6:00 PM – 8:00 PM · Zinqué, Venice</div>
@@ -3754,6 +4023,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-5ea3c959" data-idx="64" data-eid="5ea3c959" data-name="Venice Yoga Festival &amp; Block Party" data-series="9d2be336f6" data-start-local="2026-10-26T12:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="Main Basketball Court at Muscle Beach, Venice" data-url="https://www.eventbrite.com/e/venice-yoga-festival-block-party-tickets-2001251485064" data-lat="33.9962144" data-lng="-118.4688776">
 <button class="toggle" data-idx="64" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="64" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☀</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/venice-yoga-festival-block-party-tickets-2001251485064">Venice Yoga Festival &amp; Block Party</a></h3>
 <div class="meta">12:00 PM – 7:30 PM · Main Basketball Court at Muscle Beach, Venice</div>
@@ -3776,6 +4046,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-c3b5512d" data-idx="59" data-eid="c3b5512d" data-name="WCT Kids Classes in NoHo Arts District Ages 10-16 (Mondays Nights)" data-series="098bd0577a" data-start-local="2026-10-26T17:00:00" data-cal-start="20261027T000000Z" data-cal-end="20261027T020000Z" data-loc="Sherry Theater, North Hollywood" data-url="https://www.eventbrite.com/e/wct-kids-classes-in-noho-arts-district-ages-10-16-mondays-nights-registration-1995757547549" data-lat="34.164743" data-lng="-118.3723852">
 <button class="toggle" data-idx="59" aria-label="Guardar este evento" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="59" aria-label="Ocultar este evento" aria-haspopup="menu" aria-expanded="false" title="No me interesa">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✎</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/wct-kids-classes-in-noho-arts-district-ages-10-16-mondays-nights-registration-1995757547549">WCT Kids Classes in NoHo Arts District Ages 10-16 (Mondays Nights)</a></h3>
 <div class="meta">5:00 PM – 7:00 PM · Sherry Theater, North Hollywood</div>
@@ -3795,6 +4066,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <footer>
 <div class="serif">Elegido para ti por Tonight.</div>
 <p>Cada marca se guarda:<br>lo de mañana aprende lo que te encanta.</p>
+
 </footer>
 <script>
 const TRAVEL_MINUTES = 30;  // default buffer before an event's start time
@@ -3817,6 +4089,33 @@ const WHY = ["Hollywood Undead and In This Moment touring package in Anaheim.", 
 const FLAGS = ["", "", "", "", "", "", "", "sales", "sales", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "sales,service", "sales,service", "sales,service", "", "", "networking", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "class_slot", "", "class_slot", "", "kids,class_slot", "sales", "", "", "service", "", "", "", "", "", "", ""];
 // false = the ticket link is dead or reported (ingest/linkcheck.py); reports on this page can add more
 const LINKOK = [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true];
+// for the personal ranking (site/build_site.py RANK_JS, ingest/ranking.py): numeric price (null = unknown),
+// a big box-office listing, topics; and each event's picture (ingest/images.py) with its credit
+const PRICEN = [null, null, null, null, 18.8, 19.04, 19.04, null, null, null, null, null, null, null, null, 24.17, 24.19, null, null, null, null, null, null, null, 0.0, 0.0, 0.0, 15.0, 4.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null, null, null, null, null, 15.87, 26.78, 18.54, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+const BIGTIX = [true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+const TOPICS = [["rock", "nu metal", "touring package"], ["electronic", "live music", "club night"], ["electronic music", "live performance", "experimental"], ["cult film", "shadow cast", "live performance"], ["jazz", "piano", "live music"], ["stand-up", "comedy", "phone-free show"], ["stand-up comedy", "showcase", "cocktails"], ["seating upgrade", "theatre", "upsell"], ["seating upgrade", "theatre", "upsell"], ["indie rock", "punk", "live music"], ["blues rock", "guitar", "live music"], ["pop legend", "classic hits", "outdoor concert"], ["hip hop", "rap", "live music"], ["drag", "comedy", "variety show"], ["indie rock", "live music", "rock club"], ["big band", "jazz", "dinner show"], ["stand-up comedy", "phone-free", "comedy club"], ["history", "sports", "architecture"], ["film", "architecture", "tours"], ["trivia", "pub", "games"], ["trivia", "pub", "games"], ["trivia", "pub", "games"], ["trivia", "pub", "games"], ["trivia", "pub", "games"], ["fitness", "wellness", "brand promo"], ["hair care", "product demo", "beauty"], ["franchise", "business", "info session"], ["live music", "wine", "coffee"], ["dinner", "storytelling", "food"], ["social meetup", "venting", "cocktails"], ["talk", "author", "music"], ["documentary", "disability rights", "q&a"], ["cult film", "sci-fi horror", "late night"], ["cult horror", "rare screening", "midnight movie"], ["stand-up comedy", "solo show", "theatre"], ["comedy", "late night", "alt venue"], ["political comedy", "stand-up", "late night"], ["stand-up", "comedy club", "monday night"], ["stand-up", "comedy showcase", "friends"], ["stand-up", "comedy", "headliners"], ["stand-up", "comedy club"], ["stand-up", "comedy showcase", "late night"], ["stand-up", "comedy", "late night"], ["cult horror", "double feature", "repertory cinema"], ["dj night", "music", "weekly"], ["indie rock", "psych", "live music"], ["blues", "live music", "jazz room"], ["book signing", "authors", "museum"], ["film noir", "1940s cinema", "museum screening"], ["film", "arthouse", "halloween"], ["world cinema", "1970s drama", "community series"], ["cult film", "1990s", "late screening"], ["indie folk", "live music", "touring band"], ["live podcast", "comedy", "live recording"], ["memoir", "music", "author talk"], ["sourdough", "baking", "cooking class"], ["psychic medium", "group reading", "wine"], ["latte art", "coffee", "class"], ["mahjong", "social game", "beginner night"], ["kids drama", "theatre class", "character creation"], ["wellness", "money habits", "beauty professionals"], ["frank capra", "hollywood history", "author talk"], ["memoir", "author talk", "book signing"], ["bankruptcy", "debt", "legal aid"], ["outdoor yoga", "beach festival", "community"], ["long-form improv", "resident team", "audience suggestions"], ["long-form improv", "resident team", "audience suggestions"], ["improv", "open jam", "student showcase"], ["halloween", "movie night", "dinner and drinks"], ["short films", "indie filmmaking", "local filmmakers"], ["film", "awards", "red carpet"]];
+const IMGS = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+const ICREDIT = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+const CAT_ICON = {"Music": "♪", "Comedy": "☺", "Talks": "❝", "Theater": "🎭", "Film": "🎬", "Arts & Play": "✦", "Food & Drink": "🍷", "Classes & Workshops": "✎", "Tours": "➜", "Meetups & Mixers": "☕", "Tech": "⌘", "Fitness & Outdoors": "☀", "Trivia & Games": "?", "Sports": "⚑"};
+const CURRENCY_SIGN = "$";
+// a photo's credit: the tiny i on a picture opens "Photo: <by> · <licence>", linked to its file page
+document.addEventListener("click", e => {
+  const b = e.target.closest && e.target.closest(".ph-cr"), old = document.getElementById("phPop");
+  if (old && !(e.target.closest && e.target.closest("#phPop"))) old.remove();
+  if (!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const c = ICREDIT[+b.dataset.idx]; if (!c || (old && old.dataset.idx === b.dataset.idx)) return;
+  const p = document.createElement("div"); p.id = "phPop"; p.dataset.idx = b.dataset.idx; p.setAttribute("role", "note");
+  const a = document.createElement(c.url ? "a" : "span");
+  a.textContent = "Foto: " + [c.by, c.license].filter(Boolean).join(" · ");
+  if (c.url) { a.href = c.url; a.target = "_blank"; a.rel = "noopener"; }
+  p.appendChild(a); p.appendChild(document.createTextNode(" · Wikimedia Commons"));
+  document.body.appendChild(p);
+  const r = b.getBoundingClientRect(), w = p.offsetWidth;
+  p.style.left = Math.max(8, Math.min(r.right - w, innerWidth - w - 8)) + "px";
+  p.style.top = (r.bottom + 6 + p.offsetHeight > innerHeight ? r.top - p.offsetHeight - 6 : r.bottom + 6) + "px";
+}, true);
+addEventListener("scroll", () => { const p = document.getElementById("phPop"); if (p) p.remove(); }, {passive: true});
 // parents can bring kids' events into story mode, Next hour and Toni's suggestions
 function kidsOn() { try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } }
 addEventListener("DOMContentLoaded", () => {
@@ -4135,7 +4434,7 @@ function reportTaps() {
   const USER_ID = localStorage.getItem("tonight-user-id") || null;
   const hdrs = window.TonightAuth ? TonightAuth.headers({"Content-Type": "application/json"})
                                   : {"Content-Type": "application/json"};
-  const row = i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i], venue: VENUES[+i]});
+  const row = i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i], venue: VENUES[+i], topics: TOPICS[+i] || []});
   const hid = [...new Set(loadIds("tonight-hidden-" + CITY + "-" + DATE)
     .concat(window.TonightHide ? TonightHide.freshIds() : []))];  // + hidden for good today (one light tap, that day only)
   (EDAYS || [DATE]).forEach(d => {  // weekend page: one report per day, so each tick counts on its own day
@@ -4264,7 +4563,9 @@ document.querySelectorAll(".ics-btn").forEach(btn => {
 window.__applyFilters = (function () {
   const bar = document.getElementById("filterBar");
   if (!bar) return null;
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null};
+  // you: "Para ti" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
+  // near: "Mis barrios" (Preferences)
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -4298,15 +4599,17 @@ window.__applyFilters = (function () {
       cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
       free: !F.free || FREE[i],
       tod: todOk(i),
-      hood: !F.hood || F.hood.split("|").includes(HOODS[i])};  // one or several neighbourhoods
+      hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
+      you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []),
+      near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
   }
-  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0};
+  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0, apply: () => applyFilters()};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
     let n = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const ok = d.base && d.cat && d.free && d.tod && d.hood;
+      const ok = d.base && d.cat && d.free && d.tod && d.hood && d.you && d.near;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
@@ -4459,7 +4762,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.near;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -4742,7 +5045,7 @@ function setNextHour(on, quiet) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i))) return;
-    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood) return; }  // other filters still apply
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.you || !d.near) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     const kind = soonKind(i, now);
@@ -5407,6 +5710,7 @@ function aiNote(){
       anon_id: anon, avoid_venues: avoid, dinner_prefs: prefs, dinner_day: TD ? TD.day(CITY, DATE) : {},
       hidden: window.TonightHide ? TonightHide.list() : [],  // hidden for good: never in the note
       taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,
+        budget: taste.budget == null ? null : taste.budget, areas: (taste.areas && taste.areas[CITY]) || [],
         kids: (function(){ try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } })()}})}).then(function(r){ return r.json(); });
   }).then(function(d){
     if (!d || !d.ok || !d.picks || !d.picks.length) {  // keep the rules note
@@ -6103,34 +6407,40 @@ var host = document.getElementById("topTonight");
 if (!host || typeof NAMES === "undefined") return;
 var list = host.querySelector(".tt-list"), empty = host.querySelector(".tt-empty");
 var SIZE = 15, SKIP = ["networking", "sales", "spam", "service", "internal", "members_only", "online"];
+var ES = document.documentElement.lang === "es";
 function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
 function T(){ return window.Tonight || {}; }
 function quality(i){ return T().quality ? T().quality(i) : (typeof QUAL[i] === "number" ? QUAL[i] : 5); }
-function personal(i){ return T().personal ? T().personal(i) : 0; }
+// with settings or ticks: the personal ranking (site/build_site.py RANK_JS); without: quality-led as before
+function rank(i){ return T().rank ? T().rank(i) : (quality(i) - 5) * 3; }
 function flags(i){ return FLAGS[i] ? FLAGS[i].split(",") : []; }
 function card(i){ return document.querySelector('article.event[data-idx="' + i + '"]'); }
 // the filter row decides for the list below; Top tonight follows it (collapsed "Show all" cards still count)
 function shown(a){ return a.style.display !== "none" || a.dataset.clamped === "1"; }
 function nameKey(i){ return NAMES[i].toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 40); }
+function catsOn(){ var v = (document.getElementById("fcat") || {}).value; return v ? v.split(",") : []; }
 function pick(){
   var today = !EDAYS && typeof cityToday === "function" && DATE === cityToday();
   var now = today ? cityNowMinutes() : 0, kids = typeof kidsOn === "function" && kidsOn();
-  var cands = [];
+  var cands = [], picked = catsOn();
   NAMES.forEach(function(n, i){
     var a = card(i), q = quality(i), f = flags(i);
     if (!a || !shown(a) || q <= 3) return;
     if (typeof LINKOK !== "undefined" && LINKOK[i] === false) return;  // dead or reported ticket link
     if (f.some(function(x){ return SKIP.indexOf(x) >= 0; })) return;
     if ((KIDS[i] || f.indexOf("kids") >= 0) && !kids) return;
+    // your hard excludes (muted, over budget, ...); a muted kind you picked in Filters shows anyway
+    var why = T().excluded ? T().excluded(i) : "";
+    if (why && !(why === "silenciada" && picked.indexOf(CATS[i]) >= 0)) return;
     var s = STARTS[i];
     if (today && s != null) {
       var end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
       if (now - s > 60 || (end != null && end <= now)) return;  // started over an hour ago, or over
     }
-    cands.push({i: i, r: (q - 5) * 3 + personal(i), q: q});
+    cands.push({i: i, r: rank(i), q: q});
   });
   cands.sort(function(x, y){ return (y.r - x.r) || (y.q - x.q) || (x.i - y.i); });
-  var catOn = (document.getElementById("fcat") || {}).value;  // one kind picked: no cap on it
+  var catOn = picked.length === 1;  // one kind picked: no cap on it
   var out = [], venues = {}, shows = {}, names = {}, perCat = {}, flex = 0, slots = 0;
   for (var k = 0; k < cands.length && out.length < SIZE; k++) {
     var i = cands[k].i, f = flags(i), v = (VENUES[i] || "").toLowerCase().trim(), sk = SERIES[i], nk = nameKey(i);
@@ -6150,44 +6460,70 @@ function pick(){
 function when(i){
   var t = STARTS[i] != null && typeof hmLabel === "function" ? hmLabel(STARTS[i]) : "Por confirmar";
   if (EDATE) {  // the weekend page: say which day
-    var d = new Date(EDATE[i] + "T12:00:00").toLocaleDateString(document.documentElement.lang === "es" ? "es-MX" : "es-MX", {weekday: "short"});
+    var d = new Date(EDATE[i] + "T12:00:00").toLocaleDateString(ES ? "es-MX" : "es-MX", {weekday: "short"});
     t = d.replace(".", "") + " " + t;
   }
   return t;
 }
-function row(i){
-  var a = card(i), li = el("li", "tt-row"); li.dataset.idx = i;
+function catLabel(c){ return (window.CAT_LABELS && window.CAT_LABELS[c]) || c; }
+function media(i){
+  var m = el("div", "tt-m");
+  m.appendChild(el("span", "tt-ic", (typeof CAT_ICON !== "undefined" && CAT_ICON[CATS[i]]) || "✦"));
+  var src = typeof IMGS !== "undefined" ? IMGS[i] : "";
+  if (src) {
+    var img = document.createElement("img");
+    img.alt = ""; img.loading = "lazy"; img.decoding = "async"; img.referrerPolicy = "no-referrer";
+    img.onerror = function(){ img.remove(); var c = m.querySelector(".ph-cr"); if (c) c.remove(); m.classList.add("ph"); };
+    img.src = src;
+    m.appendChild(img);
+    var c = typeof ICREDIT !== "undefined" ? ICREDIT[i] : null;
+    if (c) {  // a Wikimedia photo: a tiny i with its credit (tap: "Photo: <by> · <licence>", linked)
+      var cr = el("button", "ph-cr", "ⓘ"); cr.type = "button"; cr.dataset.idx = i;
+      cr.title = "Foto: " + [c.by, c.license].filter(Boolean).join(" · ");
+      cr.setAttribute("aria-label", cr.title);
+      m.appendChild(cr);
+    }
+  } else m.classList.add("ph");
+  m.appendChild(el("span", "tt-cat", catLabel(CATS[i])));
+  return m;
+}
+function row(i, big){
+  var a = card(i), li = el("li", "tt-card" + (big ? " big" : "")); li.dataset.idx = i;
+  li.appendChild(media(i));
+  var b = el("div", "tt-b");
+  b.appendChild(el("div", "tt-t", when(i) + (HOODS[i] ? " · " + HOODS[i] : "")));
+  var h = el("h3", "tt-h"), name = el("a", "tt-name", NAMES[i]);
+  name.href = EIDS[i] ? "#e-" + EIDS[i] : "#event-" + i;
+  h.appendChild(name); b.appendChild(h);
+  if (WHY[i]) b.appendChild(el("p", "tt-why", WHY[i]));
+  var f = el("div", "tt-f");
   var tick = a && a.querySelector(".toggle"), on = !!tick && tick.getAttribute("aria-pressed") === "true";
   var star = el("button", "tt-star", on ? "★" : "☆"); star.type = "button";
   star.setAttribute("aria-pressed", on ? "true" : "false"); star.setAttribute("aria-label", "Elegir");
   star.addEventListener("click", function(){ var t = card(i) && card(i).querySelector(".toggle"); if (t) t.click(); });
-  li.appendChild(star);
-  li.appendChild(el("span", "tt-time", when(i)));
-  var main = el("div", "tt-main"), name = el("a", "tt-name", NAMES[i]);
-  name.href = EIDS[i] ? "#e-" + EIDS[i] : "#event-" + i;
-  main.appendChild(name);
-  if (HOODS[i]) main.appendChild(el("span", "tt-hood", " · " + HOODS[i]));
-  if (WHY[i]) main.appendChild(el("div", "tt-why", WHY[i]));
-  li.appendChild(main);
+  f.appendChild(star);
   var tix = a && a.querySelector("a.tickets"), label = FREE[i] ? "Gratis" : (PRICES[i] || "").replace(/\.00(?!\d)/g, "");
   if (!label && tix) label = "Boletos";
-  var price = el(tix ? "a" : "span", "tt-price" + (FREE[i] ? " free" : ""), label || null);
-  if (tix) { price.href = tix.href; price.target = "_blank"; price.rel = "noopener"; }
-  if (!label) price.style.visibility = "hidden";
-  li.appendChild(price);
-  var x = el("button", "tt-x", "×"); x.type = "button";
+  if (label) {
+    var price = el(tix ? "a" : "span", "tt-price" + (FREE[i] ? " free" : ""), label);
+    if (tix) { price.href = tix.href; price.target = "_blank"; price.rel = "noopener"; }
+    f.appendChild(price);
+  }
+  var x = el("button", "tt-x", "✕"); x.type = "button";
   x.setAttribute("aria-label", "No es para mí"); x.title = "No es para mí";
   x.setAttribute("aria-haspopup", "menu");
   x.addEventListener("click", function(e){  // the card's own x menu, opened here: Hide today / Never show this again / ...
     e.stopPropagation();
     if (window.__hideMenu) { window.__hideMenu(i, x); return; }
-    var h = card(i) && card(i).querySelector(".hide"); if (h) h.click(); });
-  li.appendChild(x);
+    var hb = card(i) && card(i).querySelector(".hide"); if (hb) hb.click(); });
+  f.appendChild(x);
+  b.appendChild(f);
+  li.appendChild(b);
   return li;
 }
 function draw(){
   var ids = pick(), frag = document.createDocumentFragment();
-  ids.forEach(function(i){ frag.appendChild(row(i)); });
+  ids.forEach(function(i, k){ frag.appendChild(row(i, k === 0)); });
   list.innerHTML = ""; list.appendChild(frag);
   if (empty) empty.hidden = ids.length > 0;
 }
@@ -6842,6 +7178,7 @@ function ask(q, display){
       exclude_venues: (function(){ var x = excludeNext || []; excludeNext = null; return x; })(),
       can_filter: !!document.getElementById("fq"),
       taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,
+        budget: taste.budget == null ? null : taste.budget, areas: (taste.areas && taste.areas[CITY]) || [],
         kids: (function(){ try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } })()},
       current_plan: (function(){  // the latest plan, so "swap the show" / "cheaper" edits it
         for (var k = history.length - 1; k >= 0; k--) { var m = history[k];
@@ -6936,7 +7273,14 @@ if (!FX || !side || !bar || typeof CATS === "undefined") return;
 var L = {when: "Cuándo", evening: "Noche 5pm+", day: "De día", any: "Todo", soon: "Empieza pronto", exact: "Horas exactas",
   price: "Precio", free: "Solo gratis", cat: "Categoría", area: "Zona", clear: "Borrar", clearAll: "Borrar filtros",
   show: "Ver {n} eventos", show1: "Ver 1 evento", filters: "Filtros", filtersN: "Filtros ({n})", elsewhere: "Otros lugares",
-  more: "Ver los {n}", fewer: "Ver menos", close: "Cerrar"};
+  more: "Ver los {n}", fewer: "Ver menos", close: "Cerrar",
+  forYou: "Para ti", everything: "Todo", muted: "silenciada", setting: "tu ajuste", budget: "Presupuesto: hasta {b}",
+  budgetFree: "Presupuesto: solo gratis", freeChip: "Gratis", myHoods: "Mis barrios", near: "Cerca de mí", late: "Tarde",
+  mutedNote: "Silenciaste {c} · lo mostramos igual · ", hideAgain: "Ocultar de nuevo", likedMark: "Te gusta"};
+var T = function(){ return window.Tonight || {}; };
+function prof(){ return T().profile ? T().profile() : null; }
+function hasProf(){ return !!(T().hasProfile && T().hasProfile()); }
+function catLabel(c){ return (window.CAT_LABELS && window.CAT_LABELS[c]) || c; }
 var root = document.documentElement; root.classList.add("fs-on");
 function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
 function $(id){ return document.getElementById(id); }
@@ -6960,6 +7304,12 @@ function soonOn(){ return !!soonBtn && soonBtn.getAttribute("aria-pressed") === 
 var groups = el("div", "fsg"); groups.id = "fsGroups";
 var top = el("div", "fs-top"), title = el("span", "fs-title", L.filters), clearAll = el("button", "fs-link", L.clearAll);
 clearAll.type = "button"; top.appendChild(title); top.appendChild(clearAll); groups.appendChild(top);
+// For you (your settings and ticks: muted, over budget ... out) / Everything; only for people with settings or ticks
+var mode = el("div", "fs-mode"), youB = el("button", null, L.forYou), allB = el("button", null, L.everything);
+youB.type = allB.type = "button"; mode.appendChild(youB); mode.appendChild(allB); groups.appendChild(mode);
+function setYou(on){ if (FX.F.you === on) return; FX.F.you = on; FX.apply(); }
+youB.addEventListener("click", function(){ setYou(true); });
+allB.addEventListener("click", function(){ setYou(false); });
 function section(name, onClear){
   var s = el("section", "fs-sec"), h = el("div", "fs-head"), hh = el("h3", "fs-h", name);
   h.appendChild(hh);
@@ -7023,6 +7373,8 @@ if (tbox.children.length) when.s.appendChild(times);
 // Price
 var price = section(L.price, null), freeBtn = $("ffree");
 var free = row(price.s, "checkbox", null, L.free, function(on){ if (freeBtn && FX.F.free !== on) freeBtn.click(); });
+var budgetRow = el("div", "fs-row fs-set"), budgetTxt = el("span", "fs-l"), budgetTag = el("span", "fs-tag fs-tag2", L.setting);
+budgetRow.appendChild(budgetTxt); budgetRow.appendChild(budgetTag); budgetRow.hidden = true; price.s.appendChild(budgetRow);
 
 // Category: busiest first
 var catOpts = catSel ? [].slice.call(catSel.options).filter(function(o){ return o.value && !o.dataset.multi && o.value.indexOf(",") < 0; }) : [];
@@ -7030,9 +7382,13 @@ var dayCat = {}; CATS.forEach(function(c){ dayCat[c] = (dayCat[c] || 0) + 1; });
 catOpts.sort(function(a, b){ return (dayCat[b.value] || 0) - (dayCat[a.value] || 0); });
 var catSec = catOpts.length ? section(L.cat, function(){ setSel(catSel, ""); }) : null;
 var catRows = catOpts.map(function(o){
-  return {v: o.value, o: row(catSec.s, "checkbox", null, o.textContent, function(on){
+  var r = {v: o.value, o: row(catSec.s, "checkbox", null, o.textContent, function(on){
     setSel(catSel, toggle(vals(catSel, ","), o.value, on).join(","));
   })};
+  r.star = el("span", "fs-lk", "\u2605"); r.star.title = L.likedMark; r.star.hidden = true;
+  r.tag = el("span", "fs-tag", L.muted); r.tag.hidden = true;
+  r.o.r.querySelector(".fs-l").appendChild(r.star); r.o.r.querySelector(".fs-l").appendChild(r.tag);
+  return r;
 });
 
 // Area: borough / region groups, neighbourhoods inside (busiest first); a city without groups gets one list
@@ -7042,6 +7398,9 @@ HOODS.forEach(function(h, i){ if (!h) return; dayHood[h] = (dayHood[h] || 0) + 1
 var hoodNames = Object.keys(dayHood).sort(function(a, b){ return (dayHood[b] - dayHood[a]) || a.localeCompare(b); });
 var areaSec = hoodSel && hoodNames.length ? section(L.area, function(){ setSel(hoodSel, ""); }) : null;
 var hoodRows = [], grpBoxes = [];
+var nearSec = areaSec || section(L.area, null), near = row(nearSec.s, "checkbox", null, L.myHoods, function(on){ setNear(on); });
+nearSec.s.insertBefore(near.r, nearSec.s.children[1] || null);
+function setNear(on){ if (FX.F.near === on) return; FX.F.near = on; FX.apply(); }
 function hoodRow(parent, h){
   hoodRows.push({v: h, g: hoodGroup[h], o: row(parent, "checkbox", null, h, function(on){
     setSel(hoodSel, toggle(vals(hoodSel, "|"), h, on).join("|"));
@@ -7073,6 +7432,7 @@ if (areaSec) {
 
 clearAll.addEventListener("click", function(){
   var fc = $("fclear"); if (fc) fc.click();
+  if (FX.F.near) setNear(false);
   if (soonOn()) soonBtn.click();
   var b = todBtn(FX.TOD0()); if (b) b.click();  // back to the page's default (Evening after noon today)
   setTimeout(draw, 0);
@@ -7103,20 +7463,101 @@ document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !she
 if (wide.addEventListener) wide.addEventListener("change", place); else wide.addListener(place);
 place();
 
+// narrow screens: a chip row under the search (For you, Free, Starting soon, Late, Near me, the kinds you like),
+// the full panel behind Filters. Wide screens have the sidebar instead.
+var chips = el("div", "frow fs-chips"); chips.id = "fsChips";
+var fx = $("fextra") || bar.querySelector(".fmeta"); bar.insertBefore(chips, fx);
+var LATE = 1260, afterSel = $("fafter");
+function chip(key, label, onClick){ var b = el("button", "fs-chip", label); b.type = "button"; b.dataset.k = key;
+  b.addEventListener("click", function(){ onClick(); window.__fside(); }); chips.appendChild(b); return b; }
+var chipYou = chip("you", L.forYou, function(){ setYou(!FX.F.you); });
+var chipFree = chip("free", L.freeChip, function(){ if (freeBtn) freeBtn.click(); });
+var chipSoon = soonShown() ? chip("soon", L.soon, function(){
+  if (soonOn()) { soonBtn.click(); return; }
+  var any = todBtn("all"); if (any && FX.F.tod !== "all") any.click();  // "soon" sets its own window
+  soonBtn.click(); }) : null;
+var chipLate = afterSel ? chip("late", L.late, function(){
+  if (![].slice.call(afterSel.options).some(function(o){ return +o.value === LATE; })) return;
+  setSel(afterSel, FX.F.after === LATE ? "" : String(LATE)); }) : null;
+var chipNear = chip("near", L.near, function(){ setNear(!FX.F.near); });
+var catChips = [];
+var fsMore = el("button", "fs-chip fs-chipf", L.filters); fsMore.type = "button"; fsMore.addEventListener("click", openSheet);
+var mnote = el("div", "fs-mnote"); mnote.id = "fsMuted"; mnote.hidden = true; mnote.setAttribute("role", "status");
+bar.parentNode.insertBefore(mnote, bar.nextSibling);
+function paintChips(p, liked){
+  var have = catChips.map(function(c){ return c.dataset.c; }).join("|");
+  if (have !== liked.join("|")) {
+    catChips.forEach(function(c){ c.remove(); }); catChips = [];
+    liked.forEach(function(c){
+      var b = chip("cat", catLabel(c), function(){ setSel(catSel, toggle(vals(catSel, ","), c, vals(catSel, ",").indexOf(c) < 0).join(",")); });
+      b.dataset.c = c; catChips.push(b);
+    });
+  }
+  chips.appendChild(fsMore);
+  var on = function(b, v){ if (b) b.classList.toggle("on", !!v); };
+  chipYou.hidden = !hasProf(); on(chipYou, FX.F.you);
+  on(chipFree, FX.F.free); on(chipSoon, soonOn()); on(chipLate, FX.F.after === LATE);
+  chipNear.hidden = !(p && p.areas.length); on(chipNear, FX.F.near);
+  var cats = vals(catSel, ",");
+  catChips.forEach(function(b){ on(b, cats.indexOf(b.dataset.c) >= 0); });
+}
+
 // live counts: what each box would show with all the other filters as they are
 function draw(){
-  var F = FX.F, cats = vals(catSel, ","), hoods = vals(hoodSel, "|");
-  var cc = {}, hc = {}, gc = {}, tc = {evening: 0, day: 0, all: 0, soon: 0}, fr = 0, total = 0;
+  var F = FX.F, cats = vals(catSel, ","), hoods = vals(hoodSel, "|"), p = prof(), you = hasProf();
+  var likes = you ? p.likes : [], mutes = you ? p.mutes : [], forYou = you && F.you;
+  var cc = {}, ca = {}, hc = {}, gc = {}, tc = {evening: 0, day: 0, all: 0, soon: 0}, fr = 0, total = 0, nYou = 0, nAll = 0, nNear = 0;
   for (var i = 0; i < N; i++) {
     var a = cardOf[i]; if (!a) continue;
     var d = FX.dims(i, a); if (!d.base) continue;
-    if (d.cat && d.free && d.tod && d.hood) total++;
-    if (d.hood && d.free && d.tod) cc[CATS[i]] = (cc[CATS[i]] || 0) + 1;
-    if (d.cat && d.free && d.tod && HOODS[i]) { hc[HOODS[i]] = (hc[HOODS[i]] || 0) + 1; var g = hoodGroup[HOODS[i]]; gc[g] = (gc[g] || 0) + 1; }
-    if (d.cat && d.hood && d.tod && FREE[i]) fr++;
-    if (d.cat && d.hood && d.free) { if (FX.todMatch(i, "evening")) tc.evening++; if (FX.todMatch(i, "day")) tc.day++; tc.all++;
+    var rest = d.you && d.near;
+    if (d.cat && d.free && d.tod && d.hood && rest) total++;
+    if (d.cat && d.free && d.tod && d.hood && d.near) { nAll++;
+      if (!(T().forYouOut && T().forYouOut(i, cats))) nYou++; }
+    if (d.cat && d.free && d.tod && d.hood && d.you && T().inArea && T().inArea(i)) nNear++;
+    if (d.hood && d.free && d.tod && rest) cc[CATS[i]] = (cc[CATS[i]] || 0) + 1;
+    if (d.hood && d.free && d.tod && d.near) ca[CATS[i]] = (ca[CATS[i]] || 0) + 1;  // ... whatever For you says
+    if (d.cat && d.free && d.tod && rest && HOODS[i]) { hc[HOODS[i]] = (hc[HOODS[i]] || 0) + 1; var g = hoodGroup[HOODS[i]]; gc[g] = (gc[g] || 0) + 1; }
+    if (d.cat && d.hood && d.tod && rest && FREE[i]) fr++;
+    if (d.cat && d.hood && d.free && rest) { if (FX.todMatch(i, "evening")) tc.evening++; if (FX.todMatch(i, "day")) tc.day++; tc.all++;
       if (soon && soonMatch(i)) tc.soon++; }
   }
+  // For you / Everything
+  mode.hidden = !you;
+  youB.textContent = L.forYou + " (" + nYou + ")"; allB.textContent = L.everything + " (" + nAll + ")";
+  youB.classList.toggle("on", forYou); allB.classList.toggle("on", !forYou);
+  youB.setAttribute("aria-pressed", forYou ? "true" : "false"); allB.setAttribute("aria-pressed", forYou ? "false" : "true");
+  // the budget you set in Preferences
+  budgetRow.hidden = !(you && p.budget !== null);
+  if (!budgetRow.hidden) budgetTxt.textContent = p.budget === 0 ? L.budgetFree :
+    L.budget.replace("{b}", (typeof CURRENCY_SIGN !== "undefined" ? CURRENCY_SIGN : "$") + p.budget);
+  // My neighbourhoods (Preferences)
+  near.r.hidden = !(you && p.areas.length);
+  if (!areaSec) nearSec.s.hidden = near.r.hidden;
+  setRow(near, nNear, !!F.near);
+  // categories: the kinds you like first (with a star), muted ones last and greyed; For you counts "for you · in all"
+  catRows.sort(function(x, y){
+    var rx = likes.indexOf(x.v) >= 0 ? 0 : mutes.indexOf(x.v) >= 0 ? 2 : 1, ry = likes.indexOf(y.v) >= 0 ? 0 : mutes.indexOf(y.v) >= 0 ? 2 : 1;
+    return (rx - ry) || ((dayCat[y.v] || 0) - (dayCat[x.v] || 0));
+  }).forEach(function(r){ catSec.s.appendChild(r.o.r); });
+  catRows.forEach(function(r){
+    var mu = mutes.indexOf(r.v) >= 0, lk = likes.indexOf(r.v) >= 0, ck = cats.indexOf(r.v) >= 0;
+    var n = cc[r.v] || 0, all = ca[r.v] || 0;
+    setRow(r.o, forYou && mu ? all : n, ck);
+    if (forYou && !mu && all !== n) r.o.n.textContent = n + " \u00b7 " + all;
+    if (forYou && mu) { r.o.r.classList.remove("zero"); r.o.i.disabled = !all && !ck; }
+    r.o.r.classList.toggle("silenciada", mu); r.star.hidden = !lk; r.tag.hidden = !mu;
+  });
+  // ticked a kind you muted: say so, with a way back
+  var mPicked = forYou ? cats.filter(function(c){ return mutes.indexOf(c) >= 0; }) : [];
+  mnote.hidden = !mPicked.length;
+  if (mPicked.length) {
+    mnote.textContent = L.mutedNote.replace("{c}", mPicked.map(catLabel).join(", "));
+    var ha = el("button", "fs-link", L.hideAgain); ha.type = "button";
+    ha.addEventListener("click", function(){ setSel(catSel, vals(catSel, ",").filter(function(c){ return mutes.indexOf(c) < 0; }).join(",")); });
+    mnote.appendChild(ha);
+  }
+  paintChips(p, likes);
   var sOn = soonOn();
   tods.forEach(function(t){ setRow(t.o, tc[t.t], !sOn && F.tod === t.t); });
   if (soon) setRow(soon, tc.soon, sOn);
@@ -7125,7 +7566,6 @@ function draw(){
   ["fafter", "fbefore"].forEach(function(id){ var s = $(id); if (s) s.classList.toggle("on", s.value !== ""); });
   if (tOn && !times.open) times.open = true;
   setRow(free, fr, !!F.free);
-  catRows.forEach(function(r){ setRow(r.o, cc[r.v] || 0, cats.indexOf(r.v) >= 0); });
   hoodRows.forEach(function(r){ setRow(r.o, hc[r.v] || 0, hoods.indexOf(r.v) >= 0); });
   grpBoxes.forEach(function(b){
     var sel = hoods.some(function(h){ return hoodGroup[h] === b.g; });
@@ -7134,15 +7574,16 @@ function draw(){
     if (sel && !b.d.dataset.seen) { b.d.open = true; }
     b.d.dataset.seen = sel ? "1" : "";
   });
-  var nOn = cats.length + hoods.length + (F.free ? 1 : 0) + (F.tod !== FX.TOD0() ? 1 : 0) +
+  var nOn = cats.length + hoods.length + (F.free ? 1 : 0) + (F.near ? 1 : 0) + (F.tod !== FX.TOD0() ? 1 : 0) +
     (F.after != null ? 1 : 0) + (F.before != null ? 1 : 0) + (soonOn() ? 1 : 0);
   var any = nOn > 0 || !!F.q;
   clearAll.hidden = !any;
   if (when.clear) when.clear.hidden = !(F.tod !== FX.TOD0() || tOn || soonOn());
   if (catSec) catSec.clear.hidden = !cats.length;
-  if (areaSec) areaSec.clear.hidden = !hoods.length;
+  if (areaSec && areaSec.clear) areaSec.clear.hidden = !hoods.length;
   fsBtn.textContent = nOn ? L.filtersN.replace("{n}", nOn) : L.filters;
   fsBtn.classList.toggle("on", nOn > 0);
+  fsMore.textContent = fsBtn.textContent; fsMore.classList.toggle("on", nOn > 0);
   show.textContent = total === 1 ? L.show1 : L.show.replace("{n}", total);
 }
 var queued = false;

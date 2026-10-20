@@ -550,6 +550,64 @@ body{overflow-x:hidden;}
 }
 </style></head>
 <body><script>
+var Rank = (function(){
+"use strict";
+var JUNK = ["networking", "sales", "spam", "service", "internal", "members_only", "online", "class_slot"];
+var W = {quality: 2, like: 12, topic: 6, area: 5, timeFit: 3, timeMiss: -8, late: 4, free: 6};
+var BUDGETS = [0, 20, 40, 75, 150];
+function lower(a){ return (a || []).map(function(x){ return String(x).toLowerCase(); }).filter(Boolean); }
+function profile(o){
+  o = o || {};
+  var b = o.budget;
+  b = (b === null || b === undefined || b === "" || b === "any" || isNaN(+b)) ? null : Math.max(0, Math.floor(+b));
+  var topics = Array.isArray(o.topics) ? o.topics : Object.keys(o.topics || {});
+  return {likes: (o.likes || []).slice(), mutes: (o.mutes || []).slice(), free_only: !!o.free_only, budget: b,
+    areas: lower(o.areas), times: (o.times || []).slice(), topics: lower(topics), kids: !!o.kids, ticks: o.ticks || {}};
+}
+function hasSettings(p){
+  return !!(p.likes.length || p.mutes.length || p.free_only || p.budget !== null || p.areas.length || p.times.length ||
+    p.topics.length || Object.keys(p.ticks).some(function(k){ return p.ticks[k]; }));
+}
+function isJunk(e){
+  if (typeof e.quality === "number" && e.quality <= 3) return true;
+  return (e.flags || []).some(function(f){ return JUNK.indexOf(f) >= 0; });
+}
+function isKids(e){ return !!e.kids || (e.flags || []).indexOf("kids") >= 0; }
+function exclude(e, p){
+  if (isJunk(e)) return "junk";
+  if (isKids(e) && !p.kids) return "kids";
+  if (!hasSettings(p)) return "";
+  if (p.mutes.indexOf(e.category) >= 0) return "muted";
+  var price = typeof e.price === "number" ? e.price : null;
+  if (p.budget !== null) {
+    if (p.budget === 0 && !e.free) return "over budget";
+    if (price !== null && price > p.budget) return "over budget";
+  }
+  if (p.free_only && !e.free && price === null && e.big) return "ticketed";
+  return "";
+}
+function inArea(e, p){
+  if (!p.areas.length) return false;
+  var h = String(e.hood || "").toLowerCase(), g = String(e.area || "").toLowerCase();
+  return (!!h && p.areas.indexOf(h) >= 0) || (!!g && p.areas.indexOf(g) >= 0);
+}
+function win(st){ return st < 1020 ? "day" : (st < 1260 ? "evening" : "late"); }
+function score(e, p){
+  var q = typeof e.quality === "number" ? e.quality : 5, s = q * W.quality;
+  if (p.likes.indexOf(e.category) >= 0) s += W.like;
+  if (p.topics.length && (e.topics || []).some(function(t){ return p.topics.indexOf(String(t).toLowerCase()) >= 0; })) s += W.topic;
+  if (inArea(e, p)) s += W.area;
+  var st = e.start;
+  if (p.times.length && st != null) s += p.times.indexOf(win(st)) >= 0 ? W.timeFit : W.timeMiss;
+  if (p.times.indexOf("late") >= 0 && st != null && st >= 1260) s += W.late;
+  if (p.free_only && e.free) s += W.free;
+  var tb = p.ticks[e.category] || 0;
+  s += tb > 0 ? Math.min(tb, 3) : Math.max(tb * 2, -6);
+  return s;
+}
+return {profile: profile, hasSettings: hasSettings, exclude: exclude, score: score, inArea: inArea, BUDGETS: BUDGETS};
+})();
+
 /* Tonight taste: onboarding quiz, profile, personalized ranking */
 (function(){
 "use strict";
@@ -558,7 +616,15 @@ var CITY = "london";
 var CITIES_ALL = ["nyc", "london", "la"];
 var TKEY = "tonight-taste";
 var OKEY = "tonight-onboarded";
-function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low"}; }
+// budget: Preferences > Event budget (up to; null = any, 0 = free only); areas: {city: [borough / area / neighbourhood]}
+function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low", budget:null, areas:{}}; }
+function cleanBudget(b){ return (b === null || b === undefined || b === "" || isNaN(+b)) ? null : Math.max(0, Math.floor(+b)); }
+function cleanAreas(a){
+  var out = {};
+  if (a && typeof a === "object" && !Array.isArray(a)) Object.keys(a).forEach(function(c){
+    if (Array.isArray(a[c])) out[c] = a[c].map(String).filter(Boolean).slice(0, 40); });
+  return out;
+}
 function cleanList(a){
   if (!Array.isArray(a)) return [];
   return a.filter(function(c){ return CATS_ALL.indexOf(c) >= 0; });
@@ -571,6 +637,7 @@ function load(){
       b.likes = cleanList(t.likes); b.mutes = cleanList(t.mutes);
       b.free_only = !!t.free_only;
       b.surprise = (t.surprise === "med" || t.surprise === "high") ? t.surprise : "low";
+      b.budget = cleanBudget(t.budget); b.areas = cleanAreas(t.areas);
       return b;
     }
   } catch (e) {}
@@ -593,19 +660,68 @@ function uid(){
 function apiBase(){ return window.__tonight_api || null; }
 function authHeaders(h){ return window.TonightAuth ? TonightAuth.headers(h) : (h || {}); }
 function save(sync){
+  PROF = null;
   try { localStorage.setItem(TKEY, JSON.stringify(taste)); } catch (e) {}
   if (sync === false) return;
   var base = apiBase();
   if (!base) return;
   var targets = CITY ? [CITY] : CITIES_ALL;
-  var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
-    free_only: taste.free_only, surprise: taste.surprise});
   targets.forEach(function(c){
+    var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
+      free_only: taste.free_only, surprise: taste.surprise, budget: taste.budget, areas: taste.areas[c] || []});
     fetch(base + "/taste/" + encodeURIComponent(c),
       {method: "POST", headers: authHeaders({"Content-Type": "application/json"}), body: payload}
     ).catch(function(){});
   });
 }
+// topics of what you tick (ingest/quality.py), for 60 days: this device's ticks + the account's (/api/taste)
+var TOPKEY = "tonight-topics-" + CITY, serverTopics = {}, PROF = null;
+function localTopics(){
+  var t = {}, cut = Date.now() - 60 * 86400000;
+  try { t = JSON.parse(localStorage.getItem(TOPKEY) || "{}") || {}; } catch (e) {}
+  Object.keys(t).forEach(function(k){ if (!(t[k] > cut)) delete t[k]; });
+  return t;
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest && e.target.closest("article.event .toggle");
+  if (!b || typeof TOPICS === "undefined" || b.getAttribute("aria-pressed") !== "true") return;
+  var t = localTopics(), now = Date.now();
+  (TOPICS[+b.dataset.idx] || []).forEach(function(k){ t[k] = now; });
+  try { localStorage.setItem(TOPKEY, JSON.stringify(t)); } catch (err) {}
+  PROF = null;
+});
+function kidsIn(){ return typeof kidsOn === "function" && kidsOn(); }
+// this person's settings and ticks, as the ranking reads them (RANK_JS)
+function prof(){
+  if (PROF) return PROF;
+  var topics = Object.keys(localTopics());
+  Object.keys(serverTopics).forEach(function(k){ if (topics.indexOf(k) < 0) topics.push(k); });
+  PROF = Rank.profile({likes: taste.likes, mutes: taste.mutes, free_only: taste.free_only, budget: taste.budget,
+    areas: (CITY && taste.areas[CITY]) || [], times: goOutTimes(), topics: topics, kids: kidsIn(), ticks: tapBonus});
+  return PROF;
+}
+function hasProfile(){ return Rank.hasSettings(prof()); }
+function ev(i){
+  return {category: CATS[i], quality: typeof QUAL !== "undefined" ? QUAL[i] : null,
+    price: typeof PRICEN !== "undefined" ? PRICEN[i] : null, free: !!FREE[i],
+    big: typeof BIGTIX !== "undefined" && !!BIGTIX[i], flags: typeof FLAGS !== "undefined" && FLAGS[i] ? FLAGS[i].split(",") : [],
+    kids: typeof KIDS !== "undefined" && !!KIDS[i], start: typeof STARTS !== "undefined" ? STARTS[i] : null,
+    topics: typeof TOPICS !== "undefined" ? TOPICS[i] : [], hood: typeof HOODS !== "undefined" ? HOODS[i] : "",
+    area: typeof AREA_GROUP !== "undefined" ? AREA_GROUP[i] : ""};
+}
+// why this event is out of your "For you" ("" = in): muted / over budget / ticketed / junk / kids / hidden
+function excluded(i){
+  if (typeof CATS === "undefined" || !hasProfile()) return "";
+  if (window.TonightHide && TonightHide.hides(i)) return "hidden";
+  return Rank.exclude(ev(i), prof());
+}
+// the list's For you filter: kids' events keep their own section; a muted category you tick in Filters shows anyway
+function forYouOut(i, cats){
+  var why = excluded(i);
+  if (!why || why === "kids" || why === "hidden") return false;
+  return !(why === "muted" && cats && cats.indexOf(CATS[i]) >= 0);
+}
+function inArea(i){ return typeof CATS !== "undefined" && Rank.inArea(ev(i), prof()); }
 function pull(){
   var base = apiBase();
   if (!base || !CITY || typeof CATS === "undefined") return;
@@ -620,14 +736,19 @@ function pull(){
         taste.likes = cleanList(d.likes); taste.mutes = cleanList(d.mutes);
         taste.free_only = !!d.free_only;
         taste.surprise = (d.surprise === "med" || d.surprise === "high") ? d.surprise : "low";
+        if ("budget" in d) taste.budget = cleanBudget(d.budget);
+        if (Array.isArray(d.areas)) taste.areas[CITY] = d.areas.map(String);
         save(false);
       }
+      serverTopics = d.topics && typeof d.topics === "object" ? d.topics : {};
       if (d.categories) tapBonus = d.categories;
       if (d.venues) venueBonus = d.venues;
       seriesRecent = {}; (d.series_recent || []).forEach(function(k){ seriesRecent[k] = 1; });
       (d.regulars || []).forEach(function(k){ regulars[k] = 1; });
       paintRegulars();
       freeShare = +d.free_share || 0;
+      PROF = null;
+      if (window.__facet && window.__facet.apply) window.__facet.apply();  // For you may have just started to apply
       applyRanking();
     })
     .catch(function(){});
@@ -637,10 +758,32 @@ function quality(i){
   var q = typeof QUAL !== "undefined" ? QUAL[i] : null;
   return typeof q === "number" ? q : 5;
 }
-// the list's order: your taste, nudged by quality
+// the list's order: with settings or ticks, the personal ranking (quality breaks ties); else quality-led as before
 function score(i){
   if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  if (hasProfile()) return rank(i);
   return personal(i) + (quality(i) - 5) * 1.5;
+}
+// Top tonight's order (and the list's, with a profile): RANK_JS's score plus the signals only the page knows
+function rank(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  if (!hasProfile()) return (quality(i) - 5) * 3 + personal(i);
+  return Rank.score(ev(i), prof()) + extras(i);
+}
+function extras(i){
+  var s = 0, cat = CATS[i];
+  var vb = (typeof VENUES !== "undefined" && VENUES[i]) ? venueBonus[VENUES[i].toLowerCase()] : 0;
+  if (vb > 0) s += Math.min(vb * 2, 4); else if (vb < 0) s -= 5;
+  if (window.TonightHide) s += TonightHide.penalty(i);
+  if (freeShare >= 0.6 && FREE[i]) s += 2;
+  if (window.FRIENDS_GOING && typeof EIDS !== "undefined" && FRIENDS_GOING[EIDS[i]]) s += 6;
+  if (typeof SERIES !== "undefined" && SERIES[i]) {
+    if (regulars[SERIES[i]]) s += 15;
+    else if (RECUR[i] && seriesRecent[SERIES[i]]) s -= 8;
+  }
+  if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
+    s += (taste.surprise === "high" ? 4 : 2);
+  return s;
 }
 // the personal half: categories, ticks, venues, friends, regulars, when you go out
 function personal(i){
@@ -694,6 +837,9 @@ document.addEventListener("click", function(e){
       name: i >= 0 && typeof NAMES !== "undefined" ? NAMES[i] : "", venue: i >= 0 && typeof VENUES !== "undefined" ? VENUES[i] : ""})}).catch(function(){});
 });
 document.addEventListener("DOMContentLoaded", paintRegulars);
+document.addEventListener("click", function(e){  // "Include kids' events" changes who's in
+  if (e.target.closest && e.target.closest("#kidsToggle")) setTimeout(function(){ PROF = null;
+    if (window.__facet && window.__facet.apply) window.__facet.apply(); }, 0); });
 function hasTaste(){
   return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only || goOutTimes().length > 0 ||
     (window.FRIENDS_GOING && Object.keys(window.FRIENDS_GOING).length > 0) ||
@@ -716,8 +862,9 @@ function sortChildren(container){
 }
 function scored(){ return typeof QUAL !== "undefined" && QUAL.some(function(q){ return q != null; }); }
 function applyRanking(){
+  PROF = null;
   if (window.__topTonight) window.__topTonight();  // Top tonight re-ranks whatever the layout
-  if ((!hasTaste() && !scored()) || typeof CATS === "undefined") return;
+  if ((!hasTaste() && !hasProfile() && !scored()) || typeof CATS === "undefined") return;
   // the timeline layout orders by start time, not taste
   if (document.documentElement.getAttribute("data-layout") === "timeline") return;
   var wrap = document.querySelector("main.wrap");
@@ -908,6 +1055,8 @@ function setCat(cat, mode){
 window.Tonight = {
   taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
   score: score, personal: personal, quality: quality, save: save, applyRanking: applyRanking,
+  rank: rank, excluded: excluded, forYouOut: forYouOut, inArea: inArea, hasProfile: hasProfile, profile: prof,
+  reset: function(){ PROF = null; },
   openQuiz: openQuiz, describe: describe, setCat: setCat
 };
 document.addEventListener("DOMContentLoaded", function(){
@@ -956,6 +1105,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a095b348" data-idx="0" data-eid="a095b348" data-name="Twist Museum - London&#x27;s Home of Illusions PEAK" data-series="c8103ff47b" data-start-local="2026-10-26T09:30:00" data-cal-start="20261026T093000Z" data-cal-end="20261026T113000Z" data-loc="Twist Museum, Fitzrovia West &amp; Soho" data-url="https://www.universe.com/events/twist-museum-londons-home-of-illusions-peak-tickets-DHN4JT?ref=ticketmaster" data-weekly="1" data-lat="51.51539505" data-lng="-0.14319582">
 <button class="toggle" data-idx="0" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="0" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/twist-museum-londons-home-of-illusions-peak-tickets-DHN4JT?ref=ticketmaster">Twist Museum - London&#x27;s Home of Illusions PEAK</a></h3>
 <div class="meta">9:30 AM · Twist Museum, Fitzrovia West &amp; Soho · ↻ Every Monday</div>
@@ -973,6 +1123,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-d4485abb" data-idx="1" data-eid="d4485abb" data-name="Larger Than Life: Starring Wallace &amp; Gromit, Shaun &amp; More" data-series="ecb40ac36f" data-start-local="2026-10-26T10:00:00" data-cal-start="20261026T100000Z" data-cal-end="20261026T120000Z" data-loc="The Lightroom, Somers Town" data-url="https://attractions.ticketmaster.co.uk/book/1JAP4-TICKETMASTER/#date=2026-10-26" data-weekly="1" data-lat="51.53703105" data-lng="-0.12605129">
 <button class="toggle" data-idx="1" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="1" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://attractions.ticketmaster.co.uk/book/1JAP4-TICKETMASTER/#date=2026-10-26">Larger Than Life: Starring Wallace &amp; Gromit, Shaun &amp; More</a></h3>
 <div class="meta">10:00 AM · The Lightroom, Somers Town · ↻ Every Monday</div>
@@ -990,6 +1141,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-88a5c35a" data-idx="2" data-eid="88a5c35a" data-name="Madame Tussauds London - Standard Entry" data-series="3ad558f1dc" data-start-local="2026-10-26T10:00:00" data-cal-start="20261026T100000Z" data-cal-end="20261026T120000Z" data-loc="Madame Tussauds London, Regent&#x27;s Park" data-url="https://attractions.ticketmaster.co.uk/book/1J3Z8-TICKETMASTER/#date=2026-10-26" data-weekly="1" data-lat="51.52248" data-lng="-0.15526">
 <button class="toggle" data-idx="2" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="2" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://attractions.ticketmaster.co.uk/book/1J3Z8-TICKETMASTER/#date=2026-10-26">Madame Tussauds London - Standard Entry</a></h3>
 <div class="meta">10:00 AM · Madame Tussauds London, Regent&#x27;s Park · ↻ Every Monday</div>
@@ -1007,6 +1159,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-6da812ff" data-idx="3" data-eid="6da812ff" data-name="London Dungeon - Standard Entry" data-series="1819fdc6b3" data-start-local="2026-10-26T10:00:00" data-cal-start="20261026T100000Z" data-cal-end="20261026T120000Z" data-loc="The London Dungeon, Lambeth North, Waterloo &amp; South Bank" data-url="https://attractions.ticketmaster.co.uk/book/1J544-TICKETMASTER/#date=2026-10-26" data-weekly="1" data-lat="51.500992" data-lng="-0.11735">
 <button class="toggle" data-idx="3" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="3" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://attractions.ticketmaster.co.uk/book/1J544-TICKETMASTER/#date=2026-10-26">London Dungeon - Standard Entry</a></h3>
 <div class="meta">10:00 AM · The London Dungeon, Lambeth North, Waterloo &amp; South Bank · ↻ Every Monday</div>
@@ -1024,6 +1177,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a223859e" data-idx="4" data-eid="a223859e" data-name="Hampton Court Palace - Standard All Day Entry" data-series="f95fee753e" data-start-local="2026-10-26T10:00:00" data-cal-start="20261026T100000Z" data-cal-end="20261026T120000Z" data-loc="Hampton Court, Hampton Village" data-url="https://attractions.ticketmaster.co.uk/book/1GVTC-TICKETMASTER/#date=2026-10-26" data-lat="51.403813" data-lng="-0.33767">
 <button class="toggle" data-idx="4" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="4" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://attractions.ticketmaster.co.uk/book/1GVTC-TICKETMASTER/#date=2026-10-26">Hampton Court Palace - Standard All Day Entry</a></h3>
 <div class="meta">10:00 AM · Hampton Court, Hampton Village</div>
@@ -1041,6 +1195,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-bd83d0c3" data-idx="5" data-eid="bd83d0c3" data-name="The Tower of London - Standard All Day Entry" data-series="22fe00f7cb" data-start-local="2026-10-26T10:00:00" data-cal-start="20261026T100000Z" data-cal-end="20261026T120000Z" data-loc="Tower Of London, Tower Hill &amp; Wapping South" data-url="https://attractions.ticketmaster.co.uk/book/1GVTA-TICKETMASTER/#date=2026-10-26" data-weekly="1" data-lat="51.508602" data-lng="-0.076013">
 <button class="toggle" data-idx="5" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="5" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://attractions.ticketmaster.co.uk/book/1GVTA-TICKETMASTER/#date=2026-10-26">The Tower of London - Standard All Day Entry</a></h3>
 <div class="meta">10:00 AM · Tower Of London, Tower Hill &amp; Wapping South · ↻ Every Monday</div>
@@ -1058,6 +1213,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-71cb5b90" data-idx="6" data-eid="71cb5b90" data-name="The Paddington Bear Experience" data-series="ec1ef020ac" data-start-local="2026-10-26T10:00:00" data-cal-start="20261026T100000Z" data-cal-end="20261026T120000Z" data-loc="County Hall, Lambeth North, Waterloo &amp; South Bank" data-url="https://attractions.ticketmaster.co.uk/book/1GUZ8-TICKETMASTER/#date=2026-10-26" data-weekly="1" data-lat="51.50282" data-lng="-0.119252">
 <button class="toggle" data-idx="6" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="6" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://attractions.ticketmaster.co.uk/book/1GUZ8-TICKETMASTER/#date=2026-10-26">The Paddington Bear Experience</a></h3>
 <div class="meta">10:00 AM · County Hall, Lambeth North, Waterloo &amp; South Bank · ↻ Every Monday</div>
@@ -1075,6 +1231,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-3910c2a1" data-idx="7" data-eid="3910c2a1" data-name="Sea Life London - Standard Entry" data-series="b6885b30e5" data-start-local="2026-10-26T10:00:00" data-cal-start="20261026T100000Z" data-cal-end="20261026T120000Z" data-loc="County Hall, Lambeth North, Waterloo &amp; South Bank" data-url="https://attractions.ticketmaster.co.uk/book/1J4YU-TICKETMASTER/#date=2026-10-26" data-weekly="1" data-lat="51.50282" data-lng="-0.119252">
 <button class="toggle" data-idx="7" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="7" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://attractions.ticketmaster.co.uk/book/1J4YU-TICKETMASTER/#date=2026-10-26">Sea Life London - Standard Entry</a></h3>
 <div class="meta">10:00 AM · County Hall, Lambeth North, Waterloo &amp; South Bank · ↻ Every Monday</div>
@@ -1092,6 +1249,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-67058f5b" data-idx="8" data-eid="67058f5b" data-name="FRAMELESS 2026" data-series="9acb8451d4" data-start-local="2026-10-26T10:00:00" data-cal-start="20261026T100000Z" data-cal-end="20261026T120000Z" data-loc="Marble Arch Place, Bryanston &amp; Dorset Square" data-url="https://www.universe.com/events/frameless-2026-tickets-Q8YGSX?ref=ticketmaster" data-weekly="1" data-lat="51.51366919" data-lng="-0.15964317">
 <button class="toggle" data-idx="8" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="8" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/frameless-2026-tickets-Q8YGSX?ref=ticketmaster">FRAMELESS 2026</a></h3>
 <div class="meta">10:00 AM · Marble Arch Place, Bryanston &amp; Dorset Square · ↻ Every Monday</div>
@@ -1109,6 +1267,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a3af9edf" data-idx="9" data-eid="a3af9edf" data-name="Ramses and the Pharaoh’s Gold: The Exhibition" data-series="5e31e5f476" data-start-local="2026-10-26T10:00:00" data-cal-start="20261026T100000Z" data-cal-end="20261026T120000Z" data-loc="Neon at Battersea Power Station, Nine Elms" data-url="https://www.universe.com/events/ramses-and-the-pharaoh-s-gold-the-exhibition-tickets-V64RDY?ref=ticketmaster" data-weekly="1" data-lat="51.48187751" data-lng="-0.14214313">
 <button class="toggle" data-idx="9" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="9" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/ramses-and-the-pharaoh-s-gold-the-exhibition-tickets-V64RDY?ref=ticketmaster">Ramses and the Pharaoh’s Gold: The Exhibition</a></h3>
 <div class="meta">10:00 AM · Neon at Battersea Power Station, Nine Elms · ↻ Every Monday</div>
@@ -1126,6 +1285,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-8751dc78" data-idx="10" data-eid="8751dc78" data-name="The View from The Shard" data-series="0e558e4438" data-start-local="2026-10-26T12:00:00" data-cal-start="20261026T120000Z" data-cal-end="20261026T140000Z" data-loc="The View from The Shard, London Bridge &amp; Bermondsey West" data-url="https://www.universe.com/events/the-view-from-the-shard-tickets-TB3XYQ?ref=ticketmaster" data-lat="51.5045" data-lng="-0.08653">
 <button class="toggle" data-idx="10" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="10" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/the-view-from-the-shard-tickets-TB3XYQ?ref=ticketmaster">The View from The Shard</a></h3>
 <div class="meta">12:00 PM · The View from The Shard, London Bridge &amp; Bermondsey West</div>
@@ -1143,6 +1303,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-fc20df7d" data-idx="11" data-eid="fc20df7d" data-name="Cirque Berserk!" data-series="ecc2efb5cb" data-start-local="2026-10-26T15:00:00" data-cal-start="20261026T150000Z" data-cal-end="20261026T170000Z" data-loc="Garrick Theatre, Strand, St James &amp; Mayfair" data-url="https://theatre.ticketmaster.co.uk/book/1J7JN-cirque-berserk/#perf=1J7JN-B&amp;date=2026-10-26&amp;time=3.00PM" data-lat="51.509954" data-lng="-0.127819">
 <button class="toggle" data-idx="11" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="11" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1J7JN-cirque-berserk/#perf=1J7JN-B&amp;date=2026-10-26&amp;time=3.00PM">Cirque Berserk!</a></h3>
 <div class="meta">3:00 PM · Garrick Theatre, Strand, St James &amp; Mayfair</div>
@@ -1160,6 +1321,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-264abea7" data-idx="12" data-eid="264abea7" data-name="Critical Role Live" data-series="6f8ef89f8d" data-start-local="2026-10-26T16:45:00" data-cal-start="20261026T164500Z" data-cal-end="20261026T184500Z" data-loc="The O2, Greenwich Peninsula West" data-url="https://www.ticketmaster.co.uk/critical-role-live-london-26-10-2026/event/350062F5D28226AA" data-lat="51.501581" data-lng="0.005519">
 <button class="toggle" data-idx="12" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="12" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/critical-role-live-london-26-10-2026/event/350062F5D28226AA">Critical Role Live</a></h3>
 <div class="meta">4:45 PM · The O2, Greenwich Peninsula West</div>
@@ -1177,6 +1339,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-d5362e43" data-idx="13" data-eid="d5362e43" data-name="Jay Park - Venue Premium Tickets" data-series="3799a3e20a" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="OVO Arena Wembley, Wembley Park" data-url="https://www.ticketmaster.co.uk/jay-park-venue-premium-tickets-london-26-10-2026/event/370064C9ED3742D2" data-lat="51.557918" data-lng="-0.283527">
 <button class="toggle" data-idx="13" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="13" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/jay-park-venue-premium-tickets-london-26-10-2026/event/370064C9ED3742D2">Jay Park - Venue Premium Tickets</a></h3>
 <div class="meta">6:00 PM · OVO Arena Wembley, Wembley Park</div>
@@ -1194,6 +1357,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-01c5cc9c" data-idx="14" data-eid="01c5cc9c" data-name="Archspire" data-series="70cf84d3ad" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="Electric Ballroom, Camden Town &amp; Mornington Crescent" data-url="https://www.ticketweb.uk/event/archspire-electric-ballroom-tickets/14846723?REFERRAL_ID=tmfeed" data-lat="51.5397" data-lng="-0.142995">
 <button class="toggle" data-idx="14" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="14" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.uk/event/archspire-electric-ballroom-tickets/14846723?REFERRAL_ID=tmfeed">Archspire</a></h3>
 <div class="meta">6:00 PM · Electric Ballroom, Camden Town &amp; Mornington Crescent</div>
@@ -1211,6 +1375,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-171be5cf" data-idx="15" data-eid="171be5cf" data-name="WithPaperWings" data-series="4280be49fc" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="New Cross Inn, New Cross &amp; Deptford South" data-url="https://www.universe.com/events/withpaperwings-tickets-CKQL6J?ref=ticketmaster" data-lat="51.475524" data-lng="-0.03838">
 <button class="toggle" data-idx="15" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="15" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/withpaperwings-tickets-CKQL6J?ref=ticketmaster">WithPaperWings</a></h3>
 <div class="meta">6:00 PM · New Cross Inn, New Cross &amp; Deptford South</div>
@@ -1228,6 +1393,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-488a3578" data-idx="16" data-eid="488a3578" data-name="Ezra Furman" data-series="4694e5dcf8" data-start-local="2026-10-26T18:30:00" data-cal-start="20261026T183000Z" data-cal-end="20261026T203000Z" data-loc="Union Chapel, Islington North &amp; Canonbury West" data-url="https://www.ticketweb.uk/event/ezra-furman-union-chapel-tickets/14895353?REFERRAL_ID=tmfeed" data-lat="51.54378" data-lng="-0.102362">
 <button class="toggle" data-idx="16" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="16" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.uk/event/ezra-furman-union-chapel-tickets/14895353?REFERRAL_ID=tmfeed">Ezra Furman</a></h3>
 <div class="meta">6:30 PM · Union Chapel, Islington North &amp; Canonbury West</div>
@@ -1245,6 +1411,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-54107aff" data-idx="17" data-eid="54107aff" data-name="Jay Park Ft. LNGSHOT - Body Rolls &amp; Serenades World Tour" data-series="ba55bc9f99" data-start-local="2026-10-26T18:30:00" data-cal-start="20261026T183000Z" data-cal-end="20261026T203000Z" data-loc="OVO Arena Wembley, Wembley Park" data-url="https://www.ticketmaster.co.uk/jay-park-ft-lngshot-body-rolls-london-26-10-2026/event/370064C8DCAB37DF" data-lat="51.557918" data-lng="-0.283527">
 <button class="toggle" data-idx="17" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="17" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/jay-park-ft-lngshot-body-rolls-london-26-10-2026/event/370064C8DCAB37DF">Jay Park Ft. LNGSHOT - Body Rolls &amp; Serenades World Tour</a></h3>
 <div class="meta">6:30 PM · OVO Arena Wembley, Wembley Park</div>
@@ -1262,6 +1429,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-79c33b45" data-idx="18" data-eid="79c33b45" data-name="Steve Hackett - Best of Genesis &amp; Solo Gems" data-series="3f43724a19" data-start-local="2026-10-26T18:45:00" data-cal-start="20261026T184500Z" data-cal-end="20261026T204500Z" data-loc="Royal Albert Hall, Knightsbridge, Belgravia &amp; Hyde Park" data-url="https://www.ticketmaster.co.uk/steve-hackett-best-of-genesis-solo-london-26-10-2026/event/1F00632AFAD720FC" data-lat="51.501277" data-lng="-0.177552">
 <button class="toggle" data-idx="18" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="18" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/steve-hackett-best-of-genesis-solo-london-26-10-2026/event/1F00632AFAD720FC">Steve Hackett - Best of Genesis &amp; Solo Gems</a></h3>
 <div class="meta">6:45 PM · Royal Albert Hall, Knightsbridge, Belgravia &amp; Hyde Park</div>
@@ -1279,6 +1447,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-aab76ea3" data-idx="19" data-eid="aab76ea3" data-name="KOPER8: Tom Rainey, Giuseppe Doronzo, Jannis Anastasakis, Ingrid Laubrock" data-series="641c1e3e26" data-start-local="2026-10-26T18:45:00" data-cal-start="20261026T184500Z" data-cal-end="20261026T204500Z" data-loc="Vortex Jazz Club, Dalston Kingsland" data-url="https://www.universe.com/events/koper8-tom-rainey-giuseppe-doronzo-jannis-anastasakis-ingrid-laubrock-tickets-58SV42?ref=ticketmaster" data-lat="51.54879" data-lng="-0.07665">
 <button class="toggle" data-idx="19" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="19" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/koper8-tom-rainey-giuseppe-doronzo-jannis-anastasakis-ingrid-laubrock-tickets-58SV42?ref=ticketmaster">KOPER8: Tom Rainey, Giuseppe Doronzo, Jannis Anastasakis, Ingrid Laubrock</a></h3>
 <div class="meta">6:45 PM – 10:30 PM · Vortex Jazz Club, Dalston Kingsland</div>
@@ -1296,6 +1465,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-db8a4b24" data-idx="20" data-eid="db8a4b24" data-name="The Soul Rebels" data-series="0bd0891d75" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="Blue Note London, Strand, St James &amp; Mayfair" data-url="https://www.ticketmaster.co.uk/the-soul-rebels-london-26-10-2026/event/23006504A37909A6" data-lat="51.51046344" data-lng="-0.12670269">
 <button class="toggle" data-idx="20" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="20" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/the-soul-rebels-london-26-10-2026/event/23006504A37909A6">The Soul Rebels</a></h3>
 <div class="meta">7:00 PM · Blue Note London, Strand, St James &amp; Mayfair</div>
@@ -1313,6 +1483,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-1642c90a" data-idx="21" data-eid="1642c90a" data-name="Double Bill: Tell Me Straight &amp; Aggy" data-series="f5cdc8a7c2" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="The King&#x27;s Head Theatre, Angel" data-url="https://theatre.ticketmaster.co.uk/book/1J55E-double-bill-tell-me-straight-aggy/#perf=1J55E-B&amp;date=2026-10-26&amp;time=7.00PM" data-lat="51.53799" data-lng="-0.10286">
 <button class="toggle" data-idx="21" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="21" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1J55E-double-bill-tell-me-straight-aggy/#perf=1J55E-B&amp;date=2026-10-26&amp;time=7.00PM">Double Bill: Tell Me Straight &amp; Aggy</a></h3>
 <div class="meta">7:00 PM · The King&#x27;s Head Theatre, Angel</div>
@@ -1330,6 +1501,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-57933252" data-idx="22" data-eid="57933252" data-name="Beast In Black Resurrection Tour 2026" data-series="42b79050cc" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="O2 Forum Kentish Town, Tufnell Park West" data-url="https://www.ticketmaster.co.uk/beast-in-black-resurrection-tour-2026-london-26-10-2026/event/3E00634FC5C65A4D" data-lat="51.552039" data-lng="-0.14193">
 <button class="toggle" data-idx="22" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="22" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/beast-in-black-resurrection-tour-2026-london-26-10-2026/event/3E00634FC5C65A4D">Beast In Black Resurrection Tour 2026</a></h3>
 <div class="meta">7:00 PM · O2 Forum Kentish Town, Tufnell Park West</div>
@@ -1347,6 +1519,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-d7cbb7f3" data-idx="23" data-eid="d7cbb7f3" data-name="Hi-On Maiden: The Official Iron Maiden Tribute Show" data-series="4174c6864b" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="Fox and Firkin" data-url="https://www.universe.com/events/hi-on-maiden-the-official-iron-maiden-tribute-show-tickets-J2HVTD?ref=ticketmaster">
 <button class="toggle" data-idx="23" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="23" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/hi-on-maiden-the-official-iron-maiden-tribute-show-tickets-J2HVTD?ref=ticketmaster">Hi-On Maiden: The Official Iron Maiden Tribute Show</a></h3>
 <div class="meta">7:00 PM · Fox and Firkin</div>
@@ -1364,6 +1537,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a5b92365" data-idx="24" data-eid="a5b92365" data-name="Mon 26th Oct - Stand Up Comedy Show - Big Belly Comedy Club" data-series="adf5b9db03" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="Big Belly Comedy - Southbank" data-url="https://www.universe.com/events/mon-26th-oct-stand-up-comedy-show-big-belly-comedy-club-tickets-TDWKL9?ref=ticketmaster">
 <button class="toggle" data-idx="24" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="24" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/mon-26th-oct-stand-up-comedy-show-big-belly-comedy-club-tickets-TDWKL9?ref=ticketmaster">Mon 26th Oct - Stand Up Comedy Show - Big Belly Comedy Club</a></h3>
 <div class="meta">7:00 PM · Big Belly Comedy - Southbank</div>
@@ -1381,6 +1555,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-194611ae" data-idx="25" data-eid="194611ae" data-name="Miles Davis’ Kind of Blue" data-series="35686fce54" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="Jazz Cafe, Camden Town &amp; Mornington Crescent" data-url="https://www.universe.com/events/miles-davis-kind-of-blue-tickets-L83CS6?ref=ticketmaster" data-lat="51.53859" data-lng="-0.143343">
 <button class="toggle" data-idx="25" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="25" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/miles-davis-kind-of-blue-tickets-L83CS6?ref=ticketmaster">Miles Davis’ Kind of Blue</a></h3>
 <div class="meta">7:00 PM · Jazz Cafe, Camden Town &amp; Mornington Crescent</div>
@@ -1398,6 +1573,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-7291f968" data-idx="26" data-eid="7291f968" data-name="Josie Edwards" data-series="17dcb0eeb6" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="Bush Hall, Shepherd&#x27;s Bush West" data-url="https://www.universe.com/events/josie-edwards-tickets-MTP2V3?ref=ticketmaster" data-lat="51.506574" data-lng="-0.231579">
 <button class="toggle" data-idx="26" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="26" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/josie-edwards-tickets-MTP2V3?ref=ticketmaster">Josie Edwards</a></h3>
 <div class="meta">7:00 PM · Bush Hall, Shepherd&#x27;s Bush West</div>
@@ -1415,6 +1591,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-883ebca0" data-idx="27" data-eid="883ebca0" data-name="The Standard of Living" data-series="76e2459122" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="Theatre Royal Haymarket, Strand, St James &amp; Mayfair" data-url="https://www.ticketmaster.co.uk/the-standard-of-living-london-26-10-2026/event/Z3r9uZKbZL4ZefAN5ZeA" data-weekly="1" data-lat="51.50884" data-lng="-0.13128">
 <button class="toggle" data-idx="27" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="27" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/the-standard-of-living-london-26-10-2026/event/Z3r9uZKbZL4ZefAN5ZeA">The Standard of Living</a></h3>
 <div class="meta">7:00 PM · Theatre Royal Haymarket, Strand, St James &amp; Mayfair · ↻ Every Monday</div>
@@ -1432,6 +1609,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-303011d0" data-idx="28" data-eid="303011d0" data-name="Hannah Frances" data-series="a246fa9e1e" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="London Oslo, Hackney Central" data-url="https://www.ticketweb.uk/event/hannah-frances-oslo-tickets/14242804?REFERRAL_ID=tmfeed" data-lat="51.547992" data-lng="-0.057532">
 <button class="toggle" data-idx="28" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="28" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.uk/event/hannah-frances-oslo-tickets/14242804?REFERRAL_ID=tmfeed">Hannah Frances</a></h3>
 <div class="meta">7:30 PM · London Oslo, Hackney Central</div>
@@ -1449,6 +1627,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-b7d326af" data-idx="29" data-eid="b7d326af" data-name="Mamma Mia!" data-series="8325031dd8" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Novello Theatre, Strand, St James &amp; Mayfair" data-url="https://theatre.ticketmaster.co.uk/book/1H4KU-mamma-mia-sept-25/#perf=1H4KU-18Q&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.511933" data-lng="-0.119423">
 <button class="toggle" data-idx="29" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="29" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1H4KU-mamma-mia-sept-25/#perf=1H4KU-18Q&amp;date=2026-10-26&amp;time=7.30PM">Mamma Mia!</a></h3>
 <div class="meta">7:30 PM · Novello Theatre, Strand, St James &amp; Mayfair · ↻ Every Monday</div>
@@ -1466,6 +1645,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a615ff0f" data-idx="30" data-eid="a615ff0f" data-name="The Devil Wears Prada" data-series="691898b40e" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Dominion Theatre, Holborn, St Giles &amp; Bloomsbury South" data-url="https://theatre.ticketmaster.co.uk/book/1FWNE-the-devil-wears-prada/#perf=1FWNE-23A&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.516971" data-lng="-0.129679">
 <button class="toggle" data-idx="30" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="30" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1FWNE-the-devil-wears-prada/#perf=1FWNE-23A&amp;date=2026-10-26&amp;time=7.30PM">The Devil Wears Prada</a></h3>
 <div class="meta">7:30 PM · Dominion Theatre, Holborn, St Giles &amp; Bloomsbury South · ↻ Every Monday</div>
@@ -1483,6 +1663,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-9acd7dee" data-idx="31" data-eid="9acd7dee" data-name="Martin Guerre" data-series="e8d0e2e65e" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="The Old Vic, Lambeth North, Waterloo &amp; South Bank" data-url="https://theatre.ticketmaster.co.uk/book/1J7EG-martin-guerre/#perf=1J7EG-Q&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.5019366" data-lng="-0.1090443">
 <button class="toggle" data-idx="31" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="31" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1J7EG-martin-guerre/#perf=1J7EG-Q&amp;date=2026-10-26&amp;time=7.30PM">Martin Guerre</a></h3>
 <div class="meta">7:30 PM · The Old Vic, Lambeth North, Waterloo &amp; South Bank · ↻ Every Monday</div>
@@ -1500,6 +1681,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-381fbef5" data-idx="32" data-eid="381fbef5" data-name="Avenue Q" data-series="cf5ced3181" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Shaftesbury Theatre, Holborn, St Giles &amp; Bloomsbury South" data-url="https://theatre.ticketmaster.co.uk/book/1HMDJ-avenue-q/#perf=1HMDJ-6Y&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.516285" data-lng="-0.126119">
 <button class="toggle" data-idx="32" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="32" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HMDJ-avenue-q/#perf=1HMDJ-6Y&amp;date=2026-10-26&amp;time=7.30PM">Avenue Q</a></h3>
 <div class="meta">7:30 PM · Shaftesbury Theatre, Holborn, St Giles &amp; Bloomsbury South · ↻ Every Monday</div>
@@ -1517,6 +1699,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-986395b6" data-idx="33" data-eid="986395b6" data-name="An Audience With Christian Horner" data-series="2d11b15455" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Cambridge Theatre, Holborn, St Giles &amp; Bloomsbury South" data-url="https://www.ticketmaster.co.uk/an-audience-with-christian-horner-london-26-10-2026/event/370064E7DA843C0D" data-lat="51.51351" data-lng="-0.126407">
 <button class="toggle" data-idx="33" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="33" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/an-audience-with-christian-horner-london-26-10-2026/event/370064E7DA843C0D">An Audience With Christian Horner</a></h3>
 <div class="meta">7:30 PM · Cambridge Theatre, Holborn, St Giles &amp; Bloomsbury South</div>
@@ -1534,6 +1717,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-333b796e" data-idx="34" data-eid="333b796e" data-name="The Phantom of the Opera" data-series="ad35449662" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="His Majesty&#x27;s Theatre, Strand, St James &amp; Mayfair" data-url="https://theatre.ticketmaster.co.uk/book/1FU7R-the-phantom-of-the-opera/#perf=1FU7R-36G&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.508133" data-lng="-0.132044">
 <button class="toggle" data-idx="34" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="34" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1FU7R-the-phantom-of-the-opera/#perf=1FU7R-36G&amp;date=2026-10-26&amp;time=7.30PM">The Phantom of the Opera</a></h3>
 <div class="meta">7:30 PM · His Majesty&#x27;s Theatre, Strand, St James &amp; Mayfair · ↻ Every Monday</div>
@@ -1551,6 +1735,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-4f2749d8" data-idx="35" data-eid="4f2749d8" data-name="Les Miserables" data-series="784bc547cf" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Sondheim Theatre, Fitzrovia West &amp; Soho" data-url="https://theatre.ticketmaster.co.uk/book/1GWN6-les-miserables-sept-25/#perf=1GWN6-18A&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.512116" data-lng="-0.133106">
 <button class="toggle" data-idx="35" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="35" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1GWN6-les-miserables-sept-25/#perf=1GWN6-18A&amp;date=2026-10-26&amp;time=7.30PM">Les Miserables</a></h3>
 <div class="meta">7:30 PM · Sondheim Theatre, Fitzrovia West &amp; Soho · ↻ Every Monday</div>
@@ -1568,6 +1753,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-3e450e38" data-idx="36" data-eid="3e450e38" data-name="Hamilton" data-series="a8f9b628cd" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Victoria Palace Theatre, Central Westminster" data-url="https://theatre.ticketmaster.co.uk/book/1H1YN-hamilton/#perf=1H1YN-19B&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.497012" data-lng="-0.142382">
 <button class="toggle" data-idx="36" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="36" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1H1YN-hamilton/#perf=1H1YN-19B&amp;date=2026-10-26&amp;time=7.30PM">Hamilton</a></h3>
 <div class="meta">7:30 PM · Victoria Palace Theatre, Central Westminster · ↻ Every Monday</div>
@@ -1585,6 +1771,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-eecc2c77" data-idx="37" data-eid="eecc2c77" data-name="Beetlejuice" data-series="6dc0802a9c" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Prince Edward Theatre, Fitzrovia West &amp; Soho" data-url="https://theatre.ticketmaster.co.uk/book/1HM82-beetlejuice/#perf=1HM82-52&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.513763" data-lng="-0.130964">
 <button class="toggle" data-idx="37" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="37" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HM82-beetlejuice/#perf=1HM82-52&amp;date=2026-10-26&amp;time=7.30PM">Beetlejuice</a></h3>
 <div class="meta">7:30 PM · Prince Edward Theatre, Fitzrovia West &amp; Soho · ↻ Every Monday</div>
@@ -1602,6 +1789,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-1dfe549d" data-idx="38" data-eid="1dfe549d" data-name="Oh Mary!" data-series="d28a1d5687" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Trafalgar Theatre, Strand, St James &amp; Mayfair" data-url="https://theatre.ticketmaster.co.uk/book/1HHVY-oh-mary/#perf=1HHVY-10C&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.5048" data-lng="-0.12651">
 <button class="toggle" data-idx="38" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="38" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1HHVY-oh-mary/#perf=1HHVY-10C&amp;date=2026-10-26&amp;time=7.30PM">Oh Mary!</a></h3>
 <div class="meta">7:30 PM · Trafalgar Theatre, Strand, St James &amp; Mayfair · ↻ Every Monday</div>
@@ -1619,6 +1807,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-4d2ff467" data-idx="39" data-eid="4d2ff467" data-name="Jesus Christ Superstar" data-series="9f18748be4" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Theatre Royal Drury Lane, Strand, St James &amp; Mayfair" data-url="https://theatre.ticketmaster.co.uk/book/1JA9W-jesus-christ-superstar/#perf=1JA9W-C&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.513008" data-lng="-0.120258">
 <button class="toggle" data-idx="39" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="39" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1JA9W-jesus-christ-superstar/#perf=1JA9W-C&amp;date=2026-10-26&amp;time=7.30PM">Jesus Christ Superstar</a></h3>
 <div class="meta">7:30 PM · Theatre Royal Drury Lane, Strand, St James &amp; Mayfair · ↻ Every Monday</div>
@@ -1636,6 +1825,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-354c6531" data-idx="40" data-eid="354c6531" data-name="Cabaret At The Kit Kat Club" data-series="0bc2a51dcf" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Playhouse Theatre, Strand, St James &amp; Mayfair" data-url="https://theatre.ticketmaster.co.uk/book/1H9ZU-cabaret/#perf=1H9ZU-156&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.506975" data-lng="-0.123719">
 <button class="toggle" data-idx="40" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="40" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1H9ZU-cabaret/#perf=1H9ZU-156&amp;date=2026-10-26&amp;time=7.30PM">Cabaret At The Kit Kat Club</a></h3>
 <div class="meta">7:30 PM · Playhouse Theatre, Strand, St James &amp; Mayfair · ↻ Every Monday</div>
@@ -1653,6 +1843,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a841e657" data-idx="41" data-eid="a841e657" data-name="Moulin Rouge The Musical" data-series="50b6d783b7" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Piccadilly Theatre, Fitzrovia West &amp; Soho" data-url="https://theatre.ticketmaster.co.uk/book/1DVRJ-piccadilly-theatre-london-moulin-rouge-the-musical/#perf=1DVRJ-57B&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.5110543" data-lng="-0.1353998">
 <button class="toggle" data-idx="41" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="41" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1DVRJ-piccadilly-theatre-london-moulin-rouge-the-musical/#perf=1DVRJ-57B&amp;date=2026-10-26&amp;time=7.30PM">Moulin Rouge The Musical</a></h3>
 <div class="meta">7:30 PM · Piccadilly Theatre, Fitzrovia West &amp; Soho · ↻ Every Monday</div>
@@ -1670,6 +1861,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-7983956b" data-idx="42" data-eid="7983956b" data-name="The Mousetrap" data-series="7b2e4b07ed" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="St Martin&#x27;s Theatre, Holborn, St Giles &amp; Bloomsbury South" data-url="https://theatre.ticketmaster.co.uk/book/1J3DY-the-mousetrap/#perf=1J3DY-5S&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.512848" data-lng="-0.127672">
 <button class="toggle" data-idx="42" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="42" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1J3DY-the-mousetrap/#perf=1J3DY-5S&amp;date=2026-10-26&amp;time=7.30PM">The Mousetrap</a></h3>
 <div class="meta">7:30 PM · St Martin&#x27;s Theatre, Holborn, St Giles &amp; Bloomsbury South · ↻ Every Monday</div>
@@ -1687,6 +1879,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-e6db2191" data-idx="43" data-eid="e6db2191" data-name="The Book Of Mormon" data-series="6ad5b5ee1d" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Prince of Wales Theatre, Strand, St James &amp; Mayfair" data-url="https://theatre.ticketmaster.co.uk/book/1GZHW-the-book-of-mormon/#perf=1GZHW-202&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.510009" data-lng="-0.131809">
 <button class="toggle" data-idx="43" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="43" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1GZHW-the-book-of-mormon/#perf=1GZHW-202&amp;date=2026-10-26&amp;time=7.30PM">The Book Of Mormon</a></h3>
 <div class="meta">7:30 PM · Prince of Wales Theatre, Strand, St James &amp; Mayfair · ↻ Every Monday</div>
@@ -1704,6 +1897,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-4a6283d8" data-idx="44" data-eid="4a6283d8" data-name="Two MR P&#x27;s In a Podcast Live - Let That Be a Lesson..." data-series="b3f9806471" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Soho Theatre Walthamstow, Walthamstow Market &amp; South Grove" data-url="https://www.ticketmaster.co.uk/two-mr-ps-in-a-podcast-london-26-10-2026/event/350064598E342AE1" data-lat="51.58613733" data-lng="-0.02002133">
 <button class="toggle" data-idx="44" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="44" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/two-mr-ps-in-a-podcast-london-26-10-2026/event/350064598E342AE1">Two MR P&#x27;s In a Podcast Live - Let That Be a Lesson...</a></h3>
 <div class="meta">7:30 PM · Soho Theatre Walthamstow, Walthamstow Market &amp; South Grove</div>
@@ -1721,6 +1915,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-28c1d5d1" data-idx="45" data-eid="28c1d5d1" data-name="Affluenza" data-series="1c2559caeb" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Riverside Studios, Hammersmith Broadway" data-url="https://theatre.ticketmaster.co.uk/book/1JAA0-affluenza/#perf=1JAA0-W&amp;date=2026-10-26&amp;time=7.30PM" data-weekly="1" data-lat="51.488683" data-lng="-0.227102">
 <button class="toggle" data-idx="45" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="45" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://theatre.ticketmaster.co.uk/book/1JAA0-affluenza/#perf=1JAA0-W&amp;date=2026-10-26&amp;time=7.30PM">Affluenza</a></h3>
 <div class="meta">7:30 PM · Riverside Studios, Hammersmith Broadway · ↻ Every Monday</div>
@@ -1738,6 +1933,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a806bd17" data-idx="46" data-eid="a806bd17" data-name="DODIE" data-series="01be083261" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="EartH Theatre, Stoke Newington South" data-url="https://www.universe.com/events/dodie-tickets-8R57F4?ref=ticketmaster" data-lat="51.5511439" data-lng="-0.07447582">
 <button class="toggle" data-idx="46" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="46" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/dodie-tickets-8R57F4?ref=ticketmaster">DODIE</a></h3>
 <div class="meta">7:30 PM · EartH Theatre, Stoke Newington South</div>
@@ -1755,6 +1951,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-922c3652" data-idx="47" data-eid="922c3652" data-name="HMLTD" data-series="4cd21c340d" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Club Cheek, Poets&#x27; Corner &amp; Brockwell Park" data-url="https://www.universe.com/events/hmltd-tickets-SZHLQW?ref=ticketmaster" data-lat="51.4637" data-lng="-0.107289">
 <button class="toggle" data-idx="47" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="47" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/hmltd-tickets-SZHLQW?ref=ticketmaster">HMLTD</a></h3>
 <div class="meta">7:30 PM · Club Cheek, Poets&#x27; Corner &amp; Brockwell Park</div>
@@ -1772,6 +1969,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-0a1154ad" data-idx="48" data-eid="0a1154ad" data-name="TASHA" data-series="05f7b6984d" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="The Lexington, Pentonville" data-url="https://www.universe.com/events/tasha-tickets-7T81NQ?ref=ticketmaster" data-lat="51.531721" data-lng="-0.111874">
 <button class="toggle" data-idx="48" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="48" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/tasha-tickets-7T81NQ?ref=ticketmaster">TASHA</a></h3>
 <div class="meta">7:30 PM · The Lexington, Pentonville</div>
@@ -1789,6 +1987,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-f365ef68" data-idx="49" data-eid="f365ef68" data-name="King Gong (World Famous Open-Mic Night!) - Monday 26th October" data-series="c71f1fb004" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="The Comedy Store, Strand, St James &amp; Mayfair" data-url="https://www.universe.com/events/king-gong-world-famous-open-mic-night-monday-26th-october-tickets-5X0T9M?ref=ticketmaster" data-lat="51.50998051" data-lng="-0.13233095">
 <button class="toggle" data-idx="49" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="49" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/king-gong-world-famous-open-mic-night-monday-26th-october-tickets-5X0T9M?ref=ticketmaster">King Gong (World Famous Open-Mic Night!) - Monday 26th October</a></h3>
 <div class="meta">7:30 PM · The Comedy Store, Strand, St James &amp; Mayfair</div>
@@ -1806,6 +2005,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-9d626cf9" data-idx="50" data-eid="9d626cf9" data-name="Hannah Frances" data-series="024f2951cc" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Oslo Hackney, Hackney Central" data-url="https://www.universe.com/events/hannah-frances-tickets-PDB3R2?ref=ticketmaster" data-lat="51.547992" data-lng="-0.057532">
 <button class="toggle" data-idx="50" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="50" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/hannah-frances-tickets-PDB3R2?ref=ticketmaster">Hannah Frances</a></h3>
 <div class="meta">7:30 PM · Oslo Hackney, Hackney Central</div>
@@ -1823,6 +2023,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-028f63c1" data-idx="51" data-eid="028f63c1" data-name="Big Belly Comedy Club - Voted London’s Best Comedy Club" data-series="d4e5b90b5e" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Big Belly Comedy - Southbank" data-url="https://www.universe.com/events/big-belly-comedy-club-voted-london-s-best-comedy-club-tickets-LMKGWQ?ref=ticketmaster" data-weekly="1">
 <button class="toggle" data-idx="51" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="51" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/big-belly-comedy-club-voted-london-s-best-comedy-club-tickets-LMKGWQ?ref=ticketmaster">Big Belly Comedy Club - Voted London’s Best Comedy Club</a></h3>
 <div class="meta">7:30 PM · Big Belly Comedy - Southbank · ↻ Every Monday</div>
@@ -1840,6 +2041,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-dab43b4d" data-idx="52" data-eid="dab43b4d" data-name="Paranormal Activity" data-series="c51be477d8" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Ambassadors Theatre, Holborn, St Giles &amp; Bloomsbury South" data-url="https://www.ticketmaster.co.uk/paranormal-activity-london-26-10-2026/event/Z3r9uZKbZL4Ze3Lo-ZdK" data-weekly="1" data-lat="51.513006" data-lng="-0.128026">
 <button class="toggle" data-idx="52" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="52" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/paranormal-activity-london-26-10-2026/event/Z3r9uZKbZL4Ze3Lo-ZdK">Paranormal Activity</a></h3>
 <div class="meta">7:30 PM · Ambassadors Theatre, Holborn, St Giles &amp; Bloomsbury South · ↻ Every Monday</div>
@@ -1857,6 +2059,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-35ce0e4f" data-idx="53" data-eid="35ce0e4f" data-name="The Cherry Orchard" data-series="fd5099d5e0" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="The Harold Pinter Theatre , Strand, St James &amp; Mayfair" data-url="https://www.ticketmaster.co.uk/the-cherry-orchard-london-26-10-2026/event/Z3r9uZKbZL4Ze3x4uZee" data-lat="51.509326" data-lng="-0.131851">
 <button class="toggle" data-idx="53" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="53" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/the-cherry-orchard-london-26-10-2026/event/Z3r9uZKbZL4Ze3x4uZee">The Cherry Orchard</a></h3>
 <div class="meta">7:30 PM · The Harold Pinter Theatre , Strand, St James &amp; Mayfair</div>
@@ -1874,6 +2077,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-afeb7da4" data-idx="54" data-eid="afeb7da4" data-name="Into The Woods" data-series="f6ed77d1bc" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Noel Coward Theatre, Holborn, St Giles &amp; Bloomsbury South" data-url="https://www.ticketmaster.co.uk/into-the-woods-london-26-10-2026/event/Z3r9uZKbZL4Zef7Q2Ze7" data-weekly="1" data-lat="51.5142805" data-lng="-0.1284654">
 <button class="toggle" data-idx="54" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="54" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/into-the-woods-london-26-10-2026/event/Z3r9uZKbZL4Zef7Q2Ze7">Into The Woods</a></h3>
 <div class="meta">7:30 PM · Noel Coward Theatre, Holborn, St Giles &amp; Bloomsbury South · ↻ Every Monday</div>
@@ -1891,6 +2095,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-3edb7f1f" data-idx="55" data-eid="3edb7f1f" data-name="Hay Fever" data-series="1bda2d9ca5" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Wyndham&#x27;s Theatre, Strand, St James &amp; Mayfair" data-url="https://www.ticketmaster.co.uk/hay-fever-london-26-10-2026/event/Z3r9uZKbZL4ZefkovZed" data-weekly="1" data-lat="51.511067" data-lng="-0.128249">
 <button class="toggle" data-idx="55" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="55" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/hay-fever-london-26-10-2026/event/Z3r9uZKbZL4ZefkovZed">Hay Fever</a></h3>
 <div class="meta">7:30 PM · Wyndham&#x27;s Theatre, Strand, St James &amp; Mayfair · ↻ Every Monday</div>
@@ -1908,6 +2113,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-fa087e33" data-idx="56" data-eid="fa087e33" data-name="Fences" data-series="1865bec745" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Lyric Theatre Hammersmith, Hammersmith Broadway" data-url="https://www.ticketmaster.co.uk/fences-london-26-10-2026/event/Zor9uZKbZL4Zef75NZ_" data-weekly="1" data-lat="51.492895" data-lng="-0.226795">
 <button class="toggle" data-idx="56" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="56" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/fences-london-26-10-2026/event/Zor9uZKbZL4Zef75NZ_">Fences</a></h3>
 <div class="meta">7:30 PM · Lyric Theatre Hammersmith, Hammersmith Broadway · ↻ Every Monday</div>
@@ -1925,6 +2131,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-87cb6cad" data-idx="57" data-eid="87cb6cad" data-name="RENT" data-series="00204212a3" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Tom Stoppard Theatre, Strand, St James &amp; Mayfair" data-url="https://www.ticketmaster.co.uk/rent-london-26-10-2026/event/Zor9uZKbZL4Zef7u5ZO" data-weekly="1" data-lat="51.510174" data-lng="-0.127522">
 <button class="toggle" data-idx="57" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="57" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.co.uk/rent-london-26-10-2026/event/Zor9uZKbZL4Zef7u5ZO">RENT</a></h3>
 <div class="meta">7:30 PM · Tom Stoppard Theatre, Strand, St James &amp; Mayfair · ↻ Every Monday</div>
@@ -1942,6 +2149,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-f7790b41" data-idx="58" data-eid="f7790b41" data-name="Shrek&#x27;s Adventure - Standard Experience" data-series="0256fbb3f8" data-lat="51.50282" data-lng="-0.119252">
 <button class="toggle" data-idx="58" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="58" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://attractions.ticketmaster.co.uk/book/1J51E-TICKETMASTER/#date=2026-10-26">Shrek&#x27;s Adventure - Standard Experience</a></h3>
 <div class="meta">Time TBA · County Hall, Lambeth North, Waterloo &amp; South Bank</div>
@@ -1953,6 +2161,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-ea6c4d73" data-idx="59" data-eid="ea6c4d73" data-name="Ayn Rand Lecture 2026: A Rational Life with Madsen Pirie" data-series="d73c8c73fd" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="Drapers&#x27; Hall, City of London" data-url="https://luma.com/63g6l0e5" data-lat="51.5152151" data-lng="-0.0864948">
 <button class="toggle" data-idx="59" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="59" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/63g6l0e5">Ayn Rand Lecture 2026: A Rational Life with Madsen Pirie</a></h3>
 <div class="meta">6:00 PM – 9:00 PM · Drapers&#x27; Hall, City of London · Free · Full · waitlist open</div>
@@ -1970,6 +2179,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-3406ce92" data-idx="60" data-eid="3406ce92" data-name="SoTA Extreme Weather Frontiers Night" data-series="7c169653a5" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="Shoreditch" data-url="https://luma.com/extreme-weather" data-lat="51.520867019477826" data-lng="-0.08378821070411552">
 <button class="toggle" data-idx="60" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="60" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/extreme-weather">SoTA Extreme Weather Frontiers Night</a></h3>
 <div class="meta">6:00 PM – 9:00 PM · Shoreditch · £10.00</div>
@@ -1987,6 +2197,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-49eaadd7" data-idx="61" data-eid="49eaadd7" data-name="Anti-Networking Event (Monday, October 26)" data-series="d800430d19" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="Libreria Bookshop, Spitalfields" data-url="https://luma.com/w5ygfmcy" data-lat="51.520376299999995" data-lng="-0.0706371">
 <button class="toggle" data-idx="61" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="61" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/w5ygfmcy">Anti-Networking Event (Monday, October 26)</a></h3>
 <div class="meta">7:00 PM – 9:27 PM · Libreria Bookshop, Spitalfields · £27.00 · Full · waitlist open</div>
@@ -2004,6 +2215,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-9e0d0eef" data-idx="62" data-eid="9e0d0eef" data-name="Cocorio - October Half Term at Richmond House" data-series="2eabdc13a1" data-start-local="2026-10-26T09:00:00" data-cal-start="20261026T090000Z" data-cal-end="20261026T110000Z" data-loc="Richmond House, Central Westminster" data-url="https://luma.com/b03r26nn" data-lat="51.502657799999994" data-lng="-0.1254613">
 <button class="toggle" data-idx="62" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="62" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/b03r26nn">Cocorio - October Half Term at Richmond House</a></h3>
 <div class="meta">9:00 AM · Richmond House, Central Westminster · £68.00</div>
@@ -2021,6 +2233,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-cfd998f1" data-idx="63" data-eid="cfd998f1" data-name="Curiosity Week 2026" data-series="ede8b3acaa" data-start-local="2026-10-26T09:00:00" data-cal-start="20261026T090000Z" data-cal-end="20261026T110000Z" data-loc="Camden Town &amp; Mornington Crescent" data-url="https://luma.com/5a9pqe73" data-lat="51.524476897316646" data-lng="-0.1445145372530425">
 <button class="toggle" data-idx="63" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="63" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/5a9pqe73">Curiosity Week 2026</a></h3>
 <div class="meta">9:00 AM · Camden Town &amp; Mornington Crescent · Free</div>
@@ -2038,6 +2251,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-06748a73" data-idx="64" data-eid="06748a73" data-name="Expanding to Canada: A Regulatory Roundtable for UK Financial Services" data-series="8c2b468b92" data-start-local="2026-10-26T09:00:00" data-cal-start="20261026T090000Z" data-cal-end="20261026T110000Z" data-loc="High Commission of Canada in the United Kingdom, Strand, St James &amp; Mayfair" data-url="https://luma.com/gf0ro80g" data-lat="51.5080947" data-lng="-0.1292584">
 <button class="toggle" data-idx="64" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="64" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/gf0ro80g">Expanding to Canada: A Regulatory Roundtable for UK Financial Services</a></h3>
 <div class="meta">9:00 AM – 11:00 AM · High Commission of Canada in the United Kingdom, Strand, St James &amp; Mayfair · Free</div>
@@ -2055,6 +2269,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-76a8e47c" data-idx="65" data-eid="76a8e47c" data-name="The Founder Speed Date: powered by BuildHer Labs × Lovable × FounderMatcha × Corgi" data-series="6f24b1a93a" data-start-local="2026-10-26T09:00:00" data-cal-start="20261026T090000Z" data-cal-end="20261026T110000Z" data-loc="Corgi Cafe, Shoreditch" data-url="https://luma.com/q4f7mohr" data-lat="51.525692199999995" data-lng="-0.0824866">
 <button class="toggle" data-idx="65" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="65" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">⌘</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/q4f7mohr">The Founder Speed Date: powered by BuildHer Labs × Lovable × FounderMatcha × Corgi</a></h3>
 <div class="meta">9:00 AM – 12:00 PM · Corgi Cafe, Shoreditch · £5.00</div>
@@ -2072,6 +2287,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-4a090fb8" data-idx="66" data-eid="4a090fb8" data-name="Molten Ventures at the London Stock Exchange 2026" data-series="e6fcccb24e" data-start-local="2026-10-26T11:00:00" data-cal-start="20261026T110000Z" data-cal-end="20261026T130000Z" data-loc="London Stock Exchange, City of London" data-url="https://luma.com/g87dao7j" data-lat="51.5150534" data-lng="-0.099034">
 <button class="toggle" data-idx="66" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="66" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/g87dao7j">Molten Ventures at the London Stock Exchange 2026</a></h3>
 <div class="meta">11:00 AM – 12:30 PM · London Stock Exchange, City of London · Free</div>
@@ -2089,6 +2305,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-4b761c30" data-idx="67" data-eid="4b761c30" data-name="CARNIVAL COSTUME DESIGNING WORKSHOP" data-series="27d3dd10fd" data-start-local="2026-10-26T13:00:00" data-cal-start="20261026T130000Z" data-cal-end="20261026T150000Z" data-loc="Mason &amp; Fifth, Westbourne Park, Westbourne" data-url="https://luma.com/vfi4luqd" data-lat="51.5225729" data-lng="-0.1994666">
 <button class="toggle" data-idx="67" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="67" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✎</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/vfi4luqd">CARNIVAL COSTUME DESIGNING WORKSHOP</a></h3>
 <div class="meta">1:00 PM – 3:00 PM · Mason &amp; Fifth, Westbourne Park, Westbourne · Free</div>
@@ -2106,6 +2323,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-f5d8b07f" data-idx="68" data-eid="f5d8b07f" data-name="Angels Den DDQ Hot Rooms | Healthtech" data-series="3e08d902a4" data-start-local="2026-10-26T13:30:00" data-cal-start="20261026T133000Z" data-cal-end="20261026T153000Z" data-loc="Hoxton South &amp; East" data-url="https://luma.com/wbs8qqc2" data-lat="51.52733673973534" data-lng="-0.08821165202141205">
 <button class="toggle" data-idx="68" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="68" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/wbs8qqc2">Angels Den DDQ Hot Rooms | Healthtech</a></h3>
 <div class="meta">1:30 PM – 4:45 PM · Hoxton South &amp; East · Free</div>
@@ -2123,6 +2341,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-c8be4917" data-idx="69" data-eid="c8be4917" data-name="small BUT mighty black book fair" data-series="19b2428039" data-start-local="2026-10-26T17:30:00" data-cal-start="20261026T173000Z" data-cal-end="20261026T193000Z" data-loc="Victoria Library, Victoria" data-url="https://luma.com/k1d5sxmp" data-lat="51.492753699999994" data-lng="-0.14800539999999998">
 <button class="toggle" data-idx="69" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="69" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/k1d5sxmp">small BUT mighty black book fair</a></h3>
 <div class="meta">5:30 PM – 8:00 PM · Victoria Library, Victoria · Free</div>
@@ -2140,6 +2359,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-d63ecf40" data-idx="70" data-eid="d63ecf40" data-name="Product Designer Gym 🏋️ - Build fast with AI" data-series="c3d86db462" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="Corgi Cafe, Shoreditch" data-url="https://luma.com/8iocojgz" data-lat="51.525692199999995" data-lng="-0.0824866">
 <button class="toggle" data-idx="70" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="70" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">⌘</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/8iocojgz">Product Designer Gym 🏋️ - Build fast with AI</a></h3>
 <div class="meta">6:00 PM – 8:00 PM · Corgi Cafe, Shoreditch · Free</div>
@@ -2157,6 +2377,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-996c783c" data-idx="71" data-eid="996c783c" data-name="The Business of Fermentation: Building the next generation of fermented food brands" data-series="0aaed8799a" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="LSE Generate, Strand, St James &amp; Mayfair" data-url="https://luma.com/1kgbpx7b" data-lat="51.5143809" data-lng="-0.11672099999999999">
 <button class="toggle" data-idx="71" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="71" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/1kgbpx7b">The Business of Fermentation: Building the next generation of fermented food brands</a></h3>
 <div class="meta">6:00 PM – 8:00 PM · LSE Generate, Strand, St James &amp; Mayfair · Free</div>
@@ -2174,6 +2395,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-512cd2cc" data-idx="72" data-eid="512cd2cc" data-name="The Distribution Edge: What Actually Works + Open Mic Pitching" data-series="5b5d495716" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="Elephant &amp; Castle" data-url="https://luma.com/icbl5cj9" data-lat="51.499206033754156" data-lng="-0.09595516909631846">
 <button class="toggle" data-idx="72" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="72" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/icbl5cj9">The Distribution Edge: What Actually Works + Open Mic Pitching</a></h3>
 <div class="meta">6:00 PM – 10:00 PM · Elephant &amp; Castle · Free</div>
@@ -2191,6 +2413,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-792f04e0" data-idx="73" data-eid="792f04e0" data-name="Tress Gala 2026" data-series="14f0d4cecb" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="The Ballroom at The Londoner, Strand, St James &amp; Mayfair" data-url="https://luma.com/uaqghunc" data-lat="51.509596599999995" data-lng="-0.1307661">
 <button class="toggle" data-idx="73" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="73" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/uaqghunc">Tress Gala 2026</a></h3>
 <div class="meta">6:00 PM · The Ballroom at The Londoner, Strand, St James &amp; Mayfair · £149.00</div>
@@ -2208,6 +2431,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-ef2a78ad" data-idx="74" data-eid="ef2a78ad" data-name="Live Coding Meetup" data-series="92df0f18df" data-start-local="2026-10-26T18:30:00" data-cal-start="20261026T183000Z" data-cal-end="20261026T203000Z" data-loc="The Sekforde, Clerkenwell" data-url="https://luma.com/g244y2vi" data-lat="51.5243323" data-lng="-0.10443419999999999">
 <button class="toggle" data-idx="74" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="74" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">⌘</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/g244y2vi">Live Coding Meetup</a></h3>
 <div class="meta">6:30 PM – 8:30 PM · The Sekforde, Clerkenwell · Free</div>
@@ -2225,6 +2449,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-21e99c3c" data-idx="75" data-eid="21e99c3c" data-name="LLM London Social Meetup October: The Flying Horse Pub near Liverpool Street" data-series="fbac8e84e0" data-start-local="2026-10-26T18:30:00" data-cal-start="20261026T183000Z" data-cal-end="20261026T203000Z" data-loc="The Flying Horse, Shoreditch" data-url="https://luma.com/go9u03jv" data-lat="51.520437" data-lng="-0.08503">
 <button class="toggle" data-idx="75" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="75" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">⌘</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/go9u03jv">LLM London Social Meetup October: The Flying Horse Pub near Liverpool Street</a></h3>
 <div class="meta">6:30 PM – 11:00 PM · The Flying Horse, Shoreditch · Free</div>
@@ -2242,6 +2467,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-b5d8d194" data-idx="76" data-eid="b5d8d194" data-name="[RESCHEDULE TBC] SPEED BUILD 2026 | SCREENING" data-series="b433b823e6" data-start-local="2026-10-26T18:30:00" data-cal-start="20261026T183000Z" data-cal-end="20261026T203000Z" data-loc="Strand, St James &amp; Mayfair" data-url="https://luma.com/2w1x53o8" data-lat="51.512438777293355" data-lng="-0.11533118244998104">
 <button class="toggle" data-idx="76" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="76" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/2w1x53o8">[RESCHEDULE TBC] SPEED BUILD 2026 | SCREENING</a></h3>
 <div class="meta">6:30 PM – 9:00 PM · Strand, St James &amp; Mayfair · Free</div>
@@ -2259,6 +2485,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-d7299805" data-idx="77" data-eid="d7299805" data-name="🍾 Greenwich Wine Club: Treasures from Touraine and Chinon" data-series="6695caed31" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="4 Cutter Ln, Greenwich Peninsula East" data-url="https://luma.com/400jqb1e" data-lat="51.501062" data-lng="0.008033">
 <button class="toggle" data-idx="77" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="77" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/400jqb1e">🍾 Greenwich Wine Club: Treasures from Touraine and Chinon</a></h3>
 <div class="meta">7:00 PM – 9:00 PM · 4 Cutter Ln, Greenwich Peninsula East · Free</div>
@@ -2276,6 +2503,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-d721f174" data-idx="78" data-eid="d721f174" data-name="Nina Maia Listening Session &amp; Conversation" data-series="2a760e7146" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="Mason &amp; Fifth, Westbourne Park, Westbourne" data-url="https://luma.com/hfhilwh3" data-lat="51.5225729" data-lng="-0.1994666">
 <button class="toggle" data-idx="78" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="78" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://luma.com/hfhilwh3">Nina Maia Listening Session &amp; Conversation</a></h3>
 <div class="meta">7:00 PM – 9:00 PM · Mason &amp; Fifth, Westbourne Park, Westbourne · Free</div>
@@ -2293,6 +2521,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-dae989b3" data-idx="79" data-eid="dae989b3" data-name="Nocturne Noir" data-series="14980760a6" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Oxford and Cambridge Club, Strand, St James &amp; Mayfair" data-url="https://luma.com/lxauft7x" data-lat="51.505452000000005" data-lng="-0.136515">
 <button class="toggle" data-idx="79" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="79" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/lxauft7x">Nocturne Noir</a></h3>
 <div class="meta">7:30 PM – 10:00 PM · Oxford and Cambridge Club, Strand, St James &amp; Mayfair · £65.00</div>
@@ -2310,6 +2539,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-cc582ca0" data-idx="80" data-eid="cc582ca0" data-name="SCC: Effi O Blaenau" data-series="7b092cfaec" data-start-local="2026-10-26T11:00:00" data-cal-start="20261026T110000Z" data-cal-end="20261026T130000Z" data-loc="Barbican Centre, City of London" data-url="https://tickets.barbican.org.uk/choose-seats/3711201" data-lat="51.5207" data-lng="-0.0938">
 <button class="toggle" data-idx="80" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="80" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.barbican.org.uk/choose-seats/3711201">SCC: Effi O Blaenau</a></h3>
 <div class="meta">11:00 AM · Barbican Centre, City of London</div>
@@ -2327,6 +2557,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-81e76223" data-idx="81" data-eid="81e76223" data-name="The Social Reckoning" data-series="b8efc1f661" data-start-local="2026-10-26T20:25:00" data-cal-start="20261026T202500Z" data-cal-end="20261026T222500Z" data-loc="Barbican Centre, City of London" data-url="https://tickets.barbican.org.uk/choose-seats/3799001" data-lat="51.5207" data-lng="-0.0938">
 <button class="toggle" data-idx="81" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="81" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.barbican.org.uk/choose-seats/3799001">The Social Reckoning</a></h3>
 <div class="meta">8:25 PM · Barbican Centre, City of London</div>
@@ -2344,6 +2575,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-17ee602a" data-idx="82" data-eid="17ee602a" data-name="Relaxed Screening: Teenage Sex and Death" data-series="26f76e4103" data-start-local="2026-10-26T18:10:00" data-cal-start="20261026T181000Z" data-cal-end="20261026T201000Z" data-loc="Barbican Centre, City of London" data-url="https://tickets.barbican.org.uk/choose-seats/3712601" data-lat="51.5207" data-lng="-0.0938">
 <button class="toggle" data-idx="82" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="82" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.barbican.org.uk/choose-seats/3712601">Relaxed Screening: Teenage Sex and Death</a></h3>
 <div class="meta">6:10 PM · Barbican Centre, City of London</div>
@@ -2361,6 +2593,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-bbad4933" data-idx="83" data-eid="bbad4933" data-name="TAKKUUK + Screen Talk" data-series="8e265b1052" data-start-local="2026-10-26T18:20:00" data-cal-start="20261026T182000Z" data-cal-end="20261026T202000Z" data-loc="Barbican Centre, City of London" data-url="https://tickets.barbican.org.uk/choose-seats/3726201" data-lat="51.5207" data-lng="-0.0938">
 <button class="toggle" data-idx="83" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="83" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.barbican.org.uk/choose-seats/3726201">TAKKUUK + Screen Talk</a></h3>
 <div class="meta">6:20 PM · Barbican Centre, City of London</div>
@@ -2378,6 +2611,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-05583a76" data-idx="84" data-eid="05583a76" data-name="Possible Love" data-series="061c78f1d9" data-start-local="2026-10-26T20:05:00" data-cal-start="20261026T200500Z" data-cal-end="20261026T220500Z" data-loc="Barbican Centre, City of London" data-url="https://tickets.barbican.org.uk/choose-seats/3788001" data-lat="51.5207" data-lng="-0.0938">
 <button class="toggle" data-idx="84" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="84" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.barbican.org.uk/choose-seats/3788001">Possible Love</a></h3>
 <div class="meta">8:05 PM · Barbican Centre, City of London</div>
@@ -2395,6 +2629,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-6f078be3" data-idx="85" data-eid="6f078be3" data-name="HAM" data-series="c453ddc9b0" data-start-local="2026-10-26T18:45:00" data-cal-start="20261026T184500Z" data-cal-end="20261026T204500Z" data-loc="Soho Theatre, Fitzrovia West &amp; Soho" data-url="https://tickets.sohotheatre.com/sohotheatre/website/ChooseSeats.aspx?EventInstanceId=1598411" data-weekly="1" data-lat="51.5144" data-lng="-0.1328">
 <button class="toggle" data-idx="85" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="85" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.sohotheatre.com/sohotheatre/website/ChooseSeats.aspx?EventInstanceId=1598411">HAM</a></h3>
 <div class="meta">6:45 PM · Soho Theatre, Fitzrovia West &amp; Soho · ↻ Every Monday</div>
@@ -2412,6 +2647,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-86ead8e2" data-idx="86" data-eid="86ead8e2" data-name="ROLEPLAY" data-series="eec78255af" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="Soho Theatre, Fitzrovia West &amp; Soho" data-url="https://tickets.sohotheatre.com/sohotheatre/website/ChooseSeats.aspx?EventInstanceId=1613603" data-lat="51.5144" data-lng="-0.1328">
 <button class="toggle" data-idx="86" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="86" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.sohotheatre.com/sohotheatre/website/ChooseSeats.aspx?EventInstanceId=1613603">ROLEPLAY</a></h3>
 <div class="meta">7:00 PM · Soho Theatre, Fitzrovia West &amp; Soho</div>
@@ -2429,6 +2665,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-2717d52b" data-idx="87" data-eid="2717d52b" data-name="Dina Martina: Halloweena!" data-series="84b9b8e648" data-start-local="2026-10-26T19:15:00" data-cal-start="20261026T191500Z" data-cal-end="20261026T211500Z" data-loc="Soho Theatre, Fitzrovia West &amp; Soho" data-url="https://tickets.sohotheatre.com/sohotheatre/website/ChooseSeats.aspx?EventInstanceId=1599603" data-weekly="1" data-lat="51.5144" data-lng="-0.1328">
 <button class="toggle" data-idx="87" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="87" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.sohotheatre.com/sohotheatre/website/ChooseSeats.aspx?EventInstanceId=1599603">Dina Martina: Halloweena!</a></h3>
 <div class="meta">7:15 PM · Soho Theatre, Fitzrovia West &amp; Soho · ↻ Every Monday</div>
@@ -2446,6 +2683,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-3fda7a92" data-idx="88" data-eid="3fda7a92" data-name="Alex Franklin: Kiss Me x" data-series="fab3d38a7e" data-start-local="2026-10-26T20:30:00" data-cal-start="20261026T203000Z" data-cal-end="20261026T223000Z" data-loc="Soho Theatre, Fitzrovia West &amp; Soho" data-url="https://tickets.sohotheatre.com/sohotheatre/website/ChooseSeats.aspx?EventInstanceId=1636003" data-lat="51.5144" data-lng="-0.1328">
 <button class="toggle" data-idx="88" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="88" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.sohotheatre.com/sohotheatre/website/ChooseSeats.aspx?EventInstanceId=1636003">Alex Franklin: Kiss Me x</a></h3>
 <div class="meta">8:30 PM · Soho Theatre, Fitzrovia West &amp; Soho</div>
@@ -2463,6 +2701,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-c6944a61" data-idx="89" data-eid="c6944a61" data-name="Sophie Duker: Hot Beef Injection" data-series="7b8d66a7c9" data-start-local="2026-10-26T21:15:00" data-cal-start="20261026T211500Z" data-cal-end="20261026T231500Z" data-loc="Soho Theatre, Fitzrovia West &amp; Soho" data-url="https://tickets.sohotheatre.com/sohotheatre/website/ChooseSeats.aspx?EventInstanceId=1612403" data-lat="51.5144" data-lng="-0.1328">
 <button class="toggle" data-idx="89" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="89" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://tickets.sohotheatre.com/sohotheatre/website/ChooseSeats.aspx?EventInstanceId=1612403">Sophie Duker: Hot Beef Injection</a></h3>
 <div class="meta">9:15 PM · Soho Theatre, Fitzrovia West &amp; Soho</div>
@@ -2480,6 +2719,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-45240080" data-idx="90" data-eid="45240080" data-name="Naza" data-series="c16cf59f5b" data-start-local="2026-10-26T18:45:00" data-cal-start="20261026T184500Z" data-cal-end="20261026T204500Z" data-loc="Rio Cinema, Dalston Kingsland" data-url="https://riocinema.org.uk/Rio.dll/WhatsOn?f=2949342" data-weekly="1" data-lat="51.5496" data-lng="-0.0756">
 <button class="toggle" data-idx="90" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="90" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://riocinema.org.uk/Rio.dll/WhatsOn?f=2949342">Naza</a></h3>
 <div class="meta">6:45 PM · Rio Cinema, Dalston Kingsland · ↻ Every Monday</div>
@@ -2497,6 +2737,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-93157683" data-idx="91" data-eid="93157683" data-name="Fatherland" data-series="085bfee64e" data-start-local="2026-10-26T18:30:00" data-cal-start="20261026T183000Z" data-cal-end="20261026T203000Z" data-loc="Rio Cinema, Dalston Kingsland" data-url="https://riocinema.org.uk/Rio.dll/WhatsOn?f=2951347" data-lat="51.5496" data-lng="-0.0756">
 <button class="toggle" data-idx="91" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="91" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://riocinema.org.uk/Rio.dll/WhatsOn?f=2951347">Fatherland</a></h3>
 <div class="meta">6:30 PM · Rio Cinema, Dalston Kingsland</div>
@@ -2514,6 +2755,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-72cf7a99" data-idx="92" data-eid="72cf7a99" data-name="Shaun The Sheep: The Beast Of Mossy Bottom" data-series="7987808303" data-start-local="2026-10-26T14:00:00" data-cal-start="20261026T140000Z" data-cal-end="20261026T160000Z" data-loc="Rio Cinema, Dalston Kingsland" data-url="https://riocinema.org.uk/Rio.dll/WhatsOn?f=2998744" data-lat="51.5496" data-lng="-0.0756">
 <button class="toggle" data-idx="92" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="92" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://riocinema.org.uk/Rio.dll/WhatsOn?f=2998744">Shaun The Sheep: The Beast Of Mossy Bottom</a></h3>
 <div class="meta">2:00 PM · Rio Cinema, Dalston Kingsland</div>
@@ -2531,6 +2773,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-25f1cced" data-idx="93" data-eid="25f1cced" data-name="Doc&#x27;n Roll: Shorts Night" data-series="852d40898d" data-start-local="2026-10-26T20:30:00" data-cal-start="20261026T203000Z" data-cal-end="20261026T223000Z" data-loc="Rio Cinema, Dalston Kingsland" data-url="https://riocinema.org.uk/Rio.dll/WhatsOn?f=2886574" data-lat="51.5496" data-lng="-0.0756">
 <button class="toggle" data-idx="93" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="93" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://riocinema.org.uk/Rio.dll/WhatsOn?f=2886574">Doc&#x27;n Roll: Shorts Night</a></h3>
 <div class="meta">8:30 PM · Rio Cinema, Dalston Kingsland</div>
@@ -2548,6 +2791,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-c17fc649" data-idx="94" data-eid="c17fc649" data-name="Fatherland" data-series="767f1d5afa" data-start-local="2026-10-26T17:15:00" data-cal-start="20261026T171500Z" data-cal-end="20261026T191500Z" data-loc="Phoenix Cinema, East Finchley" data-url="https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=771260" data-lat="51.5885" data-lng="-0.1637">
 <button class="toggle" data-idx="94" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="94" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=771260">Fatherland</a></h3>
 <div class="meta">5:15 PM · Phoenix Cinema, East Finchley</div>
@@ -2565,6 +2809,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-fb897ad4" data-idx="95" data-eid="fb897ad4" data-name="De Gaulle: Résistance" data-series="cb8c50d562" data-start-local="2026-10-26T14:00:00" data-cal-start="20261026T140000Z" data-cal-end="20261026T160000Z" data-loc="Phoenix Cinema, East Finchley" data-url="https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=764107" data-lat="51.5885" data-lng="-0.1637">
 <button class="toggle" data-idx="95" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="95" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=764107">De Gaulle: Résistance</a></h3>
 <div class="meta">2:00 PM · Phoenix Cinema, East Finchley</div>
@@ -2582,6 +2827,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-42d5a18c" data-idx="96" data-eid="42d5a18c" data-name="The Lost Children of Tuam" data-series="dedb5e53e4" data-start-local="2026-10-26T17:30:00" data-cal-start="20261026T173000Z" data-cal-end="20261026T193000Z" data-loc="Phoenix Cinema, East Finchley" data-url="https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=764096" data-lat="51.5885" data-lng="-0.1637">
 <button class="toggle" data-idx="96" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="96" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=764096">The Lost Children of Tuam</a></h3>
 <div class="meta">5:30 PM · Phoenix Cinema, East Finchley</div>
@@ -2599,6 +2845,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-44ddfd0e" data-idx="97" data-eid="44ddfd0e" data-name="Case 137" data-series="4df7432c14" data-start-local="2026-10-26T19:45:00" data-cal-start="20261026T194500Z" data-cal-end="20261026T214500Z" data-loc="Phoenix Cinema, East Finchley" data-url="https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=764102" data-lat="51.5885" data-lng="-0.1637">
 <button class="toggle" data-idx="97" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="97" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=764102">Case 137</a></h3>
 <div class="meta">7:45 PM · Phoenix Cinema, East Finchley</div>
@@ -2616,6 +2863,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-fa9c0e64" data-idx="98" data-eid="fa9c0e64" data-name="Nosferatu live score by Hugo Max" data-series="6b845d7d80" data-start-local="2026-10-26T20:00:00" data-cal-start="20261026T200000Z" data-cal-end="20261026T220000Z" data-loc="Phoenix Cinema, East Finchley" data-url="https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=710511" data-lat="51.5885" data-lng="-0.1637">
 <button class="toggle" data-idx="98" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="98" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=710511">Nosferatu live score by Hugo Max</a></h3>
 <div class="meta">8:00 PM · Phoenix Cinema, East Finchley</div>
@@ -2633,6 +2881,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-9b4cbaa8" data-idx="99" data-eid="9b4cbaa8" data-name="Naza" data-series="2fa74dad50" data-start-local="2026-10-26T18:20:00" data-cal-start="20261026T182000Z" data-cal-end="20261026T202000Z" data-loc="The Lexi Cinema, Brondesbury Park" data-url="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10216488" data-weekly="1" data-lat="51.5375" data-lng="-0.2225">
 <button class="toggle" data-idx="99" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="99" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10216488">Naza</a></h3>
 <div class="meta">6:20 PM · The Lexi Cinema, Brondesbury Park · ↻ Every Monday</div>
@@ -2650,6 +2899,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-42ff45d0" data-idx="100" data-eid="42ff45d0" data-name="Ghosts: The Possession of Button House" data-series="270064b438" data-start-local="2026-10-26T20:20:00" data-cal-start="20261026T202000Z" data-cal-end="20261026T222000Z" data-loc="The Lexi Cinema, Brondesbury Park" data-url="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10229646" data-lat="51.5375" data-lng="-0.2225">
 <button class="toggle" data-idx="100" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="100" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10229646">Ghosts: The Possession of Button House</a></h3>
 <div class="meta">8:20 PM · The Lexi Cinema, Brondesbury Park</div>
@@ -2667,6 +2917,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-e75fc240" data-idx="101" data-eid="e75fc240" data-name="Forgotten Island" data-series="bfe680368b" data-start-local="2026-10-26T11:30:00" data-cal-start="20261026T113000Z" data-cal-end="20261026T133000Z" data-loc="The Lexi Cinema, Brondesbury Park" data-url="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10229641" data-lat="51.5375" data-lng="-0.2225">
 <button class="toggle" data-idx="101" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="101" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10229641">Forgotten Island</a></h3>
 <div class="meta">11:30 AM · The Lexi Cinema, Brondesbury Park</div>
@@ -2684,6 +2935,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-e2c1fcd4" data-idx="102" data-eid="e2c1fcd4" data-name="Spotlight: Ratcatcher (1999) (4K Restoration)" data-series="b07ed99f0b" data-start-local="2026-10-26T21:00:00" data-cal-start="20261026T210000Z" data-cal-end="20261026T230000Z" data-loc="The Lexi Cinema, Brondesbury Park" data-url="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10177616" data-lat="51.5375" data-lng="-0.2225">
 <button class="toggle" data-idx="102" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="102" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10177616">Spotlight: Ratcatcher (1999) (4K Restoration)</a></h3>
 <div class="meta">9:00 PM · The Lexi Cinema, Brondesbury Park</div>
@@ -2701,6 +2953,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-e4d56b95" data-idx="103" data-eid="e4d56b95" data-name="Lexi Seniors&#x27; Film Club: Educating Rita (1983)" data-series="e897080242" data-start-local="2026-10-26T14:00:00" data-cal-start="20261026T140000Z" data-cal-end="20261026T160000Z" data-loc="The Lexi Cinema, Brondesbury Park" data-url="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10270585" data-lat="51.5375" data-lng="-0.2225">
 <button class="toggle" data-idx="103" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="103" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10270585">Lexi Seniors&#x27; Film Club: Educating Rita (1983)</a></h3>
 <div class="meta">2:00 PM · The Lexi Cinema, Brondesbury Park</div>
@@ -2718,6 +2971,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-3c8bd369" data-idx="104" data-eid="3c8bd369" data-name="Classroom Cinema: The Class (2008) + Intro" data-series="608328f454" data-start-local="2026-10-26T18:10:00" data-cal-start="20261026T181000Z" data-cal-end="20261026T201000Z" data-loc="The Lexi Cinema, Brondesbury Park" data-url="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10178067" data-lat="51.5375" data-lng="-0.2225">
 <button class="toggle" data-idx="104" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="104" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10178067">Classroom Cinema: The Class (2008) + Intro</a></h3>
 <div class="meta">6:10 PM · The Lexi Cinema, Brondesbury Park</div>
@@ -2735,6 +2989,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-f209ddcf" data-idx="105" data-eid="f209ddcf" data-name="Halloween III: Season of the Witch" data-series="1e3ce18d63" data-start-local="2026-10-26T12:50:00" data-cal-start="20261026T125000Z" data-cal-end="20261026T145000Z" data-loc="Prince Charles Cinema, Strand, St James &amp; Mayfair" data-url="https://princecharlescinema.com/film/31617460/halloween-iii-season-of-the-witch" data-lat="51.5115" data-lng="-0.1302">
 <button class="toggle" data-idx="105" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="105" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://princecharlescinema.com/film/31617460/halloween-iii-season-of-the-witch">Halloween III: Season of the Witch</a></h3>
 <div class="meta">12:50 PM · Prince Charles Cinema, Strand, St James &amp; Mayfair</div>
@@ -2752,6 +3007,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-8cd64485" data-idx="106" data-eid="8cd64485" data-name="The Thing" data-series="a636388c60" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="Prince Charles Cinema, Strand, St James &amp; Mayfair" data-url="https://princecharlescinema.com/film/2631783/the-thing" data-lat="51.5115" data-lng="-0.1302">
 <button class="toggle" data-idx="106" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="106" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://princecharlescinema.com/film/2631783/the-thing">The Thing</a></h3>
 <div class="meta">6:00 PM · Prince Charles Cinema, Strand, St James &amp; Mayfair</div>
@@ -2769,6 +3025,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-d1faddbb" data-idx="107" data-eid="d1faddbb" data-name="Event Horizon" data-series="3ebd265fa3" data-start-local="2026-10-26T12:35:00" data-cal-start="20261026T123500Z" data-cal-end="20261026T143500Z" data-loc="Prince Charles Cinema, Strand, St James &amp; Mayfair" data-url="https://princecharlescinema.com/film/15034759/event-horizon" data-lat="51.5115" data-lng="-0.1302">
 <button class="toggle" data-idx="107" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="107" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://princecharlescinema.com/film/15034759/event-horizon">Event Horizon</a></h3>
 <div class="meta">12:35 PM · Prince Charles Cinema, Strand, St James &amp; Mayfair</div>
@@ -2786,6 +3043,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-31e2a2f2" data-idx="108" data-eid="31e2a2f2" data-name="Manhunter : The Final Cut" data-series="5936b1f9c7" data-start-local="2026-10-26T15:10:00" data-cal-start="20261026T151000Z" data-cal-end="20261026T171000Z" data-loc="Prince Charles Cinema, Strand, St James &amp; Mayfair" data-url="https://princecharlescinema.com/film/19285371/manhunter-the-final-cut" data-lat="51.5115" data-lng="-0.1302">
 <button class="toggle" data-idx="108" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="108" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://princecharlescinema.com/film/19285371/manhunter-the-final-cut">Manhunter : The Final Cut</a></h3>
 <div class="meta">3:10 PM · Prince Charles Cinema, Strand, St James &amp; Mayfair</div>
@@ -2803,6 +3061,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-eec0cf9a" data-idx="109" data-eid="eec0cf9a" data-name="Under the Skin (2013)" data-series="e2067ef2e1" data-start-local="2026-10-26T15:30:00" data-cal-start="20261026T153000Z" data-cal-end="20261026T173000Z" data-loc="Prince Charles Cinema, Strand, St James &amp; Mayfair" data-url="https://princecharlescinema.com/film/2585438/under-the-skin-2013" data-lat="51.5115" data-lng="-0.1302">
 <button class="toggle" data-idx="109" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="109" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://princecharlescinema.com/film/2585438/under-the-skin-2013">Under the Skin (2013)</a></h3>
 <div class="meta">3:30 PM · Prince Charles Cinema, Strand, St James &amp; Mayfair</div>
@@ -2820,6 +3079,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-18ad8df9" data-idx="110" data-eid="18ad8df9" data-name="Scream" data-series="4d0534f026" data-start-local="2026-10-26T20:30:00" data-cal-start="20261026T203000Z" data-cal-end="20261026T223000Z" data-loc="Prince Charles Cinema, Strand, St James &amp; Mayfair" data-url="https://princecharlescinema.com/film/17198086/scream" data-lat="51.5115" data-lng="-0.1302">
 <button class="toggle" data-idx="110" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="110" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://princecharlescinema.com/film/17198086/scream">Scream</a></h3>
 <div class="meta">8:30 PM · Prince Charles Cinema, Strand, St James &amp; Mayfair</div>
@@ -2837,6 +3097,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-429df3ff" data-idx="111" data-eid="429df3ff" data-name="Possible Love" data-series="5f96c3ff3d" data-start-local="2026-10-26T15:00:00" data-cal-start="20261026T150000Z" data-cal-end="20261026T170000Z" data-loc="The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South" data-url="https://www.thegardencinema.co.uk/film/possible-love/" data-lat="51.5162" data-lng="-0.1213">
 <button class="toggle" data-idx="111" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="111" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.thegardencinema.co.uk/film/possible-love/">Possible Love</a></h3>
 <div class="meta">3:00 PM · The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South</div>
@@ -2854,6 +3115,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-24df0bef" data-idx="112" data-eid="24df0bef" data-name="Naza" data-series="88f17aad3e" data-start-local="2026-10-26T20:30:00" data-cal-start="20261026T203000Z" data-cal-end="20261026T223000Z" data-loc="The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South" data-url="https://www.thegardencinema.co.uk/film/naza/" data-weekly="1" data-lat="51.5162" data-lng="-0.1213">
 <button class="toggle" data-idx="112" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="112" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.thegardencinema.co.uk/film/naza/">Naza</a></h3>
 <div class="meta">8:30 PM · The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South · ↻ Every Monday</div>
@@ -2871,6 +3133,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-efd385de" data-idx="113" data-eid="efd385de" data-name="Fatherland" data-series="3b1133b628" data-start-local="2026-10-26T18:30:00" data-cal-start="20261026T183000Z" data-cal-end="20261026T203000Z" data-loc="The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South" data-url="https://www.thegardencinema.co.uk/film/fatherland/" data-lat="51.5162" data-lng="-0.1213">
 <button class="toggle" data-idx="113" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="113" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.thegardencinema.co.uk/film/fatherland/">Fatherland</a></h3>
 <div class="meta">6:30 PM · The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South</div>
@@ -2888,6 +3151,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-ead0411d" data-idx="114" data-eid="ead0411d" data-name="The Time to Live and the Time to Die" data-series="b55ef7da71" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South" data-url="https://www.thegardencinema.co.uk/film/the-time-to-live-and-the-time-to-die/" data-lat="51.5162" data-lng="-0.1213">
 <button class="toggle" data-idx="114" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="114" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.thegardencinema.co.uk/film/the-time-to-live-and-the-time-to-die/">The Time to Live and the Time to Die</a></h3>
 <div class="meta">6:00 PM · The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South</div>
@@ -2905,6 +3169,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-782a35ba" data-idx="115" data-eid="782a35ba" data-name="In-Edit Cine-Documental: El canto de las manos (Song of the Hands)" data-series="b6c17b8551" data-start-local="2026-10-26T18:10:00" data-cal-start="20261026T181000Z" data-cal-end="20261026T201000Z" data-loc="The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South" data-url="https://www.thegardencinema.co.uk/film/el-canto-de-las-manos-song-of-the-hands/" data-lat="51.5162" data-lng="-0.1213">
 <button class="toggle" data-idx="115" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="115" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.thegardencinema.co.uk/film/el-canto-de-las-manos-song-of-the-hands/">In-Edit Cine-Documental: El canto de las manos (Song of the Hands)</a></h3>
 <div class="meta">6:10 PM · The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South</div>
@@ -2922,6 +3187,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-6e3801fe" data-idx="116" data-eid="6e3801fe" data-name="The Exorcist III" data-series="09441a79d6" data-start-local="2026-10-26T20:10:00" data-cal-start="20261026T201000Z" data-cal-end="20261026T221000Z" data-loc="The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South" data-url="https://www.thegardencinema.co.uk/film/the-exorcist-iii/" data-lat="51.5162" data-lng="-0.1213">
 <button class="toggle" data-idx="116" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="116" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://www.thegardencinema.co.uk/film/the-exorcist-iii/">The Exorcist III</a></h3>
 <div class="meta">8:10 PM · The Garden Cinema, Holborn, St Giles &amp; Bloomsbury South</div>
@@ -2939,6 +3205,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-2e758be0" data-idx="117" data-eid="2e758be0" data-name="Possible Love" data-series="62dab82bff" data-start-local="2026-10-26T21:00:00" data-cal-start="20261026T210000Z" data-cal-end="20261026T230000Z" data-loc="The Castle Cinema, Homerton North" data-url="https://thecastlecinema.com/programme/115207/?programme_slug=possible-love" data-lat="51.5513" data-lng="-0.0432">
 <button class="toggle" data-idx="117" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="117" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thecastlecinema.com/programme/115207/?programme_slug=possible-love">Possible Love</a></h3>
 <div class="meta">9:00 PM · The Castle Cinema, Homerton North</div>
@@ -2956,6 +3223,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-6543a122" data-idx="118" data-eid="6543a122" data-name="Sense And Sensibility" data-series="532bd63bf1" data-start-local="2026-10-26T11:00:00" data-cal-start="20261026T110000Z" data-cal-end="20261026T130000Z" data-loc="The Castle Cinema, Homerton North" data-url="https://thecastlecinema.com/programme/112473/?programme_slug=sense-and-sensibility" data-weekly="1" data-lat="51.5513" data-lng="-0.0432">
 <button class="toggle" data-idx="118" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="118" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thecastlecinema.com/programme/112473/?programme_slug=sense-and-sensibility">Sense And Sensibility</a></h3>
 <div class="meta">11:00 AM · The Castle Cinema, Homerton North · ↻ Every Monday</div>
@@ -2973,6 +3241,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-196e38ae" data-idx="119" data-eid="196e38ae" data-name="NAZA" data-series="528ab48f3a" data-start-local="2026-10-26T18:45:00" data-cal-start="20261026T184500Z" data-cal-end="20261026T204500Z" data-loc="The Castle Cinema, Homerton North" data-url="https://thecastlecinema.com/programme/115766/?programme_slug=naza" data-weekly="1" data-lat="51.5513" data-lng="-0.0432">
 <button class="toggle" data-idx="119" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="119" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thecastlecinema.com/programme/115766/?programme_slug=naza">NAZA</a></h3>
 <div class="meta">6:45 PM · The Castle Cinema, Homerton North · ↻ Every Monday</div>
@@ -2990,6 +3259,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-b10685bb" data-idx="120" data-eid="b10685bb" data-name="Wildwood" data-series="c0911fb10a" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="The Castle Cinema, Homerton North" data-url="https://thecastlecinema.com/programme/113504/?programme_slug=wildwood" data-lat="51.5513" data-lng="-0.0432">
 <button class="toggle" data-idx="120" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="120" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thecastlecinema.com/programme/113504/?programme_slug=wildwood">Wildwood</a></h3>
 <div class="meta">6:00 PM · The Castle Cinema, Homerton North</div>
@@ -3007,6 +3277,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-61858a77" data-idx="121" data-eid="61858a77" data-name="Extra Geography" data-series="fe79009d5f" data-start-local="2026-10-26T15:45:00" data-cal-start="20261026T154500Z" data-cal-end="20261026T174500Z" data-loc="The Castle Cinema, Homerton North" data-url="https://thecastlecinema.com/programme/115200/?programme_slug=extra-geography" data-weekly="1" data-lat="51.5513" data-lng="-0.0432">
 <button class="toggle" data-idx="121" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="121" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thecastlecinema.com/programme/115200/?programme_slug=extra-geography">Extra Geography</a></h3>
 <div class="meta">3:45 PM · The Castle Cinema, Homerton North · ↻ Every Monday</div>
@@ -3024,6 +3295,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-a2b212e8" data-idx="122" data-eid="a2b212e8" data-name="Fatherland" data-series="88131de593" data-start-local="2026-10-26T20:45:00" data-cal-start="20261026T204500Z" data-cal-end="20261026T224500Z" data-loc="The Castle Cinema, Homerton North" data-url="https://thecastlecinema.com/programme/115208/?programme_slug=fatherland" data-lat="51.5513" data-lng="-0.0432">
 <button class="toggle" data-idx="122" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="122" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://thecastlecinema.com/programme/115208/?programme_slug=fatherland">Fatherland</a></h3>
 <div class="meta">8:45 PM · The Castle Cinema, Homerton North</div>
@@ -3041,6 +3313,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-26007fa6" data-idx="123" data-eid="26007fa6" data-name="STEVIE MARTIN &amp; ADAM RICHES DO 30 MINS OF NEW MATERIAL (EACH)" data-series="388a0db47f" data-start-local="2026-10-26T18:30:00" data-cal-start="20261026T183000Z" data-cal-end="20261026T203000Z" data-loc="The Bill Murray (Angel Comedy), Angel" data-url="https://www.angelcomedy.co.uk/event-detail/stevie-martin-adam-riches-do-30-mins-of-new-material-each-mon-26th-oct-the-bill-murray-london-tickets-202610261830" data-lat="51.5363" data-lng="-0.0988">
 <button class="toggle" data-idx="123" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="123" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.angelcomedy.co.uk/event-detail/stevie-martin-adam-riches-do-30-mins-of-new-material-each-mon-26th-oct-the-bill-murray-london-tickets-202610261830">STEVIE MARTIN &amp; ADAM RICHES DO 30 MINS OF NEW MATERIAL (EACH)</a></h3>
 <div class="meta">6:30 PM · The Bill Murray (Angel Comedy), Angel</div>
@@ -3058,6 +3331,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-143d1b7f" data-idx="124" data-eid="143d1b7f" data-name="Ari Shaffir: Some of you will leave angry. Others will enjoy it (don&#x27;t put on sale yet)" data-series="2eacd077dc" data-start-local="2026-10-26T20:00:00" data-cal-start="20261026T200000Z" data-cal-end="20261026T220000Z" data-loc="The Bill Murray (Angel Comedy), Angel" data-url="https://www.angelcomedy.co.uk/event-detail/ari-shaffir-some-of-you-will-leave-angry-others-will-enjoy-it-dont-put-on-sale-yet-mon-26th-oct-the-bill-murray-london-tickets-202610262000" data-lat="51.5363" data-lng="-0.0988">
 <button class="toggle" data-idx="124" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="124" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.angelcomedy.co.uk/event-detail/ari-shaffir-some-of-you-will-leave-angry-others-will-enjoy-it-dont-put-on-sale-yet-mon-26th-oct-the-bill-murray-london-tickets-202610262000">Ari Shaffir: Some of you will leave angry. Others will enjoy it (don&#x27;t put on sale yet)</a></h3>
 <div class="meta">8:00 PM · The Bill Murray (Angel Comedy), Angel</div>
@@ -3075,6 +3349,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-d510a6a8" data-idx="125" data-eid="d510a6a8" data-name="SPACE (Lisa Ullén / Elsa Bergman / Anna Lund)" data-series="a6adb5dfb1" data-start-local="2026-10-26T19:30:00" data-cal-start="20261026T193000Z" data-cal-end="20261026T213000Z" data-loc="Cafe Oto, Dalston Kingsland" data-url="https://www.cafeoto.co.uk/events/space-lisa-ullen-elsa-bergman-anna-lund/" data-lat="51.5469" data-lng="-0.0747">
 <button class="toggle" data-idx="125" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="125" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">♪</span></div>
 <div class="event-body">
 <h3><a href="https://www.cafeoto.co.uk/events/space-lisa-ullen-elsa-bergman-anna-lund/">SPACE (Lisa Ullén / Elsa Bergman / Anna Lund)</a></h3>
 <div class="meta">7:30 PM · Cafe Oto, Dalston Kingsland · £12.00</div>
@@ -3092,6 +3367,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-6b8cdd2e" data-idx="126" data-eid="6b8cdd2e" data-name="Global fusion developments: The race for power" data-series="97388cbf63" data-start-local="2026-10-26T19:00:00" data-cal-start="20261026T190000Z" data-cal-end="20261026T210000Z" data-loc="The Royal Institution, Strand, St James &amp; Mayfair" data-url="https://www.rigb.org/whats-on/global-fusion-developments-race-power" data-lat="51.5097" data-lng="-0.1423">
 <button class="toggle" data-idx="126" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="126" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.rigb.org/whats-on/global-fusion-developments-race-power">Global fusion developments: The race for power</a></h3>
 <div class="meta">7:00 PM · The Royal Institution, Strand, St James &amp; Mayfair</div>
@@ -3109,6 +3385,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <article class="event" id="e-8ff24794" data-idx="127" data-eid="8ff24794" data-name="How True Stories Make Us Care" data-series="e9f05f5279" data-start-local="2026-10-26T18:00:00" data-cal-start="20261026T180000Z" data-cal-end="20261026T200000Z" data-loc="Barnard&#x27;s Inn Hall (Gresham College), City of London" data-url="https://www.gresham.ac.uk/whats-on/true-stories" data-lat="51.5178" data-lng="-0.1095">
 <button class="toggle" data-idx="127" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
 <button class="hide" data-idx="127" aria-label="Hide this event" aria-haspopup="menu" aria-expanded="false" title="Not interested">×</button>
+<div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body"><span class="badge">Free</span>
 <h3><a href="https://www.gresham.ac.uk/whats-on/true-stories">How True Stories Make Us Care</a></h3>
 <div class="meta">6:00 PM – 7:00 PM · Barnard&#x27;s Inn Hall (Gresham College), City of London · Free</div>
@@ -3149,6 +3426,33 @@ const WHY = ["", "Wallace and Gromit and Aardman characters in an immersive exhi
 const FLAGS = ["flex_entry", "flex_entry", "flex_entry", "flex_entry", "", "", "kids,flex_entry", "kids,flex_entry", "flex_entry", "flex_entry", "flex_entry", "", "", "sales", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "kids", "", "networking", "networking", "kids,service", "spam", "networking,sales", "networking", "networking,sales", "sales", "sales,networking", "", "service", "networking", "sales,networking", "networking,members_only", "", "networking", "spam", "", "", "networking", "", "", "", "", "", "", "", "", "", "", "", "", "kids", "", "", "", "", "", "", "", "", "kids", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 // false = the ticket link is dead or reported (ingest/linkcheck.py); reports on this page can add more
 const LINKOK = [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true];
+// for the personal ranking (site/build_site.py RANK_JS, ingest/ranking.py): numeric price (null = unknown),
+// a big box-office listing, topics; and each event's picture (ingest/images.py) with its credit
+const PRICEN = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0.0, 10.0, 27.0, 68.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 149.0, 0.0, 0.0, 0.0, 0.0, 0.0, 65.0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 12.0, null, 0.0];
+const BIGTIX = [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+const TOPICS = [["illusions", "attraction", "tourist"], ["animation", "wallace and gromit", "immersive exhibition"], ["waxworks", "tourist", "attraction"], ["london history", "tourist", "attraction"], ["historic palace", "tudor history", "gardens"], ["history", "royalty", "architecture"], ["kids", "attraction", "film tie-in"], ["kids", "aquarium", "attraction"], ["immersive art", "digital art", "exhibition"], ["egyptian history", "exhibition", "ancient artifacts"], ["views", "observation deck", "landmark"], ["circus", "physical theatre", "west end"], ["live show", "tabletop roleplaying", "fantasy"], ["k-pop", "hip hop", "arena concert"], ["death metal", "technical metal", "live music"], ["live music", "indie", "small venue"], ["indie rock", "live music", "church venue"], ["hip hop", "k-pop", "arena concert"], ["progressive rock", "classic rock", "live music"], ["improvised jazz", "saxophone", "live music"], ["brass band", "jazz", "soul"], ["theatre", "new plays", "fringe"], ["power metal", "heavy metal", "live music"], ["tribute act", "heavy metal", "pub gig"], ["stand-up comedy", "comedy club", "monday night"], ["jazz", "live music", "miles davis"], ["singer-songwriter", "live music", "indie"], ["play", "dance", "theatre"], ["indie", "live music", "alternative pop"], ["musical", "west end", "jukebox"], ["musical", "film adaptation", "west end"], ["musical", "rare revival", "old vic"], ["musical", "satire", "west end"], ["celebrity talk", "f1", "live interview"], ["musical theatre", "west end", "lloyd webber"], ["musical", "west end", "classic"], ["musical", "west end", "hip hop"], ["musical", "west end", "comedy"], ["comedy", "parody", "history"], ["musical", "rock opera", "revival"], ["cabaret", "musical", "revival"], ["musical", "west end", "jukebox"], ["mystery", "thriller", "tourist"], ["musical", "west end", "satire"], ["comedy", "podcast", "live recording"], ["theatre", "drama", "new writing"], ["singer-songwriter", "pop", "live music"], ["art pop", "live music", "alternative"], ["live music", "emerging artist", "pop"], ["stand-up", "open mic", "comedy club"], ["indie", "live music", "alternative pop"], ["comedy", "stand-up", "live nights"], ["horror", "theatre", "stage adaptation"], ["chekhov", "drama", "theatre"], ["musical", "sondheim", "theatre"], ["comedy", "classic play", "theatre"], ["drama", "american playwriting", "theatre"], ["musical", "rock", "theatre"], ["theatre", "family show"], ["economics", "free lecture", "liberty"], ["weather", "meetup", "networking"], ["networking", "books", "social"], ["kids", "half term", "workshop"], ["vague event", "week-long", "curiosity"], ["financial services", "regulation", "canada"], ["startups", "speed dating", "founders"], ["venture capital", "investors", "networking"], ["costume design", "workshop", "theatre craft"], ["healthtech", "investors", "pitching"], ["book fair", "black writers", "independent publishing"], ["ai", "product design", "tech workshop"], ["fermentation", "food brands", "startups"], ["distribution", "pitching", "startups"], ["gala", "community", "networking"], ["live coding", "algorave", "tech meetup"], ["ai", "tech networking", "social meetup"], ["startups", "founders", "screening"], ["wine", "loire", "tasting"], ["architecture", "talk", "design"], ["mixer", "social", "party"], ["welsh cinema", "film", "daytime screening"], ["film", "documentary", "barbican"], ["relaxed screening", "teen film", "cinema"], ["film", "screen talk", "cinema"], ["film", "romance"], ["theatre", "shakespeare", "satire"], ["theatre", "new play", "feminism"], ["comedy", "cabaret", "halloween"], ["comedy", "stand-up", "romance"], ["comedy", "stand-up", "taskmaster"], ["documentary", "gaza", "israeli filmmakers"], ["arthouse film", "pawlikowski", "thomas mann"], ["animation", "kids film", "afternoon screening"], ["documentary", "punk", "london music"], ["film", "german history", "arthouse"], ["war drama", "french cinema", "history"], ["documentary", "tuam", "history"], ["thriller", "french film", "police"], ["silent film", "live music", "horror"], ["film", "documentary", "q&a"], ["comedy", "halloween", "tv spin-off"], ["family animation", "kids film"], ["arthouse", "scottish cinema", "film restoration"], ["classic film", "seniors", "discussion"], ["palme d'or", "social realism", "classic film"], ["horror", "cult film", "repertory"], ["horror", "cult classic", "repertory cinema"], ["cult film", "sci-fi horror", "repertory"], ["michael mann", "thriller", "restoration"], ["sci-fi", "jonathan glazer", "arthouse"], ["slasher", "horror", "cult film"], ["korean cinema", "arthouse film", "lee chang-dong"], ["documentary", "middle east", "film"], ["arthouse film", "pawlikowski", "thomas mann"], ["taiwanese cinema", "hou hsiao-hsien", "cinematography"], ["documentary", "deaf musicians", "music"], ["horror", "exorcism", "halloween programme"], ["film", "romance", "independent cinema"], ["austen", "period drama", "film"], ["documentary", "middle east", "film"], ["film", "animation", "independent cinema"], ["debut film", "british cinema", "film"], ["film", "german history", "arthouse"], ["comedy", "stand-up", "new material"], ["comedy", "stand-up", "ari shaffir"], ["experimental music", "improvised jazz", "piano"], ["fusion energy", "science", "technology"], ["journalism", "storytelling", "nonfiction"]];
+const IMGS = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+const ICREDIT = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+const CAT_ICON = {"Music": "♪", "Comedy": "☺", "Talks": "❝", "Theater": "🎭", "Film": "🎬", "Arts & Play": "✦", "Food & Drink": "🍷", "Classes & Workshops": "✎", "Tours": "➜", "Meetups & Mixers": "☕", "Tech": "⌘", "Fitness & Outdoors": "☀", "Trivia & Games": "?", "Sports": "⚑"};
+const CURRENCY_SIGN = "£";
+// a photo's credit: the tiny i on a picture opens "Photo: <by> · <licence>", linked to its file page
+document.addEventListener("click", e => {
+  const b = e.target.closest && e.target.closest(".ph-cr"), old = document.getElementById("phPop");
+  if (old && !(e.target.closest && e.target.closest("#phPop"))) old.remove();
+  if (!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const c = ICREDIT[+b.dataset.idx]; if (!c || (old && old.dataset.idx === b.dataset.idx)) return;
+  const p = document.createElement("div"); p.id = "phPop"; p.dataset.idx = b.dataset.idx; p.setAttribute("role", "note");
+  const a = document.createElement(c.url ? "a" : "span");
+  a.textContent = "Photo: " + [c.by, c.license].filter(Boolean).join(" · ");
+  if (c.url) { a.href = c.url; a.target = "_blank"; a.rel = "noopener"; }
+  p.appendChild(a); p.appendChild(document.createTextNode(" · Wikimedia Commons"));
+  document.body.appendChild(p);
+  const r = b.getBoundingClientRect(), w = p.offsetWidth;
+  p.style.left = Math.max(8, Math.min(r.right - w, innerWidth - w - 8)) + "px";
+  p.style.top = (r.bottom + 6 + p.offsetHeight > innerHeight ? r.top - p.offsetHeight - 6 : r.bottom + 6) + "px";
+}, true);
+addEventListener("scroll", () => { const p = document.getElementById("phPop"); if (p) p.remove(); }, {passive: true});
 // parents can bring kids' events into story mode, Next hour and Toni's suggestions
 function kidsOn() { try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } }
 addEventListener("DOMContentLoaded", () => {
@@ -3467,7 +3771,7 @@ function reportTaps() {
   const USER_ID = localStorage.getItem("tonight-user-id") || null;
   const hdrs = window.TonightAuth ? TonightAuth.headers({"Content-Type": "application/json"})
                                   : {"Content-Type": "application/json"};
-  const row = i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i], venue: VENUES[+i]});
+  const row = i => ({name: NAMES[+i], category: CATS[+i], free: FREE[+i], venue: VENUES[+i], topics: TOPICS[+i] || []});
   const hid = [...new Set(loadIds("tonight-hidden-" + CITY + "-" + DATE)
     .concat(window.TonightHide ? TonightHide.freshIds() : []))];  // + hidden for good today (one light tap, that day only)
   (EDAYS || [DATE]).forEach(d => {  // weekend page: one report per day, so each tick counts on its own day
@@ -3596,7 +3900,9 @@ document.querySelectorAll(".ics-btn").forEach(btn => {
 window.__applyFilters = (function () {
   const bar = document.getElementById("filterBar");
   if (!bar) return null;
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null};
+  // you: "For you" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
+  // near: "My neighbourhoods" (Preferences)
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -3630,15 +3936,17 @@ window.__applyFilters = (function () {
       cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
       free: !F.free || FREE[i],
       tod: todOk(i),
-      hood: !F.hood || F.hood.split("|").includes(HOODS[i])};  // one or several neighbourhoods
+      hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
+      you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []),
+      near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
   }
-  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0};
+  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0, apply: () => applyFilters()};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
     let n = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const ok = d.base && d.cat && d.free && d.tod && d.hood;
+      const ok = d.base && d.cat && d.free && d.tod && d.hood && d.you && d.near;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
@@ -3791,7 +4099,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.near;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -4074,7 +4382,7 @@ function setNextHour(on, quiet) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i))) return;
-    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood) return; }  // other filters still apply
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.you || !d.near) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     const kind = soonKind(i, now);
@@ -5016,6 +5324,7 @@ function ask(q, display){
       exclude_venues: (function(){ var x = excludeNext || []; excludeNext = null; return x; })(),
       can_filter: !!document.getElementById("fq"),
       taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,
+        budget: taste.budget == null ? null : taste.budget, areas: (taste.areas && taste.areas[CITY]) || [],
         kids: (function(){ try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } })()},
       current_plan: (function(){  // the latest plan, so "swap the show" / "cheaper" edits it
         for (var k = history.length - 1; k >= 0; k--) { var m = history[k];

@@ -527,6 +527,64 @@ body{overflow-x:hidden;}
 }
 </style></head>
 <body class="home"><script>
+var Rank = (function(){
+"use strict";
+var JUNK = ["networking", "sales", "spam", "service", "internal", "members_only", "online", "class_slot"];
+var W = {quality: 2, like: 12, topic: 6, area: 5, timeFit: 3, timeMiss: -8, late: 4, free: 6};
+var BUDGETS = [0, 20, 40, 75, 150];
+function lower(a){ return (a || []).map(function(x){ return String(x).toLowerCase(); }).filter(Boolean); }
+function profile(o){
+  o = o || {};
+  var b = o.budget;
+  b = (b === null || b === undefined || b === "" || b === "any" || isNaN(+b)) ? null : Math.max(0, Math.floor(+b));
+  var topics = Array.isArray(o.topics) ? o.topics : Object.keys(o.topics || {});
+  return {likes: (o.likes || []).slice(), mutes: (o.mutes || []).slice(), free_only: !!o.free_only, budget: b,
+    areas: lower(o.areas), times: (o.times || []).slice(), topics: lower(topics), kids: !!o.kids, ticks: o.ticks || {}};
+}
+function hasSettings(p){
+  return !!(p.likes.length || p.mutes.length || p.free_only || p.budget !== null || p.areas.length || p.times.length ||
+    p.topics.length || Object.keys(p.ticks).some(function(k){ return p.ticks[k]; }));
+}
+function isJunk(e){
+  if (typeof e.quality === "number" && e.quality <= 3) return true;
+  return (e.flags || []).some(function(f){ return JUNK.indexOf(f) >= 0; });
+}
+function isKids(e){ return !!e.kids || (e.flags || []).indexOf("kids") >= 0; }
+function exclude(e, p){
+  if (isJunk(e)) return "junk";
+  if (isKids(e) && !p.kids) return "kids";
+  if (!hasSettings(p)) return "";
+  if (p.mutes.indexOf(e.category) >= 0) return "muted";
+  var price = typeof e.price === "number" ? e.price : null;
+  if (p.budget !== null) {
+    if (p.budget === 0 && !e.free) return "over budget";
+    if (price !== null && price > p.budget) return "over budget";
+  }
+  if (p.free_only && !e.free && price === null && e.big) return "ticketed";
+  return "";
+}
+function inArea(e, p){
+  if (!p.areas.length) return false;
+  var h = String(e.hood || "").toLowerCase(), g = String(e.area || "").toLowerCase();
+  return (!!h && p.areas.indexOf(h) >= 0) || (!!g && p.areas.indexOf(g) >= 0);
+}
+function win(st){ return st < 1020 ? "day" : (st < 1260 ? "evening" : "late"); }
+function score(e, p){
+  var q = typeof e.quality === "number" ? e.quality : 5, s = q * W.quality;
+  if (p.likes.indexOf(e.category) >= 0) s += W.like;
+  if (p.topics.length && (e.topics || []).some(function(t){ return p.topics.indexOf(String(t).toLowerCase()) >= 0; })) s += W.topic;
+  if (inArea(e, p)) s += W.area;
+  var st = e.start;
+  if (p.times.length && st != null) s += p.times.indexOf(win(st)) >= 0 ? W.timeFit : W.timeMiss;
+  if (p.times.indexOf("late") >= 0 && st != null && st >= 1260) s += W.late;
+  if (p.free_only && e.free) s += W.free;
+  var tb = p.ticks[e.category] || 0;
+  s += tb > 0 ? Math.min(tb, 3) : Math.max(tb * 2, -6);
+  return s;
+}
+return {profile: profile, hasSettings: hasSettings, exclude: exclude, score: score, inArea: inArea, BUDGETS: BUDGETS};
+})();
+
 /* Tonight taste: onboarding quiz, profile, personalized ranking */
 (function(){
 "use strict";
@@ -535,7 +593,15 @@ var CITY = null;
 var CITIES_ALL = ["nyc", "london", "la"];
 var TKEY = "tonight-taste";
 var OKEY = "tonight-onboarded";
-function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low"}; }
+// budget: Preferences > Event budget (up to; null = any, 0 = free only); areas: {city: [borough / area / neighbourhood]}
+function blank(){ return {likes:[], mutes:[], free_only:false, surprise:"low", budget:null, areas:{}}; }
+function cleanBudget(b){ return (b === null || b === undefined || b === "" || isNaN(+b)) ? null : Math.max(0, Math.floor(+b)); }
+function cleanAreas(a){
+  var out = {};
+  if (a && typeof a === "object" && !Array.isArray(a)) Object.keys(a).forEach(function(c){
+    if (Array.isArray(a[c])) out[c] = a[c].map(String).filter(Boolean).slice(0, 40); });
+  return out;
+}
 function cleanList(a){
   if (!Array.isArray(a)) return [];
   return a.filter(function(c){ return CATS_ALL.indexOf(c) >= 0; });
@@ -548,6 +614,7 @@ function load(){
       b.likes = cleanList(t.likes); b.mutes = cleanList(t.mutes);
       b.free_only = !!t.free_only;
       b.surprise = (t.surprise === "med" || t.surprise === "high") ? t.surprise : "low";
+      b.budget = cleanBudget(t.budget); b.areas = cleanAreas(t.areas);
       return b;
     }
   } catch (e) {}
@@ -570,19 +637,68 @@ function uid(){
 function apiBase(){ return window.__tonight_api || null; }
 function authHeaders(h){ return window.TonightAuth ? TonightAuth.headers(h) : (h || {}); }
 function save(sync){
+  PROF = null;
   try { localStorage.setItem(TKEY, JSON.stringify(taste)); } catch (e) {}
   if (sync === false) return;
   var base = apiBase();
   if (!base) return;
   var targets = CITY ? [CITY] : CITIES_ALL;
-  var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
-    free_only: taste.free_only, surprise: taste.surprise});
   targets.forEach(function(c){
+    var payload = JSON.stringify({user_id: uid(), likes: taste.likes, mutes: taste.mutes,
+      free_only: taste.free_only, surprise: taste.surprise, budget: taste.budget, areas: taste.areas[c] || []});
     fetch(base + "/taste/" + encodeURIComponent(c),
       {method: "POST", headers: authHeaders({"Content-Type": "application/json"}), body: payload}
     ).catch(function(){});
   });
 }
+// topics of what you tick (ingest/quality.py), for 60 days: this device's ticks + the account's (/api/taste)
+var TOPKEY = "tonight-topics-" + CITY, serverTopics = {}, PROF = null;
+function localTopics(){
+  var t = {}, cut = Date.now() - 60 * 86400000;
+  try { t = JSON.parse(localStorage.getItem(TOPKEY) || "{}") || {}; } catch (e) {}
+  Object.keys(t).forEach(function(k){ if (!(t[k] > cut)) delete t[k]; });
+  return t;
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest && e.target.closest("article.event .toggle");
+  if (!b || typeof TOPICS === "undefined" || b.getAttribute("aria-pressed") !== "true") return;
+  var t = localTopics(), now = Date.now();
+  (TOPICS[+b.dataset.idx] || []).forEach(function(k){ t[k] = now; });
+  try { localStorage.setItem(TOPKEY, JSON.stringify(t)); } catch (err) {}
+  PROF = null;
+});
+function kidsIn(){ return typeof kidsOn === "function" && kidsOn(); }
+// this person's settings and ticks, as the ranking reads them (RANK_JS)
+function prof(){
+  if (PROF) return PROF;
+  var topics = Object.keys(localTopics());
+  Object.keys(serverTopics).forEach(function(k){ if (topics.indexOf(k) < 0) topics.push(k); });
+  PROF = Rank.profile({likes: taste.likes, mutes: taste.mutes, free_only: taste.free_only, budget: taste.budget,
+    areas: (CITY && taste.areas[CITY]) || [], times: goOutTimes(), topics: topics, kids: kidsIn(), ticks: tapBonus});
+  return PROF;
+}
+function hasProfile(){ return Rank.hasSettings(prof()); }
+function ev(i){
+  return {category: CATS[i], quality: typeof QUAL !== "undefined" ? QUAL[i] : null,
+    price: typeof PRICEN !== "undefined" ? PRICEN[i] : null, free: !!FREE[i],
+    big: typeof BIGTIX !== "undefined" && !!BIGTIX[i], flags: typeof FLAGS !== "undefined" && FLAGS[i] ? FLAGS[i].split(",") : [],
+    kids: typeof KIDS !== "undefined" && !!KIDS[i], start: typeof STARTS !== "undefined" ? STARTS[i] : null,
+    topics: typeof TOPICS !== "undefined" ? TOPICS[i] : [], hood: typeof HOODS !== "undefined" ? HOODS[i] : "",
+    area: typeof AREA_GROUP !== "undefined" ? AREA_GROUP[i] : ""};
+}
+// why this event is out of your "For you" ("" = in): muted / over budget / ticketed / junk / kids / hidden
+function excluded(i){
+  if (typeof CATS === "undefined" || !hasProfile()) return "";
+  if (window.TonightHide && TonightHide.hides(i)) return "hidden";
+  return Rank.exclude(ev(i), prof());
+}
+// the list's For you filter: kids' events keep their own section; a muted category you tick in Filters shows anyway
+function forYouOut(i, cats){
+  var why = excluded(i);
+  if (!why || why === "kids" || why === "hidden") return false;
+  return !(why === "muted" && cats && cats.indexOf(CATS[i]) >= 0);
+}
+function inArea(i){ return typeof CATS !== "undefined" && Rank.inArea(ev(i), prof()); }
 function pull(){
   var base = apiBase();
   if (!base || !CITY || typeof CATS === "undefined") return;
@@ -597,14 +713,19 @@ function pull(){
         taste.likes = cleanList(d.likes); taste.mutes = cleanList(d.mutes);
         taste.free_only = !!d.free_only;
         taste.surprise = (d.surprise === "med" || d.surprise === "high") ? d.surprise : "low";
+        if ("budget" in d) taste.budget = cleanBudget(d.budget);
+        if (Array.isArray(d.areas)) taste.areas[CITY] = d.areas.map(String);
         save(false);
       }
+      serverTopics = d.topics && typeof d.topics === "object" ? d.topics : {};
       if (d.categories) tapBonus = d.categories;
       if (d.venues) venueBonus = d.venues;
       seriesRecent = {}; (d.series_recent || []).forEach(function(k){ seriesRecent[k] = 1; });
       (d.regulars || []).forEach(function(k){ regulars[k] = 1; });
       paintRegulars();
       freeShare = +d.free_share || 0;
+      PROF = null;
+      if (window.__facet && window.__facet.apply) window.__facet.apply();  // For you may have just started to apply
       applyRanking();
     })
     .catch(function(){});
@@ -614,10 +735,32 @@ function quality(i){
   var q = typeof QUAL !== "undefined" ? QUAL[i] : null;
   return typeof q === "number" ? q : 5;
 }
-// the list's order: your taste, nudged by quality
+// the list's order: with settings or ticks, the personal ranking (quality breaks ties); else quality-led as before
 function score(i){
   if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  if (hasProfile()) return rank(i);
   return personal(i) + (quality(i) - 5) * 1.5;
+}
+// Top tonight's order (and the list's, with a profile): RANK_JS's score plus the signals only the page knows
+function rank(i){
+  if (typeof CATS === "undefined" || typeof FREE === "undefined") return 0;
+  if (!hasProfile()) return (quality(i) - 5) * 3 + personal(i);
+  return Rank.score(ev(i), prof()) + extras(i);
+}
+function extras(i){
+  var s = 0, cat = CATS[i];
+  var vb = (typeof VENUES !== "undefined" && VENUES[i]) ? venueBonus[VENUES[i].toLowerCase()] : 0;
+  if (vb > 0) s += Math.min(vb * 2, 4); else if (vb < 0) s -= 5;
+  if (window.TonightHide) s += TonightHide.penalty(i);
+  if (freeShare >= 0.6 && FREE[i]) s += 2;
+  if (window.FRIENDS_GOING && typeof EIDS !== "undefined" && FRIENDS_GOING[EIDS[i]]) s += 6;
+  if (typeof SERIES !== "undefined" && SERIES[i]) {
+    if (regulars[SERIES[i]]) s += 15;
+    else if (RECUR[i] && seriesRecent[SERIES[i]]) s -= 8;
+  }
+  if (taste.surprise !== "low" && taste.likes.indexOf(cat) < 0 && taste.mutes.indexOf(cat) < 0)
+    s += (taste.surprise === "high" ? 4 : 2);
+  return s;
 }
 // the personal half: categories, ticks, venues, friends, regulars, when you go out
 function personal(i){
@@ -671,6 +814,9 @@ document.addEventListener("click", function(e){
       name: i >= 0 && typeof NAMES !== "undefined" ? NAMES[i] : "", venue: i >= 0 && typeof VENUES !== "undefined" ? VENUES[i] : ""})}).catch(function(){});
 });
 document.addEventListener("DOMContentLoaded", paintRegulars);
+document.addEventListener("click", function(e){  // "Include kids' events" changes who's in
+  if (e.target.closest && e.target.closest("#kidsToggle")) setTimeout(function(){ PROF = null;
+    if (window.__facet && window.__facet.apply) window.__facet.apply(); }, 0); });
 function hasTaste(){
   return taste.likes.length > 0 || taste.mutes.length > 0 || taste.free_only || goOutTimes().length > 0 ||
     (window.FRIENDS_GOING && Object.keys(window.FRIENDS_GOING).length > 0) ||
@@ -693,8 +839,9 @@ function sortChildren(container){
 }
 function scored(){ return typeof QUAL !== "undefined" && QUAL.some(function(q){ return q != null; }); }
 function applyRanking(){
+  PROF = null;
   if (window.__topTonight) window.__topTonight();  // Top tonight re-ranks whatever the layout
-  if ((!hasTaste() && !scored()) || typeof CATS === "undefined") return;
+  if ((!hasTaste() && !hasProfile() && !scored()) || typeof CATS === "undefined") return;
   // the timeline layout orders by start time, not taste
   if (document.documentElement.getAttribute("data-layout") === "timeline") return;
   var wrap = document.querySelector("main.wrap");
@@ -885,6 +1032,8 @@ function setCat(cat, mode){
 window.Tonight = {
   taste: taste, CATS_ALL: CATS_ALL, CITY: CITY,
   score: score, personal: personal, quality: quality, save: save, applyRanking: applyRanking,
+  rank: rank, excluded: excluded, forYouOut: forYouOut, inArea: inArea, hasProfile: hasProfile, profile: prof,
+  reset: function(){ PROF = null; },
   openQuiz: openQuiz, describe: describe, setCat: setCat
 };
 document.addEventListener("DOMContentLoaded", function(){
@@ -1774,6 +1923,7 @@ function ask(q, display){
       exclude_venues: (function(){ var x = excludeNext || []; excludeNext = null; return x; })(),
       can_filter: !!document.getElementById("fq"),
       taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,
+        budget: taste.budget == null ? null : taste.budget, areas: (taste.areas && taste.areas[CITY]) || [],
         kids: (function(){ try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } })()},
       current_plan: (function(){  // the latest plan, so "swap the show" / "cheaper" edits it
         for (var k = history.length - 1; k >= 0; k--) { var m = history[k];
