@@ -674,7 +674,7 @@ box-shadow:none;font-size:14.5px;font-weight:500;color:var(--ink);}
 #filterBar .fmeta #hiddenBar,#filterBar .fmeta .fclear{height:26px;}
 #filterBar .fmore.on{background-color:var(--accent);color:var(--on-accent,var(--ink));}
 #filterBar .fchips{gap:6px;}
-#filterBar #fhood{max-width:150px;}
+#filterBar #fhood,#filterBar #fsrc{max-width:150px;}
 #filterBar .seg button,#filterBar .fbtn{white-space:nowrap;}
 #filterBar #resCount{margin:0 2px 0 0;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
 opacity:.65;white-space:nowrap;}
@@ -1418,7 +1418,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="seg" id="ftod">
 <button data-t="all" class="on">Cualquier hora</button><button data-t="morning">Mañana</button><button data-t="afternoon">Tarde</button><button data-t="evening">Noche</button>
 </div>
-<select id="fafter" autocomplete="off" aria-label="Empieza después de"><option value="">Empieza después de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Empieza antes de"><option value="">Empieza antes de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Barrio"><option value="">Todos los barrios</option><option value="Echo Park">Echo Park (7)</option><option value="Hollywood">Hollywood (7)</option><option value="Downtown">Downtown (6)</option><option value="Beverly Grove">Beverly Grove (5)</option><option value="Santa Monica">Santa Monica (5)</option><option value="West Hollywood">West Hollywood (5)</option><option value="Long Beach">Long Beach (4)</option><option value="Venice">Venice (4)</option><option value="Fairfax">Fairfax (3)</option><option value="Hollywood Hills West">Hollywood Hills West (3)</option><option value="Los Feliz">Los Feliz (3)</option><option value="Playa Vista">Playa Vista (3)</option><option value="University Park">University Park (3)</option><option value="Chinatown">Chinatown (2)</option><option value="East Hollywood">East Hollywood (2)</option><option value="Glendale">Glendale (2)</option><option value="Koreatown">Koreatown (2)</option><option value="North Hollywood">North Hollywood (2)</option><option value="Palms">Palms (2)</option><option value="Pasadena">Pasadena (2)</option><option value="Westlake">Westlake (2)</option><option value="Anaheim">Anaheim (1)</option><option value="Atwater Village">Atwater Village (1)</option><option value="Beverly Hills">Beverly Hills (1)</option><option value="Burbank">Burbank (1)</option><option value="Cerritos">Cerritos (1)</option><option value="Culver City">Culver City (1)</option><option value="Eagle Rock">Eagle Rock (1)</option><option value="El Segundo">El Segundo (1)</option><option value="Elysian Valley">Elysian Valley (1)</option><option value="Exposition Park">Exposition Park (1)</option><option value="Glassell Park">Glassell Park (1)</option><option value="Griffith Park">Griffith Park (1)</option><option value="Highland Park">Highland Park (1)</option><option value="Hollywood Hills">Hollywood Hills (1)</option><option value="Inglewood">Inglewood (1)</option><option value="Irwindale">Irwindale (1)</option><option value="Lincoln Heights">Lincoln Heights (1)</option><option value="Mid-Wilshire">Mid-Wilshire (1)</option><option value="Panorama City">Panorama City (1)</option><option value="Playa del Rey">Playa del Rey (1)</option><option value="Ramona">Ramona (1)</option><option value="Redondo Beach">Redondo Beach (1)</option><option value="Reseda">Reseda (1)</option><option value="San Bernardino">San Bernardino (1)</option><option value="Toluca Lake">Toluca Lake (1)</option><option value="Tustin">Tustin (1)</option><option value="Valley Village">Valley Village (1)</option><option value="Walnut">Walnut (1)</option><option value="Westchester">Westchester (1)</option><option value="Westwood">Westwood (1)</option></select>
+<select id="fafter" autocomplete="off" aria-label="Empieza después de"><option value="">Empieza después de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Empieza antes de"><option value="">Empieza antes de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Barrio"><option value="">Todos los barrios</option><option value="Echo Park">Echo Park (7)</option><option value="Hollywood">Hollywood (7)</option><option value="Downtown">Downtown (6)</option><option value="Beverly Grove">Beverly Grove (5)</option><option value="Santa Monica">Santa Monica (5)</option><option value="West Hollywood">West Hollywood (5)</option><option value="Long Beach">Long Beach (4)</option><option value="Venice">Venice (4)</option><option value="Fairfax">Fairfax (3)</option><option value="Hollywood Hills West">Hollywood Hills West (3)</option><option value="Los Feliz">Los Feliz (3)</option><option value="Playa Vista">Playa Vista (3)</option><option value="University Park">University Park (3)</option><option value="Chinatown">Chinatown (2)</option><option value="East Hollywood">East Hollywood (2)</option><option value="Glendale">Glendale (2)</option><option value="Koreatown">Koreatown (2)</option><option value="North Hollywood">North Hollywood (2)</option><option value="Palms">Palms (2)</option><option value="Pasadena">Pasadena (2)</option><option value="Westlake">Westlake (2)</option><option value="Anaheim">Anaheim (1)</option><option value="Atwater Village">Atwater Village (1)</option><option value="Beverly Hills">Beverly Hills (1)</option><option value="Burbank">Burbank (1)</option><option value="Cerritos">Cerritos (1)</option><option value="Culver City">Culver City (1)</option><option value="Eagle Rock">Eagle Rock (1)</option><option value="El Segundo">El Segundo (1)</option><option value="Elysian Valley">Elysian Valley (1)</option><option value="Exposition Park">Exposition Park (1)</option><option value="Glassell Park">Glassell Park (1)</option><option value="Griffith Park">Griffith Park (1)</option><option value="Highland Park">Highland Park (1)</option><option value="Hollywood Hills">Hollywood Hills (1)</option><option value="Inglewood">Inglewood (1)</option><option value="Irwindale">Irwindale (1)</option><option value="Lincoln Heights">Lincoln Heights (1)</option><option value="Mid-Wilshire">Mid-Wilshire (1)</option><option value="Panorama City">Panorama City (1)</option><option value="Playa del Rey">Playa del Rey (1)</option><option value="Ramona">Ramona (1)</option><option value="Redondo Beach">Redondo Beach (1)</option><option value="Reseda">Reseda (1)</option><option value="San Bernardino">San Bernardino (1)</option><option value="Toluca Lake">Toluca Lake (1)</option><option value="Tustin">Tustin (1)</option><option value="Valley Village">Valley Village (1)</option><option value="Walnut">Walnut (1)</option><option value="Westchester">Westchester (1)</option><option value="Westwood">Westwood (1)</option></select><select id="fsrc" autocomplete="off" aria-label="Fuente"><option value="">Todas las fuentes</option><option value="eventbrite">Eventbrite (32)</option><option value="luma">Luma (19)</option><option value="geekswhodrink">Geeks Who Drink (15)</option><option value="ticketmaster">Ticketmaster (15)</option><option value="ticketweb">TicketWeb (4)</option><option value="dice">DICE (2)</option><option value="venue">Sitios de los locales (19)</option></select>
 <button class="fbtn" id="ffree" aria-pressed="false">Solo gratis</button>
 <span id="hiddenBar"><span id="hiddenN">0</span> ocultos · <button id="unhide">mostrarlos</button></span>
 <span id="resCount"></span>
@@ -3622,6 +3622,8 @@ addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash
 const CATS = ["Music", "Music", "Music", "Music", "Music", "Sports", "Music", "Arts & Play", "Music", "Theater", "Comedy", "Comedy", "Arts & Play", "Music", "Music", "Sports", "Arts & Play", "Music", "Comedy", "Arts & Play", "Arts & Play", "Tours", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Film", "Film", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Film", "Music", "Music", "Film", "Film", "Music", "Comedy", "Talks", "Tech", "Meetups & Mixers", "Food & Drink", "Trivia & Games", "Food & Drink", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Classes & Workshops", "Tours", "Tours", "Talks", "Classes & Workshops", "Talks", "Comedy", "Comedy", "Comedy", "Comedy", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film"];
 const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, true, true, true, false, true, true, false, false, true, true, true, false, true, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const HOODS = ["Downtown", "Echo Park", "Koreatown", "Hollywood", "Hollywood Hills West", "Anaheim", "Hollywood", "Chinatown", "Griffith Park", "Hollywood", "Beverly Grove", "Beverly Grove", "Cerritos", "Downtown", "Westlake", "Downtown", "Hollywood Hills West", "Hollywood", "Beverly Grove", "Beverly Grove", "Exposition Park", "Hollywood", "Pasadena", "Glassell Park", "Toluca Lake", "North Hollywood", "North Hollywood", "Koreatown", "Valley Village", "Long Beach", "Long Beach", "Long Beach", "Palms", "Playa Vista", "El Segundo", "Venice", "Playa del Rey", "Santa Monica", "Echo Park", "Lincoln Heights", "Playa Vista", "Glendale", "Santa Monica", "Redondo Beach", "Mid-Wilshire", "Long Beach", "Westwood", "Hollywood Hills", "Santa Monica", "Walnut", "Fairfax", "Culver City", "West Hollywood", "East Hollywood", "Venice", "Beverly Hills", "Los Feliz", "Los Feliz", "Echo Park", "Echo Park", "Echo Park", "Echo Park", "West Hollywood", "West Hollywood", "West Hollywood", "West Hollywood", "Fairfax", "Hollywood", "Elysian Valley", "Eagle Rock", "Fairfax", "Highland Park", "Westlake", "", "Venice", "Pasadena", "Chinatown", "Beverly Grove", "Inglewood", "University Park", "Reseda", "Tustin", "San Bernardino", "Ramona", "", "Panorama City", "Santa Monica", "University Park", "Downtown", "Hollywood", "Irwindale", "Glendale", "Palms", "Westchester", "Santa Monica", "Echo Park", "Venice", "Hollywood Hills West", "Downtown", "University Park", "Los Feliz", "Burbank", "Downtown", "Atwater Village", "East Hollywood", "Playa Vista"];
+const SRCS = ["ticketmaster", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "venue", "ticketmaster", "ticketmaster", "venue", "venue", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketweb", "ticketweb", "ticketweb", "ticketmaster", "ticketmaster", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "dice", "dice", "venue", "venue", "venue", "venue", "venue", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite"];  // where each event is listed: "eventbrite", "luma" ... "venue" (its link's site, source_of)
+const SRC_LABEL = {"eventbrite": "Eventbrite", "luma": "Luma", "ticketmaster": "Ticketmaster", "ticketweb": "TicketWeb", "universe": "Universe", "dice": "DICE", "nycparks": "NYC Parks", "geekswhodrink": "Geeks Who Drink", "venue": "Sitios de los locales"};
 const AREA_GROUP = ["Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Orange County", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Southeast", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "South L.A.", "Central L.A.", "Verdugos", "Northeast L.A.", "San Fernando Valley", "San Fernando Valley", "San Fernando Valley", "Central L.A.", "San Fernando Valley", "Harbor", "Harbor", "Harbor", "Westside", "Westside", "South Bay", "Westside", "South Bay", "Westside", "Central L.A.", "Eastside", "Westside", "Verdugos", "Westside", "South Bay", "Central L.A.", "Harbor", "Westside", "Central L.A.", "Westside", "San Gabriel Valley", "Central L.A.", "Westside", "Central L.A.", "Central L.A.", "Westside", "Westside", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Central L.A.", "Northeast L.A.", "Central L.A.", "Northeast L.A.", "Central L.A.", "", "Westside", "Verdugos", "Central L.A.", "Central L.A.", "South Bay", "South L.A.", "San Fernando Valley", "Orange County", "San Bernardino County", "San Gabriel Valley", "", "San Fernando Valley", "Westside", "South L.A.", "Central L.A.", "Central L.A.", "San Gabriel Valley", "Verdugos", "Westside", "South Bay", "Westside", "Central L.A.", "Westside", "Central L.A.", "Central L.A.", "South L.A.", "Central L.A.", "San Fernando Valley", "Central L.A.", "Northeast L.A.", "Central L.A.", "Westside"];  // each event's borough / region ("" = no neighbourhood)
 const AREA_ORDER = ["Central L.A.", "Westside", "Northeast L.A.", "Eastside", "South L.A.", "San Fernando Valley", "Verdugos", "San Gabriel Valley", "South Bay", "Harbor", "Southeast", "Santa Monica Mountains", "Pomona Valley", "Northwest County", "Antelope Valley", "Angeles Forest", "Orange County", "Ventura County", "Riverside County", "San Bernardino County", "Otros lugares"];
 const TZ = "America/Los_Angeles";
@@ -3829,7 +3831,7 @@ window.__applyFilters = (function () {
   // you: "Para ti" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "Mis barrios" (Preferences)
   // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false, low: false};
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -3862,7 +3864,7 @@ window.__applyFilters = (function () {
     if (base && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) base = false;
     if (base && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) base = false;
     if (base && F.q) {
-      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
+      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (SRC_LABEL[SRCS[i]] || "") + " " + (a ? a.textContent : "")).toLowerCase();
       if (!hay[i].includes(F.q)) base = false;
     }
     const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
@@ -3871,6 +3873,7 @@ window.__applyFilters = (function () {
       free: !F.free || FREE[i],
       tod: todOk(i),
       hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
+      src: !F.src || F.src.split("|").includes(SRCS[i]),  // one or several sources (Eventbrite, Luma ...)
       you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []) ||
         ((F.low || F.q) && Tonight.excluded && Tonight.excluded(i) === "junk"),
       near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
@@ -3881,7 +3884,7 @@ window.__applyFilters = (function () {
     let n = 0, nLow = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const rest = d.cat && d.free && d.tod && d.hood && d.you && d.near;
+      const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near;
       const ok = d.base && rest;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
@@ -3929,6 +3932,8 @@ window.__applyFilters = (function () {
   });
   const _fh = document.getElementById("fhood");
   if (_fh) _fh.addEventListener("change", e => { F.hood = e.target.value; applyFilters(); });
+  const _fs = document.getElementById("fsrc");
+  if (_fs) _fs.addEventListener("change", e => { F.src = e.target.value; applyFilters(); });
   document.getElementById("ffree").addEventListener("click", e => {
     F.free = !F.free;
     e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
@@ -4047,7 +4052,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.near;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.near;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -4074,7 +4079,7 @@ window.__applyFilters = (function () {
   (() => {
     const q = document.getElementById("fq");
     if (q.value) q.dispatchEvent(new Event("input"));
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") el.dispatchEvent(new Event("change")); });
   })();
   // filters from the address, e.g. ?free=1&before=960 (links from Toni, shared links)
@@ -4083,7 +4088,7 @@ window.__applyFilters = (function () {
       if (el && v != null) { if (el.tagName === "SELECT" && v !== "" && !el.querySelector('option[value="' + v + '"]')) { const o = document.createElement("option"); o.value = v; const h = Math.floor(v / 60), m = v % 60; o.textContent = (h % 12 || 12) + (m ? ":" + String(m).padStart(2, "0") : "") + (h >= 12 ? " PM" : " AM"); el.appendChild(o); } el.value = v; el.dispatchEvent(new Event("change")); } };
     if (q.get("free") === "1") document.getElementById("ffree").click();
     setv("fafter", q.get("after")); setv("fbefore", q.get("before"));
-    setv("fcat", q.get("cat")); setv("fhood", q.get("hood"));
+    setv("fcat", q.get("cat")); setv("fhood", q.get("hood")); setv("fsrc", q.get("src"));
     const only = (q.get("only") || "").split(",").filter(x => /^[0-9a-f]{8,10}$/.test(x));
     if (only.length) {
       F.only = new Set(only);
@@ -4098,9 +4103,9 @@ window.__applyFilters = (function () {
   // active filters look "on"; Clear all appears once anything is set
   const _fb = document.getElementById("filterBar"), _fc = document.getElementById("fclear");
   function syncFilterUI() {
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src);
     if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
     if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
@@ -4109,7 +4114,7 @@ window.__applyFilters = (function () {
   _fb.addEventListener("click", () => setTimeout(syncFilterUI, 0));
   if (_fc) _fc.addEventListener("click", () => {
     const q = document.getElementById("fq"); q.value = ""; q.dispatchEvent(new Event("input"));
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") { el.value = ""; el.dispatchEvent(new Event("change")); } });
     if (F.free) document.getElementById("ffree").click();
     const all = document.querySelector('#ftod button[data-t="all"]'); if (all) all.click();
@@ -4330,7 +4335,7 @@ function setNextHour(on, quiet) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i))) return;
-    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.you || !d.near) return; }  // other filters still apply
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.src || !d.you || !d.near) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     const kind = soonKind(i, now);
@@ -4377,7 +4382,7 @@ if (_nhb) _nhb.addEventListener("click", () => {
 </script>
 <script>
 // ---------------- Browse filters (discovery v1) ----------------
-const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: ""};
+const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: ""};
 const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
 let hidden = new Set(typeof loadIds === "function" ? loadIds(HIDE_KEY) : JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
 function todOf(i) {
@@ -4399,8 +4404,9 @@ function applyFilters() {
     if (ok && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) ok = false;
     if (ok && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) ok = false;
     if (ok && F.hood && HOODS[i] !== F.hood) ok = false;
+    if (ok && F.src && SRCS[i] !== F.src) ok = false;
     if (ok && F.q) {
-      const hay = (NAMES[i] + " " + CATS[i] + " " + a.textContent).toLowerCase();
+      const hay = (NAMES[i] + " " + CATS[i] + " " + (SRC_LABEL[SRCS[i]] || "") + " " + a.textContent).toLowerCase();
       if (!hay.includes(F.q)) ok = false;
     }
     a.style.display = ok ? "" : "none";
@@ -4422,6 +4428,8 @@ document.getElementById("fcat").addEventListener("change", e => {
 });
 const _fh = document.getElementById("fhood");
 if (_fh) _fh.addEventListener("change", e => { F.hood = e.target.value; applyFilters(); });
+const _fs = document.getElementById("fsrc");
+if (_fs) _fs.addEventListener("change", e => { F.src = e.target.value; applyFilters(); });
 document.getElementById("ffree").addEventListener("click", e => {
   F.free = !F.free;
   e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
@@ -5107,6 +5115,7 @@ function filterUrl(f){
   if (f.before != null) q.push("before=" + f.before);
   if (f.category) q.push("cat=" + encodeURIComponent(f.category));
   if (f.neighborhood) q.push("hood=" + encodeURIComponent(f.neighborhood));
+  if (f.source) q.push("src=" + encodeURIComponent(f.source));
   return q.length ? "?" + q.join("&") : "";
 }
 // "Show me everything that's free before 7": Toni sets the page's own filters instead of a long list
@@ -5116,7 +5125,7 @@ function applyPageFilters(f){
     el.value = v == null ? "" : String(v); el.dispatchEvent(new Event("change")); };
   var free = document.getElementById("ffree");
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
-  set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || "");
+  set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || ""); set("fsrc", f.source || "");
   var n = 0;
   document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;

@@ -2297,7 +2297,7 @@ box-shadow:none;font-size:14.5px;font-weight:500;color:var(--ink);}
 #filterBar .fmeta #hiddenBar,#filterBar .fmeta .fclear{height:26px;}
 #filterBar .fmore.on{background-color:var(--accent);color:var(--on-accent,var(--ink));}
 #filterBar .fchips{gap:6px;}
-#filterBar #fhood{max-width:150px;}
+#filterBar #fhood,#filterBar #fsrc{max-width:150px;}
 #filterBar .seg button,#filterBar .fbtn{white-space:nowrap;}
 #filterBar #resCount{margin:0 2px 0 0;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
 opacity:.65;white-space:nowrap;}
@@ -3048,6 +3048,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button data-t="evening">Noche 5pm+</button><button data-t="day">De día</button><button data-t="all" class="on">Todo</button>
 </div>
 <select id="fhood" autocomplete="off" aria-label="Barrio"><option value="">Todos los barrios</option><option value="Strand, St James &amp; Mayfair">Strand, St James &amp; Mayfair (52)</option><option value="City of London">City of London (32)</option><option value="Fitzrovia West &amp; Soho">Fitzrovia West &amp; Soho (28)</option><option value="Holborn, St Giles &amp; Bloomsbury South">Holborn, St Giles &amp; Bloomsbury South (24)</option><option value="Shoreditch">Shoreditch (11)</option><option value="Clerkenwell">Clerkenwell (9)</option><option value="Lambeth North, Waterloo &amp; South Bank">Lambeth North, Waterloo &amp; South Bank (9)</option><option value="Angel">Angel (7)</option><option value="Fitzrovia East &amp; Bloomsbury West">Fitzrovia East &amp; Bloomsbury West (7)</option><option value="Camden Town &amp; Mornington Crescent">Camden Town &amp; Mornington Crescent (6)</option><option value="East Finchley">East Finchley (6)</option><option value="Old Street &amp; St Luke&#x27;s">Old Street &amp; St Luke&#x27;s (6)</option><option value="Borough &amp; Southwark Street">Borough &amp; Southwark Street (5)</option><option value="Dalston Kingsland">Dalston Kingsland (5)</option><option value="Homerton North">Homerton North (5)</option><option value="London Bridge &amp; Bermondsey West">London Bridge &amp; Bermondsey West (5)</option><option value="Somers Town">Somers Town (5)</option><option value="Brondesbury Park">Brondesbury Park (4)</option><option value="Bryanston &amp; Dorset Square">Bryanston &amp; Dorset Square (4)</option><option value="Knightsbridge, Belgravia &amp; Hyde Park">Knightsbridge, Belgravia &amp; Hyde Park (4)</option><option value="Hammersmith Broadway">Hammersmith Broadway (3)</option><option value="Hampstead Town">Hampstead Town (3)</option><option value="Spitalfields">Spitalfields (3)</option><option value="Blackwall">Blackwall (2)</option><option value="Canary Wharf">Canary Wharf (2)</option><option value="Central Westminster">Central Westminster (2)</option><option value="Hackney Central">Hackney Central (2)</option><option value="Highbury Fields">Highbury Fields (2)</option><option value="King&#x27;s Cross &amp; Bloomsbury North">King&#x27;s Cross &amp; Bloomsbury North (2)</option><option value="Mill Meads">Mill Meads (2)</option><option value="New Cross Gate">New Cross Gate (2)</option><option value="Nine Elms">Nine Elms (2)</option><option value="Old Oak &amp; Wormwood">Old Oak &amp; Wormwood (2)</option><option value="Pentonville">Pentonville (2)</option><option value="Primrose Hill">Primrose Hill (2)</option><option value="Victoria">Victoria (2)</option><option value="West Brompton">West Brompton (2)</option><option value="Alexandra Park">Alexandra Park (1)</option><option value="Archway West">Archway West (1)</option><option value="Baker&#x27;s Arms">Baker&#x27;s Arms (1)</option><option value="Blackheath Village">Blackheath Village (1)</option><option value="Bow West">Bow West (1)</option><option value="Brick Lane North">Brick Lane North (1)</option><option value="Brimsdown &amp; Ponders End">Brimsdown &amp; Ponders End (1)</option><option value="Brixton North">Brixton North (1)</option><option value="Camden Road South">Camden Road South (1)</option><option value="Camden Street &amp; Elm Village">Camden Street &amp; Elm Village (1)</option><option value="Canada Water">Canada Water (1)</option><option value="Canning Town South &amp; Bow Creek">Canning Town South &amp; Bow Creek (1)</option><option value="Canonbury East &amp; Mildmay Park">Canonbury East &amp; Mildmay Park (1)</option><option value="Chalk Farm">Chalk Farm (1)</option><option value="Chelsea Riverside East">Chelsea Riverside East (1)</option><option value="Cranham East">Cranham East (1)</option><option value="Greenwich &amp; Deptford Creekside">Greenwich &amp; Deptford Creekside (1)</option><option value="Hackney Downs">Hackney Downs (1)</option><option value="Hampton Village">Hampton Village (1)</option><option value="Hans Town">Hans Town (1)</option><option value="Hatton Garden &amp; Theobalds Road">Hatton Garden &amp; Theobalds Road (1)</option><option value="Lambeth Walk &amp; North Kennington">Lambeth Walk &amp; North Kennington (1)</option><option value="London Fields &amp; Mare Street">London Fields &amp; Mare Street (1)</option><option value="Maida Hill">Maida Hill (1)</option><option value="Marylebone &amp; Park Lane">Marylebone &amp; Park Lane (1)</option><option value="Mortlake &amp; South Barnes">Mortlake &amp; South Barnes (1)</option><option value="Muswell Hill South">Muswell Hill South (1)</option><option value="New Cross &amp; Deptford South">New Cross &amp; Deptford South (1)</option><option value="North End">North End (1)</option><option value="Notting Hill South">Notting Hill South (1)</option><option value="Peckham North">Peckham North (1)</option><option value="Peckham Park Road">Peckham Park Road (1)</option><option value="Peckham Rye">Peckham Rye (1)</option><option value="Queenstown Road &amp; Patmore">Queenstown Road &amp; Patmore (1)</option><option value="Regent&#x27;s Park">Regent&#x27;s Park (1)</option><option value="Shepherd&#x27;s Bush West">Shepherd&#x27;s Bush West (1)</option><option value="South Kensington">South Kensington (1)</option><option value="St George in the East &amp; Wapping North">St George in the East &amp; Wapping North (1)</option><option value="St Mary&#x27;s">St Mary&#x27;s (1)</option><option value="Stamford Hill South">Stamford Hill South (1)</option><option value="Stratford Central">Stratford Central (1)</option><option value="Tower Hill &amp; Wapping South">Tower Hill &amp; Wapping South (1)</option><option value="Tufnell Park West">Tufnell Park West (1)</option><option value="Walthamstow Market &amp; South Grove">Walthamstow Market &amp; South Grove (1)</option><option value="Walworth North">Walworth North (1)</option><option value="Wembley North">Wembley North (1)</option><option value="West Kensington">West Kensington (1)</option><option value="Westbourne">Westbourne (1)</option></select>
+<select id="fsrc" autocomplete="off" aria-label="Fuente"><option value="">Todas las fuentes</option><option value="luma">Luma (87)</option><option value="ticketmaster">Ticketmaster (75)</option><option value="eventbrite">Eventbrite (69)</option><option value="universe">Universe (20)</option><option value="ticketweb">TicketWeb (2)</option><option value="venue">Sitios de los locales (72)</option></select>
 <select id="fcat" autocomplete="off" aria-label="Filtrar por categoría"><option value="">Todas las categorías</option><option value="Arts &amp; Play">Arte y juego</option><option value="Theater">Teatro</option><option value="Music">Música</option><option value="Comedy">Comedia</option><option value="Tech">Tecnología</option><option value="Meetups &amp; Mixers">Encuentros</option><option value="Fitness &amp; Outdoors">Ejercicio y aire libre</option><option value="Classes &amp; Workshops">Clases y talleres</option><option value="Talks">Charlas</option><option value="Film">Cine</option><option value="Food &amp; Drink">Comida y bebida</option><option value="Tours">Recorridos</option></select>
 <button class="fbtn" id="ffree" aria-pressed="false">✨ Solo gratis</button>
 <button class="fbtn" id="nextHourBtn" type="button" aria-pressed="false">⏱ Empieza pronto</button>
@@ -9274,6 +9275,8 @@ addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash
 const CATS = ["Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Music", "Comedy", "Music", "Music", "Music", "Music", "Arts & Play", "Music", "Music", "Theater", "Theater", "Music", "Theater", "Theater", "Theater", "Music", "Comedy", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Comedy", "Music", "Comedy", "Arts & Play", "Music", "Arts & Play", "Music", "Comedy", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Comedy", "Theater", "Music", "Arts & Play", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Music", "Music", "Comedy", "Comedy", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Arts & Play", "Theater", "Music", "Music", "Comedy", "Music", "Theater", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Tech", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Fitness & Outdoors", "Meetups & Mixers", "Classes & Workshops", "Tech", "Tech", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Tech", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Tech", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Classes & Workshops", "Tech", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Classes & Workshops", "Tech", "Comedy", "Meetups & Mixers", "Meetups & Mixers", "Talks", "Meetups & Mixers", "Classes & Workshops", "Tech", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Film", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Tech", "Tech", "Tech", "Food & Drink", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Food & Drink", "Tech", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Food & Drink", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Theater", "Film", "Film", "Film", "Film", "Talks", "Theater", "Music", "Arts & Play", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Talks", "Film", "Film", "Theater", "Theater", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Music", "Arts & Play", "Theater", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Talks", "Talks", "Film", "Meetups & Mixers", "Tech", "Theater", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Classes & Workshops", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Tours", "Food & Drink", "Classes & Workshops", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Classes & Workshops", "Fitness & Outdoors", "Tours", "Tours", "Talks", "Talks", "Talks", "Talks", "Tours", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Tours", "Talks", "Talks", "Talks", "Talks", "Talks", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Film", "Film", "Film", "Film", "Film"];
 const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, true, true, true, true, true, true, true, true, true, true, true, false, true, false, true, false, true, true, true, true, false, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, false, false, true, true, true, false, true, true, true, true, true, true, false, true, true, true, true, true, false, true, true, true, true, true, false, true, false, true, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const HOODS = ["Fitzrovia West & Soho", "Lambeth North, Waterloo & South Bank", "Regent's Park", "Lambeth North, Waterloo & South Bank", "Somers Town", "Hampton Village", "Notting Hill South", "Tower Hill & Wapping South", "Lambeth North, Waterloo & South Bank", "Lambeth North, Waterloo & South Bank", "Bryanston & Dorset Square", "Nine Elms", "London Bridge & Bermondsey West", "Somers Town", "Strand, St James & Mayfair", "Borough & Southwark Street", "Strand, St James & Mayfair", "Lambeth North, Waterloo & South Bank", "Wembley North", "Bryanston & Dorset Square", "Fitzrovia West & Soho", "Central Westminster", "Strand, St James & Mayfair", "Fitzrovia West & Soho", "Hammersmith Broadway", "Lambeth North, Waterloo & South Bank", "Holborn, St Giles & Bloomsbury South", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Holborn, St Giles & Bloomsbury South", "Strand, St James & Mayfair", "New Cross & Deptford South", "Strand, St James & Mayfair", "Hackney Downs", "Alexandra Park", "Brixton North", "Fitzrovia West & Soho", "Dalston Kingsland", "Camden Town & Mornington Crescent", "Peckham North", "Holborn, St Giles & Bloomsbury South", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "Angel", "Strand, St James & Mayfair", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Fitzrovia West & Soho", "Angel", "Shepherd's Bush West", "Tufnell Park West", "Chalk Farm", "Highbury Fields", "Camden Town & Mornington Crescent", "Primrose Hill", "Hackney Central", "Camden Street & Elm Village", "Camden Town & Mornington Crescent", "", "Greenwich & Deptford Creekside", "Camden Town & Mornington Crescent", "", "Canary Wharf", "Holborn, St Giles & Bloomsbury South", "Fitzrovia West & Soho", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Fitzrovia West & Soho", "Blackwall", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Victoria", "Shoreditch", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "West Brompton", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Knightsbridge, Belgravia & Hyde Park", "Pentonville", "Strand, St James & Mayfair", "", "Holborn, St Giles & Bloomsbury South", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "Hammersmith Broadway", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Mill Meads", "Dalston Kingsland", "Fitzrovia West & Soho", "West Brompton", "Lambeth North, Waterloo & South Bank", "City of London", "City of London", "London Bridge & Bermondsey West", "Somers Town", "Shoreditch", "Old Street & St Luke's", "Hammersmith Broadway", "Canning Town South & Bow Creek", "City of London", "Shoreditch", "Lambeth North, Waterloo & South Bank", "Fitzrovia West & Soho", "Clerkenwell", "City of London", "Fitzrovia East & Bloomsbury West", "Fitzrovia West & Soho", "Fitzrovia East & Bloomsbury West", "Nine Elms", "Old Street & St Luke's", "Central Westminster", "Old Oak & Wormwood", "City of London", "", "City of London", "Marylebone & Park Lane", "Shoreditch", "Borough & Southwark Street", "Old Street & St Luke's", "New Cross Gate", "Old Street & St Luke's", "Camden Town & Mornington Crescent", "Clerkenwell", "Lambeth North, Waterloo & South Bank", "Borough & Southwark Street", "Clerkenwell", "Clerkenwell", "Holborn, St Giles & Bloomsbury South", "Shoreditch", "City of London", "Borough & Southwark Street", "Blackwall", "City of London", "Pentonville", "Holborn, St Giles & Bloomsbury South", "Knightsbridge, Belgravia & Hyde Park", "Camden Town & Mornington Crescent", "Old Street & St Luke's", "Somers Town", "Fitzrovia East & Bloomsbury West", "City of London", "Knightsbridge, Belgravia & Hyde Park", "City of London", "South Kensington", "Old Street & St Luke's", "Spitalfields", "King's Cross & Bloomsbury North", "Strand, St James & Mayfair", "Borough & Southwark Street", "Queenstown Road & Patmore", "Strand, St James & Mayfair", "City of London", "Strand, St James & Mayfair", "City of London", "Brimsdown & Ponders End", "Fitzrovia East & Bloomsbury West", "Shoreditch", "Fitzrovia East & Bloomsbury West", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Fitzrovia East & Bloomsbury West", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "Brick Lane North", "City of London", "City of London", "Bryanston & Dorset Square", "Lambeth Walk & North Kennington", "Westbourne", "Camden Road South", "City of London", "London Bridge & Bermondsey West", "Peckham Park Road", "Canonbury East & Mildmay Park", "Holborn, St Giles & Bloomsbury South", "Chelsea Riverside East", "Primrose Hill", "London Fields & Mare Street", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Walthamstow Market & South Grove", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Hans Town", "St George in the East & Wapping North", "Hackney Central", "Dalston Kingsland", "Dalston Kingsland", "Dalston Kingsland", "East Finchley", "East Finchley", "East Finchley", "East Finchley", "East Finchley", "East Finchley", "Brondesbury Park", "Brondesbury Park", "Brondesbury Park", "Brondesbury Park", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Homerton North", "Homerton North", "Homerton North", "Homerton North", "Homerton North", "Strand, St James & Mayfair", "Angel", "Angel", "Angel", "Angel", "City of London", "Bryanston & Dorset Square", "Mill Meads", "Shoreditch", "Somers Town", "Spitalfields", "King's Cross & Bloomsbury North", "Fitzrovia East & Bloomsbury West", "City of London", "Holborn, St Giles & Bloomsbury South", "Maida Hill", "Baker's Arms", "Angel", "London Bridge & Bermondsey West", "Walworth North", "Blackheath Village", "West Kensington", "Strand, St James & Mayfair", "Archway West", "Strand, St James & Mayfair", "Hampstead Town", "City of London", "Mortlake & South Barnes", "Stamford Hill South", "Strand, St James & Mayfair", "Muswell Hill South", "", "Old Oak & Wormwood", "Knightsbridge, Belgravia & Hyde Park", "City of London", "Hatton Garden & Theobalds Road", "Bow West", "Clerkenwell", "Clerkenwell", "Highbury Fields", "New Cross Gate", "City of London", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "City of London", "Clerkenwell", "Holborn, St Giles & Bloomsbury South", "Hampstead Town", "Canada Water", "Clerkenwell", "Spitalfields", "Shoreditch", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "Victoria", "Fitzrovia West & Soho", "Cranham East", "Fitzrovia West & Soho", "St Mary's", "Hampstead Town", "Strand, St James & Mayfair", "City of London", "Peckham Rye", "", "Clerkenwell", "London Bridge & Bermondsey West", "Fitzrovia West & Soho", "Shoreditch", "Shoreditch", "Shoreditch", "Canary Wharf", "Stratford Central", "North End", "Strand, St James & Mayfair", "Strand, St James & Mayfair"];
+const SRCS = ["universe", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "universe", "universe", "ticketmaster", "ticketmaster", "venue", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "ticketmaster", "universe", "ticketmaster", "ticketmaster", "universe", "universe", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "universe", "universe", "universe", "universe", "universe", "universe", "universe", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "universe", "universe", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "ticketmaster", "ticketweb", "ticketmaster", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite"];  // where each event is listed: "eventbrite", "luma" ... "venue" (its link's site, source_of)
+const SRC_LABEL = {"eventbrite": "Eventbrite", "luma": "Luma", "ticketmaster": "Ticketmaster", "ticketweb": "TicketWeb", "universe": "Universe", "dice": "DICE", "nycparks": "NYC Parks", "geekswhodrink": "Geeks Who Drink", "venue": "Sitios de los locales"};
 const AREA_GROUP = ["Westminster", "Lambeth", "Westminster", "Lambeth", "Camden", "Richmond upon Thames", "Kensington and Chelsea", "Tower Hamlets", "Lambeth", "Lambeth", "Westminster", "Wandsworth", "Southwark", "Camden", "Westminster", "Southwark", "Westminster", "Lambeth", "Brent", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Hammersmith and Fulham", "Lambeth", "Camden", "Westminster", "Westminster", "Westminster", "Camden", "Westminster", "Lewisham", "Westminster", "Hackney", "Harrow", "Lambeth", "Westminster", "Hackney", "Camden", "Southwark", "Camden", "Westminster", "Westminster", "Islington", "Westminster", "Camden", "Camden", "Westminster", "Islington", "Hammersmith and Fulham", "Camden", "Camden", "Islington", "Camden", "Camden", "Hackney", "Camden", "Camden", "", "Greenwich", "Camden", "", "Tower Hamlets", "Camden", "Westminster", "Camden", "Camden", "Westminster", "Tower Hamlets", "Westminster", "Westminster", "Westminster", "Hackney", "Westminster", "Westminster", "Westminster", "Westminster", "Kensington and Chelsea", "Westminster", "Westminster", "Westminster", "Islington", "Westminster", "", "Camden", "Westminster", "Westminster", "Hammersmith and Fulham", "Westminster", "Westminster", "Westminster", "Westminster", "Newham", "Hackney", "Westminster", "Kensington and Chelsea", "Lambeth", "City of London", "City of London", "Southwark", "Camden", "Hackney", "Islington", "Hammersmith and Fulham", "Newham", "City of London", "Hackney", "Lambeth", "Westminster", "Islington", "City of London", "Camden", "Westminster", "Camden", "Wandsworth", "Islington", "Westminster", "Hammersmith and Fulham", "City of London", "", "City of London", "Westminster", "Hackney", "Southwark", "Islington", "Lewisham", "Islington", "Camden", "Islington", "Lambeth", "Southwark", "Islington", "Islington", "Camden", "Hackney", "City of London", "Southwark", "Tower Hamlets", "City of London", "Islington", "Camden", "Westminster", "Camden", "Islington", "Camden", "Camden", "City of London", "Westminster", "City of London", "Kensington and Chelsea", "Islington", "Tower Hamlets", "Camden", "Westminster", "Southwark", "Wandsworth", "Westminster", "City of London", "Westminster", "City of London", "Enfield", "Camden", "Hackney", "Camden", "Westminster", "Westminster", "Camden", "Westminster", "Westminster", "Tower Hamlets", "City of London", "City of London", "Westminster", "Lambeth", "Westminster", "Camden", "City of London", "Southwark", "Southwark", "Islington", "Camden", "Kensington and Chelsea", "Camden", "Hackney", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Waltham Forest", "Westminster", "Westminster", "Westminster", "Kensington and Chelsea", "Tower Hamlets", "Hackney", "Hackney", "Hackney", "Hackney", "Barnet", "Barnet", "Barnet", "Barnet", "Barnet", "Barnet", "Brent", "Brent", "Brent", "Brent", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Camden", "Camden", "Camden", "Camden", "Camden", "Camden", "Camden", "Camden", "Camden", "Camden", "Hackney", "Hackney", "Hackney", "Hackney", "Hackney", "Westminster", "Islington", "Islington", "Islington", "Islington", "City of London", "Westminster", "Newham", "Hackney", "Camden", "Tower Hamlets", "Camden", "Camden", "City of London", "Camden", "Westminster", "Waltham Forest", "Islington", "Southwark", "Southwark", "Lewisham", "Hammersmith and Fulham", "Westminster", "Islington", "Westminster", "Camden", "City of London", "Richmond upon Thames", "Hackney", "Westminster", "Haringey", "", "Hammersmith and Fulham", "Westminster", "City of London", "Camden", "Tower Hamlets", "Islington", "Islington", "Islington", "Lewisham", "City of London", "Westminster", "Westminster", "City of London", "Islington", "Camden", "Camden", "Southwark", "Islington", "Tower Hamlets", "Hackney", "Westminster", "Westminster", "Westminster", "Westminster", "Havering", "Westminster", "Ealing", "Camden", "Westminster", "City of London", "Southwark", "", "Islington", "Southwark", "Westminster", "Hackney", "Hackney", "Hackney", "Tower Hamlets", "Newham", "Hammersmith and Fulham", "Westminster", "Westminster"];  // each event's borough / region ("" = no neighbourhood)
 const AREA_ORDER = ["Westminster", "Camden", "City of London", "Islington", "Hackney", "Southwark", "Lambeth", "Tower Hamlets", "Hammersmith and Fulham", "Barnet", "Kensington and Chelsea", "Brent", "Lewisham", "Newham", "Wandsworth", "Richmond upon Thames", "Waltham Forest", "Ealing", "Enfield", "Greenwich", "Haringey", "Harrow", "Havering", "Barking and Dagenham", "Bexley", "Bromley", "Croydon", "Hillingdon", "Hounslow", "Kingston upon Thames", "Merton", "Redbridge", "Sutton", "Otros lugares"];
 const TZ = "Europe/London";
@@ -9481,7 +9484,7 @@ window.__applyFilters = (function () {
   // you: "Para ti" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "Mis barrios" (Preferences)
   // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false, low: false};
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -9514,7 +9517,7 @@ window.__applyFilters = (function () {
     if (base && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) base = false;
     if (base && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) base = false;
     if (base && F.q) {
-      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
+      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (SRC_LABEL[SRCS[i]] || "") + " " + (a ? a.textContent : "")).toLowerCase();
       if (!hay[i].includes(F.q)) base = false;
     }
     const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
@@ -9523,6 +9526,7 @@ window.__applyFilters = (function () {
       free: !F.free || FREE[i],
       tod: todOk(i),
       hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
+      src: !F.src || F.src.split("|").includes(SRCS[i]),  // one or several sources (Eventbrite, Luma ...)
       you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []) ||
         ((F.low || F.q) && Tonight.excluded && Tonight.excluded(i) === "junk"),
       near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
@@ -9533,7 +9537,7 @@ window.__applyFilters = (function () {
     let n = 0, nLow = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const rest = d.cat && d.free && d.tod && d.hood && d.you && d.near;
+      const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near;
       const ok = d.base && rest;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
@@ -9581,6 +9585,8 @@ window.__applyFilters = (function () {
   });
   const _fh = document.getElementById("fhood");
   if (_fh) _fh.addEventListener("change", e => { F.hood = e.target.value; applyFilters(); });
+  const _fs = document.getElementById("fsrc");
+  if (_fs) _fs.addEventListener("change", e => { F.src = e.target.value; applyFilters(); });
   document.getElementById("ffree").addEventListener("click", e => {
     F.free = !F.free;
     e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
@@ -9699,7 +9705,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.near;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.near;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -9726,7 +9732,7 @@ window.__applyFilters = (function () {
   (() => {
     const q = document.getElementById("fq");
     if (q.value) q.dispatchEvent(new Event("input"));
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") el.dispatchEvent(new Event("change")); });
   })();
   // filters from the address, e.g. ?free=1&before=960 (links from Toni, shared links)
@@ -9735,7 +9741,7 @@ window.__applyFilters = (function () {
       if (el && v != null) { if (el.tagName === "SELECT" && v !== "" && !el.querySelector('option[value="' + v + '"]')) { const o = document.createElement("option"); o.value = v; const h = Math.floor(v / 60), m = v % 60; o.textContent = (h % 12 || 12) + (m ? ":" + String(m).padStart(2, "0") : "") + (h >= 12 ? " PM" : " AM"); el.appendChild(o); } el.value = v; el.dispatchEvent(new Event("change")); } };
     if (q.get("free") === "1") document.getElementById("ffree").click();
     setv("fafter", q.get("after")); setv("fbefore", q.get("before"));
-    setv("fcat", q.get("cat")); setv("fhood", q.get("hood"));
+    setv("fcat", q.get("cat")); setv("fhood", q.get("hood")); setv("fsrc", q.get("src"));
     const only = (q.get("only") || "").split(",").filter(x => /^[0-9a-f]{8,10}$/.test(x));
     if (only.length) {
       F.only = new Set(only);
@@ -9750,9 +9756,9 @@ window.__applyFilters = (function () {
   // active filters look "on"; Clear all appears once anything is set
   const _fb = document.getElementById("filterBar"), _fc = document.getElementById("fclear");
   function syncFilterUI() {
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src);
     if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
     if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
@@ -9761,7 +9767,7 @@ window.__applyFilters = (function () {
   _fb.addEventListener("click", () => setTimeout(syncFilterUI, 0));
   if (_fc) _fc.addEventListener("click", () => {
     const q = document.getElementById("fq"); q.value = ""; q.dispatchEvent(new Event("input"));
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") { el.value = ""; el.dispatchEvent(new Event("change")); } });
     if (F.free) document.getElementById("ffree").click();
     const all = document.querySelector('#ftod button[data-t="all"]'); if (all) all.click();
@@ -9982,7 +9988,7 @@ function setNextHour(on, quiet) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i))) return;
-    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.you || !d.near) return; }  // other filters still apply
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.src || !d.you || !d.near) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     const kind = soonKind(i, now);
@@ -12010,6 +12016,7 @@ function filterUrl(f){
   if (f.before != null) q.push("before=" + f.before);
   if (f.category) q.push("cat=" + encodeURIComponent(f.category));
   if (f.neighborhood) q.push("hood=" + encodeURIComponent(f.neighborhood));
+  if (f.source) q.push("src=" + encodeURIComponent(f.source));
   return q.length ? "?" + q.join("&") : "";
 }
 // "Show me everything that's free before 7": Toni sets the page's own filters instead of a long list
@@ -12019,7 +12026,7 @@ function applyPageFilters(f){
     el.value = v == null ? "" : String(v); el.dispatchEvent(new Event("change")); };
   var free = document.getElementById("ffree");
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
-  set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || "");
+  set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || ""); set("fsrc", f.source || "");
   var n = 0;
   document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;
@@ -12268,7 +12275,7 @@ fromSelect();
 var FX = window.__facet, side = document.getElementById("fside"), bar = document.getElementById("filterBar");
 if (!FX || !side || !bar || typeof CATS === "undefined") return;
 var L = {when: "Cuándo", evening: "Noche 5pm+", day: "De día", any: "Todo", soon: "Empieza pronto", exact: "Horas exactas",
-  price: "Precio", free: "Solo gratis", cat: "Categoría", area: "Zona", clear: "Borrar", clearAll: "Borrar filtros",
+  price: "Precio", free: "Solo gratis", cat: "Categoría", area: "Zona", src: "Fuente", clear: "Borrar", clearAll: "Borrar filtros",
   show: "Ver {n} eventos", show1: "Ver 1 evento", filters: "Filtros", filtersN: "Filtros ({n})", elsewhere: "Otros lugares",
   more: "Ver los {n}", fewer: "Ver menos", close: "Cerrar",
   forYou: "Para ti", everything: "Todo", muted: "silenciada", setting: "tu ajuste", budget: "Presupuesto: hasta {b}",
@@ -12281,7 +12288,7 @@ function catLabel(c){ return (window.CAT_LABELS && window.CAT_LABELS[c]) || c; }
 var root = document.documentElement; root.classList.add("fs-on");
 function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
 function $(id){ return document.getElementById(id); }
-var catSel = $("fcat"), hoodSel = $("fhood"), soonBtn = $("nextHourBtn");
+var catSel = $("fcat"), hoodSel = $("fhood"), srcSel = $("fsrc"), soonBtn = $("nextHourBtn");
 var cards = [].slice.call(document.querySelectorAll("article.event"));
 var N = NAMES.length, cardOf = {};
 cards.forEach(function(a){ cardOf[+a.dataset.idx] = a; });
@@ -12427,6 +12434,22 @@ if (areaSec) {
   }
 }
 
+// Source: where each event is listed (Eventbrite, Luma ... build.py source_of), busiest first, venues' own sites last
+var srcRows = [], srcSec = null;
+if (srcSel && typeof SRCS !== "undefined") {
+  var daySrc = {}; SRCS.forEach(function(k){ daySrc[k] = (daySrc[k] || 0) + 1; });
+  var srcKeys = Object.keys(daySrc).sort(function(a, b){
+    return ((a === "venue") - (b === "venue")) || (daySrc[b] - daySrc[a]) || a.localeCompare(b); });
+  if (srcKeys.length > 1) {
+    srcSec = section(L.src, function(){ setSel(srcSel, ""); });
+    srcRows = srcKeys.map(function(k){
+      return {v: k, o: row(srcSec.s, "checkbox", null, SRC_LABEL[k] || k, function(on){
+        setSel(srcSel, toggle(vals(srcSel, "|"), k, on).join("|"));
+      })};
+    });
+  }
+}
+
 clearAll.addEventListener("click", function(){
   var fc = $("fclear"); if (fc) fc.click();
   if (FX.F.near) setNear(false);
@@ -12501,19 +12524,21 @@ function paintChips(p, liked){
 
 // live counts: what each box would show with all the other filters as they are
 function draw(){
-  var F = FX.F, cats = vals(catSel, ","), hoods = vals(hoodSel, "|"), p = prof(), you = hasProf();
+  var F = FX.F, cats = vals(catSel, ","), hoods = vals(hoodSel, "|"), srcs = vals(srcSel, "|"), p = prof(), you = hasProf();
   var likes = you ? p.likes : [], mutes = you ? p.mutes : [], forYou = you && F.you;
-  var cc = {}, ca = {}, hc = {}, gc = {}, tc = {evening: 0, day: 0, all: 0, soon: 0}, fr = 0, total = 0, nYou = 0, nAll = 0, nNear = 0;
+  var cc = {}, ca = {}, hc = {}, gc = {}, sc = {}, tc = {evening: 0, day: 0, all: 0, soon: 0}, fr = 0, total = 0, nYou = 0, nAll = 0, nNear = 0;
   for (var i = 0; i < N; i++) {
     var a = cardOf[i]; if (!a) continue;
     var d = FX.dims(i, a); if (!d.base) continue;
-    var rest = d.you && d.near;
+    var rest = d.you && d.near, srcOk = d.src;
+    if (d.cat && d.free && d.tod && d.hood && rest) sc[SRCS[i]] = (sc[SRCS[i]] || 0) + 1;
+    rest = rest && srcOk;  // every other box counts with the Source filter as it is
     if (d.cat && d.free && d.tod && d.hood && rest) total++;
-    if (d.cat && d.free && d.tod && d.hood && d.near) { nAll++;
+    if (d.cat && d.free && d.tod && d.hood && d.near && srcOk) { nAll++;
       if (!(T().forYouOut && T().forYouOut(i, cats))) nYou++; }
-    if (d.cat && d.free && d.tod && d.hood && d.you && T().inArea && T().inArea(i)) nNear++;
+    if (d.cat && d.free && d.tod && d.hood && d.you && srcOk && T().inArea && T().inArea(i)) nNear++;
     if (d.hood && d.free && d.tod && rest) cc[CATS[i]] = (cc[CATS[i]] || 0) + 1;
-    if (d.hood && d.free && d.tod && d.near) ca[CATS[i]] = (ca[CATS[i]] || 0) + 1;  // ... whatever For you says
+    if (d.hood && d.free && d.tod && d.near && srcOk) ca[CATS[i]] = (ca[CATS[i]] || 0) + 1;  // ... whatever For you says
     if (d.cat && d.free && d.tod && rest && HOODS[i]) { hc[HOODS[i]] = (hc[HOODS[i]] || 0) + 1; var g = hoodGroup[HOODS[i]]; gc[g] = (gc[g] || 0) + 1; }
     if (d.cat && d.hood && d.tod && rest && FREE[i]) fr++;
     if (d.cat && d.hood && d.free && rest) { if (FX.todMatch(i, "evening")) tc.evening++; if (FX.todMatch(i, "day")) tc.day++; tc.all++;
@@ -12564,6 +12589,7 @@ function draw(){
   if (tOn && !times.open) times.open = true;
   setRow(free, fr, !!F.free);
   hoodRows.forEach(function(r){ setRow(r.o, hc[r.v] || 0, hoods.indexOf(r.v) >= 0); });
+  srcRows.forEach(function(r){ setRow(r.o, sc[r.v] || 0, srcs.indexOf(r.v) >= 0); });
   grpBoxes.forEach(function(b){
     var sel = hoods.some(function(h){ return hoodGroup[h] === b.g; });
     b.n.textContent = gc[b.g] || 0; b.dot.hidden = !sel;
@@ -12571,13 +12597,14 @@ function draw(){
     if (sel && !b.d.dataset.seen) { b.d.open = true; }
     b.d.dataset.seen = sel ? "1" : "";
   });
-  var nOn = cats.length + hoods.length + (F.free ? 1 : 0) + (F.near ? 1 : 0) + (F.tod !== FX.TOD0() ? 1 : 0) +
+  var nOn = cats.length + hoods.length + srcs.length + (F.free ? 1 : 0) + (F.near ? 1 : 0) + (F.tod !== FX.TOD0() ? 1 : 0) +
     (F.after != null ? 1 : 0) + (F.before != null ? 1 : 0) + (soonOn() ? 1 : 0);
   var any = nOn > 0 || !!F.q;
   clearAll.hidden = !any;
   if (when.clear) when.clear.hidden = !(F.tod !== FX.TOD0() || tOn || soonOn());
   if (catSec) catSec.clear.hidden = !cats.length;
   if (areaSec && areaSec.clear) areaSec.clear.hidden = !hoods.length;
+  if (srcSec) srcSec.clear.hidden = !srcs.length;
   fsBtn.textContent = nOn ? L.filtersN.replace("{n}", nOn) : L.filters;
   fsBtn.classList.toggle("on", nOn > 0);
   fsMore.textContent = fsBtn.textContent; fsMore.classList.toggle("on", nOn > 0);
