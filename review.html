@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Review suggestions and reports — Tonight</title>
+<title>Review suggestions, reports and feeds — Tonight</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -162,6 +162,7 @@ body{background:#F7F2E9;color:#14201A;margin:0;}
 .rv-row{grid-column:1/-1;display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
 .rv-ok,.rv-no,#rvSave{border:3px solid #14201A;padding:8px 16px;font-weight:800;cursor:pointer;background:#E39A2D;}
 .rv-no{background:#fff;} .rv-msg{font-size:13px;font-weight:700;}
+.rv-sample{margin:8px 0 0;padding-left:18px;font-size:13.5px;} .rv-err{color:#b3261e;font-size:13px;margin-top:4px;}
 #rvKeyBox{display:flex;gap:8px;margin:12px 0 20px;} #rvKeyBox[hidden]{display:none;}
 #rvKeyBox input{flex:1;padding:8px;border:2px solid #14201A;font:inherit;}
 @media (max-width:560px){.rv-form{grid-template-columns:1fr;}}
@@ -494,6 +495,17 @@ background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .lhero h1{text-transform:none;}
 :root[data-layout="lineup"] .legal a,:root[data-layout="lineup"] .srow .sub a,:root[data-layout="lineup"] .sdone a,:root[data-layout="lineup"] .kids-note button,:root[data-layout="lineup"] .lk-see a{text-decoration-color:var(--lu-hot);}
 
+:root[data-layout="lineup"] .vn-way,:root[data-layout="lineup"] .vn-facts li{border:2px solid var(--ink);border-radius:var(--lu-r);box-shadow:var(--lu-sh);background:var(--card);}
+:root[data-layout="lineup"] .vn-way h2,:root[data-layout="lineup"] .vn-fine h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;font-size:28px;}
+:root[data-layout="lineup"] .vn-fine h2{font-size:22px;}
+:root[data-layout="lineup"] .vn-way h2 .vn-tag{font-family:var(--lu-t)!important;background:var(--lu-sun);color:#151515;border-radius:999px;padding:5px 10px;}
+:root[data-layout="lineup"] .vn-facts li b{color:var(--lu-hot);}
+:root[data-layout="lineup"] .vn-go,:root[data-layout="lineup"] .vn-btn{border:2px solid var(--ink);border-radius:999px;box-shadow:var(--lu-sh);background:var(--lu-hot);color:var(--on-accent);}
+:root[data-layout="lineup"] .vn-go:hover,:root[data-layout="lineup"] .vn-btn:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--ink);}
+:root[data-layout="lineup"] .vn-f input,:root[data-layout="lineup"] .vn-f select,:root[data-layout="lineup"] .vn-f textarea{border:2px solid var(--ink)!important;border-radius:12px!important;background:var(--field);}
+:root[data-layout="lineup"] .vn-f input:focus,:root[data-layout="lineup"] .vn-f select:focus,:root[data-layout="lineup"] .vn-f textarea:focus{outline:3px solid var(--lu-sun);outline-offset:1px;}
+:root[data-layout="lineup"] .vn a{text-decoration-color:var(--lu-hot);}
+
 
 @media (min-width:1100px){
 :root[data-layout="lineup"].fs-on .hero.dayhero{padding-left:max(24px,calc((100% - 1312px) / 2));padding-right:max(24px,calc((100% - 1312px) / 2));}
@@ -546,6 +558,13 @@ two visitors' reports hide the event on the page. Confirm keeps that; Dismiss cl
 <label class="rv-f" style="max-width:220px;margin:0 0 14px;"><span>Show</span><select id="rpStatus">
 <option value="new">New</option><option value="confirmed">Confirmed</option><option value="dismissed">Dismissed</option></select></label>
 <div id="rpList"></div>
+<h1 id="feeds">Venue feeds</h1>
+<p>Calendars venues sent in on venues.html. Approve to read it every morning (from the next build);
+Pause stops reading it but keeps it; Check again reads it now.</p>
+<label class="rv-f" style="max-width:220px;margin:0 0 14px;"><span>Show</span><select id="vfStatus">
+<option value="pending">Waiting</option><option value="approved">Approved</option><option value="paused">Paused</option>
+<option value="rejected">Rejected</option></select></label>
+<div id="vfList"></div>
 </main>
 <script>
 (function(){
@@ -661,6 +680,68 @@ function load(){
 $("rpStatus").addEventListener("change", load);
 $("rvSave").addEventListener("click", function(){ setTimeout(load, 50); });
 setTimeout(function(){ if (key()) load(); else $("rpList").textContent = "Enter the admin key to see reports."; }, 350);
+})();
+</script>
+<script>
+(function(){
+var KEY = "tonight-admin-key";
+function $(id){ return document.getElementById(id); }
+function key(){ try { return localStorage.getItem(KEY) || ""; } catch (e) { return ""; } }
+function api(path, opts){
+  opts = opts || {}; opts.headers = Object.assign({"X-Admin-Key": key(), "Content-Type": "application/json"}, opts.headers || {});
+  return fetch((window.__tonight_api || "") + path, opts).then(function(r){ return r.json(); });
+}
+function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+function link(u, cls){ var a = el("a", cls || "", u); a.href = u; a.target = "_blank"; a.rel = "noopener"; return a; }
+function draw(card, f){
+  card.innerHTML = "";
+  var top = el("div", "rv-top");
+  top.appendChild(el("div", "", "")).appendChild(el("b", "", f.name));
+  top.appendChild(el("div", "rv-meta", f.city.toUpperCase() + " · sent " + f.created + " · " + f.email));
+  top.appendChild(link(f.feed_url, "rv-url"));
+  if (f.website) top.appendChild(link(f.website, "rv-url"));
+  if (f.note) top.appendChild(el("div", "rv-note", "“" + f.note + "”"));
+  top.appendChild(el("div", "rv-meta", "Kind: " + (f.kind || "not recognised") + " · " + (f.last_count || 0) + " upcoming"
+    + (f.last_ok ? " · last read OK " + f.last_ok : "")));
+  if (f.last_error) top.appendChild(el("div", "rv-err", f.last_error));
+  if (f.sample && f.sample.length) {
+    var ul = el("ul", "rv-sample");
+    f.sample.forEach(function(s){ ul.appendChild(el("li", "", s.name + " · " + s.date + (s.time ? " " + s.time : "") + (s.venue ? " · " + s.venue : ""))); });
+    top.appendChild(ul);
+  }
+  card.appendChild(top);
+  var row = el("div", "rv-row"), msg = el("span", "rv-msg");
+  var acts = {pending: ["approve", "reject"], approved: ["pause", "reject"], paused: ["approve", "reject"], rejected: ["approve"]}[f.status] || [];
+  var label = {approve: f.status === "paused" ? "Resume" : "Approve", reject: "Reject", pause: "Pause"};
+  acts.concat(["check"]).forEach(function(a){
+    var b = el("button", a === "approve" ? "rv-ok" : "rv-no", a === "check" ? "Check again" : label[a]); b.type = "button";
+    b.addEventListener("click", function(){
+      msg.textContent = a === "check" ? "Reading it…" : "Saving…";
+      api("/admin/venue_feeds/" + f.id, {method: "POST", body: JSON.stringify({action: a})}).then(function(r){
+        if (!r.ok) { msg.textContent = r.error || "Couldn't save."; return; }
+        if (a === "check") { draw(card, r.feed); return; }
+        msg.textContent = {approved: "Approved. It's read from the next morning build.", rejected: "Rejected.", paused: "Paused."}[r.status];
+        Array.prototype.forEach.call(row.querySelectorAll("button"), function(x){ x.disabled = true; });
+      });
+    });
+    row.appendChild(b);
+  });
+  row.appendChild(msg); card.appendChild(row);
+}
+function load(){
+  var host = $("vfList"); if (!host) return;
+  var status = $("vfStatus").value;
+  host.textContent = "Loading…";
+  api("/admin/venue_feeds?status=" + status).then(function(d){
+    if (!d.ok) { host.textContent = d.error === "forbidden" ? "That key didn't work." : (d.error || "Couldn't load."); return; }
+    host.innerHTML = "";
+    if (!d.feeds.length) { host.textContent = status === "pending" ? "No feeds waiting. ✨" : "None."; return; }
+    d.feeds.forEach(function(f){ var card = el("div", "rv-card"); draw(card, f); host.appendChild(card); });
+  }).catch(function(){ host.textContent = "Couldn't reach the server."; });
+}
+$("vfStatus").addEventListener("change", load);
+$("rvSave").addEventListener("click", function(){ setTimeout(load, 50); });
+setTimeout(function(){ if (key()) load(); else $("vfList").textContent = "Enter the admin key to see venue feeds."; }, 400);
 })();
 </script>
 <script>window.__tonight_api=""||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>

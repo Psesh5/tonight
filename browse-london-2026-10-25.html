@@ -405,6 +405,17 @@ background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .lhero h1{text-transform:none;}
 :root[data-layout="lineup"] .legal a,:root[data-layout="lineup"] .srow .sub a,:root[data-layout="lineup"] .sdone a,:root[data-layout="lineup"] .kids-note button,:root[data-layout="lineup"] .lk-see a{text-decoration-color:var(--lu-hot);}
 
+:root[data-layout="lineup"] .vn-way,:root[data-layout="lineup"] .vn-facts li{border:2px solid var(--ink);border-radius:var(--lu-r);box-shadow:var(--lu-sh);background:var(--card);}
+:root[data-layout="lineup"] .vn-way h2,:root[data-layout="lineup"] .vn-fine h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;font-size:28px;}
+:root[data-layout="lineup"] .vn-fine h2{font-size:22px;}
+:root[data-layout="lineup"] .vn-way h2 .vn-tag{font-family:var(--lu-t)!important;background:var(--lu-sun);color:#151515;border-radius:999px;padding:5px 10px;}
+:root[data-layout="lineup"] .vn-facts li b{color:var(--lu-hot);}
+:root[data-layout="lineup"] .vn-go,:root[data-layout="lineup"] .vn-btn{border:2px solid var(--ink);border-radius:999px;box-shadow:var(--lu-sh);background:var(--lu-hot);color:var(--on-accent);}
+:root[data-layout="lineup"] .vn-go:hover,:root[data-layout="lineup"] .vn-btn:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--ink);}
+:root[data-layout="lineup"] .vn-f input,:root[data-layout="lineup"] .vn-f select,:root[data-layout="lineup"] .vn-f textarea{border:2px solid var(--ink)!important;border-radius:12px!important;background:var(--field);}
+:root[data-layout="lineup"] .vn-f input:focus,:root[data-layout="lineup"] .vn-f select:focus,:root[data-layout="lineup"] .vn-f textarea:focus{outline:3px solid var(--lu-sun);outline-offset:1px;}
+:root[data-layout="lineup"] .vn a{text-decoration-color:var(--lu-hot);}
+
 
 @media (min-width:1100px){
 :root[data-layout="lineup"].fs-on .hero.dayhero{padding-left:max(24px,calc((100% - 1312px) / 2));padding-right:max(24px,calc((100% - 1312px) / 2));}
@@ -7085,6 +7096,8 @@ max-width:440px;width:100%;padding:22px 20px;font-family:inherit;}
 #sgCard button.sg-go{background:var(--accent,#E39A2D);border:3px solid var(--ink,#14201A);font-weight:800;padding:10px 16px;cursor:pointer;color:#14201A;}
 #sgCard button.sg-x{background:none;border:0;text-decoration:underline;cursor:pointer;color:inherit;font:inherit;}
 #sgMsg{min-height:18px;font-size:13.5px;font-weight:700;margin-top:8px;}
+#sgCard .sg-venue{margin:10px 0 0;font-size:13px;opacity:.85;}
+#sgCard .sg-venue a{color:inherit;font-weight:700;}
 #siteFoot{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center;padding:18px 16px 90px;
 font:800 12px/1.2 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;}
 #siteFoot a,#siteFoot summary{color:var(--ink,#14201A);text-decoration:none;border-bottom:2px solid var(--accent,#E39A2D);}
@@ -7098,6 +7111,11 @@ var foot = document.getElementById("siteFoot");
 if (!foot) { foot = document.createElement("div"); foot.id = "siteFoot"; document.body.appendChild(foot); }
 var a = document.createElement("a"); a.className = "tastelink"; a.href = "#"; a.id = "suggestLink";
 a.textContent = "Suggest an event"; foot.insertBefore(a, foot.firstChild);
+// "List your events" (venues.html), at the site's root: the brand link points there on every page
+var brand = document.querySelector(".topnav .brand");
+var siteRoot = new URL((brand && brand.getAttribute("href")) || "./", location.href).href.replace(/[^\/]*$/, "");
+var vl = document.createElement("a"); vl.className = "tastelink"; vl.href = siteRoot + "venues.html"; vl.id = "venuesLink";
+vl.textContent = "List your events"; foot.insertBefore(vl, a.nextSibling);
 var veil;
 function el(t, attrs, txt){ var e = document.createElement(t); for (var k in (attrs || {})) e.setAttribute(k, attrs[k]); if (txt) e.textContent = txt; return e; }
 function build(){
@@ -7114,6 +7132,9 @@ function build(){
   var x = el("button", {type: "button", "class": "sg-x"}, "cancel");
   row.appendChild(go); row.appendChild(x); c.appendChild(row);
   c.appendChild(el("div", {id: "sgMsg"}));
+  var vp = el("p", {"class": "sg-venue"}, "Run a venue or an event series? ");
+  var va = el("a", {href: siteRoot + "venues.html"}, "List all your events");
+  vp.appendChild(va); c.appendChild(vp);
   veil.appendChild(c); document.body.appendChild(veil);
   x.addEventListener("click", close);
   veil.addEventListener("click", function(e){ if (e.target === veil) close(); });
