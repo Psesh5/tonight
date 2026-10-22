@@ -6568,9 +6568,10 @@ function render(){
     log.appendChild(hi);
   }
   if (restoredCount) log.appendChild(el("div", "tn-earlier", "Hoy más temprano"));
+  var lastYou = null;
   history.forEach(function(m, k){
     if (restoredCount && k === restoredCount) log.appendChild(el("div", "tn-earlier", "Ahora"));
-    if (m.role === "user") { log.appendChild(el("div", "tn-you", m.display || m.content)); return; }
+    if (m.role === "user") { lastYou = el("div", "tn-you", m.display || m.content); log.appendChild(lastYou); return; }
     var blk = toniBlock();
     if (m.error) { blk.appendChild(el("p", "tn-text err", m.content)); log.appendChild(blk); return; }
     var cards = m.cards || [];
@@ -6612,7 +6613,11 @@ function render(){
     if (cards.length && !m.error) blk.appendChild(sendRow(m));
     log.appendChild(blk);
   });
-  log.scrollTop = log.scrollHeight;
+  // a new answer opens at its top (the question, then "53 university talks…"), not the bottom of a long list
+  var last = history[history.length - 1];
+  if (last && last.role === "assistant" && lastYou)
+    log.scrollTop += lastYou.getBoundingClientRect().top - log.getBoundingClientRect().top - 8;
+  else log.scrollTop = log.scrollHeight;
 }
 function dinnerPrefs(){
   try { return JSON.parse(localStorage.getItem("tonight-dinner") || "{}"); } catch (e) { return {}; }
