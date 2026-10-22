@@ -1535,7 +1535,7 @@ letter-spacing:.06em;text-transform:uppercase;box-sizing:border-box;}
 .daystrip .ds-more{cursor:pointer;font:800 12px/1.15 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;background:var(--paper);border-style:dashed;}
 .daystrip.open .ds-more{display:none;}
 .ds-note{max-width:1100px;margin:8px auto 0;padding:0 16px;font-size:13px;opacity:.75;box-sizing:border-box;}
-#tonightBtn,#nextHourBtn{display:none!important;}</style><style>
+</style><style>
 #dayLead{max-width:1072px;margin:0 auto;padding:26px 16px 4px;box-sizing:border-box;color:var(--ink);}
 #dayLead .dl-h{margin:0 0 8px;font:800 clamp(28px,4.6vw,50px)/1.05 'Fraunces',Georgia,serif;letter-spacing:-.01em;text-transform:none;}
 #dayLead .dl-p{margin:0;font-size:17px;opacity:.72;}
@@ -2234,7 +2234,7 @@ return {profile: profile, hasSettings: hasSettings, exclude: exclude, score: sco
 /* Tonight taste: onboarding quiz, profile, personalized ranking */
 (function(){
 "use strict";
-var CATS_ALL = ["Music", "Sports", "Arts & Play", "Comedy", "Theater", "Tours", "Tech", "Talks", "Meetups & Mixers", "Classes & Workshops", "Trivia & Games", "Film", "Food & Drink", "Fitness & Outdoors"];
+var CATS_ALL = ["Music", "Sports", "Arts & Play", "Comedy", "Theater", "Tours", "Classes & Workshops", "Trivia & Games", "Meetups & Mixers", "Talks", "Tech", "Fitness & Outdoors", "Food & Drink", "Film"];
 var CITY = "la";
 var CITIES_ALL = ["nyc", "london", "la"];
 var TKEY = "tonight-taste";
@@ -2710,7 +2710,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 </details>
 </div>
-</header><section id="dayLead" aria-label="The best things to do in Los Angeles on Thursday."><h2 class="dl-h">The best things to do in Los Angeles on Thursday.</h2><p class="dl-p">Picked from 167 events on Thursday.</p></section><nav class="daystrip" aria-label="Pick a day"><a class="ds" href="2026-10-21.html"><b>Today</b><span>Wed 21</span></a><a class="ds cur" href="2026-10-22.html" aria-current="page"><b>Tomorrow</b><span>Thu 22</span></a><a class="ds" href="2026-10-23.html"><b>Fri</b><span>23</span></a><a class="ds" href="2026-10-24.html"><b>Sat</b><span>24</span></a><a class="ds ds-x" href="2026-10-25.html"><b>Sun</b><span>25</span></a><a class="ds ds-x" href="2026-10-26.html"><b>Mon</b><span>26</span></a><a class="ds ds-x" href="2026-10-27.html"><b>Tue</b><span>27</span></a><a class="ds wk" href="weekend-2026-10-23.html">This weekend →</a><button type="button" class="ds ds-more" aria-expanded="false" onclick="var s=this.parentNode;s.classList.toggle('open');this.setAttribute('aria-expanded',s.classList.contains('open'))">More ▾</button></nav><p class="ds-note">More gets added as the day gets closer (comedy lineups and some talks are posted a day or two ahead).</p><div id="conciergeNote" aria-live="polite"></div>
+</header><section id="dayLead" aria-label="The best things to do in Los Angeles tonight."><h2 class="dl-h">The best things to do in Los Angeles tonight.</h2><p class="dl-p">Picked from 167 events today.</p></section><nav class="daystrip" aria-label="Pick a day"><a class="ds cur" href="2026-10-22.html" aria-current="page"><b>Today</b><span>Thu 22</span></a><a class="ds" href="2026-10-23.html"><b>Tomorrow</b><span>Fri 23</span></a><a class="ds" href="2026-10-24.html"><b>Sat</b><span>24</span></a><a class="ds" href="2026-10-25.html"><b>Sun</b><span>25</span></a><a class="ds ds-x" href="2026-10-26.html"><b>Mon</b><span>26</span></a><a class="ds ds-x" href="2026-10-27.html"><b>Tue</b><span>27</span></a><a class="ds wk" href="weekend-2026-10-23.html">This weekend →</a><button type="button" class="ds ds-more" aria-expanded="false" onclick="var s=this.parentNode;s.classList.toggle('open');this.setAttribute('aria-expanded',s.classList.contains('open'))">More ▾</button></nav><div id="conciergeNote" aria-live="polite"></div>
 
 <div id="fsLayout"><aside id="fside" aria-label="Filters"></aside><div id="fsCol"><div class="filters" id="filterBar">
 <div class="frow fchips">
@@ -2735,7 +2735,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="fclear" id="fclear" type="button" hidden>Clear all</button>
 </div>
 </div>
-<section id="topTonight" aria-labelledby="ttHead"><h2 id="ttHead">Top picks Thursday</h2><ol class="tt-list"></ol><p class="tt-empty" hidden>Nothing to single out with these filters. Everything is below.</p><a class="tt-all" href="#allEvents">See all 109 events →</a></section><div class="picks" id="picksBar"><strong>★ My picks: <span id="pickCount">0</span></strong><br>
+<section id="topTonight" aria-labelledby="ttHead"><h2 id="ttHead">Top tonight</h2><ol class="tt-list"></ol><p class="tt-empty" hidden>Nothing to single out with these filters. Everything is below.</p><a class="tt-all" href="#allEvents">See all 95 tonight →</a></section><div class="picks" id="picksBar"><strong>★ My picks: <span id="pickCount">0</span></strong><br>
 <span style="font-size:13px;color:#6b6b6b;">Ticks save automatically and shape tomorrow's picks. Going with friends? Send them your list.</span><br><br>
 <button class="btn btn-gold" id="textGroupBtn">💬 Text the group →</button>
 <div id="shareMsg" style="font-size:13px;margin-top:10px;min-height:18px;"></div>
@@ -2748,7 +2748,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 
 <section class="cat free">
-<h2>✨ Free on Thursday</h2>
+<h2>✨ Free today</h2>
 
 <article class="event" id="e-74c73780" data-idx="15" data-eid="74c73780" data-name="Ben Bankas" data-series="bc3af61e94" data-start-local="2026-10-22T19:30:00" data-cal-start="20261023T023000Z" data-cal-end="20261023T043000Z" data-loc="Brea Improv, Brea" data-url="https://www.ticketweb.com/event/ben-bankas-brea-improv-tickets/14982433" data-lat="33.919902" data-lng="-117.897147">
 <button class="toggle" data-idx="15" aria-label="Track this event" aria-pressed="false"><span class="box"></span></button>
