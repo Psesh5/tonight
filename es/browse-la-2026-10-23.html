@@ -6461,7 +6461,9 @@ function timeCell(t){
 }
 function card(c){
   var box = el("div", "tn-card"), body = el("div", "tn-body");
-  box.appendChild(timeCell(c.start_time));
+  var tc = timeCell(c.start_time);
+  if (c.day) tc.insertBefore(el("small", "tn-day", c.day), tc.firstChild);  // a pick from another day: "Fri 23"
+  box.appendChild(tc);
   body.appendChild(el("div", "n", c.name));
   var meta = el("div", "m");
   if (c.venue) meta.appendChild(el("span", "", c.venue));
