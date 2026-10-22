@@ -257,7 +257,7 @@ color:var(--lu-soft);}
 
 
 #luPoster{display:none;}
-:root[data-layout="lineup"] #luPoster{display:block;position:relative;overflow:hidden;max-width:1040px;width:calc(100% - 32px);margin:14px auto 0;padding:34px 28px 30px;
+:root[data-layout="lineup"] #luPoster{display:block;position:relative;overflow:hidden;max-width:1040px;width:calc(100% - 32px);margin:14px auto 0;padding:26px 28px 24px;
 box-sizing:border-box;background:var(--ink);color:var(--paper);border-radius:22px;text-align:center;}
 :root[data-layout="lineup"] #luPoster .lu-blob{position:absolute;border-radius:50%;pointer-events:none;}
 :root[data-layout="lineup"] #luPoster .lu-b1{width:420px;height:420px;background:var(--lu-hot);left:-170px;top:-190px;opacity:.9;}
@@ -266,23 +266,24 @@ box-sizing:border-box;background:var(--ink);color:var(--paper);border-radius:22p
 :root[data-layout="lineup"] #luPoster .lu-b4{width:90px;height:90px;background:var(--lu-mint);left:-30px;bottom:-34px;opacity:.95;}
 :root[data-layout="lineup"] #luPoster > :not(.lu-blob){position:relative;z-index:1;}
 :root[data-layout="lineup"] #luPoster .lu-eye{font-weight:700;letter-spacing:.3em;font-size:12px;color:var(--lu-sun);text-transform:uppercase;}
-:root[data-layout="lineup"] #luPoster .lu-date{margin:8px 0 2px;font-size:clamp(44px,8vw,86px);line-height:.95;text-transform:uppercase;}
+:root[data-layout="lineup"] #luPoster .lu-date{margin:6px 0 2px;font-size:clamp(40px,5.6vw,64px);line-height:.95;text-transform:uppercase;}
 :root[data-layout="lineup"] #luPoster .lu-from{margin:6px 0 0;font-size:13.5px;font-weight:600;opacity:.72;}
-:root[data-layout="lineup"] #luPoster .lu-hls{margin:10px auto 0;max-width:900px;}
-:root[data-layout="lineup"] #luPoster .lu-hl{display:block;margin:16px 0;}
-:root[data-layout="lineup"] #luPoster .lu-hl a{display:block;color:var(--paper);text-decoration:none;font-size:clamp(26px,4.2vw,44px);line-height:1.05;
+
+:root[data-layout="lineup"] #luPoster .lu-hls{margin:14px auto 0;max-width:1100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:4px 28px;align-items:start;}
+:root[data-layout="lineup"] #luPoster .lu-hl{display:block;margin:8px 0;}
+:root[data-layout="lineup"] #luPoster .lu-hl a{display:block;color:var(--paper);text-decoration:none;font-size:clamp(22px,2.4vw,32px);line-height:1.05;
 text-transform:uppercase;overflow-wrap:anywhere;}
 :root[data-layout="lineup"] #luPoster .lu-hl a:hover,:root[data-layout="lineup"] #luPoster .lu-hl a:focus-visible{color:var(--lu-sun);}
 :root[data-layout="lineup"] #luPoster .lu-t{display:block;font-weight:700;font-size:12px;letter-spacing:.2em;color:var(--lu-sun);margin-bottom:4px;text-transform:uppercase;}
 :root[data-layout="lineup"] #luPoster .lu-w{display:block;margin-top:4px;font-weight:600;font-size:13px;opacity:.72;text-transform:none;letter-spacing:0;}
-:root[data-layout="lineup"] #luPoster .lu-lines{margin:18px auto 0;max-width:860px;line-height:1.7;font-weight:700;font-size:15px;text-transform:uppercase;
+:root[data-layout="lineup"] #luPoster .lu-lines{margin:14px auto 0;max-width:1000px;line-height:1.75;font-weight:700;font-size:15px;text-transform:uppercase;
 letter-spacing:.04em;overflow-wrap:anywhere;}
 :root[data-layout="lineup"] #luPoster .lu-lines:empty{display:none;}
-:root[data-layout="lineup"] #luPoster .lu-ln{color:var(--paper);text-decoration:none;}
+:root[data-layout="lineup"] #luPoster .lu-ln{color:var(--paper);text-decoration:none;white-space:nowrap;}  
 :root[data-layout="lineup"] #luPoster .lu-ln:hover,:root[data-layout="lineup"] #luPoster .lu-ln:focus-visible{color:var(--lu-sun);}
 :root[data-layout="lineup"] #luPoster .lu-dot{color:var(--lu-hot);margin:0 8px;}
 :root[data-layout="lineup"] #luPoster .lu-none{margin:18px 0 0;font-weight:600;opacity:.8;}
-:root[data-layout="lineup"] #luPoster .lu-cta{display:inline-block;margin:22px 0 0;background:var(--lu-sun);color:#151515;font-weight:700;padding:12px 20px;
+:root[data-layout="lineup"] #luPoster .lu-cta{display:inline-block;margin:16px 0 0;background:var(--lu-sun);color:#151515;font-weight:700;padding:12px 20px;
 border-radius:999px;text-decoration:none;}
 :root[data-layout="lineup"] #luPoster .lu-cta:hover{transform:translateY(-1px);}
 :root[data-layout="lineup"].listmode #luPoster{display:none;}
@@ -498,6 +499,8 @@ background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] #luPoster .lu-eye{letter-spacing:.18em;font-size:11px;}
 :root[data-layout="lineup"] #luPoster .lu-hl a{font-size:clamp(24px,7.4vw,32px);}
 :root[data-layout="lineup"] #luPoster .lu-lines{font-size:13px;letter-spacing:.03em;}
+:root[data-layout="lineup"] #luPoster .lu-hls{grid-template-columns:1fr;}
+:root[data-layout="lineup"] #luPoster .lu-ln{white-space:normal;}
 :root[data-layout="lineup"] #luPoster .lu-dot{margin:0 5px;}
 :root[data-layout="lineup"] #topTonight{margin:24px 16px 0;}
 :root[data-layout="lineup"] #topTonight h2{font-size:30px;}
