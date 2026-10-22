@@ -79,9 +79,11 @@ footer p{opacity:.62;line-height:1.6;margin:0;}
 </style>
 <link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
-<style>:root{--field:#fff;--on-accent:var(--ink);--on-banner:var(--paper);}
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><style>:root{--field:#fff;--on-accent:var(--ink);--on-banner:var(--paper);}
 a{text-decoration-skip-ink:none;}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}.topnav .brand .wm{white-space:nowrap;}.topnav .brand .iw{position:relative;}.topnav .brand .im{position:absolute;left:50%;top:.95em;transform:translate(-50%,-82%) rotate(-18deg);font-size:.46em;line-height:1;color:var(--accent);-webkit-text-stroke:.07em var(--accent);font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-weight:400;}
+:root[data-palette="lineup"]{--paper:#fff7ec;--ink:#151515;--accent:#ff4f2e;--gold:#ff4f2e;--card:#fff;--field:#fff;--muted:#f5e8d6;--banner:#151515;--on-banner:#fff7ec;--on-accent:#151515;--danger:#d7261e}
+:root[data-palette="knicks"]{--paper:oklch(.965 .005 95);--ink:oklch(.3 .14 265);--accent:oklch(.72 .19 60);--gold:oklch(.72 .19 60);--card:oklch(.99 .005 95);--muted:oklch(.92 .02 260);--banner:oklch(.3 .14 265);--danger:oklch(.56 .2 25);--field:#fff;--on-accent:oklch(.3 .14 265);--on-banner:oklch(.965 .005 95)}
 :root[data-palette="neon"]{--paper:oklch(.16 .018 285);--ink:oklch(.94 .01 100);--accent:oklch(.88 .22 126);--card:oklch(.21 .022 285);--muted:oklch(.29 .03 285);--banner:oklch(.68 .25 350);--danger:oklch(.68 .2 25);--field:oklch(.21 .022 285);--on-accent:oklch(.16 .018 285);--on-banner:oklch(.16 .018 285);color-scheme:dark}
 :root[data-palette="harbor"]{--paper:oklch(.975 .012 190);--ink:oklch(.21 .055 193);--accent:oklch(.77 .13 168);--card:oklch(.99 .008 190);--muted:oklch(.92 .03 190);--banner:oklch(.21 .055 193);--danger:oklch(.58 .2 27)}
 :root[data-palette="cherry"]{--paper:oklch(.94 .025 84);--ink:oklch(.2 .012 50);--accent:oklch(.57 .22 24);--card:oklch(.97 .018 84);--muted:oklch(.89 .03 84);--banner:oklch(.77 .105 224);--danger:oklch(.5 .2 25);--on-accent:oklch(.99 .01 84);--on-banner:oklch(.2 .012 50)}
@@ -100,7 +102,338 @@ a{text-decoration-skip-ink:none;}
 :root[data-palette="sand"] .topnav .browselink,:root[data-palette="sand"] .topnav .tastelink{color:var(--on-banner);}:root[data-palette="sand"] .topnav .browselink{text-decoration:underline;text-decoration-thickness:2px;}:root[data-palette="sand"] .topnav .citylinks a.cur{background:var(--on-banner);color:var(--banner);border-color:var(--on-banner);}:root[data-palette="sand"] .topnav .brand .im{color:var(--on-banner);-webkit-text-stroke-color:var(--on-banner);}:root[data-palette="sand"] .hero .eyebrow{background:var(--on-banner);color:var(--banner);}
 :root[data-palette="clay"] .topnav .browselink,:root[data-palette="clay"] .topnav .tastelink{color:var(--on-banner);}:root[data-palette="clay"] .topnav .browselink{text-decoration:underline;text-decoration-thickness:2px;}:root[data-palette="clay"] .topnav .citylinks a.cur{background:var(--on-banner);color:var(--banner);border-color:var(--on-banner);}:root[data-palette="clay"] .topnav .brand .im{color:var(--on-banner);-webkit-text-stroke-color:var(--on-banner);}:root[data-palette="clay"] .hero .eyebrow{background:var(--on-banner);color:var(--banner);}
 :root[data-palette="mint"] .topnav .browselink,:root[data-palette="mint"] .topnav .tastelink{color:var(--on-banner);}:root[data-palette="mint"] .topnav .browselink{text-decoration:underline;text-decoration-thickness:2px;}:root[data-palette="mint"] .topnav .citylinks a.cur{background:var(--on-banner);color:var(--banner);border-color:var(--on-banner);}:root[data-palette="mint"] .topnav .brand .im{color:var(--on-banner);-webkit-text-stroke-color:var(--on-banner);}:root[data-palette="mint"] .hero .eyebrow{background:var(--on-banner);color:var(--banner);}
-:root[data-palette="neon"] .topnav .browselink{color:var(--on-banner);text-decoration:underline;text-decoration-thickness:2px;}</style><script>(function(){try{var r=document.documentElement,p=localStorage.getItem("tonight-palette"),l=localStorage.getItem("tonight-layout");if(p)r.setAttribute("data-palette",p);if(l)r.setAttribute("data-layout",l);}catch(e){}})();
+:root[data-palette="neon"] .topnav .browselink{color:var(--on-banner);text-decoration:underline;text-decoration-thickness:2px;}
+
+
+:root[data-layout="lineup"]{--lu-sun:#ffc21a;--lu-sky:#2f6bff;--lu-mint:#19b38a;--lu-hot:var(--accent);
+--lu-soft:color-mix(in srgb,var(--ink) 64%,var(--paper));--lu-line:color-mix(in srgb,var(--ink) 14%,transparent);
+--lu-r:18px;--lu-sh:0 2px 0 var(--ink);
+--lu-d:'Anton',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
+--lu-t:'Space Grotesk',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+:root[data-layout="lineup"]:not([data-palette]){--paper:#fff7ec;--ink:#151515;--accent:#ff4f2e;--gold:#ff4f2e;--card:#fff;--field:#fff;
+--muted:#f5e8d6;--banner:#151515;--on-banner:#fff7ec;--on-accent:#151515;--danger:#d7261e;}
+
+
+:root[data-layout="lineup"] body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;}
+:root[data-layout="lineup"] body,:root[data-layout="lineup"] body *{font-family:var(--lu-t)!important;}
+:root[data-layout="lineup"] .topnav .brand .wm-lu,:root[data-layout="lineup"] #luPoster .lu-date,:root[data-layout="lineup"] #luPoster .lu-hl a,:root[data-layout="lineup"] #topTonight h2,:root[data-layout="lineup"] .cat h2,:root[data-layout="lineup"] .tonight-head h2,
+:root[data-layout="lineup"] .hero h1,:root[data-layout="lineup"] .bhero h1,:root[data-layout="lineup"] .lhero h1,:root[data-layout="lineup"] .cc-top,:root[data-layout="lineup"] .how h2,:root[data-layout="lineup"] footer .serif,:root[data-layout="lineup"] .sdone h2,:root[data-layout="lineup"] .quiz-card h2,
+:root[data-layout="lineup"] #sgCard h2,:root[data-layout="lineup"] #rpCard h2,:root[data-layout="lineup"] .tn-head b,:root[data-layout="lineup"] .tsec-head h2,:root[data-layout="lineup"] .shead h2,:root[data-layout="lineup"] .picks strong,:root[data-layout="lineup"] .step .n,:root[data-layout="lineup"] .snum,
+:root[data-layout="lineup"] #dayLead .dl-h,:root[data-layout="lineup"] .legal h2,:root[data-layout="lineup"] .st-card h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;}
+
+:root[data-layout="lineup"] #topTonight h2 *,:root[data-layout="lineup"] .cat h2 *,:root[data-layout="lineup"] .hero h1 *,:root[data-layout="lineup"] .bhero h1 *,:root[data-layout="lineup"] .lhero h1 *,:root[data-layout="lineup"] .wm-lu *,:root[data-layout="lineup"] .cc-top *,:root[data-layout="lineup"] footer .serif *,
+:root[data-layout="lineup"] .tsec-head h2 *,:root[data-layout="lineup"] .shead h2 *,:root[data-layout="lineup"] .picks strong *,:root[data-layout="lineup"] .sdone h2 *,:root[data-layout="lineup"] .tonight-head h2 *{font-family:var(--lu-d)!important;font-weight:400!important;}
+
+
+:root[data-layout="lineup"] .topnav{background:var(--paper);color:var(--ink);border-bottom:2px solid var(--ink);padding:12px 24px;gap:18px;}
+:root[data-layout="lineup"] .topnav .brand{color:var(--ink);gap:0;}
+:root[data-layout="lineup"] .topnav .brand img,:root[data-layout="lineup"] .topnav .brand .wm{display:none;}
+:root[data-layout="lineup"] .topnav .brand .wm-lu{display:inline;font-size:28px;line-height:1;color:var(--ink);text-transform:none;}
+:root[data-layout="lineup"] .topnav .brand .wm-lu i{font-style:normal;color:var(--lu-hot);}
+:root[data-layout="lineup"] .topnav .tastelink,:root[data-layout="lineup"] .topnav .browselink,:root[data-layout="lineup"] .topnav .stylemenu summary{color:var(--ink);font-size:12.5px;font-weight:700;
+letter-spacing:.08em;text-transform:uppercase;text-decoration:none;}
+:root[data-layout="lineup"] .topnav .tastelink:hover,:root[data-layout="lineup"] .topnav .browselink:hover{color:var(--lu-hot);text-decoration:none;}
+:root[data-layout="lineup"] .topnav .browselink{color:var(--lu-hot);}
+:root[data-layout="lineup"] .topnav .citylinks a{color:var(--ink);border:2px solid transparent;border-radius:999px;padding:6px 13px;font-size:12.5px;
+font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:1;}
+:root[data-layout="lineup"] .topnav .citylinks a:not(.cur):hover{border-color:var(--ink);color:var(--ink);}
+:root[data-layout="lineup"] .topnav .citylinks a.cur{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+:root[data-layout="lineup"] .langmenu summary{color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:5px 11px;font-size:12.5px;}
+:root[data-layout="lineup"] .langlist,:root[data-layout="lineup"] .tmenu,:root[data-layout="lineup"] .filters .fmenu,:root[data-layout="lineup"] #hideMenu,:root[data-layout="lineup"] .stylepanel{border:2px solid var(--ink);border-radius:14px;
+box-shadow:var(--lu-sh);overflow:hidden;background:var(--card);}
+:root[data-layout="lineup"] .langlist a:hover,:root[data-layout="lineup"] .tm-item:hover,:root[data-layout="lineup"] .filters .fmenu label:hover{background:var(--muted);}
+
+
+:root[data-layout="lineup"] #filterBar,:root[data-layout="lineup"] .tcard,:root[data-layout="lineup"] .sform .tsec,:root[data-layout="lineup"] .acct-wrap .tsec,:root[data-layout="lineup"] .rv-wrap .tsec,:root[data-layout="lineup"] .citycard,:root[data-layout="lineup"] .picks,:root[data-layout="lineup"] .cat.free,:root[data-layout="lineup"] .legal .fineprint,:root[data-layout="lineup"] .sdone,:root[data-layout="lineup"] .eprev,
+:root[data-layout="lineup"] .quiz-card,:root[data-layout="lineup"] #conciergeNote,:root[data-layout="lineup"] #toniPanel,:root[data-layout="lineup"] #sgCard,:root[data-layout="lineup"] #rpCard,:root[data-layout="lineup"] .tn-card,:root[data-layout="lineup"] .sv-box,:root[data-layout="lineup"] .lk-opt{
+border:2px solid var(--ink);border-radius:var(--lu-r);box-shadow:var(--lu-sh);background:var(--card);overflow:hidden;}
+:root[data-layout="lineup"] .citycard:hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--ink);}
+:root[data-layout="lineup"] .citycard:active{transform:none;box-shadow:var(--lu-sh);}
+
+:root[data-layout="lineup"] .btn,:root[data-layout="lineup"] .btn2,:root[data-layout="lineup"] .btn-gold,:root[data-layout="lineup"] .btn-danger,:root[data-layout="lineup"] .tickets,:root[data-layout="lineup"] .cal-link,:root[data-layout="lineup"] .fbtn,:root[data-layout="lineup"] .badge,:root[data-layout="lineup"] .more-btn,:root[data-layout="lineup"] .qchip,:root[data-layout="lineup"] .fs-chip,:root[data-layout="lineup"] #fsBtn,:root[data-layout="lineup"] .tt-all,
+:root[data-layout="lineup"] .cc-cta,:root[data-layout="lineup"] .bhero .step,:root[data-layout="lineup"] #tnToast button,:root[data-layout="lineup"] .sg-go,:root[data-layout="lineup"] .rp-go,:root[data-layout="lineup"] #conciergeNote .cn-ask,:root[data-layout="lineup"] .dn-btn,:root[data-layout="lineup"] #fsSheet .fs-show,
+:root[data-layout="lineup"] #filterBar .fsearch,:root[data-layout="lineup"] #filterBar select,:root[data-layout="lineup"] .filters .fmulti summary,:root[data-layout="lineup"] .filters input[type=search],:root[data-layout="lineup"] .filters select{
+border-radius:999px!important;}
+:root[data-layout="lineup"] .btn,:root[data-layout="lineup"] .btn2,:root[data-layout="lineup"] .btn-gold,:root[data-layout="lineup"] .tt-all,:root[data-layout="lineup"] .cc-cta,:root[data-layout="lineup"] .more-btn,:root[data-layout="lineup"] .sg-go,:root[data-layout="lineup"] .rp-go,:root[data-layout="lineup"] #fsSheet .fs-show{border:2px solid var(--ink);
+box-shadow:var(--lu-sh);text-transform:none;letter-spacing:0;font-weight:700;}
+:root[data-layout="lineup"] .btn:active,:root[data-layout="lineup"] .btn2:active,:root[data-layout="lineup"] .tt-all:active{transform:translateY(2px);box-shadow:none;}
+:root[data-layout="lineup"] .btn-gold,:root[data-layout="lineup"] .tt-all,:root[data-layout="lineup"] .cc-cta,:root[data-layout="lineup"] .sg-go,:root[data-layout="lineup"] .rp-go{background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] .btn-gold:hover,:root[data-layout="lineup"] .btn2:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--ink);background:var(--lu-sun);}
+:root[data-layout="lineup"] .btn-dark,:root[data-layout="lineup"] .more-btn,:root[data-layout="lineup"] #fsSheet .fs-show{background:var(--ink);color:var(--paper);box-shadow:var(--lu-sh);}
+:root[data-layout="lineup"] .btn-danger{border-width:2px;box-shadow:0 2px 0 var(--danger);text-transform:none;letter-spacing:0;font-weight:700;}
+:root[data-layout="lineup"] .soon{border-radius:999px;}
+:root[data-layout="lineup"] .btn-ghost{background:transparent;border-color:var(--paper);color:var(--paper);box-shadow:none;}
+:root[data-layout="lineup"] .tickets{background:var(--ink);color:var(--paper);border:2px solid var(--ink);box-shadow:none;text-transform:none;
+letter-spacing:0;font-weight:700;font-size:13px;padding:7px 16px;}
+:root[data-layout="lineup"] .cal-link{border:2px solid var(--ink);background:var(--card);font-weight:600;padding:5px 12px;}
+:root[data-layout="lineup"] .cal-link:hover{background:var(--muted);}
+:root[data-layout="lineup"] .badge{border:0;padding:3px 10px;font-weight:700;letter-spacing:.06em;}
+:root[data-layout="lineup"] .badge.free{background:var(--lu-mint);color:#fff;}
+:root[data-layout="lineup"] .badge.now{background:var(--lu-hot);color:var(--on-accent);}
+:root[data-layout="lineup"] input[type=email],:root[data-layout="lineup"] input[type=tel],:root[data-layout="lineup"] input[type=text],:root[data-layout="lineup"] input[type=url],:root[data-layout="lineup"] textarea,:root[data-layout="lineup"] .sfield select,:root[data-layout="lineup"] .sv-input{
+border:2px solid var(--ink)!important;border-radius:12px!important;}
+:root[data-layout="lineup"] .sfield input:focus,:root[data-layout="lineup"] .sv-input:focus,:root[data-layout="lineup"] .filters input:focus,:root[data-layout="lineup"] .filters select:focus{outline:3px solid var(--lu-sun);outline-offset:1px;}
+
+
+:root[data-layout="lineup"] .hero.dayhero{background:transparent;color:var(--ink);border-bottom:0;padding:14px max(16px,calc((100% - 1040px) / 2)) 0;}
+:root[data-layout="lineup"] .dayhero h1{font-family:var(--lu-t)!important;font-weight:700!important;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--lu-soft);}
+:root[data-layout="lineup"] .dayhero h1 *{font-family:var(--lu-t)!important;font-weight:700!important;}
+:root[data-layout="lineup"] .dayhero .btn-dark{background:var(--card);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--lu-sh);}
+:root[data-layout="lineup"] .dayhero .toolbar .btn{padding:6px 14px;font-size:12.5px;}
+:root[data-layout="lineup"] #dayLead{display:none;}
+
+
+#luPoster{display:none;}
+:root[data-layout="lineup"] #luPoster{display:block;position:relative;overflow:hidden;max-width:1040px;width:calc(100% - 32px);margin:14px auto 0;padding:34px 28px 30px;
+box-sizing:border-box;background:var(--ink);color:var(--paper);border-radius:22px;text-align:center;}
+:root[data-layout="lineup"] #luPoster .lu-blob{position:absolute;border-radius:50%;pointer-events:none;}
+:root[data-layout="lineup"] #luPoster .lu-b1{width:420px;height:420px;background:var(--lu-hot);left:-170px;top:-190px;opacity:.9;}
+:root[data-layout="lineup"] #luPoster .lu-b2{width:360px;height:360px;background:var(--lu-sky);right:-150px;bottom:-210px;opacity:.85;}
+:root[data-layout="lineup"] #luPoster .lu-b3{width:120px;height:120px;background:var(--lu-sun);right:-36px;top:-40px;opacity:.95;}
+:root[data-layout="lineup"] #luPoster .lu-b4{width:90px;height:90px;background:var(--lu-mint);left:-30px;bottom:-34px;opacity:.95;}
+:root[data-layout="lineup"] #luPoster > :not(.lu-blob){position:relative;z-index:1;}
+:root[data-layout="lineup"] #luPoster .lu-eye{font-weight:700;letter-spacing:.3em;font-size:12px;color:var(--lu-sun);text-transform:uppercase;}
+:root[data-layout="lineup"] #luPoster .lu-date{margin:8px 0 2px;font-size:clamp(44px,8vw,86px);line-height:.95;text-transform:uppercase;}
+:root[data-layout="lineup"] #luPoster .lu-from{margin:6px 0 0;font-size:13.5px;font-weight:600;opacity:.72;}
+:root[data-layout="lineup"] #luPoster .lu-hls{margin:10px auto 0;max-width:900px;}
+:root[data-layout="lineup"] #luPoster .lu-hl{display:block;margin:16px 0;}
+:root[data-layout="lineup"] #luPoster .lu-hl a{display:block;color:var(--paper);text-decoration:none;font-size:clamp(26px,4.2vw,44px);line-height:1.05;
+text-transform:uppercase;overflow-wrap:anywhere;}
+:root[data-layout="lineup"] #luPoster .lu-hl a:hover,:root[data-layout="lineup"] #luPoster .lu-hl a:focus-visible{color:var(--lu-sun);}
+:root[data-layout="lineup"] #luPoster .lu-t{display:block;font-weight:700;font-size:12px;letter-spacing:.2em;color:var(--lu-sun);margin-bottom:4px;text-transform:uppercase;}
+:root[data-layout="lineup"] #luPoster .lu-w{display:block;margin-top:4px;font-weight:600;font-size:13px;opacity:.72;text-transform:none;letter-spacing:0;}
+:root[data-layout="lineup"] #luPoster .lu-lines{margin:18px auto 0;max-width:860px;line-height:1.7;font-weight:700;font-size:15px;text-transform:uppercase;
+letter-spacing:.04em;overflow-wrap:anywhere;}
+:root[data-layout="lineup"] #luPoster .lu-lines:empty{display:none;}
+:root[data-layout="lineup"] #luPoster .lu-ln{color:var(--paper);text-decoration:none;}
+:root[data-layout="lineup"] #luPoster .lu-ln:hover,:root[data-layout="lineup"] #luPoster .lu-ln:focus-visible{color:var(--lu-sun);}
+:root[data-layout="lineup"] #luPoster .lu-dot{color:var(--lu-hot);margin:0 8px;}
+:root[data-layout="lineup"] #luPoster .lu-none{margin:18px 0 0;font-weight:600;opacity:.8;}
+:root[data-layout="lineup"] #luPoster .lu-cta{display:inline-block;margin:22px 0 0;background:var(--lu-sun);color:#151515;font-weight:700;padding:12px 20px;
+border-radius:999px;text-decoration:none;}
+:root[data-layout="lineup"] #luPoster .lu-cta:hover{transform:translateY(-1px);}
+:root[data-layout="lineup"].listmode #luPoster{display:none;}
+
+:root[data-layout="lineup"][data-palette="neon"] #luPoster{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 2px var(--muted);}
+:root[data-layout="lineup"][data-palette="neon"] #luPoster .lu-hl a,:root[data-layout="lineup"][data-palette="neon"] #luPoster .lu-ln{color:var(--ink);}
+
+
+:root[data-layout="lineup"] .daystrip .ds{border:2px solid var(--ink);border-radius:14px;background:var(--card);font-weight:700;}
+:root[data-layout="lineup"] .daystrip .ds:hover{background:var(--muted);}
+:root[data-layout="lineup"] .daystrip .ds.cur{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .daystrip .ds.wk{background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] .daystrip .ds.wk.cur{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .daystrip .ds-more{background:transparent;}
+
+
+:root[data-layout="lineup"] #conciergeNote{max-width:1040px;padding:14px 20px;}
+@media (min-width:641px){:root[data-layout="lineup"] #conciergeNote{width:calc(100% - 32px);}}
+:root[data-layout="lineup"] #conciergeNote .cn-eye{color:var(--lu-hot);filter:none;font-weight:700;letter-spacing:.14em;}
+:root[data-layout="lineup"] #conciergeNote .cn-hi{font-family:var(--lu-d)!important;font-weight:400;font-size:26px;}
+:root[data-layout="lineup"] #conciergeNote .cn-t{font-weight:700;}
+:root[data-layout="lineup"] #conciergeNote .cn-role{color:var(--lu-soft);font-weight:700;letter-spacing:.1em;}
+:root[data-layout="lineup"] #conciergeNote a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #conciergeNote .cn-ask{background:var(--lu-sun);color:#151515;border:2px solid var(--ink);box-shadow:var(--lu-sh);}
+:root[data-layout="lineup"] #conciergeNote .cn-plan a.cn-book{border-radius:999px;padding:2px 9px;}
+:root[data-layout="lineup"] .dn-btn{border:2px solid var(--ink);background:var(--card);color:var(--ink);}
+
+
+:root[data-layout="lineup"] #filterBar{padding:12px 14px 10px;}
+:root[data-layout="lineup"] #filterBar .fsearch{border:2px solid var(--ink);}
+:root[data-layout="lineup"] #filterBar .fsearch:focus-within{outline:3px solid var(--lu-sun);}
+:root[data-layout="lineup"] #filterBar .seg{border:2px solid var(--ink);border-radius:999px;}
+:root[data-layout="lineup"] #filterBar .seg button{text-transform:none;font-weight:600;font-size:12.5px;}
+:root[data-layout="lineup"] #filterBar .seg button.on,:root[data-layout="lineup"] .seg button.on{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .seg button,:root[data-layout="lineup"] .fbtn{text-transform:none;letter-spacing:0;font-weight:600;border-radius:999px;}
+:root[data-layout="lineup"] .fbtn[aria-pressed="true"],:root[data-layout="lineup"] #filterBar .fbtn[aria-pressed="true"],:root[data-layout="lineup"] #filterBar select.on,:root[data-layout="lineup"] .filters .fmulti.on summary,
+:root[data-layout="lineup"] #filterBar .fmore.on,:root[data-layout="lineup"] #fsBtn.on{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] #filterBar #hiddenBar{border-radius:999px;}
+:root[data-layout="lineup"] #filterBar .fclear{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #fside{border:2px solid var(--ink)!important;border-radius:var(--lu-r);box-shadow:var(--lu-sh);}
+:root[data-layout="lineup"] .fs-title{font-family:var(--lu-d)!important;font-weight:400;font-size:20px;letter-spacing:.01em;text-transform:none;}
+:root[data-layout="lineup"] .fs-h{color:var(--lu-hot);opacity:1;font-weight:700;letter-spacing:.1em;}
+:root[data-layout="lineup"] .fs-row input,:root[data-layout="lineup"] .filters .fmenu input,:root[data-layout="lineup"] .sv-check input{accent-color:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-row:not(.zero):hover .fs-l{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-grp summary .fs-dot{background:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-lk{color:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-mode{border-radius:999px;overflow:hidden;}
+:root[data-layout="lineup"] .fs-mode button.on{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .fs-tag{border-radius:999px;padding:1px 7px;}
+:root[data-layout="lineup"] .fs-mnote{border:2px solid var(--ink);border-left-width:6px;border-radius:12px;}
+:root[data-layout="lineup"] .fs-chip{font-weight:600;}
+:root[data-layout="lineup"] .fs-chip.on{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .fs-chipf,:root[data-layout="lineup"] .fs-chipf.on{background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] #fsSheet .fs-panel{border-top:2px solid var(--ink);border-radius:22px 22px 0 0;}
+:root[data-layout="lineup"] #fsSheet .fs-show{text-transform:none;letter-spacing:0;font-weight:700;}
+:root[data-layout="lineup"] .fs-x select{border-radius:10px;}
+
+
+:root[data-layout="lineup"] #picksBar{border:2px dashed var(--ink);border-radius:16px;box-shadow:none;background:transparent;}
+:root[data-layout="lineup"] #picksBar strong{font-size:18px;text-transform:none;}
+:root[data-layout="lineup"] #picksBar .btn{box-shadow:var(--lu-sh);}
+
+
+#topTonight .tt-hl{display:none;}
+:root[data-layout="lineup"] #topTonight .tt-hd{display:none;}
+:root[data-layout="lineup"] #topTonight .tt-hl{display:inline;}
+:root[data-layout="lineup"] #topTonight{margin-top:30px;}
+:root[data-layout="lineup"] #topTonight h2{font-size:36px;line-height:1.05;text-transform:none;margin:0 0 16px;}
+:root[data-layout="lineup"] .tt-list{gap:18px;}
+:root[data-layout="lineup"] .tt-card,:root[data-layout="lineup"] .tt-card.big{grid-column:auto;border:2px solid var(--ink);border-radius:var(--lu-r);box-shadow:var(--lu-sh);background:var(--card);}
+:root[data-layout="lineup"] .tt-m,:root[data-layout="lineup"] .tt-card.big .tt-m{aspect-ratio:4/3;background:linear-gradient(135deg,var(--lu-sun),var(--lu-hot));color:#151515;}
+:root[data-layout="lineup"] .tt-m .tt-ic{font-size:64px;}
+:root[data-layout="lineup"] .tt-cat,:root[data-layout="lineup"] .tt-t{display:none;}
+.tt-slot,.tt-k,.tt-sv{display:none;}
+:root[data-layout="lineup"] .tt-slot{display:block;position:absolute;left:10px;top:10px;z-index:1;background:var(--ink);color:var(--paper);font-weight:700;
+font-size:12px;line-height:1.2;padding:5px 10px;border-radius:999px;}
+:root[data-layout="lineup"] .tt-k{display:block;font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-b{padding:12px 14px 14px;gap:4px;}
+:root[data-layout="lineup"] .tt-h,:root[data-layout="lineup"] .tt-card.big .tt-h{font-size:18px;line-height:1.2;font-weight:700;margin:2px 0 4px;}
+:root[data-layout="lineup"] .tt-name:hover{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-why{color:var(--lu-soft);opacity:1;font-size:14px;}
+:root[data-layout="lineup"] .tt-f{margin-top:10px;gap:8px;}
+:root[data-layout="lineup"] .tt-star{width:auto;height:auto;display:inline-flex;align-items:center;gap:5px;padding:4px 2px;font-size:13px;font-weight:700;line-height:1.2;}
+:root[data-layout="lineup"] .tt-star .tt-gl{font-size:17px;line-height:1;}
+:root[data-layout="lineup"] .tt-star .tt-sv{display:inline;}
+:root[data-layout="lineup"] .tt-star:hover{transform:none;color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-star[aria-pressed="true"]{color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-price{margin-left:auto;border:0;border-radius:999px;padding:4px 10px;background:var(--lu-mint);color:#fff;font-weight:700;font-size:13px;}
+:root[data-layout="lineup"] a.tt-price:hover{background:color-mix(in srgb,var(--lu-mint) 82%,#000);}
+:root[data-layout="lineup"] .tt-price.free{background:var(--lu-mint);color:#fff;}
+:root[data-layout="lineup"] .tt-x{margin-left:0;}
+:root[data-layout="lineup"] .tt-all{margin-top:22px;padding:11px 18px;font-size:14px;}
+
+
+:root[data-layout="lineup"] main#allEvents{max-width:1080px;}
+:root[data-layout="lineup"] .cat h2{display:block;background:none;color:var(--ink);border:0;padding:0;margin:34px 0 8px;font-size:30px;line-height:1.05;
+text-transform:none;}
+:root[data-layout="lineup"] .cat.free{padding:0 18px 8px;}
+:root[data-layout="lineup"] .cat.free h2{background:none;border:0;color:var(--ink);margin-top:18px;}
+:root[data-layout="lineup"] .cat.free h2::after{content:"";display:inline-block;width:.32em;height:.32em;margin-left:.15em;border-radius:50%;background:var(--lu-mint);}
+:root[data-layout="lineup"] .event{border-bottom:2px solid var(--lu-line);}
+:root[data-layout="lineup"] .event-body{min-width:0;overflow-wrap:anywhere;}
+:root[data-layout="lineup"] .event-body h3{font-weight:700;font-size:18.5px;line-height:1.25;}
+:root[data-layout="lineup"] .event-body h3 a{text-decoration-color:var(--lu-hot);text-decoration-thickness:2px;}
+:root[data-layout="lineup"] .meta{font-weight:600;opacity:1;color:var(--lu-soft);}
+:root[data-layout="lineup"] .event-body p{opacity:1;color:color-mix(in srgb,var(--ink) 82%,var(--paper));}
+:root[data-layout="lineup"] .ev-th{border-radius:12px;border:2px solid var(--ink);background:linear-gradient(135deg,var(--lu-sun),var(--lu-hot));color:#151515;}
+:root[data-layout="lineup"] .box{border:2px solid var(--ink);border-radius:8px;}
+:root[data-layout="lineup"] .toggle[aria-pressed="true"] .box{background:var(--lu-hot);}
+:root[data-layout="lineup"] .meta .nowtag{background:var(--lu-hot);border-radius:999px;padding:1px 8px;}
+:root[data-layout="lineup"] .meta .ended{border-radius:999px;padding:1px 8px;}
+:root[data-layout="lineup"] .tonight-head h2{font-size:30px;text-transform:none;}
+:root[data-layout="lineup"] .tba-div{border-top:2px solid var(--ink);}
+:root[data-layout="lineup"] .mlt a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #onlyBar{border:2px solid var(--ink);border-radius:14px;background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] #tnToast{border-radius:999px;box-shadow:var(--lu-sh);}
+:root[data-layout="lineup"] #hideMenu button{border-radius:10px;}
+:root[data-layout="lineup"] #hideMenu{padding:6px;}
+
+
+:root[data-layout="lineup"] #toniBtn{border:2px solid var(--ink);border-radius:999px;box-shadow:var(--lu-sh);background:var(--lu-sun);color:#151515;
+text-transform:none;letter-spacing:0;font-weight:700;}
+:root[data-layout="lineup"] #toniPanel{border-radius:22px;box-shadow:0 4px 0 var(--ink);background:var(--paper);}
+:root[data-layout="lineup"] .tn-head{background:var(--ink);color:var(--paper);border-bottom:2px solid var(--ink);}
+:root[data-layout="lineup"] .tn-head b{font-size:24px;}
+:root[data-layout="lineup"] .tn-you{border-radius:16px 16px 4px 16px;}
+:root[data-layout="lineup"] .tn-card{border-radius:14px;box-shadow:none;}
+:root[data-layout="lineup"] .tn-time{background:var(--ink);font-family:var(--lu-d)!important;font-weight:400;}
+:root[data-layout="lineup"] .tn-free{background:var(--lu-mint);color:#fff;border-radius:999px;}
+:root[data-layout="lineup"] .tn-gap{border-radius:999px;}
+
+
+:root[data-layout="lineup"] footer{background:var(--ink);color:var(--paper);border-top:0;}
+:root[data-layout="lineup"] footer .serif{font-size:26px;}
+:root[data-layout="lineup"] footer a{color:var(--lu-sun);}
+:root[data-layout="lineup"] #siteFoot{font-weight:700;letter-spacing:.08em;}
+:root[data-layout="lineup"] #siteFoot a,:root[data-layout="lineup"] #siteFoot summary{border-bottom-color:var(--lu-hot);}
+
+
+:root[data-layout="lineup"] .home .hero{position:relative;overflow:hidden;max-width:1080px;margin:14px auto 0;border-radius:22px;border-bottom:0;
+background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .home .hero::before,:root[data-layout="lineup"] .bhero::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+background:var(--lu-hot);left:-170px;top:-200px;opacity:.9;pointer-events:none;}
+:root[data-layout="lineup"] .home .hero::after,:root[data-layout="lineup"] .bhero::after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;
+background:var(--lu-sky);right:-150px;bottom:-220px;opacity:.85;pointer-events:none;}
+:root[data-layout="lineup"] .home .hero > *,:root[data-layout="lineup"] .bhero > *{position:relative;z-index:1;}
+:root[data-layout="lineup"] .home .hero .eyebrow,:root[data-layout="lineup"] .bhero .eyebrow,:root[data-layout="lineup"] .hero .eyebrow{background:none;color:var(--lu-sun);padding:0;font-weight:700;letter-spacing:.3em;}
+:root[data-layout="lineup"] .home .hero h1{font-size:clamp(4rem,13vw,7.5rem);line-height:.95;text-transform:none;}
+:root[data-layout="lineup"] .home .hero h1 .wm{display:none;}
+:root[data-layout="lineup"] .home .hero h1 .wm-lu{display:inline;}
+:root[data-layout="lineup"] .home .hero h1 .wm-lu b,:root[data-layout="lineup"] .hero h1 b{color:var(--lu-hot);font-weight:400;}
+.wm-lu{display:none;}
+:root[data-layout="lineup"] .cities{max-width:1080px;}
+:root[data-layout="lineup"] .cc-top{font-size:30px;text-transform:none;}
+:root[data-layout="lineup"] .cc-meta{color:var(--lu-soft);opacity:1;}
+:root[data-layout="lineup"] .cc-cta{border:2px solid var(--ink);padding:6px 14px;font-weight:700;letter-spacing:0;text-transform:none;}
+:root[data-layout="lineup"] .how h2{font-size:36px;text-transform:none;}
+:root[data-layout="lineup"] .step .n{border-radius:50%;background:var(--lu-hot);color:var(--on-accent);border:2px solid var(--ink);font-size:20px;}
+:root[data-layout="lineup"] .home .step:nth-child(3) .n{background:var(--lu-sky);color:#fff;}
+:root[data-layout="lineup"] .home .step:nth-child(4) .n{background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] .home .step:nth-child(5) .n{background:var(--lu-mint);color:#fff;}
+:root[data-layout="lineup"] .step h3{text-transform:none;letter-spacing:0;font-weight:700;font-size:17px;}
+
+
+:root[data-layout="lineup"] .bhero{position:relative;overflow:hidden;max-width:1040px;margin:14px auto 0;border-radius:22px;border-bottom:0;
+background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .bhero{margin-bottom:26px;}
+:root[data-layout="lineup"] .bhero h1{text-transform:uppercase;font-size:clamp(2.6rem,8vw,4.6rem);line-height:.95;}
+:root[data-layout="lineup"] .bhero p{opacity:.85;}
+:root[data-layout="lineup"] #savedNote{background:var(--lu-mint);color:#fff;border-radius:999px;}
+:root[data-layout="lineup"] .tcard,:root[data-layout="lineup"] .sform .tsec,:root[data-layout="lineup"] .acct-wrap .tsec{margin-bottom:24px;}
+:root[data-layout="lineup"] .tsec-head,:root[data-layout="lineup"] .shead{background:var(--card);border-bottom:2px solid var(--ink);}
+:root[data-layout="lineup"] .tsec-head h2,:root[data-layout="lineup"] .shead h2{font-size:24px;text-transform:none;letter-spacing:.01em;}
+:root[data-layout="lineup"] .snum{border-radius:50%;background:var(--lu-hot);color:var(--on-accent);font-size:18px;}
+:root[data-layout="lineup"] .trow,:root[data-layout="lineup"] .srow{border-bottom:2px solid var(--lu-line);}
+:root[data-layout="lineup"] .tsec .seg button,:root[data-layout="lineup"] .sform .seg button,:root[data-layout="lineup"] .trow .seg button{border-radius:999px;}
+:root[data-layout="lineup"] .trow .seg{min-width:0;flex:0 1 auto;}
+:root[data-layout="lineup"] .cico,:root[data-layout="lineup"] .ric{border-radius:50%;background:var(--lu-sun);}
+:root[data-layout="lineup"] .sl{border:2px solid var(--ink);border-radius:999px;}
+:root[data-layout="lineup"] .sl:before{border:2px solid var(--ink);border-radius:50%;top:5px;left:5px;}
+:root[data-layout="lineup"] .switch input:checked + .sl{background:var(--lu-mint);}
+:root[data-layout="lineup"] .switch input:checked + .sl:before{background:var(--card);}
+:root[data-layout="lineup"] .bhero .step{background:var(--card);color:var(--ink);border:2px solid var(--ink);font-weight:700;}
+:root[data-layout="lineup"] .bhero .step.on{background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] .bhero .sarr{color:var(--lu-sun);}
+:root[data-layout="lineup"] .etag{border-radius:999px;}
+:root[data-layout="lineup"] .etag.free{background:var(--lu-mint);color:#fff;}
+:root[data-layout="lineup"] .eprev-bar{background:var(--ink);}
+:root[data-layout="lineup"] .sdone h2 em,:root[data-layout="lineup"] .lhero h1 em{background:var(--lu-sun);color:#151515;border-radius:10px;}
+:root[data-layout="lineup"] .lk-opt[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .lhero h1{text-transform:none;}
+:root[data-layout="lineup"] .legal a,:root[data-layout="lineup"] .srow .sub a,:root[data-layout="lineup"] .sdone a,:root[data-layout="lineup"] .kids-note button,:root[data-layout="lineup"] .lk-see a{text-decoration-color:var(--lu-hot);}
+
+
+@media (min-width:1100px){
+:root[data-layout="lineup"].fs-on .hero.dayhero{padding-left:max(24px,calc((100% - 1312px) / 2));padding-right:max(24px,calc((100% - 1312px) / 2));}
+:root[data-layout="lineup"].fs-on .daystrip{max-width:1360px;padding-left:24px;padding-right:24px;}
+:root[data-layout="lineup"].fs-on .ds-note{max-width:1360px;padding-left:24px;padding-right:24px;}
+:root[data-layout="lineup"].fs-on #luPoster,:root[data-layout="lineup"].fs-on #conciergeNote{max-width:1312px;width:calc(100% - 48px);}
+}
+
+
+@media (max-width:640px){
+:root[data-layout="lineup"] .topnav{padding:10px 16px;gap:8px 14px;}
+:root[data-layout="lineup"] .topnav .brand .wm-lu{font-size:25px;}
+:root[data-layout="lineup"] .hero.dayhero{padding:12px 16px 0;}
+:root[data-layout="lineup"] #luPoster{margin:12px auto 0;padding:26px 18px 24px;border-radius:20px;}
+:root[data-layout="lineup"] #luPoster .lu-b1{width:260px;height:260px;left:-120px;top:-130px;}
+:root[data-layout="lineup"] #luPoster .lu-b2{width:220px;height:220px;right:-100px;bottom:-130px;}
+:root[data-layout="lineup"] #luPoster .lu-b3{width:70px;height:70px;right:-24px;top:-26px;}
+:root[data-layout="lineup"] #luPoster .lu-b4{display:none;}
+:root[data-layout="lineup"] #luPoster .lu-date{font-size:clamp(40px,13vw,60px);}
+:root[data-layout="lineup"] #luPoster .lu-eye{letter-spacing:.18em;font-size:11px;}
+:root[data-layout="lineup"] #luPoster .lu-hl a{font-size:clamp(24px,7.4vw,32px);}
+:root[data-layout="lineup"] #luPoster .lu-lines{font-size:13px;letter-spacing:.03em;}
+:root[data-layout="lineup"] #luPoster .lu-dot{margin:0 5px;}
+:root[data-layout="lineup"] #topTonight{margin:24px 16px 0;}
+:root[data-layout="lineup"] #topTonight h2{font-size:30px;}
+:root[data-layout="lineup"] .tt-m,:root[data-layout="lineup"] .tt-card.big .tt-m{aspect-ratio:16/10;}
+:root[data-layout="lineup"] .home .hero,:root[data-layout="lineup"] .bhero{margin:12px 16px 0;border-radius:20px;}
+:root[data-layout="lineup"] .cat h2{font-size:26px;}
+}
+</style><script>(function(){var r=document.documentElement;r.setAttribute("data-layout","lineup");try{var p=localStorage.getItem("tonight-palette"),l=localStorage.getItem("tonight-layout");if(p)r.setAttribute("data-palette",p);if(l&&["lineup", "brutalist", "concierge", "dense", "timeline", "grid", "editorial", "zen", "tonightfirst", "tabs", "app", "tonightapp", "appeditorial", "appplain"].indexOf(l)>=0)r.setAttribute("data-layout",l);}catch(e){}})();
 /* Session for signed-in accounts. Signed out, pages keep using the anonymous
    tonight-user-id exactly as before. */
 window.TonightAuth={
@@ -346,7 +679,7 @@ box-shadow:none;font-size:14.5px;font-weight:500;color:var(--ink);}
 #filterBar .fmeta #hiddenBar,#filterBar .fmeta .fclear{height:26px;}
 #filterBar .fmore.on{background-color:var(--accent);color:var(--on-accent,var(--ink));}
 #filterBar .fchips{gap:6px;}
-#filterBar #fhood{max-width:150px;}
+#filterBar #fhood,#filterBar #fsrc{max-width:150px;}
 #filterBar .seg button,#filterBar .fbtn{white-space:nowrap;}
 #filterBar #resCount{margin:0 2px 0 0;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
 opacity:.65;white-space:nowrap;}
@@ -611,7 +944,7 @@ return {profile: profile, hasSettings: hasSettings, exclude: exclude, score: sco
 /* Tonight taste: onboarding quiz, profile, personalized ranking */
 (function(){
 "use strict";
-var CATS_ALL = ["Sports", "Music", "Comedy", "Arts & Play", "Theater", "Tours", "Talks", "Classes & Workshops", "Trivia & Games", "Tech", "Fitness & Outdoors", "Meetups & Mixers", "Film", "Food & Drink"];
+var CATS_ALL = ["Music", "Theater", "Comedy", "Arts & Play", "Tours", "Talks", "Classes & Workshops", "Trivia & Games", "Meetups & Mixers", "Fitness & Outdoors", "Tech", "Film", "Food & Drink", "Sports"];
 var CITY = "london";
 var CITIES_ALL = ["nyc", "london", "la"];
 var TKEY = "tonight-taste";
@@ -1074,7 +1407,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 })();
 </script>
-<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferences</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-23.html">NYC</a> <a class="cur" href="./london/2026-10-23.html">London</a> <a class="" href="./la/2026-10-23.html">LA</a></span><a class="browselink" href="./browse-london-2026-10-23.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferences</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-23.html">NYC</a> <a class="cur" href="./london/2026-10-23.html">London</a> <a class="" href="./la/2026-10-23.html">LA</a></span><a class="browselink" href="./browse-london-2026-10-23.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
 <header class="bhero">
 <div class="eyebrow">Friday, October 23 · London</div>
 <h1>Browse everything</h1>
@@ -1090,7 +1423,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="seg" id="ftod">
 <button data-t="all" class="on">Any time</button><button data-t="morning">Morning</button><button data-t="afternoon">Afternoon</button><button data-t="evening">Evening</button>
 </div>
-<select id="fafter" autocomplete="off" aria-label="Starts after"><option value="">Starts after…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Starts before"><option value="">Starts before…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Neighborhood"><option value="">All neighborhoods</option><option value="Strand, St James &amp; Mayfair">Strand, St James &amp; Mayfair (43)</option><option value="Fitzrovia West &amp; Soho">Fitzrovia West &amp; Soho (21)</option><option value="City of London">City of London (17)</option><option value="Holborn, St Giles &amp; Bloomsbury South">Holborn, St Giles &amp; Bloomsbury South (13)</option><option value="Lambeth North, Waterloo &amp; South Bank">Lambeth North, Waterloo &amp; South Bank (9)</option><option value="Dalston Kingsland">Dalston Kingsland (6)</option><option value="Homerton North">Homerton North (6)</option><option value="Angel">Angel (5)</option><option value="Borough &amp; Southwark Street">Borough &amp; Southwark Street (5)</option><option value="Camden Town &amp; Mornington Crescent">Camden Town &amp; Mornington Crescent (5)</option><option value="Brondesbury Park">Brondesbury Park (4)</option><option value="East Finchley">East Finchley (4)</option><option value="Shoreditch">Shoreditch (4)</option><option value="Somers Town">Somers Town (4)</option><option value="Canary Wharf">Canary Wharf (3)</option><option value="Central Westminster">Central Westminster (3)</option><option value="Greenwich Peninsula West">Greenwich Peninsula West (3)</option><option value="Hammersmith Broadway">Hammersmith Broadway (3)</option><option value="King&#x27;s Cross &amp; Bloomsbury North">King&#x27;s Cross &amp; Bloomsbury North (3)</option><option value="Bryanston &amp; Dorset Square">Bryanston &amp; Dorset Square (2)</option><option value="Clerkenwell">Clerkenwell (2)</option><option value="Fitzrovia East &amp; Bloomsbury West">Fitzrovia East &amp; Bloomsbury West (2)</option><option value="Greenwich Town &amp; Park">Greenwich Town &amp; Park (2)</option><option value="Hackney Central">Hackney Central (2)</option><option value="Hatton Garden &amp; Theobalds Road">Hatton Garden &amp; Theobalds Road (2)</option><option value="Knightsbridge, Belgravia &amp; Hyde Park">Knightsbridge, Belgravia &amp; Hyde Park (2)</option><option value="London Bridge &amp; Bermondsey West">London Bridge &amp; Bermondsey West (2)</option><option value="Notting Hill South">Notting Hill South (2)</option><option value="Shepherd&#x27;s Bush West">Shepherd&#x27;s Bush West (2)</option><option value="South Park">South Park (2)</option><option value="Tower Hill &amp; Wapping South">Tower Hill &amp; Wapping South (2)</option><option value="West Brompton">West Brompton (2)</option><option value="Alexandra Park">Alexandra Park (1)</option><option value="Barkingside North">Barkingside North (1)</option><option value="Barnsbury West">Barnsbury West (1)</option><option value="Bayswater East">Bayswater East (1)</option><option value="Bethnal Green South">Bethnal Green South (1)</option><option value="Blackhorse Road">Blackhorse Road (1)</option><option value="Blackwall">Blackwall (1)</option><option value="Brick Lane North">Brick Lane North (1)</option><option value="Brixton Central">Brixton Central (1)</option><option value="Brixton North">Brixton North (1)</option><option value="Central Croydon">Central Croydon (1)</option><option value="Central Romford">Central Romford (1)</option><option value="Chingford Green West">Chingford Green West (1)</option><option value="Dalston East">Dalston East (1)</option><option value="Greenwich &amp; Deptford Creekside">Greenwich &amp; Deptford Creekside (1)</option><option value="Greenwich Peninsula East">Greenwich Peninsula East (1)</option><option value="Hampton Village">Hampton Village (1)</option><option value="Hans Town">Hans Town (1)</option><option value="Heathfield">Heathfield (1)</option><option value="Herne Hill East">Herne Hill East (1)</option><option value="Highbury Fields">Highbury Fields (1)</option><option value="Highgate West">Highgate West (1)</option><option value="Hoxton South &amp; East">Hoxton South &amp; East (1)</option><option value="Islington North &amp; Canonbury West">Islington North &amp; Canonbury West (1)</option><option value="Kensington Gardens">Kensington Gardens (1)</option><option value="Kilburn West">Kilburn West (1)</option><option value="Lower Holloway">Lower Holloway (1)</option><option value="Mill Meads">Mill Meads (1)</option><option value="New Cross &amp; Deptford South">New Cross &amp; Deptford South (1)</option><option value="New Cross South">New Cross South (1)</option><option value="Newington Green">Newington Green (1)</option><option value="Nine Elms">Nine Elms (1)</option><option value="North End">North End (1)</option><option value="Northolt South">Northolt South (1)</option><option value="Old Oak &amp; Wormwood">Old Oak &amp; Wormwood (1)</option><option value="Old Street &amp; St Luke&#x27;s">Old Street &amp; St Luke&#x27;s (1)</option><option value="Peckham North">Peckham North (1)</option><option value="Pentonville">Pentonville (1)</option><option value="Portobello">Portobello (1)</option><option value="Primrose Hill">Primrose Hill (1)</option><option value="Putney Town &amp; Wandsworth Park">Putney Town &amp; Wandsworth Park (1)</option><option value="Regent&#x27;s Park">Regent&#x27;s Park (1)</option><option value="Southwark St George&#x27;s">Southwark St George&#x27;s (1)</option><option value="Spitalfields">Spitalfields (1)</option><option value="St George in the East &amp; Wapping North">St George in the East &amp; Wapping North (1)</option><option value="St John&#x27;s Wood South">St John&#x27;s Wood South (1)</option><option value="Stepney Green">Stepney Green (1)</option><option value="Stoke Newington South">Stoke Newington South (1)</option><option value="Strawberry Hill">Strawberry Hill (1)</option><option value="Surbiton North">Surbiton North (1)</option><option value="Victoria">Victoria (1)</option><option value="Walthamstow Market &amp; South Grove">Walthamstow Market &amp; South Grove (1)</option><option value="Wembley North">Wembley North (1)</option><option value="Westbourne">Westbourne (1)</option><option value="Whitton Avenue West">Whitton Avenue West (1)</option></select>
+<select id="fafter" autocomplete="off" aria-label="Starts after"><option value="">Starts after…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Starts before"><option value="">Starts before…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Neighborhood"><option value="">All neighborhoods</option><option value="Strand, St James &amp; Mayfair">Strand, St James &amp; Mayfair (43)</option><option value="Fitzrovia West &amp; Soho">Fitzrovia West &amp; Soho (21)</option><option value="City of London">City of London (17)</option><option value="Holborn, St Giles &amp; Bloomsbury South">Holborn, St Giles &amp; Bloomsbury South (13)</option><option value="Lambeth North, Waterloo &amp; South Bank">Lambeth North, Waterloo &amp; South Bank (9)</option><option value="Dalston Kingsland">Dalston Kingsland (6)</option><option value="Homerton North">Homerton North (6)</option><option value="Angel">Angel (5)</option><option value="Borough &amp; Southwark Street">Borough &amp; Southwark Street (5)</option><option value="Camden Town &amp; Mornington Crescent">Camden Town &amp; Mornington Crescent (5)</option><option value="Brondesbury Park">Brondesbury Park (4)</option><option value="East Finchley">East Finchley (4)</option><option value="Shoreditch">Shoreditch (4)</option><option value="Somers Town">Somers Town (4)</option><option value="Canary Wharf">Canary Wharf (3)</option><option value="Central Westminster">Central Westminster (3)</option><option value="Greenwich Peninsula West">Greenwich Peninsula West (3)</option><option value="Hammersmith Broadway">Hammersmith Broadway (3)</option><option value="King&#x27;s Cross &amp; Bloomsbury North">King&#x27;s Cross &amp; Bloomsbury North (3)</option><option value="Bryanston &amp; Dorset Square">Bryanston &amp; Dorset Square (2)</option><option value="Clerkenwell">Clerkenwell (2)</option><option value="Fitzrovia East &amp; Bloomsbury West">Fitzrovia East &amp; Bloomsbury West (2)</option><option value="Greenwich Town &amp; Park">Greenwich Town &amp; Park (2)</option><option value="Hackney Central">Hackney Central (2)</option><option value="Hatton Garden &amp; Theobalds Road">Hatton Garden &amp; Theobalds Road (2)</option><option value="Knightsbridge, Belgravia &amp; Hyde Park">Knightsbridge, Belgravia &amp; Hyde Park (2)</option><option value="London Bridge &amp; Bermondsey West">London Bridge &amp; Bermondsey West (2)</option><option value="Notting Hill South">Notting Hill South (2)</option><option value="Shepherd&#x27;s Bush West">Shepherd&#x27;s Bush West (2)</option><option value="South Park">South Park (2)</option><option value="Tower Hill &amp; Wapping South">Tower Hill &amp; Wapping South (2)</option><option value="West Brompton">West Brompton (2)</option><option value="Alexandra Park">Alexandra Park (1)</option><option value="Barkingside North">Barkingside North (1)</option><option value="Barnsbury West">Barnsbury West (1)</option><option value="Bayswater East">Bayswater East (1)</option><option value="Bethnal Green South">Bethnal Green South (1)</option><option value="Blackhorse Road">Blackhorse Road (1)</option><option value="Blackwall">Blackwall (1)</option><option value="Brick Lane North">Brick Lane North (1)</option><option value="Brixton Central">Brixton Central (1)</option><option value="Brixton North">Brixton North (1)</option><option value="Central Croydon">Central Croydon (1)</option><option value="Central Romford">Central Romford (1)</option><option value="Chingford Green West">Chingford Green West (1)</option><option value="Dalston East">Dalston East (1)</option><option value="Greenwich &amp; Deptford Creekside">Greenwich &amp; Deptford Creekside (1)</option><option value="Greenwich Peninsula East">Greenwich Peninsula East (1)</option><option value="Hampton Village">Hampton Village (1)</option><option value="Hans Town">Hans Town (1)</option><option value="Heathfield">Heathfield (1)</option><option value="Herne Hill East">Herne Hill East (1)</option><option value="Highbury Fields">Highbury Fields (1)</option><option value="Highgate West">Highgate West (1)</option><option value="Hoxton South &amp; East">Hoxton South &amp; East (1)</option><option value="Islington North &amp; Canonbury West">Islington North &amp; Canonbury West (1)</option><option value="Kensington Gardens">Kensington Gardens (1)</option><option value="Kilburn West">Kilburn West (1)</option><option value="Lower Holloway">Lower Holloway (1)</option><option value="Mill Meads">Mill Meads (1)</option><option value="New Cross &amp; Deptford South">New Cross &amp; Deptford South (1)</option><option value="New Cross South">New Cross South (1)</option><option value="Newington Green">Newington Green (1)</option><option value="Nine Elms">Nine Elms (1)</option><option value="North End">North End (1)</option><option value="Northolt South">Northolt South (1)</option><option value="Old Oak &amp; Wormwood">Old Oak &amp; Wormwood (1)</option><option value="Old Street &amp; St Luke&#x27;s">Old Street &amp; St Luke&#x27;s (1)</option><option value="Peckham North">Peckham North (1)</option><option value="Pentonville">Pentonville (1)</option><option value="Portobello">Portobello (1)</option><option value="Primrose Hill">Primrose Hill (1)</option><option value="Putney Town &amp; Wandsworth Park">Putney Town &amp; Wandsworth Park (1)</option><option value="Regent&#x27;s Park">Regent&#x27;s Park (1)</option><option value="Southwark St George&#x27;s">Southwark St George&#x27;s (1)</option><option value="Spitalfields">Spitalfields (1)</option><option value="St George in the East &amp; Wapping North">St George in the East &amp; Wapping North (1)</option><option value="St John&#x27;s Wood South">St John&#x27;s Wood South (1)</option><option value="Stepney Green">Stepney Green (1)</option><option value="Stoke Newington South">Stoke Newington South (1)</option><option value="Strawberry Hill">Strawberry Hill (1)</option><option value="Surbiton North">Surbiton North (1)</option><option value="Victoria">Victoria (1)</option><option value="Walthamstow Market &amp; South Grove">Walthamstow Market &amp; South Grove (1)</option><option value="Wembley North">Wembley North (1)</option><option value="Westbourne">Westbourne (1)</option><option value="Whitton Avenue West">Whitton Avenue West (1)</option></select><select id="fsrc" autocomplete="off" aria-label="Source"><option value="">All sources</option><option value="ticketmaster">Ticketmaster (76)</option><option value="eventbrite">Eventbrite (60)</option><option value="luma">Luma (27)</option><option value="universe">Universe (27)</option><option value="ticketweb">TicketWeb (3)</option><option value="venue">Venue websites (55)</option></select>
 <button class="fbtn" id="ffree" aria-pressed="false">Free only</button>
 <span id="hiddenBar"><span id="hiddenN">0</span> hidden · <button id="unhide">show them</button></span>
 <span id="resCount"></span>
@@ -5856,6 +6189,9 @@ addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash
 const CATS = ["Music", "Music", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Music", "Arts & Play", "Music", "Comedy", "Music", "Music", "Music", "Music", "Theater", "Music", "Comedy", "Music", "Music", "Music", "Theater", "Theater", "Theater", "Comedy", "Music", "Music", "Music", "Theater", "Theater", "Theater", "Comedy", "Music", "Music", "Music", "Music", "Music", "Arts & Play", "Theater", "Comedy", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Comedy", "Theater", "Arts & Play", "Theater", "Theater", "Comedy", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Comedy", "Music", "Comedy", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Arts & Play", "Theater", "Music", "Music", "Music", "Theater", "Comedy", "Comedy", "Music", "Comedy", "Music", "Comedy", "Comedy", "Comedy", "Music", "Music", "Music", "Theater", "Talks", "Food & Drink", "Meetups & Mixers", "Tech", "Fitness & Outdoors", "Talks", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Talks", "Tech", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Talks", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Film", "Theater", "Film", "Film", "Film", "Film", "Theater", "Arts & Play", "Music", "Music", "Arts & Play", "Film", "Film", "Film", "Film", "Talks", "Film", "Music", "Theater", "Theater", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Music", "Music", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Comedy", "Comedy", "Comedy", "Music", "Meetups & Mixers", "Arts & Play", "Arts & Play", "Meetups & Mixers", "Music", "Music", "Comedy", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Classes & Workshops", "Food & Drink", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Talks", "Talks", "Talks", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film"];
 const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, true, false, false, true, true, false, true, true, true, true, true, true, true, true, true, true, false, true, true, false, true, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const HOODS = ["Canary Wharf", "Hackney Central", "Fitzrovia West & Soho", "Somers Town", "Lambeth North, Waterloo & South Bank", "Regent's Park", "Lambeth North, Waterloo & South Bank", "Hampton Village", "Notting Hill South", "Tower Hill & Wapping South", "Lambeth North, Waterloo & South Bank", "Lambeth North, Waterloo & South Bank", "Bryanston & Dorset Square", "Nine Elms", "London Bridge & Bermondsey West", "Somers Town", "Holborn, St Giles & Bloomsbury South", "Borough & Southwark Street", "Holborn, St Giles & Bloomsbury South", "Blackwall", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "West Brompton", "Holborn, St Giles & Bloomsbury South", "Strand, St James & Mayfair", "Brixton Central", "Greenwich Peninsula West", "Shepherd's Bush West", "Greenwich & Deptford Creekside", "Camden Town & Mornington Crescent", "New Cross & Deptford South", "Fitzrovia West & Soho", "King's Cross & Bloomsbury North", "Greenwich Peninsula West", "Alexandra Park", "", "Angel", "Lambeth North, Waterloo & South Bank", "Peckham North", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "Camden Town & Mornington Crescent", "Hammersmith Broadway", "Angel", "Strand, St James & Mayfair", "Holborn, St Giles & Bloomsbury South", "Fitzrovia West & Soho", "Stepney Green", "Brixton North", "Camden Town & Mornington Crescent", "Canary Wharf", "Fitzrovia West & Soho", "Highbury Fields", "Strand, St James & Mayfair", "Holborn, St Giles & Bloomsbury South", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "Holborn, St Giles & Bloomsbury South", "Lambeth North, Waterloo & South Bank", "Wembley North", "Bryanston & Dorset Square", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Victoria", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Central Westminster", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Fitzrovia West & Soho", "Holborn, St Giles & Bloomsbury South", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Hammersmith Broadway", "Lambeth North, Waterloo & South Bank", "Strand, St James & Mayfair", "Bayswater East", "", "Holborn, St Giles & Bloomsbury South", "Strand, St James & Mayfair", "Fitzrovia West & Soho", "Strand, St James & Mayfair", "Hammersmith Broadway", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Mill Meads", "Dalston Kingsland", "West Brompton", "Strand, St James & Mayfair", "Hackney Central", "Shepherd's Bush West", "Knightsbridge, Belgravia & Hyde Park", "Stoke Newington South", "", "Holborn, St Giles & Bloomsbury South", "Holborn, St Giles & Bloomsbury South", "Strand, St James & Mayfair", "Camden Town & Mornington Crescent", "City of London", "", "Lambeth North, Waterloo & South Bank", "Pentonville", "Chingford Green West", "Borough & Southwark Street", "Hatton Garden & Theobalds Road", "South Park", "New Cross South", "Somers Town", "Primrose Hill", "Old Oak & Wormwood", "Strand, St James & Mayfair", "Canary Wharf", "City of London", "Holborn, St Giles & Bloomsbury South", "Clerkenwell", "Borough & Southwark Street", "Kensington Gardens", "Barnsbury West", "Old Street & St Luke's", "Greenwich Peninsula East", "Westbourne", "Lambeth North, Waterloo & South Bank", "Holborn, St Giles & Bloomsbury South", "Brick Lane North", "Northolt South", "", "King's Cross & Bloomsbury North", "Barkingside North", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Walthamstow Market & South Grove", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Fitzrovia West & Soho", "Hans Town", "St George in the East & Wapping North", "Dalston Kingsland", "Dalston Kingsland", "Dalston Kingsland", "Dalston Kingsland", "East Finchley", "East Finchley", "East Finchley", "East Finchley", "Brondesbury Park", "Brondesbury Park", "Brondesbury Park", "Brondesbury Park", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Strand, St James & Mayfair", "Homerton North", "Homerton North", "Homerton North", "Homerton North", "Homerton North", "Homerton North", "Angel", "Angel", "Angel", "Dalston Kingsland", "Kilburn West", "Islington North & Canonbury West", "Greenwich Peninsula West", "St John's Wood South", "Fitzrovia East & Bloomsbury West", "", "Borough & Southwark Street", "Strawberry Hill", "North End", "Shoreditch", "Putney Town & Wandsworth Park", "Shoreditch", "Newington Green", "Dalston East", "Strand, St James & Mayfair", "South Park", "Portobello", "Strand, St James & Mayfair", "City of London", "Strand, St James & Mayfair", "Somers Town", "Fitzrovia East & Bloomsbury West", "Central Westminster", "Strand, St James & Mayfair", "Blackhorse Road", "Highgate West", "Strand, St James & Mayfair", "Knightsbridge, Belgravia & Hyde Park", "Borough & Southwark Street", "Greenwich Town & Park", "Central Westminster", "Clerkenwell", "City of London", "Holborn, St Giles & Bloomsbury South", "City of London", "Fitzrovia West & Soho", "Tower Hill & Wapping South", "City of London", "Hatton Garden & Theobalds Road", "King's Cross & Bloomsbury North", "Spitalfields", "Fitzrovia West & Soho", "Surbiton North", "London Bridge & Bermondsey West", "Shoreditch", "Camden Town & Mornington Crescent", "Shoreditch", "Strand, St James & Mayfair", "Hoxton South & East", "Herne Hill East", "Central Romford", "Greenwich Town & Park", "Bethnal Green South", "Notting Hill South", "Whitton Avenue West", "Strand, St James & Mayfair", "Southwark St George's", "Heathfield", "Central Croydon", "Lower Holloway"];
+function hoodShort(h){ var p = String(h || "").split("-"); return p.length >= 3 ? p[0].trim() : (h || ""); }  // display only (hood_short)
+const SRCS = ["universe", "universe", "universe", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "universe", "universe", "ticketmaster", "ticketmaster", "venue", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "ticketmaster", "ticketmaster", "universe", "universe", "universe", "universe", "ticketweb", "ticketmaster", "ticketmaster", "universe", "universe", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "universe", "universe", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "universe", "universe", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "universe", "universe", "universe", "ticketmaster", "universe", "universe", "universe", "ticketmaster", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite"];  // where each event is listed: "eventbrite", "luma" ... "venue" (its link's site, source_of)
+const SRC_LABEL = {"eventbrite": "Eventbrite", "luma": "Luma", "ticketmaster": "Ticketmaster", "ticketweb": "TicketWeb", "universe": "Universe", "dice": "DICE", "nycparks": "NYC Parks", "geekswhodrink": "Geeks Who Drink", "venue": "Venue websites"};
 const AREA_GROUP = ["Tower Hamlets", "Hackney", "Westminster", "Camden", "Lambeth", "Westminster", "Lambeth", "Richmond upon Thames", "Kensington and Chelsea", "Tower Hamlets", "Lambeth", "Lambeth", "Westminster", "Wandsworth", "Southwark", "Camden", "Camden", "Southwark", "Camden", "Tower Hamlets", "Westminster", "Westminster", "Kensington and Chelsea", "Camden", "Westminster", "Lambeth", "Greenwich", "Hammersmith and Fulham", "Greenwich", "Camden", "Lewisham", "Westminster", "Camden", "Greenwich", "Harrow", "", "Islington", "Lambeth", "Southwark", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Camden", "Hammersmith and Fulham", "Islington", "Westminster", "Camden", "Westminster", "Tower Hamlets", "Lambeth", "Camden", "Tower Hamlets", "Westminster", "Islington", "Westminster", "Camden", "Westminster", "Westminster", "Camden", "Lambeth", "Brent", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Camden", "Westminster", "Westminster", "Hammersmith and Fulham", "Lambeth", "Westminster", "Westminster", "", "Camden", "Westminster", "Westminster", "Westminster", "Hammersmith and Fulham", "Westminster", "Westminster", "Westminster", "Newham", "Hackney", "Kensington and Chelsea", "Westminster", "Hackney", "Hammersmith and Fulham", "Westminster", "Hackney", "", "Camden", "Camden", "Westminster", "Camden", "City of London", "", "Lambeth", "Islington", "Waltham Forest", "Southwark", "Camden", "Redbridge", "Lewisham", "Camden", "Camden", "Hammersmith and Fulham", "Westminster", "Tower Hamlets", "City of London", "Camden", "Islington", "Southwark", "Kensington and Chelsea", "Islington", "Islington", "Greenwich", "Westminster", "Lambeth", "Camden", "Tower Hamlets", "Ealing", "", "Camden", "Redbridge", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "City of London", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Waltham Forest", "Westminster", "Westminster", "Westminster", "Kensington and Chelsea", "Tower Hamlets", "Hackney", "Hackney", "Hackney", "Hackney", "Barnet", "Barnet", "Barnet", "Barnet", "Brent", "Brent", "Brent", "Brent", "Westminster", "Westminster", "Westminster", "Westminster", "Westminster", "Hackney", "Hackney", "Hackney", "Hackney", "Hackney", "Hackney", "Islington", "Islington", "Islington", "Hackney", "Brent", "Islington", "Greenwich", "Westminster", "Camden", "", "Southwark", "Richmond upon Thames", "Hammersmith and Fulham", "Hackney", "Wandsworth", "Hackney", "Islington", "Hackney", "Westminster", "Redbridge", "Kensington and Chelsea", "Westminster", "City of London", "Westminster", "Camden", "Camden", "Westminster", "Westminster", "Waltham Forest", "Camden", "Westminster", "Westminster", "Southwark", "Greenwich", "Westminster", "Islington", "City of London", "Camden", "City of London", "Westminster", "Tower Hamlets", "City of London", "Camden", "Camden", "Tower Hamlets", "Westminster", "Kingston upon Thames", "Southwark", "Hackney", "Camden", "Hackney", "Westminster", "Hackney", "Lambeth", "Havering", "Greenwich", "Tower Hamlets", "Kensington and Chelsea", "Ealing", "Westminster", "Southwark", "Richmond upon Thames", "Croydon", "Islington"];  // each event's borough / region ("" = no neighbourhood)
 const AREA_ORDER = ["Westminster", "Camden", "Hackney", "City of London", "Islington", "Lambeth", "Tower Hamlets", "Southwark", "Greenwich", "Hammersmith and Fulham", "Kensington and Chelsea", "Brent", "Barnet", "Redbridge", "Richmond upon Thames", "Waltham Forest", "Ealing", "Lewisham", "Wandsworth", "Croydon", "Harrow", "Havering", "Kingston upon Thames", "Newham", "Barking and Dagenham", "Bexley", "Bromley", "Enfield", "Haringey", "Hillingdon", "Hounslow", "Merton", "Sutton", "Elsewhere"];
 const TZ = "Europe/London";
@@ -6063,7 +6399,7 @@ window.__applyFilters = (function () {
   // you: "For you" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "My neighbourhoods" (Preferences)
   // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false, low: false};
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -6096,7 +6432,7 @@ window.__applyFilters = (function () {
     if (base && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) base = false;
     if (base && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) base = false;
     if (base && F.q) {
-      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
+      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (SRC_LABEL[SRCS[i]] || "") + " " + (a ? a.textContent : "")).toLowerCase();
       if (!hay[i].includes(F.q)) base = false;
     }
     const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
@@ -6105,6 +6441,7 @@ window.__applyFilters = (function () {
       free: !F.free || FREE[i],
       tod: todOk(i),
       hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
+      src: !F.src || F.src.split("|").includes(SRCS[i]),  // one or several sources (Eventbrite, Luma ...)
       you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []) ||
         ((F.low || F.q) && Tonight.excluded && Tonight.excluded(i) === "junk"),
       near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
@@ -6115,7 +6452,7 @@ window.__applyFilters = (function () {
     let n = 0, nLow = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const rest = d.cat && d.free && d.tod && d.hood && d.you && d.near;
+      const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near;
       const ok = d.base && rest;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
@@ -6163,6 +6500,8 @@ window.__applyFilters = (function () {
   });
   const _fh = document.getElementById("fhood");
   if (_fh) _fh.addEventListener("change", e => { F.hood = e.target.value; applyFilters(); });
+  const _fs = document.getElementById("fsrc");
+  if (_fs) _fs.addEventListener("change", e => { F.src = e.target.value; applyFilters(); });
   document.getElementById("ffree").addEventListener("click", e => {
     F.free = !F.free;
     e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
@@ -6281,7 +6620,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.near;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.near;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -6308,7 +6647,7 @@ window.__applyFilters = (function () {
   (() => {
     const q = document.getElementById("fq");
     if (q.value) q.dispatchEvent(new Event("input"));
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") el.dispatchEvent(new Event("change")); });
   })();
   // filters from the address, e.g. ?free=1&before=960 (links from Toni, shared links)
@@ -6317,7 +6656,7 @@ window.__applyFilters = (function () {
       if (el && v != null) { if (el.tagName === "SELECT" && v !== "" && !el.querySelector('option[value="' + v + '"]')) { const o = document.createElement("option"); o.value = v; const h = Math.floor(v / 60), m = v % 60; o.textContent = (h % 12 || 12) + (m ? ":" + String(m).padStart(2, "0") : "") + (h >= 12 ? " PM" : " AM"); el.appendChild(o); } el.value = v; el.dispatchEvent(new Event("change")); } };
     if (q.get("free") === "1") document.getElementById("ffree").click();
     setv("fafter", q.get("after")); setv("fbefore", q.get("before"));
-    setv("fcat", q.get("cat")); setv("fhood", q.get("hood"));
+    setv("fcat", q.get("cat")); setv("fhood", q.get("hood")); setv("fsrc", q.get("src"));
     const only = (q.get("only") || "").split(",").filter(x => /^[0-9a-f]{8,10}$/.test(x));
     if (only.length) {
       F.only = new Set(only);
@@ -6332,9 +6671,9 @@ window.__applyFilters = (function () {
   // active filters look "on"; Clear all appears once anything is set
   const _fb = document.getElementById("filterBar"), _fc = document.getElementById("fclear");
   function syncFilterUI() {
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src);
     if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
     if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
@@ -6343,7 +6682,7 @@ window.__applyFilters = (function () {
   _fb.addEventListener("click", () => setTimeout(syncFilterUI, 0));
   if (_fc) _fc.addEventListener("click", () => {
     const q = document.getElementById("fq"); q.value = ""; q.dispatchEvent(new Event("input"));
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") { el.value = ""; el.dispatchEvent(new Event("change")); } });
     if (F.free) document.getElementById("ffree").click();
     const all = document.querySelector('#ftod button[data-t="all"]'); if (all) all.click();
@@ -6564,7 +6903,7 @@ function setNextHour(on, quiet) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i))) return;
-    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.you || !d.near) return; }  // other filters still apply
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.src || !d.you || !d.near) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     const kind = soonKind(i, now);
@@ -6611,7 +6950,7 @@ if (_nhb) _nhb.addEventListener("click", () => {
 </script>
 <script>
 // ---------------- Browse filters (discovery v1) ----------------
-const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: ""};
+const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: ""};
 const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
 let hidden = new Set(typeof loadIds === "function" ? loadIds(HIDE_KEY) : JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
 function todOf(i) {
@@ -6633,8 +6972,9 @@ function applyFilters() {
     if (ok && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) ok = false;
     if (ok && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) ok = false;
     if (ok && F.hood && HOODS[i] !== F.hood) ok = false;
+    if (ok && F.src && SRCS[i] !== F.src) ok = false;
     if (ok && F.q) {
-      const hay = (NAMES[i] + " " + CATS[i] + " " + a.textContent).toLowerCase();
+      const hay = (NAMES[i] + " " + CATS[i] + " " + (SRC_LABEL[SRCS[i]] || "") + " " + a.textContent).toLowerCase();
       if (!hay.includes(F.q)) ok = false;
     }
     a.style.display = ok ? "" : "none";
@@ -6656,6 +6996,8 @@ document.getElementById("fcat").addEventListener("change", e => {
 });
 const _fh = document.getElementById("fhood");
 if (_fh) _fh.addEventListener("change", e => { F.hood = e.target.value; applyFilters(); });
+const _fs = document.getElementById("fsrc");
+if (_fs) _fs.addEventListener("change", e => { F.src = e.target.value; applyFilters(); });
 document.getElementById("ffree").addEventListener("click", e => {
   F.free = !F.free;
   e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
@@ -7341,6 +7683,7 @@ function filterUrl(f){
   if (f.before != null) q.push("before=" + f.before);
   if (f.category) q.push("cat=" + encodeURIComponent(f.category));
   if (f.neighborhood) q.push("hood=" + encodeURIComponent(f.neighborhood));
+  if (f.source) q.push("src=" + encodeURIComponent(f.source));
   return q.length ? "?" + q.join("&") : "";
 }
 // "Show me everything that's free before 7": Toni sets the page's own filters instead of a long list
@@ -7350,7 +7693,7 @@ function applyPageFilters(f){
     el.value = v == null ? "" : String(v); el.dispatchEvent(new Event("change")); };
   var free = document.getElementById("ffree");
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
-  set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || "");
+  set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || ""); set("fsrc", f.source || "");
   var n = 0;
   document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;
@@ -7593,7 +7936,7 @@ document.addEventListener("click", function(e){ if (box.hasAttribute("open") && 
 sel.hidden = true; sel.parentNode.insertBefore(box, sel.nextSibling);
 fromSelect();
 })();
-</script><script>window.__tonight_api="https://tonight-api-2169.onrender.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
+</script><script>window.__tonight_api=""||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
 var base=new URL(a.href).pathname,p=location.pathname,es=/\/es\/$/.test(base);
 var rest=p.indexOf(base)===0?p.slice(base.length):"";
 a.href=(es?base.slice(0,-3):base+"es/")+rest+location.search+location.hash;

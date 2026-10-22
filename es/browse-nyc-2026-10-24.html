@@ -79,9 +79,11 @@ footer p{opacity:.62;line-height:1.6;margin:0;}
 </style>
 <link rel="icon" type="image/png" sizes="32x32" href="/tonight/assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/tonight/assets/favicon-180.png">
-<style>:root{--field:#fff;--on-accent:var(--ink);--on-banner:var(--paper);}
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><style>:root{--field:#fff;--on-accent:var(--ink);--on-banner:var(--paper);}
 a{text-decoration-skip-ink:none;}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}.topnav .brand .wm{white-space:nowrap;}.topnav .brand .iw{position:relative;}.topnav .brand .im{position:absolute;left:50%;top:.95em;transform:translate(-50%,-82%) rotate(-18deg);font-size:.46em;line-height:1;color:var(--accent);-webkit-text-stroke:.07em var(--accent);font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-weight:400;}
+:root[data-palette="lineup"]{--paper:#fff7ec;--ink:#151515;--accent:#ff4f2e;--gold:#ff4f2e;--card:#fff;--field:#fff;--muted:#f5e8d6;--banner:#151515;--on-banner:#fff7ec;--on-accent:#151515;--danger:#d7261e}
+:root[data-palette="knicks"]{--paper:oklch(.965 .005 95);--ink:oklch(.3 .14 265);--accent:oklch(.72 .19 60);--gold:oklch(.72 .19 60);--card:oklch(.99 .005 95);--muted:oklch(.92 .02 260);--banner:oklch(.3 .14 265);--danger:oklch(.56 .2 25);--field:#fff;--on-accent:oklch(.3 .14 265);--on-banner:oklch(.965 .005 95)}
 :root[data-palette="neon"]{--paper:oklch(.16 .018 285);--ink:oklch(.94 .01 100);--accent:oklch(.88 .22 126);--card:oklch(.21 .022 285);--muted:oklch(.29 .03 285);--banner:oklch(.68 .25 350);--danger:oklch(.68 .2 25);--field:oklch(.21 .022 285);--on-accent:oklch(.16 .018 285);--on-banner:oklch(.16 .018 285);color-scheme:dark}
 :root[data-palette="harbor"]{--paper:oklch(.975 .012 190);--ink:oklch(.21 .055 193);--accent:oklch(.77 .13 168);--card:oklch(.99 .008 190);--muted:oklch(.92 .03 190);--banner:oklch(.21 .055 193);--danger:oklch(.58 .2 27)}
 :root[data-palette="cherry"]{--paper:oklch(.94 .025 84);--ink:oklch(.2 .012 50);--accent:oklch(.57 .22 24);--card:oklch(.97 .018 84);--muted:oklch(.89 .03 84);--banner:oklch(.77 .105 224);--danger:oklch(.5 .2 25);--on-accent:oklch(.99 .01 84);--on-banner:oklch(.2 .012 50)}
@@ -100,7 +102,338 @@ a{text-decoration-skip-ink:none;}
 :root[data-palette="sand"] .topnav .browselink,:root[data-palette="sand"] .topnav .tastelink{color:var(--on-banner);}:root[data-palette="sand"] .topnav .browselink{text-decoration:underline;text-decoration-thickness:2px;}:root[data-palette="sand"] .topnav .citylinks a.cur{background:var(--on-banner);color:var(--banner);border-color:var(--on-banner);}:root[data-palette="sand"] .topnav .brand .im{color:var(--on-banner);-webkit-text-stroke-color:var(--on-banner);}:root[data-palette="sand"] .hero .eyebrow{background:var(--on-banner);color:var(--banner);}
 :root[data-palette="clay"] .topnav .browselink,:root[data-palette="clay"] .topnav .tastelink{color:var(--on-banner);}:root[data-palette="clay"] .topnav .browselink{text-decoration:underline;text-decoration-thickness:2px;}:root[data-palette="clay"] .topnav .citylinks a.cur{background:var(--on-banner);color:var(--banner);border-color:var(--on-banner);}:root[data-palette="clay"] .topnav .brand .im{color:var(--on-banner);-webkit-text-stroke-color:var(--on-banner);}:root[data-palette="clay"] .hero .eyebrow{background:var(--on-banner);color:var(--banner);}
 :root[data-palette="mint"] .topnav .browselink,:root[data-palette="mint"] .topnav .tastelink{color:var(--on-banner);}:root[data-palette="mint"] .topnav .browselink{text-decoration:underline;text-decoration-thickness:2px;}:root[data-palette="mint"] .topnav .citylinks a.cur{background:var(--on-banner);color:var(--banner);border-color:var(--on-banner);}:root[data-palette="mint"] .topnav .brand .im{color:var(--on-banner);-webkit-text-stroke-color:var(--on-banner);}:root[data-palette="mint"] .hero .eyebrow{background:var(--on-banner);color:var(--banner);}
-:root[data-palette="neon"] .topnav .browselink{color:var(--on-banner);text-decoration:underline;text-decoration-thickness:2px;}</style><script>(function(){try{var r=document.documentElement,p=localStorage.getItem("tonight-palette"),l=localStorage.getItem("tonight-layout");if(p)r.setAttribute("data-palette",p);if(l)r.setAttribute("data-layout",l);}catch(e){}})();
+:root[data-palette="neon"] .topnav .browselink{color:var(--on-banner);text-decoration:underline;text-decoration-thickness:2px;}
+
+
+:root[data-layout="lineup"]{--lu-sun:#ffc21a;--lu-sky:#2f6bff;--lu-mint:#19b38a;--lu-hot:var(--accent);
+--lu-soft:color-mix(in srgb,var(--ink) 64%,var(--paper));--lu-line:color-mix(in srgb,var(--ink) 14%,transparent);
+--lu-r:18px;--lu-sh:0 2px 0 var(--ink);
+--lu-d:'Anton',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
+--lu-t:'Space Grotesk',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+:root[data-layout="lineup"]:not([data-palette]){--paper:#fff7ec;--ink:#151515;--accent:#ff4f2e;--gold:#ff4f2e;--card:#fff;--field:#fff;
+--muted:#f5e8d6;--banner:#151515;--on-banner:#fff7ec;--on-accent:#151515;--danger:#d7261e;}
+
+
+:root[data-layout="lineup"] body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;}
+:root[data-layout="lineup"] body,:root[data-layout="lineup"] body *{font-family:var(--lu-t)!important;}
+:root[data-layout="lineup"] .topnav .brand .wm-lu,:root[data-layout="lineup"] #luPoster .lu-date,:root[data-layout="lineup"] #luPoster .lu-hl a,:root[data-layout="lineup"] #topTonight h2,:root[data-layout="lineup"] .cat h2,:root[data-layout="lineup"] .tonight-head h2,
+:root[data-layout="lineup"] .hero h1,:root[data-layout="lineup"] .bhero h1,:root[data-layout="lineup"] .lhero h1,:root[data-layout="lineup"] .cc-top,:root[data-layout="lineup"] .how h2,:root[data-layout="lineup"] footer .serif,:root[data-layout="lineup"] .sdone h2,:root[data-layout="lineup"] .quiz-card h2,
+:root[data-layout="lineup"] #sgCard h2,:root[data-layout="lineup"] #rpCard h2,:root[data-layout="lineup"] .tn-head b,:root[data-layout="lineup"] .tsec-head h2,:root[data-layout="lineup"] .shead h2,:root[data-layout="lineup"] .picks strong,:root[data-layout="lineup"] .step .n,:root[data-layout="lineup"] .snum,
+:root[data-layout="lineup"] #dayLead .dl-h,:root[data-layout="lineup"] .legal h2,:root[data-layout="lineup"] .st-card h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;}
+
+:root[data-layout="lineup"] #topTonight h2 *,:root[data-layout="lineup"] .cat h2 *,:root[data-layout="lineup"] .hero h1 *,:root[data-layout="lineup"] .bhero h1 *,:root[data-layout="lineup"] .lhero h1 *,:root[data-layout="lineup"] .wm-lu *,:root[data-layout="lineup"] .cc-top *,:root[data-layout="lineup"] footer .serif *,
+:root[data-layout="lineup"] .tsec-head h2 *,:root[data-layout="lineup"] .shead h2 *,:root[data-layout="lineup"] .picks strong *,:root[data-layout="lineup"] .sdone h2 *,:root[data-layout="lineup"] .tonight-head h2 *{font-family:var(--lu-d)!important;font-weight:400!important;}
+
+
+:root[data-layout="lineup"] .topnav{background:var(--paper);color:var(--ink);border-bottom:2px solid var(--ink);padding:12px 24px;gap:18px;}
+:root[data-layout="lineup"] .topnav .brand{color:var(--ink);gap:0;}
+:root[data-layout="lineup"] .topnav .brand img,:root[data-layout="lineup"] .topnav .brand .wm{display:none;}
+:root[data-layout="lineup"] .topnav .brand .wm-lu{display:inline;font-size:28px;line-height:1;color:var(--ink);text-transform:none;}
+:root[data-layout="lineup"] .topnav .brand .wm-lu i{font-style:normal;color:var(--lu-hot);}
+:root[data-layout="lineup"] .topnav .tastelink,:root[data-layout="lineup"] .topnav .browselink,:root[data-layout="lineup"] .topnav .stylemenu summary{color:var(--ink);font-size:12.5px;font-weight:700;
+letter-spacing:.08em;text-transform:uppercase;text-decoration:none;}
+:root[data-layout="lineup"] .topnav .tastelink:hover,:root[data-layout="lineup"] .topnav .browselink:hover{color:var(--lu-hot);text-decoration:none;}
+:root[data-layout="lineup"] .topnav .browselink{color:var(--lu-hot);}
+:root[data-layout="lineup"] .topnav .citylinks a{color:var(--ink);border:2px solid transparent;border-radius:999px;padding:6px 13px;font-size:12.5px;
+font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:1;}
+:root[data-layout="lineup"] .topnav .citylinks a:not(.cur):hover{border-color:var(--ink);color:var(--ink);}
+:root[data-layout="lineup"] .topnav .citylinks a.cur{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+:root[data-layout="lineup"] .langmenu summary{color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:5px 11px;font-size:12.5px;}
+:root[data-layout="lineup"] .langlist,:root[data-layout="lineup"] .tmenu,:root[data-layout="lineup"] .filters .fmenu,:root[data-layout="lineup"] #hideMenu,:root[data-layout="lineup"] .stylepanel{border:2px solid var(--ink);border-radius:14px;
+box-shadow:var(--lu-sh);overflow:hidden;background:var(--card);}
+:root[data-layout="lineup"] .langlist a:hover,:root[data-layout="lineup"] .tm-item:hover,:root[data-layout="lineup"] .filters .fmenu label:hover{background:var(--muted);}
+
+
+:root[data-layout="lineup"] #filterBar,:root[data-layout="lineup"] .tcard,:root[data-layout="lineup"] .sform .tsec,:root[data-layout="lineup"] .acct-wrap .tsec,:root[data-layout="lineup"] .rv-wrap .tsec,:root[data-layout="lineup"] .citycard,:root[data-layout="lineup"] .picks,:root[data-layout="lineup"] .cat.free,:root[data-layout="lineup"] .legal .fineprint,:root[data-layout="lineup"] .sdone,:root[data-layout="lineup"] .eprev,
+:root[data-layout="lineup"] .quiz-card,:root[data-layout="lineup"] #conciergeNote,:root[data-layout="lineup"] #toniPanel,:root[data-layout="lineup"] #sgCard,:root[data-layout="lineup"] #rpCard,:root[data-layout="lineup"] .tn-card,:root[data-layout="lineup"] .sv-box,:root[data-layout="lineup"] .lk-opt{
+border:2px solid var(--ink);border-radius:var(--lu-r);box-shadow:var(--lu-sh);background:var(--card);overflow:hidden;}
+:root[data-layout="lineup"] .citycard:hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--ink);}
+:root[data-layout="lineup"] .citycard:active{transform:none;box-shadow:var(--lu-sh);}
+
+:root[data-layout="lineup"] .btn,:root[data-layout="lineup"] .btn2,:root[data-layout="lineup"] .btn-gold,:root[data-layout="lineup"] .btn-danger,:root[data-layout="lineup"] .tickets,:root[data-layout="lineup"] .cal-link,:root[data-layout="lineup"] .fbtn,:root[data-layout="lineup"] .badge,:root[data-layout="lineup"] .more-btn,:root[data-layout="lineup"] .qchip,:root[data-layout="lineup"] .fs-chip,:root[data-layout="lineup"] #fsBtn,:root[data-layout="lineup"] .tt-all,
+:root[data-layout="lineup"] .cc-cta,:root[data-layout="lineup"] .bhero .step,:root[data-layout="lineup"] #tnToast button,:root[data-layout="lineup"] .sg-go,:root[data-layout="lineup"] .rp-go,:root[data-layout="lineup"] #conciergeNote .cn-ask,:root[data-layout="lineup"] .dn-btn,:root[data-layout="lineup"] #fsSheet .fs-show,
+:root[data-layout="lineup"] #filterBar .fsearch,:root[data-layout="lineup"] #filterBar select,:root[data-layout="lineup"] .filters .fmulti summary,:root[data-layout="lineup"] .filters input[type=search],:root[data-layout="lineup"] .filters select{
+border-radius:999px!important;}
+:root[data-layout="lineup"] .btn,:root[data-layout="lineup"] .btn2,:root[data-layout="lineup"] .btn-gold,:root[data-layout="lineup"] .tt-all,:root[data-layout="lineup"] .cc-cta,:root[data-layout="lineup"] .more-btn,:root[data-layout="lineup"] .sg-go,:root[data-layout="lineup"] .rp-go,:root[data-layout="lineup"] #fsSheet .fs-show{border:2px solid var(--ink);
+box-shadow:var(--lu-sh);text-transform:none;letter-spacing:0;font-weight:700;}
+:root[data-layout="lineup"] .btn:active,:root[data-layout="lineup"] .btn2:active,:root[data-layout="lineup"] .tt-all:active{transform:translateY(2px);box-shadow:none;}
+:root[data-layout="lineup"] .btn-gold,:root[data-layout="lineup"] .tt-all,:root[data-layout="lineup"] .cc-cta,:root[data-layout="lineup"] .sg-go,:root[data-layout="lineup"] .rp-go{background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] .btn-gold:hover,:root[data-layout="lineup"] .btn2:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--ink);background:var(--lu-sun);}
+:root[data-layout="lineup"] .btn-dark,:root[data-layout="lineup"] .more-btn,:root[data-layout="lineup"] #fsSheet .fs-show{background:var(--ink);color:var(--paper);box-shadow:var(--lu-sh);}
+:root[data-layout="lineup"] .btn-danger{border-width:2px;box-shadow:0 2px 0 var(--danger);text-transform:none;letter-spacing:0;font-weight:700;}
+:root[data-layout="lineup"] .soon{border-radius:999px;}
+:root[data-layout="lineup"] .btn-ghost{background:transparent;border-color:var(--paper);color:var(--paper);box-shadow:none;}
+:root[data-layout="lineup"] .tickets{background:var(--ink);color:var(--paper);border:2px solid var(--ink);box-shadow:none;text-transform:none;
+letter-spacing:0;font-weight:700;font-size:13px;padding:7px 16px;}
+:root[data-layout="lineup"] .cal-link{border:2px solid var(--ink);background:var(--card);font-weight:600;padding:5px 12px;}
+:root[data-layout="lineup"] .cal-link:hover{background:var(--muted);}
+:root[data-layout="lineup"] .badge{border:0;padding:3px 10px;font-weight:700;letter-spacing:.06em;}
+:root[data-layout="lineup"] .badge.free{background:var(--lu-mint);color:#fff;}
+:root[data-layout="lineup"] .badge.now{background:var(--lu-hot);color:var(--on-accent);}
+:root[data-layout="lineup"] input[type=email],:root[data-layout="lineup"] input[type=tel],:root[data-layout="lineup"] input[type=text],:root[data-layout="lineup"] input[type=url],:root[data-layout="lineup"] textarea,:root[data-layout="lineup"] .sfield select,:root[data-layout="lineup"] .sv-input{
+border:2px solid var(--ink)!important;border-radius:12px!important;}
+:root[data-layout="lineup"] .sfield input:focus,:root[data-layout="lineup"] .sv-input:focus,:root[data-layout="lineup"] .filters input:focus,:root[data-layout="lineup"] .filters select:focus{outline:3px solid var(--lu-sun);outline-offset:1px;}
+
+
+:root[data-layout="lineup"] .hero.dayhero{background:transparent;color:var(--ink);border-bottom:0;padding:14px max(16px,calc((100% - 1040px) / 2)) 0;}
+:root[data-layout="lineup"] .dayhero h1{font-family:var(--lu-t)!important;font-weight:700!important;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--lu-soft);}
+:root[data-layout="lineup"] .dayhero h1 *{font-family:var(--lu-t)!important;font-weight:700!important;}
+:root[data-layout="lineup"] .dayhero .btn-dark{background:var(--card);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--lu-sh);}
+:root[data-layout="lineup"] .dayhero .toolbar .btn{padding:6px 14px;font-size:12.5px;}
+:root[data-layout="lineup"] #dayLead{display:none;}
+
+
+#luPoster{display:none;}
+:root[data-layout="lineup"] #luPoster{display:block;position:relative;overflow:hidden;max-width:1040px;width:calc(100% - 32px);margin:14px auto 0;padding:34px 28px 30px;
+box-sizing:border-box;background:var(--ink);color:var(--paper);border-radius:22px;text-align:center;}
+:root[data-layout="lineup"] #luPoster .lu-blob{position:absolute;border-radius:50%;pointer-events:none;}
+:root[data-layout="lineup"] #luPoster .lu-b1{width:420px;height:420px;background:var(--lu-hot);left:-170px;top:-190px;opacity:.9;}
+:root[data-layout="lineup"] #luPoster .lu-b2{width:360px;height:360px;background:var(--lu-sky);right:-150px;bottom:-210px;opacity:.85;}
+:root[data-layout="lineup"] #luPoster .lu-b3{width:120px;height:120px;background:var(--lu-sun);right:-36px;top:-40px;opacity:.95;}
+:root[data-layout="lineup"] #luPoster .lu-b4{width:90px;height:90px;background:var(--lu-mint);left:-30px;bottom:-34px;opacity:.95;}
+:root[data-layout="lineup"] #luPoster > :not(.lu-blob){position:relative;z-index:1;}
+:root[data-layout="lineup"] #luPoster .lu-eye{font-weight:700;letter-spacing:.3em;font-size:12px;color:var(--lu-sun);text-transform:uppercase;}
+:root[data-layout="lineup"] #luPoster .lu-date{margin:8px 0 2px;font-size:clamp(44px,8vw,86px);line-height:.95;text-transform:uppercase;}
+:root[data-layout="lineup"] #luPoster .lu-from{margin:6px 0 0;font-size:13.5px;font-weight:600;opacity:.72;}
+:root[data-layout="lineup"] #luPoster .lu-hls{margin:10px auto 0;max-width:900px;}
+:root[data-layout="lineup"] #luPoster .lu-hl{display:block;margin:16px 0;}
+:root[data-layout="lineup"] #luPoster .lu-hl a{display:block;color:var(--paper);text-decoration:none;font-size:clamp(26px,4.2vw,44px);line-height:1.05;
+text-transform:uppercase;overflow-wrap:anywhere;}
+:root[data-layout="lineup"] #luPoster .lu-hl a:hover,:root[data-layout="lineup"] #luPoster .lu-hl a:focus-visible{color:var(--lu-sun);}
+:root[data-layout="lineup"] #luPoster .lu-t{display:block;font-weight:700;font-size:12px;letter-spacing:.2em;color:var(--lu-sun);margin-bottom:4px;text-transform:uppercase;}
+:root[data-layout="lineup"] #luPoster .lu-w{display:block;margin-top:4px;font-weight:600;font-size:13px;opacity:.72;text-transform:none;letter-spacing:0;}
+:root[data-layout="lineup"] #luPoster .lu-lines{margin:18px auto 0;max-width:860px;line-height:1.7;font-weight:700;font-size:15px;text-transform:uppercase;
+letter-spacing:.04em;overflow-wrap:anywhere;}
+:root[data-layout="lineup"] #luPoster .lu-lines:empty{display:none;}
+:root[data-layout="lineup"] #luPoster .lu-ln{color:var(--paper);text-decoration:none;}
+:root[data-layout="lineup"] #luPoster .lu-ln:hover,:root[data-layout="lineup"] #luPoster .lu-ln:focus-visible{color:var(--lu-sun);}
+:root[data-layout="lineup"] #luPoster .lu-dot{color:var(--lu-hot);margin:0 8px;}
+:root[data-layout="lineup"] #luPoster .lu-none{margin:18px 0 0;font-weight:600;opacity:.8;}
+:root[data-layout="lineup"] #luPoster .lu-cta{display:inline-block;margin:22px 0 0;background:var(--lu-sun);color:#151515;font-weight:700;padding:12px 20px;
+border-radius:999px;text-decoration:none;}
+:root[data-layout="lineup"] #luPoster .lu-cta:hover{transform:translateY(-1px);}
+:root[data-layout="lineup"].listmode #luPoster{display:none;}
+
+:root[data-layout="lineup"][data-palette="neon"] #luPoster{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 2px var(--muted);}
+:root[data-layout="lineup"][data-palette="neon"] #luPoster .lu-hl a,:root[data-layout="lineup"][data-palette="neon"] #luPoster .lu-ln{color:var(--ink);}
+
+
+:root[data-layout="lineup"] .daystrip .ds{border:2px solid var(--ink);border-radius:14px;background:var(--card);font-weight:700;}
+:root[data-layout="lineup"] .daystrip .ds:hover{background:var(--muted);}
+:root[data-layout="lineup"] .daystrip .ds.cur{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .daystrip .ds.wk{background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] .daystrip .ds.wk.cur{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .daystrip .ds-more{background:transparent;}
+
+
+:root[data-layout="lineup"] #conciergeNote{max-width:1040px;padding:14px 20px;}
+@media (min-width:641px){:root[data-layout="lineup"] #conciergeNote{width:calc(100% - 32px);}}
+:root[data-layout="lineup"] #conciergeNote .cn-eye{color:var(--lu-hot);filter:none;font-weight:700;letter-spacing:.14em;}
+:root[data-layout="lineup"] #conciergeNote .cn-hi{font-family:var(--lu-d)!important;font-weight:400;font-size:26px;}
+:root[data-layout="lineup"] #conciergeNote .cn-t{font-weight:700;}
+:root[data-layout="lineup"] #conciergeNote .cn-role{color:var(--lu-soft);font-weight:700;letter-spacing:.1em;}
+:root[data-layout="lineup"] #conciergeNote a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #conciergeNote .cn-ask{background:var(--lu-sun);color:#151515;border:2px solid var(--ink);box-shadow:var(--lu-sh);}
+:root[data-layout="lineup"] #conciergeNote .cn-plan a.cn-book{border-radius:999px;padding:2px 9px;}
+:root[data-layout="lineup"] .dn-btn{border:2px solid var(--ink);background:var(--card);color:var(--ink);}
+
+
+:root[data-layout="lineup"] #filterBar{padding:12px 14px 10px;}
+:root[data-layout="lineup"] #filterBar .fsearch{border:2px solid var(--ink);}
+:root[data-layout="lineup"] #filterBar .fsearch:focus-within{outline:3px solid var(--lu-sun);}
+:root[data-layout="lineup"] #filterBar .seg{border:2px solid var(--ink);border-radius:999px;}
+:root[data-layout="lineup"] #filterBar .seg button{text-transform:none;font-weight:600;font-size:12.5px;}
+:root[data-layout="lineup"] #filterBar .seg button.on,:root[data-layout="lineup"] .seg button.on{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .seg button,:root[data-layout="lineup"] .fbtn{text-transform:none;letter-spacing:0;font-weight:600;border-radius:999px;}
+:root[data-layout="lineup"] .fbtn[aria-pressed="true"],:root[data-layout="lineup"] #filterBar .fbtn[aria-pressed="true"],:root[data-layout="lineup"] #filterBar select.on,:root[data-layout="lineup"] .filters .fmulti.on summary,
+:root[data-layout="lineup"] #filterBar .fmore.on,:root[data-layout="lineup"] #fsBtn.on{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] #filterBar #hiddenBar{border-radius:999px;}
+:root[data-layout="lineup"] #filterBar .fclear{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #fside{border:2px solid var(--ink)!important;border-radius:var(--lu-r);box-shadow:var(--lu-sh);}
+:root[data-layout="lineup"] .fs-title{font-family:var(--lu-d)!important;font-weight:400;font-size:20px;letter-spacing:.01em;text-transform:none;}
+:root[data-layout="lineup"] .fs-h{color:var(--lu-hot);opacity:1;font-weight:700;letter-spacing:.1em;}
+:root[data-layout="lineup"] .fs-row input,:root[data-layout="lineup"] .filters .fmenu input,:root[data-layout="lineup"] .sv-check input{accent-color:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-row:not(.zero):hover .fs-l{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-grp summary .fs-dot{background:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-lk{color:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-mode{border-radius:999px;overflow:hidden;}
+:root[data-layout="lineup"] .fs-mode button.on{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .fs-tag{border-radius:999px;padding:1px 7px;}
+:root[data-layout="lineup"] .fs-mnote{border:2px solid var(--ink);border-left-width:6px;border-radius:12px;}
+:root[data-layout="lineup"] .fs-chip{font-weight:600;}
+:root[data-layout="lineup"] .fs-chip.on{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .fs-chipf,:root[data-layout="lineup"] .fs-chipf.on{background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] #fsSheet .fs-panel{border-top:2px solid var(--ink);border-radius:22px 22px 0 0;}
+:root[data-layout="lineup"] #fsSheet .fs-show{text-transform:none;letter-spacing:0;font-weight:700;}
+:root[data-layout="lineup"] .fs-x select{border-radius:10px;}
+
+
+:root[data-layout="lineup"] #picksBar{border:2px dashed var(--ink);border-radius:16px;box-shadow:none;background:transparent;}
+:root[data-layout="lineup"] #picksBar strong{font-size:18px;text-transform:none;}
+:root[data-layout="lineup"] #picksBar .btn{box-shadow:var(--lu-sh);}
+
+
+#topTonight .tt-hl{display:none;}
+:root[data-layout="lineup"] #topTonight .tt-hd{display:none;}
+:root[data-layout="lineup"] #topTonight .tt-hl{display:inline;}
+:root[data-layout="lineup"] #topTonight{margin-top:30px;}
+:root[data-layout="lineup"] #topTonight h2{font-size:36px;line-height:1.05;text-transform:none;margin:0 0 16px;}
+:root[data-layout="lineup"] .tt-list{gap:18px;}
+:root[data-layout="lineup"] .tt-card,:root[data-layout="lineup"] .tt-card.big{grid-column:auto;border:2px solid var(--ink);border-radius:var(--lu-r);box-shadow:var(--lu-sh);background:var(--card);}
+:root[data-layout="lineup"] .tt-m,:root[data-layout="lineup"] .tt-card.big .tt-m{aspect-ratio:4/3;background:linear-gradient(135deg,var(--lu-sun),var(--lu-hot));color:#151515;}
+:root[data-layout="lineup"] .tt-m .tt-ic{font-size:64px;}
+:root[data-layout="lineup"] .tt-cat,:root[data-layout="lineup"] .tt-t{display:none;}
+.tt-slot,.tt-k,.tt-sv{display:none;}
+:root[data-layout="lineup"] .tt-slot{display:block;position:absolute;left:10px;top:10px;z-index:1;background:var(--ink);color:var(--paper);font-weight:700;
+font-size:12px;line-height:1.2;padding:5px 10px;border-radius:999px;}
+:root[data-layout="lineup"] .tt-k{display:block;font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-b{padding:12px 14px 14px;gap:4px;}
+:root[data-layout="lineup"] .tt-h,:root[data-layout="lineup"] .tt-card.big .tt-h{font-size:18px;line-height:1.2;font-weight:700;margin:2px 0 4px;}
+:root[data-layout="lineup"] .tt-name:hover{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-why{color:var(--lu-soft);opacity:1;font-size:14px;}
+:root[data-layout="lineup"] .tt-f{margin-top:10px;gap:8px;}
+:root[data-layout="lineup"] .tt-star{width:auto;height:auto;display:inline-flex;align-items:center;gap:5px;padding:4px 2px;font-size:13px;font-weight:700;line-height:1.2;}
+:root[data-layout="lineup"] .tt-star .tt-gl{font-size:17px;line-height:1;}
+:root[data-layout="lineup"] .tt-star .tt-sv{display:inline;}
+:root[data-layout="lineup"] .tt-star:hover{transform:none;color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-star[aria-pressed="true"]{color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-price{margin-left:auto;border:0;border-radius:999px;padding:4px 10px;background:var(--lu-mint);color:#fff;font-weight:700;font-size:13px;}
+:root[data-layout="lineup"] a.tt-price:hover{background:color-mix(in srgb,var(--lu-mint) 82%,#000);}
+:root[data-layout="lineup"] .tt-price.free{background:var(--lu-mint);color:#fff;}
+:root[data-layout="lineup"] .tt-x{margin-left:0;}
+:root[data-layout="lineup"] .tt-all{margin-top:22px;padding:11px 18px;font-size:14px;}
+
+
+:root[data-layout="lineup"] main#allEvents{max-width:1080px;}
+:root[data-layout="lineup"] .cat h2{display:block;background:none;color:var(--ink);border:0;padding:0;margin:34px 0 8px;font-size:30px;line-height:1.05;
+text-transform:none;}
+:root[data-layout="lineup"] .cat.free{padding:0 18px 8px;}
+:root[data-layout="lineup"] .cat.free h2{background:none;border:0;color:var(--ink);margin-top:18px;}
+:root[data-layout="lineup"] .cat.free h2::after{content:"";display:inline-block;width:.32em;height:.32em;margin-left:.15em;border-radius:50%;background:var(--lu-mint);}
+:root[data-layout="lineup"] .event{border-bottom:2px solid var(--lu-line);}
+:root[data-layout="lineup"] .event-body{min-width:0;overflow-wrap:anywhere;}
+:root[data-layout="lineup"] .event-body h3{font-weight:700;font-size:18.5px;line-height:1.25;}
+:root[data-layout="lineup"] .event-body h3 a{text-decoration-color:var(--lu-hot);text-decoration-thickness:2px;}
+:root[data-layout="lineup"] .meta{font-weight:600;opacity:1;color:var(--lu-soft);}
+:root[data-layout="lineup"] .event-body p{opacity:1;color:color-mix(in srgb,var(--ink) 82%,var(--paper));}
+:root[data-layout="lineup"] .ev-th{border-radius:12px;border:2px solid var(--ink);background:linear-gradient(135deg,var(--lu-sun),var(--lu-hot));color:#151515;}
+:root[data-layout="lineup"] .box{border:2px solid var(--ink);border-radius:8px;}
+:root[data-layout="lineup"] .toggle[aria-pressed="true"] .box{background:var(--lu-hot);}
+:root[data-layout="lineup"] .meta .nowtag{background:var(--lu-hot);border-radius:999px;padding:1px 8px;}
+:root[data-layout="lineup"] .meta .ended{border-radius:999px;padding:1px 8px;}
+:root[data-layout="lineup"] .tonight-head h2{font-size:30px;text-transform:none;}
+:root[data-layout="lineup"] .tba-div{border-top:2px solid var(--ink);}
+:root[data-layout="lineup"] .mlt a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #onlyBar{border:2px solid var(--ink);border-radius:14px;background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] #tnToast{border-radius:999px;box-shadow:var(--lu-sh);}
+:root[data-layout="lineup"] #hideMenu button{border-radius:10px;}
+:root[data-layout="lineup"] #hideMenu{padding:6px;}
+
+
+:root[data-layout="lineup"] #toniBtn{border:2px solid var(--ink);border-radius:999px;box-shadow:var(--lu-sh);background:var(--lu-sun);color:#151515;
+text-transform:none;letter-spacing:0;font-weight:700;}
+:root[data-layout="lineup"] #toniPanel{border-radius:22px;box-shadow:0 4px 0 var(--ink);background:var(--paper);}
+:root[data-layout="lineup"] .tn-head{background:var(--ink);color:var(--paper);border-bottom:2px solid var(--ink);}
+:root[data-layout="lineup"] .tn-head b{font-size:24px;}
+:root[data-layout="lineup"] .tn-you{border-radius:16px 16px 4px 16px;}
+:root[data-layout="lineup"] .tn-card{border-radius:14px;box-shadow:none;}
+:root[data-layout="lineup"] .tn-time{background:var(--ink);font-family:var(--lu-d)!important;font-weight:400;}
+:root[data-layout="lineup"] .tn-free{background:var(--lu-mint);color:#fff;border-radius:999px;}
+:root[data-layout="lineup"] .tn-gap{border-radius:999px;}
+
+
+:root[data-layout="lineup"] footer{background:var(--ink);color:var(--paper);border-top:0;}
+:root[data-layout="lineup"] footer .serif{font-size:26px;}
+:root[data-layout="lineup"] footer a{color:var(--lu-sun);}
+:root[data-layout="lineup"] #siteFoot{font-weight:700;letter-spacing:.08em;}
+:root[data-layout="lineup"] #siteFoot a,:root[data-layout="lineup"] #siteFoot summary{border-bottom-color:var(--lu-hot);}
+
+
+:root[data-layout="lineup"] .home .hero{position:relative;overflow:hidden;max-width:1080px;margin:14px auto 0;border-radius:22px;border-bottom:0;
+background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .home .hero::before,:root[data-layout="lineup"] .bhero::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+background:var(--lu-hot);left:-170px;top:-200px;opacity:.9;pointer-events:none;}
+:root[data-layout="lineup"] .home .hero::after,:root[data-layout="lineup"] .bhero::after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;
+background:var(--lu-sky);right:-150px;bottom:-220px;opacity:.85;pointer-events:none;}
+:root[data-layout="lineup"] .home .hero > *,:root[data-layout="lineup"] .bhero > *{position:relative;z-index:1;}
+:root[data-layout="lineup"] .home .hero .eyebrow,:root[data-layout="lineup"] .bhero .eyebrow,:root[data-layout="lineup"] .hero .eyebrow{background:none;color:var(--lu-sun);padding:0;font-weight:700;letter-spacing:.3em;}
+:root[data-layout="lineup"] .home .hero h1{font-size:clamp(4rem,13vw,7.5rem);line-height:.95;text-transform:none;}
+:root[data-layout="lineup"] .home .hero h1 .wm{display:none;}
+:root[data-layout="lineup"] .home .hero h1 .wm-lu{display:inline;}
+:root[data-layout="lineup"] .home .hero h1 .wm-lu b,:root[data-layout="lineup"] .hero h1 b{color:var(--lu-hot);font-weight:400;}
+.wm-lu{display:none;}
+:root[data-layout="lineup"] .cities{max-width:1080px;}
+:root[data-layout="lineup"] .cc-top{font-size:30px;text-transform:none;}
+:root[data-layout="lineup"] .cc-meta{color:var(--lu-soft);opacity:1;}
+:root[data-layout="lineup"] .cc-cta{border:2px solid var(--ink);padding:6px 14px;font-weight:700;letter-spacing:0;text-transform:none;}
+:root[data-layout="lineup"] .how h2{font-size:36px;text-transform:none;}
+:root[data-layout="lineup"] .step .n{border-radius:50%;background:var(--lu-hot);color:var(--on-accent);border:2px solid var(--ink);font-size:20px;}
+:root[data-layout="lineup"] .home .step:nth-child(3) .n{background:var(--lu-sky);color:#fff;}
+:root[data-layout="lineup"] .home .step:nth-child(4) .n{background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] .home .step:nth-child(5) .n{background:var(--lu-mint);color:#fff;}
+:root[data-layout="lineup"] .step h3{text-transform:none;letter-spacing:0;font-weight:700;font-size:17px;}
+
+
+:root[data-layout="lineup"] .bhero{position:relative;overflow:hidden;max-width:1040px;margin:14px auto 0;border-radius:22px;border-bottom:0;
+background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .bhero{margin-bottom:26px;}
+:root[data-layout="lineup"] .bhero h1{text-transform:uppercase;font-size:clamp(2.6rem,8vw,4.6rem);line-height:.95;}
+:root[data-layout="lineup"] .bhero p{opacity:.85;}
+:root[data-layout="lineup"] #savedNote{background:var(--lu-mint);color:#fff;border-radius:999px;}
+:root[data-layout="lineup"] .tcard,:root[data-layout="lineup"] .sform .tsec,:root[data-layout="lineup"] .acct-wrap .tsec{margin-bottom:24px;}
+:root[data-layout="lineup"] .tsec-head,:root[data-layout="lineup"] .shead{background:var(--card);border-bottom:2px solid var(--ink);}
+:root[data-layout="lineup"] .tsec-head h2,:root[data-layout="lineup"] .shead h2{font-size:24px;text-transform:none;letter-spacing:.01em;}
+:root[data-layout="lineup"] .snum{border-radius:50%;background:var(--lu-hot);color:var(--on-accent);font-size:18px;}
+:root[data-layout="lineup"] .trow,:root[data-layout="lineup"] .srow{border-bottom:2px solid var(--lu-line);}
+:root[data-layout="lineup"] .tsec .seg button,:root[data-layout="lineup"] .sform .seg button,:root[data-layout="lineup"] .trow .seg button{border-radius:999px;}
+:root[data-layout="lineup"] .trow .seg{min-width:0;flex:0 1 auto;}
+:root[data-layout="lineup"] .cico,:root[data-layout="lineup"] .ric{border-radius:50%;background:var(--lu-sun);}
+:root[data-layout="lineup"] .sl{border:2px solid var(--ink);border-radius:999px;}
+:root[data-layout="lineup"] .sl:before{border:2px solid var(--ink);border-radius:50%;top:5px;left:5px;}
+:root[data-layout="lineup"] .switch input:checked + .sl{background:var(--lu-mint);}
+:root[data-layout="lineup"] .switch input:checked + .sl:before{background:var(--card);}
+:root[data-layout="lineup"] .bhero .step{background:var(--card);color:var(--ink);border:2px solid var(--ink);font-weight:700;}
+:root[data-layout="lineup"] .bhero .step.on{background:var(--lu-sun);color:#151515;}
+:root[data-layout="lineup"] .bhero .sarr{color:var(--lu-sun);}
+:root[data-layout="lineup"] .etag{border-radius:999px;}
+:root[data-layout="lineup"] .etag.free{background:var(--lu-mint);color:#fff;}
+:root[data-layout="lineup"] .eprev-bar{background:var(--ink);}
+:root[data-layout="lineup"] .sdone h2 em,:root[data-layout="lineup"] .lhero h1 em{background:var(--lu-sun);color:#151515;border-radius:10px;}
+:root[data-layout="lineup"] .lk-opt[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
+:root[data-layout="lineup"] .lhero h1{text-transform:none;}
+:root[data-layout="lineup"] .legal a,:root[data-layout="lineup"] .srow .sub a,:root[data-layout="lineup"] .sdone a,:root[data-layout="lineup"] .kids-note button,:root[data-layout="lineup"] .lk-see a{text-decoration-color:var(--lu-hot);}
+
+
+@media (min-width:1100px){
+:root[data-layout="lineup"].fs-on .hero.dayhero{padding-left:max(24px,calc((100% - 1312px) / 2));padding-right:max(24px,calc((100% - 1312px) / 2));}
+:root[data-layout="lineup"].fs-on .daystrip{max-width:1360px;padding-left:24px;padding-right:24px;}
+:root[data-layout="lineup"].fs-on .ds-note{max-width:1360px;padding-left:24px;padding-right:24px;}
+:root[data-layout="lineup"].fs-on #luPoster,:root[data-layout="lineup"].fs-on #conciergeNote{max-width:1312px;width:calc(100% - 48px);}
+}
+
+
+@media (max-width:640px){
+:root[data-layout="lineup"] .topnav{padding:10px 16px;gap:8px 14px;}
+:root[data-layout="lineup"] .topnav .brand .wm-lu{font-size:25px;}
+:root[data-layout="lineup"] .hero.dayhero{padding:12px 16px 0;}
+:root[data-layout="lineup"] #luPoster{margin:12px auto 0;padding:26px 18px 24px;border-radius:20px;}
+:root[data-layout="lineup"] #luPoster .lu-b1{width:260px;height:260px;left:-120px;top:-130px;}
+:root[data-layout="lineup"] #luPoster .lu-b2{width:220px;height:220px;right:-100px;bottom:-130px;}
+:root[data-layout="lineup"] #luPoster .lu-b3{width:70px;height:70px;right:-24px;top:-26px;}
+:root[data-layout="lineup"] #luPoster .lu-b4{display:none;}
+:root[data-layout="lineup"] #luPoster .lu-date{font-size:clamp(40px,13vw,60px);}
+:root[data-layout="lineup"] #luPoster .lu-eye{letter-spacing:.18em;font-size:11px;}
+:root[data-layout="lineup"] #luPoster .lu-hl a{font-size:clamp(24px,7.4vw,32px);}
+:root[data-layout="lineup"] #luPoster .lu-lines{font-size:13px;letter-spacing:.03em;}
+:root[data-layout="lineup"] #luPoster .lu-dot{margin:0 5px;}
+:root[data-layout="lineup"] #topTonight{margin:24px 16px 0;}
+:root[data-layout="lineup"] #topTonight h2{font-size:30px;}
+:root[data-layout="lineup"] .tt-m,:root[data-layout="lineup"] .tt-card.big .tt-m{aspect-ratio:16/10;}
+:root[data-layout="lineup"] .home .hero,:root[data-layout="lineup"] .bhero{margin:12px 16px 0;border-radius:20px;}
+:root[data-layout="lineup"] .cat h2{font-size:26px;}
+}
+</style><script>(function(){var r=document.documentElement;r.setAttribute("data-layout","lineup");try{var p=localStorage.getItem("tonight-palette"),l=localStorage.getItem("tonight-layout");if(p)r.setAttribute("data-palette",p);if(l&&["lineup", "brutalist", "concierge", "dense", "timeline", "grid", "editorial", "zen", "tonightfirst", "tabs", "app", "tonightapp", "appeditorial", "appplain"].indexOf(l)>=0)r.setAttribute("data-layout",l);}catch(e){}})();
 /* Session for signed-in accounts. Signed out, pages keep using the anonymous
    tonight-user-id exactly as before. */
 window.TonightAuth={
@@ -346,7 +679,7 @@ box-shadow:none;font-size:14.5px;font-weight:500;color:var(--ink);}
 #filterBar .fmeta #hiddenBar,#filterBar .fmeta .fclear{height:26px;}
 #filterBar .fmore.on{background-color:var(--accent);color:var(--on-accent,var(--ink));}
 #filterBar .fchips{gap:6px;}
-#filterBar #fhood{max-width:150px;}
+#filterBar #fhood,#filterBar #fsrc{max-width:150px;}
 #filterBar .seg button,#filterBar .fbtn{white-space:nowrap;}
 #filterBar #resCount{margin:0 2px 0 0;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
 opacity:.65;white-space:nowrap;}
@@ -611,7 +944,7 @@ return {profile: profile, hasSettings: hasSettings, exclude: exclude, score: sco
 /* Tonight taste: onboarding quiz, profile, personalized ranking */
 (function(){
 "use strict";
-var CATS_ALL = ["Sports", "Music", "Comedy", "Arts & Play", "Theater", "Tours", "Talks", "Classes & Workshops", "Trivia & Games", "Tech", "Fitness & Outdoors", "Meetups & Mixers", "Film", "Food & Drink"];
+var CATS_ALL = ["Music", "Theater", "Comedy", "Arts & Play", "Tours", "Talks", "Classes & Workshops", "Trivia & Games", "Meetups & Mixers", "Fitness & Outdoors", "Tech", "Film", "Food & Drink", "Sports"];
 var CITY = "nyc";
 var CITIES_ALL = ["nyc", "london", "la"];
 var TKEY = "tonight-taste";
@@ -1074,7 +1407,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 })();
 </script>
-<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferencias</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span><span class="citylinks"><a class="cur" href="./nyc/2026-10-24.html">NYC</a> <a class="" href="./london/2026-10-24.html">Londres</a> <a class="" href="./la/2026-10-24.html">LA</a></span><a class="browselink" href="./browse-nyc-2026-10-24.html">Ver todo →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Pronto</i></span><span class="soon" lang="pt">Português <i>Pronto</i></span><span class="soon" lang="de">Deutsch <i>Pronto</i></span><span class="soon" lang="it">Italiano <i>Pronto</i></span><span class="soon" lang="ja">日本語 <i>Pronto</i></span></div></details></nav>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferencias</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span><span class="citylinks"><a class="cur" href="./nyc/2026-10-24.html">NYC</a> <a class="" href="./london/2026-10-24.html">Londres</a> <a class="" href="./la/2026-10-24.html">LA</a></span><a class="browselink" href="./browse-nyc-2026-10-24.html">Ver todo →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Pronto</i></span><span class="soon" lang="pt">Português <i>Pronto</i></span><span class="soon" lang="de">Deutsch <i>Pronto</i></span><span class="soon" lang="it">Italiano <i>Pronto</i></span><span class="soon" lang="ja">日本語 <i>Pronto</i></span></div></details></nav>
 <header class="bhero">
 <div class="eyebrow">Sábado, 24 de octubre · Nueva York</div>
 <h1>Ver todo</h1>
@@ -1090,7 +1423,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="seg" id="ftod">
 <button data-t="all" class="on">Cualquier hora</button><button data-t="morning">Mañana</button><button data-t="afternoon">Tarde</button><button data-t="evening">Noche</button>
 </div>
-<select id="fafter" autocomplete="off" aria-label="Empieza después de"><option value="">Empieza después de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Empieza antes de"><option value="">Empieza antes de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Barrio"><option value="">Todos los barrios</option><option value="Greenwich Village">Greenwich Village (34)</option><option value="Hell&#x27;s Kitchen">Hell&#x27;s Kitchen (33)</option><option value="Midtown-Times Square">Midtown-Times Square (33)</option><option value="SoHo-Little Italy-Hudson Square">SoHo-Little Italy-Hudson Square (28)</option><option value="Chelsea-Hudson Yards">Chelsea-Hudson Yards (23)</option><option value="East Village">East Village (19)</option><option value="Chinatown-Two Bridges">Chinatown-Two Bridges (16)</option><option value="Williamsburg">Williamsburg (15)</option><option value="Financial District-Battery Park City">Financial District-Battery Park City (11)</option><option value="Midtown South-Flatiron-Union Square">Midtown South-Flatiron-Union Square (11)</option><option value="Prospect Park">Prospect Park (11)</option><option value="Upper West Side-Lincoln Square">Upper West Side-Lincoln Square (11)</option><option value="Bushwick (West)">Bushwick (West) (10)</option><option value="Lower East Side">Lower East Side (10)</option><option value="West Village">West Village (9)</option><option value="Astoria (Central)">Astoria (Central) (8)</option><option value="East Williamsburg">East Williamsburg (8)</option><option value="Tribeca-Civic Center">Tribeca-Civic Center (7)</option><option value="Bedford-Stuyvesant (West)">Bedford-Stuyvesant (West) (6)</option><option value="Prospect Lefferts Gardens-Wingate">Prospect Lefferts Gardens-Wingate (5)</option><option value="Upper East Side-Lenox Hill-Roosevelt Island">Upper East Side-Lenox Hill-Roosevelt Island (5)</option><option value="Upper West Side (Central)">Upper West Side (Central) (5)</option><option value="East Harlem (North)">East Harlem (North) (4)</option><option value="Gramercy">Gramercy (4)</option><option value="Greenpoint">Greenpoint (4)</option><option value="Riverdale-Spuyten Duyvil">Riverdale-Spuyten Duyvil (4)</option><option value="Tottenville-Charleston">Tottenville-Charleston (4)</option><option value="Crown Heights (South)">Crown Heights (South) (3)</option><option value="Downtown Brooklyn-DUMBO-Boerum Hill">Downtown Brooklyn-DUMBO-Boerum Hill (3)</option><option value="East Flatbush-Erasmus">East Flatbush-Erasmus (3)</option><option value="Fort Greene">Fort Greene (3)</option><option value="Green-Wood Cemetery">Green-Wood Cemetery (3)</option><option value="Prospect Heights">Prospect Heights (3)</option><option value="Snug Harbor">Snug Harbor (3)</option><option value="Sunset Park (West)">Sunset Park (West) (3)</option><option value="Astoria (North)-Ditmars-Steinway">Astoria (North)-Ditmars-Steinway (2)</option><option value="Bay Ridge">Bay Ridge (2)</option><option value="Bushwick (East)">Bushwick (East) (2)</option><option value="Crown Heights (North)">Crown Heights (North) (2)</option><option value="East Elmhurst">East Elmhurst (2)</option><option value="East Midtown-Turtle Bay">East Midtown-Turtle Bay (2)</option><option value="Flatbush">Flatbush (2)</option><option value="Harlem (North)">Harlem (North) (2)</option><option value="Inwood Hill Park">Inwood Hill Park (2)</option><option value="Long Island City-Hunters Point">Long Island City-Hunters Point (2)</option><option value="Morrisania">Morrisania (2)</option><option value="Park Slope">Park Slope (2)</option><option value="Queensbridge-Ravenswood-Dutch Kills">Queensbridge-Ravenswood-Dutch Kills (2)</option><option value="Randall&#x27;s Island">Randall&#x27;s Island (2)</option><option value="Rego Park">Rego Park (2)</option><option value="The Battery-Governors Island-Ellis Island-Liberty Island">The Battery-Governors Island-Ellis Island-Liberty Island (2)</option><option value="Upper East Side-Yorkville">Upper East Side-Yorkville (2)</option><option value="Upper West Side-Manhattan Valley">Upper West Side-Manhattan Valley (2)</option><option value="West New Brighton-Silver Lake-Grymes Hill">West New Brighton-Silver Lake-Grymes Hill (2)</option><option value="Yankee Stadium-Macombs Dam Park">Yankee Stadium-Macombs Dam Park (2)</option><option value="Alley Pond Park">Alley Pond Park (1)</option><option value="Annadale-Huguenot-Prince&#x27;s Bay-Woodrow">Annadale-Huguenot-Prince&#x27;s Bay-Woodrow (1)</option><option value="Astoria Park">Astoria Park (1)</option><option value="Baisley Park">Baisley Park (1)</option><option value="Bayside">Bayside (1)</option><option value="Bedford-Stuyvesant (East)">Bedford-Stuyvesant (East) (1)</option><option value="Brooklyn Heights">Brooklyn Heights (1)</option><option value="Brownsville">Brownsville (1)</option><option value="Canarsie Park &amp; Pier">Canarsie Park &amp; Pier (1)</option><option value="Carroll Gardens-Cobble Hill-Gowanus-Red Hook">Carroll Gardens-Cobble Hill-Gowanus-Red Hook (1)</option><option value="Central Park">Central Park (1)</option><option value="Clinton Hill">Clinton Hill (1)</option><option value="College Point">College Point (1)</option><option value="Concourse-Concourse Village">Concourse-Concourse Village (1)</option><option value="Crotona Park">Crotona Park (1)</option><option value="Crotona Park East">Crotona Park East (1)</option><option value="Cypress Hills">Cypress Hills (1)</option><option value="East Flatbush-Rugby">East Flatbush-Rugby (1)</option><option value="Far Rockaway-Bayswater">Far Rockaway-Bayswater (1)</option><option value="Grasmere-Arrochar-South Beach-Dongan Hills">Grasmere-Arrochar-South Beach-Dongan Hills (1)</option><option value="Harlem (South)">Harlem (South) (1)</option><option value="Howard Beach-Lindenwood">Howard Beach-Lindenwood (1)</option><option value="Hunts Point">Hunts Point (1)</option><option value="Middle Village">Middle Village (1)</option><option value="Morningside Heights">Morningside Heights (1)</option><option value="Morris Park">Morris Park (1)</option><option value="Mott Haven-Port Morris">Mott Haven-Port Morris (1)</option><option value="Murray Hill-Kips Bay">Murray Hill-Kips Bay (1)</option><option value="Ocean Hill">Ocean Hill (1)</option><option value="Old Astoria-Hallets Point">Old Astoria-Hallets Point (1)</option><option value="Queens Village">Queens Village (1)</option><option value="Rockaway Beach-Arverne-Edgemere">Rockaway Beach-Arverne-Edgemere (1)</option><option value="Rosebank-Shore Acres-Park Hill">Rosebank-Shore Acres-Park Hill (1)</option><option value="Soundview Park">Soundview Park (1)</option><option value="Spring Creek-Starrett City">Spring Creek-Starrett City (1)</option><option value="St. George-New Brighton">St. George-New Brighton (1)</option><option value="Tompkinsville-Stapleton-Clifton-Fox Hills">Tompkinsville-Stapleton-Clifton-Fox Hills (1)</option><option value="Upper East Side-Carnegie Hill">Upper East Side-Carnegie Hill (1)</option><option value="Washington Heights (North)">Washington Heights (North) (1)</option><option value="Washington Heights (South)">Washington Heights (South) (1)</option><option value="Woodhaven">Woodhaven (1)</option></select>
+<select id="fafter" autocomplete="off" aria-label="Empieza después de"><option value="">Empieza después de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Empieza antes de"><option value="">Empieza antes de…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fhood" autocomplete="off" aria-label="Barrio"><option value="">Todos los barrios</option><option value="Greenwich Village">Greenwich Village (34)</option><option value="Hell&#x27;s Kitchen">Hell&#x27;s Kitchen (33)</option><option value="Midtown-Times Square">Midtown-Times Square (33)</option><option value="SoHo-Little Italy-Hudson Square">SoHo-Little Italy-Hudson Square (28)</option><option value="Chelsea-Hudson Yards">Chelsea-Hudson Yards (23)</option><option value="East Village">East Village (19)</option><option value="Chinatown-Two Bridges">Chinatown-Two Bridges (16)</option><option value="Williamsburg">Williamsburg (15)</option><option value="Financial District-Battery Park City">Financial District-Battery Park City (11)</option><option value="Midtown South-Flatiron-Union Square">Midtown South-Flatiron-Union Square (11)</option><option value="Prospect Park">Prospect Park (11)</option><option value="Upper West Side-Lincoln Square">Upper West Side-Lincoln Square (11)</option><option value="Bushwick (West)">Bushwick (West) (10)</option><option value="Lower East Side">Lower East Side (10)</option><option value="West Village">West Village (9)</option><option value="Astoria (Central)">Astoria (Central) (8)</option><option value="East Williamsburg">East Williamsburg (8)</option><option value="Tribeca-Civic Center">Tribeca-Civic Center (7)</option><option value="Bedford-Stuyvesant (West)">Bedford-Stuyvesant (West) (6)</option><option value="Prospect Lefferts Gardens-Wingate">Prospect Lefferts Gardens-Wingate (5)</option><option value="Upper East Side-Lenox Hill-Roosevelt Island">Upper East Side-Lenox Hill-Roosevelt Island (5)</option><option value="Upper West Side (Central)">Upper West Side (Central) (5)</option><option value="East Harlem (North)">East Harlem (North) (4)</option><option value="Gramercy">Gramercy (4)</option><option value="Greenpoint">Greenpoint (4)</option><option value="Riverdale-Spuyten Duyvil">Riverdale-Spuyten Duyvil (4)</option><option value="Tottenville-Charleston">Tottenville-Charleston (4)</option><option value="Crown Heights (South)">Crown Heights (South) (3)</option><option value="Downtown Brooklyn-DUMBO-Boerum Hill">Downtown Brooklyn-DUMBO-Boerum Hill (3)</option><option value="East Flatbush-Erasmus">East Flatbush-Erasmus (3)</option><option value="Fort Greene">Fort Greene (3)</option><option value="Green-Wood Cemetery">Green-Wood Cemetery (3)</option><option value="Prospect Heights">Prospect Heights (3)</option><option value="Snug Harbor">Snug Harbor (3)</option><option value="Sunset Park (West)">Sunset Park (West) (3)</option><option value="Astoria (North)-Ditmars-Steinway">Astoria (North)-Ditmars-Steinway (2)</option><option value="Bay Ridge">Bay Ridge (2)</option><option value="Bushwick (East)">Bushwick (East) (2)</option><option value="Crown Heights (North)">Crown Heights (North) (2)</option><option value="East Elmhurst">East Elmhurst (2)</option><option value="East Midtown-Turtle Bay">East Midtown-Turtle Bay (2)</option><option value="Flatbush">Flatbush (2)</option><option value="Harlem (North)">Harlem (North) (2)</option><option value="Inwood Hill Park">Inwood Hill Park (2)</option><option value="Long Island City-Hunters Point">Long Island City-Hunters Point (2)</option><option value="Morrisania">Morrisania (2)</option><option value="Park Slope">Park Slope (2)</option><option value="Queensbridge-Ravenswood-Dutch Kills">Queensbridge-Ravenswood-Dutch Kills (2)</option><option value="Randall&#x27;s Island">Randall&#x27;s Island (2)</option><option value="Rego Park">Rego Park (2)</option><option value="The Battery-Governors Island-Ellis Island-Liberty Island">The Battery-Governors Island-Ellis Island-Liberty Island (2)</option><option value="Upper East Side-Yorkville">Upper East Side-Yorkville (2)</option><option value="Upper West Side-Manhattan Valley">Upper West Side-Manhattan Valley (2)</option><option value="West New Brighton-Silver Lake-Grymes Hill">West New Brighton-Silver Lake-Grymes Hill (2)</option><option value="Yankee Stadium-Macombs Dam Park">Yankee Stadium-Macombs Dam Park (2)</option><option value="Alley Pond Park">Alley Pond Park (1)</option><option value="Annadale-Huguenot-Prince&#x27;s Bay-Woodrow">Annadale-Huguenot-Prince&#x27;s Bay-Woodrow (1)</option><option value="Astoria Park">Astoria Park (1)</option><option value="Baisley Park">Baisley Park (1)</option><option value="Bayside">Bayside (1)</option><option value="Bedford-Stuyvesant (East)">Bedford-Stuyvesant (East) (1)</option><option value="Brooklyn Heights">Brooklyn Heights (1)</option><option value="Brownsville">Brownsville (1)</option><option value="Canarsie Park &amp; Pier">Canarsie Park &amp; Pier (1)</option><option value="Carroll Gardens-Cobble Hill-Gowanus-Red Hook">Carroll Gardens-Cobble Hill-Gowanus-Red Hook (1)</option><option value="Central Park">Central Park (1)</option><option value="Clinton Hill">Clinton Hill (1)</option><option value="College Point">College Point (1)</option><option value="Concourse-Concourse Village">Concourse-Concourse Village (1)</option><option value="Crotona Park">Crotona Park (1)</option><option value="Crotona Park East">Crotona Park East (1)</option><option value="Cypress Hills">Cypress Hills (1)</option><option value="East Flatbush-Rugby">East Flatbush-Rugby (1)</option><option value="Far Rockaway-Bayswater">Far Rockaway-Bayswater (1)</option><option value="Grasmere-Arrochar-South Beach-Dongan Hills">Grasmere-Arrochar-South Beach-Dongan Hills (1)</option><option value="Harlem (South)">Harlem (South) (1)</option><option value="Howard Beach-Lindenwood">Howard Beach-Lindenwood (1)</option><option value="Hunts Point">Hunts Point (1)</option><option value="Middle Village">Middle Village (1)</option><option value="Morningside Heights">Morningside Heights (1)</option><option value="Morris Park">Morris Park (1)</option><option value="Mott Haven-Port Morris">Mott Haven-Port Morris (1)</option><option value="Murray Hill-Kips Bay">Murray Hill-Kips Bay (1)</option><option value="Ocean Hill">Ocean Hill (1)</option><option value="Old Astoria-Hallets Point">Old Astoria-Hallets Point (1)</option><option value="Queens Village">Queens Village (1)</option><option value="Rockaway Beach-Arverne-Edgemere">Rockaway Beach-Arverne-Edgemere (1)</option><option value="Rosebank-Shore Acres-Park Hill">Rosebank-Shore Acres-Park Hill (1)</option><option value="Soundview Park">Soundview Park (1)</option><option value="Spring Creek-Starrett City">Spring Creek-Starrett City (1)</option><option value="St. George-New Brighton">St. George-New Brighton (1)</option><option value="Tompkinsville-Stapleton-Clifton-Fox Hills">Tompkinsville-Stapleton-Clifton-Fox Hills (1)</option><option value="Upper East Side-Carnegie Hill">Upper East Side-Carnegie Hill (1)</option><option value="Washington Heights (North)">Washington Heights (North) (1)</option><option value="Washington Heights (South)">Washington Heights (South) (1)</option><option value="Woodhaven">Woodhaven (1)</option></select><select id="fsrc" autocomplete="off" aria-label="Fuente"><option value="">Todas las fuentes</option><option value="eventbrite">Eventbrite (126)</option><option value="ticketmaster">Ticketmaster (85)</option><option value="luma">Luma (77)</option><option value="nycparks">NYC Parks (61)</option><option value="ticketweb">TicketWeb (15)</option><option value="universe">Universe (10)</option><option value="dice">DICE (1)</option><option value="venue">Sitios de los locales (95)</option></select>
 <button class="fbtn" id="ffree" aria-pressed="false">Solo gratis</button>
 <span id="hiddenBar"><span id="hiddenN">0</span> ocultos · <button id="unhide">mostrarlos</button></span>
 <span id="resCount"></span>
@@ -1108,7 +1441,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">✦</span><img src="https://images.universe.com/87c12cd6-3143-4efa-9b0f-29b4ebc9321d/-/resize/1200x/-/crop/791x791/105,4/-/format/jpeg/-/scale_crop/1024x576/center/-/progressive/yes/-/inline/yes/" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/museum-of-chinese-in-america-general-admission-tickets-PZ7R68?ref=ticketmaster">Museum of Chinese in America Flex Admission</a></h3>
-<div class="meta">11:00 AM · Museum of Chinese in America, SoHo-Little Italy-Hudson Square · ↻ Most days <span class="tourtag">Atracción turística</span></div>
+<div class="meta">11:00 AM · Museum of Chinese in America, SoHo · ↻ Most days <span class="tourtag">Atracción turística</span></div>
 <p></p>
 <a class="tickets" href="https://www.universe.com/events/museum-of-chinese-in-america-general-admission-tickets-PZ7R68?ref=ticketmaster">Boletos e info →</a>
 
@@ -1144,7 +1477,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">✦</span><img src="https://s1.ticketm.net/dam/a/438/d47dcb31-a7ee-4820-aa73-cc46f2473438_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/the-banksy-museum-new-york-tickets-5PKNY0?ref=ticketmaster">The Banksy Museum New York!</a></h3>
-<div class="meta">10:00 AM · Banksy Museum New York, SoHo-Little Italy-Hudson Square · ↻ Most days <span class="tourtag">Atracción turística</span></div>
+<div class="meta">10:00 AM · Banksy Museum New York, SoHo · ↻ Most days <span class="tourtag">Atracción turística</span></div>
 <p></p>
 <a class="tickets" href="https://www.universe.com/events/the-banksy-museum-new-york-tickets-5PKNY0?ref=ticketmaster">Boletos e info →</a>
 
@@ -1162,7 +1495,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">✦</span><img src="https://s1.ticketm.net/dam/a/438/d47dcb31-a7ee-4820-aa73-cc46f2473438_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/banksy-museum-flexiticket-tickets-F7XJ8T?ref=ticketmaster">Banksy Museum - Flexiticket</a></h3>
-<div class="meta">10:00 AM · Banksy Museum New York, SoHo-Little Italy-Hudson Square · ↻ Most days <span class="tourtag">Atracción turística</span></div>
+<div class="meta">10:00 AM · Banksy Museum New York, SoHo · ↻ Most days <span class="tourtag">Atracción turística</span></div>
 <p></p>
 <a class="tickets" href="https://www.universe.com/events/banksy-museum-flexiticket-tickets-F7XJ8T?ref=ticketmaster">Boletos e info →</a>
 
@@ -1180,7 +1513,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">✦</span><img src="https://images.universe.com/3af3c3a1-f70f-4fee-aff5-9a1657835163/-/format/jpeg/-/scale_crop/1024x576/center/-/progressive/yes/-/inline/yes/" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/halloween-festival-tickets-SRHV7N?ref=ticketmaster">Halloween Festival</a></h3>
-<div class="meta">10:00 AM · Banksy Museum New York, SoHo-Little Italy-Hudson Square <span class="tourtag">Atracción turística</span></div>
+<div class="meta">10:00 AM · Banksy Museum New York, SoHo <span class="tourtag">Atracción turística</span></div>
 <p></p>
 <a class="tickets" href="https://www.universe.com/events/halloween-festival-tickets-SRHV7N?ref=ticketmaster">Boletos e info →</a>
 
@@ -1234,7 +1567,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">✦</span><img src="https://images.universe.com/058962d1-4599-4603-b57d-8aebbe8c9d48/-/format/jpeg/-/scale_crop/1024x576/center/-/progressive/yes/-/inline/yes/" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/soho-street-art-tours-tickets-M9CP03?ref=ticketmaster">Soho Street Art Tours</a></h3>
-<div class="meta">10:30 AM · Banksy Museum New York, SoHo-Little Italy-Hudson Square · ↻ Every Saturday <span class="tourtag">Atracción turística</span></div>
+<div class="meta">10:30 AM · Banksy Museum New York, SoHo · ↻ Every Saturday <span class="tourtag">Atracción turística</span></div>
 <p></p>
 <a class="tickets" href="https://www.universe.com/events/soho-street-art-tours-tickets-M9CP03?ref=ticketmaster">Boletos e info →</a>
 
@@ -1288,7 +1621,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">➜</span><img src="https://images.universe.com/e3352bc4-aa8b-4ba2-9fcc-77438468f0c6/-/resize/1200x/-/crop/1271x1272/0,786/-/format/jpeg/-/scale_crop/1024x576/center/-/progressive/yes/-/inline/yes/" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/public-walking-tour-chinatown-a-walk-through-history-tickets-HLD238?ref=ticketmaster">Public Walking Tour - Chinatown: A Walk through History</a></h3>
-<div class="meta">11:30 AM · Museum of Chinese in America, SoHo-Little Italy-Hudson Square · ↻ Every Saturday</div>
+<div class="meta">11:30 AM · Museum of Chinese in America, SoHo · ↻ Every Saturday</div>
 <p></p>
 <a class="tickets" href="https://www.universe.com/events/public-walking-tour-chinatown-a-walk-through-history-tickets-HLD238?ref=ticketmaster">Boletos e info →</a>
 
@@ -1324,7 +1657,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">✎</span><img src="https://images.universe.com/16deed69-e09a-48e7-8aae-3fad25944c65/-/format/jpeg/-/scale_crop/1024x576/center/-/progressive/yes/-/inline/yes/" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/banksy-museum-ny-rebel-stencil-workshop-tickets-SGPY20?ref=ticketmaster">Banksy Museum NY - REBEL STENCIL WORKSHOP</a></h3>
-<div class="meta">12:00 PM · Banksy Museum New York, SoHo-Little Italy-Hudson Square · ↻ Also on other days <span class="tourtag">Atracción turística</span></div>
+<div class="meta">12:00 PM · Banksy Museum New York, SoHo · ↻ Also on other days <span class="tourtag">Atracción turística</span></div>
 <p></p>
 <a class="tickets" href="https://www.universe.com/events/banksy-museum-ny-rebel-stencil-workshop-tickets-SGPY20?ref=ticketmaster">Boletos e info →</a>
 
@@ -1432,7 +1765,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">✦</span><img src="https://images.universe.com/252b36a4-37a8-4fb4-bc9c-d4324e60a7e1/-/format/jpeg/-/scale_crop/1024x576/center/-/progressive/yes/-/inline/yes/" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.universe.com/events/mocacreate-journey-to-the-west-shadow-stories-with-teaching-artist-yu-rong-tickets-TN5PFR?ref=ticketmaster">MOCACREATE: Journey to the West Shadow Stories with Teaching Artist Yu Rong</a></h3>
-<div class="meta">2:00 PM · Museum of Chinese in America, SoHo-Little Italy-Hudson Square · ↻ Every Saturday</div>
+<div class="meta">2:00 PM · Museum of Chinese in America, SoHo · ↻ Every Saturday</div>
 <p></p>
 <a class="tickets" href="https://www.universe.com/events/mocacreate-journey-to-the-west-shadow-stories-with-teaching-artist-yu-rong-tickets-TN5PFR?ref=ticketmaster">Boletos e info →</a>
 
@@ -2602,7 +2935,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">☺</span><img src="https://s1.ticketm.net/dam/a/761/54b69663-6880-49a4-bc26-a6aa2367c761_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/drunk-bollywood-live-brooklyn-new-york-10-24-2026/event/3000652D4D15ED32">DRUNK BOLLYWOOD LIVE!</a></h3>
-<div class="meta">7:30 PM · The Bell House, Carroll Gardens-Cobble Hill-Gowanus-Red Hook</div>
+<div class="meta">7:30 PM · The Bell House, Carroll Gardens</div>
 <p>Drunk Bollywood is a staged parody of popular Hindi movies with a few drinks &amp; a lot of laughs. The show started in 2023 &amp; has been featured in TimeOut, Pop Culture Happy Hour, The Nod &amp; more. Join us this fall for a BRAND NEW PARODY, based on Aditya Chopra&#x27;s Mohabbatein! *NOTE: To ensure everyone has a safe experience, please take a moment to review our restricted items. While we love Halloween costumes, we don&#x27;t allow any identity-concealing face paint/masks, weapons/replicas of weapons, sharp jewelry, clothing that may cause harm &amp; stuffed animals/toys. No outside food/drink. Front Bar opens: 5:30pm. GA Door Time: 7pm (Early Entry ticket holders receive a separate email w/ arrival details week of show). Show: 7:30pm. 21 &amp; over w/ valid, government-issued photo ID. *General Admission standing &amp; seating. *Seating 1st come 1st served &amp; not guaranteed. Arrive early for best selection. Email thebellhouse@livenation.com w/ any accessibility requests.</p>
 <a class="tickets" href="https://www.ticketmaster.com/drunk-bollywood-live-brooklyn-new-york-10-24-2026/event/3000652D4D15ED32">Boletos e info →</a>
 
@@ -2674,7 +3007,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/a32/f53c453d-a40b-419f-b6c3-ca16d6454a32_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/robert-glasper-x-kem-presents-blue-note-jazz-club-tickets/15018913">Robert Glasper</a></h3>
-<div class="meta">8:00 PM · Blue Note Jazz Club - NY, SoHo-Little Italy-Hudson Square · $88.98 · ↻ Also on other days</div>
+<div class="meta">8:00 PM · Blue Note Jazz Club - NY, SoHo · $88.98 · ↻ Also on other days</div>
 <p>$20 Minimum Per Person Full Bar &amp; Dinner Menu NO REFUNDS OR EXCHANGES. All seating is first come, first served. Bar Area seating is limited and first come first served. When all available seats are occupied, the remaining bar area is standing room only. Table Seating is all ages, Bar Area is 21+. Bar Area tickets for patrons under 21 will not be honored. Group Reservations: Groups larger than 8 must purchase a group package at club@bluenote.net, or by calling 212.475.8592. Groups larger than 8 without a group package will be subject to group surcharges added to your bill. Groups arriving late or separately are not guaranteed to be seated together. All seating is first come, first served. Arrive early for best seats. We are not affiliated with any third-party ticket sellers. Tickets purchased directly through our official website or TicketWeb are the only authorized sources. We cannot guarantee the validity of tickets purchased through unauthorized sources. To protect against fraud and unauthorized ticket sales, management may require verification of the original purchase method, including presenting the credit card used for purchase and matching photo identification upon entry.</p>
 <a class="tickets" href="https://www.ticketweb.com/event/robert-glasper-x-kem-presents-blue-note-jazz-club-tickets/15018913">Boletos e info →</a>
 
@@ -2782,7 +3115,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/2c8/8b6d9420-66c7-4bcb-877b-0ff0238da2c8_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/harry-styles-together-together-new-york-new-york-10-24-2026/event/3B00643506AE83A2">Harry Styles: Together, Together</a></h3>
-<div class="meta">8:00 PM · Madison Square Garden, Midtown South-Flatiron-Union Square · ↻ Also on other days</div>
+<div class="meta">8:00 PM · Madison Square Garden, Midtown South · ↻ Also on other days</div>
 <p>PLEASE NOTE: Pricing is all-in and includes fees (before taxes if applicable). By purchasing tickets to this event, you agree to abide by the health and safety measures in effect at the time of the event. Government mandates, venue protocols, and event requirements are subject to change. For more information, please search your event on msg.com. This event may have immersive elements, which may include flashing or strobe lights, intense lighting, visual effects, loud noises, smoke and/or fog. Such elements may aggravate certain medical or physical conditions, and guests should take this into consideration if they have a history of discomfort or physical symptoms when experiencing these elements.</p>
 <a class="tickets" href="https://www.ticketmaster.com/harry-styles-together-together-new-york-new-york-10-24-2026/event/3B00643506AE83A2">Boletos e info →</a>
 
@@ -3088,7 +3421,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">✦</span><img src="https://s1.ticketm.net/dam/a/476/7c230b41-d92a-4fd4-b6d1-dc6951ae8476_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/madison-square-garden-tour-experience-new-york-new-york-10-24-2026/event/3B00645191C1283C">Madison Square Garden Tour Experience</a></h3>
-<div class="meta">Time TBA · Madison Square Garden, Midtown South-Flatiron-Union Square · ↻ Most days <span class="tourtag">Atracción turística</span></div>
+<div class="meta">Time TBA · Madison Square Garden, Midtown South · ↻ Most days <span class="tourtag">Atracción turística</span></div>
 <p>PLEASE NOTE: Pricing is all-in and includes fees (before taxes if applicable). Access to the Knicks and Rangers locker rooms may be restricted due to venue activity. Tour schedule and content subject to change without notice.</p>
 <a class="tickets" href="https://www.ticketmaster.com/madison-square-garden-tour-experience-new-york-new-york-10-24-2026/event/3B00645191C1283C">Boletos e info →</a>
 <div class="cal-row"><button class="cal-link share-ev" data-idx="110">Compartir</button><button class="cal-link going-btn" data-idx="110" aria-pressed="false">Voy</button><span class="going-count" data-idx="110" hidden></span><button class="cal-link regular-btn" data-series="06bedd1c67" aria-pressed="false">Make this a regular</button><button class="rep-link" type="button" data-idx="110">Reportar un problema</button></div>
@@ -3424,7 +3757,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☀</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="http://www.nycgovparks.org/events/2026/10/24/birding-fall-migration">Birding: Fall Migration</a></h3>
-<div class="meta">10:00 AM – 11:30 AM · Beach 54th and Almeda Avenue (in Rockaway Community Park), Rockaway Beach-Arverne-Edgemere · Free</div>
+<div class="meta">10:00 AM – 11:30 AM · Beach 54th and Almeda Avenue (in Rockaway Community Park), Rockaway Beach · Free</div>
 <p>Join the Urban Park Rangers on an exclusive tour of the closed Edgemere Landfill to bid farewell to birds migrating south for the winter and welcome our winter residents completing their journeys from the north, such as migratory waterfowl and songbirds.</p>
 <a class="tickets" href="http://www.nycgovparks.org/events/2026/10/24/birding-fall-migration">Boletos e info →</a>
 
@@ -3442,7 +3775,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="http://www.nycgovparks.org/events/2026/10/24/2026-ocean-breeze-fall-festival">2026 Ocean Breeze Fall Festival</a></h3>
-<div class="meta">10:00 AM – 3:00 PM · Ocean Breeze Athletic Complex (in Ocean Breeze Park), Grasmere-Arrochar-South Beach-Dongan Hills · Free</div>
+<div class="meta">10:00 AM – 3:00 PM · Ocean Breeze Athletic Complex (in Ocean Breeze Park), Grasmere · Free</div>
 <p>Celebrate the Season at Ocean Breeze! Join us for one of Ocean Breeze’s favorite community traditions — the 2026 Ocean Breeze Fall Festival, a festive day bringing families, friends and neighbors together to celebrate everything we love about fall! Ocean Breeze will come alive with family-friendly a</p>
 <a class="tickets" href="http://www.nycgovparks.org/events/2026/10/24/2026-ocean-breeze-fall-festival">Boletos e info →</a>
 
@@ -4090,7 +4423,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☀</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="http://www.nycgovparks.org/events/2026/10/24/fantasy-forest-immersive-hike-alien-visitors">Fantasy Forest Immersive Hike: Alien Visitors</a></h3>
-<div class="meta">4:00 PM – 5:30 PM · Blue Heron Nature Center (in Blue Heron Park), Annadale-Huguenot-Prince&#x27;s Bay-Woodrow · Free</div>
+<div class="meta">4:00 PM – 5:30 PM · Blue Heron Nature Center (in Blue Heron Park), Annadale · Free</div>
 <p>Join the Urban Park Rangers for an afternoon of local stories and memorable park legends, including the Staten Island Advance’s report of an unusual encounter in Blue Heron Park. Take part in an immersive group activity that retraces moments from the reported sighting and explores how these tales be</p>
 <a class="tickets" href="http://www.nycgovparks.org/events/2026/10/24/fantasy-forest-immersive-hike-alien-visitors">Boletos e info →</a>
 
@@ -4144,7 +4477,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✎</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="http://www.nycgovparks.org/events/2026/10/24/wagner-college-childrens-learn-to-swim-level-1">Wagner College: Children&#x27;s Learn to Swim (Level 1)</a></h3>
-<div class="meta">5:00 PM – 5:45 PM · Wagner College Pool - Spiro Sports Center, West New Brighton-Silver Lake-Grymes Hill · Free</div>
+<div class="meta">5:00 PM – 5:45 PM · Wagner College Pool - Spiro Sports Center, West New Brighton · Free</div>
 <p>Children in Level 1 will focus on helping children feel comfortable in the water and safely enjoy. This level helps children gain basic aquatic skills and develop more comfort in and around water.</p>
 <a class="tickets" href="http://www.nycgovparks.org/events/2026/10/24/wagner-college-childrens-learn-to-swim-level-1">Boletos e info →</a>
 
@@ -4180,7 +4513,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="http://www.nycgovparks.org/events/2026/10/24/for-returning-20252026-members-staten-island-shockwaves-swim-team">Staten Island Shockwaves Swim Team</a></h3>
-<div class="meta">6:30 PM – 8:00 PM · Wagner College Pool - Spiro Sports Center, West New Brighton-Silver Lake-Grymes Hill · Free · ↻ Also on other days</div>
+<div class="meta">6:30 PM – 8:00 PM · Wagner College Pool - Spiro Sports Center, West New Brighton · Free · ↻ Also on other days</div>
 <p>For returning Swim Team members from the 2025 - 2026 season.</p>
 <a class="tickets" href="http://www.nycgovparks.org/events/2026/10/24/for-returning-20252026-members-staten-island-shockwaves-swim-team">Boletos e info →</a>
 
@@ -5548,7 +5881,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://filmforum.org/film/fatherland">Fatherland</a></h3>
-<div class="meta">6:30 PM · Film Forum, SoHo-Little Italy-Hudson Square</div>
+<div class="meta">6:30 PM · Film Forum, SoHo</div>
 <p>Showtimes today: 12:25 PM, 2:25 PM, 4:30 PM, 6:30 PM, 9:00 PM.</p>
 <a class="tickets" href="https://filmforum.org/film/fatherland">Boletos e info →</a>
 
@@ -5566,7 +5899,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://filmforum.org/film/once-upon-a-time-in-harlem">Once Upon A Time In Harlem</a></h3>
-<div class="meta">6:00 PM · Film Forum, SoHo-Little Italy-Hudson Square · ↻ Most days</div>
+<div class="meta">6:00 PM · Film Forum, SoHo · ↻ Most days</div>
 <p>Showtimes today: 12:15 PM, 2:30 PM, 4:45 PM, 6:00 PM, 7:00 PM, 8:15 PM, 9:15 PM.</p>
 <a class="tickets" href="https://filmforum.org/film/once-upon-a-time-in-harlem">Boletos e info →</a>
 
@@ -5584,7 +5917,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://filmforum.org/film/my-undesirable-friends-part-ii-exile">MY UNDESIRABLE FRIENDS: PART II – EXILE: Chapters 1-3</a></h3>
-<div class="meta">12:30 PM · Film Forum, SoHo-Little Italy-Hudson Square · ↻ Most days</div>
+<div class="meta">12:30 PM · Film Forum, SoHo · ↻ Most days</div>
 <p>Showtimes today: 12:30 PM.</p>
 <a class="tickets" href="https://filmforum.org/film/my-undesirable-friends-part-ii-exile">Boletos e info →</a>
 
@@ -5602,7 +5935,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://filmforum.org/film/unzipped-2026">Unzipped</a></h3>
-<div class="meta">4:15 PM · Film Forum, SoHo-Little Italy-Hudson Square · ↻ Most days</div>
+<div class="meta">4:15 PM · Film Forum, SoHo · ↻ Most days</div>
 <p>Showtimes today: 4:15 PM.</p>
 <a class="tickets" href="https://filmforum.org/film/unzipped-2026">Boletos e info →</a>
 
@@ -5620,7 +5953,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://filmforum.org/film/profile-of-a-problem-drinker-putting-it-straight-smoke-and-weather-william-greaves-100">PROFILE OF A PROBLEM DRINKER, PUTTING IT STRAIGHT, and SMOKE AND WEATHER</a></h3>
-<div class="meta">12:20 PM · Film Forum, SoHo-Little Italy-Hudson Square</div>
+<div class="meta">12:20 PM · Film Forum, SoHo</div>
 <p>Part of William Greaves 100. Showtimes today: 12:20 PM.</p>
 <a class="tickets" href="https://filmforum.org/film/profile-of-a-problem-drinker-putting-it-straight-smoke-and-weather-william-greaves-100">Boletos e info →</a>
 
@@ -5638,7 +5971,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://filmforum.org/film/souls-of-sin-william-greaves-100">Souls Of Sin</a></h3>
-<div class="meta">1:50 PM · Film Forum, SoHo-Little Italy-Hudson Square</div>
+<div class="meta">1:50 PM · Film Forum, SoHo</div>
 <p>Part of William Greaves 100. Showtimes today: 1:50 PM.</p>
 <a class="tickets" href="https://filmforum.org/film/souls-of-sin-william-greaves-100">Boletos e info →</a>
 
@@ -5656,7 +5989,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://filmforum.org/film/still-a-brother-inside-the-negro-middle-class-in-the-company-of-men-william-greaves-100">STILL A BROTHER: INSIDE THE NEGRO MIDDLE CLASS and IN THE COMPANY OF MEN</a></h3>
-<div class="meta">3:20 PM · Film Forum, SoHo-Little Italy-Hudson Square</div>
+<div class="meta">3:20 PM · Film Forum, SoHo</div>
 <p>Part of William Greaves 100. Showtimes today: 3:20 PM.</p>
 <a class="tickets" href="https://filmforum.org/film/still-a-brother-inside-the-negro-middle-class-in-the-company-of-men-william-greaves-100">Boletos e info →</a>
 
@@ -5674,7 +6007,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://filmforum.org/film/the-first-world-festival-of-negro-arts-from-these-roots-wealth-of-a-nation-william-greaves-100">THE FIRST WORLD FESTIVAL OF NEGRO ARTS, FROM THESE ROOTS, and WEALTH OF A NATION</a></h3>
-<div class="meta">6:10 PM · Film Forum, SoHo-Little Italy-Hudson Square</div>
+<div class="meta">6:10 PM · Film Forum, SoHo</div>
 <p>Part of William Greaves 100. Showtimes today: 6:10 PM.</p>
 <a class="tickets" href="https://filmforum.org/film/the-first-world-festival-of-negro-arts-from-these-roots-wealth-of-a-nation-william-greaves-100">Boletos e info →</a>
 
@@ -5692,7 +6025,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎬</span></div>
 <div class="event-body">
 <h3><a href="https://filmforum.org/film/nationtime-william-greaves-100">Nationtime</a></h3>
-<div class="meta">8:20 PM · Film Forum, SoHo-Little Italy-Hudson Square</div>
+<div class="meta">8:20 PM · Film Forum, SoHo</div>
 <p>Part of William Greaves 100. Showtimes today: 8:20 PM.</p>
 <a class="tickets" href="https://filmforum.org/film/nationtime-william-greaves-100">Boletos e info →</a>
 
@@ -5740,7 +6073,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/5y1chr9j">Snake and Sip at Fugue Gallery</a></h3>
-<div class="meta">12:00 PM – 5:00 PM · FUGUE GALLERY, SoHo-Little Italy-Hudson Square · $20.00</div>
+<div class="meta">12:00 PM – 5:00 PM · FUGUE GALLERY, SoHo · $20.00</div>
 <p></p>
 <a class="tickets" href="https://luma.com/5y1chr9j">Boletos e info →</a>
 
@@ -5866,7 +6199,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☀</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://luma.com/d857a5fa">Corgi Run Club NYC</a></h3>
-<div class="meta">9:00 AM – 10:00 AM · Pier 34 at Hudson River Park, SoHo-Little Italy-Hudson Square · Free · ↻ Every Saturday</div>
+<div class="meta">9:00 AM – 10:00 AM · Pier 34 at Hudson River Park, SoHo · Free · ↻ Every Saturday</div>
 <p></p>
 <a class="tickets" href="https://luma.com/d857a5fa">Boletos e info →</a>
 
@@ -6064,7 +6397,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">⌘</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://luma.com/pdrhyk4p">Tech@NYU Buildathon: Shipyard</a></h3>
-<div class="meta">10:00 AM – 6:00 PM · SoHo, SoHo-Little Italy-Hudson Square · Free</div>
+<div class="meta">10:00 AM – 6:00 PM · SoHo, SoHo · Free</div>
 <p>Founded in 2009, we&#x27;re the home to builders, creatives, and designers @ NYU. Alumni of the club have created over $1B in EV from the companies we&#x27;ve created (Browser Company, CheckHQ).</p>
 <a class="tickets" href="https://luma.com/pdrhyk4p">Boletos e info →</a>
 
@@ -6136,7 +6469,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✎</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/zmlkkyjl">Isshiki Matcha x Sage &amp; Saber Bag Charm Workshop</a></h3>
-<div class="meta">11:00 AM – 1:00 PM · Isshiki Matcha, SoHo-Little Italy-Hudson Square · $77.00</div>
+<div class="meta">11:00 AM – 1:00 PM · Isshiki Matcha, SoHo · $77.00</div>
 <p></p>
 <a class="tickets" href="https://luma.com/zmlkkyjl">Boletos e info →</a>
 
@@ -6226,7 +6559,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://luma.com/hhyyby62">You can’t Handel this: Sax Quartet Recital</a></h3>
-<div class="meta">11:00 AM – 12:00 PM · OPERA America&#x27;s National Opera Center, Midtown South-Flatiron-Union Square · Free</div>
+<div class="meta">11:00 AM – 12:00 PM · OPERA America&#x27;s National Opera Center, Midtown South · Free</div>
 <p></p>
 <a class="tickets" href="https://luma.com/hhyyby62">Boletos e info →</a>
 
@@ -6280,7 +6613,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://luma.com/t8y2irep">Between Worlds: SoHo Pop-up</a></h3>
-<div class="meta">12:00 PM – 4:00 PM · 43 Mercer St, SoHo-Little Italy-Hudson Square · Free</div>
+<div class="meta">12:00 PM – 4:00 PM · 43 Mercer St, SoHo · Free</div>
 <p></p>
 <a class="tickets" href="https://luma.com/t8y2irep">Boletos e info →</a>
 
@@ -6316,7 +6649,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/zn94bmvv">Do Not Disturb: A Phone-Free HIIT &amp; Sauna Experience</a></h3>
-<div class="meta">12:00 PM – 3:00 PM · Midtown Manhattan, Midtown South-Flatiron-Union Square · $35.00</div>
+<div class="meta">12:00 PM – 3:00 PM · Midtown Manhattan, Midtown South · $35.00</div>
 <p>Kanso creates dynamic phone-free social experiences for ambitious people who are tired of the feed and hungry for real friendship.</p>
 <a class="tickets" href="https://luma.com/zn94bmvv">Boletos e info →</a>
 
@@ -6442,7 +6775,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://luma.com/uhylqwhj">Climate Cafe with CUNYverse at the Climate Imaginarium</a></h3>
-<div class="meta">1:00 PM – 4:00 PM · The Climate Imaginarium, The Battery-Governors Island-Ellis Island-Liberty Island · Free</div>
+<div class="meta">1:00 PM – 4:00 PM · The Climate Imaginarium, The Battery · Free</div>
 <p>Our community helps you face your climate anxiety, connects you to impactful local organizing, and keeps you motivated through camaraderie, creativity, and fun. www.climatecafe.eco</p>
 <a class="tickets" href="https://luma.com/uhylqwhj">Boletos e info →</a>
 
@@ -6460,7 +6793,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/nur1wd06">Queens Moms Collective Launch Party!</a></h3>
-<div class="meta">1:30 PM – 3:30 PM · Astoria, Queensbridge-Ravenswood-Dutch Kills · $20.00</div>
+<div class="meta">1:30 PM – 3:30 PM · Astoria, Queensbridge · $20.00</div>
 <p></p>
 <a class="tickets" href="https://luma.com/nur1wd06">Boletos e info →</a>
 
@@ -6496,7 +6829,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/5hnn8oc6">Autumn Sips &amp; Stems</a></h3>
-<div class="meta">2:00 PM – 4:00 PM · 570 Broome St, SoHo-Little Italy-Hudson Square · $98.00 · Full · waitlist open</div>
+<div class="meta">2:00 PM – 4:00 PM · 570 Broome St, SoHo · $98.00 · Full · waitlist open</div>
 <p></p>
 <a class="tickets" href="https://luma.com/5hnn8oc6">Boletos e info →</a>
 
@@ -6532,7 +6865,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body"><span class="badge">Gratis</span>
 <h3><a href="https://luma.com/t0hb7r2q">MAISON MOTEMA — The Fall Season Experience</a></h3>
-<div class="meta">2:00 PM – 6:00 PM · 419 Broome St, SoHo-Little Italy-Hudson Square · Free</div>
+<div class="meta">2:00 PM – 6:00 PM · 419 Broome St, SoHo · Free</div>
 <p></p>
 <a class="tickets" href="https://luma.com/t0hb7r2q">Boletos e info →</a>
 
@@ -6568,7 +6901,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✎</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/z4wdnui4">Water as Portal: a Suminagashi Workshop</a></h3>
-<div class="meta">2:00 PM – 4:00 PM · 21-07 41st Ave, Queensbridge-Ravenswood-Dutch Kills · $40.00</div>
+<div class="meta">2:00 PM – 4:00 PM · 21-07 41st Ave, Queensbridge · $40.00</div>
 <p>Access your creativity. Join us at our Long Island City art studio for workshops, meetups, private events, and craft-based community. Run by the folks behind Queens Collaborative. ⭐️</p>
 <a class="tickets" href="https://luma.com/z4wdnui4">Boletos e info →</a>
 
@@ -6676,7 +7009,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/girlswho-7z5g">Members Only Fall Craft 🤎</a></h3>
-<div class="meta">3:00 PM – 4:30 PM · The Shop, Upper East Side-Lenox Hill-Roosevelt Island · $16.33 · Full · waitlist open</div>
+<div class="meta">3:00 PM – 4:30 PM · The Shop, Upper East Side · $16.33 · Full · waitlist open</div>
 <p>the friend group you’ve been looking for 💌👯‍♀️ IRL connection for women in NYC come solo, leave with friends ⇩ ⇩ ⇩</p>
 <a class="tickets" href="https://luma.com/girlswho-7z5g">Boletos e info →</a>
 
@@ -6874,7 +7207,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/guyrh4bb">Halloween Costume &amp; Scrapbooking Party</a></h3>
-<div class="meta">5:30 PM – 7:30 PM · Cafe Luka, Upper East Side-Lenox Hill-Roosevelt Island · $30.00</div>
+<div class="meta">5:30 PM – 7:30 PM · Cafe Luka, Upper East Side · $30.00</div>
 <p>scrapbooking, junk journaling, craft events 🎀💕</p>
 <a class="tickets" href="https://luma.com/guyrh4bb">Boletos e info →</a>
 
@@ -6964,7 +7297,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/3aqd1cvs">Backgammon Black-Tie Masquerade Party.</a></h3>
-<div class="meta">6:30 PM – 10:30 PM · TwoFortyThirty, Midtown South-Flatiron-Union Square · $100.00</div>
+<div class="meta">6:30 PM – 10:30 PM · TwoFortyThirty, Midtown South · $100.00</div>
 <p>Social club to play + learn backgammon 🎲 “Come for backgammon. Leave with new friends”. Luck Favors the Social!</p>
 <a class="tickets" href="https://luma.com/3aqd1cvs">Boletos e info →</a>
 
@@ -7000,7 +7333,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✎</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/qjjovj16">Mosaic Pottery Workshop</a></h3>
-<div class="meta">6:30 PM – 8:30 PM · Downtown Brooklyn, Downtown Brooklyn-DUMBO-Boerum Hill · $50.00</div>
+<div class="meta">6:30 PM – 8:30 PM · Downtown Brooklyn, Downtown Brooklyn · $50.00</div>
 <p></p>
 <a class="tickets" href="https://luma.com/qjjovj16">Boletos e info →</a>
 
@@ -7036,7 +7369,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/a83sexrg">Safal Ekatr Pilot: Celebrating Sikh Creatives</a></h3>
-<div class="meta">6:30 PM – 9:00 PM · 48 W 21st St, Midtown South-Flatiron-Union Square · $44.00</div>
+<div class="meta">6:30 PM – 9:00 PM · 48 W 21st St, Midtown South · $44.00</div>
 <p></p>
 <a class="tickets" href="https://luma.com/a83sexrg">Boletos e info →</a>
 
@@ -7324,7 +7657,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/cars-coffee-x-retromobile-nyc-tickets-2002352132129">Cars &amp; Coffee x Retromobile NYC</a></h3>
-<div class="meta">9:00 AM – 12:00 PM · SoHo, SoHo-Little Italy-Hudson Square</div>
+<div class="meta">9:00 AM – 12:00 PM · SoHo, SoHo</div>
 <p>Join us on the cobblestones in SOHO for a cars &amp; coffee with Retromobile NYC</p>
 <a class="tickets" href="https://www.eventbrite.com/e/cars-coffee-x-retromobile-nyc-tickets-2002352132129">Boletos e info →</a>
 
@@ -7432,7 +7765,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/halloween-moove-tickets-1997912182119">Halloween Moove</a></h3>
-<div class="meta">12:00 PM – 10:00 PM · Bohemian Hall &amp; Beer Garden, Astoria (North)-Ditmars-Steinway</div>
+<div class="meta">12:00 PM – 10:00 PM · Bohemian Hall &amp; Beer Garden, Astoria (North)</div>
 <p>An event full of activities for the whole family, a night to remember! Everyone in costume!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/halloween-moove-tickets-1997912182119">Boletos e info →</a>
 
@@ -7738,7 +8071,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/bottomless-brunch-at-time-out-market-tickets-1980810460409">Bottomless Brunch at Time Out Market</a></h3>
-<div class="meta">12:00 PM – 3:00 PM · Time Out Market New York, Downtown Brooklyn-DUMBO-Boerum Hill · ↻ Also on other days</div>
+<div class="meta">12:00 PM – 3:00 PM · Time Out Market New York, Downtown Brooklyn · ↻ Also on other days</div>
 <p>Join us for unlimited brunch bites and drinks at Time Out Market - it&#x27;s bottomless fun all day long!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/bottomless-brunch-at-time-out-market-tickets-1980810460409">Boletos e info →</a>
 
@@ -7810,7 +8143,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/espresso-at-home-new-york-city-tickets-2000656589716">Espresso at Home - New York City</a></h3>
-<div class="meta">10:00 AM – 12:00 PM · Counter Culture Coffee New York Training Center, SoHo-Little Italy-Hudson Square</div>
+<div class="meta">10:00 AM – 12:00 PM · Counter Culture Coffee New York Training Center, SoHo</div>
 <p>Join us for an Espresso at Home class at the CCC Training Center in New York City!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/espresso-at-home-new-york-city-tickets-2000656589716">Boletos e info →</a>
 
@@ -7828,7 +8161,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/vip-glow-singles-party-cocktails-conversations-connections-tickets-2003249326662">VIP Glow Singles Party (Cocktails, Conversations &amp; Connections)</a></h3>
-<div class="meta">7:30 PM – 10:30 PM · The Wilson, Midtown South-Flatiron-Union Square</div>
+<div class="meta">7:30 PM – 10:30 PM · The Wilson, Midtown South</div>
 <p>Finally a party where you will meet others who are interested in the same things as you before you even say a word!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/vip-glow-singles-party-cocktails-conversations-connections-tickets-2003249326662">Boletos e info →</a>
 
@@ -7864,7 +8197,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/glow-party-cocktails-connections-tickets-2001707307441">Glow Party (Cocktails &amp; Connections)</a></h3>
-<div class="meta">7:30 PM – 10:30 PM · The Wilson, Midtown South-Flatiron-Union Square</div>
+<div class="meta">7:30 PM – 10:30 PM · The Wilson, Midtown South</div>
 <p>Finally a party where you will meet others who are interested in the same things as you before you even say a word!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/glow-party-cocktails-connections-tickets-2001707307441">Boletos e info →</a>
 
@@ -7900,7 +8233,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">⌘</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/saturday-dna-nyc-the-microscopic-world-around-us-tickets-2002727554026">Saturday DNA! NYC - The Microscopic World Around Us</a></h3>
-<div class="meta">10:00 AM – 12:00 PM · DNALC NYC @ City Tech, Downtown Brooklyn-DUMBO-Boerum Hill</div>
+<div class="meta">10:00 AM – 12:00 PM · DNALC NYC @ City Tech, Downtown Brooklyn</div>
 <p>Join us to take a sneak peek at the microscopic world of life all around us!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/saturday-dna-nyc-the-microscopic-world-around-us-tickets-2002727554026">Boletos e info →</a>
 
@@ -7918,7 +8251,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">⌘</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/infrastructours-ues-steam-systems-by-the-shore-tickets-2002349081003">[INFRASTRUCTOURS] UES Steam Systems by the Shore</a></h3>
-<div class="meta">10:30 AM – 1:00 PM · Tramway Plaza, Upper East Side-Lenox Hill-Roosevelt Island</div>
+<div class="meta">10:30 AM – 1:00 PM · Tramway Plaza, Upper East Side</div>
 <p>Now is your chance to learn more about the steam that emanates from the sidewalk - NYC is home to the largest district thermal steam system!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/infrastructours-ues-steam-systems-by-the-shore-tickets-2002349081003">Boletos e info →</a>
 
@@ -8188,7 +8521,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">➜</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/death-in-new-york-extended-daylight-tour-lower-manhattan-tickets-1990191708976">Death in New York: Extended Daylight Tour (Lower Manhattan)</a></h3>
-<div class="meta">11:00 AM – 1:45 PM · Lower Manhattan, SoHo-Little Italy-Hudson Square · ↻ Every Saturday</div>
+<div class="meta">11:00 AM – 1:45 PM · Lower Manhattan, SoHo · ↻ Every Saturday</div>
 <p>Explore New York’s burial grounds, epidemics, and memorials on a powerful walking tour through Lower Manhattan.</p>
 <a class="tickets" href="https://www.eventbrite.com/e/death-in-new-york-extended-daylight-tour-lower-manhattan-tickets-1990191708976">Boletos e info →</a>
 
@@ -8512,7 +8845,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/daylighting-lenapehoking-tickets-2001416042259">Daylighting Lenapehoking</a></h3>
-<div class="meta">2:00 PM – 4:00 PM · Statue Of Liberty Vista, The Battery-Governors Island-Ellis Island-Liberty Island</div>
+<div class="meta">2:00 PM – 4:00 PM · Statue Of Liberty Vista, The Battery</div>
 <p>Mohawk artist Alan Michelson and ecologist Eric W. Sanderson in conversation at The Oyster.</p>
 <a class="tickets" href="https://www.eventbrite.com/e/daylighting-lenapehoking-tickets-2001416042259">Boletos e info →</a>
 
@@ -8548,7 +8881,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✎</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/macoletta-astoria-pizza-making-class-tickets-675615152107">Macoletta Astoria Pizza Making Class</a></h3>
-<div class="meta">3:30 PM – 5:30 PM · Macoletta, Astoria (North)-Ditmars-Steinway · ↻ Every Saturday</div>
+<div class="meta">3:30 PM – 5:30 PM · Macoletta, Astoria (North) · ↻ Every Saturday</div>
 <p>Learn how to make your own Neapolitan Pizza! Includes a pizza, two beverages and Nutella Pizza! Bookings can be up to 10 guests.</p>
 <a class="tickets" href="https://www.eventbrite.com/e/macoletta-astoria-pizza-making-class-tickets-675615152107">Boletos e info →</a>
 
@@ -8728,7 +9061,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/skull-manor-murder-mystery-after-party-tickets-2003249207305">Skull Manor Murder Mystery (+ After Party)</a></h3>
-<div class="meta">6:30 PM – 8:30 PM · The Wilson, Midtown South-Flatiron-Union Square</div>
+<div class="meta">6:30 PM – 8:30 PM · The Wilson, Midtown South</div>
 <p>&#x27;Tis the season. Join us for this special Halloween Edition Murder Mystery Party of ***Murder at Skull Manor ***where everyone is a suspect!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/skull-manor-murder-mystery-after-party-tickets-2003249207305">Boletos e info →</a>
 
@@ -8746,7 +9079,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/aia-staten-island-fall-fling-tickets-2003717027568">AIA Staten Island Fall Fling</a></h3>
-<div class="meta">8:00 AM – 1:00 PM · Blue Pearl Seafood Restaurant, Tompkinsville-Stapleton-Clifton-Fox Hills</div>
+<div class="meta">8:00 AM – 1:00 PM · Blue Pearl Seafood Restaurant, Tompkinsville</div>
 <p>Celebrate fall with continuing education credits, good company, breakfast and lunch!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/aia-staten-island-fall-fling-tickets-2003717027568">Boletos e info →</a>
 
@@ -8908,7 +9241,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/storybook-pajama-party-nyc-magical-bedtime-adventure-for-kids-tickets-2003044893196">Storybook &amp; Pajama Party NYC: Magical Bedtime Adventure for Kids</a></h3>
-<div class="meta">5:30 PM – 7:15 PM · Books of Wonder, Midtown South-Flatiron-Union Square</div>
+<div class="meta">5:30 PM – 7:15 PM · Books of Wonder, Midtown South</div>
 <p>Wear your coziest pajamas, meet storybook characters, enjoy crafts and storytelling, and settle into a magical bedtime reading space.</p>
 <a class="tickets" href="https://www.eventbrite.com/e/storybook-pajama-party-nyc-magical-bedtime-adventure-for-kids-tickets-2003044893196">Boletos e info →</a>
 
@@ -8944,7 +9277,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">➜</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/big-bus-tour-tickets-2001243851231">Big Bus Tour</a></h3>
-<div class="meta">2:00 PM – 4:00 PM · 220 E 72nd St, Upper East Side-Lenox Hill-Roosevelt Island</div>
+<div class="meta">2:00 PM – 4:00 PM · 220 E 72nd St, Upper East Side</div>
 <p>Big Bus Tour</p>
 <a class="tickets" href="https://www.eventbrite.com/e/big-bus-tour-tickets-2001243851231">Boletos e info →</a>
 
@@ -9160,7 +9493,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/comedy-mob-presents-the-9th-annual-comedy-mob-festival-finals-tickets-2003300565920">Comedy Mob Presents the 9th Annual Comedy Mob Festival - Finals!</a></h3>
-<div class="meta">8:00 PM – 9:30 PM · Rodney&#x27;s Comedy Club, Upper East Side-Lenox Hill-Roosevelt Island</div>
+<div class="meta">8:00 PM – 9:30 PM · Rodney&#x27;s Comedy Club, Upper East Side</div>
 <p>Comedy Mob Presents the 9th Annual Comedy Mob Festival - Finals!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/comedy-mob-presents-the-9th-annual-comedy-mob-festival-finals-tickets-2003300565920">Boletos e info →</a>
 
@@ -9268,7 +9601,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/launch-event-tokkis-tricks-by-aram-kim-tickets-2002650423326">Launch Event | Tokki&#x27;s Tricks by ARAM KIM</a></h3>
-<div class="meta">2:00 PM – 4:00 PM · Books of Wonder, Midtown South-Flatiron-Union Square</div>
+<div class="meta">2:00 PM – 4:00 PM · Books of Wonder, Midtown South</div>
 <p>Join us for the launch of a hilarious picture book based on Korean folktale with author-illustrator ARAM KIM!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/launch-event-tokkis-tricks-by-aram-kim-tickets-2002650423326">Boletos e info →</a>
 
@@ -9394,7 +9727,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">❝</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/subtle-bodies-self-reflection-through-aura-photography-fall-session-tickets-2002745810632">Subtle Bodies: Self Reflection Through Aura Photography - Fall Session</a></h3>
-<div class="meta">12:00 PM – 2:00 PM · Alice Austen House, Rosebank-Shore Acres-Park Hill</div>
+<div class="meta">12:00 PM – 2:00 PM · Alice Austen House, Rosebank</div>
 <p>Our seasonal aura workshop series is back for 2026 combining aura photographs and journaling as tools for self-reflection.</p>
 <a class="tickets" href="https://www.eventbrite.com/e/subtle-bodies-self-reflection-through-aura-photography-fall-session-tickets-2002745810632">Boletos e info →</a>
 
@@ -9828,6 +10161,9 @@ addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash
 const CATS = ["Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Music", "Arts & Play", "Arts & Play", "Theater", "Tours", "Music", "Classes & Workshops", "Arts & Play", "Theater", "Arts & Play", "Theater", "Sports", "Arts & Play", "Arts & Play", "Theater", "Arts & Play", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Arts & Play", "Music", "Theater", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Theater", "Theater", "Comedy", "Arts & Play", "Theater", "Theater", "Theater", "Theater", "Theater", "Theater", "Arts & Play", "Theater", "Theater", "Theater", "Arts & Play", "Theater", "Theater", "Arts & Play", "Arts & Play", "Theater", "Music", "Theater", "Comedy", "Music", "Music", "Music", "Music", "Comedy", "Arts & Play", "Music", "Music", "Music", "Comedy", "Music", "Music", "Music", "Arts & Play", "Music", "Music", "Music", "Music", "Comedy", "Music", "Music", "Music", "Music", "Arts & Play", "Music", "Music", "Music", "Music", "Music", "Music", "Arts & Play", "Arts & Play", "Music", "Comedy", "Music", "Music", "Music", "Music", "Arts & Play", "Music", "Music", "Music", "Music", "Music", "Music", "Arts & Play", "Arts & Play", "Sports", "Sports", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Arts & Play", "Fitness & Outdoors", "Fitness & Outdoors", "Arts & Play", "Arts & Play", "Fitness & Outdoors", "Arts & Play", "Fitness & Outdoors", "Arts & Play", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Arts & Play", "Fitness & Outdoors", "Meetups & Mixers", "Arts & Play", "Talks", "Arts & Play", "Meetups & Mixers", "Arts & Play", "Arts & Play", "Arts & Play", "Fitness & Outdoors", "Arts & Play", "Arts & Play", "Arts & Play", "Meetups & Mixers", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Arts & Play", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Music", "Fitness & Outdoors", "Classes & Workshops", "Tours", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Fitness & Outdoors", "Meetups & Mixers", "Arts & Play", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Tours", "Arts & Play", "Arts & Play", "Arts & Play", "Arts & Play", "Theater", "Classes & Workshops", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Theater", "Meetups & Mixers", "Arts & Play", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Fitness & Outdoors", "Fitness & Outdoors", "Tech", "Meetups & Mixers", "Fitness & Outdoors", "Food & Drink", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Tours", "Meetups & Mixers", "Food & Drink", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Fitness & Outdoors", "Trivia & Games", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Food & Drink", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Arts & Play", "Arts & Play", "Fitness & Outdoors", "Meetups & Mixers", "Film", "Arts & Play", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Film", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Meetups & Mixers", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Food & Drink", "Meetups & Mixers", "Music", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Food & Drink", "Arts & Play", "Meetups & Mixers", "Meetups & Mixers", "Theater", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Classes & Workshops", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Food & Drink", "Classes & Workshops", "Food & Drink", "Classes & Workshops", "Classes & Workshops", "Food & Drink", "Food & Drink", "Food & Drink", "Classes & Workshops", "Food & Drink", "Tech", "Tech", "Tech", "Tech", "Tech", "Tech", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Tours", "Talks", "Talks", "Talks", "Talks", "Tours", "Talks", "Classes & Workshops", "Classes & Workshops", "Talks", "Talks", "Talks", "Tours", "Talks", "Talks", "Talks", "Talks", "Classes & Workshops", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Tours", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Classes & Workshops", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Film", "Film", "Film", "Film", "Film", "Film"];
 const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, true, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, true, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, true, true, false, true, true, true, true, true, true, false, false, true, true, true, false, true, true, false, true, true, false, true, false, false, true, true, true, false, true, true, false, true, false, true, true, true, true, true, false, true, false, true, true, false, false, true, true, true, true, false, false, false, false, true, false, true, true, false, true, true, true, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const HOODS = ["SoHo-Little Italy-Hudson Square", "Financial District-Battery Park City", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "Gramercy", "Midtown-Times Square", "SoHo-Little Italy-Hudson Square", "Tribeca-Civic Center", "Hell's Kitchen", "SoHo-Little Italy-Hudson Square", "Williamsburg", "SoHo-Little Italy-Hudson Square", "East Village", "Hell's Kitchen", "Hell's Kitchen", "Upper West Side-Lincoln Square", "Washington Heights (South)", "SoHo-Little Italy-Hudson Square", "West Village", "East Village", "East Village", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Midtown-Times Square", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Upper West Side-Lincoln Square", "Upper West Side-Lincoln Square", "Upper West Side (Central)", "Hell's Kitchen", "Midtown-Times Square", "Financial District-Battery Park City", "Chelsea-Hudson Yards", "Hell's Kitchen", "Hell's Kitchen", "Financial District-Battery Park City", "Greenwich Village", "Midtown-Times Square", "Hell's Kitchen", "Lower East Side", "Midtown-Times Square", "Bushwick (West)", "Midtown-Times Square", "Tribeca-Civic Center", "Lower East Side", "East Village", "Fort Greene", "Williamsburg", "Williamsburg", "Greenpoint", "Hell's Kitchen", "Hell's Kitchen", "Bushwick (West)", "Upper West Side (Central)", "East Village", "Williamsburg", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Bedford-Stuyvesant (West)", "Upper West Side-Lincoln Square", "Flatbush", "SoHo-Little Italy-Hudson Square", "East Village", "East Village", "Chelsea-Hudson Yards", "Gramercy", "Williamsburg", "Midtown South-Flatiron-Union Square", "Midtown-Times Square", "Hell's Kitchen", "Bushwick (West)", "Greenwich Village", "Midtown-Times Square", "Midtown-Times Square", "Hell's Kitchen", "Lower East Side", "East Village", "St. George-New Brighton", "East Village", "Clinton Hill", "East Village", "Hell's Kitchen", "Hell's Kitchen", "Williamsburg", "Midtown South-Flatiron-Union Square", "Midtown-Times Square", "Yankee Stadium-Macombs Dam Park", "Yankee Stadium-Macombs Dam Park", "Washington Heights (North)", "Canarsie Park & Pier", "Mott Haven-Port Morris", "Inwood Hill Park", "Astoria Park", "Baisley Park", "Bayside", "Cypress Hills", "Bay Ridge", "Soundview Park", "Crotona Park East", "Brownsville", "Rego Park", "East Harlem (North)", "Riverdale-Spuyten Duyvil", "East Harlem (North)", "Rockaway Beach-Arverne-Edgemere", "Grasmere-Arrochar-South Beach-Dongan Hills", "Tottenville-Charleston", "Ocean Hill", "Tottenville-Charleston", "Riverdale-Spuyten Duyvil", "West Village", "Prospect Park", "Rego Park", "Prospect Lefferts Gardens-Wingate", "Middle Village", "Randall's Island", "Upper West Side (Central)", "Morris Park", "Tottenville-Charleston", "Park Slope", "Snug Harbor", "Tottenville-Charleston", "Queens Village", "Bedford-Stuyvesant (West)", "Fort Greene", "Bedford-Stuyvesant (West)", "Greenwich Village", "Far Rockaway-Bayswater", "Crotona Park", "Morningside Heights", "Crown Heights (South)", "Old Astoria-Hallets Point", "East Williamsburg", "Prospect Lefferts Gardens-Wingate", "East Midtown-Turtle Bay", "Riverdale-Spuyten Duyvil", "Snug Harbor", "Harlem (North)", "Harlem (North)", "Greenpoint", "Bedford-Stuyvesant (West)", "Annadale-Huguenot-Prince's Bay-Woodrow", "East Village", "Morrisania", "West New Brighton-Silver Lake-Grymes Hill", "Greenwich Village", "West New Brighton-Silver Lake-Grymes Hill", "Inwood Hill Park", "Snug Harbor", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Upper West Side-Manhattan Valley", "Randall's Island", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Chelsea-Hudson Yards", "Chelsea-Hudson Yards", "", "", "Green-Wood Cemetery", "Green-Wood Cemetery", "Green-Wood Cemetery", "", "", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "", "Williamsburg", "SoHo-Little Italy-Hudson Square", "Hunts Point", "East Williamsburg", "Lower East Side", "Midtown-Times Square", "Howard Beach-Lindenwood", "Williamsburg", "SoHo-Little Italy-Hudson Square", "", "West Village", "East Village", "East Midtown-Turtle Bay", "Williamsburg", "Chelsea-Hudson Yards", "Tribeca-Civic Center", "Williamsburg", "Williamsburg", "Bedford-Stuyvesant (West)", "SoHo-Little Italy-Hudson Square", "Chelsea-Hudson Yards", "Williamsburg", "Chinatown-Two Bridges", "SoHo-Little Italy-Hudson Square", "Riverdale-Spuyten Duyvil", "Flatbush", "Upper West Side (Central)", "Chelsea-Hudson Yards", "Midtown South-Flatiron-Union Square", "Park Slope", "Williamsburg", "SoHo-Little Italy-Hudson Square", "Williamsburg", "Midtown South-Flatiron-Union Square", "Tribeca-Civic Center", "Financial District-Battery Park City", "Prospect Park", "Gramercy", "Chelsea-Hudson Yards", "Upper West Side-Lincoln Square", "The Battery-Governors Island-Ellis Island-Liberty Island", "Queensbridge-Ravenswood-Dutch Kills", "Chelsea-Hudson Yards", "SoHo-Little Italy-Hudson Square", "West Village", "SoHo-Little Italy-Hudson Square", "Williamsburg", "Queensbridge-Ravenswood-Dutch Kills", "Lower East Side", "Lower East Side", "Bedford-Stuyvesant (West)", "Chelsea-Hudson Yards", "College Point", "Upper East Side-Lenox Hill-Roosevelt Island", "Chelsea-Hudson Yards", "Financial District-Battery Park City", "", "Financial District-Battery Park City", "Chelsea-Hudson Yards", "Bushwick (West)", "Chelsea-Hudson Yards", "East Flatbush-Erasmus", "Alley Pond Park", "Bushwick (West)", "Upper East Side-Lenox Hill-Roosevelt Island", "", "East Village", "Bushwick (East)", "Morrisania", "Midtown South-Flatiron-Union Square", "Harlem (South)", "Downtown Brooklyn-DUMBO-Boerum Hill", "Midtown-Times Square", "Midtown South-Flatiron-Union Square", "Central Park", "Bushwick (East)", "Prospect Heights", "Upper East Side-Carnegie Hill", "Crown Heights (North)", "Brooklyn Heights", "Lower East Side", "", "West Village", "Chelsea-Hudson Yards", "Prospect Heights", "East Williamsburg", "Chelsea-Hudson Yards", "Bushwick (West)", "Long Island City-Hunters Point", "SoHo-Little Italy-Hudson Square", "East Village", "East Williamsburg", "Bushwick (West)", "Upper West Side-Lincoln Square", "Woodhaven", "Astoria (North)-Ditmars-Steinway", "Midtown-Times Square", "Lower East Side", "East Williamsburg", "East Williamsburg", "Tribeca-Civic Center", "Hell's Kitchen", "East Williamsburg", "Spring Creek-Starrett City", "Prospect Lefferts Gardens-Wingate", "Midtown-Times Square", "West Village", "East Williamsburg", "Bushwick (West)", "Astoria (Central)", "West Village", "Chelsea-Hudson Yards", "Downtown Brooklyn-DUMBO-Boerum Hill", "Financial District-Battery Park City", "Midtown-Times Square", "Midtown-Times Square", "SoHo-Little Italy-Hudson Square", "Midtown South-Flatiron-Union Square", "Chelsea-Hudson Yards", "Midtown South-Flatiron-Union Square", "East Flatbush-Rugby", "Downtown Brooklyn-DUMBO-Boerum Hill", "Upper East Side-Lenox Hill-Roosevelt Island", "Chelsea-Hudson Yards", "Long Island City-Hunters Point", "Concourse-Concourse Village", "Upper West Side-Manhattan Valley", "Murray Hill-Kips Bay", "Chinatown-Two Bridges", "Sunset Park (West)", "Sunset Park (West)", "Lower East Side", "Tribeca-Civic Center", "Bay Ridge", "Greenwich Village", "Financial District-Battery Park City", "Midtown-Times Square", "SoHo-Little Italy-Hudson Square", "Midtown-Times Square", "Upper East Side-Yorkville", "East Village", "West Village", "Financial District-Battery Park City", "", "Greenpoint", "Chelsea-Hudson Yards", "Financial District-Battery Park City", "Financial District-Battery Park City", "Chinatown-Two Bridges", "Greenwich Village", "Bushwick (West)", "Crown Heights (South)", "East Flatbush-Erasmus", "Upper East Side-Yorkville", "Lower East Side", "The Battery-Governors Island-Ellis Island-Liberty Island", "Chelsea-Hudson Yards", "Astoria (North)-Ditmars-Steinway", "Tribeca-Civic Center", "Prospect Heights", "Greenpoint", "Sunset Park (West)", "Fort Greene", "Greenwich Village", "East Village", "Prospect Lefferts Gardens-Wingate", "Chelsea-Hudson Yards", "Midtown South-Flatiron-Union Square", "Tompkinsville-Stapleton-Clifton-Fox Hills", "Midtown-Times Square", "", "Bushwick (West)", "Bedford-Stuyvesant (East)", "Midtown-Times Square", "West Village", "Upper West Side-Lincoln Square", "Upper West Side-Lincoln Square", "Midtown South-Flatiron-Union Square", "Crown Heights (North)", "Upper East Side-Lenox Hill-Roosevelt Island", "East Village", "Prospect Lefferts Gardens-Wingate", "Astoria (Central)", "Chelsea-Hudson Yards", "Chelsea-Hudson Yards", "Midtown-Times Square", "Crown Heights (South)", "Upper West Side-Lincoln Square", "Upper West Side-Lincoln Square", "Upper West Side-Lincoln Square", "East Harlem (North)", "Upper East Side-Lenox Hill-Roosevelt Island", "East Elmhurst", "East Elmhurst", "Upper West Side (Central)", "Chinatown-Two Bridges", "Gramercy", "Midtown South-Flatiron-Union Square", "East Harlem (North)", "Greenwich Village", "", "East Village", "East Village", "Hell's Kitchen", "Rosebank-Shore Acres-Park Hill", "East Flatbush-Erasmus", "Astoria (Central)", "Astoria (Central)", "Astoria (Central)", "Astoria (Central)", "Astoria (Central)", "Astoria (Central)"];
+function hoodShort(h){ var p = String(h || "").split("-"); return p.length >= 3 ? p[0].trim() : (h || ""); }  // display only (hood_short)
+const SRCS = ["universe", "universe", "universe", "universe", "universe", "ticketmaster", "ticketweb", "universe", "universe", "ticketmaster", "universe", "ticketmaster", "universe", "venue", "ticketmaster", "ticketmaster", "venue", "ticketmaster", "universe", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "venue", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "dice", "ticketmaster", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "ticketweb", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketweb", "ticketmaster", "ticketweb", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "eventbrite", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "venue", "venue", "eventbrite", "venue", "venue", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "venue", "venue", "venue", "venue", "venue", "venue"];  // where each event is listed: "eventbrite", "luma" ... "venue" (its link's site, source_of)
+const SRC_LABEL = {"eventbrite": "Eventbrite", "luma": "Luma", "ticketmaster": "Ticketmaster", "ticketweb": "TicketWeb", "universe": "Universe", "dice": "DICE", "nycparks": "NYC Parks", "geekswhodrink": "Geeks Who Drink", "venue": "Sitios de los locales"};
 const AREA_GROUP = ["Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Staten Island", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Bronx", "Bronx", "Manhattan", "Brooklyn", "Bronx", "Manhattan", "Queens", "Queens", "Queens", "Brooklyn", "Brooklyn", "Bronx", "Bronx", "Brooklyn", "Queens", "Manhattan", "Bronx", "Manhattan", "Queens", "Staten Island", "Staten Island", "Brooklyn", "Staten Island", "Bronx", "Manhattan", "Brooklyn", "Queens", "Brooklyn", "Queens", "Manhattan", "Manhattan", "Bronx", "Staten Island", "Brooklyn", "Staten Island", "Staten Island", "Queens", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Queens", "Bronx", "Manhattan", "Brooklyn", "Queens", "Brooklyn", "Brooklyn", "Manhattan", "Bronx", "Staten Island", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Staten Island", "Manhattan", "Bronx", "Staten Island", "Manhattan", "Staten Island", "Manhattan", "Staten Island", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "", "Brooklyn", "Brooklyn", "Brooklyn", "", "", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "Brooklyn", "Manhattan", "Bronx", "Brooklyn", "Manhattan", "Manhattan", "Queens", "Brooklyn", "Manhattan", "", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Bronx", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Queens", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Queens", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Queens", "Manhattan", "Manhattan", "Manhattan", "", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Brooklyn", "Queens", "Brooklyn", "Manhattan", "", "Manhattan", "Brooklyn", "Bronx", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Brooklyn", "Queens", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Queens", "Queens", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Queens", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Queens", "Bronx", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Queens", "Manhattan", "Brooklyn", "Brooklyn", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Staten Island", "Manhattan", "", "Brooklyn", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Brooklyn", "Queens", "Manhattan", "Manhattan", "Manhattan", "Brooklyn", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Queens", "Queens", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "Manhattan", "", "Manhattan", "Manhattan", "Manhattan", "Staten Island", "Brooklyn", "Queens", "Queens", "Queens", "Queens", "Queens", "Queens"];  // each event's borough / region ("" = no neighbourhood)
 const AREA_ORDER = ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island", "Otros lugares"];
 const TZ = "America/New_York";
@@ -10035,7 +10371,7 @@ window.__applyFilters = (function () {
   // you: "Para ti" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "Mis barrios" (Preferences)
   // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false, low: false};
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -10068,7 +10404,7 @@ window.__applyFilters = (function () {
     if (base && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) base = false;
     if (base && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) base = false;
     if (base && F.q) {
-      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
+      if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (SRC_LABEL[SRCS[i]] || "") + " " + (a ? a.textContent : "")).toLowerCase();
       if (!hay[i].includes(F.q)) base = false;
     }
     const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
@@ -10077,6 +10413,7 @@ window.__applyFilters = (function () {
       free: !F.free || FREE[i],
       tod: todOk(i),
       hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
+      src: !F.src || F.src.split("|").includes(SRCS[i]),  // one or several sources (Eventbrite, Luma ...)
       you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []) ||
         ((F.low || F.q) && Tonight.excluded && Tonight.excluded(i) === "junk"),
       near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
@@ -10087,7 +10424,7 @@ window.__applyFilters = (function () {
     let n = 0, nLow = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const rest = d.cat && d.free && d.tod && d.hood && d.you && d.near;
+      const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near;
       const ok = d.base && rest;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
@@ -10135,6 +10472,8 @@ window.__applyFilters = (function () {
   });
   const _fh = document.getElementById("fhood");
   if (_fh) _fh.addEventListener("change", e => { F.hood = e.target.value; applyFilters(); });
+  const _fs = document.getElementById("fsrc");
+  if (_fs) _fs.addEventListener("change", e => { F.src = e.target.value; applyFilters(); });
   document.getElementById("ffree").addEventListener("click", e => {
     F.free = !F.free;
     e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
@@ -10253,7 +10592,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.near;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.near;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -10280,7 +10619,7 @@ window.__applyFilters = (function () {
   (() => {
     const q = document.getElementById("fq");
     if (q.value) q.dispatchEvent(new Event("input"));
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") el.dispatchEvent(new Event("change")); });
   })();
   // filters from the address, e.g. ?free=1&before=960 (links from Toni, shared links)
@@ -10289,7 +10628,7 @@ window.__applyFilters = (function () {
       if (el && v != null) { if (el.tagName === "SELECT" && v !== "" && !el.querySelector('option[value="' + v + '"]')) { const o = document.createElement("option"); o.value = v; const h = Math.floor(v / 60), m = v % 60; o.textContent = (h % 12 || 12) + (m ? ":" + String(m).padStart(2, "0") : "") + (h >= 12 ? " PM" : " AM"); el.appendChild(o); } el.value = v; el.dispatchEvent(new Event("change")); } };
     if (q.get("free") === "1") document.getElementById("ffree").click();
     setv("fafter", q.get("after")); setv("fbefore", q.get("before"));
-    setv("fcat", q.get("cat")); setv("fhood", q.get("hood"));
+    setv("fcat", q.get("cat")); setv("fhood", q.get("hood")); setv("fsrc", q.get("src"));
     const only = (q.get("only") || "").split(",").filter(x => /^[0-9a-f]{8,10}$/.test(x));
     if (only.length) {
       F.only = new Set(only);
@@ -10304,9 +10643,9 @@ window.__applyFilters = (function () {
   // active filters look "on"; Clear all appears once anything is set
   const _fb = document.getElementById("filterBar"), _fc = document.getElementById("fclear");
   function syncFilterUI() {
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src);
     if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
     if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
@@ -10315,7 +10654,7 @@ window.__applyFilters = (function () {
   _fb.addEventListener("click", () => setTimeout(syncFilterUI, 0));
   if (_fc) _fc.addEventListener("click", () => {
     const q = document.getElementById("fq"); q.value = ""; q.dispatchEvent(new Event("input"));
-    ["fcat", "fafter", "fbefore", "fhood"].forEach(id => { const el = document.getElementById(id);
+    ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") { el.value = ""; el.dispatchEvent(new Event("change")); } });
     if (F.free) document.getElementById("ffree").click();
     const all = document.querySelector('#ftod button[data-t="all"]'); if (all) all.click();
@@ -10536,7 +10875,7 @@ function setNextHour(on, quiet) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i))) return;
-    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.you || !d.near) return; }  // other filters still apply
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.src || !d.you || !d.near) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     const kind = soonKind(i, now);
@@ -10583,7 +10922,7 @@ if (_nhb) _nhb.addEventListener("click", () => {
 </script>
 <script>
 // ---------------- Browse filters (discovery v1) ----------------
-const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: ""};
+const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: ""};
 const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
 let hidden = new Set(typeof loadIds === "function" ? loadIds(HIDE_KEY) : JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"));
 function todOf(i) {
@@ -10605,8 +10944,9 @@ function applyFilters() {
     if (ok && F.after != null && !(STARTS[i] != null && STARTS[i] >= F.after)) ok = false;
     if (ok && F.before != null && !(STARTS[i] != null && STARTS[i] < F.before)) ok = false;
     if (ok && F.hood && HOODS[i] !== F.hood) ok = false;
+    if (ok && F.src && SRCS[i] !== F.src) ok = false;
     if (ok && F.q) {
-      const hay = (NAMES[i] + " " + CATS[i] + " " + a.textContent).toLowerCase();
+      const hay = (NAMES[i] + " " + CATS[i] + " " + (SRC_LABEL[SRCS[i]] || "") + " " + a.textContent).toLowerCase();
       if (!hay.includes(F.q)) ok = false;
     }
     a.style.display = ok ? "" : "none";
@@ -10628,6 +10968,8 @@ document.getElementById("fcat").addEventListener("change", e => {
 });
 const _fh = document.getElementById("fhood");
 if (_fh) _fh.addEventListener("change", e => { F.hood = e.target.value; applyFilters(); });
+const _fs = document.getElementById("fsrc");
+if (_fs) _fs.addEventListener("change", e => { F.src = e.target.value; applyFilters(); });
 document.getElementById("ffree").addEventListener("click", e => {
   F.free = !F.free;
   e.target.setAttribute("aria-pressed", F.free ? "true" : "false");
@@ -11313,6 +11655,7 @@ function filterUrl(f){
   if (f.before != null) q.push("before=" + f.before);
   if (f.category) q.push("cat=" + encodeURIComponent(f.category));
   if (f.neighborhood) q.push("hood=" + encodeURIComponent(f.neighborhood));
+  if (f.source) q.push("src=" + encodeURIComponent(f.source));
   return q.length ? "?" + q.join("&") : "";
 }
 // "Show me everything that's free before 7": Toni sets the page's own filters instead of a long list
@@ -11322,7 +11665,7 @@ function applyPageFilters(f){
     el.value = v == null ? "" : String(v); el.dispatchEvent(new Event("change")); };
   var free = document.getElementById("ffree");
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
-  set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || "");
+  set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || ""); set("fsrc", f.source || "");
   var n = 0;
   document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;
@@ -11565,7 +11908,7 @@ document.addEventListener("click", function(e){ if (box.hasAttribute("open") && 
 sel.hidden = true; sel.parentNode.insertBefore(box, sel.nextSibling);
 fromSelect();
 })();
-</script><script>window.__tonight_api="https://tonight-api-2169.onrender.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
+</script><script>window.__tonight_api=""||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
 var base=new URL(a.href).pathname,p=location.pathname,es=/\/es\/$/.test(base);
 var rest=p.indexOf(base)===0?p.slice(base.length):"";
 a.href=(es?base.slice(0,-3):base+"es/")+rest+location.search+location.hash;
