@@ -61,6 +61,10 @@ font:600 14px/1.3 inherit;font-family:inherit;cursor:pointer;}
 .event-body h3{font-family:Georgia, 'Times New Roman', serif;font-size:20px;margin:0 0 4px;}
 .event-body h3 a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;}
 .meta{font-size:13px;color:#6b6b6b;margin-bottom:8px;}
+#lowBar{margin:18px 0 8px;font-size:13px;opacity:.75;}
+#lowBar[hidden]{display:none;}
+#lowBar button{background:none;border:none;padding:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit;}
+.tourtag{display:inline-block;margin-left:6px;padding:1px 6px;font-size:11px;font-weight:600;line-height:1.4;color:#5f5f5f;background:#ececec;border-radius:3px;vertical-align:1px;white-space:nowrap;}
 .event-body p{font-size:14.5px;line-height:1.55;color:#333;margin:0 0 10px;}
 .tickets{display:inline-block;background:var(--ink);color:var(--paper);padding:8px 20px;border-radius:999px;text-decoration:none;font-size:13px;}
 .cal-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;}
@@ -2731,7 +2735,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="fclear" id="fclear" type="button" hidden>Borrar filtros</button>
 </div>
 </div>
-<section id="topTonight" aria-labelledby="ttHead"><h2 id="ttHead">Lo mejor del domingo</h2><ol class="tt-list"></ol><p class="tt-empty" hidden>Nada más que destacar con estos filtros. Todo está abajo.</p><a class="tt-all" href="#allEvents">Ver los 179 eventos →</a></section><div class="picks" id="picksBar"><strong>★ Mis planes: <span id="pickCount">0</span></strong><br>
+<section id="topTonight" aria-labelledby="ttHead"><h2 id="ttHead">Lo mejor del domingo</h2><ol class="tt-list"></ol><p class="tt-empty" hidden>Nada más que destacar con estos filtros. Todo está abajo.</p><a class="tt-all" href="#allEvents">Ver los 116 eventos →</a></section><div class="picks" id="picksBar"><strong>★ Mis planes: <span id="pickCount">0</span></strong><br>
 <span style="font-size:13px;color:#6b6b6b;">Las marcas se guardan solas y dan forma a lo de mañana. ¿Vas con amigos? Mándales tu lista.</span><br><br>
 <button class="btn btn-gold" id="textGroupBtn">💬 Mandar al grupo →</button>
 <div id="shareMsg" style="font-size:13px;margin-top:10px;min-height:18px;"></div>
@@ -6030,6 +6034,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 </article>
 </section>
+<p id="lowBar" hidden><span id="lowN">0</span> <span id="lowWord">con nota baja ocultos</span> · <button id="lowShow" type="button">mostrar</button></p>
 </main></div></div>
 <footer>
 <div class="serif">Elegido para ti por Tonight.</div>
@@ -6533,7 +6538,8 @@ window.__applyFilters = (function () {
   if (!bar) return null;
   // you: "Para ti" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "Mis barrios" (Preferences)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false};
+  // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false, low: false};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -6551,6 +6557,12 @@ window.__applyFilters = (function () {
     return tod === "day" ? t !== "evening" : t === tod;
   }
   function todOk(i) { return todMatch(i, F.tod); }
+  // low-rated (quality 3 or lower) or flagged mixers / sales / services: behind "N low-rated hidden · show",
+  // except in Everything (people with settings) and while searching. The same rule as Top tonight's SKIP.
+  const LOW_FLAGS = /(^|,)(networking|sales|spam|service|internal|members_only|online)(,|$)/;
+  function isLow(i) { const q = QUAL[i]; return (typeof q === "number" && q <= 3) || LOW_FLAGS.test(FLAGS[i] || ""); }
+  function everything() { return !F.you && !!(window.Tonight && Tonight.hasProfile && Tonight.hasProfile()); }
+  window.__isLow = isLow;
   const hay = {};  // search text per card, read once
   // each filter on its own (the sidebar counts what each box would show with all the others)
   function dims(i, a) {
@@ -6563,25 +6575,38 @@ window.__applyFilters = (function () {
       if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
       if (!hay[i].includes(F.q)) base = false;
     }
-    return {base: base,
+    const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
+    return {base: base && !lowOut, lowOut: lowOut,
       cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
       free: !F.free || FREE[i],
       tod: todOk(i),
       hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
-      you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []),
+      you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []) ||
+        ((F.low || F.q) && Tonight.excluded && Tonight.excluded(i) === "junk"),
       near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
   }
   window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0, apply: () => applyFilters()};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
-    let n = 0;
+    let n = 0, nLow = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const ok = d.base && d.cat && d.free && d.tod && d.hood && d.you && d.near;
+      const rest = d.cat && d.free && d.tod && d.hood && d.you && d.near;
+      const ok = d.base && rest;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
+      if (d.lowOut && rest) nLow++;
     });
+    const lowBar = document.getElementById("lowBar");
+    if (lowBar) {
+      const es = document.documentElement.lang === "es";
+      lowBar.hidden = !(F.low ? !F.q && !everything() : nLow);
+      document.getElementById("lowN").textContent = F.low ? "" : nLow;
+      document.getElementById("lowWord").textContent = F.low ? (es ? "Mostrando los de nota baja" : "Showing low-rated too")
+        : (es ? (nLow === 1 ? "con nota baja oculto" : "con nota baja ocultos") : "low-rated hidden");
+      document.getElementById("lowShow").textContent = F.low ? (es ? "ocultar" : "hide") : (es ? "mostrar" : "show");
+    }
     document.querySelectorAll("section.cat").forEach(s => {
       const vis = [...s.querySelectorAll("article.event")]
         .some(a => a.style.display !== "none");
@@ -6600,6 +6625,8 @@ window.__applyFilters = (function () {
     if (window.__topTonight) window.__topTonight();
     if (window.__fside) window.__fside();
   }
+  const _ls = document.getElementById("lowShow");
+  if (_ls) _ls.addEventListener("click", () => { F.low = !F.low; applyFilters(); });
   document.getElementById("fq").addEventListener("input", e => {
     F.q = e.target.value.trim().toLowerCase(); applyFilters();
   });
@@ -8489,7 +8516,34 @@ function row(i, big){
   li.appendChild(b);
   return li;
 }
+// "See all 226 tonight →" / "See your 41 + 185 more →": what's worth a look today, not every listing
+// (site/build_site.py tonight_relevant is the same rule at build time, at 5 PM)
+function seeAll(){
+  var a = host.querySelector(".tt-all"); if (!a) return;
+  var today = !EDAYS && typeof cityToday === "function" && DATE === cityToday();
+  var now = today && typeof cityNowMinutes === "function" ? cityNowMinutes() : 1020;
+  var kids = typeof kidsOn === "function" && kidsOn(), you = !!(T().hasProfile && T().hasProfile());
+  var n = 0, mine = 0, cats = catsOn();
+  NAMES.forEach(function(_, i){
+    var f = flags(i), q = typeof QUAL[i] === "number" ? QUAL[i] : 5;
+    if (q <= 3 || f.some(function(x){ return SKIP.indexOf(x) >= 0; })) return;
+    if ((KIDS[i] || f.indexOf("kids") >= 0) && !kids) return;
+    if (window.TonightHide && TonightHide.hides(i)) return;  // hidden for good
+    if (today) {
+      var s = STARTS[i], end = ENDS[i] != null && s != null && ENDS[i] > s ? ENDS[i] : null;
+      if (end != null && end <= now) return;
+      if (s != null && s < 1020 && !(end != null && end - Math.max(now, 1020) >= 45)) return;
+    }
+    n++;
+    if (you && !(T().forYouOut && T().forYouOut(i, cats))) mine++;
+  });
+  var t = you ? (ES ? "Ver tus " + mine + " + " + (n - mine) + " más →" : "See your " + mine + " + " + (n - mine) + " more →")
+    : today ? (ES ? "Ver los " + n + " de esta noche →" : "See all " + n + " tonight →")
+    : (ES ? "Ver los " + n + " eventos →" : "See all " + n + " events →");
+  if (a.textContent !== t) a.textContent = t;
+}
 function draw(){
+  seeAll();
   var ids = pick(), frag = document.createDocumentFragment();
   ids.forEach(function(i, k){ frag.appendChild(row(i, k === 0)); });
   list.innerHTML = ""; list.appendChild(frag);

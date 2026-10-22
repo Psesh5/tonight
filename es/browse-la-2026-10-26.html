@@ -2942,7 +2942,8 @@ window.__applyFilters = (function () {
   if (!bar) return null;
   // you: "Para ti" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "Mis barrios" (Preferences)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false};
+  // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false, low: false};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -2960,6 +2961,12 @@ window.__applyFilters = (function () {
     return tod === "day" ? t !== "evening" : t === tod;
   }
   function todOk(i) { return todMatch(i, F.tod); }
+  // low-rated (quality 3 or lower) or flagged mixers / sales / services: behind "N low-rated hidden · show",
+  // except in Everything (people with settings) and while searching. The same rule as Top tonight's SKIP.
+  const LOW_FLAGS = /(^|,)(networking|sales|spam|service|internal|members_only|online)(,|$)/;
+  function isLow(i) { const q = QUAL[i]; return (typeof q === "number" && q <= 3) || LOW_FLAGS.test(FLAGS[i] || ""); }
+  function everything() { return !F.you && !!(window.Tonight && Tonight.hasProfile && Tonight.hasProfile()); }
+  window.__isLow = isLow;
   const hay = {};  // search text per card, read once
   // each filter on its own (the sidebar counts what each box would show with all the others)
   function dims(i, a) {
@@ -2972,25 +2979,38 @@ window.__applyFilters = (function () {
       if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
       if (!hay[i].includes(F.q)) base = false;
     }
-    return {base: base,
+    const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
+    return {base: base && !lowOut, lowOut: lowOut,
       cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
       free: !F.free || FREE[i],
       tod: todOk(i),
       hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
-      you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []),
+      you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []) ||
+        ((F.low || F.q) && Tonight.excluded && Tonight.excluded(i) === "junk"),
       near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
   }
   window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0, apply: () => applyFilters()};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
-    let n = 0;
+    let n = 0, nLow = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const ok = d.base && d.cat && d.free && d.tod && d.hood && d.you && d.near;
+      const rest = d.cat && d.free && d.tod && d.hood && d.you && d.near;
+      const ok = d.base && rest;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
+      if (d.lowOut && rest) nLow++;
     });
+    const lowBar = document.getElementById("lowBar");
+    if (lowBar) {
+      const es = document.documentElement.lang === "es";
+      lowBar.hidden = !(F.low ? !F.q && !everything() : nLow);
+      document.getElementById("lowN").textContent = F.low ? "" : nLow;
+      document.getElementById("lowWord").textContent = F.low ? (es ? "Mostrando los de nota baja" : "Showing low-rated too")
+        : (es ? (nLow === 1 ? "con nota baja oculto" : "con nota baja ocultos") : "low-rated hidden");
+      document.getElementById("lowShow").textContent = F.low ? (es ? "ocultar" : "hide") : (es ? "mostrar" : "show");
+    }
     document.querySelectorAll("section.cat").forEach(s => {
       const vis = [...s.querySelectorAll("article.event")]
         .some(a => a.style.display !== "none");
@@ -3009,6 +3029,8 @@ window.__applyFilters = (function () {
     if (window.__topTonight) window.__topTonight();
     if (window.__fside) window.__fside();
   }
+  const _ls = document.getElementById("lowShow");
+  if (_ls) _ls.addEventListener("click", () => { F.low = !F.low; applyFilters(); });
   document.getElementById("fq").addEventListener("input", e => {
     F.q = e.target.value.trim().toLowerCase(); applyFilters();
   });

@@ -3256,7 +3256,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☕</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/helena-an-immersive-tribute-tickets-1993222556322">HELENA: An Immersive Tribute</a></h3>
-<div class="meta">9:00 AM – 10:00 AM · Immanuel Presbyterian Church, Koreatown</div>
+<div class="meta">9:00 AM – 10:00 AM · Immanuel Presbyterian Church, Koreatown <span class="tourtag">Tourist attraction</span></div>
 <p>Step inside the legendary Helena church for an immersive installation and cinematic photo experience.</p>
 <a class="tickets" href="https://www.eventbrite.com/e/helena-an-immersive-tribute-tickets-1993222556322">Tickets &amp; info →</a>
 
@@ -3544,7 +3544,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">✦</span><img src="https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194190332%252F225385104632%252F1%252Foriginal.20260923-134228%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D6472995d817c7c44e29b61f9207d4fb1&amp;w=940&amp;q=75" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/museum-of-tolerance-admission-tickets-2002146934377">Museum of Tolerance | Admission</a></h3>
-<div class="meta">10:00 AM – 3:30 PM · Museum of Tolerance, Pico-Robertson · ↻ Also on other days</div>
+<div class="meta">10:00 AM – 3:30 PM · Museum of Tolerance, Pico-Robertson · ↻ Also on other days <span class="tourtag">Tourist attraction</span></div>
 <p>Admission to the Museum of Tolerance. Choose an entry timeslot. Through 3/31/2027.</p>
 <a class="tickets" href="https://www.eventbrite.com/e/museum-of-tolerance-admission-tickets-2002146934377">Tickets &amp; info →</a>
 
@@ -7064,7 +7064,8 @@ window.__applyFilters = (function () {
   if (!bar) return null;
   // you: "For you" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "My neighbourhoods" (Preferences)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false};
+  // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", only: null, you: true, near: false, low: false};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -7082,6 +7083,12 @@ window.__applyFilters = (function () {
     return tod === "day" ? t !== "evening" : t === tod;
   }
   function todOk(i) { return todMatch(i, F.tod); }
+  // low-rated (quality 3 or lower) or flagged mixers / sales / services: behind "N low-rated hidden · show",
+  // except in Everything (people with settings) and while searching. The same rule as Top tonight's SKIP.
+  const LOW_FLAGS = /(^|,)(networking|sales|spam|service|internal|members_only|online)(,|$)/;
+  function isLow(i) { const q = QUAL[i]; return (typeof q === "number" && q <= 3) || LOW_FLAGS.test(FLAGS[i] || ""); }
+  function everything() { return !F.you && !!(window.Tonight && Tonight.hasProfile && Tonight.hasProfile()); }
+  window.__isLow = isLow;
   const hay = {};  // search text per card, read once
   // each filter on its own (the sidebar counts what each box would show with all the others)
   function dims(i, a) {
@@ -7094,25 +7101,38 @@ window.__applyFilters = (function () {
       if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (a ? a.textContent : "")).toLowerCase();
       if (!hay[i].includes(F.q)) base = false;
     }
-    return {base: base,
+    const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
+    return {base: base && !lowOut, lowOut: lowOut,
       cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
       free: !F.free || FREE[i],
       tod: todOk(i),
       hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
-      you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []),
+      you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []) ||
+        ((F.low || F.q) && Tonight.excluded && Tonight.excluded(i) === "junk"),
       near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
   }
   window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0, apply: () => applyFilters()};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
-    let n = 0;
+    let n = 0, nLow = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const ok = d.base && d.cat && d.free && d.tod && d.hood && d.you && d.near;
+      const rest = d.cat && d.free && d.tod && d.hood && d.you && d.near;
+      const ok = d.base && rest;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
+      if (d.lowOut && rest) nLow++;
     });
+    const lowBar = document.getElementById("lowBar");
+    if (lowBar) {
+      const es = document.documentElement.lang === "es";
+      lowBar.hidden = !(F.low ? !F.q && !everything() : nLow);
+      document.getElementById("lowN").textContent = F.low ? "" : nLow;
+      document.getElementById("lowWord").textContent = F.low ? (es ? "Mostrando los de nota baja" : "Showing low-rated too")
+        : (es ? (nLow === 1 ? "con nota baja oculto" : "con nota baja ocultos") : "low-rated hidden");
+      document.getElementById("lowShow").textContent = F.low ? (es ? "ocultar" : "hide") : (es ? "mostrar" : "show");
+    }
     document.querySelectorAll("section.cat").forEach(s => {
       const vis = [...s.querySelectorAll("article.event")]
         .some(a => a.style.display !== "none");
@@ -7131,6 +7151,8 @@ window.__applyFilters = (function () {
     if (window.__topTonight) window.__topTonight();
     if (window.__fside) window.__fside();
   }
+  const _ls = document.getElementById("lowShow");
+  if (_ls) _ls.addEventListener("click", () => { F.low = !F.low; applyFilters(); });
   document.getElementById("fq").addEventListener("input", e => {
     F.q = e.target.value.trim().toLowerCase(); applyFilters();
   });
