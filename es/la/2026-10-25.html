@@ -9106,7 +9106,9 @@ function card(c){
   body.appendChild(meta);
   if (c.reason) body.appendChild(el("div", "r", c.reason));
   var a = el("div", "a");
-  if (onPage) {
+  // a pick from another day (Toni looked ahead): no tick here, and "Ver" opens that day's page
+  var other = !!(c.date && c.date !== cur.date), here = onPage && !other;
+  if (here) {
     var tick = el("button", "", "Marcar"); tick.type = "button";
     var pageBox = function(){ return document.querySelector('.toggle[data-idx="' + c.id + '"]'); };
     var sync = function(){ var t = pageBox(); var on = !!t && t.getAttribute("aria-pressed") === "true";
@@ -9114,8 +9116,10 @@ function card(c){
     tick.addEventListener("click", function(){ var t = pageBox(); if (t) { t.click(); setTimeout(sync, 50); } });
     sync(); a.appendChild(tick);
   }
-  var see = el("a", "", onPage ? "Ver" : "Ver en " + (cur.name || "la página de la ciudad"));
-  see.href = (onPage ? "" : cur.href) + (c.eid ? "#e-" + c.eid : "#event-" + c.id);
+  var dayName = other ? new Date(c.date + "T12:00:00").toLocaleDateString(document.documentElement.lang || "en", {weekday: "long"}) : "";
+  var see = el("a", "", other ? "Ver en " + dayName : (onPage ? "Ver" : "Ver en " + (cur.name || "la página de la ciudad")));
+  see.href = other ? (onPage ? "" : cur.slug + "/") + c.date + ".html" + (c.eid ? "#e-" + c.eid : "")
+                   : (onPage ? "" : cur.href) + (c.eid ? "#e-" + c.eid : "#event-" + c.id);
   see.addEventListener("click", function(){ if (window.innerWidth < 560) panel.hidden = true; });
   a.appendChild(see);
   if (c.url) {
@@ -9934,7 +9938,7 @@ function alertless(){ var m = document.getElementById("shareMsg"); if (m) m.text
 btn.addEventListener("click", open);
 if (location.hash === "#swipe") addEventListener("load", open);
 })();
-</script><script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}else if(location.hash==="#nexthour"){try{document.getElementById("nextHourBtn").click();}catch(e){}}</script><script>window.__tonight_api=""||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
+</script><script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}else if(location.hash==="#nexthour"){try{document.getElementById("nextHourBtn").click();}catch(e){}}</script><script>window.__tonight_api="https://tonight-api-2169.onrender.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
 var base=new URL(a.href).pathname,p=location.pathname,es=/\/es\/$/.test(base);
 var rest=p.indexOf(base)===0?p.slice(base.length):"";
 a.href=(es?base.slice(0,-3):base+"es/")+rest+location.search+location.hash;
