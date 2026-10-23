@@ -499,7 +499,10 @@ account:function(){try{return JSON.parse(localStorage.getItem("tonight-account")
 headers:function(h){h=h||{};var t=this.token();if(t)h["Authorization"]="Bearer "+t;return h;},
 set:function(t,a){try{localStorage.setItem("tonight-session",t);localStorage.setItem("tonight-account",JSON.stringify(a));if(a&&a.id)localStorage.setItem("tonight-user-id",a.id);}catch(e){}},
 clear:function(){try{["tonight-session","tonight-account","tonight-user-id","tonight-taste"].forEach(function(k){localStorage.removeItem(k);});}catch(e){}}
-};</script></head>
+};
+/* the top bar's account link: "Sign in" for signed-out visitors (returning people look for it), "Account" once signed in */
+document.addEventListener("DOMContentLoaded",function(){if(TonightAuth.token())return;var es=(document.documentElement.lang||"").slice(0,2)==="es";
+document.querySelectorAll('a.tastelink[href$="account.html"]').forEach(function(a){a.textContent=es?"Iniciar sesión":"Sign in";});});</script></head>
 <body data-noquiz="1">
 <script>
 var Rank = (function(){
