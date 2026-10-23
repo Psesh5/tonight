@@ -2482,6 +2482,7 @@ function ask(q, display){
              dinner: m.dinner && m.dinner.time ? m.dinner.time : null} : null; }
         return null; })(),
       mode: toniMode || undefined, here: toniMode === "near" && herePos ? herePos : undefined,
+      nearby: (function(){ try { return localStorage.getItem("tonight-nearby") === "1"; } catch (e) { return false; } })(),
       // what the conversation is about so far (days, the list being narrowed): the latest answer's, until New chat
       context: (function(){ for (var k = history.length - 1; k >= 0; k--) { var m = history[k];
         if (m.role === "assistant" && !m.error) return m.context || null; } return null; })(),

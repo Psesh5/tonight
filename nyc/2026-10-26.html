@@ -6760,6 +6760,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 </article>
 </section>
+<p id="nearBar" hidden><span id="nearN">0</span> <span id="nearWord">nearby events hidden</span> · <button id="nearShow" type="button">show</button></p>
 <p id="lowBar" hidden><span id="lowN">0</span> <span id="lowWord">low-rated hidden</span> · <button id="lowShow" type="button">show</button></p>
 </main></div></div>
 <footer>
@@ -7058,6 +7059,7 @@ addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash
 const CATS = ["Arts & Play", "Arts & Play", "Music", "Arts & Play", "Arts & Play", "Arts & Play", "Music", "Music", "Music", "Music", "Music", "Theater", "Music", "Sports", "Music", "Arts & Play", "Arts & Play", "Theater", "Comedy", "Arts & Play", "Theater", "Theater", "Music", "Arts & Play", "Arts & Play", "Music", "Theater", "Comedy", "Music", "Theater", "Music", "Arts & Play", "Music", "Arts & Play", "Theater", "Arts & Play", "Theater", "Music", "Music", "Music", "Theater", "Arts & Play", "Arts & Play", "Sports", "Sports", "Fitness & Outdoors", "Meetups & Mixers", "Arts & Play", "Fitness & Outdoors", "Arts & Play", "Fitness & Outdoors", "Fitness & Outdoors", "Fitness & Outdoors", "Arts & Play", "Arts & Play", "Fitness & Outdoors", "Meetups & Mixers", "Classes & Workshops", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Talks", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Film", "Theater", "Arts & Play", "Meetups & Mixers", "Film", "Tech", "Meetups & Mixers", "Tours", "Tours", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Classes & Workshops", "Meetups & Mixers", "Meetups & Mixers", "Film", "Tech", "Classes & Workshops", "Meetups & Mixers", "Talks", "Classes & Workshops", "Food & Drink", "Meetups & Mixers", "Meetups & Mixers", "Music", "Meetups & Mixers", "Music", "Meetups & Mixers", "Meetups & Mixers", "Music", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Talks", "Talks", "Talks", "Talks", "Talks", "Music", "Meetups & Mixers", "Theater", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Tech", "Tech", "Tech", "Classes & Workshops", "Classes & Workshops", "Tours", "Tours", "Tours", "Tours", "Tours", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Tours", "Tours", "Talks", "Talks", "Talks", "Talks", "Talks", "Talks", "Trivia & Games"];
 const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, true, false, false, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, true, true, true, true, true, true, true, true, true, true, true, false, true, false, true, false, true, true, false, false, false, false, true, false, true, false, true, true, false, true, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const HOODS = ["SoHo-Little Italy-Hudson Square", "Financial District-Battery Park City", "East Village", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "Hell's Kitchen", "Gramercy", "Greenpoint", "East Village", "Lower East Side", "East Village", "Gramercy", "Midtown South-Flatiron-Union Square", "Hell's Kitchen", "Hell's Kitchen", "Hell's Kitchen", "Midtown-Times Square", "Hell's Kitchen", "Hell's Kitchen", "Midtown-Times Square", "Hell's Kitchen", "SoHo-Little Italy-Hudson Square", "West Village", "East Village", "East Village", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Midtown-Times Square", "Hell's Kitchen", "Upper West Side-Lincoln Square", "East Village", "East Village", "Greenwich Village", "Williamsburg", "Midtown-Times Square", "Hell's Kitchen", "Midtown-Times Square", "Hell's Kitchen", "Lower East Side", "Hell's Kitchen", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Midtown South-Flatiron-Union Square", "Midtown-Times Square", "Yankee Stadium-Macombs Dam Park", "Yankee Stadium-Macombs Dam Park", "Central Park", "Crotona Park East", "Tottenville-Charleston", "Upper West Side-Manhattan Valley", "Tottenville-Charleston", "Concourse-Concourse Village", "Greenwich Village", "Rego Park", "Chinatown-Two Bridges", "Norwood", "East Harlem (North)", "Prospect Park", "Upper West Side-Manhattan Valley", "Chelsea-Hudson Yards", "Downtown Brooklyn-DUMBO-Boerum Hill", "Upper East Side-Yorkville", "", "", "", "", "", "", "", "", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Chelsea-Hudson Yards", "", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Greenwich Village", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "Chinatown-Two Bridges", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "SoHo-Little Italy-Hudson Square", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "Prospect Park", "", "Tribeca-Civic Center", "Upper East Side-Carnegie Hill", "Greenpoint", "Chelsea-Hudson Yards", "Windsor Terrace-South Slope", "", "", "Windsor Terrace-South Slope", "Greenwich Village", "Bedford-Stuyvesant (West)", "Chelsea-Hudson Yards", "Chelsea-Hudson Yards", "Greenwich Village", "West Village", "Financial District-Battery Park City", "Chelsea-Hudson Yards", "Sunset Park (West)", "East Harlem (North)", "Downtown Brooklyn-DUMBO-Boerum Hill", "Greenpoint", "Greenwich Village", "East Williamsburg", "Fort Greene", "", "Midtown South-Flatiron-Union Square", "Tribeca-Civic Center", "Downtown Brooklyn-DUMBO-Boerum Hill", "Chelsea-Hudson Yards", "Clinton Hill", "Midtown-Times Square", "", "Lower East Side", "Williamsburg", "Crown Heights (South)", "Greenwich Village", "Greenwich Village", "Midtown South-Flatiron-Union Square", "Central Park", "Greenwich Village", "Bedford-Stuyvesant (West)", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook", "Upper West Side-Lincoln Square", "Hell's Kitchen", "Greenwich Village", "Fort Greene", "Downtown Brooklyn-DUMBO-Boerum Hill", "Upper West Side (Central)", "Pomonok-Electchester-Hillcrest", "Washington Heights (South)", "East Village", "Ridgewood", "Gramercy", "Greenwich Village", "Midtown-Times Square", "Upper East Side-Lenox Hill-Roosevelt Island", "Midtown-Times Square", "South Williamsburg", "Greenwich Village", "Morningside Heights", "Tribeca-Civic Center", "Bedford-Stuyvesant (West)", "Upper East Side-Lenox Hill-Roosevelt Island", "Brooklyn Heights", "Morningside Heights", "Morningside Heights", "Sheepshead Bay-Manhattan Beach-Gerritsen Beach", "Bushwick (West)", "Williamsburg", "", "Green-Wood Cemetery", "SoHo-Little Italy-Hudson Square", "Gramercy", "Murray Hill-Kips Bay", "Greenwich Village", "Greenwich Village", "East Village", "Chelsea-Hudson Yards", "Carroll Gardens-Cobble Hill-Gowanus-Red Hook"];
+const NEARBY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];  // 1: an event in a nearby town (ingest/geo_scope.py), shown only with "Include nearby areas"
 function hoodShort(h){ var p = String(h || "").split("-"); return p.length >= 3 ? p[0].trim() : (h || ""); }  // display only (hood_short)
 const SRCS = ["universe", "universe", "ticketweb", "universe", "universe", "universe", "ticketweb", "ticketmaster", "universe", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "universe", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "venue", "ticketweb", "ticketweb", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "venue", "ticketmaster", "ticketweb", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "nycparks", "venue", "venue", "geekswhodrink", "geekswhodrink", "geekswhodrink", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "venue", "venue", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite"];  // where each event is listed: "eventbrite", "luma" ... "venue" (its link's site, source_of)
 const SRC_LABEL = {"eventbrite": "Eventbrite", "luma": "Luma", "ticketmaster": "Ticketmaster", "ticketweb": "TicketWeb", "universe": "Universe", "dice": "DICE", "nycparks": "NYC Parks", "geekswhodrink": "Geeks Who Drink", "venue": "Venue websites"};
@@ -7268,7 +7270,8 @@ window.__applyFilters = (function () {
   // you: "For you" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "My neighbourhoods" (Preferences)
   // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false};
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false,
+    nearby: (function(){ try { return localStorage.getItem("tonight-nearby") === "1"; } catch (e) { return false; } })()};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -7305,7 +7308,8 @@ window.__applyFilters = (function () {
       if (!hay[i].includes(F.q)) base = false;
     }
     const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
-    return {base: base && !lowOut, lowOut: lowOut,
+    const nearOut = base && !lowOut && NEARBY[i] && !F.nearby;  // nearby towns, behind "Include nearby areas"
+    return {base: base && !lowOut && !nearOut, lowOut: lowOut, nearOut: nearOut,
       cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
       free: !F.free || FREE[i],
       tod: todOk(i),
@@ -7318,7 +7322,7 @@ window.__applyFilters = (function () {
   window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0, apply: () => applyFilters()};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
-    let n = 0, nLow = 0;
+    let n = 0, nLow = 0, nNearby = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
       const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near;
@@ -7327,7 +7331,18 @@ window.__applyFilters = (function () {
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
       if (d.lowOut && rest) nLow++;
+      if (d.nearOut && rest) nNearby++;
     });
+    const nearBar = document.getElementById("nearBar");
+    if (nearBar) {
+      const es = document.documentElement.lang === "es";
+      nearBar.hidden = !(F.nearby || nNearby);
+      document.getElementById("nearN").textContent = F.nearby ? "" : nNearby;
+      document.getElementById("nearWord").textContent = F.nearby
+        ? (es ? "Incluyendo zonas cercanas" : "Including nearby areas") + " (New Jersey, Westchester and Long Island)"
+        : (es ? "de zonas cercanas ocultos" : "nearby events hidden") + " (New Jersey, Westchester and Long Island)";
+      document.getElementById("nearShow").textContent = F.nearby ? (es ? "solo la ciudad" : "city only") : (es ? "mostrar" : "show");
+    }
     const lowBar = document.getElementById("lowBar");
     if (lowBar) {
       const es = document.documentElement.lang === "es";
@@ -7355,6 +7370,12 @@ window.__applyFilters = (function () {
     if (window.__topTonight) window.__topTonight();
     if (window.__fside) window.__fside();
   }
+  const _ns = document.getElementById("nearShow");
+  if (_ns) _ns.addEventListener("click", () => {
+    F.nearby = !F.nearby;
+    try { localStorage.setItem("tonight-nearby", F.nearby ? "1" : "0"); } catch (e) {}
+    applyFilters();
+  });
   const _ls = document.getElementById("lowShow");
   if (_ls) _ls.addEventListener("click", () => { F.low = !F.low; applyFilters(); });
   document.getElementById("fq").addEventListener("input", e => {
@@ -10047,6 +10068,7 @@ function ask(q, display){
              dinner: m.dinner && m.dinner.time ? m.dinner.time : null} : null; }
         return null; })(),
       mode: toniMode || undefined, here: toniMode === "near" && herePos ? herePos : undefined,
+      nearby: (function(){ try { return localStorage.getItem("tonight-nearby") === "1"; } catch (e) { return false; } })(),
       // what the conversation is about so far (days, the list being narrowed): the latest answer's, until New chat
       context: (function(){ for (var k = history.length - 1; k >= 0; k--) { var m = history[k];
         if (m.role === "assistant" && !m.error) return m.context || null; } return null; })(),

@@ -3765,6 +3765,7 @@ addEventListener("load", () => setTimeout(() => revealCard(cardFor(location.hash
 const CATS = ["Sports", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Music", "Arts & Play", "Theater", "Comedy", "Sports", "Theater", "Music", "Music", "Music", "Music", "Music", "Comedy", "Music", "Music", "Arts & Play", "Tours", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Trivia & Games", "Tech", "Meetups & Mixers", "Film", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Talks", "Meetups & Mixers", "Meetups & Mixers", "Tech", "Meetups & Mixers", "Meetups & Mixers", "Music", "Film", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Meetups & Mixers", "Film", "Film", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Film", "Music", "Music", "Music", "Music", "Music", "Film", "Talks", "Talks", "Film", "Film", "Film", "Music", "Talks", "Comedy", "Meetups & Mixers", "Tech", "Tech", "Tech", "Classes & Workshops", "Classes & Workshops", "Classes & Workshops", "Fitness & Outdoors", "Tours", "Talks", "Talks", "Talks", "Talks", "Classes & Workshops", "Talks", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Comedy", "Film", "Film", "Film", "Film"];
 const FREE = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, true, true, true, true, true, true, true, true, true, true, false, true, false, true, true, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 const HOODS = ["Malibu", "Koreatown", "Downtown", "Downtown", "Echo Park", "Echo Park", "Hollywood", "West Hollywood", "West Hollywood", "Anaheim", "Chinatown", "Hollywood", "Beverly Grove", "Inglewood", "Long Beach", "Downtown", "Downtown", "Griffith Park", "Fairfax", "Hollywood Hills West", "Brea", "Pomona", "Hollywood", "Beverly Grove", "Hollywood", "Pasadena", "Atwater Village", "Burbank", "Downtown", "Long Beach", "Torrance", "Hermosa Beach", "Playa Vista", "Downtown", "West Hollywood", "El Segundo", "Venice", "Brea", "Cerritos", "Long Beach", "Manchester Square", "Venice", "Downtown", "Santa Monica", "Pomona", "South Pasadena", "Hollywood Hills", "Silver Lake", "Pasadena", "Downtown", "Chinatown", "La Habra", "Del Rey", "West Hollywood", "Los Feliz", "Los Feliz", "Echo Park", "Echo Park", "Echo Park", "Echo Park", "West Hollywood", "West Hollywood", "West Hollywood", "West Hollywood", "Fairfax", "Hollywood", "Hollywood", "Elysian Valley", "Downtown", "Mid-City", "Mid-Wilshire", "Westwood", "Westwood", "Eagle Rock", "Eagle Rock", "Fairfax", "Highland Park", "Downtown", "Hollywood Hills West", "Arlington Heights", "", "Irvine", "Irvine", "Culver City", "Long Beach", "Hollywood", "Silver Lake", "Downtown", "San Marino", "Silver Lake", "Santa Monica", "Westwood", "Echo Park", "Beverly Grove", "Van Nuys", "Culver City", "Downtown", "Santa Monica", "Silver Lake", "East Hollywood", "Santa Monica", "Los Feliz", "Hollywood", "East Hollywood", "Exposition Park"];
+const NEARBY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];  // 1: an event in a nearby town (ingest/geo_scope.py), shown only with "Include nearby areas"
 function hoodShort(h){ var p = String(h || "").split("-"); return p.length >= 3 ? p[0].trim() : (h || ""); }  // display only (hood_short)
 const SRCS = ["ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "ticketweb", "ticketmaster", "venue", "ticketmaster", "ticketweb", "ticketmaster", "universe", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketmaster", "ticketweb", "ticketmaster", "venue", "venue", "ticketmaster", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "geekswhodrink", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "luma", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "dice", "dice", "dice", "dice", "dice", "venue", "venue", "venue", "venue", "venue", "venue", "venue", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite", "eventbrite"];  // where each event is listed: "eventbrite", "luma" ... "venue" (its link's site, source_of)
 const SRC_LABEL = {"eventbrite": "Eventbrite", "luma": "Luma", "ticketmaster": "Ticketmaster", "ticketweb": "TicketWeb", "universe": "Universe", "dice": "DICE", "nycparks": "NYC Parks", "geekswhodrink": "Geeks Who Drink", "venue": "Sitios de los locales"};
@@ -3975,7 +3976,8 @@ window.__applyFilters = (function () {
   // you: "Para ti" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "Mis barrios" (Preferences)
   // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false};
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false,
+    nearby: (function(){ try { return localStorage.getItem("tonight-nearby") === "1"; } catch (e) { return false; } })()};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
   function todOf(i) {
@@ -4012,7 +4014,8 @@ window.__applyFilters = (function () {
       if (!hay[i].includes(F.q)) base = false;
     }
     const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
-    return {base: base && !lowOut, lowOut: lowOut,
+    const nearOut = base && !lowOut && NEARBY[i] && !F.nearby;  // nearby towns, behind "Include nearby areas"
+    return {base: base && !lowOut && !nearOut, lowOut: lowOut, nearOut: nearOut,
       cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
       free: !F.free || FREE[i],
       tod: todOk(i),
@@ -4025,7 +4028,7 @@ window.__applyFilters = (function () {
   window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0, apply: () => applyFilters()};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
-    let n = 0, nLow = 0;
+    let n = 0, nLow = 0, nNearby = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
       const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near;
@@ -4034,7 +4037,18 @@ window.__applyFilters = (function () {
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
       if (ok) n++;
       if (d.lowOut && rest) nLow++;
+      if (d.nearOut && rest) nNearby++;
     });
+    const nearBar = document.getElementById("nearBar");
+    if (nearBar) {
+      const es = document.documentElement.lang === "es";
+      nearBar.hidden = !(F.nearby || nNearby);
+      document.getElementById("nearN").textContent = F.nearby ? "" : nNearby;
+      document.getElementById("nearWord").textContent = F.nearby
+        ? (es ? "Incluyendo zonas cercanas" : "Including nearby areas") + " (outside LA)"
+        : (es ? "de zonas cercanas ocultos" : "de zonas cercanas ocultos") + " (outside LA)";
+      document.getElementById("nearShow").textContent = F.nearby ? (es ? "solo la ciudad" : "city only") : (es ? "mostrar" : "show");
+    }
     const lowBar = document.getElementById("lowBar");
     if (lowBar) {
       const es = document.documentElement.lang === "es";
@@ -4062,6 +4076,12 @@ window.__applyFilters = (function () {
     if (window.__topTonight) window.__topTonight();
     if (window.__fside) window.__fside();
   }
+  const _ns = document.getElementById("nearShow");
+  if (_ns) _ns.addEventListener("click", () => {
+    F.nearby = !F.nearby;
+    try { localStorage.setItem("tonight-nearby", F.nearby ? "1" : "0"); } catch (e) {}
+    applyFilters();
+  });
   const _ls = document.getElementById("lowShow");
   if (_ls) _ls.addEventListener("click", () => { F.low = !F.low; applyFilters(); });
   document.getElementById("fq").addEventListener("input", e => {
@@ -5500,6 +5520,7 @@ function ask(q, display){
              dinner: m.dinner && m.dinner.time ? m.dinner.time : null} : null; }
         return null; })(),
       mode: toniMode || undefined, here: toniMode === "near" && herePos ? herePos : undefined,
+      nearby: (function(){ try { return localStorage.getItem("tonight-nearby") === "1"; } catch (e) { return false; } })(),
       // what the conversation is about so far (days, the list being narrowed): the latest answer's, until New chat
       context: (function(){ for (var k = history.length - 1; k >= 0; k--) { var m = history[k];
         if (m.role === "assistant" && !m.error) return m.context || null; } return null; })(),
