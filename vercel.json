@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/tonight", "destination": "/" },
+    { "source": "/tonight/:path*", "destination": "/:path*" }
+  ]
+}

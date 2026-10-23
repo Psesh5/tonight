@@ -2432,7 +2432,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="btn btn-dark" id="shareBtn">Share →</button>
 <details class="tmore"><summary class="btn btn-dark" aria-label="More actions">⋯</summary>
 <div class="tmenu">
-<a class="tm-item" href="https://psesh5.github.io/tonight/nyc/2026-10-16.ics" download>📅 Add all to calendar</a>
+<a class="tm-item" href="https://lineup.city/nyc/2026-10-16.ics" download>📅 Add all to calendar</a>
 <button class="tm-item" id="storyBtn" type="button">♥ Swipe tonight</button>
 <button class="tm-item" id="tonightBtn" type="button" aria-pressed="false">⚡ Tonight</button>
 </div>
@@ -15316,7 +15316,7 @@ function alertless(){ var m = document.getElementById("shareMsg"); if (m) m.text
 btn.addEventListener("click", open);
 if (location.hash === "#swipe") addEventListener("load", open);
 })();
-</script><script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}else if(location.hash==="#nexthour"){try{document.getElementById("nextHourBtn").click();}catch(e){}}</script><script>window.__tonight_api="https://tonight-api-2169.onrender.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
+</script><script>if(location.hash==="#tonight"){try{setTonight(true);}catch(e){}}else if(location.hash==="#nexthour"){try{document.getElementById("nextHourBtn").click();}catch(e){}}</script><script>window.__tonight_api="https://tonight-api-2169.onrender.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://lineup.city/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script><script>(function(){var a=document.getElementById("langSwitch");if(!a)return;
 var base=new URL(a.href).pathname,p=location.pathname,es=/\/es\/$/.test(base);
 var rest=p.indexOf(base)===0?p.slice(base.length):"";
 a.href=(es?base.slice(0,-3):base+"es/")+rest+location.search+location.hash;
