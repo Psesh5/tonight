@@ -130,7 +130,7 @@ a{text-decoration-skip-ink:none;}
 
 :root[data-layout="lineup"]{--lu-sun:#ffc21a;--lu-sky:#2f6bff;--lu-mint:#19b38a;--lu-hot:var(--accent);
 --lu-soft:color-mix(in srgb,var(--ink) 64%,var(--paper));--lu-line:color-mix(in srgb,var(--ink) 14%,transparent);
---lu-r:18px;--lu-sh:0 2px 0 var(--ink);
+--lu-ul:color-mix(in srgb,var(--ink) 32%,transparent);--lu-r:18px;--lu-sh:0 2px 0 var(--ink);
 --lu-d:'Anton',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
 --lu-t:'Space Grotesk',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
 :root[data-layout="lineup"]:not([data-palette]){--paper:#fff7ec;--ink:#151515;--accent:#ff4f2e;--gold:#ff4f2e;--card:#fff;--field:#fff;
@@ -239,6 +239,11 @@ border-radius:999px;text-decoration:none;}
 :root[data-layout="lineup"] #luPoster .lu-cta:hover{transform:translateY(-1px);}
 :root[data-layout="lineup"].listmode #luPoster{display:none;}
 
+:root[data-layout="lineup"] a{text-underline-offset:3px;}
+:root[data-layout="lineup"] #conciergeNote a:hover,:root[data-layout="lineup"] .tn-body .a a:hover,:root[data-layout="lineup"] .event-body h3 a:hover,:root[data-layout="lineup"] .mlt a:hover,:root[data-layout="lineup"] .vn a:hover,
+:root[data-layout="lineup"] .legal a:hover,:root[data-layout="lineup"] .lk-see a:hover{text-decoration-color:var(--ink);}
+:root[data-layout="lineup"] .tn-body .a a{text-decoration-color:var(--lu-ul);}
+
 :root[data-layout="lineup"][data-palette="neon"] #luPoster{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 2px var(--muted);}
 :root[data-layout="lineup"][data-palette="neon"] #luPoster .lu-hl a,:root[data-layout="lineup"][data-palette="neon"] #luPoster .lu-ln{color:var(--ink);}
 
@@ -257,7 +262,7 @@ border-radius:999px;text-decoration:none;}
 :root[data-layout="lineup"] #conciergeNote .cn-hi{font-family:var(--lu-d)!important;font-weight:400;font-size:26px;}
 :root[data-layout="lineup"] #conciergeNote .cn-t{font-weight:700;}
 :root[data-layout="lineup"] #conciergeNote .cn-role{color:var(--lu-soft);font-weight:700;letter-spacing:.1em;}
-:root[data-layout="lineup"] #conciergeNote a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #conciergeNote a{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] #conciergeNote .cn-ask{background:var(--lu-sun);color:#151515;border:2px solid var(--ink);box-shadow:var(--lu-sh);}
 :root[data-layout="lineup"] #conciergeNote .cn-plan a.cn-book{border-radius:999px;padding:2px 9px;}
 :root[data-layout="lineup"] .dn-btn{border:2px solid var(--ink);background:var(--card);color:var(--ink);}
@@ -273,12 +278,12 @@ border-radius:999px;text-decoration:none;}
 :root[data-layout="lineup"] .fbtn[aria-pressed="true"],:root[data-layout="lineup"] #filterBar .fbtn[aria-pressed="true"],:root[data-layout="lineup"] #filterBar select.on,:root[data-layout="lineup"] .filters .fmulti.on summary,
 :root[data-layout="lineup"] #filterBar .fmore.on,:root[data-layout="lineup"] #fsBtn.on{background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] #filterBar #hiddenBar{border-radius:999px;}
-:root[data-layout="lineup"] #filterBar .fclear{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #filterBar .fclear{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] #fside{border:2px solid var(--ink)!important;border-radius:var(--lu-r);box-shadow:var(--lu-sh);}
 :root[data-layout="lineup"] .fs-title{font-family:var(--lu-d)!important;font-weight:400;font-size:20px;letter-spacing:.01em;text-transform:none;}
 :root[data-layout="lineup"] .fs-h{color:var(--lu-hot);opacity:1;font-weight:700;letter-spacing:.1em;}
 :root[data-layout="lineup"] .fs-row input,:root[data-layout="lineup"] .filters .fmenu input,:root[data-layout="lineup"] .sv-check input{accent-color:var(--lu-hot);}
-:root[data-layout="lineup"] .fs-row:not(.zero):hover .fs-l{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-row:not(.zero):hover .fs-l{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] .fs-grp summary .fs-dot{background:var(--lu-hot);}
 :root[data-layout="lineup"] .fs-lk{color:var(--lu-hot);}
 :root[data-layout="lineup"] .fs-mode{border-radius:999px;overflow:hidden;}
@@ -314,7 +319,7 @@ font-size:12px;line-height:1.2;padding:5px 10px;border-radius:999px;}
 :root[data-layout="lineup"] .tt-k{display:block;font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--lu-hot);}
 :root[data-layout="lineup"] .tt-b{padding:12px 14px 14px;gap:4px;}
 :root[data-layout="lineup"] .tt-h,:root[data-layout="lineup"] .tt-card.big .tt-h{font-size:18px;line-height:1.2;font-weight:700;margin:2px 0 4px;}
-:root[data-layout="lineup"] .tt-name:hover{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-name:hover{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] .tt-why{color:var(--lu-soft);opacity:1;font-size:14px;}
 :root[data-layout="lineup"] .tt-f{margin-top:10px;gap:8px;}
 :root[data-layout="lineup"] .tt-star{width:auto;height:auto;display:inline-flex;align-items:center;gap:5px;padding:4px 2px;font-size:13px;font-weight:700;line-height:1.2;}
@@ -338,7 +343,7 @@ text-transform:none;}
 :root[data-layout="lineup"] .event{border-bottom:2px solid var(--lu-line);}
 :root[data-layout="lineup"] .event-body{min-width:0;overflow-wrap:anywhere;}
 :root[data-layout="lineup"] .event-body h3{font-weight:700;font-size:18.5px;line-height:1.25;}
-:root[data-layout="lineup"] .event-body h3 a{text-decoration-color:var(--lu-hot);text-decoration-thickness:2px;}
+:root[data-layout="lineup"] .event-body h3 a{text-decoration-color:var(--lu-ul);text-decoration-thickness:2px;}
 :root[data-layout="lineup"] .meta{font-weight:600;opacity:1;color:var(--lu-soft);}
 :root[data-layout="lineup"] .event-body p{opacity:1;color:color-mix(in srgb,var(--ink) 82%,var(--paper));}
 :root[data-layout="lineup"] .ev-th{border-radius:12px;border:2px solid var(--ink);background:linear-gradient(135deg,var(--lu-sun),var(--lu-hot));color:#151515;}
@@ -348,7 +353,7 @@ text-transform:none;}
 :root[data-layout="lineup"] .meta .ended{border-radius:999px;padding:1px 8px;}
 :root[data-layout="lineup"] .tonight-head h2{font-size:30px;text-transform:none;}
 :root[data-layout="lineup"] .tba-div{border-top:2px solid var(--ink);}
-:root[data-layout="lineup"] .mlt a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .mlt a{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] #onlyBar{border:2px solid var(--ink);border-radius:14px;background:var(--lu-sun);color:#151515;}
 :root[data-layout="lineup"] #tnToast{border-radius:999px;box-shadow:var(--lu-sh);}
 :root[data-layout="lineup"] #hideMenu button{border-radius:10px;}
@@ -426,7 +431,7 @@ background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .sdone h2 em,:root[data-layout="lineup"] .lhero h1 em{background:var(--lu-sun);color:#151515;border-radius:10px;}
 :root[data-layout="lineup"] .lk-opt[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .lhero h1{text-transform:none;}
-:root[data-layout="lineup"] .legal a,:root[data-layout="lineup"] .srow .sub a,:root[data-layout="lineup"] .sdone a,:root[data-layout="lineup"] .kids-note button,:root[data-layout="lineup"] .lk-see a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .legal a,:root[data-layout="lineup"] .srow .sub a,:root[data-layout="lineup"] .sdone a,:root[data-layout="lineup"] .kids-note button,:root[data-layout="lineup"] .lk-see a{text-decoration-color:var(--lu-ul);}
 
 :root[data-layout="lineup"] .vn-way,:root[data-layout="lineup"] .vn-facts li{border:2px solid var(--ink);border-radius:var(--lu-r);box-shadow:var(--lu-sh);background:var(--card);}
 :root[data-layout="lineup"] .vn-way h2,:root[data-layout="lineup"] .vn-fine h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;font-size:28px;}
@@ -437,7 +442,7 @@ background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .vn-go:hover,:root[data-layout="lineup"] .vn-btn:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--ink);}
 :root[data-layout="lineup"] .vn-f input,:root[data-layout="lineup"] .vn-f select,:root[data-layout="lineup"] .vn-f textarea{border:2px solid var(--ink)!important;border-radius:12px!important;background:var(--field);}
 :root[data-layout="lineup"] .vn-f input:focus,:root[data-layout="lineup"] .vn-f select:focus,:root[data-layout="lineup"] .vn-f textarea:focus{outline:3px solid var(--lu-sun);outline-offset:1px;}
-:root[data-layout="lineup"] .vn a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .vn a{text-decoration-color:var(--lu-ul);}
 
 
 @media (min-width:1100px){
@@ -502,6 +507,66 @@ animation:quizup .25s ease-out;}
 font-size:14px;cursor:pointer;font-family:inherit;color:#14201A;}
 .qchip[aria-pressed="true"]{background:#E39A2D;border-color:#E39A2D;font-weight:bold;}
 .qactions{display:flex;gap:16px;align-items:center;margin-top:4px;}
+html.qz-open,html.qz-open body{overflow:hidden;overscroll-behavior:none;}
+.qz2{--qz-ink:#151515;--qz-paper:#fff7ec;--qz-card:#fff;--g0:#ff4f2e;--g1:#2f6bff;--g2:#ffc21a;--g3:#19b38a;--g4:#8a6cff;}
+.qz2 .quiz-card{max-width:620px;padding:0;display:flex;flex-direction:column;overflow:hidden;
+max-height:min(94vh,820px);max-height:min(94dvh,820px);background:var(--qz-paper);color:var(--qz-ink);
+border:2px solid var(--qz-ink);box-shadow:0 18px 60px rgba(0,0,0,.35);}
+@media(max-width:639px){.qz2 .quiz-card{border-radius:24px 24px 0 0;border-bottom:0;max-height:92vh;max-height:92dvh;}}
+.qz-head{position:relative;overflow:hidden;flex:none;background:var(--qz-ink);color:var(--qz-paper);padding:24px 24px 20px;}
+.qz-head > :not(.qz-blob){position:relative;z-index:1;}
+.qz-blob{position:absolute;border-radius:50%;pointer-events:none;}
+.qz-blob.b1{width:190px;height:190px;background:var(--g0);left:-80px;top:-110px;opacity:.95;}
+.qz-blob.b2{width:120px;height:120px;background:var(--g1);right:-46px;bottom:-70px;opacity:.9;}
+.qz-blob.b3{width:56px;height:56px;background:var(--g2);right:64px;top:-22px;}
+.qz2 .quiz-eyebrow{display:inline-block;color:var(--g2);font-weight:800;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;background:none;padding:0;}
+.qz2 .quiz-card h2{font-family:'Anton',Impact,'Arial Narrow Bold',sans-serif!important;font-weight:400;
+font-size:clamp(34px,7vw,46px);line-height:.98;text-transform:uppercase;letter-spacing:.005em;margin:8px 0 8px;color:var(--qz-paper);}
+.qz2 .quiz-sub{color:color-mix(in srgb,var(--qz-paper) 78%,transparent);font-size:14px;margin:0;max-width:44ch;}
+.qz-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+padding:6px 24px 18px;scrollbar-width:thin;background:var(--qz-paper);}
+.qz2 .qgroup-l{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;letter-spacing:.16em;
+text-transform:uppercase;color:var(--qz-ink);opacity:1;margin:18px 0 9px;}
+.qz2 .qgroup-l::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--gc);}
+.qz2 .g0{--gc:var(--g0);--gt:#fff;} .qz2 .g1{--gc:var(--g1);--gt:#fff;} .qz2 .g2{--gc:var(--g2);--gt:#151515;}
+.qz2 .g3{--gc:var(--g3);--gt:#fff;} .qz2 .g4{--gc:var(--g4);--gt:#fff;}
+.qz2 .qtiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;}
+@media(max-width:560px){.qz2 .qtiles{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.qz2 .qtile{position:relative;padding:10px 30px 10px 13px;text-align:left;font-size:14px;line-height:1.2;font-family:inherit;
+cursor:pointer;transition:transform .08s,box-shadow .08s,background .12s;}
+.qz2 .qtile[aria-pressed="true"]::after{content:"";position:absolute;right:12px;top:50%;width:6px;height:11px;
+border:solid currentColor;border-width:0 2.5px 2.5px 0;transform:translateY(-62%) rotate(45deg);}
+.qz2 .qtile:focus-visible,.qz2 .qswitch:focus-visible{outline:3px solid var(--g1);outline-offset:2px;}
+.qz2 .qtile{min-height:50px;display:flex;align-items:center;border-radius:16px;background:var(--qz-card);color:var(--qz-ink);
+border:2px solid var(--qz-ink);box-shadow:0 2px 0 var(--qz-ink);font-weight:600;}
+.qz2 .qtile:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--qz-ink);}
+.qz2 .qtile:active{transform:translateY(1px);box-shadow:0 1px 0 var(--qz-ink);}
+.qz2 .qtile[aria-pressed="true"]{background:var(--gc);color:var(--gt);border-color:var(--qz-ink);}
+.qz2 .qtile[aria-pressed="true"]::after{border-color:currentColor;}
+.qz2 .qswitch{border:2px solid var(--qz-ink);background:var(--qz-card);color:var(--qz-ink);border-radius:16px;}
+.qz2 .qactions{flex:none;position:static;margin:0;background:var(--qz-paper);padding:14px 24px max(16px,env(safe-area-inset-bottom,0px));
+border-top:2px solid var(--qz-ink);gap:18px;}
+.qz2 .qactions .btn{border-radius:999px;}
+.qz2 .qlink{color:var(--qz-ink);opacity:.75;}
+.qswitches{display:flex;flex-direction:column;gap:8px;margin:18px 0 16px;}
+.qswitch{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;text-align:left;
+padding:12px 14px;border-radius:14px;border:2px solid color-mix(in srgb,var(--ink,#14201A) 16%,transparent);
+background:transparent;color:var(--ink,#14201A);font:inherit;cursor:pointer;}
+.qs-txt{display:flex;flex-direction:column;gap:2px;}
+.qs-t{font-weight:700;font-size:14.5px;}
+.qs-d{font-size:12.5px;opacity:.65;}
+.qs-k{flex:none;width:42px;height:24px;border-radius:999px;background:color-mix(in srgb,var(--ink,#14201A) 22%,transparent);
+position:relative;transition:background .15s;}
+.qs-k::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;
+transition:transform .15s;box-shadow:0 1px 2px rgba(0,0,0,.25);}
+.qswitch[aria-pressed="true"] .qs-k{background:var(--mint,#19b38a);}
+.qswitch[aria-pressed="true"] .qs-k::after{transform:translateX(18px);}
+.qtoast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);z-index:210;
+max-width:min(92vw,520px);padding:12px 18px;border-radius:999px;background:var(--ink,#14201A);color:var(--paper,#F7F2E9);
+font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+border:2px solid var(--paper,#F7F2E9);box-shadow:0 6px 24px rgba(0,0,0,.35);}
+.qtoast.on{opacity:1;transform:translate(-50%,0);}
+@media(prefers-reduced-motion:reduce){.qtile,.qs-k,.qs-k::after,.qtoast{transition:none;}}
 .qlink{background:none;border:none;color:#6b6b6b;text-decoration:underline;cursor:pointer;
 font-size:13.5px;font-family:inherit;padding:0;}
 </style><style>
@@ -2000,6 +2065,21 @@ border:2px solid var(--ink);}
 background:var(--ink);color:var(--paper);font-family:'Fraunces',Georgia,serif;font-weight:900;
 font-size:19px;line-height:1;padding:10px 4px;text-align:center;}
 .tn-time small{font:800 10px 'Inter',sans-serif;letter-spacing:1px;}
+#conciergeNote.cn-busy{opacity:.55;transition:opacity .15s;pointer-events:none;}
+.tn-modes{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 10px;}
+.tn-modes button{font:700 12.5px inherit;padding:6px 12px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;}
+.tn-modes button.on{background:var(--ink);color:var(--paper);}
+.tn-dist{font-size:12.5px;font-weight:600;margin:2px 0 4px;opacity:.8;}
+.tn-all-row .v + .d,.tn-all-row .d{grid-column:2;font-size:12px;opacity:.65;}
+.tn-all{margin:10px 0 4px;border:2px solid var(--ink);border-radius:12px;background:var(--card,#fff);}
+.tn-all summary{cursor:pointer;padding:10px 12px;font-weight:800;list-style:none;}
+.tn-all summary::-webkit-details-marker{display:none;}
+.tn-all[open] summary{border-bottom:1px solid color-mix(in srgb,var(--ink) 15%,transparent);}
+.tn-all-day{padding:8px 12px 2px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.7;}
+.tn-all-row{display:grid;grid-template-columns:62px 1fr;gap:0 8px;padding:6px 12px;color:inherit;text-decoration:none;font-size:14px;line-height:1.3;}
+.tn-all-row:hover{background:color-mix(in srgb,var(--ink) 6%,transparent);}
+.tn-all-row .t{font-weight:700;white-space:nowrap;}
+.tn-all-row .v{grid-column:2;font-size:12px;opacity:.65;}
 .tn-time.tba{font:800 11px 'Inter',sans-serif;letter-spacing:1px;}
 .tn-body{padding:10px 12px;min-width:0;}
 .tn-body .n{font-weight:800;font-size:14.5px;line-height:1.3;}
@@ -2893,40 +2973,72 @@ function chipBtn(c){
   });
   return b;
 }
+// first-visit taste sheet: kinds in four plain groups (any kind not listed lands in "More"), two plain switches,
+// a live "Show my picks (3)" and a short "Got it" after. (2026-10-23 redesign: the old one was a wall of 14 chips.)
+var QGROUPS = [["Shows", ["Music", "Comedy", "Theater", "Film"]],
+  ["Ideas", ["Talks", "Classes & Workshops", "Tech", "Tours"]],
+  ["Social", ["Meetups & Mixers", "Food & Drink", "Trivia & Games", "Arts & Play"]],
+  ["Out and about", ["Fitness & Outdoors", "Sports"]]];
+var QNAME = {"Classes & Workshops": "Classes", "Meetups & Mixers": "Meetups", "Trivia & Games": "Trivia & games",
+  "Fitness & Outdoors": "Outdoors & fitness", "Food & Drink": "Food & drink", "Arts & Play": "Art & play"};
+function qSwitch(id, label, sub){
+  var b = document.createElement("button");
+  b.className = "qswitch"; b.type = "button"; b.id = id; b.setAttribute("aria-pressed", "false");
+  var t = document.createElement("span"); t.className = "qs-t"; t.textContent = label;
+  var d = document.createElement("span"); d.className = "qs-d"; d.textContent = sub;
+  var k = document.createElement("span"); k.className = "qs-k"; k.setAttribute("aria-hidden", "true");
+  var txt = document.createElement("span"); txt.className = "qs-txt"; txt.appendChild(t); txt.appendChild(d);
+  b.appendChild(txt); b.appendChild(k);
+  b.addEventListener("click", function(){ b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true"); });
+  return b;
+}
 function buildSheet(){
   var veil = document.createElement("div");
-  veil.className = "quiz-veil"; veil.id = "quizVeil"; veil.hidden = true;
+  veil.className = "quiz-veil qz2"; veil.id = "quizVeil"; veil.hidden = true;
   var card = document.createElement("div");
-  card.className = "quiz-card"; card.setAttribute("role", "dialog");
+  card.className = "quiz-card"; card.setAttribute("role", "dialog"); card.setAttribute("aria-modal", "true");
   card.setAttribute("aria-label", "What are you into?");
-  var eb = document.createElement("div"); eb.className = "quiz-eyebrow";
-  eb.textContent = "Tonight learns your taste";
+  var head = document.createElement("div"); head.className = "qz-head";
+  ["b1", "b2", "b3"].forEach(function(k){ var o = document.createElement("i"); o.className = "qz-blob " + k; head.appendChild(o); });
+  var eb = document.createElement("div"); eb.className = "quiz-eyebrow"; eb.textContent = "Make it yours";
   var h = document.createElement("h2"); h.textContent = "What are you into?";
   var sub = document.createElement("p"); sub.className = "quiz-sub";
-  sub.textContent = "Tap what you like. Takes 30 seconds, and your picks get personal.";
-  var chips = document.createElement("div"); chips.className = "qchips";
-  CATS_ALL.forEach(function(c){ chips.appendChild(chipBtn(c)); });
-  var prefs = document.createElement("div"); prefs.className = "qchips";
-  var freeB = document.createElement("button");
-  freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
-  freeB.setAttribute("aria-pressed", "false");
-  freeB.textContent = "Free-first";
-  freeB.addEventListener("click", function(){
-    var on = freeB.getAttribute("aria-pressed") === "true";
-    freeB.setAttribute("aria-pressed", on ? "false" : "true");
-  });
-  var order = ["low", "med", "high"], surp = "low";
-  var surpB = document.createElement("button");
-  surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
-  var paintSurp = function(){
-    surpB.textContent = SURP[surp];
-    surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
+  sub.textContent = "Pick a few. Your picks move to the top, and you can change this any time in Preferences.";
+  head.appendChild(eb); head.appendChild(h); head.appendChild(sub);
+  var body = document.createElement("div"); body.className = "qz-body";
+  card.appendChild(head); card.appendChild(body);
+  var listed = {}, done = null;
+  var paintCount = function(){
+    var n = Object.keys(sel).length;
+    if (done && !cityRow) done.textContent = n ? "Show my picks (" + n + ") →" : "Show everything →";
   };
-  paintSurp();
-  surpB.addEventListener("click", function(){
-    surp = order[(order.indexOf(surp) + 1) % 3]; paintSurp();
+  var groups = QGROUPS.map(function(g){ return [g[0], g[1].filter(function(c){ return CATS_ALL.indexOf(c) >= 0; })]; });
+  var extra = CATS_ALL.filter(function(c){ return !QGROUPS.some(function(g){ return g[1].indexOf(c) >= 0; }); });
+  if (extra.length) groups.push(["More", extra]);
+  groups.forEach(function(g, gi){
+    if (!g[1].length) return;
+    var gl = document.createElement("div"); gl.className = "qgroup-l g" + Math.min(gi, 4); gl.textContent = g[0];
+    var row = document.createElement("div"); row.className = "qtiles g" + Math.min(gi, 4);
+    g[1].forEach(function(c){
+      listed[c] = 1;
+      var b = document.createElement("button");
+      b.className = "qtile"; b.type = "button"; b.dataset.cat = c; b.setAttribute("aria-pressed", "false");
+      b.textContent = QNAME[c] || c;
+      b.addEventListener("click", function(){
+        var on = b.getAttribute("aria-pressed") === "true";
+        b.setAttribute("aria-pressed", on ? "false" : "true");
+        if (on) delete sel[c]; else sel[c] = 1;
+        paintCount();
+      });
+      row.appendChild(b);
+    });
+    body.appendChild(gl); body.appendChild(row);
   });
+  var prefs = document.createElement("div"); prefs.className = "qswitches";
+  var freeB = qSwitch("qFree", "Show free things first", "Free events lead, paid ones follow");
+  var surpB = qSwitch("qSurp", "Mix in a few surprises", "Now and then, something outside your picks");
   prefs.appendChild(freeB); prefs.appendChild(surpB);
+  body.appendChild(prefs);
   // Home page only: pick a city, and Done goes straight to its events.
   var cityRow = null, cityPick = null;
   var cards = document.querySelectorAll("a.citycard");
@@ -2951,49 +3063,62 @@ function buildSheet(){
     cityRow.insertBefore(clab, cityRow.firstChild);
   }
   var actions = document.createElement("div"); actions.className = "qactions";
-  var done = document.createElement("button");
+  done = document.createElement("button");
   done.className = "btn btn-gold"; done.type = "button"; done.id = "qDone";
-  done.textContent = "Done \u2192";
   var skip = document.createElement("button");
   skip.className = "qlink"; skip.type = "button"; skip.id = "qSkip";
-  skip.textContent = "skip for now";
+  skip.textContent = "Not now";
   var markSeen = function(){ try { localStorage.setItem(OKEY, "1"); } catch (e) {} };
+  var close = function(){ veil.hidden = true; document.documentElement.classList.remove("qz-open"); };
   done.addEventListener("click", function(){
     taste.likes = Object.keys(sel);
     taste.mutes = [];
     taste.free_only = freeB.getAttribute("aria-pressed") === "true";
-    taste.surprise = surp;
+    taste.surprise = surpB.getAttribute("aria-pressed") === "true" ? (taste.surprise === "high" ? "high" : "med") : "low";
     save(); markSeen();
     if (cityRow && cityPick) {
       try { localStorage.setItem("tonight-city", cityPick); } catch (e) {}
       var go = document.querySelector('a.citycard[href^="' + cityPick + '/"]');
       if (go) { location.href = go.getAttribute("href"); return; }
     }
-    veil.hidden = true;
+    close();
     applyRanking();
     if (window.TonightPage && TonightPage.refresh) TonightPage.refresh(true);
+    var names = taste.likes.map(function(c){ return (QNAME[c] || c).toLowerCase(); });
+    qToast(names.length ? "Got it: " + joinList(names) + ". Your picks are at the top." : "Got it. Showing everything.");
   });
-  skip.addEventListener("click", function(){ markSeen(); veil.hidden = true; });
+  skip.addEventListener("click", function(){ markSeen(); close(); });
+  veil.addEventListener("click", function(e){ if (e.target === veil) { markSeen(); close(); } });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !veil.hidden) { markSeen(); close(); } });
   actions.appendChild(done); actions.appendChild(skip);
-  card.appendChild(eb); card.appendChild(h); card.appendChild(sub);
-  card.appendChild(chips); card.appendChild(prefs);
-  if (cityRow) { card.appendChild(cityRow); done.textContent = "Show me tonight →"; }
+  if (cityRow) { body.appendChild(cityRow); done.textContent = "Show me tonight →"; }
   card.appendChild(actions);
   veil.appendChild(card);
   document.body.appendChild(veil);
-  return {veil: veil, freeB: freeB,
-    paint: function(s){ surp = s; paintSurp(); }};
+  paintCount();
+  return {veil: veil, freeB: freeB, paintCount: paintCount,
+    paint: function(sv){ surpB.setAttribute("aria-pressed", sv && sv !== "low" ? "true" : "false"); }};
+}
+function qToast(msg){
+  var t = document.getElementById("qToast");
+  if (!t) { t = document.createElement("div"); t.id = "qToast"; t.className = "qtoast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+  t.textContent = msg; t.hidden = false; t.classList.add("on");
+  clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove("on"); }, 4200);
 }
 function openQuiz(){
   if (!sheet) sheet = buildSheet();
   sel = {};
   taste.likes.forEach(function(c){ sel[c] = 1; });
-  sheet.veil.querySelectorAll(".qchip[data-cat]").forEach(function(b){
+  sheet.veil.querySelectorAll(".qtile[data-cat]").forEach(function(b){
     b.setAttribute("aria-pressed", sel[b.dataset.cat] ? "true" : "false");
   });
   sheet.freeB.setAttribute("aria-pressed", taste.free_only ? "true" : "false");
   sheet.paint(taste.surprise);
+  sheet.paintCount();
   sheet.veil.hidden = false;
+  document.documentElement.classList.add("qz-open");  // the page behind stays still while the sheet is open
+  var bd = sheet.veil.querySelector(".qz-body"); if (bd) bd.scrollTop = 0;
+  var first = sheet.veil.querySelector(".qtile"); if (first) try { first.focus({preventScroll: true}); } catch (e) {}
 }
 /* ---------------- plain-language profile ---------------- */
 function joinList(a){
@@ -3040,7 +3165,15 @@ document.addEventListener("DOMContentLoaded", function(){
     if (t) { e.preventDefault(); openQuiz(); }
   });
   var noquiz = document.body && document.body.getAttribute("data-noquiz") === "1";
-  try { if (!noquiz && !localStorage.getItem(OKEY)) openQuiz(); } catch (e) {}
+  // first visit: let people see tonight's picks first; open after they scroll a little, or after 6 s
+  try {
+    if (!noquiz && !localStorage.getItem(OKEY)) {
+      var opened = false, openOnce = function(){ if (opened) return; opened = true; window.removeEventListener("scroll", onScroll); openQuiz(); };
+      var onScroll = function(){ if (window.scrollY > 260) openOnce(); };
+      window.addEventListener("scroll", onScroll, {passive: true});
+      setTimeout(openOnce, CITY ? 6000 : 1200);
+    }
+  } catch (e) {}
   applyRanking();
   pull();
   if (window.TonightPage && TonightPage.init) TonightPage.init();
@@ -9749,8 +9882,10 @@ function timeline(){
 }
 
 // Toni's note: the rules version above shows at once; this replaces it when it arrives.
-function aiNote(){
+var noteShuffle = {n: 0, venues: []};  // "Shuffle plan": how many times, and the venues of the plans shown so far
+function aiNote(opts){
   var host = document.getElementById("conciergeNote"); if (!host) return;
+  if (opts && opts.shuffle) host.classList.add("cn-busy");
   var waitBase = function(n){ var b = window.__tonight_api || null;
     return (b || n <= 0) ? Promise.resolve(b) : new Promise(function(r){ setTimeout(r, 100); }).then(function(){ return waitBase(n - 1); }); };
   var taste = (window.Tonight && Tonight.taste) || {}, prefs = {}, featured = [], anon = null, TD = window.TonightDinner;
@@ -9765,10 +9900,12 @@ function aiNote(){
       lang: document.documentElement.lang || "en",
       anon_id: anon, avoid_venues: avoid, dinner_prefs: prefs, dinner_day: TD ? TD.day(CITY, DATE) : {},
       hidden: window.TonightHide ? TonightHide.list() : [],  // hidden for good: never in the note
+      shuffle: noteShuffle.n ? noteShuffle : undefined,
       taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,
         budget: taste.budget == null ? null : taste.budget, areas: (taste.areas && taste.areas[CITY]) || [],
         kids: (function(){ try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } })()}})}).then(function(r){ return r.json(); });
   }).then(function(d){
+    host.classList.remove("cn-busy");
     if (!d || !d.ok || !d.picks || !d.picks.length) {  // keep the rules note
       var pn = host.querySelector(".dn-panel .dn-note"); if (pn) pn.textContent = "Couldn't update right now. Try again in a minute.";
       return;
@@ -9850,14 +9987,15 @@ function aiNote(){
     lines.sort(function(a, b){ return mins(a) - mins(b); });
     planBox(host, lines);
     var row = el("div", "cn-actions");
-    if (window.TonightToni) {
-      var ch = el("button", "cn-ask", "Shuffle plan \u21bb"); ch.type = "button";
-      var used = d.picks.map(function(p){ return p.name + " (" + p.venue + ")"; }).join(", ");
-      ch.addEventListener("click", function(){ TonightToni.ask("Give me a different plan for tonight. Don't use any of these: " +
-        used + ". Pick a new main event at a different venue, plus one thing before or after it. Keep it to two things.",
-        "Change tonight's plan", d.picks.map(function(p){ return p.venue; })); });
-      row.appendChild(ch);
-    }
+    // Shuffle plan: a fresh plan right here in the plan box (not the chat), avoiding the venues already shown
+    var ch = el("button", "cn-ask", "Shuffle plan \u21bb"); ch.type = "button";
+    ch.addEventListener("click", function(){
+      ch.disabled = true; ch.textContent = "Shuffling\u2026";
+      d.picks.forEach(function(p){ if (p.venue && noteShuffle.venues.indexOf(p.venue) < 0) noteShuffle.venues.push(p.venue); });
+      noteShuffle.venues = noteShuffle.venues.slice(-12); noteShuffle.n += 1;
+      aiNote({shuffle: true});
+    });
+    row.appendChild(ch);
     row.appendChild(adjustLink());
     if (TD) {
       var ad = el("a", "cn-adjust", "Adjust dinner"); ad.href = "#";
@@ -9866,6 +10004,8 @@ function aiNote(){
     }
     host.appendChild(row);
   }).catch(function(){
+    host.classList.remove("cn-busy");
+    var sb = host.querySelector(".cn-ask"); if (sb) { sb.disabled = false; sb.textContent = "Shuffle plan \u21bb"; }
     var pn = host.querySelector(".dn-panel .dn-note"); if (pn) pn.textContent = "Couldn't update right now. Try again in a minute.";
   });
   // the per-day dinner panel opens under the plan; applying re-asks Toni for this day only
@@ -10978,7 +11118,7 @@ btn.appendChild(document.createTextNode("Ask Toni"));
 var panel = el("div"); panel.id = "toniPanel"; panel.hidden = true;
 panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Ask Toni");
 var head = el("div", "tn-head"), hl = el("div");
-hl.appendChild(el("b", "", "Ask Toni")); hl.appendChild(el("span", "", "Your concierge for today's picks"));
+hl.appendChild(el("b", "", "Ask Toni")); hl.appendChild(el("span", "", "Your concierge for tonight and the week ahead"));
 var close = el("button", "tn-close", "\u00d7"); close.type = "button"; close.setAttribute("aria-label", "Close");
 var fresh = el("button", "tn-new", "New chat"); fresh.type = "button";
 var hbtns = el("div", "tn-hbtns"); hbtns.appendChild(fresh); hbtns.appendChild(close);
@@ -11029,6 +11169,7 @@ function card(c){
   if (c.price === "free") meta.appendChild(el("span", "tn-free", "Free"));
   else if (c.price && c.price !== "price unknown") meta.appendChild(el("span", "", c.price));
   body.appendChild(meta);
+  if (c.dist) body.appendChild(el("div", "tn-dist", "📍 " + c.dist));  // Near me: how far from you
   if (c.reason) body.appendChild(el("div", "r", c.reason));
   var a = el("div", "a");
   // a pick from another day (Toni looked ahead): no tick here, and "See it" opens that day's page
@@ -11220,6 +11361,7 @@ function render(){
     }
     if (m.intro == null && cards.length) intro = cleanText(m.content).split(/\n/)[0];
     if (intro) blk.appendChild(el("p", "tn-text", intro));
+    if (k === history.length - 1 && (cards.length >= 2 || m.need_here)) blk.appendChild(modeRow(m));
     if (cards.length) {
       var list = el("div", "tn-picks" + (cards.length > 1 ? " plan" : ""));
       cards.forEach(function(c, k){
@@ -11228,6 +11370,7 @@ function render(){
       });
       blk.appendChild(list);
     }
+    if (m.all && m.all.length) blk.appendChild(allList(m));
     if (m.outro) blk.appendChild(el("p", "tn-text small", m.outro));
     if (m.seeAll && m.fullCount) {
       var sa = el("div", "tn-shown");
@@ -11284,13 +11427,65 @@ function newChat(){
   try { sessionStorage.removeItem(KEY); } catch (e) {}
   render(); input.focus();
 }
+// For you / Near me / Best overall: how Toni chooses its top picks (kept for this visit)
+var toniMode = null, herePos = null;
+try { toniMode = sessionStorage.getItem("tonight-toni-mode"); herePos = JSON.parse(sessionStorage.getItem("tonight-here") || "null"); } catch (e) {}
+function modeRow(m){
+  var row = el("div", "tn-modes"), cur = m.mode || "you";
+  [["you", "For you"], ["near", "Near me"], ["best", "Best overall"]].forEach(function(o){
+    var b = el("button", cur === o[0] ? "on" : "", o[1]); b.type = "button";
+    b.setAttribute("aria-pressed", cur === o[0] ? "true" : "false");
+    b.addEventListener("click", function(){ if (!busy && o[0] !== cur) setMode(o[0]); });
+    row.appendChild(b);
+  });
+  return row;
+}
+function setMode(mode){
+  var go = function(){
+    toniMode = mode; try { sessionStorage.setItem("tonight-toni-mode", mode); } catch (e) {}
+    // ask the same question again in the new mode, replacing the last answer
+    var lastQ = null;
+    while (history.length && history[history.length - 1].role !== "user") history.pop();
+    if (history.length) { lastQ = history.pop(); }
+    if (lastQ) ask(lastQ.content, lastQ.display);
+  };
+  if (mode === "near" && !herePos && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(p){
+      herePos = {lat: +p.coords.latitude.toFixed(4), lng: +p.coords.longitude.toFixed(4)};  // ~10 m, this visit only
+      try { sessionStorage.setItem("tonight-here", JSON.stringify(herePos)); } catch (e) {}
+      go();
+    }, function(){ go(); }, {maximumAge: 600000, timeout: 8000});  // no location: Toni uses your home neighbourhood
+  } else go();
+}
+// "All 62 ▾": every match of a list question, one compact row each, grouped by day (the best few are cards above)
+function allList(m){
+  var box = document.createElement("details"); box.className = "tn-all";
+  var sum = document.createElement("summary"); sum.textContent = "All " + (m.all_count || m.all.length) + " ▾";
+  box.appendChild(sum);
+  var lastDay = null;
+  m.all.forEach(function(r){
+    var other = !!(r.date && r.date !== cur.date);
+    if (r.day && r.day !== lastDay) { box.appendChild(el("div", "tn-all-day", r.day)); lastDay = r.day; }
+    var row = el("a", "tn-all-row");
+    row.href = other ? (onPage ? "" : cur.slug + "/") + r.date + ".html" + (r.eid ? "#e-" + r.eid : "")
+                     : (onPage ? "" : cur.href) + (r.eid ? "#e-" + r.eid : "#event-" + r.id);
+    row.appendChild(el("span", "t", r.start_time || ""));
+    var main = el("span", "n", r.name || ""); row.appendChild(main);
+    if (r.venue) row.appendChild(el("span", "v", r.venue + (r.dist ? " · " + r.dist : "")));
+    box.appendChild(row);
+  });
+  return box;
+}
 var busy = false;
+// questions that look past today (mirrors AHEAD_RE in app/server.py), for the "Looking across…" wait message
+var AHEAD_JS = /(next (few|couple|\d+|two|three|four|five|six|seven) days|(this|next|the) week|coming (days|week|up)|upcoming|weekend|tomorrow|tmrw|monday|tuesday|wednesday|thursday|friday|saturday|sunday)/i;
 var excludeNext = null;  // hard venue exclusions for the next question (e.g. "change the plan")
 function ask(q, display){
   q = (q || "").trim(); if (!q || busy) return;
   busy = true; send.disabled = true; input.value = "";
   history.push(display ? {role: "user", content: q, display: display} : {role: "user", content: q}); render();
-  var thinking = toniBlock(); thinking.appendChild(el("p", "tn-text small", "Looking through today's list\u2026"));
+  var thinking = toniBlock(); thinking.appendChild(el("p", "tn-text small", AHEAD_JS.test(q) || (function(){ for (var k = history.length - 2; k >= 0; k--) { var m = history[k]; if (m.role === "assistant" && !m.error) return !!(m.context && m.context.days && m.context.days.length > 1); } return false; })()
+      ? "Looking across the next few days\u2026" : "Looking through today's list\u2026"));
   log.appendChild(thinking); log.scrollTop = log.scrollHeight;
   var taste = (window.Tonight && Tonight.taste) || {};
   var anon = null; try { anon = localStorage.getItem("tonight-user-id"); } catch (e) {}
@@ -11313,12 +11508,19 @@ function ask(q, display){
             {ids: m.cards.map(function(c){ return c.id; }), roles: m.cards.map(function(c){ return c.role || ""; }),
              dinner: m.dinner && m.dinner.time ? m.dinner.time : null} : null; }
         return null; })(),
+      mode: toniMode || undefined, here: toniMode === "near" && herePos ? herePos : undefined,
+      // what the conversation is about so far (days, the list being narrowed): the latest answer's, until New chat
+      context: (function(){ for (var k = history.length - 1; k >= 0; k--) { var m = history[k];
+        if (m.role === "assistant" && !m.error) return m.context || null; } return null; })(),
       messages: history.filter(function(m){ return !m.error; }).map(function(m){ return {role: m.role, content: m.content}; })
     })}).then(function(r){ return r.json(); });
   }).then(function(d){
     if (!d.ok) history.push({role: "assistant", content: d.error || "Toni can't answer right now.", error: true});
     else {
-      var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || [], plan: !!d.plan};
+      var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || [], plan: !!d.plan,
+                 context: d.context && d.context.days ? d.context : null,
+                 all: d.all || null, all_count: d.all_count || 0, mode: d.mode || null, need_here: !!d.need_here};
+      if (d.mode === "near" && toniMode !== "near") { toniMode = "near"; try { sessionStorage.setItem("tonight-toni-mode", "near"); } catch (e) {} }
       // the server works out when and where dinner fits the plan
       if (d.dinner && d.dinner.venue) msg.dinner = d.dinner;
       // "cheap dinner tonight": keep it for this day (Toni's plan box redraws with it)

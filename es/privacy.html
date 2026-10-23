@@ -63,7 +63,7 @@ a{text-decoration-skip-ink:none;}
 
 :root[data-layout="lineup"]{--lu-sun:#ffc21a;--lu-sky:#2f6bff;--lu-mint:#19b38a;--lu-hot:var(--accent);
 --lu-soft:color-mix(in srgb,var(--ink) 64%,var(--paper));--lu-line:color-mix(in srgb,var(--ink) 14%,transparent);
---lu-r:18px;--lu-sh:0 2px 0 var(--ink);
+--lu-ul:color-mix(in srgb,var(--ink) 32%,transparent);--lu-r:18px;--lu-sh:0 2px 0 var(--ink);
 --lu-d:'Anton',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
 --lu-t:'Space Grotesk',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
 :root[data-layout="lineup"]:not([data-palette]){--paper:#fff7ec;--ink:#151515;--accent:#ff4f2e;--gold:#ff4f2e;--card:#fff;--field:#fff;
@@ -172,6 +172,11 @@ border-radius:999px;text-decoration:none;}
 :root[data-layout="lineup"] #luPoster .lu-cta:hover{transform:translateY(-1px);}
 :root[data-layout="lineup"].listmode #luPoster{display:none;}
 
+:root[data-layout="lineup"] a{text-underline-offset:3px;}
+:root[data-layout="lineup"] #conciergeNote a:hover,:root[data-layout="lineup"] .tn-body .a a:hover,:root[data-layout="lineup"] .event-body h3 a:hover,:root[data-layout="lineup"] .mlt a:hover,:root[data-layout="lineup"] .vn a:hover,
+:root[data-layout="lineup"] .legal a:hover,:root[data-layout="lineup"] .lk-see a:hover{text-decoration-color:var(--ink);}
+:root[data-layout="lineup"] .tn-body .a a{text-decoration-color:var(--lu-ul);}
+
 :root[data-layout="lineup"][data-palette="neon"] #luPoster{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 2px var(--muted);}
 :root[data-layout="lineup"][data-palette="neon"] #luPoster .lu-hl a,:root[data-layout="lineup"][data-palette="neon"] #luPoster .lu-ln{color:var(--ink);}
 
@@ -190,7 +195,7 @@ border-radius:999px;text-decoration:none;}
 :root[data-layout="lineup"] #conciergeNote .cn-hi{font-family:var(--lu-d)!important;font-weight:400;font-size:26px;}
 :root[data-layout="lineup"] #conciergeNote .cn-t{font-weight:700;}
 :root[data-layout="lineup"] #conciergeNote .cn-role{color:var(--lu-soft);font-weight:700;letter-spacing:.1em;}
-:root[data-layout="lineup"] #conciergeNote a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #conciergeNote a{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] #conciergeNote .cn-ask{background:var(--lu-sun);color:#151515;border:2px solid var(--ink);box-shadow:var(--lu-sh);}
 :root[data-layout="lineup"] #conciergeNote .cn-plan a.cn-book{border-radius:999px;padding:2px 9px;}
 :root[data-layout="lineup"] .dn-btn{border:2px solid var(--ink);background:var(--card);color:var(--ink);}
@@ -206,12 +211,12 @@ border-radius:999px;text-decoration:none;}
 :root[data-layout="lineup"] .fbtn[aria-pressed="true"],:root[data-layout="lineup"] #filterBar .fbtn[aria-pressed="true"],:root[data-layout="lineup"] #filterBar select.on,:root[data-layout="lineup"] .filters .fmulti.on summary,
 :root[data-layout="lineup"] #filterBar .fmore.on,:root[data-layout="lineup"] #fsBtn.on{background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] #filterBar #hiddenBar{border-radius:999px;}
-:root[data-layout="lineup"] #filterBar .fclear{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #filterBar .fclear{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] #fside{border:2px solid var(--ink)!important;border-radius:var(--lu-r);box-shadow:var(--lu-sh);}
 :root[data-layout="lineup"] .fs-title{font-family:var(--lu-d)!important;font-weight:400;font-size:20px;letter-spacing:.01em;text-transform:none;}
 :root[data-layout="lineup"] .fs-h{color:var(--lu-hot);opacity:1;font-weight:700;letter-spacing:.1em;}
 :root[data-layout="lineup"] .fs-row input,:root[data-layout="lineup"] .filters .fmenu input,:root[data-layout="lineup"] .sv-check input{accent-color:var(--lu-hot);}
-:root[data-layout="lineup"] .fs-row:not(.zero):hover .fs-l{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-row:not(.zero):hover .fs-l{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] .fs-grp summary .fs-dot{background:var(--lu-hot);}
 :root[data-layout="lineup"] .fs-lk{color:var(--lu-hot);}
 :root[data-layout="lineup"] .fs-mode{border-radius:999px;overflow:hidden;}
@@ -247,7 +252,7 @@ font-size:12px;line-height:1.2;padding:5px 10px;border-radius:999px;}
 :root[data-layout="lineup"] .tt-k{display:block;font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--lu-hot);}
 :root[data-layout="lineup"] .tt-b{padding:12px 14px 14px;gap:4px;}
 :root[data-layout="lineup"] .tt-h,:root[data-layout="lineup"] .tt-card.big .tt-h{font-size:18px;line-height:1.2;font-weight:700;margin:2px 0 4px;}
-:root[data-layout="lineup"] .tt-name:hover{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-name:hover{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] .tt-why{color:var(--lu-soft);opacity:1;font-size:14px;}
 :root[data-layout="lineup"] .tt-f{margin-top:10px;gap:8px;}
 :root[data-layout="lineup"] .tt-star{width:auto;height:auto;display:inline-flex;align-items:center;gap:5px;padding:4px 2px;font-size:13px;font-weight:700;line-height:1.2;}
@@ -271,7 +276,7 @@ text-transform:none;}
 :root[data-layout="lineup"] .event{border-bottom:2px solid var(--lu-line);}
 :root[data-layout="lineup"] .event-body{min-width:0;overflow-wrap:anywhere;}
 :root[data-layout="lineup"] .event-body h3{font-weight:700;font-size:18.5px;line-height:1.25;}
-:root[data-layout="lineup"] .event-body h3 a{text-decoration-color:var(--lu-hot);text-decoration-thickness:2px;}
+:root[data-layout="lineup"] .event-body h3 a{text-decoration-color:var(--lu-ul);text-decoration-thickness:2px;}
 :root[data-layout="lineup"] .meta{font-weight:600;opacity:1;color:var(--lu-soft);}
 :root[data-layout="lineup"] .event-body p{opacity:1;color:color-mix(in srgb,var(--ink) 82%,var(--paper));}
 :root[data-layout="lineup"] .ev-th{border-radius:12px;border:2px solid var(--ink);background:linear-gradient(135deg,var(--lu-sun),var(--lu-hot));color:#151515;}
@@ -281,7 +286,7 @@ text-transform:none;}
 :root[data-layout="lineup"] .meta .ended{border-radius:999px;padding:1px 8px;}
 :root[data-layout="lineup"] .tonight-head h2{font-size:30px;text-transform:none;}
 :root[data-layout="lineup"] .tba-div{border-top:2px solid var(--ink);}
-:root[data-layout="lineup"] .mlt a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .mlt a{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] #onlyBar{border:2px solid var(--ink);border-radius:14px;background:var(--lu-sun);color:#151515;}
 :root[data-layout="lineup"] #tnToast{border-radius:999px;box-shadow:var(--lu-sh);}
 :root[data-layout="lineup"] #hideMenu button{border-radius:10px;}
@@ -359,7 +364,7 @@ background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .sdone h2 em,:root[data-layout="lineup"] .lhero h1 em{background:var(--lu-sun);color:#151515;border-radius:10px;}
 :root[data-layout="lineup"] .lk-opt[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .lhero h1{text-transform:none;}
-:root[data-layout="lineup"] .legal a,:root[data-layout="lineup"] .srow .sub a,:root[data-layout="lineup"] .sdone a,:root[data-layout="lineup"] .kids-note button,:root[data-layout="lineup"] .lk-see a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .legal a,:root[data-layout="lineup"] .srow .sub a,:root[data-layout="lineup"] .sdone a,:root[data-layout="lineup"] .kids-note button,:root[data-layout="lineup"] .lk-see a{text-decoration-color:var(--lu-ul);}
 
 :root[data-layout="lineup"] .vn-way,:root[data-layout="lineup"] .vn-facts li{border:2px solid var(--ink);border-radius:var(--lu-r);box-shadow:var(--lu-sh);background:var(--card);}
 :root[data-layout="lineup"] .vn-way h2,:root[data-layout="lineup"] .vn-fine h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;font-size:28px;}
@@ -370,7 +375,7 @@ background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .vn-go:hover,:root[data-layout="lineup"] .vn-btn:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--ink);}
 :root[data-layout="lineup"] .vn-f input,:root[data-layout="lineup"] .vn-f select,:root[data-layout="lineup"] .vn-f textarea{border:2px solid var(--ink)!important;border-radius:12px!important;background:var(--field);}
 :root[data-layout="lineup"] .vn-f input:focus,:root[data-layout="lineup"] .vn-f select:focus,:root[data-layout="lineup"] .vn-f textarea:focus{outline:3px solid var(--lu-sun);outline-offset:1px;}
-:root[data-layout="lineup"] .vn a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .vn a{text-decoration-color:var(--lu-ul);}
 
 
 @media (min-width:1100px){

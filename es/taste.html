@@ -150,7 +150,7 @@ a{text-decoration-skip-ink:none;}
 
 :root[data-layout="lineup"]{--lu-sun:#ffc21a;--lu-sky:#2f6bff;--lu-mint:#19b38a;--lu-hot:var(--accent);
 --lu-soft:color-mix(in srgb,var(--ink) 64%,var(--paper));--lu-line:color-mix(in srgb,var(--ink) 14%,transparent);
---lu-r:18px;--lu-sh:0 2px 0 var(--ink);
+--lu-ul:color-mix(in srgb,var(--ink) 32%,transparent);--lu-r:18px;--lu-sh:0 2px 0 var(--ink);
 --lu-d:'Anton',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
 --lu-t:'Space Grotesk',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
 :root[data-layout="lineup"]:not([data-palette]){--paper:#fff7ec;--ink:#151515;--accent:#ff4f2e;--gold:#ff4f2e;--card:#fff;--field:#fff;
@@ -259,6 +259,11 @@ border-radius:999px;text-decoration:none;}
 :root[data-layout="lineup"] #luPoster .lu-cta:hover{transform:translateY(-1px);}
 :root[data-layout="lineup"].listmode #luPoster{display:none;}
 
+:root[data-layout="lineup"] a{text-underline-offset:3px;}
+:root[data-layout="lineup"] #conciergeNote a:hover,:root[data-layout="lineup"] .tn-body .a a:hover,:root[data-layout="lineup"] .event-body h3 a:hover,:root[data-layout="lineup"] .mlt a:hover,:root[data-layout="lineup"] .vn a:hover,
+:root[data-layout="lineup"] .legal a:hover,:root[data-layout="lineup"] .lk-see a:hover{text-decoration-color:var(--ink);}
+:root[data-layout="lineup"] .tn-body .a a{text-decoration-color:var(--lu-ul);}
+
 :root[data-layout="lineup"][data-palette="neon"] #luPoster{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 2px var(--muted);}
 :root[data-layout="lineup"][data-palette="neon"] #luPoster .lu-hl a,:root[data-layout="lineup"][data-palette="neon"] #luPoster .lu-ln{color:var(--ink);}
 
@@ -277,7 +282,7 @@ border-radius:999px;text-decoration:none;}
 :root[data-layout="lineup"] #conciergeNote .cn-hi{font-family:var(--lu-d)!important;font-weight:400;font-size:26px;}
 :root[data-layout="lineup"] #conciergeNote .cn-t{font-weight:700;}
 :root[data-layout="lineup"] #conciergeNote .cn-role{color:var(--lu-soft);font-weight:700;letter-spacing:.1em;}
-:root[data-layout="lineup"] #conciergeNote a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #conciergeNote a{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] #conciergeNote .cn-ask{background:var(--lu-sun);color:#151515;border:2px solid var(--ink);box-shadow:var(--lu-sh);}
 :root[data-layout="lineup"] #conciergeNote .cn-plan a.cn-book{border-radius:999px;padding:2px 9px;}
 :root[data-layout="lineup"] .dn-btn{border:2px solid var(--ink);background:var(--card);color:var(--ink);}
@@ -293,12 +298,12 @@ border-radius:999px;text-decoration:none;}
 :root[data-layout="lineup"] .fbtn[aria-pressed="true"],:root[data-layout="lineup"] #filterBar .fbtn[aria-pressed="true"],:root[data-layout="lineup"] #filterBar select.on,:root[data-layout="lineup"] .filters .fmulti.on summary,
 :root[data-layout="lineup"] #filterBar .fmore.on,:root[data-layout="lineup"] #fsBtn.on{background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] #filterBar #hiddenBar{border-radius:999px;}
-:root[data-layout="lineup"] #filterBar .fclear{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] #filterBar .fclear{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] #fside{border:2px solid var(--ink)!important;border-radius:var(--lu-r);box-shadow:var(--lu-sh);}
 :root[data-layout="lineup"] .fs-title{font-family:var(--lu-d)!important;font-weight:400;font-size:20px;letter-spacing:.01em;text-transform:none;}
 :root[data-layout="lineup"] .fs-h{color:var(--lu-hot);opacity:1;font-weight:700;letter-spacing:.1em;}
 :root[data-layout="lineup"] .fs-row input,:root[data-layout="lineup"] .filters .fmenu input,:root[data-layout="lineup"] .sv-check input{accent-color:var(--lu-hot);}
-:root[data-layout="lineup"] .fs-row:not(.zero):hover .fs-l{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .fs-row:not(.zero):hover .fs-l{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] .fs-grp summary .fs-dot{background:var(--lu-hot);}
 :root[data-layout="lineup"] .fs-lk{color:var(--lu-hot);}
 :root[data-layout="lineup"] .fs-mode{border-radius:999px;overflow:hidden;}
@@ -334,7 +339,7 @@ font-size:12px;line-height:1.2;padding:5px 10px;border-radius:999px;}
 :root[data-layout="lineup"] .tt-k{display:block;font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--lu-hot);}
 :root[data-layout="lineup"] .tt-b{padding:12px 14px 14px;gap:4px;}
 :root[data-layout="lineup"] .tt-h,:root[data-layout="lineup"] .tt-card.big .tt-h{font-size:18px;line-height:1.2;font-weight:700;margin:2px 0 4px;}
-:root[data-layout="lineup"] .tt-name:hover{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .tt-name:hover{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] .tt-why{color:var(--lu-soft);opacity:1;font-size:14px;}
 :root[data-layout="lineup"] .tt-f{margin-top:10px;gap:8px;}
 :root[data-layout="lineup"] .tt-star{width:auto;height:auto;display:inline-flex;align-items:center;gap:5px;padding:4px 2px;font-size:13px;font-weight:700;line-height:1.2;}
@@ -358,7 +363,7 @@ text-transform:none;}
 :root[data-layout="lineup"] .event{border-bottom:2px solid var(--lu-line);}
 :root[data-layout="lineup"] .event-body{min-width:0;overflow-wrap:anywhere;}
 :root[data-layout="lineup"] .event-body h3{font-weight:700;font-size:18.5px;line-height:1.25;}
-:root[data-layout="lineup"] .event-body h3 a{text-decoration-color:var(--lu-hot);text-decoration-thickness:2px;}
+:root[data-layout="lineup"] .event-body h3 a{text-decoration-color:var(--lu-ul);text-decoration-thickness:2px;}
 :root[data-layout="lineup"] .meta{font-weight:600;opacity:1;color:var(--lu-soft);}
 :root[data-layout="lineup"] .event-body p{opacity:1;color:color-mix(in srgb,var(--ink) 82%,var(--paper));}
 :root[data-layout="lineup"] .ev-th{border-radius:12px;border:2px solid var(--ink);background:linear-gradient(135deg,var(--lu-sun),var(--lu-hot));color:#151515;}
@@ -368,7 +373,7 @@ text-transform:none;}
 :root[data-layout="lineup"] .meta .ended{border-radius:999px;padding:1px 8px;}
 :root[data-layout="lineup"] .tonight-head h2{font-size:30px;text-transform:none;}
 :root[data-layout="lineup"] .tba-div{border-top:2px solid var(--ink);}
-:root[data-layout="lineup"] .mlt a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .mlt a{text-decoration-color:var(--lu-ul);}
 :root[data-layout="lineup"] #onlyBar{border:2px solid var(--ink);border-radius:14px;background:var(--lu-sun);color:#151515;}
 :root[data-layout="lineup"] #tnToast{border-radius:999px;box-shadow:var(--lu-sh);}
 :root[data-layout="lineup"] #hideMenu button{border-radius:10px;}
@@ -446,7 +451,7 @@ background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .sdone h2 em,:root[data-layout="lineup"] .lhero h1 em{background:var(--lu-sun);color:#151515;border-radius:10px;}
 :root[data-layout="lineup"] .lk-opt[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .lhero h1{text-transform:none;}
-:root[data-layout="lineup"] .legal a,:root[data-layout="lineup"] .srow .sub a,:root[data-layout="lineup"] .sdone a,:root[data-layout="lineup"] .kids-note button,:root[data-layout="lineup"] .lk-see a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .legal a,:root[data-layout="lineup"] .srow .sub a,:root[data-layout="lineup"] .sdone a,:root[data-layout="lineup"] .kids-note button,:root[data-layout="lineup"] .lk-see a{text-decoration-color:var(--lu-ul);}
 
 :root[data-layout="lineup"] .vn-way,:root[data-layout="lineup"] .vn-facts li{border:2px solid var(--ink);border-radius:var(--lu-r);box-shadow:var(--lu-sh);background:var(--card);}
 :root[data-layout="lineup"] .vn-way h2,:root[data-layout="lineup"] .vn-fine h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;font-size:28px;}
@@ -457,7 +462,7 @@ background:var(--ink);color:var(--paper);}
 :root[data-layout="lineup"] .vn-go:hover,:root[data-layout="lineup"] .vn-btn:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--ink);}
 :root[data-layout="lineup"] .vn-f input,:root[data-layout="lineup"] .vn-f select,:root[data-layout="lineup"] .vn-f textarea{border:2px solid var(--ink)!important;border-radius:12px!important;background:var(--field);}
 :root[data-layout="lineup"] .vn-f input:focus,:root[data-layout="lineup"] .vn-f select:focus,:root[data-layout="lineup"] .vn-f textarea:focus{outline:3px solid var(--lu-sun);outline-offset:1px;}
-:root[data-layout="lineup"] .vn a{text-decoration-color:var(--lu-hot);}
+:root[data-layout="lineup"] .vn a{text-decoration-color:var(--lu-ul);}
 
 
 @media (min-width:1100px){
@@ -875,40 +880,72 @@ function chipBtn(c){
   });
   return b;
 }
+// first-visit taste sheet: kinds in four plain groups (any kind not listed lands in "Más"), two plain switches,
+// a live "Show my picks (3)" and a short "Got it" after. (2026-10-23 redesign: the old one was a wall of 14 chips.)
+var QGROUPS = [["Espectáculos", ["Music", "Comedy", "Theater", "Film"]],
+  ["Ideas", ["Talks", "Classes & Workshops", "Tech", "Tours"]],
+  ["Social", ["Meetups & Mixers", "Food & Drink", "Trivia & Games", "Arts & Play"]],
+  ["Al aire libre", ["Fitness & Outdoors", "Sports"]]];
+var QNAME = {"Classes & Workshops": "Clases", "Meetups & Mixers": "Encuentros", "Trivia & Games": "Trivia y juegos",
+  "Fitness & Outdoors": "Aire libre y deporte", "Food & Drink": "Comida y bebida", "Arts & Play": "Arte y juego"};
+function qSwitch(id, label, sub){
+  var b = document.createElement("button");
+  b.className = "qswitch"; b.type = "button"; b.id = id; b.setAttribute("aria-pressed", "false");
+  var t = document.createElement("span"); t.className = "qs-t"; t.textContent = label;
+  var d = document.createElement("span"); d.className = "qs-d"; d.textContent = sub;
+  var k = document.createElement("span"); k.className = "qs-k"; k.setAttribute("aria-hidden", "true");
+  var txt = document.createElement("span"); txt.className = "qs-txt"; txt.appendChild(t); txt.appendChild(d);
+  b.appendChild(txt); b.appendChild(k);
+  b.addEventListener("click", function(){ b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true"); });
+  return b;
+}
 function buildSheet(){
   var veil = document.createElement("div");
-  veil.className = "quiz-veil"; veil.id = "quizVeil"; veil.hidden = true;
+  veil.className = "quiz-veil qz2"; veil.id = "quizVeil"; veil.hidden = true;
   var card = document.createElement("div");
-  card.className = "quiz-card"; card.setAttribute("role", "dialog");
+  card.className = "quiz-card"; card.setAttribute("role", "dialog"); card.setAttribute("aria-modal", "true");
   card.setAttribute("aria-label", "¿Qué te gusta?");
-  var eb = document.createElement("div"); eb.className = "quiz-eyebrow";
-  eb.textContent = "Tonight aprende tu gusto";
+  var head = document.createElement("div"); head.className = "qz-head";
+  ["b1", "b2", "b3"].forEach(function(k){ var o = document.createElement("i"); o.className = "qz-blob " + k; head.appendChild(o); });
+  var eb = document.createElement("div"); eb.className = "quiz-eyebrow"; eb.textContent = "Hazlo tuyo";
   var h = document.createElement("h2"); h.textContent = "¿Qué te gusta?";
   var sub = document.createElement("p"); sub.className = "quiz-sub";
-  sub.textContent = "Toca lo que te gusta. Toma 30 segundos y tus planes serán más personales.";
-  var chips = document.createElement("div"); chips.className = "qchips";
-  CATS_ALL.forEach(function(c){ chips.appendChild(chipBtn(c)); });
-  var prefs = document.createElement("div"); prefs.className = "qchips";
-  var freeB = document.createElement("button");
-  freeB.className = "qchip"; freeB.type = "button"; freeB.id = "qFree";
-  freeB.setAttribute("aria-pressed", "false");
-  freeB.textContent = "Primero gratis";
-  freeB.addEventListener("click", function(){
-    var on = freeB.getAttribute("aria-pressed") === "true";
-    freeB.setAttribute("aria-pressed", on ? "false" : "true");
-  });
-  var order = ["low", "med", "high"], surp = "low";
-  var surpB = document.createElement("button");
-  surpB.className = "qchip"; surpB.type = "button"; surpB.id = "qSurp";
-  var paintSurp = function(){
-    surpB.textContent = SURP[surp];
-    surpB.setAttribute("aria-pressed", surp === "low" ? "false" : "true");
+  sub.textContent = "Elige algunas. Lo tuyo sube arriba y puedes cambiarlo cuando quieras en Preferencias.";
+  head.appendChild(eb); head.appendChild(h); head.appendChild(sub);
+  var body = document.createElement("div"); body.className = "qz-body";
+  card.appendChild(head); card.appendChild(body);
+  var listed = {}, done = null;
+  var paintCount = function(){
+    var n = Object.keys(sel).length;
+    if (done && !cityRow) done.textContent = n ? "Ver lo mío (" + n + ") →" : "Ver todo →";
   };
-  paintSurp();
-  surpB.addEventListener("click", function(){
-    surp = order[(order.indexOf(surp) + 1) % 3]; paintSurp();
+  var groups = QGROUPS.map(function(g){ return [g[0], g[1].filter(function(c){ return CATS_ALL.indexOf(c) >= 0; })]; });
+  var extra = CATS_ALL.filter(function(c){ return !QGROUPS.some(function(g){ return g[1].indexOf(c) >= 0; }); });
+  if (extra.length) groups.push(["Más", extra]);
+  groups.forEach(function(g, gi){
+    if (!g[1].length) return;
+    var gl = document.createElement("div"); gl.className = "qgroup-l g" + Math.min(gi, 4); gl.textContent = g[0];
+    var row = document.createElement("div"); row.className = "qtiles g" + Math.min(gi, 4);
+    g[1].forEach(function(c){
+      listed[c] = 1;
+      var b = document.createElement("button");
+      b.className = "qtile"; b.type = "button"; b.dataset.cat = c; b.setAttribute("aria-pressed", "false");
+      b.textContent = QNAME[c] || c;
+      b.addEventListener("click", function(){
+        var on = b.getAttribute("aria-pressed") === "true";
+        b.setAttribute("aria-pressed", on ? "false" : "true");
+        if (on) delete sel[c]; else sel[c] = 1;
+        paintCount();
+      });
+      row.appendChild(b);
+    });
+    body.appendChild(gl); body.appendChild(row);
   });
+  var prefs = document.createElement("div"); prefs.className = "qswitches";
+  var freeB = qSwitch("qFree", "Primero lo gratis", "Lo gratis primero, lo de pago después");
+  var surpB = qSwitch("qSurp", "Algunas sorpresas", "De vez en cuando, algo fuera de lo tuyo");
   prefs.appendChild(freeB); prefs.appendChild(surpB);
+  body.appendChild(prefs);
   // Home page only: pick a city, and Done goes straight to its events.
   var cityRow = null, cityPick = null;
   var cards = document.querySelectorAll("a.citycard");
@@ -933,49 +970,62 @@ function buildSheet(){
     cityRow.insertBefore(clab, cityRow.firstChild);
   }
   var actions = document.createElement("div"); actions.className = "qactions";
-  var done = document.createElement("button");
+  done = document.createElement("button");
   done.className = "btn btn-gold"; done.type = "button"; done.id = "qDone";
-  done.textContent = "Listo →";
   var skip = document.createElement("button");
   skip.className = "qlink"; skip.type = "button"; skip.id = "qSkip";
-  skip.textContent = "omitir por ahora";
+  skip.textContent = "Ahora no";
   var markSeen = function(){ try { localStorage.setItem(OKEY, "1"); } catch (e) {} };
+  var close = function(){ veil.hidden = true; document.documentElement.classList.remove("qz-open"); };
   done.addEventListener("click", function(){
     taste.likes = Object.keys(sel);
     taste.mutes = [];
     taste.free_only = freeB.getAttribute("aria-pressed") === "true";
-    taste.surprise = surp;
+    taste.surprise = surpB.getAttribute("aria-pressed") === "true" ? (taste.surprise === "high" ? "high" : "med") : "low";
     save(); markSeen();
     if (cityRow && cityPick) {
       try { localStorage.setItem("tonight-city", cityPick); } catch (e) {}
       var go = document.querySelector('a.citycard[href^="' + cityPick + '/"]');
       if (go) { location.href = go.getAttribute("href"); return; }
     }
-    veil.hidden = true;
+    close();
     applyRanking();
     if (window.TonightPage && TonightPage.refresh) TonightPage.refresh(true);
+    var names = taste.likes.map(function(c){ return (QNAME[c] || c).toLowerCase(); });
+    qToast(names.length ? "Listo: " + joinList(names) + ". Lo tuyo está arriba." : "Listo. Mostramos todo.");
   });
-  skip.addEventListener("click", function(){ markSeen(); veil.hidden = true; });
+  skip.addEventListener("click", function(){ markSeen(); close(); });
+  veil.addEventListener("click", function(e){ if (e.target === veil) { markSeen(); close(); } });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !veil.hidden) { markSeen(); close(); } });
   actions.appendChild(done); actions.appendChild(skip);
-  card.appendChild(eb); card.appendChild(h); card.appendChild(sub);
-  card.appendChild(chips); card.appendChild(prefs);
-  if (cityRow) { card.appendChild(cityRow); done.textContent = "Muéstrame esta noche →"; }
+  if (cityRow) { body.appendChild(cityRow); done.textContent = "Muéstrame esta noche →"; }
   card.appendChild(actions);
   veil.appendChild(card);
   document.body.appendChild(veil);
-  return {veil: veil, freeB: freeB,
-    paint: function(s){ surp = s; paintSurp(); }};
+  paintCount();
+  return {veil: veil, freeB: freeB, paintCount: paintCount,
+    paint: function(sv){ surpB.setAttribute("aria-pressed", sv && sv !== "low" ? "true" : "false"); }};
+}
+function qToast(msg){
+  var t = document.getElementById("qToast");
+  if (!t) { t = document.createElement("div"); t.id = "qToast"; t.className = "qtoast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+  t.textContent = msg; t.hidden = false; t.classList.add("on");
+  clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove("on"); }, 4200);
 }
 function openQuiz(){
   if (!sheet) sheet = buildSheet();
   sel = {};
   taste.likes.forEach(function(c){ sel[c] = 1; });
-  sheet.veil.querySelectorAll(".qchip[data-cat]").forEach(function(b){
+  sheet.veil.querySelectorAll(".qtile[data-cat]").forEach(function(b){
     b.setAttribute("aria-pressed", sel[b.dataset.cat] ? "true" : "false");
   });
   sheet.freeB.setAttribute("aria-pressed", taste.free_only ? "true" : "false");
   sheet.paint(taste.surprise);
+  sheet.paintCount();
   sheet.veil.hidden = false;
+  document.documentElement.classList.add("qz-open");  // the page behind stays still while the sheet is open
+  var bd = sheet.veil.querySelector(".qz-body"); if (bd) bd.scrollTop = 0;
+  var first = sheet.veil.querySelector(".qtile"); if (first) try { first.focus({preventScroll: true}); } catch (e) {}
 }
 /* ---------------- plain-language profile ---------------- */
 function joinList(a){
@@ -1022,7 +1072,15 @@ document.addEventListener("DOMContentLoaded", function(){
     if (t) { e.preventDefault(); openQuiz(); }
   });
   var noquiz = document.body && document.body.getAttribute("data-noquiz") === "1";
-  try { if (!noquiz && !localStorage.getItem(OKEY)) openQuiz(); } catch (e) {}
+  // first visit: let people see tonight's picks first; open after they scroll a little, or after 6 s
+  try {
+    if (!noquiz && !localStorage.getItem(OKEY)) {
+      var opened = false, openOnce = function(){ if (opened) return; opened = true; window.removeEventListener("scroll", onScroll); openQuiz(); };
+      var onScroll = function(){ if (window.scrollY > 260) openOnce(); };
+      window.addEventListener("scroll", onScroll, {passive: true});
+      setTimeout(openOnce, CITY ? 6000 : 1200);
+    }
+  } catch (e) {}
   applyRanking();
   pull();
   if (window.TonightPage && TonightPage.init) TonightPage.init();
