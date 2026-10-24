@@ -979,7 +979,7 @@
   "attraction": "K8vZ917KI1V",
   "tm_id": "1AdfZ_eGkzZvzUG",
   "series": "ed7a6a4218",
-  "recurring": "Every Wednesday",
+  "recurring": "Also on other days",
   "quality": 4,
   "why": "",
   "topics": [
@@ -1573,7 +1573,7 @@
  {
   "name": "Shay O'Dowd",
   "category": "Music",
-  "description": "Over 14s only. Under 16s must be accompanied by an adult over 18. A max of 6 tickets per person and per household applies. Tickets in excess of 6 will be cancelled.",
+  "description": "Support act: Oriana Robos",
   "neighborhood": "Highbury Fields",
   "price": null,
   "start_time": "7:00 PM",
@@ -2578,30 +2578,6 @@
   "flags": []
  },
  {
-  "name": "Brentford Women v Ashford Town",
-  "category": "Arts & Play",
-  "description": "",
-  "neighborhood": "Kew Bridge & Gunnersbury Park",
-  "price": null,
-  "start_time": "7:45 PM",
-  "end_time": null,
-  "url": "https://www.eticketing.co.uk/brentfordfc/EDP/Event/Index/1229",
-  "venue": "Gtech Community Stadium - Brentford FC",
-  "lat": 51.495811,
-  "lng": -0.29722,
-  "audience": null,
-  "availability": null,
-  "tm_id": "ZhqgVMyxjZBYPEMnSylVMtlIZedd1",
-  "series": "82fd13a70c",
-  "quality": 4,
-  "why": "",
-  "topics": [
-   "football",
-   "womens football"
-  ],
-  "flags": []
- },
- {
   "name": "SIX The Musical",
   "category": "Theater",
   "description": "",
@@ -2896,6 +2872,32 @@
    "kids"
   ],
   "family": "tower of london: family tour"
+ },
+ {
+  "name": "Science Museum Trip: KCL SynBioTech x ICL BioEng Soc",
+  "category": "Arts & Play",
+  "description": "",
+  "neighborhood": "South Kensington",
+  "price": 0.0,
+  "start_time": "2:30 PM",
+  "end_time": "6:30 PM",
+  "url": "https://luma.com/2jmzhox0",
+  "venue": "Science Museum",
+  "lat": 51.4972216,
+  "lng": -0.1767283,
+  "audience": null,
+  "availability": null,
+  "series": "65a95dc1cf",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "science museum",
+   "biotech",
+   "student trip"
+  ],
+  "flags": [
+   "members_only"
+  ]
  },
  {
   "name": "Business, infrastructure and the future of water: navigating reform",
@@ -3291,6 +3293,31 @@
   "flags": []
  },
  {
+  "name": "Angel Knit Club",
+  "category": "Meetups & Mixers",
+  "description": "\u200bCome knit with us! \u200bEvery Wednesday 6-8 PM in Candid Cafe in Angel, London.",
+  "neighborhood": "Angel",
+  "price": 0.0,
+  "start_time": "6:00 PM",
+  "end_time": "8:00 PM",
+  "url": "https://luma.com/my9a4ts8",
+  "venue": "Candid Cafe",
+  "lat": 51.532160399999995,
+  "lng": -0.10528699999999999,
+  "audience": null,
+  "availability": null,
+  "series": "2b179a336d",
+  "recurring": "Every Wednesday",
+  "quality": 4,
+  "why": "Weekly knit night at Candid Cafe, Angel.",
+  "topics": [
+   "knitting",
+   "crafts",
+   "community"
+  ],
+  "flags": []
+ },
+ {
   "name": "COMMONPLACE: TASTE",
   "category": "Meetups & Mixers",
   "description": "",
@@ -3379,7 +3406,7 @@
   "lat": 51.518375138334164,
   "lng": -0.1321729651980586,
   "audience": null,
-  "availability": null,
+  "availability": "waitlist",
   "series": "2e27504605",
   "quality": 4,
   "why": "Short talks on AI governance, followed by drinks.",
@@ -3546,30 +3573,6 @@
   ]
  },
  {
-  "name": "Sentient Futures: AI \u00d7 Non-humans Meetup in London.",
-  "category": "Tech",
-  "description": "",
-  "neighborhood": "Old Street & St Luke's",
-  "price": 0.0,
-  "start_time": "7:00 PM",
-  "end_time": "9:30 PM",
-  "url": "https://luma.com/z71yr5mb",
-  "venue": "",
-  "lat": 51.52433045163134,
-  "lng": -0.08898615390588743,
-  "audience": null,
-  "availability": "waitlist",
-  "series": "01a0fced03",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "ai",
-   "animal welfare",
-   "meetup"
-  ],
-  "flags": []
- },
- {
   "name": "Connection Games Night: Low-Pressure Play, Deep Conversations + Real Connection",
   "category": "Meetups & Mixers",
   "description": "Real connection for curious minds. Monthly socials, drinks, games nights + much more.",
@@ -3595,6 +3598,30 @@
    "networking"
   ],
   "family": "side hustle st. paul's: games night"
+ },
+ {
+  "name": "Sentient Futures: AI \u00d7 Non-humans Meetup in London.",
+  "category": "Tech",
+  "description": "",
+  "neighborhood": "Old Street & St Luke's",
+  "price": 0.0,
+  "start_time": "7:00 PM",
+  "end_time": "9:30 PM",
+  "url": "https://luma.com/z71yr5mb",
+  "venue": "",
+  "lat": 51.52433045163134,
+  "lng": -0.08898615390588743,
+  "audience": null,
+  "availability": "waitlist",
+  "series": "01a0fced03",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "ai",
+   "animal welfare",
+   "meetup"
+  ],
+  "flags": []
  },
  {
   "name": "EDC alumni dinner - London",
@@ -4167,6 +4194,7 @@
   "audience": null,
   "availability": null,
   "series": "eec78255af",
+  "recurring": "Also on other days",
   "quality": 7,
   "why": "Edinburgh Fringe sellout ROLEPLAY transfers to Soho Theatre.",
   "topics": [
@@ -4362,30 +4390,6 @@
   "flags": []
  },
  {
-  "name": "Naza",
-  "category": "Film",
-  "description": "\"We made this film out of a sense of obligation to use our position as Israelis to examine the systems behind the mass killing of Palestinian civilians for which our country is\u2026. Dir. Yuval Abraham & Rachel Szor, 80 min.",
-  "neighborhood": "Dalston Kingsland",
-  "price": null,
-  "start_time": "9:00 PM",
-  "end_time": null,
-  "url": "https://riocinema.org.uk/Rio.dll/WhatsOn?f=2949342",
-  "venue": "Rio Cinema",
-  "lat": 51.5496,
-  "lng": -0.0756,
-  "audience": null,
-  "availability": null,
-  "series": "c16cf59f5b",
-  "quality": 7,
-  "why": "Israeli filmmakers examine the systems behind mass killings in Gaza.",
-  "topics": [
-   "documentary",
-   "gaza",
-   "israeli filmmakers"
-  ],
-  "flags": []
- },
- {
   "name": "Fatherland",
   "category": "Film",
   "description": "At the height of the Cold War, the writer Thomas Mann and his daughter\u2014actress, writer, and rally driver\u2014Erika embark on a road trip in a black Buick cruiser across a divided\u2026. Dir. Pawe\u0142 Pawlikowski, 82 min. Showtimes today: 6:45 PM, 8:45 PM.",
@@ -4409,6 +4413,31 @@
   ],
   "flags": [],
   "subject": "Fatherland (2024 film)"
+ },
+ {
+  "name": "Naza",
+  "category": "Film",
+  "description": "\"We made this film out of a sense of obligation to use our position as Israelis to examine the systems behind the mass killing of Palestinian civilians for which our country is\u2026. Dir. Yuval Abraham & Rachel Szor, 80 min.",
+  "neighborhood": "Dalston Kingsland",
+  "price": null,
+  "start_time": "9:00 PM",
+  "end_time": null,
+  "url": "https://riocinema.org.uk/Rio.dll/WhatsOn?f=2949342",
+  "venue": "Rio Cinema",
+  "lat": 51.5496,
+  "lng": -0.0756,
+  "audience": null,
+  "availability": null,
+  "series": "c16cf59f5b",
+  "recurring": "Also on other days",
+  "quality": 7,
+  "why": "Israeli filmmakers examine the systems behind mass killings in Gaza.",
+  "topics": [
+   "documentary",
+   "gaza",
+   "israeli filmmakers"
+  ],
+  "flags": []
  },
  {
   "name": "Shaun The Sheep: The Beast Of Mossy Bottom",
@@ -4611,31 +4640,6 @@
   "flags": []
  },
  {
-  "name": "Ghosts: The Possession of Button House",
-  "category": "Film",
-  "description": "The beloved and award-winning BBC comedy GHOSTS arrives on the big screen this Halloween. Starring writers and creators Mathew Baynton, Simon Farnaby, Martha Howe-Douglas, Jim\u2026. Dir. Simon Hynd, 97 min.",
-  "neighborhood": "Brondesbury Park",
-  "price": null,
-  "start_time": "6:00 PM",
-  "end_time": null,
-  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10229646",
-  "venue": "The Lexi Cinema",
-  "lat": 51.5375,
-  "lng": -0.2225,
-  "audience": null,
-  "availability": null,
-  "series": "270064b438",
-  "quality": 5,
-  "why": "",
-  "topics": [
-   "comedy",
-   "halloween",
-   "tv spin-off"
-  ],
-  "flags": [],
-  "subject": "Ghosts (British TV series)"
- },
- {
   "name": "Forgotten Island",
   "category": "Film",
   "description": "DreamWorks Animation, the studio that brought you unforgettable bonds between a boy and a dragon in How to Train Your Dragon, an ogre and a donkey in Shrek, and a robot and a\u2026. Dir. Joel Crawford and Januel Mercado, 109 min. Showtimes today: 12:40 PM, 3:20 PM.",
@@ -4659,31 +4663,6 @@
   "flags": [
    "kids"
   ]
- },
- {
-  "name": "Naza",
-  "category": "Film",
-  "description": "For the screening on Saturday 17th October, there will be a Q&A with the film's producer, James Wilson. Shot at night on the rooftops of Tel Aviv, the film reveals in detail the\u2026. Dir. Yuval Abraham, Rachel Szor, 80 min. Showtimes today: 3:30 PM, 6:15 PM.",
-  "neighborhood": "Brondesbury Park",
-  "price": null,
-  "start_time": "6:15 PM",
-  "end_time": null,
-  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10216488",
-  "venue": "The Lexi Cinema",
-  "lat": 51.5375,
-  "lng": -0.2225,
-  "audience": null,
-  "availability": null,
-  "series": "2fa74dad50",
-  "recurring": "Also on other days",
-  "quality": 6,
-  "why": "Night-shot Tel Aviv rooftop documentary, with producer James Wilson Q&A.",
-  "topics": [
-   "film",
-   "documentary",
-   "q&a"
-  ],
-  "flags": []
  },
  {
   "name": "Shaun the Sheep: The Beast of Mossy Bottom",
@@ -4710,6 +4689,56 @@
   "flags": [
    "kids"
   ]
+ },
+ {
+  "name": "Ghosts: The Possession of Button House",
+  "category": "Film",
+  "description": "The beloved and award-winning BBC comedy GHOSTS arrives on the big screen this Halloween. Starring writers and creators Mathew Baynton, Simon Farnaby, Martha Howe-Douglas, Jim\u2026. Dir. Simon Hynd, 97 min.",
+  "neighborhood": "Brondesbury Park",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": null,
+  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10229646",
+  "venue": "The Lexi Cinema",
+  "lat": 51.5375,
+  "lng": -0.2225,
+  "audience": null,
+  "availability": null,
+  "series": "270064b438",
+  "quality": 5,
+  "why": "",
+  "topics": [
+   "comedy",
+   "halloween",
+   "tv spin-off"
+  ],
+  "flags": [],
+  "subject": "Ghosts (British TV series)"
+ },
+ {
+  "name": "Naza",
+  "category": "Film",
+  "description": "For the screening on Saturday 17th October, there will be a Q&A with the film's producer, James Wilson. Shot at night on the rooftops of Tel Aviv, the film reveals in detail the\u2026. Dir. Yuval Abraham, Rachel Szor, 80 min. Showtimes today: 3:30 PM, 6:15 PM.",
+  "neighborhood": "Brondesbury Park",
+  "price": null,
+  "start_time": "6:15 PM",
+  "end_time": null,
+  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10216488",
+  "venue": "The Lexi Cinema",
+  "lat": 51.5375,
+  "lng": -0.2225,
+  "audience": null,
+  "availability": null,
+  "series": "2fa74dad50",
+  "recurring": "Also on other days",
+  "quality": 6,
+  "why": "Night-shot Tel Aviv rooftop documentary, with producer James Wilson Q&A.",
+  "topics": [
+   "film",
+   "documentary",
+   "q&a"
+  ],
+  "flags": []
  },
  {
   "name": "Sense and Sensibility",
@@ -4762,31 +4791,6 @@
   "flags": []
  },
  {
-  "name": "The Shining [UK Version]",
-  "category": "Film",
-  "description": "1980, 119mins.",
-  "neighborhood": "Strand, St James & Mayfair",
-  "price": null,
-  "start_time": "3:00 PM",
-  "end_time": null,
-  "url": "https://princecharlescinema.com/film/1865481/the-shining-uk-version",
-  "venue": "Prince Charles Cinema",
-  "lat": 51.5115,
-  "lng": -0.1302,
-  "audience": null,
-  "availability": null,
-  "series": "53ad9bf932",
-  "quality": 7,
-  "why": "Kubrick's The Shining in the UK cut, on a repertory screen.",
-  "topics": [
-   "horror",
-   "kubrick",
-   "repertory"
-  ],
-  "flags": [],
-  "subject": "The Shining (film)"
- },
- {
   "name": "The Exorcist (Extended Cut)",
   "category": "Film",
   "description": "1973, 132mins.",
@@ -4810,6 +4814,32 @@
   ],
   "flags": [],
   "subject": "The Exorcist"
+ },
+ {
+  "name": "The Shining [UK Version]",
+  "category": "Film",
+  "description": "1980, 119mins.",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "3:00 PM",
+  "end_time": null,
+  "url": "https://princecharlescinema.com/film/1865481/the-shining-uk-version",
+  "venue": "Prince Charles Cinema",
+  "lat": 51.5115,
+  "lng": -0.1302,
+  "audience": null,
+  "availability": null,
+  "series": "53ad9bf932",
+  "recurring": "Also on other days",
+  "quality": 7,
+  "why": "Kubrick's The Shining in the UK cut, on a repertory screen.",
+  "topics": [
+   "horror",
+   "kubrick",
+   "repertory"
+  ],
+  "flags": [],
+  "subject": "The Shining (film)"
  },
  {
   "name": "Possession",
@@ -5027,7 +5057,7 @@
   "audience": null,
   "availability": null,
   "series": "a8acb019ef",
-  "recurring": "Every Wednesday",
+  "recurring": "Also on other days",
   "quality": 6,
   "why": "Georgia Oakley's new Austen adaptation, following her acclaimed Blue Jean.",
   "topics": [
@@ -5053,7 +5083,7 @@
   "audience": null,
   "availability": null,
   "series": "88f17aad3e",
-  "recurring": "Every Wednesday",
+  "recurring": "Also on other days",
   "quality": 6,
   "why": "Night-shot film on Israel's targeting systems by journalist Yuval Abraham.",
   "topics": [
@@ -5153,7 +5183,7 @@
   "audience": null,
   "availability": null,
   "series": "57c1a65110",
-  "recurring": "Every Wednesday",
+  "recurring": "Also on other days",
   "quality": 7,
   "why": "Aaron Sorkin's original screenplay on Frances Haugen's Facebook whistleblowing.",
   "topics": [
@@ -5545,6 +5575,37 @@
   "flags": []
  },
  {
+  "name": "Audrey Niffenegger in conversation with Steven Moffat at Conway Hall",
+  "category": "Talks",
+  "description": "Join us for an unforgettable evening as we celebrate Audrey Neffenger\u2019s long-awaited sequel to The Time Traveler's Wife, Life Out of Order.",
+  "neighborhood": "Holborn, St Giles & Bloomsbury South",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "8:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/audrey-niffenegger-in-conversation-with-steven-moffat-at-conway-hall-tickets-1998895914489",
+  "venue": "Conway Hall",
+  "lat": 51.5197347,
+  "lng": -0.1183032,
+  "audience": null,
+  "availability": null,
+  "series": "308f286c1a",
+  "quality": 9,
+  "why": "Niffenegger and Moffat discuss her long-awaited sequel, Life Out of Order.",
+  "topics": [
+   "books",
+   "literature",
+   "talks"
+  ],
+  "flags": [],
+  "subject": "Audrey Niffenegger",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/AudreyNiffenegger.jpg/960px-AudreyNiffenegger.jpg",
+  "image_credit": {
+   "by": "Michael Strong",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:AudreyNiffenegger.jpg"
+  }
+ },
+ {
   "name": "Dinner and a Show at the Roses (A/W 26)",
   "category": "Food & Drink",
   "description": "Dinner and a Show this September with Don One.",
@@ -5700,84 +5761,28 @@
   "family": "pear tree cafe: pumpkin carving"
  },
  {
-  "name": "Bakery Academy: Halloween Brownies - Kingston",
+  "name": "A Night of Wine & Truffle",
   "category": "Food & Drink",
-  "description": "Little bakers are invited to step into the kitchen and get creative this Halloween as they make and decorate their very own spooky brownies.",
-  "neighborhood": "Kingston Riverside",
+  "description": "Indulge in an exclusive evening celebrating the irresistible pairing of exceptional Borgogno Italian wine and Savini truffle.",
+  "neighborhood": "City of London",
   "price": null,
-  "start_time": "3:30 PM",
-  "end_time": "4:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/bakery-academy-halloween-brownies-kingston-tickets-2000621752517",
-  "venue": "Fenwick Kingston",
-  "lat": 51.41225679999999,
-  "lng": -0.3046104,
+  "start_time": "6:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/a-night-of-wine-truffle-tickets-2003395185931",
+  "venue": "Eataly London",
+  "lat": 51.5178605,
+  "lng": -0.0804078,
   "audience": null,
   "availability": null,
-  "series": "fab4295f6d",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "baking",
-   "children",
-   "halloween"
-  ],
-  "flags": [
-   "kids",
-   "class_slot",
-   "service"
-  ],
-  "family": "bakery academy: kids baking class"
- },
- {
-  "name": "Gluten-Free Food Tour - London",
-  "category": "Tours",
-  "description": "100% Gluten-Free food tour of London. | Coeliac (Celiac) safe! | Shoreditch/East London Route.",
-  "neighborhood": "Shoreditch",
-  "price": null,
-  "start_time": "11:00 AM",
-  "end_time": "2:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/gluten-free-food-tour-london-tickets-1914220327529",
-  "venue": "Shoreditch",
-  "lat": 51.5229106,
-  "lng": -0.0777472,
-  "audience": null,
-  "availability": null,
-  "series": "e39d00e5d8",
-  "recurring": "Every Wednesday",
+  "series": "ed912b344c",
   "quality": 4,
-  "why": "",
-  "topics": [
-   "food tour",
-   "gluten-free",
-   "shoreditch"
-  ],
-  "flags": [],
-  "family": "gluten-free food tour: food tour"
- },
- {
-  "name": "The Path Less Travelled",
-  "category": "Food & Drink",
-  "description": "Five wines that challenge convention. A tasting of wines from iconic producers and newer names who are doing things a little differently.",
-  "neighborhood": "Haggerston East",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/the-path-less-travelled-tickets-2002746689260",
-  "venue": "Blinds",
-  "lat": 51.5312204,
-  "lng": -0.0679393,
-  "audience": null,
-  "availability": null,
-  "series": "9a180aa983",
-  "quality": 4,
-  "why": "",
+  "why": "Borgogno wines paired with Savini truffle dishes at Eataly.",
   "topics": [
    "wine",
-   "tasting",
-   "food and drink"
+   "truffle",
+   "food"
   ],
-  "flags": [],
-  "family": "blinds: wine tasting"
+  "flags": []
  },
  {
   "name": "Nature Within: How the Natural World Shapes Our Minds, Bodies & Health",
@@ -6007,6 +6012,106 @@
   ]
  },
  {
+  "name": "Girls Into Coding Event. A day of Creative Design, Engineering, & Coding",
+  "category": "Tech",
+  "description": "Girls Into Coding Event - A day of creative design, Engineering, and coding!",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "10:00 AM",
+  "end_time": "4:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/girls-into-coding-event-a-day-of-creative-design-engineering-coding-tickets-2002502378520",
+  "venue": "Makerversity",
+  "lat": 51.51078949999999,
+  "lng": -0.1166499,
+  "audience": null,
+  "availability": null,
+  "series": "f7b4d272dc",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "coding",
+   "girls",
+   "workshop"
+  ],
+  "flags": [
+   "kids"
+  ]
+ },
+ {
+  "name": "Nature of Things: a Salon for Curious Minds ft Kyle Lischak, ClientEarth",
+  "category": "Tech",
+  "description": "Interested in law? Interested in nature? Want to find out more about how the law can work to protect the planet? Join us!",
+  "neighborhood": "Westbourne",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/nature-of-things-a-salon-for-curious-minds-ft-kyle-lischak-clientearth-tickets-2003121805242",
+  "venue": "Brunel Happy Hub",
+  "lat": 51.5196491,
+  "lng": -0.1961309,
+  "audience": null,
+  "availability": null,
+  "series": "02473f2fa8",
+  "quality": 4,
+  "why": "A salon with ClientEarth on using law to protect the planet.",
+  "topics": [
+   "law",
+   "environment",
+   "nature"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Lecture by Glenn Schwartz on Kurd Qaburstan excavations",
+  "category": "Tech",
+  "description": "Urbanism in Second Millennium BC Northern Mesopotamia: Recent Results from Kurd Qaburstan (Ancient Qabra) register for online participation",
+  "neighborhood": "Fitzrovia East & Bloomsbury West",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/lecture-by-glenn-schwartz-on-kurd-qaburstan-excavations-tickets-2002103875587",
+  "venue": "Bentham House",
+  "lat": 51.5265345,
+  "lng": -0.1310693,
+  "audience": null,
+  "availability": null,
+  "series": "861b3a0f92",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "archaeology",
+   "mesopotamia",
+   "academic lecture"
+  ],
+  "flags": [
+   "online"
+  ]
+ },
+ {
+  "name": "Truth in 10 presentation",
+  "category": "Tech",
+  "description": "The \u2018Truth in 10\u2019 is a talk developed by Al Gore as part of his global education programme on climate change.",
+  "neighborhood": "Twickenham Town",
+  "price": null,
+  "start_time": "4:30 PM",
+  "end_time": "5:30 PM",
+  "url": "https://www.eventbrite.com/e/truth-in-10-presentation-tickets-2001891510397",
+  "venue": "Twickenham Library",
+  "lat": 51.4477117,
+  "lng": -0.3277792,
+  "audience": null,
+  "availability": null,
+  "series": "2078bd791d",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "climate",
+   "talk",
+   "education"
+  ],
+  "flags": []
+ },
+ {
   "name": "Ecstatic Dance UK \u2022 The Evening Sessions",
   "category": "Classes & Workshops",
   "description": "Now weekly at our home in Hackney - EDUK Presents, THE EVENING SESSIONS - Dive even deeper with us into the night with tonnes more space!",
@@ -6060,6 +6165,31 @@
   "family": "royal institution: children's workshop"
  },
  {
+  "name": "Knit Social Club",
+  "category": "Classes & Workshops",
+  "description": "Bring a project, make a friend!",
+  "neighborhood": "Shepherd's Bush North",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/knit-social-club-tickets-2002826528060",
+  "venue": "The Bush Tavern",
+  "lat": 51.502862,
+  "lng": -0.223956,
+  "audience": null,
+  "availability": null,
+  "series": "159fbc77d0",
+  "quality": 4,
+  "why": "A casual knitting social night for bringing your own project.",
+  "topics": [
+   "knitting",
+   "social",
+   "crafts"
+  ],
+  "flags": [],
+  "family": "knit social club: knitting social"
+ },
+ {
   "name": "Wild Life Drawing: Amazing Owls",
   "category": "Classes & Workshops",
   "description": "Join us for a spooky drawing session with a selection of amazing owls!",
@@ -6083,6 +6213,34 @@
   ],
   "flags": [],
   "family": "london wildlife trust: wildlife drawing"
+ },
+ {
+  "name": "MOVE WITH CONFIDENCE- THE MUMS AND BUBS EDITION!",
+  "category": "Classes & Workshops",
+  "description": "MOVE TOGETHER. LAUGH TOGETHER. GET STRONGER TOGETHER. A POSTPARTUM FITNESS CLASS FOR MUMS AND THEIR BUBS.",
+  "neighborhood": "Walthamstow Market & South Grove",
+  "price": null,
+  "start_time": "10:30 AM",
+  "end_time": "11:30 AM",
+  "url": "https://www.eventbrite.co.uk/e/move-with-confidence-the-mums-and-bubs-edition-tickets-2002493464859",
+  "venue": "CRATE Walthamstow",
+  "lat": 51.5829336,
+  "lng": -0.0240039,
+  "audience": null,
+  "availability": null,
+  "series": "2104c4b4bf",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "fitness",
+   "postpartum",
+   "parenting"
+  ],
+  "flags": [
+   "class_slot",
+   "kids"
+  ],
+  "family": "crate: fitness class promo"
  },
  {
   "name": "Downton Abbey: Lady Mary's London Walking Tour",
@@ -6208,6 +6366,80 @@
   ],
   "flags": [],
   "family": "walking tour operator: themed walk"
+ },
+ {
+  "name": "The London Serial Killers Tour",
+  "category": "Tours",
+  "description": "Like any city, London has a dark side. Venture off the beaten track and discover the true characters, stories and theories of our past.",
+  "neighborhood": "City of London",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/the-london-serial-killers-tour-tickets-1983332073622",
+  "venue": "Barbican",
+  "lat": 51.5202192,
+  "lng": -0.09767709999999999,
+  "audience": null,
+  "availability": null,
+  "series": "1b21055a8e",
+  "recurring": "Also on other days",
+  "quality": 5,
+  "why": "Serial killer stories and theories from London's darker past.",
+  "topics": [
+   "true crime",
+   "london history",
+   "walking"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Rock 'n' Roll guided walk in Soho",
+  "category": "Tours",
+  "description": "With over 200 5-star reviews on Tripadvisor, this walk will give you the history of Rock n Roll in Soho, from the Beatles to Amy Winehouse!",
+  "neighborhood": "Fitzrovia West & Soho",
+  "price": null,
+  "start_time": "3:00 PM",
+  "end_time": "5:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/rock-n-roll-guided-walk-in-soho-tickets-1978878975285",
+  "venue": "6A Vigo St",
+  "lat": 51.5103392,
+  "lng": -0.1392127,
+  "audience": null,
+  "availability": null,
+  "series": "764177fab5",
+  "recurring": "Also on other days",
+  "quality": 5,
+  "why": "Soho's rock history, from the Beatles to Amy Winehouse.",
+  "topics": [
+   "rock music",
+   "soho",
+   "music history"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Passing the Baton - Panel Talk on Running (Putney)",
+  "category": "Talks",
+  "description": "Passing the Baton is a new evening series by Relay, bringing together runners, designers, and urban safety advocates.",
+  "neighborhood": "Putney Embankment & Lower Common",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/passing-the-baton-panel-talk-on-running-putney-tickets-2003666794319",
+  "venue": "The Clubhouse",
+  "lat": 51.46802719999999,
+  "lng": -0.2181646,
+  "audience": null,
+  "availability": null,
+  "series": "3382f88c01",
+  "quality": 4,
+  "why": "A panel on running and urban safety, first of a new series.",
+  "topics": [
+   "running",
+   "urban design",
+   "road safety"
+  ],
+  "flags": []
  },
  {
   "name": "New Encounters with Rotimi Fani-Kayode: Book Launch and Talk",
@@ -6372,8 +6604,8 @@
   "description": "A special film screening and discussion exploring how communities come together to imagine and build alternative futures.",
   "neighborhood": "Lloyd Park",
   "price": null,
-  "start_time": "7:00 PM",
-  "end_time": null,
+  "start_time": "6:00 PM",
+  "end_time": "8:30 PM",
   "url": "https://www.eventbrite.co.uk/e/tomorrow-is-built-today-with-tim-oshodi-and-abel-holsborough-tickets-2002712732695",
   "venue": "William Morris Gallery",
   "lat": 51.5902456,
@@ -6494,30 +6726,6 @@
   ],
   "flags": [],
   "family": "small talks: social talks night"
- },
- {
-  "name": "\u2018The Departing Sailor\u2019 \u2013 The Sailor\u2019s Tear and the emotional Jack-Tar",
-  "category": "Talks",
-  "description": "Real men didn't cry \u2013 unless they were sailors. Discover why Jack Tar was the one hero Georgian and Victorian Britain let weep.",
-  "neighborhood": "Stoke Newington North",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/the-departing-sailor-the-sailors-tear-and-the-emotional-jack-tar-tickets-2002970825658",
-  "venue": "Abney Park Cemetery (side gate entrance) Harriet Delph Room, N16 0LH",
-  "lat": 51.56338849999999,
-  "lng": -0.07332369999999999,
-  "audience": null,
-  "availability": null,
-  "series": "924698d3dd",
-  "quality": 5,
-  "why": "",
-  "topics": [
-   "maritime history",
-   "victorian britain",
-   "talks"
-  ],
-  "flags": []
  },
  {
   "name": "The Doris Comedy Club",
@@ -6737,30 +6945,6 @@
    "documentary",
    "jamaican identity",
    "migration"
-  ],
-  "flags": []
- },
- {
-  "name": "Community Cinema at UCL East - New Female Narratives in Chinese Cinema",
-  "category": "Film",
-  "description": "From poetic self-expression to unruly intimacy, two films rethink how Chinese women are seen, heard and represented on screen",
-  "neighborhood": "Mill Meads",
-  "price": null,
-  "start_time": "6:45 PM",
-  "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/community-cinema-at-ucl-east-new-female-narratives-in-chinese-cinema-tickets-2003336347945",
-  "venue": "UCL East Cinema, UCL East",
-  "lat": 51.5382654,
-  "lng": -0.0097532,
-  "audience": null,
-  "availability": null,
-  "series": "ef92720f91",
-  "quality": 5,
-  "why": "",
-  "topics": [
-   "chinese cinema",
-   "women filmmakers",
-   "community screening"
   ],
   "flags": []
  }
