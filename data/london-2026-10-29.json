@@ -1237,7 +1237,7 @@
   "attraction": "K8vZ917KI1V",
   "tm_id": "1AdfZ_eGkzZCFUm",
   "series": "ed7a6a4218",
-  "recurring": "Every Thursday",
+  "recurring": "Also on other days",
   "quality": 4,
   "why": "",
   "topics": [
@@ -2515,7 +2515,7 @@
   "attraction": "K8vZ917uRy0",
   "tm_id": "Z3r9uZKbZL4Ze3x4uZek",
   "series": "fd5099d5e0",
-  "recurring": "Every Thursday",
+  "recurring": "Also on other days",
   "quality": 6,
   "why": "Chekhov's classic play at the Harold Pinter Theatre.",
   "topics": [
@@ -2747,11 +2747,11 @@
  {
   "name": "Thursday Comedy Club London | Covent Garden",
   "category": "Comedy",
-  "description": "",
+  "description": "Award-winning international comedy club in London, with live stand up shows in the heart of Covent Garden.",
   "neighborhood": "Holborn, St Giles & Bloomsbury South",
   "price": null,
   "start_time": "8:00 PM",
-  "end_time": null,
+  "end_time": "10:00 PM",
   "url": "https://www.universe.com/events/thursday-comedy-club-london-covent-garden-tickets-5MFLQ4?ref=ticketmaster",
   "venue": "Comedy Carnival Covent Garden",
   "lat": 51.5137413,
@@ -2759,7 +2759,6 @@
   "audience": null,
   "availability": null,
   "attraction": "K8vZ917r79f",
-  "tm_id": "LvZ18QP_17PXKFDz8yb0K",
   "series": "b186561e58",
   "recurring": "Every Thursday",
   "quality": 4,
@@ -2789,7 +2788,7 @@
   "attraction": "K8vZ917r79f",
   "tm_id": "LvZ18QbHV12nhYZZvfFpz",
   "series": "48a6bf49cc",
-  "recurring": "Every Thursday",
+  "recurring": "Also on other days",
   "quality": 4,
   "why": "International stand-up showcase; no performers named.",
   "topics": [
@@ -3049,7 +3048,7 @@
   "lat": 51.525692199999995,
   "lng": -0.0824866,
   "audience": null,
-  "availability": null,
+  "availability": "waitlist",
   "series": "5920e392e2",
   "quality": 3,
   "why": "",
@@ -3349,6 +3348,31 @@
   "family": "rev/tech ops: industry meetup"
  },
  {
+  "name": "The Forge Salon 001",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Somers Town",
+  "price": 5.0,
+  "start_time": "5:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://luma.com/h69ui33m",
+  "venue": "Mare Street Market King's Cross",
+  "lat": 51.536983199999995,
+  "lng": -0.12627539999999998,
+  "audience": null,
+  "availability": null,
+  "series": "d359a1a1ce",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "salon",
+   "community",
+   "talks"
+  ],
+  "flags": [],
+  "family": "the forge: salon"
+ },
+ {
   "name": "Scientific and Financial Computing Mixer",
   "category": "Meetups & Mixers",
   "description": "",
@@ -3374,31 +3398,6 @@
   "flags": [
    "networking"
   ]
- },
- {
-  "name": "The Forge Salon 001",
-  "category": "Meetups & Mixers",
-  "description": "",
-  "neighborhood": "Somers Town",
-  "price": 5.0,
-  "start_time": "5:30 PM",
-  "end_time": "9:30 PM",
-  "url": "https://luma.com/h69ui33m",
-  "venue": "Mare Street Market King's Cross",
-  "lat": 51.536983199999995,
-  "lng": -0.12627539999999998,
-  "audience": null,
-  "availability": null,
-  "series": "d359a1a1ce",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "salon",
-   "community",
-   "talks"
-  ],
-  "flags": [],
-  "family": "the forge: salon"
  },
  {
   "name": "Commit & AWS | Halloween Party",
@@ -3440,7 +3439,7 @@
   "lat": 51.5274022,
   "lng": -0.10807649999999999,
   "audience": null,
-  "availability": "waitlist",
+  "availability": null,
   "series": "a0cddbf439",
   "quality": 4,
   "why": "Community dialogue series on diaspora identity and belonging, free to attend.",
@@ -3559,32 +3558,31 @@
   "family": "potato pottery: workshop"
  },
  {
-  "name": "Well Glow Girls: Karaoke Night \ud83c\udfa4\u2728",
+  "name": "Women in AI Safety and Ethics (WISE) London - Women in Responsible AI Halloween Meet-up \ud83c\udf83",
   "category": "Tech",
-  "description": "A curated circle for international women building something of their own while living in a way that feels well. For founders, creators, and women in their growth era.",
-  "neighborhood": "Strand, St James & Mayfair",
+  "description": "",
+  "neighborhood": "Somers Town",
   "price": 0.0,
   "start_time": "6:00 PM",
-  "end_time": "8:00 PM",
-  "url": "https://luma.com/zuhg3x5d",
+  "end_time": "9:00 PM",
+  "url": "https://luma.com/ca7h71x8",
   "venue": "",
-  "lat": 51.508231216978125,
-  "lng": -0.13177440826274653,
+  "lat": 51.534203161597176,
+  "lng": -0.12282046412237035,
   "audience": null,
   "availability": null,
-  "series": "23219f2767",
+  "series": "71f89d0bc7",
   "quality": 2,
   "why": "",
   "topics": [
-   "karaoke",
-   "women",
+   "ai ethics",
+   "halloween",
    "networking"
   ],
   "flags": [
-   "networking",
-   "members_only"
+   "networking"
   ],
-  "family": "well glow girls: karaoke night"
+  "family": "women in ai safety and ethics (wise) london: meetup"
  },
  {
   "name": "Business with a Cause: Understanding Social Entrepreneurship",
@@ -3719,6 +3717,33 @@
   "family": "soho theatre: supper club"
  },
  {
+  "name": "YIPA Pub Takeover",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": 0.0,
+  "start_time": "6:30 PM",
+  "end_time": "10:00 PM",
+  "url": "https://luma.com/o54mh3mh",
+  "venue": "Theodore Bullfrog",
+  "lat": 51.508763599999995,
+  "lng": -0.12387640000000001,
+  "audience": null,
+  "availability": null,
+  "series": "ceafd1e6b7",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "pub",
+   "meetup",
+   "social"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "family": "yipa: pub meetup"
+ },
+ {
   "name": "A very spooky MATS X LISA happy hour",
   "category": "Tech",
   "description": "Our mission is to build the ecosystem needed to safely navigate transformative AI, by improving the capacity, capability and cooperation of the AI safety field.",
@@ -3747,8 +3772,8 @@
  },
  {
   "name": "Close Quarters: London Social",
-  "category": "Tech",
-  "description": "Helping men grow, lead and thrive in technology and AI \ud83d\udc51",
+  "category": "Meetups & Mixers",
+  "description": "Execute Faster Together",
   "neighborhood": "Columbia Road",
   "price": 0.0,
   "start_time": "7:00 PM",
@@ -3874,6 +3899,32 @@
   ],
   "flags": [],
   "family": "the boardgays: board game night"
+ },
+ {
+  "name": "Mazal Nights",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Primrose Hill",
+  "price": 0.0,
+  "start_time": "7:30 PM",
+  "end_time": null,
+  "url": "https://luma.com/du6547mg",
+  "venue": "MAZAL London",
+  "lat": 51.5417287,
+  "lng": -0.14508179999999998,
+  "audience": null,
+  "availability": null,
+  "series": "e38050b5a5",
+  "recurring": "Every Thursday",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "social",
+   "community",
+   "nightlife"
+  ],
+  "flags": [],
+  "family": "mazal london: social night"
  },
  {
   "name": "\"88\"",
@@ -4214,7 +4265,7 @@
   "audience": null,
   "availability": null,
   "series": "ce3e5e630c",
-  "recurring": "Every Thursday",
+  "recurring": "Also on other days",
   "quality": 5,
   "why": "ICA film screening; the listing gives too little detail to judge.",
   "topics": [
@@ -4264,6 +4315,7 @@
   "audience": null,
   "availability": null,
   "series": "86fedbaa2b",
+  "recurring": "Also on other days",
   "quality": 7,
   "why": "Pawlikowski's Berlin 1964 drama with Sandra H\u00fcller, at the ICA.",
   "topics": [
@@ -4288,6 +4340,7 @@
   "audience": null,
   "availability": null,
   "series": "72af6e8f6d",
+  "recurring": "Also on other days",
   "quality": 7,
   "why": "Lee Chang-dong's new 164-minute drama starring Jeon Do-yeon.",
   "topics": [
@@ -4385,6 +4438,7 @@
   "audience": null,
   "availability": null,
   "series": "78061eecb3",
+  "recurring": "Also on other days",
   "quality": 5,
   "why": "",
   "topics": [
@@ -4644,6 +4698,7 @@
   "audience": null,
   "availability": null,
   "series": "085bfee64e",
+  "recurring": "Also on other days",
   "quality": 8,
   "why": "Pawlikowski's Thomas Mann road-trip drama starring Sandra H\u00fcller, at Rio.",
   "topics": [
@@ -4745,6 +4800,7 @@
   "audience": null,
   "availability": null,
   "series": "767f1d5afa",
+  "recurring": "Also on other days",
   "quality": 8,
   "why": "Pawlikowski's road drama, Thomas Mann and daughter through postwar Germany.",
   "topics": [
@@ -4754,30 +4810,6 @@
   ],
   "flags": [],
   "subject": "Fatherland (2024 film)"
- },
- {
-  "name": "Com\u00e9die-Fran\u00e7aise",
-  "category": "Film",
-  "description": "At the Com\u00e9die-Fran\u00e7aise, there is one golden rule: the play is never canceled. Unfortunately for Nina, everything else is\u2014just three hours before the premiere of her first\u2026. Dir. Bertrand Usclat & Martin Darondeau, 75 min.",
-  "neighborhood": "East Finchley",
-  "price": null,
-  "start_time": "5:15 PM",
-  "end_time": null,
-  "url": "https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=759794",
-  "venue": "Phoenix Cinema",
-  "lat": 51.5885,
-  "lng": -0.1637,
-  "audience": null,
-  "availability": null,
-  "series": "bddd497984",
-  "quality": 5,
-  "why": "Documentary following the Com\u00e9die-Fran\u00e7aise theatre company in Paris.",
-  "topics": [
-   "film",
-   "theatre",
-   "documentary"
-  ],
-  "flags": []
  },
  {
   "name": "The Yellow Tie",
@@ -4830,6 +4862,30 @@
   "flags": []
  },
  {
+  "name": "Com\u00e9die-Fran\u00e7aise",
+  "category": "Film",
+  "description": "At the Com\u00e9die-Fran\u00e7aise, there is one golden rule: the play is never canceled. Unfortunately for Nina, everything else is\u2014just three hours before the premiere of her first\u2026. Dir. Bertrand Usclat & Martin Darondeau, 75 min.",
+  "neighborhood": "East Finchley",
+  "price": null,
+  "start_time": "5:15 PM",
+  "end_time": null,
+  "url": "https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=759794",
+  "venue": "Phoenix Cinema",
+  "lat": 51.5885,
+  "lng": -0.1637,
+  "audience": null,
+  "availability": null,
+  "series": "bddd497984",
+  "quality": 5,
+  "why": "Documentary following the Com\u00e9die-Fran\u00e7aise theatre company in Paris.",
+  "topics": [
+   "film",
+   "theatre",
+   "documentary"
+  ],
+  "flags": []
+ },
+ {
   "name": "Forgotten Island",
   "category": "Film",
   "description": "DreamWorks Animation, the studio that brought you unforgettable bonds between a boy and a dragon in How to Train Your Dragon, an ogre and a donkey in Shrek, and a robot and a\u2026. Dir. Joel Crawford and Januel Mercado, 109 min. Showtimes today: 3:30 PM, 6:00 PM.",
@@ -4844,37 +4900,12 @@
   "audience": null,
   "availability": null,
   "series": "bfe680368b",
+  "recurring": "Also on other days",
   "quality": 2,
   "why": "",
   "topics": [
    "family animation",
    "kids film"
-  ],
-  "flags": [
-   "kids"
-  ]
- },
- {
-  "name": "Shaun the Sheep: The Beast of Mossy Bottom",
-  "category": "Film",
-  "description": "It\u2019s almost Halloween and things start to go wrong when the farmer accidentally destroys the prized pumpkin patch. With a mysterious beast on the loose in the local woods and the\u2026. Dir. Steve Cox, Matthew Walker, 80 min.",
-  "neighborhood": "Brondesbury Park",
-  "price": null,
-  "start_time": "3:45 PM",
-  "end_time": null,
-  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10208418",
-  "venue": "The Lexi Cinema",
-  "lat": 51.5375,
-  "lng": -0.2225,
-  "audience": null,
-  "availability": null,
-  "series": "a71bcc525e",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "family film",
-   "animation",
-   "halloween"
   ],
   "flags": [
    "kids"
@@ -4895,6 +4926,7 @@
   "audience": null,
   "availability": null,
   "series": "270064b438",
+  "recurring": "Also on other days",
   "quality": 5,
   "why": "",
   "topics": [
@@ -4929,6 +4961,32 @@
    "q&a"
   ],
   "flags": []
+ },
+ {
+  "name": "Shaun the Sheep: The Beast of Mossy Bottom",
+  "category": "Film",
+  "description": "It\u2019s almost Halloween and things start to go wrong when the farmer accidentally destroys the prized pumpkin patch. With a mysterious beast on the loose in the local woods and the\u2026. Dir. Steve Cox, Matthew Walker, 80 min.",
+  "neighborhood": "Brondesbury Park",
+  "price": null,
+  "start_time": "3:45 PM",
+  "end_time": null,
+  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10208418",
+  "venue": "The Lexi Cinema",
+  "lat": 51.5375,
+  "lng": -0.2225,
+  "audience": null,
+  "availability": null,
+  "series": "a71bcc525e",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "family film",
+   "animation",
+   "halloween"
+  ],
+  "flags": [
+   "kids"
+  ]
  },
  {
   "name": "The Cycle of Love",
@@ -5119,6 +5177,7 @@
   "audience": null,
   "availability": null,
   "series": "88f17aad3e",
+  "recurring": "Also on other days",
   "quality": 6,
   "why": "Night-shot film on Israel's targeting systems by journalist Yuval Abraham.",
   "topics": [
@@ -5143,6 +5202,7 @@
   "audience": null,
   "availability": null,
   "series": "3b1133b628",
+  "recurring": "Also on other days",
   "quality": 8,
   "why": "Pawlikowski's Thomas Mann road-trip drama starring Sandra H\u00fcller, at the Garden.",
   "topics": [
@@ -5168,6 +5228,7 @@
   "audience": null,
   "availability": null,
   "series": "a8acb019ef",
+  "recurring": "Also on other days",
   "quality": 6,
   "why": "Georgia Oakley's new Austen adaptation, following her acclaimed Blue Jean.",
   "topics": [
@@ -5193,6 +5254,7 @@
   "audience": null,
   "availability": null,
   "series": "5f96c3ff3d",
+  "recurring": "Also on other days",
   "quality": 7,
   "why": "Lee Chang-dong's new 164-minute drama starring Jeon Do-yeon.",
   "topics": [
@@ -5242,6 +5304,7 @@
   "audience": null,
   "availability": null,
   "series": "c0911fb10a",
+  "recurring": "Also on other days",
   "quality": 5,
   "why": "",
   "topics": [
@@ -5266,6 +5329,7 @@
   "audience": null,
   "availability": null,
   "series": "88131de593",
+  "recurring": "Also on other days",
   "quality": 7,
   "why": "Pawlikowski's road drama, Thomas Mann and daughter through postwar Germany.",
   "topics": [
@@ -5290,6 +5354,7 @@
   "audience": null,
   "availability": null,
   "series": "62dab82bff",
+  "recurring": "Also on other days",
   "quality": 5,
   "why": "",
   "topics": [
@@ -5321,6 +5386,31 @@
    "documentary",
    "middle east",
    "film"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Angel Comedy RAW Thursdays (Free)",
+  "category": "Comedy",
+  "description": "Stand-up from Angel Comedy at The Camden Head.",
+  "neighborhood": "Angel",
+  "price": 0.0,
+  "start_time": "7:30 PM",
+  "end_time": null,
+  "url": "https://www.angelcomedy.co.uk/event-detail/angel-comedy-raw-thursdays-free-thu-29th-oct-the-camden-head-london-tickets-202610291930",
+  "venue": "The Camden Head (Angel Comedy)",
+  "lat": 51.5356,
+  "lng": -0.1029,
+  "audience": null,
+  "availability": null,
+  "series": "9cfa053636",
+  "recurring": "Every Thursday",
+  "quality": 5,
+  "why": "Free weekly stand-up from Angel Comedy's RAW night.",
+  "topics": [
+   "comedy",
+   "free night",
+   "stand-up"
   ],
   "flags": []
  },
@@ -5378,6 +5468,31 @@
    "license": "CC BY 4.0",
    "url": "https://commons.wikimedia.org/wiki/File:2025_01_25_Sundance_Film_Festival-41_Full_(cropped).jpg"
   }
+ },
+ {
+  "name": "Manor Mantra Music",
+  "category": "Arts & Play",
+  "description": "Kirtan is a mix of music, mantra, meditation and dance that reawakens your spirituality and nourishes your mind, body",
+  "neighborhood": null,
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "8:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/manor-mantra-music-tickets-1988901041555",
+  "venue": "Hare Krishna Temple - ISKCON",
+  "lat": 51.6612304,
+  "lng": -0.3471715,
+  "audience": null,
+  "availability": null,
+  "series": "65270c8a3e",
+  "recurring": "Every Thursday",
+  "quality": 6,
+  "why": "Kirtan chanting, music and meditation at ISKCON's Hare Krishna Temple.",
+  "topics": [
+   "kirtan",
+   "meditation",
+   "music"
+  ],
+  "flags": []
  },
  {
   "name": "Gozadera UK Events",
@@ -5537,28 +5652,29 @@
   "family": "lesbian supper club: wine night"
  },
  {
-  "name": "The Halloween Rave 2026 | Ministry of Sound",
+  "name": "THIRSTY THURSDAYS",
   "category": "Meetups & Mixers",
-  "description": "The Halloween Rave 2026 Ministry of Sound Club London's Biggest Annual Halloween Rave",
-  "neighborhood": "Borough & Southwark Street",
+  "description": "THURSDAY IS THE NEW FRIDAY!",
+  "neighborhood": "Shoreditch",
   "price": null,
-  "start_time": "10:00 PM",
-  "end_time": null,
-  "url": "https://www.eventbrite.co.uk/e/the-halloween-rave-2026-ministry-of-sound-tickets-2002932688589",
-  "venue": "Ministry of Sound",
-  "lat": 51.49775299999999,
-  "lng": -0.0995382,
+  "start_time": "5:00 PM",
+  "end_time": "11:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/thirsty-thursdays-tickets-1851189279969",
+  "venue": "Boxpark Shoreditch",
+  "lat": 51.52350799999999,
+  "lng": -0.07644730000004074,
   "audience": null,
   "availability": null,
-  "series": "79588b2844",
-  "quality": 6,
-  "why": "Ministry of Sound's annual Halloween rave, a one-night event.",
+  "series": "82906cd40f",
+  "quality": 3,
+  "why": "",
   "topics": [
-   "clubbing",
-   "halloween",
-   "electronic music"
+   "happy hour",
+   "drinks",
+   "thursday"
   ],
-  "flags": []
+  "flags": [],
+  "family": "boxpark shoreditch: happy hour"
  },
  {
   "name": "Brompton Cemetery Nature Roadshows",
@@ -5586,6 +5702,31 @@
    "kids"
   ],
   "family": "friends of brompton cemetery: nature activities"
+ },
+ {
+  "name": "Beso Beso - Latin & Reggaeton Thursdays at Paloma Chelsea",
+  "category": "Meetups & Mixers",
+  "description": "The Thursday night Reggaeton party every week at Paloma Chelsea. Chelsea sophistication with the spirit of Latin nightlife.",
+  "neighborhood": "South Kensington",
+  "price": null,
+  "start_time": "11:00 PM",
+  "end_time": null,
+  "url": "https://www.eventbrite.co.uk/e/beso-beso-latin-reggaeton-thursdays-at-paloma-chelsea-tickets-1986934758349",
+  "venue": "Paloma Chelsea",
+  "lat": 51.4924025,
+  "lng": -0.1780021,
+  "audience": null,
+  "availability": null,
+  "series": "3a1c926199",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "reggaeton",
+   "latin",
+   "club night"
+  ],
+  "flags": [],
+  "family": "paloma chelsea: reggaeton night"
  },
  {
   "name": "GET THE KIDS IN THE KITCHEN: HALLOWEEN SPECIAL",
@@ -5900,6 +6041,55 @@
   "family": "against the grain taproom + cidery: cider tasting"
  },
  {
+  "name": "An Evening with East London Liquor Co.",
+  "category": "Food & Drink",
+  "description": "Join us as we get to dram our way around the East London Liquor Co, led by Sam Garbutt, Head of whisky.",
+  "neighborhood": "Lower Sydenham",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/an-evening-with-east-london-liquor-co-tickets-1992280828589",
+  "venue": "Ignition Brewery",
+  "lat": 51.4259783,
+  "lng": -0.0513842,
+  "audience": null,
+  "availability": null,
+  "series": "4bc05abe86",
+  "quality": 5,
+  "why": "Whisky tasting led by East London Liquor Co.'s head of whisky, Sam Garbutt.",
+  "topics": [
+   "whisky",
+   "tasting",
+   "gin"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Colomiban fundraiser - Pour over workshop.",
+  "category": "Classes & Workshops",
+  "description": "Master caf\u00e9-quality pour over, meet coffee lovers & support Colombia\u2019s earthquake relief. Limited spaces, sign up now!",
+  "neighborhood": "Bethnal Green North East",
+  "price": null,
+  "start_time": "4:30 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.com/e/colomiban-fundraiser-pour-over-workshop-tickets-2003173183917",
+  "venue": "La Tostadora Roastery + Coffee",
+  "lat": 51.5298236,
+  "lng": -0.05672979999999999,
+  "audience": null,
+  "availability": null,
+  "series": "7edcb33cc7",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "coffee",
+   "pour over",
+   "fundraiser"
+  ],
+  "flags": [],
+  "family": "la tostadora roastery + coffee: pour over workshop"
+ },
+ {
   "name": "Earthworm Identification",
   "category": "Tech",
   "description": "Learn how to identify British earthworm species based on morphological features, using a microscope and ID guide, with Keiron Brown.",
@@ -6000,6 +6190,58 @@
   "flags": []
  },
  {
+  "name": "The Model is the Message",
+  "category": "Tech",
+  "description": "A free talk by Marcel Top and Tessa Edwards on Machine Learning and AI as both the instrument and subject of societal critique.",
+  "neighborhood": "Old Oak & Wormwood",
+  "price": null,
+  "start_time": "5:30 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.com/e/the-model-is-the-message-tickets-2003677882484",
+  "venue": "White City Place",
+  "lat": 51.5141492,
+  "lng": -0.2271227,
+  "audience": null,
+  "availability": null,
+  "series": "ba44bfe63e",
+  "quality": 5,
+  "why": "Free talk by Marcel Top and Tessa Edwards on AI critique.",
+  "topics": [
+   "ai",
+   "talk",
+   "society"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Women\u2019s Strength & Functional Fitness Class",
+  "category": "Fitness & Outdoors",
+  "description": "A fun, welcoming class for woman of All Levels. Good vibes and music to keep you moving while building a like minded community",
+  "neighborhood": "New Cross Gate",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/womens-strength-functional-fitness-class-tickets-2003471565384",
+  "venue": "All Saints Hatcham Community Centre",
+  "lat": 51.4769996,
+  "lng": -0.048092,
+  "audience": null,
+  "availability": null,
+  "series": "270159bdcc",
+  "recurring": "Every Thursday",
+  "quality": 4,
+  "why": "",
+  "topics": [
+   "fitness",
+   "community",
+   "women's wellbeing"
+  ],
+  "flags": [
+   "class_slot"
+  ],
+  "family": "all saints hatcham community centre: fitness class"
+ },
+ {
   "name": "SPIN & SWEAT WITH RAHMEL AKA MR. VEGAN MUSCLE | BLACK HISTORY MONTH!",
   "category": "Classes & Workshops",
   "description": "Welcome to Spin & Sweat with MVM's Black History Month special classes!",
@@ -6052,6 +6294,34 @@
   ]
  },
  {
+  "name": "Life Drawing for everyone!",
+  "category": "Classes & Workshops",
+  "description": "Join us every Thursday for Life Drawing in our cozy jazz bar. All levels welcome, no experience needed. Art supplies provided. Sip & sketch!",
+  "neighborhood": "New Cross & Deptford South",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/life-drawing-for-everyone-tickets-1942358068269",
+  "venue": "Jazzbourne",
+  "lat": 51.4757804,
+  "lng": -0.03020769999999999,
+  "audience": null,
+  "availability": null,
+  "series": "a3070d36ea",
+  "recurring": "Every Thursday",
+  "quality": 4,
+  "why": "Sip-and-sketch life drawing in a jazz bar, no experience needed.",
+  "topics": [
+   "life drawing",
+   "art",
+   "jazz bar"
+  ],
+  "flags": [
+   "class_slot"
+  ],
+  "family": "jazzbourne: life drawing"
+ },
+ {
   "name": "MarkMakerz IRL: Alternative Life Drawing Q2",
   "category": "Classes & Workshops",
   "description": "Every two Weeks: Life Drawing classes with a twist. Hosted by Wumzum of the Markmakerz.LDN Collective.",
@@ -6080,6 +6350,31 @@
   "family": "markmakerz: life drawing class"
  },
  {
+  "name": "Icons of Black History \u2013 creative collage at Kensal Library",
+  "category": "Classes & Workshops",
+  "description": "Celebrate Black History Month through collage, creating iconographic art inspired by influential Black historical figures and their legacies",
+  "neighborhood": "Golborne & Swinbrook",
+  "price": null,
+  "start_time": "3:30 PM",
+  "end_time": "5:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/icons-of-black-history-creative-collage-at-kensal-library-tickets-2002704307495",
+  "venue": "Kensal Library",
+  "lat": 51.5238246,
+  "lng": -0.2067967,
+  "audience": null,
+  "availability": null,
+  "series": "4510d9cfec",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "black history",
+   "collage",
+   "art"
+  ],
+  "flags": [],
+  "family": "kensal library: collage workshop"
+ },
+ {
   "name": "OCTOBER HALF TERM WORKSHOPS",
   "category": "Classes & Workshops",
   "description": "3 hours of practical workshops for young people aged 10 to 16, living in South East London.",
@@ -6106,6 +6401,35 @@
    "service"
   ],
   "family": "young lewisham project: youth workshops"
+ },
+ {
+  "name": "VOLTA Contemporary Dance Class",
+  "category": "Classes & Workshops",
+  "description": "VOLTA is a new contemporary dance class for teen girls aged 12\u201314. A space to move, create, experiment and express yourself through dance.",
+  "neighborhood": "Corbett Estate",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": "7:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/volta-contemporary-dance-class-tickets-2000289841763",
+  "venue": "Corbett Community Library",
+  "lat": 51.44235159999999,
+  "lng": -0.0016221,
+  "audience": null,
+  "availability": null,
+  "series": "399c24467f",
+  "recurring": "Every Thursday",
+  "quality": 1,
+  "why": "",
+  "topics": [
+   "dance",
+   "teens",
+   "class"
+  ],
+  "flags": [
+   "kids",
+   "class_slot"
+  ],
+  "family": "volta: dance class"
  },
  {
   "name": "Pumpkin Carving @frothycoffeeriverside",
@@ -6512,55 +6836,6 @@
   "subject": "Michael Pawlyn"
  },
  {
-  "name": "The Science of Close Relationships",
-  "category": "Talks",
-  "description": "Join us for a casual afternoon of lively discussions, cold drinks, and good vibes at PubTalks #016!",
-  "neighborhood": "Fulham Broadway",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.com/e/the-science-of-close-relationships-tickets-2002835815840",
-  "venue": "The Atlas",
-  "lat": 51.4861853,
-  "lng": -0.196257,
-  "audience": null,
-  "availability": null,
-  "series": "c79f2e1b6c",
-  "quality": 5,
-  "why": "Pub talk on the science of close relationships, with drinks.",
-  "topics": [
-   "psychology",
-   "relationships",
-   "pub talk"
-  ],
-  "flags": [],
-  "family": "pubtalks: pub talk"
- },
- {
-  "name": "Museum Lates at Dr Johnson's House",
-  "category": "Talks",
-  "description": "Enjoy sparkling drinks and discover one of London's best-kept secrets!",
-  "neighborhood": "City of London",
-  "price": null,
-  "start_time": "5:30 PM",
-  "end_time": "7:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/museum-lates-at-dr-johnsons-house-tickets-2000395596077",
-  "venue": "Dr Johnson's House",
-  "lat": 51.5150642,
-  "lng": -0.1082067,
-  "audience": null,
-  "availability": null,
-  "series": "2c624897f7",
-  "quality": 6,
-  "why": "Late opening of Samuel Johnson's historic house, with drinks and talks.",
-  "topics": [
-   "museums",
-   "talks",
-   "literature"
-  ],
-  "flags": []
- },
- {
   "name": "Abdul White's Comedy Night - Autumnal hijinks at Kismet!",
   "category": "Comedy",
   "description": "A night for Muslims and non-Muslims and/or anyone not invited to a 'trick or treat'!",
@@ -6583,6 +6858,56 @@
    "community"
   ],
   "flags": []
+ },
+ {
+  "name": "GETAWAY COMEDY - SOHO",
+  "category": "Comedy",
+  "description": "Comedy in London Thursday, Friday & Saturday. Expect a delicious mix of playful, unapologetic, dark, punchy stand-up in an intimate setting.",
+  "neighborhood": "Fitzrovia West & Soho",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/getaway-comedy-soho-tickets-1987774388706",
+  "venue": "Soho Zebrano",
+  "lat": 51.5139875,
+  "lng": -0.1306966,
+  "audience": null,
+  "availability": null,
+  "series": "39baedebf9",
+  "recurring": "Also on other days",
+  "quality": 5,
+  "why": "Intimate dark, punchy stand-up sets Thursday to Saturday in Soho.",
+  "topics": [
+   "stand-up",
+   "intimate comedy",
+   "soho"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Stand Up at Sir!",
+  "category": "Comedy",
+  "description": "A comedy night of giggles and mischief with a stellar line-up including Patrick Monahan, Dom McGovern, Tadiwa Mahlunge and Alexandra Haddow.",
+  "neighborhood": "City of London",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://www.eventbrite.com/e/stand-up-at-sir-tickets-2001376110823",
+  "venue": "Sir Devonshire Square Hotel, part of Sircle Collection",
+  "lat": 51.51641069999999,
+  "lng": -0.0778552,
+  "audience": null,
+  "availability": null,
+  "series": "5b329d1c3b",
+  "quality": 5,
+  "why": "Stand-up lineup featuring Patrick Monahan, Dom McGovern and Tadiwa Mahlunge.",
+  "topics": [
+   "comedy",
+   "stand-up",
+   "hotel events"
+  ],
+  "flags": [],
+  "family": "stand up at sir!: comedy night"
  },
  {
   "name": "Your Friend & Mine Comedy New Cross",
@@ -6660,29 +6985,104 @@
   "flags": []
  },
  {
-  "name": "Stand Up at Sir!",
+  "name": "Strong Woman - A Comedy Show by Monica Hsueh (West End)",
   "category": "Comedy",
-  "description": "A comedy night of giggles and mischief with a stellar line-up including Patrick Monahan, Dom McGovern, Tadiwa Mahlunge and Alexandra Haddow.",
-  "neighborhood": "City of London",
+  "description": "As seen on BBC and Instagram. Expect big laughs, dating misadventures & witty wisdom - a feel-good comedy night out in London.",
+  "neighborhood": "Strand, St James & Mayfair",
   "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://www.eventbrite.com/e/stand-up-at-sir-tickets-2001376110823",
-  "venue": "Sir Devonshire Square Hotel, part of Sircle Collection",
-  "lat": 51.51641069999999,
-  "lng": -0.0778552,
+  "start_time": "7:15 PM",
+  "end_time": "8:15 PM",
+  "url": "https://www.eventbrite.com/e/strong-woman-a-comedy-show-by-monica-hsueh-west-end-tickets-2001420566792",
+  "venue": "The Coach House Piccadilly",
+  "lat": 51.5097294,
+  "lng": -0.1319878,
   "audience": null,
   "availability": null,
-  "series": "5b329d1c3b",
+  "series": "ed0c12e88c",
+  "recurring": "Every Thursday",
   "quality": 5,
-  "why": "Stand-up lineup featuring Patrick Monahan, Dom McGovern and Tadiwa Mahlunge.",
+  "why": "Monica Hsueh's stand-up show, previously featured on BBC and Instagram.",
   "topics": [
    "comedy",
    "stand-up",
-   "hotel events"
+   "dating"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Thursday London Comedy Show",
+  "category": "Comedy",
+  "description": "PRO comedians, this Thursday. Tickets are limited!",
+  "neighborhood": "Shoreditch",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/thursday-london-comedy-show-tickets-1980255215657",
+  "venue": "City Comedy Club",
+  "lat": 51.5256992,
+  "lng": -0.0833529,
+  "audience": null,
+  "availability": null,
+  "series": "b717fa4820",
+  "recurring": "Every Thursday",
+  "quality": 4,
+  "why": "Professional comedians on a regular Thursday bill.",
+  "topics": [
+   "stand-up",
+   "comedy club"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Comedy Night with Unlimited Pizza and a Drink",
+  "category": "Comedy",
+  "description": "Comedy Night for Two with Unlimited Pizza and a Drink!",
+  "neighborhood": "Shoreditch",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/comedy-night-with-unlimited-pizza-and-a-drink-tickets-1980256686055",
+  "venue": "City Comedy Club",
+  "lat": 51.5256992,
+  "lng": -0.0833529,
+  "audience": null,
+  "availability": null,
+  "series": "7f516816d2",
+  "recurring": "Every Thursday",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "comedy",
+   "pizza",
+   "dinner deal"
   ],
   "flags": [],
-  "family": "stand up at sir!: comedy night"
+  "family": "city comedy club: dinner and comedy deal"
+ },
+ {
+  "name": "Big Nose Comedy Night at the Boogaloo!",
+  "category": "Comedy",
+  "description": "Get ready for a giggle at Big Nose Comedy at the famous Boogaloo - North London's finest and FUNNIEST stand up comedy show every Thursday!",
+  "neighborhood": "Highgate East",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/big-nose-comedy-night-at-the-boogaloo-tickets-1982571440548",
+  "venue": "The Boogaloo",
+  "lat": 51.5763553,
+  "lng": -0.1437714,
+  "audience": null,
+  "availability": null,
+  "series": "e15f359cfa",
+  "recurring": "Every Thursday",
+  "quality": 5,
+  "why": "Weekly stand-up at Highgate's Boogaloo, a well-known comedy room.",
+  "topics": [
+   "stand-up",
+   "north london",
+   "comedy night"
+  ],
+  "flags": []
  },
  {
   "name": "Double Edge - Feature Film Premiere",
@@ -6787,7 +7187,7 @@
   "neighborhood": "Clerkenwell",
   "price": null,
   "start_time": "6:00 PM",
-  "end_time": "8:00 PM",
+  "end_time": "7:45 PM",
   "url": "https://www.eventbrite.co.uk/e/film-screening-frankenstein-1931-tickets-1997700008502",
   "venue": "The London Archives",
   "lat": 51.5249369,
@@ -6983,53 +7383,5 @@
   ],
   "flags": [],
   "subject": "The Rocky Horror Picture Show"
- },
- {
-  "name": "MA Fashion, Film and Digital Production Film Screenings and Q&A",
-  "category": "Film",
-  "description": "An evening screening, Q&A and celebration of the 2026 MA Fashion, Film and Digital Production films at LCF.",
-  "neighborhood": "Mill Meads",
-  "price": null,
-  "start_time": "6:30 PM",
-  "end_time": "8:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/ma-fashion-film-and-digital-production-film-screenings-and-qa-tickets-2001044671479",
-  "venue": "London College of Fashion",
-  "lat": 51.5416693,
-  "lng": -0.0130399,
-  "audience": null,
-  "availability": null,
-  "series": "2f11112fec",
-  "quality": 4,
-  "why": "Graduate films from London College of Fashion's 2026 MA cohort.",
-  "topics": [
-   "student films",
-   "fashion",
-   "film"
-  ],
-  "flags": []
- },
- {
-  "name": "Barking Community Cinema - Samhain: An evening of analogue folk films",
-  "category": "Film",
-  "description": "Short films exploring folk and analogue filmmaking",
-  "neighborhood": "Barking Central",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/barking-community-cinema-samhain-an-evening-of-analogue-folk-films-tickets-2002377874124",
-  "venue": "The Living Room, A House for Artists",
-  "lat": 51.5396777,
-  "lng": 0.0777671,
-  "audience": null,
-  "availability": null,
-  "series": "f736f2154e",
-  "quality": 5,
-  "why": "Short analogue folk films for Samhain at a community arts house.",
-  "topics": [
-   "folk film",
-   "analogue film",
-   "community cinema"
-  ],
-  "flags": []
  }
 ]
