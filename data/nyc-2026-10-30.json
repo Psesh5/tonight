@@ -17,7 +17,7 @@
   "attraction": "K8vZ917LpbV",
   "tm_id": "LvZ18QrWTgeialOZ0E4-1",
   "series": "0eb0df493c",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Flexible-entry admission to the Museum of Chinese in America.",
   "topics": [
@@ -28,6 +28,9 @@
   "flags": [
    "flex_entry"
   ],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "museum of chinese in america: museum admission"
  },
  {
@@ -48,7 +51,7 @@
   "attraction": "K8vZ917hYyf",
   "tm_id": "LvZ18Qq4MnJus-Zv5p9LM",
   "series": "550e6cb815",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 3,
   "why": "",
   "topics": [
@@ -60,6 +63,37 @@
    "flex_entry"
   ],
   "family": "balloon museum nyc: museum admission"
+ },
+ {
+  "name": "The Rocky Horror Picture Show: Live with the New York Cast (Late)",
+  "category": "Theater",
+  "description": "This event is 21 and over. Any ticket holder unable to present valid identification indicating that they are at least 21 years of age will not be admitted to this event, and will not be eligible for a refund.",
+  "neighborhood": "East Village",
+  "price": 25.93,
+  "start_time": "12:00 AM",
+  "end_time": null,
+  "url": "https://www.ticketweb.com/event/the-rocky-horror-picture-show-berlin-tickets/14403354",
+  "venue": "Berlin",
+  "lat": 40.722974,
+  "lng": -73.98608,
+  "audience": null,
+  "availability": null,
+  "image": "https://s1.ticketm.net/dam/a/879/eb0656ac-c826-4a4a-944e-7ba18cf9f879_816351_TABLET_LANDSCAPE_16_9.jpg",
+  "attraction": "K8vZ9171hSf",
+  "tm_id": "rZ7HnEZ1Af8duf",
+  "series": "eaaf635066",
+  "quality": 7,
+  "why": "Late live shadow-cast staging of the cult classic with the New York cast.",
+  "topics": [
+   "cult film",
+   "midnight show",
+   "audience participation"
+  ],
+  "flags": [],
+  "subject": "The Rocky Horror Picture Show",
+  "date": "out",
+  "singles": false,
+  "ages": "21+"
  },
  {
   "name": "The Banksy Museum New York!",
@@ -79,7 +113,7 @@
   "attraction": "K8vZ917rQuV",
   "tm_id": "LvZ18QEC-33sYJhRiNb0f",
   "series": "3500320b73",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 3,
   "why": "",
   "topics": [
@@ -110,7 +144,7 @@
   "attraction": "K8vZ917rQuV",
   "tm_id": "LvZ18Qk4nbbEibYZvnO8k",
   "series": "3318221300",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 3,
   "why": "",
   "topics": [
@@ -178,7 +212,10 @@
    "immersive theater",
    "ghost story"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Barclays Center Tours - Brooklyn Nets v. Detroit Pistons",
@@ -210,7 +247,7 @@
  },
  {
   "name": "Soon",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -225,7 +262,7 @@
   "attraction": "Z7r9jZ177t39",
   "tm_id": "Z7r9jZ1AAvJF_",
   "series": "1428e29c99",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Off-Broadway staging at St. Luke's Theatre; listing gives little detail.",
   "topics": [
@@ -233,7 +270,10 @@
    "theater",
    "musical"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "INKwell Harbor Club Annual Costumes & Cocktails",
@@ -285,7 +325,10 @@
    "big band",
    "live music"
   ],
-  "flags": []
+  "flags": [],
+  "date": "special",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Josie Edwards",
@@ -312,7 +355,10 @@
    "live music",
    "singer-songwriter"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "16+"
  },
  {
   "name": "Cash 4 Gold Books Presents: Halloween",
@@ -339,6 +385,9 @@
    "live readings"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "cash 4 gold books: reading series"
  },
  {
@@ -365,11 +414,14 @@
    "electronic",
    "live music"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "MOCA TALKS with Ming-Na Wen \u2013 Family Recipes from a Restaurant Daughter",
-  "category": "Arts & Play",
+  "category": "Talks",
   "description": "",
   "neighborhood": "SoHo-Little Italy-Hudson Square",
   "price": null,
@@ -394,6 +446,9 @@
   ],
   "flags": [],
   "subject": "Ming-Na Wen",
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "museum of chinese in america: talk"
  },
  {
@@ -420,7 +475,10 @@
    "live music",
    "local band"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Shearing, Warmachine, Chemical, German Suplex",
@@ -446,7 +504,10 @@
    "heavy music",
    "21+ show"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "21+"
  },
  {
   "name": "We'll Be You: A Tribute To The Replacements",
@@ -473,7 +534,10 @@
    "21+ show"
   ],
   "flags": [],
-  "subject": "The Replacements"
+  "subject": "The Replacements",
+  "date": "",
+  "singles": false,
+  "ages": "21+"
  },
  {
   "name": "Slam Frank",
@@ -493,7 +557,7 @@
   "attraction": "K8vZ917OPh7",
   "tm_id": "17GZv0G6GExQIiV",
   "series": "ea20b22321",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "One-off Slam Frank show at the Orpheum Theatre.",
   "topics": [
@@ -501,11 +565,14 @@
    "performance",
    "one-off show"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Curious Case of the Curse of Benjamin Button",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "East Village",
   "price": null,
@@ -530,7 +597,10 @@
    "public theater"
   ],
   "flags": [],
-  "subject": "The Curious Case of Benjamin Button"
+  "subject": "The Curious Case of Benjamin Button",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "An Evening With God Street Wine",
@@ -558,11 +628,14 @@
    "live music"
   ],
   "flags": [],
-  "subject": "God Street Wine"
+  "subject": "God Street Wine",
+  "date": "out",
+  "singles": false,
+  "ages": "16+"
  },
  {
   "name": "Abelardo's Halloween Show (En Espa\u00f1ol)",
-  "category": "Arts & Play",
+  "category": "Comedy",
   "description": "LA REVENTA DE BOLETOS EST\u00c1 ESTRICTAMENTE PROHIBIDA. LOS BOLETOS QUE SE SOSPECHE QUE FUERON COMPRADOS CON EL \u00daNICO PROP\u00d3SITO DE SER REVENDIDOS PODR\u00c1N SER CANCELADOS A DISCRECI\u00d3N DEL BROOKLYN IMPROV. INFORMACI\u00d3N DEL EVENTO: Se requiere una compra m\u00ednima de dos art\u00edculos por persona dentro de la sala para todos los invitados. Los asientos son de admisi\u00f3n general y se asignan por orden de llegada, con excepci\u00f3n de grupos y cabinas premium. No se permite el uso de tel\u00e9fonos celulares, tomar fotograf\u00edas ni grabar videos durante las presentaciones. Todas las ventas son finales. INFORMACI\u00d3N ADICIONAL: Para obtener informaci\u00f3n sobre ventas para grupos, env\u00ede un correo electr\u00f3nico a nuestro Gerente de Eventos para conocer opciones especiales de men\u00fa y asientos reservados. Puede encontrar respuestas a preguntas adicionales en nuestras Preguntas Frecuentes. Para obtener m\u00e1s ayuda, comun\u00edquese con Brooklyn Improv.",
   "neighborhood": "Williamsburg",
   "price": 33.36,
@@ -585,6 +658,9 @@
    "halloween"
   ],
   "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": "",
   "family": "brooklyn improv: comedy show"
  },
  {
@@ -613,7 +689,10 @@
    "all ages"
   ],
   "flags": [],
-  "subject": "Neurosis (band)"
+  "subject": "Neurosis (band)",
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Schmigadoon!",
@@ -642,7 +721,10 @@
    "golden age homage"
   ],
   "flags": [],
-  "subject": "Schmigadoon!"
+  "subject": "Schmigadoon!",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Aladdin",
@@ -673,7 +755,10 @@
   "flags": [
    "kids"
   ],
-  "subject": "Aladdin (musical)"
+  "subject": "Aladdin (musical)",
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Maybe Happy Ending",
@@ -702,7 +787,10 @@
    "tony winner"
   ],
   "flags": [],
-  "subject": "Maybe Happy Ending (musical)"
+  "subject": "Maybe Happy Ending (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Lion King (New York, NY)",
@@ -733,7 +821,10 @@
   "flags": [
    "kids"
   ],
-  "subject": "The Lion King (musical)"
+  "subject": "The Lion King (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Buena Vista Social Club",
@@ -762,7 +853,10 @@
    "broadway"
   ],
   "flags": [],
-  "subject": "Buena Vista Social Club"
+  "subject": "Buena Vista Social Club",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Senri Oe Trio",
@@ -789,7 +883,10 @@
    "halloween"
   ],
   "flags": [],
-  "subject": "Senri Oe"
+  "subject": "Senri Oe",
+  "date": "special",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Outsiders",
@@ -818,11 +915,14 @@
    "coming of age"
   ],
   "flags": [],
-  "subject": "The Outsiders (musical)"
+  "subject": "The Outsiders (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Six: The Musical",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -838,7 +938,7 @@
   "attraction": "Z7r9jZauPy",
   "tm_id": "Z7r9jZ1A70OjM",
   "series": "5c3ddf5bd0",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Pop-infused musical about Henry VIII's six wives.",
   "topics": [
@@ -847,11 +947,14 @@
    "history"
   ],
   "flags": [],
-  "subject": "Six (musical)"
+  "subject": "Six (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Imaginary Invalid",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -875,11 +978,14 @@
    "classic comedy"
   ],
   "flags": [],
-  "subject": "The Imaginary Invalid"
+  "subject": "The Imaginary Invalid",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Heart",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -902,11 +1008,14 @@
    "off-broadway",
    "drama"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Music City",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -921,7 +1030,7 @@
   "attraction": "Z7r9jZ1770Oa",
   "tm_id": "Z7r9jZ1A7PKuS",
   "series": "b43ee7377f",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Off-Broadway musical staged at St. Luke's Theatre.",
   "topics": [
@@ -929,7 +1038,10 @@
    "off-broadway",
    "nashville"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Other Desert Cities",
@@ -958,11 +1070,14 @@
    "playwriting"
   ],
   "flags": [],
-  "subject": "Other Desert Cities"
+  "subject": "Other Desert Cities",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "CATS: The Jellicle Ball",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -985,11 +1100,14 @@
    "dance",
    "musical"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Lost Boys Musical w/ Unknown Mortal Orchestra",
-  "category": "Music",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -1013,7 +1131,10 @@
    "rock",
    "musical"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Harry Potter and the Cursed Child",
@@ -1042,11 +1163,14 @@
    "harry potter"
   ],
   "flags": [],
-  "subject": "Harry Potter and the Cursed Child"
+  "subject": "Harry Potter and the Cursed Child",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Hadestown",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -1071,7 +1195,10 @@
    "broadway"
   ],
   "flags": [],
-  "subject": "Hadestown"
+  "subject": "Hadestown",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Hamilton",
@@ -1100,11 +1227,14 @@
    "broadway"
   ],
   "flags": [],
-  "subject": "Hamilton (musical)"
+  "subject": "Hamilton (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Stranger Things: The First Shadow",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -1129,11 +1259,14 @@
    "prequel"
   ],
   "flags": [],
-  "subject": "Stranger Things: The First Shadow"
+  "subject": "Stranger Things: The First Shadow",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "School Girls:Or, The African Mean Girls",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "(1) Children under 4 years old will not be admitted. (2) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (3) Please note, the first opportunity for late seating occurs approximately 30 minutes into the show. Late seating will be at the discretion of Theatre Management. (4) Tickets are on a delayed delivery.",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -1158,11 +1291,14 @@
    "tony nominee"
   ],
   "flags": [],
-  "subject": "School Girls; Or, The African Mean Girls Play"
+  "subject": "School Girls; Or, The African Mean Girls Play",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Visitors",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -1185,11 +1321,14 @@
    "new play",
    "off-broadway"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Play That Goes Wrong",
-  "category": "Comedy",
+  "category": "Theater",
   "description": "(1) Children under 4 years old will not be admitted. (2) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (3) Tickets are on a delayed delivery.",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -1205,7 +1344,7 @@
   "attraction": "K8vZ917qo07",
   "tm_id": "Z1r9uZruZqGZ1AvZaA4",
   "series": "7067d65dac",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Long-running slapstick comedy where the show keeps collapsing.",
   "topics": [
@@ -1214,7 +1353,10 @@
    "theater"
   ],
   "flags": [],
-  "subject": "The Play That Goes Wrong"
+  "subject": "The Play That Goes Wrong",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Jamie Allan's Amaze",
@@ -1234,7 +1376,7 @@
   "attraction": "K8vZ917q52V",
   "tm_id": "Z1r9uZruZqGZ1AvZkP6",
   "series": "a43ffb64f5",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Jamie Allan's mentalism show, with strobes and haze.",
   "topics": [
@@ -1242,7 +1384,10 @@
    "mentalism",
    "live show"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Wicked (NY)",
@@ -1271,7 +1416,10 @@
    "tourist"
   ],
   "flags": [],
-  "subject": "Wicked (musical)"
+  "subject": "Wicked (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "MJ",
@@ -1300,7 +1448,10 @@
    "broadway"
   ],
   "flags": [],
-  "subject": "MJ (musical)"
+  "subject": "MJ (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Great Gatsby",
@@ -1320,7 +1471,7 @@
   "attraction": "K8vZ917C6SV",
   "tm_id": "Z1r9uZruZqGZ17JeP0",
   "series": "a1583c3e52",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Fitzgerald's Great Gatsby reimagined as a Broadway musical.",
   "topics": [
@@ -1328,7 +1479,10 @@
    "fitzgerald",
    "broadway"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Heathers",
@@ -1348,7 +1502,7 @@
   "attraction": "K8vZ917pX4f",
   "tm_id": "Z7r9jZ1A7PVaY",
   "series": "f541bb5787",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Cult-favorite dark teen satire musical at New World Stages.",
   "topics": [
@@ -1357,7 +1511,10 @@
    "off-broadway"
   ],
   "flags": [],
-  "subject": "Heathers (musical)"
+  "subject": "Heathers (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Book of Mormon",
@@ -1386,11 +1543,14 @@
    "broadway"
   ],
   "flags": [],
-  "subject": "The Book of Mormon (musical)"
+  "subject": "The Book of Mormon (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Unbelievers",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -1413,7 +1573,10 @@
    "matinee",
    "performance"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "A Few Good Men",
@@ -1442,7 +1605,10 @@
    "aaron sorkin"
   ],
   "flags": [],
-  "subject": "A Few Good Men"
+  "subject": "A Few Good Men",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Guerilla Toss w/ Ben Katzman's Degreaser",
@@ -1469,7 +1635,10 @@
    "live music",
    "bill"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Little Shop Of Horrors",
@@ -1498,7 +1667,10 @@
    "theatre"
   ],
   "flags": [],
-  "subject": "Little Shop of Horrors"
+  "subject": "Little Shop of Horrors",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Marie Antoinette - QC Theatre, Dance & Fashion Dept.",
@@ -1525,11 +1697,14 @@
    "dance"
   ],
   "flags": [],
-  "subject": "Marie Antoinette"
+  "subject": "Marie Antoinette",
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "2:22 - A Ghost Story",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "West Village",
   "price": null,
@@ -1553,7 +1728,10 @@
    "off-broadway"
   ],
   "flags": [],
-  "subject": "2:22 \u2013 A Ghost Story"
+  "subject": "2:22 \u2013 A Ghost Story",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Mico",
@@ -1580,11 +1758,14 @@
    "pop",
    "concert"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Midnight",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "(1) Tickets are on a delayed delivery.",
   "neighborhood": "East Village",
   "price": null,
@@ -1600,7 +1781,7 @@
   "attraction": "Z7r9jZ177IAJ",
   "tm_id": "Z7r9jZ1AAZIAA",
   "series": "801dd22c1d",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "Off-Broadway play at the Daryl Roth Theatre, a small intimate house.",
   "topics": [
@@ -1608,11 +1789,14 @@
    "play",
    "theatre"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Radel Ortiz",
-  "category": "Arts & Play",
+  "category": "Comedy",
   "description": "DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE BROOKLYN IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Brooklyn Improv.",
   "neighborhood": "Williamsburg",
   "price": null,
@@ -1633,7 +1817,10 @@
    "stand-up",
    "comedy"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Brooklyn Nets v. Detroit Pistons (Emirates NBA Cup Group Play)",
@@ -1660,11 +1847,14 @@
    "basketball",
    "sports"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Oh, Mary!",
-  "category": "Comedy",
+  "category": "Theater",
   "description": "(1) Children under 4 years old will not be admitted. (2) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (3) This production uses a gunshot sound effect. (4) This production uses theatrical haze and smoke. (5) Tickets are on a delayed delivery.",
   "neighborhood": "Midtown-Times Square",
   "price": null,
@@ -1688,11 +1878,14 @@
    "comedy",
    "musical comedy"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Two Strangers",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "(1) Children under 4 years old will not be admitted. (2) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (3) Strobe or flashing lights are used in this production. (4) This production uses theatrical haze and smoke. (5) Tickets are on a delayed delivery.",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -1716,7 +1909,10 @@
    "play",
    "drama"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Operation Mincemeat: A New Musical",
@@ -1745,7 +1941,10 @@
    "theatre"
   ],
   "flags": [],
-  "subject": "Operation Mincemeat (musical)"
+  "subject": "Operation Mincemeat (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "BrownstoneJAZZ FEST CONCERT SERIES",
@@ -1772,7 +1971,10 @@
    "acoustic",
    "intimate concert"
   ],
-  "flags": []
+  "flags": [],
+  "date": "special",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "In the Heights",
@@ -1799,7 +2001,10 @@
    "theatre"
   ],
   "flags": [],
-  "subject": "In the Heights"
+  "subject": "In the Heights",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "creation stories and all the important importants",
@@ -1826,7 +2031,10 @@
    "new play",
    "lincoln center"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "New York Philharmonic: Get Out in Concert",
@@ -1853,7 +2061,10 @@
    "classical",
    "concert hall"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Evil Island",
@@ -1880,7 +2091,10 @@
    "punk",
    "costume party"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "18+"
  },
  {
   "name": "Robert Glasper",
@@ -1890,7 +2104,7 @@
   "price": 77.79,
   "start_time": "8:00 PM",
   "end_time": null,
-  "url": "https://www.ticketweb.com/event/robert-glasper-feat-derrick-hodge-blue-note-jazz-club-tickets/15019203",
+  "url": "https://www.ticketweb.com/event/robert-glasper-feat-meshell-ndegeocello-blue-note-jazz-club-tickets/15019203",
   "venue": "Blue Note Jazz Club - NY",
   "lat": 40.7253,
   "lng": -73.997902,
@@ -1909,7 +2123,10 @@
    "live music"
   ],
   "flags": [],
-  "subject": "Robert Glasper"
+  "subject": "Robert Glasper",
+  "date": "special",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "  Live Band Country Karaoke",
@@ -1936,7 +2153,10 @@
    "country",
    "live band"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "21+"
  },
  {
   "name": "Waylon Wyatt - Dustpiles World Tour",
@@ -1963,7 +2183,10 @@
    "tour",
    "live music"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Sueco (16+ Event)",
@@ -1990,7 +2213,10 @@
    "club night",
    "16+ show"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "16+"
  },
  {
   "name": "Machine Girl",
@@ -2017,7 +2243,10 @@
    "experimental music",
    "art space"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Les Savy Fav - Ages 18+",
@@ -2045,6 +2274,9 @@
   ],
   "flags": [],
   "subject": "Les Savy Fav",
+  "date": "out",
+  "singles": false,
+  "ages": "18+",
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Les_Savy_Fav-IMG_5405.jpg/960px-Les_Savy_Fav-IMG_5405.jpg",
   "image_credit": {
    "by": "Rama",
@@ -2078,7 +2310,10 @@
    "arena concert"
   ],
   "flags": [],
-  "subject": "Harry Styles"
+  "subject": "Harry Styles",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "hABBAween",
@@ -2105,11 +2340,14 @@
    "halloween"
   ],
   "flags": [],
-  "subject": "ABBA"
+  "subject": "ABBA",
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Drunk Dracula",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Chelsea-Hudson Yards",
   "price": null,
@@ -2132,7 +2370,10 @@
    "theater",
    "vampires"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Rocky Horror Picture Show: Original Cast Spooktacular Tour",
@@ -2160,7 +2401,10 @@
    "theatre"
   ],
   "flags": [],
-  "subject": "The Rocky Horror Picture Show"
+  "subject": "The Rocky Horror Picture Show",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "ROA: USA Tour",
@@ -2187,7 +2431,10 @@
    "tour",
    "arena"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": "16+"
  },
  {
   "name": "Downstate",
@@ -2207,7 +2454,7 @@
   "attraction": "K8vZ917-OH7",
   "tm_id": "Z1r9uZruZqGZ1AvZ3ue",
   "series": "8e2c4ecdf7",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Downstate plays a concert at the Booth Theatre.",
   "topics": [
@@ -2215,7 +2462,10 @@
    "indie",
    "theater venue"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "LAUNDRY DAY (16 and Over)",
@@ -2242,11 +2492,14 @@
    "live music",
    "brooklyn"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "16+"
  },
  {
   "name": "Billy Crystal",
-  "category": "Arts & Play",
+  "category": "Comedy",
   "description": "(1) Children under 4 years old will not be admitted. (2) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (3) Tickets are on a delayed delivery.",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -2271,11 +2524,14 @@
    "broadway"
   ],
   "flags": [],
-  "subject": "Billy Crystal"
+  "subject": "Billy Crystal",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Wanted",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "(1) Children under 4 years old will not be admitted. (2) Herbal cigarettes are used on stage. (3) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (4) Strobe or flashing lights are used in this production. (5) This production uses loud sound effects including gun shots. (6) This production uses theatrical haze and smoke. (7) Tickets are on a delayed delivery.",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -2299,11 +2555,14 @@
    "drama",
    "broadway"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Fantasticks",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Hell's Kitchen",
   "price": null,
@@ -2328,7 +2587,10 @@
    "long-running show"
   ],
   "flags": [],
-  "subject": "The Fantasticks"
+  "subject": "The Fantasticks",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Chicago",
@@ -2348,7 +2610,7 @@
   "attraction": "K8vZ9179Ip7",
   "tm_id": "Z1r9uZruZqGZ17J_qp",
   "series": "e3be5ff627",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Long-running Broadway revival; available most nights.",
   "topics": [
@@ -2357,7 +2619,10 @@
    "jazz age"
   ],
   "flags": [],
-  "subject": "Chicago (musical)"
+  "subject": "Chicago (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Perfect Crime",
@@ -2377,7 +2642,7 @@
   "attraction": "K8vZ9171917",
   "tm_id": "17GZv0G62rKJdhH",
   "series": "3cdc30be00",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Long-running Off-Broadway whodunit comedy; easy default option.",
   "topics": [
@@ -2385,7 +2650,10 @@
    "mystery",
    "theater"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Just In Time",
@@ -2414,7 +2682,10 @@
    "bobby darin"
   ],
   "flags": [],
-  "subject": "Just in Time (musical)"
+  "subject": "Just in Time (musical)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Paranormal Activity (NY)",
@@ -2443,7 +2714,10 @@
    "thriller"
   ],
   "flags": [],
-  "subject": "Paranormal Activity (film)"
+  "subject": "Paranormal Activity (film)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "horsegiirL (16 and Over)",
@@ -2469,11 +2743,14 @@
    "live music",
    "manhattan"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "16+"
  },
  {
   "name": "Petite Rouge (21+ Event)",
-  "category": "Arts & Play",
+  "category": "Theater",
   "description": "",
   "neighborhood": "Bushwick (West)",
   "price": null,
@@ -2496,7 +2773,10 @@
    "reimagined fairy tale",
    "21+"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": "21+"
  },
  {
   "name": "The Phil Collins Story",
@@ -2552,7 +2832,10 @@
    "small theater",
    "drama"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Friends! The Musical Parody (New York)",
@@ -2581,7 +2864,10 @@
    "sitcom"
   ],
   "flags": [],
-  "subject": "Friends"
+  "subject": "Friends",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Oz Noy and Dave Weckl",
@@ -2607,7 +2893,10 @@
    "guitar",
    "drums"
   ],
-  "flags": []
+  "flags": [],
+  "date": "special",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Gringos",
@@ -2634,11 +2923,14 @@
    "live music",
    "east village"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "18+"
  },
  {
-  "name": "Finally Friday with Sameer Naseem",
-  "category": "Arts & Play",
+  "name": "Finally Friday with Sameer Naseem ft. Hoodo Hersi, Mary Houlihan, Pranav Behari, and Kofi Thomas",
+  "category": "Comedy",
   "description": "DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE BROOKLYN IMPROV. EVENT INFO: There is a one-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Brooklyn Improv.",
   "neighborhood": "Williamsburg",
   "price": 19.34,
@@ -2650,17 +2942,20 @@
   "lng": -73.959998,
   "audience": null,
   "availability": null,
-  "image": "https://i.ticketweb.com/i/00/13/07/84/14_Edp.jpg?v=3",
+  "image": "https://i.ticketweb.com/i/00/13/07/84/14_Edp.jpg?v=4",
   "tm_id": "rZ7HnEZ1AfuP17",
-  "series": "af897356b3",
-  "quality": 6,
-  "why": "Sameer Naseem's Friday late set at Brooklyn Improv's Lab room.",
+  "series": "5a51a05532",
+  "quality": 5,
+  "why": "Sameer Naseem-hosted improv night with four featured performers.",
   "topics": [
-   "stand-up",
-   "improv comedy",
-   "late-night comedy"
+   "improv",
+   "comedy",
+   "live show"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Troublemakers",
@@ -2691,7 +2986,7 @@
  },
  {
   "name": "Circoloco Halloween",
-  "category": "Arts & Play",
+  "category": "Music",
   "description": "",
   "neighborhood": "Clinton Hill",
   "price": null,
@@ -2713,7 +3008,10 @@
    "halloween",
    "party"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Kaytranada - Ages 21+",
@@ -2741,7 +3039,10 @@
    "dj"
   ],
   "flags": [],
-  "subject": "Kaytranada"
+  "subject": "Kaytranada",
+  "date": "",
+  "singles": false,
+  "ages": "21+"
  },
  {
   "name": "Mackeeper, Windy 500, flirty800",
@@ -2773,7 +3074,7 @@
  {
   "name": "Ron Carter's Foursight Quartet",
   "category": "Music",
-  "description": "Ron Carters Foursight with Renee Rosnes, Jimmy Greene & Payton CrossleyRon Carter is among the most original, prolific and influential bassists in jazz with more than 2,000 albums to his credit. Beginning his career in the 1960s with Jaki Byard and Eric Dolphy, Cannonball Adderley, and a five year stint with the Miles Davis Quintet, Ron also performed and recorded with notables including Bill Evans, B.B. King, and Dexter Gordon. Ron Carters various ensembles, big band to trio, feature a whos who of the finest players on the NYC scene with, an absolute commitment to musical sublimity [that] exudes refined elegance and sonic power. (amazon.com)",
+  "description": "Ron Carter's Foursight with Donald Vega, Jimmy Greene & Payton Crossley Ron Carter is among the most original, prolific and influential bassists in jazz with more than 2,000 albums to his credit. Beginning his career in the 1960s with Jaki Byard and Eric Dolphy, Cannonball Adderley, and a five year stint with the Miles Davis' Quintet, Ron also performed and recorded with notables including Bill Evans, B.B. King, and Dexter Gordon. Ron Carter's various ensembles, big band to trio, feature a who's who of the finest players on the NYC scene with, , \"rdquo\" -> an absolute commitment to musical sublimity [that] exudes refined elegance and sonic power.\" (amazon.com)",
   "neighborhood": "Hell's Kitchen",
   "price": 45.76,
   "start_time": "10:30 PM",
@@ -2796,7 +3097,10 @@
    "live music"
   ],
   "flags": [],
-  "subject": "Ron Carter"
+  "subject": "Ron Carter",
+  "date": "special",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Madison Square Garden Tour Experience",
@@ -2816,7 +3120,7 @@
   "attraction": "K8vZ9171Pof",
   "tm_id": "G5diZ_AkoY3-F",
   "series": "06bedd1c67",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 3,
   "why": "",
   "topics": [
@@ -2861,7 +3165,7 @@
  },
  {
   "name": "Classic Tour at Yankee Stadium",
-  "category": "Sports",
+  "category": "Tours",
   "description": "CLASSIC TOUR ENTRANCE: Classic Tour guests will enter through the Hard Rock Cafe adjacent to Gate 6 (corner of 161st St. and River Ave.) Please arrive 15 minutes prior to designated tour start time. Knowledgeable and passionate guides lead each sixty (60)-minute Classic Tour. Classic Tours and Lunch Combo: Enjoy lunch at the Hard Rock Cafe Yankee Stadium as part of your visit. Vouchers include tax & gratuity. Please note: Vouchers may be redeemed at the Hard Rock Cafe Yankee Stadium prior to or following your selected tour time. The Hard Rock Caf\u00e9 opens at 11 a.m. daily. View menus at yankees.com/tours. The Yankees reserve the right to cancel all or part of any tour. ALL tour dates, times, locations and routes are subject to change without notice.",
   "neighborhood": "Yankee Stadium-Macombs Dam Park",
   "price": null,
@@ -2877,7 +3181,7 @@
   "attraction": "K8vZ9175_90",
   "tm_id": "G5vVZbM3WHJer",
   "series": "2fd2a4c3ea",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Guided 60-minute behind-the-scenes tour of Yankee Stadium.",
   "topics": [
@@ -2886,6 +3190,9 @@
    "baseball history"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "yankee stadium: stadium tour"
  },
  {
@@ -2906,7 +3213,7 @@
   "attraction": "K8vZ917haZ7",
   "tm_id": "G5vVZbMKY1M1K",
   "series": "f0af0e30a7",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 3,
   "why": "",
   "topics": [
@@ -2946,7 +3253,7 @@
  },
  {
   "name": "New Dendrology at the Arsenal Gallery",
-  "category": "Fitness & Outdoors",
+  "category": "Arts & Play",
   "description": "New Dendrology is a group exhibition featuring eleven artists whose work contributes to the study of trees, offering new insight and connection between humans and their arboreal neighbors. From communing with streets trees through a reading with The New York City Street Tree Tarot deck by Matthew L\u00f3",
   "neighborhood": "Central Park",
   "price": 0.0,
@@ -2959,7 +3266,7 @@
   "audience": null,
   "availability": null,
   "series": "c311e23cb9",
-  "recurring": "Every Friday",
+  "recurring": "Also on other days",
   "quality": 6,
   "why": "Eleven artists' show on trees, plus street-tree tarot readings.",
   "topics": [
@@ -2967,7 +3274,10 @@
    "nature",
    "group exhibition"
   ],
-  "flags": []
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Farm Stand",
@@ -3018,6 +3328,9 @@
    "exhibit"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "conference house museum: museum exhibit"
  },
  {
@@ -3035,7 +3348,7 @@
   "audience": null,
   "availability": null,
   "series": "dfd066eadd",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Outdoor garden of antique Tottenville terra cotta architectural ornaments.",
   "topics": [
@@ -3044,6 +3357,9 @@
    "outdoor sculpture"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "conference house museum: museum exhibit"
  },
  {
@@ -3096,6 +3412,9 @@
    "exhibit"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "conference house museum: museum exhibit"
  },
  {
@@ -3122,11 +3441,14 @@
    "historic house"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "old stone house: open hours"
  },
  {
   "name": "Proximity Exhibition",
-  "category": "Meetups & Mixers",
+  "category": "Arts & Play",
   "description": "Featuring work by: Erin Butler, Linda Butti, Mary Campbell, Lisa Dahl, Griselda Healy, Craig Manister, Ann Marie McDonnell, Mike Shane, Gayle Tanaka, Martha Trivizas. Celebrating Snug Harbor\u2019s longstanding studio program, where artists in residence create new work within its historic buildings, PROX",
   "neighborhood": "Snug Harbor",
   "price": 0.0,
@@ -3148,6 +3470,9 @@
    "group show"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "newhouse center for contemporary art: exhibition"
  },
  {
@@ -3200,7 +3525,10 @@
    "drop-in",
    "printmaking"
   ],
-  "flags": []
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Juggling in Greeley Square Park",
@@ -3336,33 +3664,6 @@
   "family": "nyc parks: halloween family event"
  },
  {
-  "name": "Haunted House and Hallow Gala",
-  "category": "Arts & Play",
-  "description": "Join NYC PARKS for the final day of Halloween Week and Shirley Chisholm Recreation Center! Featuring a haunted house to scare and amaze, a pumpkin patch to take pictures in and snag your own pumpkin to take home, plus a spooky carnival that is fun for all ages. Crafts, games, dancing and scaring awa",
-  "neighborhood": "East Flatbush-Farragut",
-  "price": 0.0,
-  "start_time": "3:00 PM",
-  "end_time": "7:00 PM",
-  "url": "http://www.nycgovparks.org/events/2026/10/30/haunted-house-and-hallow-gala1",
-  "venue": "Gymnasium (in Nostrand Playground)",
-  "lat": 40.637925960097,
-  "lng": -73.946760957951,
-  "audience": null,
-  "availability": null,
-  "series": "926a5e4483",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "halloween",
-   "haunted house",
-   "kids"
-  ],
-  "flags": [
-   "kids"
-  ],
-  "family": "nyc parks: halloween family event"
- },
- {
   "name": "Halloween Pumpkin Decorating and Candy Giveaway!",
   "category": "Fitness & Outdoors",
   "description": "Join the garden group at Family Community Garden in Manhattan for a Halloween celebration! We will be decorating pumpkins and giving out candy!",
@@ -3415,6 +3716,33 @@
    "kids"
   ],
   "family": "brisas del caribe garden: halloween event"
+ },
+ {
+  "name": "Haunted House and Hallow Gala",
+  "category": "Arts & Play",
+  "description": "Join NYC PARKS for the final day of Halloween Week and Shirley Chisholm Recreation Center! Featuring a haunted house to scare and amaze, a pumpkin patch to take pictures in and snag your own pumpkin to take home, plus a spooky carnival that is fun for all ages. Crafts, games, dancing and scaring awa",
+  "neighborhood": "East Flatbush-Farragut",
+  "price": 0.0,
+  "start_time": "3:00 PM",
+  "end_time": "7:00 PM",
+  "url": "http://www.nycgovparks.org/events/2026/10/30/haunted-house-and-hallow-gala",
+  "venue": "Gymnasium (in Nostrand Playground)",
+  "lat": 40.637925960097,
+  "lng": -73.946760957951,
+  "audience": null,
+  "availability": null,
+  "series": "926a5e4483",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "halloween",
+   "haunted house",
+   "kids"
+  ],
+  "flags": [
+   "kids"
+  ],
+  "family": "nyc parks: halloween family event"
  },
  {
   "name": "Wicked Walker Family Fun & Halloween Event",
@@ -3505,7 +3833,7 @@
   "price": 0.0,
   "start_time": "5:00 PM",
   "end_time": "7:00 PM",
-  "url": "http://www.nycgovparks.org/events/2026/10/30/thomas-jefferson-hunted-house",
+  "url": "http://www.nycgovparks.org/events/2026/10/30/thomas-jefferson-hunted-walk",
   "venue": "Dance Room (in Thomas Jefferson Park)",
   "lat": 40.79349899,
   "lng": -73.93669891,
@@ -3599,11 +3927,44 @@
    "candlelit tour"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "merchant's house museum: candlelight ghost tour"
  },
  {
+  "name": "Halloween Mask-Making & Haunted Cottage",
+  "category": "Arts & Play",
+  "description": "Get into the Halloween spirit with an evening of spooky fun in Fort Tryon Park! Start with Halloween mask-making with The Met Cloisters at Margaret Corbin Plaza from 5:30\u20136:30 PM, then head to the Cottage Yard from 6:30\u20138 PM for the Haunted Cottage. Bring your family and friends for a frightfully fu",
+  "neighborhood": "Washington Heights (North)",
+  "price": 0.0,
+  "start_time": "6:30 PM",
+  "end_time": "8:00 PM",
+  "url": "http://www.nycgovparks.org/events/2026/10/30/halloween-maskmaking-haunted-cottage",
+  "venue": "Margaret Corbin Circle (in Fort Tryon Park),The Cottage (in Fort Tryon Park)",
+  "lat": 40.859411944915,
+  "lng": -73.934134840965,
+  "audience": null,
+  "availability": null,
+  "series": "8962050fe0",
+  "quality": 4,
+  "why": "",
+  "topics": [
+   "halloween",
+   "mask-making",
+   "family"
+  ],
+  "flags": [
+   "kids"
+  ],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "the met cloisters: halloween family event"
+ },
+ {
   "name": "2026 Spooky Snug Harbor Tour",
-  "category": "Meetups & Mixers",
+  "category": "Tours",
   "description": "Snug Harbor is one of Staten Island\u2019s most beautiful historic destinations. And, if the legends are true, one of its most haunted\u2026 This fall, join us for \u201cSpooky Snug Harbor,\u201d a series of nighttime walking tours aimed at shedding light on Snug Harbor\u2019s darkest history. Guided by local history enthus",
   "neighborhood": "Snug Harbor",
   "price": 0.0,
@@ -3625,6 +3986,9 @@
    "walking tour"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "snug harbor cultural center: spooky tour"
  },
  {
@@ -3635,7 +3999,7 @@
   "price": 0.0,
   "start_time": "8:15 PM",
   "end_time": "9:15 PM",
-  "url": "http://www.nycgovparks.org/events/2026/10/30/for-returning-20252026-members-staten-island-shockwaves-swim-team",
+  "url": "http://www.nycgovparks.org/events/2026/10/30/staten-island-shockwaves-swim-team",
   "venue": "Wagner College Pool - Spiro Sports Center",
   "lat": 40.614960443787,
   "lng": -74.095867991448,
@@ -3686,7 +4050,7 @@
  },
  {
   "name": "Carousel Rides",
-  "category": "Meetups & Mixers",
+  "category": "Arts & Play",
   "description": "Children\u2019s Corner, $3 per ride, $13 for a book of 5 tickets, Free with Prospect Park Alliance Family Supporter membership or higher. Enjoy a ride on Prospect Park\u2019s beloved 1912 Carousel . Open Thursdays \u2013 Sundays and Holidays, this treasured historic attraction features magnificent carved horses, l",
   "neighborhood": "Prospect Park",
   "price": 3.0,
@@ -3709,7 +4073,10 @@
   ],
   "flags": [
    "kids"
-  ]
+  ],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Fall Festival at Lakeside",
@@ -3726,7 +4093,7 @@
   "audience": null,
   "availability": null,
   "series": "1824d83e9e",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 3,
   "why": "",
   "topics": [
@@ -3760,7 +4127,10 @@
    "outdoor film",
    "black cinema"
   ],
-  "flags": []
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "New York Comedy Club Presents",
@@ -3783,7 +4153,10 @@
    "stand-up comedy",
    "showcase"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "New York Comedy Club Presents",
@@ -3806,7 +4179,10 @@
    "stand-up comedy",
    "showcase"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Anthony Moore, Soo Ra, Talal Alyan, Peter Stewart, Julia Barnard, DJ Hairston",
@@ -3830,7 +4206,10 @@
    "brooklyn comedy",
    "comedy lineup"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "James Mattern, Santiago Angel, Tom Zappia, Mike Agunbiade, Shaunak Godkhindi, Cesh Reyes, Napoleon Emill",
@@ -3854,7 +4233,10 @@
    "headliner night",
    "brooklyn comedy"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Dara Jemmott, Talal Alyan, Liam Dalton, Jaclyn Lore-Edwards, Mike Agunbiade, Jessica Levin",
@@ -3878,7 +4260,10 @@
    "late-night comedy",
    "weekend comedy"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Gotham All-Stars (The Vintage Lounge) at Gotham Comedy Club",
@@ -3903,7 +4288,10 @@
    "stand-up",
    "showcase"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Gotham All-Stars at Gotham Comedy Club",
@@ -3928,7 +4316,10 @@
    "stand-up",
    "showcase"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Immigrant New York Walking Tour",
@@ -3952,17 +4343,20 @@
    "immigration history",
    "lower east side"
   ],
-  "flags": []
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Hereafter Hours",
-  "category": "Arts & Play",
+  "category": "Tours",
   "description": "<p>As the veil grows thin and the gates close to the public, step into a side of Green-Wood few ever experience: after dark. Wander past monuments and mausoleums illuminated against the night sky while your guide brings to life the tales of some of our most fascinating permanent residents. The night",
   "neighborhood": "Green-Wood Cemetery",
   "price": null,
-  "start_time": "6:00 PM",
-  "end_time": "8:00 PM",
-  "url": "https://www.green-wood.com/event/hereafter-hours-3/",
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.green-wood.com/event/hereafter-hours-4/",
   "venue": "Green-Wood Cemetery",
   "lat": 40.6528,
   "lng": -73.9944,
@@ -3978,11 +4372,14 @@
    "night walk"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "green-wood cemetery: cemetery tour"
  },
  {
   "name": "Eric Grossman: An Evening of Violin Masterpieces",
-  "category": "Meetups & Mixers",
+  "category": "Music",
   "description": "Eric Grossman, violin Cecilia Grossman, cello Lida Grossman, piano Performing the music by Nicolo Paganini, Pablo de Sarasate, Fritz Kreisler and more. Registration & Tickets: TBA",
   "neighborhood": null,
   "price": 25.0,
@@ -4002,12 +4399,15 @@
    "violin recital",
    "chamber music"
   ],
-  "flags": []
+  "flags": [],
+  "date": "special",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Closure",
   "category": "Film",
-  "description": "Showtimes today: 1:35 PM, 6:45 PM.",
+  "description": "Showtimes today: 1:35 PM, 4:10 PM, 6:45 PM.",
   "neighborhood": "Greenwich Village",
   "price": null,
   "start_time": "6:45 PM",
@@ -4025,7 +4425,208 @@
    "film",
    "indie cinema"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "The Devils",
+  "category": "Film",
+  "description": "Showtimes today: 11:20 AM, 4:15 PM, 7:00 PM, 11:50 PM.",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": null,
+  "url": "https://www.ifccenter.com/films/the-devils/",
+  "venue": "IFC Center",
+  "lat": 40.7311,
+  "lng": -74.0007,
+  "audience": null,
+  "availability": null,
+  "series": "0bbf256a8e",
+  "recurring": "Most days",
+  "quality": 7,
+  "why": "Ken Russell's controversial 1971 The Devils on the IFC screen.",
+  "topics": [
+   "film",
+   "period drama",
+   "controversial cinema"
+  ],
+  "flags": [],
+  "subject": "The Devils (film)",
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "The Exorcist",
+  "category": "Film",
+  "description": "Showtimes today: 11:05 PM.",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "11:05 PM",
+  "end_time": null,
+  "url": "https://www.ifccenter.com/films/the-exorcist/",
+  "venue": "IFC Center",
+  "lat": 40.7311,
+  "lng": -74.0007,
+  "audience": null,
+  "availability": null,
+  "series": "442eb87d5e",
+  "recurring": "Also on other days",
+  "quality": 7,
+  "why": "Friedkin's 1973 The Exorcist, a late-night classic horror screening.",
+  "topics": [
+   "horror",
+   "classic film",
+   "late-night"
+  ],
+  "flags": [],
+  "subject": "The Exorcist",
+  "date": "first",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Fjord",
+  "category": "Film",
+  "description": "Showtimes today: 10:45 AM, 12:40 PM, 8:40 PM.",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "8:40 PM",
+  "end_time": null,
+  "url": "https://www.ifccenter.com/films/fjord/",
+  "venue": "IFC Center",
+  "lat": 40.7311,
+  "lng": -74.0007,
+  "audience": null,
+  "availability": null,
+  "series": "ee3efe1a78",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Fjord screens at IFC Center, a fairly ordinary evening showtime.",
+  "topics": [
+   "film",
+   "drama"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Gentle Monster",
+  "category": "Film",
+  "description": "Showtimes today: 1:05 PM, 3:45 PM, 6:30 PM.",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": null,
+  "url": "https://www.ifccenter.com/films/gentle-monster/",
+  "venue": "IFC Center",
+  "lat": 40.7311,
+  "lng": -74.0007,
+  "audience": null,
+  "availability": null,
+  "series": "351ad508a0",
+  "quality": 5,
+  "why": "Daytime arthouse screening at the IFC Center.",
+  "topics": [
+   "film",
+   "arthouse",
+   "daytime screening"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Grey Gardens",
+  "category": "Film",
+  "description": "Showtimes today: 11:45 PM.",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "11:45 PM",
+  "end_time": null,
+  "url": "https://www.ifccenter.com/films/grey-gardens-2/",
+  "venue": "IFC Center",
+  "lat": 40.7311,
+  "lng": -74.0007,
+  "audience": null,
+  "availability": null,
+  "series": "a6608b50d9",
+  "recurring": "Also on other days",
+  "quality": 6,
+  "why": "Maysles' cult documentary Grey Gardens, late-night IFC screening.",
+  "topics": [
+   "documentary",
+   "cult classic",
+   "late screening"
+  ],
+  "flags": [],
+  "subject": "Grey Gardens (1975 film)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Hellraiser",
+  "category": "Film",
+  "description": "Showtimes today: 11:59 PM.",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "11:59 PM",
+  "end_time": null,
+  "url": "https://www.ifccenter.com/films/hellraiser/",
+  "venue": "IFC Center",
+  "lat": 40.7311,
+  "lng": -74.0007,
+  "audience": null,
+  "availability": null,
+  "series": "13f488fd81",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Clive Barker's 1987 horror classic, in a regular evening showtime.",
+  "topics": [
+   "horror",
+   "cult film",
+   "1980s film"
+  ],
+  "flags": [],
+  "subject": "Hellraiser (film)",
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "The History of Concrete",
+  "category": "Film",
+  "description": "Showtimes today: 3:50 PM, 6:15 PM, 9:40 PM.",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "6:15 PM",
+  "end_time": null,
+  "url": "https://www.ifccenter.com/films/the-history-of-concrete/",
+  "venue": "IFC Center",
+  "lat": 40.7311,
+  "lng": -74.0007,
+  "audience": null,
+  "availability": null,
+  "series": "70da4248f3",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "The History of Concrete documentary screens at IFC Center this evening.",
+  "topics": [
+   "film",
+   "documentary",
+   "architecture"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Innkeepers",
@@ -4050,7 +4651,65 @@
    "haunted hotel"
   ],
   "flags": [],
-  "subject": "The Innkeepers"
+  "subject": "The Innkeepers",
+  "date": "first",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Naza",
+  "category": "Film",
+  "description": "Showtimes today: 10:55 AM, 2:05 PM, 5:40 PM, 9:10 PM.",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "5:40 PM",
+  "end_time": null,
+  "url": "https://www.ifccenter.com/films/naza/",
+  "venue": "IFC Center",
+  "lat": 40.7311,
+  "lng": -74.0007,
+  "audience": null,
+  "availability": null,
+  "series": "58261809c7",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Naza screens at IFC Center; an ordinary evening showtime.",
+  "topics": [
+   "film",
+   "drama"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "On The Road",
+  "category": "Film",
+  "description": "Showtimes today: 11:00 AM, 3:25 PM, 7:35 PM, 9:50 PM.",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "7:35 PM",
+  "end_time": null,
+  "url": "https://www.ifccenter.com/films/on-the-road-2/",
+  "venue": "IFC Center",
+  "lat": 40.7311,
+  "lng": -74.0007,
+  "audience": null,
+  "availability": null,
+  "series": "8338d96a12",
+  "quality": 5,
+  "why": "Kerouac's On the Road adaptation at IFC Center, regular showtime.",
+  "topics": [
+   "film",
+   "literature",
+   "independent cinema"
+  ],
+  "flags": [],
+  "subject": "On the Road (film)",
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "An Autumn Afternoon",
@@ -4075,7 +4734,10 @@
    "classics"
   ],
   "flags": [],
-  "subject": "An Autumn Afternoon"
+  "subject": "An Autumn Afternoon",
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Edward Scissorhands",
@@ -4100,7 +4762,10 @@
    "repertory screening"
   ],
   "flags": [],
-  "subject": "Edward Scissorhands"
+  "subject": "Edward Scissorhands",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Peppermint Frapp\u00e9",
@@ -4125,7 +4790,10 @@
    "35mm film"
   ],
   "flags": [],
-  "subject": "Peppermint Frapp\u00e9"
+  "subject": "Peppermint Frapp\u00e9",
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Rushmore",
@@ -4151,7 +4819,10 @@
    "late screening"
   ],
   "flags": [],
-  "subject": "Rushmore (film)"
+  "subject": "Rushmore (film)",
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Sans Soleil",
@@ -4176,7 +4847,10 @@
    "japan travelogue"
   ],
   "flags": [],
-  "subject": "Sans Soleil"
+  "subject": "Sans Soleil",
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Cr\u00eda Cuervos",
@@ -4201,7 +4875,10 @@
    "family drama"
   ],
   "flags": [],
-  "subject": "Cr\u00eda Cuervos"
+  "subject": "Cr\u00eda Cuervos",
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "The Trouble with Harry",
@@ -4227,6 +4904,9 @@
   ],
   "flags": [],
   "subject": "The Trouble with Harry",
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "image": "https://upload.wikimedia.org/wikipedia/commons/c/c2/The_Trouble_with_Harry.jpg",
   "image_credit": {
    "by": "Copyrighted by Paramount Pictures. Artists(s) not known.",
@@ -4257,7 +4937,10 @@
    "new york"
   ],
   "flags": [],
-  "subject": "News from Home"
+  "subject": "News from Home",
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Bram Stoker's Dracula",
@@ -4282,7 +4965,10 @@
    "35mm screening"
   ],
   "flags": [],
-  "subject": "Bram Stoker's Dracula"
+  "subject": "Bram Stoker's Dracula",
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Blade Runner: The Final Cut",
@@ -4307,7 +4993,237 @@
    "classic"
   ],
   "flags": [],
-  "subject": "Blade Runner"
+  "subject": "Blade Runner",
+  "date": "out",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Citizen Ruth",
+  "category": "Film",
+  "description": "Showtimes today: 1:00 PM, 3:20 PM, 5:40 PM, 8:00 PM.",
+  "neighborhood": "SoHo-Little Italy-Hudson Square",
+  "price": null,
+  "start_time": "5:40 PM",
+  "end_time": null,
+  "url": "https://filmforum.org/film/citizen-ruth",
+  "venue": "Film Forum",
+  "lat": 40.7284,
+  "lng": -74.0043,
+  "audience": null,
+  "availability": null,
+  "series": "24640acb05",
+  "quality": 7,
+  "why": "Alexander Payne's 1996 satire with Laura Dern, screening at Film Forum.",
+  "topics": [
+   "film",
+   "comedy",
+   "1990s cinema"
+  ],
+  "flags": [],
+  "subject": "Citizen Ruth",
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Fatherland",
+  "category": "Film",
+  "description": "Showtimes today: 12:25 PM, 2:25 PM, 4:15 PM, 4:30 PM, 6:30 PM, 8:30 PM.",
+  "neighborhood": "SoHo-Little Italy-Hudson Square",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": null,
+  "url": "https://filmforum.org/film/fatherland",
+  "venue": "Film Forum",
+  "lat": 40.7284,
+  "lng": -74.0043,
+  "audience": null,
+  "availability": null,
+  "series": "2e85e9965f",
+  "recurring": "Most days",
+  "quality": 6,
+  "why": "Fatherland screening at Film Forum, several daily showtimes.",
+  "topics": [
+   "film",
+   "drama",
+   "arthouse"
+  ],
+  "flags": [],
+  "subject": "Fatherland (film)",
+  "date": "first",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Once Upon A Time In Harlem",
+  "category": "Film",
+  "description": "Showtimes today: 12:15 PM, 2:30 PM, 4:45 PM, 7:00 PM, 8:10 PM, 9:15 PM.",
+  "neighborhood": "SoHo-Little Italy-Hudson Square",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": null,
+  "url": "https://filmforum.org/film/once-upon-a-time-in-harlem",
+  "venue": "Film Forum",
+  "lat": 40.7284,
+  "lng": -74.0043,
+  "audience": null,
+  "availability": null,
+  "series": "2a659a436f",
+  "recurring": "Most days",
+  "quality": 5,
+  "why": "Crime drama set in Harlem, with multiple showtimes.",
+  "topics": [
+   "film",
+   "crime",
+   "harlem"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "MY UNDESIRABLE FRIENDS: PART II \u2013 EXILE: Chapters 1-3",
+  "category": "Film",
+  "description": "Showtimes today: 12:30 PM.",
+  "neighborhood": "SoHo-Little Italy-Hudson Square",
+  "price": null,
+  "start_time": "12:30 PM",
+  "end_time": null,
+  "url": "https://filmforum.org/film/my-undesirable-friends-part-ii-exile",
+  "venue": "Film Forum",
+  "lat": 40.7284,
+  "lng": -74.0043,
+  "audience": null,
+  "availability": null,
+  "series": "351703d5fa",
+  "recurring": "Also on other days",
+  "quality": 7,
+  "why": "Exile, the second part of a long Philippine epic, first three chapters.",
+  "topics": [
+   "film",
+   "philippine cinema",
+   "epic"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Unzipped",
+  "category": "Film",
+  "description": "Showtimes today: 6:20 PM.",
+  "neighborhood": "SoHo-Little Italy-Hudson Square",
+  "price": null,
+  "start_time": "6:20 PM",
+  "end_time": null,
+  "url": "https://filmforum.org/film/unzipped-2026",
+  "venue": "Film Forum",
+  "lat": 40.7284,
+  "lng": -74.0043,
+  "audience": null,
+  "availability": null,
+  "series": "f73acd27e3",
+  "recurring": "Most days",
+  "quality": 6,
+  "why": "Documentary on fashion designer Isaac Mizrahi's creative process.",
+  "topics": [
+   "documentary",
+   "fashion",
+   "design"
+  ],
+  "flags": [],
+  "subject": "Unzipped",
+  "date": "first",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "You Can See Everything",
+  "category": "Film",
+  "description": "Elizabeth Holmes invites a skeptical film crew to document her every move before heading to prison. Showtimes today: 4:00 PM, 4:15 PM, 4:45 PM, 7:35 PM, 8:05 PM, 8:30 PM, 11:10 PM.",
+  "neighborhood": "Williamsburg",
+  "price": 9.0,
+  "start_time": "7:35 PM",
+  "end_time": null,
+  "url": "https://nitehawkcinema.com/williamsburg/movies/you-can-see-everything/",
+  "venue": "Nitehawk Cinema Williamsburg",
+  "lat": 40.7162,
+  "lng": -73.9625,
+  "audience": null,
+  "availability": null,
+  "series": "ea7a2dad49",
+  "recurring": "Most days",
+  "quality": 6,
+  "why": "Film crew follows Elizabeth Holmes before she begins her prison sentence.",
+  "topics": [
+   "documentary",
+   "true crime",
+   "film"
+  ],
+  "flags": [],
+  "subject": "Elizabeth Holmes",
+  "date": "first",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Begotten",
+  "category": "Film",
+  "description": "Here lies the incantation of matter. Showtimes today: 11:55 PM.",
+  "neighborhood": "Williamsburg",
+  "price": 9.0,
+  "start_time": "11:55 PM",
+  "end_time": null,
+  "url": "https://nitehawkcinema.com/williamsburg/movies/begotten/",
+  "venue": "Nitehawk Cinema Williamsburg",
+  "lat": 40.7162,
+  "lng": -73.9625,
+  "audience": null,
+  "availability": null,
+  "series": "1253983841",
+  "quality": 8,
+  "why": "Cult 1990 experimental film, rare late-night Nitehawk screening.",
+  "topics": [
+   "experimental film",
+   "cult cinema",
+   "late-night screening"
+  ],
+  "flags": [],
+  "subject": "Begotten (film)",
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Halloween (1978)",
+  "category": "Film",
+  "description": "The night HE came home. Showtimes today: 11:55 PM.",
+  "neighborhood": "Williamsburg",
+  "price": 9.0,
+  "start_time": "11:55 PM",
+  "end_time": null,
+  "url": "https://nitehawkcinema.com/williamsburg/movies/halloween-1978/",
+  "venue": "Nitehawk Cinema Williamsburg",
+  "lat": 40.7162,
+  "lng": -73.9625,
+  "audience": null,
+  "availability": null,
+  "series": "a3ead6ba85",
+  "quality": 7,
+  "why": "John Carpenter's 1978 slasher original in a midnight Nitehawk screening.",
+  "topics": [
+   "horror",
+   "slasher",
+   "late-night screening"
+  ],
+  "flags": [],
+  "subject": "Halloween (1978 film)",
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "BAMBAS ISSUE03 NY LAUNCH",
@@ -4330,6 +5246,63 @@
    "magazine",
    "launch party",
    "print culture"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "NousCon 2026",
+  "category": "Tech",
+  "description": "Hermes Agent",
+  "neighborhood": "Financial District-Battery Park City",
+  "price": 0.0,
+  "start_time": "6:00 PM",
+  "end_time": null,
+  "url": "https://luma.com/y0y9ngkm",
+  "venue": "Financial District",
+  "lat": 40.706270285239384,
+  "lng": -74.0026274684989,
+  "audience": null,
+  "availability": null,
+  "series": "86a3971eca",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "ai",
+   "conference",
+   "networking"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "nouscon: tech conference"
+ },
+ {
+  "name": "Capture the Future",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Prospect Park",
+  "price": 0.0,
+  "start_time": "7:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://luma.com/p7g5rpfb",
+  "venue": "Prospect Park",
+  "lat": 40.66383847376713,
+  "lng": -73.96294625344812,
+  "audience": null,
+  "availability": null,
+  "series": "3c09e58abf",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "outdoors",
+   "park",
+   "community"
   ],
   "flags": []
  },
@@ -4493,11 +5466,14 @@
    "sustainability"
   ],
   "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "still good: clothing swap"
  },
  {
   "name": "PAWS IN THE CITY VOL 4 - PAWSHION SHOW",
-  "category": "Meetups & Mixers",
+  "category": "Arts & Play",
   "description": "",
   "neighborhood": "East Williamsburg",
   "price": 0.0,
@@ -4517,11 +5493,44 @@
    "fashion",
    "community"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "CoworkNTreats: Halloween Edition",
+  "category": "Meetups & Mixers",
+  "description": "Welcome to the CoworkNChill Calendar \ud83d\uddd3\ufe0f Weekly coworking at rotating NYC spots, followed by chill events, spontaneous hangs, and real community. 2026 Events & Meetups \ud83d\udc47\ud83c\udffb",
+  "neighborhood": "Long Island City-Hunters Point",
+  "price": 0.0,
+  "start_time": "1:00 PM",
+  "end_time": "6:00 PM",
+  "url": "https://luma.com/i0wu5azr",
+  "venue": "Spot Dessert Bar Long Island City",
+  "lat": 40.7488691,
+  "lng": -73.9380243,
+  "audience": null,
+  "availability": null,
+  "series": "d8f1d91e93",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "coworking",
+   "dessert",
+   "community"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "coworknchill: coworking meetup"
  },
  {
   "name": "Native Horror Night",
-  "category": "Meetups & Mixers",
+  "category": "Film",
   "description": "",
   "neighborhood": "Midtown-Times Square",
   "price": 20.0,
@@ -4541,7 +5550,10 @@
    "indigenous culture",
    "film"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Sam's Book Club \u2014 NY Stop",
@@ -4566,7 +5578,69 @@
    "reading"
   ],
   "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "sam's book club: book club"
+ },
+ {
+  "name": "Damian White | Designing the Just Transition: Recovering Our Capacity for Democratic, Ecological and Labor-Centered Worldmaking",
+  "category": "Talks",
+  "description": "Explore programming from NYU Tandon CUSP, featuring seminars, workshops, hackathons, and other programs focused on urban data science and technology.",
+  "neighborhood": "Downtown Brooklyn-DUMBO-Boerum Hill",
+  "price": 0.0,
+  "start_time": "4:00 PM",
+  "end_time": "5:30 PM",
+  "url": "https://luma.com/nyu-bcrm",
+  "venue": "370 Jay St",
+  "lat": 40.6931441,
+  "lng": -73.9874469,
+  "audience": null,
+  "availability": null,
+  "series": "62d2c50453",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "urban data",
+   "academic seminars",
+   "workshops"
+  ],
+  "flags": [
+   "internal"
+  ],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "nyu tandon cusp: academic programme"
+ },
+ {
+  "name": "Orientation scavenger hunt",
+  "category": "Trivia & Games",
+  "description": "",
+  "neighborhood": "Tribeca-Civic Center",
+  "price": 0.0,
+  "start_time": "4:00 PM",
+  "end_time": "6:00 PM",
+  "url": "https://luma.com/sahrb5ii",
+  "venue": "Borough of Manhattan Community College",
+  "lat": 40.7178642,
+  "lng": -74.0119666,
+  "audience": null,
+  "availability": null,
+  "series": "95d842e5d2",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "college orientation",
+   "scavenger hunt"
+  ],
+  "flags": [
+   "internal"
+  ],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "borough of manhattan community college: orientation"
  },
  {
   "name": "Pre\u2013Trick-or-Treat at Casa Primary",
@@ -4653,7 +5727,7 @@
  },
  {
   "name": "Salam Social Club: Craft Circle Series",
-  "category": "Arts & Play",
+  "category": "Classes & Workshops",
   "description": "",
   "neighborhood": "West Village",
   "price": 0.0,
@@ -4674,11 +5748,44 @@
    "community"
   ],
   "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "salam social club: craft circle"
  },
  {
+  "name": "COFOUND NYC Vol.02\uff5c\u4e07\u5723\u8282\u521b\u6295\u4e4b\u591c \ud83c\udf83 COFOUND NYC Vol.02\uff5c\u4e07\u5723\u8282\u521b\u6295\u4e4b\u591c\uff0cMeta \u5de5\u7a0b\u5e08\u804a Agentic ai\uff0c\u7ebd\u7ea6\u641e AI \u548c\u521b\u4e1a\u7684\u4eba\u90fd\u5728\u8fd9",
+  "category": "Meetups & Mixers",
+  "description": "Meet the founders, recruiters and changemakers shaping what's next. From Columbia recruiting sessions to startup nights and UN visits, this is where opportunities happen. Follow so you never miss one.",
+  "neighborhood": "Midtown South-Flatiron-Union Square",
+  "price": 25.0,
+  "start_time": "6:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://luma.com/mft45ffz",
+  "venue": "894 6th Ave",
+  "lat": 40.7483043,
+  "lng": -73.9886341,
+  "audience": null,
+  "availability": null,
+  "series": "7bb6b746ec",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "startups",
+   "AI founders",
+   "recruiting"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "cofound nyc: startup networking night"
+ },
+ {
   "name": "Group Timeline Jump",
-  "category": "Food & Drink",
+  "category": "Music",
   "description": "Reforesters Laboratory in Williamsburg, Brooklyn contains a listening room for spatial & sub-bass centered sound, fronted by a cafe serving gluten free, adaptogenic, chef-made foods & brews.",
   "neighborhood": "Williamsburg",
   "price": 45.0,
@@ -4698,7 +5805,10 @@
    "listening",
    "music"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Monk Fridays: Tea, Chat & Meditation",
@@ -4724,11 +5834,14 @@
    "mindfulness"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "dharma drum meditation center: meditation gathering"
  },
  {
   "name": "NYC 30s/40s Mixer at the MoMA",
-  "category": "Arts & Play",
+  "category": "Meetups & Mixers",
   "description": "Connecting the world through art. (18+)",
   "neighborhood": "Midtown-Times Square",
   "price": 7.5,
@@ -4751,6 +5864,9 @@
   "flags": [
    "networking"
   ],
+  "date": "",
+  "singles": false,
+  "ages": "18+",
   "family": "the museum of modern art: singles mixer"
  },
  {
@@ -4780,7 +5896,7 @@
  },
  {
   "name": "I DO the Bending Live Podcast Recording!",
-  "category": "Meetups & Mixers",
+  "category": "Talks",
   "description": "",
   "neighborhood": "Bedford-Stuyvesant (East)",
   "price": 15.0,
@@ -4800,7 +5916,67 @@
    "live recording",
    "comedy"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Beyond Small Talk: Tech Mixer",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Midtown South-Flatiron-Union Square",
+  "price": 0.0,
+  "start_time": "6:30 PM",
+  "end_time": "9:00 PM",
+  "url": "https://luma.com/mxfcb9wx",
+  "venue": "Chelsea",
+  "lat": 40.74615239175283,
+  "lng": -73.99192721519418,
+  "audience": null,
+  "availability": null,
+  "series": "e8ccfcdeaa",
+  "quality": 1,
+  "why": "",
+  "topics": [
+   "tech",
+   "networking",
+   "mixer"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Mahjong for All Levels",
+  "category": "Trivia & Games",
+  "description": "",
+  "neighborhood": "Chelsea-Hudson Yards",
+  "price": 0.0,
+  "start_time": "6:30 PM",
+  "end_time": "8:30 PM",
+  "url": "https://luma.com/kqvmp1a2",
+  "venue": "Neighbor",
+  "lat": 40.7449697,
+  "lng": -74.0021474,
+  "audience": null,
+  "availability": null,
+  "series": "78cff9cd0b",
+  "quality": 5,
+  "why": "Mahjong tables for every skill level, relaxed and social.",
+  "topics": [
+   "mahjong",
+   "social games",
+   "all levels"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "neighbor: mahjong night"
  },
  {
   "name": "Pumpkin Decorating Workshop \ud83c\udf83",
@@ -4830,30 +6006,6 @@
   ]
  },
  {
-  "name": "Capture the Future",
-  "category": "Meetups & Mixers",
-  "description": "",
-  "neighborhood": "Prospect Park",
-  "price": 0.0,
-  "start_time": "7:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://luma.com/p7g5rpfb",
-  "venue": "Prospect Park",
-  "lat": 40.66383847376713,
-  "lng": -73.96294625344812,
-  "audience": null,
-  "availability": null,
-  "series": "3c09e58abf",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "outdoors",
-   "park",
-   "community"
-  ],
-  "flags": []
- },
- {
   "name": "OCT 30 | SPOOKY WINE LEARNING AT MARCELA'S",
   "category": "Food & Drink",
   "description": "",
@@ -4880,7 +6032,7 @@
  },
  {
   "name": "The Haveli: A Mewar Table",
-  "category": "Meetups & Mixers",
+  "category": "Food & Drink",
   "description": "",
   "neighborhood": "Queensboro Hill",
   "price": 75.0,
@@ -4900,11 +6052,14 @@
    "dinner",
    "queens"
   ],
-  "flags": []
+  "flags": [],
+  "date": "special",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "\ud83e\udeb0 DRAINFLIES \ud83e\udeb0",
-  "category": "Meetups & Mixers",
+  "category": "Music",
   "description": "",
   "neighborhood": "Ocean Hill",
   "price": 0.0,
@@ -4924,7 +6079,10 @@
    "live music",
    "nightlife"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Jorts Mile After Party at the Speedeasy",
@@ -4948,7 +6106,10 @@
    "party",
    "nightlife"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "MaMi Halloween Party",
@@ -4999,6 +6160,34 @@
   "flags": []
  },
  {
+  "name": "Disco Sally\u2019s Halloween Party: Friday Night at Sir Henry\u2019s NYC",
+  "category": "Music",
+  "description": "",
+  "neighborhood": "Hell's Kitchen",
+  "price": 10.0,
+  "start_time": "10:00 PM",
+  "end_time": null,
+  "url": "https://luma.com/hteq5atv",
+  "venue": "Disco Sally\u2019s",
+  "lat": 40.7613102,
+  "lng": -73.9871615,
+  "audience": null,
+  "availability": null,
+  "series": "b44bf9b00e",
+  "quality": 5,
+  "why": "Halloween dance party at Sir Henry's, with Disco Sally's DJs.",
+  "topics": [
+   "halloween",
+   "dance party",
+   "club night"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "disco sally's: dance party"
+ },
+ {
   "name": "The Night Before Halloween at Mama Taco Friday Oct. 30th FREE Entry w/RSVP",
   "category": "Meetups & Mixers",
   "description": "$500 CASH PRIZE FOR THE BEST COSTUME!!",
@@ -5044,11 +6233,14 @@
    "dj set",
    "bushwick"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "21+"
  },
  {
   "name": "Papi Juice Halloween",
-  "category": "Arts & Play",
+  "category": "Music",
   "description": "Papi Juice Halloween @ Elsewhere in Bushwick on 10.30! Tickets start at $15 \u2022 10:30pm \u2022 21+ | Genre: Electronic, Dance",
   "neighborhood": "East Williamsburg",
   "price": null,
@@ -5068,7 +6260,10 @@
    "halloween",
    "electronic"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "21+"
  },
  {
   "name": "Cash Cobain Live | Halloween Costume Party at CODE Astoria",
@@ -5092,11 +6287,14 @@
    "halloween",
    "costume party"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "TAL 23 | Femme 3",
-  "category": "Meetups & Mixers",
+  "category": "Arts & Play",
   "description": "The Armored League returns \u2014 and the Femme Division is going to war. Your favorite femme fighters are back one LAST time this year!",
   "neighborhood": "East Williamsburg",
   "price": null,
@@ -5116,7 +6314,10 @@
    "femme division",
    "bar show"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Friday October 30th 2026 : All Star Fridays at Agenda Astoria",
@@ -5190,7 +6391,10 @@
    "dancehall",
    "halloween party"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "NIGHTMARE ON BROADWAY \"HALLOWEEN PARTY\"",
@@ -5262,7 +6466,10 @@
    "live concert",
    "bushwick"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": "16+"
  },
  {
   "name": "Final Dyke",
@@ -5286,7 +6493,10 @@
    "party",
    "bar"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "DITCH DAY NYC Ep. 1 (Halloween Day Experience)",
@@ -5387,6 +6597,34 @@
   "flags": []
  },
  {
+  "name": "Friday Nights with Filmmakers NYC | Dinner with New Friends",
+  "category": "Food & Drink",
+  "description": "City life can be lonely, especially when you\u2019re always on the grind. Take the opportunity to meet others looking for new connections.",
+  "neighborhood": "Midtown South-Flatiron-Union Square",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.com/e/friday-nights-with-filmmakers-nyc-dinner-with-new-friends-tickets-1938659796639",
+  "venue": "Restaurant of the Week",
+  "lat": 40.7446153,
+  "lng": -73.9890416,
+  "audience": null,
+  "availability": null,
+  "series": "f9fd22fa88",
+  "recurring": "Every Friday",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "dinner",
+   "meeting people",
+   "social"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "family": "foodies + new friends: dinner"
+ },
+ {
   "name": "THE COLLECTORS: AFTER DARK",
   "category": "Food & Drink",
   "description": "THE COLLECTORS HALLOWEEN PARTY",
@@ -5432,7 +6670,10 @@
    "tasting",
    "cocktails"
   ],
-  "flags": []
+  "flags": [],
+  "date": "special",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "All Hallows Eve Cheese & Wine Pairing",
@@ -5459,6 +6700,9 @@
   "flags": [
    "class_slot"
   ],
+  "date": "special",
+  "singles": false,
+  "ages": "",
   "family": "murray's cheese shop: wine and cheese tasting"
  },
  {
@@ -5564,7 +6808,7 @@
  },
  {
   "name": "NYC Data Science & Analytics Social Mixer \u2013 Every Friday @ 7PM",
-  "category": "Tech",
+  "category": "Meetups & Mixers",
   "description": "This event is for data-minded professionals looking to connect",
   "neighborhood": "Financial District-Battery Park City",
   "price": null,
@@ -5588,11 +6832,14 @@
   "flags": [
    "networking"
   ],
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "the irish american pub: social mixer"
  },
  {
   "name": "\ufe0f NYC Cybersecurity & InfoSec Social Mixer \u2013 Every Friday @ 7PM",
-  "category": "Tech",
+  "category": "Meetups & Mixers",
   "description": "Calling all cybersecurity professionals, ethical hackers, SOC analysts",
   "neighborhood": "Financial District-Battery Park City",
   "price": null,
@@ -5616,6 +6863,9 @@
   "flags": [
    "networking"
   ],
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "the irish american pub: social mixer"
  },
  {
@@ -5648,7 +6898,7 @@
  },
  {
   "name": "AI and Digital Influence in Elections",
-  "category": "Tech",
+  "category": "Talks",
   "description": "Discussing prediction markets, digital influence methods, ethics and standards, and election coverage ahead of the 2026 midterms.",
   "neighborhood": "Morningside Heights",
   "price": null,
@@ -5668,7 +6918,10 @@
    "elections",
    "journalism"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "ML/AI Seminar: Stephen Tu, University of Southern California",
@@ -5723,6 +6976,57 @@
    "internal"
   ],
   "family": "columbia business school: academic seminar"
+ },
+ {
+  "name": "BREATH ALCHEMY: A SHAMANIC JOURNEY",
+  "category": "Classes & Workshops",
+  "description": "Breathe.Breathe. Release. Transform. A bi-weekly shamanic breathwork journey with Eleonora. Sacred circle, deep healing, full integration.",
+  "neighborhood": "East Midtown-Turtle Bay",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.com/e/breath-alchemy-a-shamanic-journey-tickets-1999745524696",
+  "venue": "Ascentiah Healing Center",
+  "lat": 40.759731,
+  "lng": -73.97089249999999,
+  "audience": null,
+  "availability": null,
+  "series": "eb1681dedf",
+  "recurring": "Every Friday",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "breathwork",
+   "shamanic",
+   "healing"
+  ],
+  "flags": []
+ },
+ {
+  "name": "Chair Yoga at Ethical Culture",
+  "category": "Fitness & Outdoors",
+  "description": "Led by Sara Jane, whether you are new to yoga or returning to your practice, you are welcome!",
+  "neighborhood": "Upper West Side-Lincoln Square",
+  "price": null,
+  "start_time": "11:00 AM",
+  "end_time": "12:00 PM",
+  "url": "https://www.eventbrite.com/e/chair-yoga-at-ethical-culture-tickets-2003205382223",
+  "venue": "New York Society for Ethical Culture",
+  "lat": 40.7711314,
+  "lng": -73.980035,
+  "audience": null,
+  "availability": null,
+  "series": "291ffb020c",
+  "recurring": "Every Friday",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "chair yoga",
+   "yoga",
+   "wellness"
+  ],
+  "flags": [],
+  "family": "new york society for ethical culture: yoga class"
  },
  {
   "name": "Riding 4 Rookies: NYC Halloween Couples Costume Class",
@@ -5780,6 +7084,312 @@
   "family": "gotham park: k-pop dance class"
  },
  {
+  "name": "Line Dance Class",
+  "category": "Classes & Workshops",
+  "description": "Join us for a fun, feel-good line dance class that\u2019s all about movement, music, and community.",
+  "neighborhood": "East Flatbush-Erasmus",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "8:30 PM",
+  "url": "https://www.eventbrite.com/e/line-dance-class-tickets-2000494825876",
+  "venue": "Fit4Dance",
+  "lat": 40.6487517,
+  "lng": -73.9572669,
+  "audience": null,
+  "availability": null,
+  "series": "7ddf31065b",
+  "recurring": "Every Friday",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "line dance",
+   "fitness",
+   "community"
+  ],
+  "flags": [
+   "class_slot"
+  ],
+  "family": "fit4dance: dance class"
+ },
+ {
+  "name": "Design your own textile art with wool",
+  "category": "Classes & Workshops",
+  "description": "Discover one of the most intuitive textile techniques in a Brooklyn textile atelier!",
+  "neighborhood": "Greenpoint",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "10:00 PM",
+  "url": "https://www.eventbrite.com/e/design-your-own-textile-art-with-wool-tickets-2002759243811",
+  "venue": "273 Calyer St",
+  "lat": 40.7297116,
+  "lng": -73.94938719999999,
+  "audience": null,
+  "availability": null,
+  "series": "763674aecd",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "textile",
+   "wool",
+   "craft workshop"
+  ],
+  "flags": [],
+  "family": "273 calyer st: textile workshop"
+ },
+ {
+  "name": "Haunted Bay Ridge Walking Tour",
+  "category": "Tours",
+  "description": "A Bay Ridge, Brooklyn walking tour that focuses on personal ghost anecdotes, stories of unsolved murders, and other spooky Bay Ridge history",
+  "neighborhood": "Bay Ridge",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.com/e/haunted-bay-ridge-walking-tour-tickets-1991943884781",
+  "venue": "29 83rd St",
+  "lat": 40.6278614,
+  "lng": -74.0383897,
+  "audience": null,
+  "availability": null,
+  "series": "92b52cdbde",
+  "quality": 6,
+  "why": "Personal ghost anecdotes and unsolved murders in Bay Ridge, seasonal timing.",
+  "topics": [
+   "ghost stories",
+   "bay ridge",
+   "true crime"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "D.C\u2019s Financial District Haunted History Walking Tour",
+  "category": "Tours",
+  "description": "D.C\u2019s Financial District Haunted History Walking Tour",
+  "neighborhood": "Financial District-Battery Park City",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.com/e/dcs-financial-district-haunted-history-walking-tour-tickets-2003852477703",
+  "venue": "Fraunces Tavern",
+  "lat": 40.7034181,
+  "lng": -74.01136489999999,
+  "audience": null,
+  "availability": null,
+  "series": "b3dca05716",
+  "quality": 6,
+  "why": "Haunted Financial District history walk starting at Fraunces Tavern.",
+  "topics": [
+   "ghost stories",
+   "financial district",
+   "walking tour"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
+  "family": "fraunces tavern: walking tour"
+ },
+ {
+  "name": "True Crime Tour NYC",
+  "category": "Tours",
+  "description": "True Crime Tour NYC is New York City's ONLY Modern True Crime Walking Tour Experience",
+  "neighborhood": "East Village",
+  "price": null,
+  "start_time": "3:00 PM",
+  "end_time": "6:00 PM",
+  "url": "https://www.eventbrite.com/e/true-crime-tour-nyc-tickets-1987353491792",
+  "venue": "SW corner of E. 9th Street and Avenue C (Loisaida Ave) by the entrance door to the community garden - the nearest storefront is 137 Avenue C",
+  "lat": 40.7251066,
+  "lng": -73.9783697,
+  "audience": null,
+  "availability": null,
+  "series": "de12d538c9",
+  "recurring": "Also on other days",
+  "quality": 5,
+  "why": "Modern true crime stories across the Lower East Side on foot.",
+  "topics": [
+   "true crime",
+   "lower east side",
+   "walking tour"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
+  "family": "true crime nyc: walking tour"
+ },
+ {
+  "name": "True Crime NYC: Mafia Walk w/Ret. NYPD Detective + Cannoli",
+  "category": "Tours",
+  "description": "Join a Mafia Walk in NYC with a retired NYPD Detective and enjoy insider crime stories plus a full-size Sicilian cannoli.",
+  "neighborhood": "East Village",
+  "price": null,
+  "start_time": "10:00 AM",
+  "end_time": "12:30 PM",
+  "url": "https://www.eventbrite.com/e/true-crime-nyc-mafia-walk-wret-nypd-detective-cannoli-tickets-1999169996275",
+  "venue": "John's of 12th Street Italian Restaurant",
+  "lat": 40.7306699,
+  "lng": -73.9855247,
+  "audience": null,
+  "availability": null,
+  "series": "bbbd6624f0",
+  "recurring": "Also on other days",
+  "quality": 6,
+  "why": "Retired NYPD detective's mafia stories, ending with a Sicilian cannoli.",
+  "topics": [
+   "mafia history",
+   "true crime",
+   "food"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
+  "family": "true crime nyc: walking tour"
+ },
+ {
+  "name": "NYC Gangsters and Ghosts Tour \u2013 Late Night Halloween Special",
+  "category": "Tours",
+  "description": "Uncover the chilling history of NYC's Gangsters & Ghosts on this thrilling late-night Halloween walking tour, ending right at midnight.",
+  "neighborhood": "Chinatown-Two Bridges",
+  "price": null,
+  "start_time": "10:00 PM",
+  "end_time": "11:59 PM",
+  "url": "https://www.eventbrite.com/e/nyc-gangsters-and-ghosts-tour-late-night-halloween-special-tickets-2003804337715",
+  "venue": "24 Mulberry St",
+  "lat": 40.7143179,
+  "lng": -73.99942870000001,
+  "audience": null,
+  "availability": null,
+  "series": "61ad761abb",
+  "quality": 4,
+  "why": "",
+  "topics": [
+   "walking tour",
+   "history",
+   "halloween"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
+  "family": "nyc gangsters & ghosts: walking tour"
+ },
+ {
+  "name": "Brooklyn Heights at Twilight: The Weird, Wonderful, and In-Between",
+  "category": "Tours",
+  "description": "New York Adventure Club | www.AdventureClub.com",
+  "neighborhood": "Brooklyn Heights",
+  "price": null,
+  "start_time": "4:00 PM",
+  "end_time": "6:00 PM",
+  "url": "https://www.eventbrite.com/e/brooklyn-heights-at-twilight-the-weird-wonderful-and-in-between-tickets-2002680687848",
+  "venue": "Center for Brooklyn History",
+  "lat": 40.69480180000001,
+  "lng": -73.9924157,
+  "audience": null,
+  "availability": null,
+  "series": "b094b6bcea",
+  "quality": 4,
+  "why": "Twilight walking tour of Brooklyn Heights' history and architecture.",
+  "topics": [
+   "brooklyn history",
+   "walking tour",
+   "architecture"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
+  "family": "new york adventure club: walking tour"
+ },
+ {
+  "name": "Weird New York Tour with Russell Dobular",
+  "category": "Tours",
+  "description": "From an MK Ultra safehouse to the site of an infamous Weather Underground bombing, this tour covers all the weird and then some.",
+  "neighborhood": "Greenwich Village",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.com/e/weird-new-york-tour-with-russell-dobular-tickets-2003241972666",
+  "venue": "Washington Square Arch",
+  "lat": 40.7312185,
+  "lng": -73.9970929,
+  "audience": null,
+  "availability": null,
+  "series": "2454f7d03e",
+  "quality": 7,
+  "why": "Russell Dobular's tour of an MK Ultra safehouse and Weather Underground bombing site.",
+  "topics": [
+   "weird history",
+   "counterculture",
+   "walking tour"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "The Bible and History Tour at The MET Museum",
+  "category": "Tours",
+  "description": "Join us for a live guided journey through the ancient world at the Metropolitan Museum of Art from a biblical and historical perspective.",
+  "neighborhood": "Central Park",
+  "price": null,
+  "start_time": "11:00 AM",
+  "end_time": "12:30 PM",
+  "url": "https://www.eventbrite.com/e/the-bible-and-history-tour-at-the-met-museum-tickets-1999617675295",
+  "venue": "The Metropolitan Museum of Art",
+  "lat": 40.7794366,
+  "lng": -73.963244,
+  "audience": null,
+  "availability": null,
+  "series": "bdf101220c",
+  "recurring": "Every Friday",
+  "quality": 5,
+  "why": "Live Met tour linking the ancient world to biblical history.",
+  "topics": [
+   "museum tour",
+   "ancient history",
+   "religion"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
+  "family": "the metropolitan museum of art: guided tour"
+ },
+ {
+  "name": "BROOKLYN KARIHAN: A Bklyn Filipino Living Social Gathering",
+  "category": "Meetups & Mixers",
+  "description": "Baryo Brooklyn presents BROOKLYN KARIHAN: A Bklyn Filipino Living Social Gathering | Local History x Music x Refreshments x Community",
+  "neighborhood": "Fort Greene",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.com/e/brooklyn-karihan-a-bklyn-filipino-living-social-gathering-tickets-2003045457885",
+  "venue": "LuEsther T. Mertz South Oxford Space",
+  "lat": 40.6851273,
+  "lng": -73.9734987,
+  "audience": null,
+  "availability": null,
+  "series": "77b7c80154",
+  "quality": 4,
+  "why": "Community gathering on Filipino Brooklyn history, with music and refreshments.",
+  "topics": [
+   "filipino culture",
+   "local history",
+   "music"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "baryo brooklyn: community gathering"
+ },
+ {
   "name": "Wine 101: Orange vs. Ros\u00e9",
   "category": "Classes & Workshops",
   "description": "Wine 101 is a series run by Liz's bartender Zoe where you'll begin to break down and understand how to talk about wine.",
@@ -5807,238 +7417,6 @@
   "family": "liz's book bar: wine class"
  },
  {
-  "name": "Body Waves: Friday Night 5Rhythms in NYC",
-  "category": "Classes & Workshops",
-  "description": "The 5Rhythms is a dance & movement practice designed to wake you up, shake you up, & bring you into your creative power.",
-  "neighborhood": "East Village",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "8:45 PM",
-  "url": "https://www.eventbrite.com/e/body-waves-friday-night-5rhythms-in-nyc-tickets-1996519239791",
-  "venue": "New York Center for Creativity and Dance",
-  "lat": 40.7281597,
-  "lng": -73.9824369,
-  "audience": null,
-  "availability": null,
-  "series": "7a88ca3728",
-  "recurring": "Every Friday",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "dance",
-   "movement",
-   "wellness"
-  ],
-  "flags": [
-   "class_slot"
-  ],
-  "family": "new york center for creativity and dance: 5rhythms dance class"
- },
- {
-  "name": "Salsa Classes for Beginners on Fridays",
-  "category": "Classes & Workshops",
-  "description": "Make this your year, by learning & dancing New York Style Salsa On2. Cumulative classes, Meet new friends and attend events to practice!",
-  "neighborhood": "Midtown-Times Square",
-  "price": null,
-  "start_time": "6:30 PM",
-  "end_time": "7:30 PM",
-  "url": "https://www.eventbrite.com/e/salsa-classes-for-beginners-on-fridays-tickets-2002456093079",
-  "venue": "Pearl Studios NYC",
-  "lat": 40.75297399999999,
-  "lng": -73.992533,
-  "audience": null,
-  "availability": null,
-  "series": "4ac3af7d75",
-  "recurring": "Every Friday",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "salsa",
-   "dance class",
-   "beginners"
-  ],
-  "flags": [
-   "class_slot"
-  ],
-  "family": "pearl studios nyc: salsa class"
- },
- {
-  "name": "In-person Class: Handmade Ricotta Ravioli (NYC)",
-  "category": "Classes & Workshops",
-  "description": "Handmade Ricotta Ravioli",
-  "neighborhood": "Chelsea-Hudson Yards",
-  "price": null,
-  "start_time": "6:30 PM",
-  "end_time": "8:30 PM",
-  "url": "https://www.eventbrite.com/e/in-person-class-handmade-ricotta-ravioli-nyc-tickets-1998393923019",
-  "venue": "The Terrace @ Hyatt Place New York Chelsea (140 West 24th Street, New York, NY)",
-  "lat": 40.7441216,
-  "lng": -73.9942217,
-  "audience": null,
-  "availability": null,
-  "series": "c2a9572eef",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "pasta making",
-   "cooking class",
-   "chelsea"
-  ],
-  "flags": [
-   "class_slot"
-  ],
-  "family": "the terrace: cooking class"
- },
- {
-  "name": "Haunted Bay Ridge Walking Tour",
-  "category": "Tours",
-  "description": "A Bay Ridge, Brooklyn walking tour that focuses on personal ghost anecdotes, stories of unsolved murders, and other spooky Bay Ridge history",
-  "neighborhood": "Bay Ridge",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.com/e/haunted-bay-ridge-walking-tour-tickets-1991943884781",
-  "venue": "29 83rd St",
-  "lat": 40.6278614,
-  "lng": -74.0383897,
-  "audience": null,
-  "availability": null,
-  "series": "92b52cdbde",
-  "quality": 6,
-  "why": "Personal ghost anecdotes and unsolved murders in Bay Ridge, seasonal timing.",
-  "topics": [
-   "ghost stories",
-   "bay ridge",
-   "true crime"
-  ],
-  "flags": []
- },
- {
-  "name": "NYC Gangsters and Ghosts Tour \u2013 Late Night Halloween Special",
-  "category": "Tours",
-  "description": "Uncover the chilling history of NYC's Gangsters & Ghosts on this thrilling late-night Halloween walking tour, ending right at midnight.",
-  "neighborhood": "Chinatown-Two Bridges",
-  "price": null,
-  "start_time": "10:00 PM",
-  "end_time": "11:59 PM",
-  "url": "https://www.eventbrite.com/e/nyc-gangsters-and-ghosts-tour-late-night-halloween-special-tickets-2003804337715",
-  "venue": "24 Mulberry St",
-  "lat": 40.7143179,
-  "lng": -73.99942870000001,
-  "audience": null,
-  "availability": null,
-  "series": "61ad761abb",
-  "quality": 4,
-  "why": "",
-  "topics": [
-   "walking tour",
-   "history",
-   "halloween"
-  ],
-  "flags": [],
-  "family": "nyc gangsters & ghosts: walking tour"
- },
- {
-  "name": "Brooklyn Heights at Twilight: The Weird, Wonderful, and In-Between",
-  "category": "Tours",
-  "description": "New York Adventure Club | www.AdventureClub.com",
-  "neighborhood": "Brooklyn Heights",
-  "price": null,
-  "start_time": "4:00 PM",
-  "end_time": "6:00 PM",
-  "url": "https://www.eventbrite.com/e/brooklyn-heights-at-twilight-the-weird-wonderful-and-in-between-tickets-2002680687848",
-  "venue": "Center for Brooklyn History",
-  "lat": 40.69480180000001,
-  "lng": -73.9924157,
-  "audience": null,
-  "availability": null,
-  "series": "b094b6bcea",
-  "quality": 4,
-  "why": "Twilight walking tour of Brooklyn Heights' history and architecture.",
-  "topics": [
-   "brooklyn history",
-   "walking tour",
-   "architecture"
-  ],
-  "flags": [],
-  "family": "new york adventure club: walking tour"
- },
- {
-  "name": "Weird New York Tour with Russell Dobular",
-  "category": "Tours",
-  "description": "From an MK Ultra safehouse to the site of an infamous Weather Underground bombing, this tour covers all the weird and then some.",
-  "neighborhood": "Greenwich Village",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.com/e/weird-new-york-tour-with-russell-dobular-tickets-2003241972666",
-  "venue": "Washington Square Arch",
-  "lat": 40.7312185,
-  "lng": -73.9970929,
-  "audience": null,
-  "availability": null,
-  "series": "2454f7d03e",
-  "quality": 7,
-  "why": "Russell Dobular's tour of an MK Ultra safehouse and Weather Underground bombing site.",
-  "topics": [
-   "weird history",
-   "counterculture",
-   "walking tour"
-  ],
-  "flags": []
- },
- {
-  "name": "The Bible and History Tour at The MET Museum",
-  "category": "Tours",
-  "description": "Join us for a live guided journey through the ancient world at the Metropolitan Museum of Art from a biblical and historical perspective.",
-  "neighborhood": "Central Park",
-  "price": null,
-  "start_time": "11:00 AM",
-  "end_time": "12:30 PM",
-  "url": "https://www.eventbrite.com/e/the-bible-and-history-tour-at-the-met-museum-tickets-1999617675295",
-  "venue": "The Metropolitan Museum of Art",
-  "lat": 40.7794366,
-  "lng": -73.963244,
-  "audience": null,
-  "availability": null,
-  "series": "bdf101220c",
-  "recurring": "Every Friday",
-  "quality": 5,
-  "why": "Live Met tour linking the ancient world to biblical history.",
-  "topics": [
-   "museum tour",
-   "ancient history",
-   "religion"
-  ],
-  "flags": [],
-  "family": "the metropolitan museum of art: guided tour"
- },
- {
-  "name": "BROOKLYN KARIHAN: A Bklyn Filipino Living Social Gathering",
-  "category": "Talks",
-  "description": "Baryo Brooklyn presents BROOKLYN KARIHAN: A Bklyn Filipino Living Social Gathering | Local History x Music x Refreshments x Community",
-  "neighborhood": "Fort Greene",
-  "price": null,
-  "start_time": "6:30 PM",
-  "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.com/e/brooklyn-karihan-a-bklyn-filipino-living-social-gathering-tickets-2003045457885",
-  "venue": "LuEsther T. Mertz South Oxford Space",
-  "lat": 40.6851273,
-  "lng": -73.9734987,
-  "audience": null,
-  "availability": null,
-  "series": "77b7c80154",
-  "quality": 4,
-  "why": "Community gathering on Filipino Brooklyn history, with music and refreshments.",
-  "topics": [
-   "filipino culture",
-   "local history",
-   "music"
-  ],
-  "flags": [],
-  "family": "baryo brooklyn: community gathering"
- },
- {
   "name": "Mario Vargas Llosa C\u00e1tedra 2026 - Closing Session",
   "category": "Talks",
   "description": "Novelist Ernesto Qui\u00f1onez examines Aunt Julia and the Scriptwriter at the Mario Vargas Llosa C\u00e1tedra 2026 concluding public lecture.",
@@ -6061,11 +7439,14 @@
    "lecture"
   ],
   "flags": [],
-  "subject": "Aunt Julia and the Scriptwriter"
+  "subject": "Aunt Julia and the Scriptwriter",
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Henrik Langsdorf: \"Other Forms of Order\" pop-up art show",
-  "category": "Talks",
+  "category": "Arts & Play",
   "description": "This show features mixed-media works on canvas, edition prints on paper and a video installation about utopian architecture meeting reality",
   "neighborhood": "Chelsea-Hudson Yards",
   "price": null,
@@ -6085,11 +7466,14 @@
    "utopian architecture",
    "mixed media"
   ],
-  "flags": []
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Brooklyn Book Club: Read your book and then meet some people! BYO Book!",
-  "category": "Talks",
+  "category": "Meetups & Mixers",
   "description": "Grab your favorite book and come hang out with fellow readers for some chill vibes and great conversations!",
   "neighborhood": "Bushwick (East)",
   "price": null,
@@ -6111,6 +7495,9 @@
    "social"
   ],
   "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "brooklyn book club: book club"
  },
  {
@@ -6135,7 +7522,10 @@
    "literature",
    "politics"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Soulful Maximalism Book Tour | Brooklyn, NY | Adanne Bookshop",
@@ -6159,7 +7549,10 @@
    "nonfiction",
    "design"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Dragons in the Details: A Court of Splintered Harmony Live Reaction Show",
@@ -6183,56 +7576,10 @@
    "fan event",
    "books"
   ],
-  "flags": []
- },
- {
-  "name": "Halloween Hoedown: Book Club Bar's Halloween Party!",
-  "category": "Talks",
-  "description": "Spend your Halloween with Book Club Bar! Live music, specialty cocktails, spooky books.",
-  "neighborhood": "East Village",
-  "price": null,
-  "start_time": "8:00 PM",
-  "end_time": null,
-  "url": "https://www.eventbrite.com/e/halloween-hoedown-book-club-bars-halloween-party-tickets-2002174193911",
-  "venue": "Book Club Bar - East Village",
-  "lat": 40.72296,
-  "lng": -73.983229,
-  "audience": null,
-  "availability": null,
-  "series": "72c0d78c0c",
-  "quality": 4,
-  "why": "Halloween party with live music, cocktails and spooky book pairings.",
-  "topics": [
-   "halloween",
-   "live music",
-   "cocktails"
-  ],
   "flags": [],
-  "family": "book club bar: party"
- },
- {
-  "name": "Halloween Hoedown: Book Club Bar's Halloween Party!",
-  "category": "Talks",
-  "description": "Spend your Halloween with Book Club Bar! Live music, specialty cocktails, spooky books.",
-  "neighborhood": "Bushwick (West)",
-  "price": null,
-  "start_time": "8:00 PM",
-  "end_time": null,
-  "url": "https://www.eventbrite.com/e/halloween-hoedown-book-club-bars-halloween-party-tickets-2002153726693",
-  "venue": "Book Club Bar - Bushwick",
-  "lat": 40.7058915,
-  "lng": -73.9233996,
-  "audience": null,
-  "availability": null,
-  "series": "d3a777c109",
-  "quality": 4,
-  "why": "",
-  "topics": [
-   "halloween",
-   "nightlife",
-   "live music"
-  ],
-  "flags": []
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Kings County Distillery: Dead Distillers Halloween Tour",
@@ -6257,6 +7604,9 @@
    "distillery tour"
   ],
   "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
   "family": "kings county distillery: distillery tour"
  },
  {
@@ -6283,6 +7633,9 @@
   ],
   "flags": [],
   "subject": "Toni Morrison",
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "strother school of radical attention: close reading",
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Toni_Morrison.jpg/960px-Toni_Morrison.jpg",
   "image_credit": {
@@ -6318,7 +7671,7 @@
  },
  {
   "name": "Abolish Everything: World Championship III",
-  "category": "Talks",
+  "category": "Comedy",
   "description": "ABOLISH EVERYTHING is a fun, dumb comedy debate show! Comedians testify against societal ills and improvisers grill them with questions.",
   "neighborhood": "Lower East Side",
   "price": null,
@@ -6338,11 +7691,14 @@
    "debate",
    "improv"
   ],
-  "flags": []
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "NYC IT & Tech Social Mixer \u2013 Every Friday @ 7PM",
-  "category": "Talks",
+  "category": "Meetups & Mixers",
   "description": "This weekly after-work mixer is for you.",
   "neighborhood": "Financial District-Battery Park City",
   "price": null,
@@ -6366,11 +7722,14 @@
   "flags": [
    "networking"
   ],
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "the irish american pub: mixer"
  },
  {
   "name": "The Fine Art of Rocky",
-  "category": "Talks",
+  "category": "Arts & Play",
   "description": "The Fine Art of Rocky is an immersive exploration and celebration of an iconic character\u2014in time for his 50th anniversary.",
   "neighborhood": "Midtown South-Flatiron-Union Square",
   "price": null,
@@ -6391,11 +7750,14 @@
    "rocky"
   ],
   "flags": [],
-  "subject": "Rocky Balboa"
+  "subject": "Rocky Balboa",
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Graphic Content: Feldman & Brown at 100 (St. Michael\u2019s, New York, NY)",
-  "category": "Talks",
+  "category": "Music",
   "description": "Experience the pioneering sounds of the New York School through visionary performances that continue to reshape how we listen.",
   "neighborhood": "Upper West Side-Manhattan Valley",
   "price": null,
@@ -6415,11 +7777,131 @@
    "experimental music",
    "new music"
   ],
-  "flags": []
+  "flags": [],
+  "date": "special",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "An American Meo: A Tale of Remembering and Forgetting",
+  "category": "Talks",
+  "description": "Author Anisa Rahim's hybrid work of nonfiction, fiction, and myth that explores identity, heritage, and the weight of generational memory.",
+  "neighborhood": "Midtown-Times Square",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.com/e/an-american-meo-a-tale-of-remembering-and-forgetting-tickets-1993858333950",
+  "venue": "Asian American / Asian Research Institute - CUNY",
+  "lat": 40.7548945,
+  "lng": -73.98185649999999,
+  "audience": null,
+  "availability": null,
+  "series": "dfa16203bb",
+  "quality": 5,
+  "why": "Anisa Rahim reads from her hybrid nonfiction, fiction and myth book.",
+  "topics": [
+   "memoir",
+   "identity",
+   "book talk"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "asian american/asian research institute: book talk"
+ },
+ {
+  "name": "Tommy Stinson's Cowboys in the Campfire live on a Secret Patio in Brooklyn",
+  "category": "Music",
+  "description": "We can not post the exact location of the warehouse but it will be emailed to you with your ticket confirmation.",
+  "neighborhood": "Park Slope",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://www.eventbrite.com/e/tommy-stinsons-cowboys-in-the-campfire-live-on-a-secret-patio-in-brooklyn-tickets-1999807038686",
+  "venue": "A Warehouse in Brooklyn",
+  "lat": 40.6683276,
+  "lng": -73.9798349,
+  "audience": null,
+  "availability": null,
+  "series": "bd294565ec",
+  "quality": 8,
+  "why": "Tommy Stinson plays Cowboys in the Campfire at a secret Brooklyn patio.",
+  "topics": [
+   "rock",
+   "intimate concert",
+   "secret venue"
+  ],
+  "flags": [],
+  "subject": "Tommy Stinson",
+  "date": "special",
+  "singles": false,
+  "ages": "",
+  "image": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Download_Feastival_2006_-Stinson_%28cropped%29.jpg",
+  "image_credit": {
+   "by": "salut",
+   "license": "CC BY 2.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Download_Feastival_2006_-Stinson_(cropped).jpg"
+  }
+ },
+ {
+  "name": "Halloween Hoedown: Book Club Bar's Halloween Party!",
+  "category": "Music",
+  "description": "Spend your Halloween with Book Club Bar! Live music, specialty cocktails, spooky books.",
+  "neighborhood": "East Village",
+  "price": null,
+  "start_time": "8:00 PM",
+  "end_time": null,
+  "url": "https://www.eventbrite.com/e/halloween-hoedown-book-club-bars-halloween-party-tickets-2002174193911",
+  "venue": "Book Club Bar - East Village",
+  "lat": 40.72296,
+  "lng": -73.983229,
+  "audience": null,
+  "availability": null,
+  "series": "72c0d78c0c",
+  "quality": 4,
+  "why": "Halloween party with live music, cocktails and spooky book pairings.",
+  "topics": [
+   "halloween",
+   "live music",
+   "cocktails"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "book club bar: party"
+ },
+ {
+  "name": "Halloween Hoedown: Book Club Bar's Halloween Party!",
+  "category": "Music",
+  "description": "Spend your Halloween with Book Club Bar! Live music, specialty cocktails, spooky books.",
+  "neighborhood": "Bushwick (West)",
+  "price": null,
+  "start_time": "8:00 PM",
+  "end_time": null,
+  "url": "https://www.eventbrite.com/e/halloween-hoedown-book-club-bars-halloween-party-tickets-2002153726693",
+  "venue": "Book Club Bar - Bushwick",
+  "lat": 40.7058915,
+  "lng": -73.9233996,
+  "audience": null,
+  "availability": null,
+  "series": "d3a777c109",
+  "quality": 4,
+  "why": "",
+  "topics": [
+   "halloween",
+   "nightlife",
+   "live music"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Foodies & Fears Manhattan: Dinner with Paranormies",
-  "category": "Talks",
+  "category": "Meetups & Mixers",
   "description": "Dinner with New Friends series for locals who love all things horror, supernatural, and paranormal. Share your story at the dinner table!",
   "neighborhood": "East Midtown-Turtle Bay",
   "price": null,
@@ -6441,11 +7923,14 @@
    "paranormal"
   ],
   "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "foodies & fears: themed dinner"
  },
  {
   "name": "Death By Disco: New York's Biggest Halloween Pop-Up",
-  "category": "Talks",
+  "category": "Music",
   "description": "THE DEATH BY DISCO EXPERIENCE:",
   "neighborhood": "Chelsea-Hudson Yards",
   "price": null,
@@ -6466,11 +7951,41 @@
    "party"
   ],
   "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "death by disco: themed party"
  },
  {
+  "name": "New Play Readings",
+  "category": "Theater",
+  "description": "This Work was commissioned and originally produced by The Flynn Center for the Performing Arts in Burlington, Vermont. Jay Wahl, Executive",
+  "neighborhood": "Flatbush",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.com/e/new-play-readings-tickets-2003912609559",
+  "venue": "Salem Missionary Baptist Church",
+  "lat": 40.64704589999999,
+  "lng": -73.95916989999999,
+  "audience": null,
+  "availability": null,
+  "series": "49dee499fe",
+  "quality": 5,
+  "why": "Staged reading of a new play commissioned by the Flynn Center.",
+  "topics": [
+   "new plays",
+   "staged readings",
+   "theatre"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
   "name": "Halloweekend DJs - The DADA Witch Trials",
-  "category": "Talks",
+  "category": "Music",
   "description": "Free entry with your costume or be burned at the stake ($5 donation), three DJs brewing dangerous beats at the cauldron.",
   "neighborhood": "Ridgewood",
   "price": null,
@@ -6491,11 +8006,41 @@
    "nightlife"
   ],
   "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
   "family": "dada: dj night"
  },
  {
-  "name": "T.O.Y.",
+  "name": "diSONARE 10 Journal Readings & Celebration",
   "category": "Talks",
+  "description": "\u00a1diSONARE invites you to celebrate their 10th issue in NYC!",
+  "neighborhood": "Chelsea-Hudson Yards",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "11:00 PM",
+  "url": "https://www.eventbrite.com/e/disonare-10-journal-readings-celebration-tickets-2003942407686",
+  "venue": "Torn Page",
+  "lat": 40.74650759999999,
+  "lng": -74.00280169999999,
+  "audience": null,
+  "availability": null,
+  "series": "6dad9737a9",
+  "quality": 5,
+  "why": "Readings marking the tenth issue of the diSONARE journal.",
+  "topics": [
+   "literary journal",
+   "poetry",
+   "readings"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "T.O.Y.",
+  "category": "Theater",
   "description": "There is a special place in heaven for teachers, mostly because they teach in hell.",
   "neighborhood": "Chelsea-Hudson Yards",
   "price": null,
@@ -6515,7 +8060,35 @@
    "comedy",
    "teachers"
   ],
-  "flags": []
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Tarot at the Vintage Shop: A Little Magic After Dark",
+  "category": "Talks",
+  "description": "Tarot readings, vintage treasures, and Halloween vibes. Join us for a magical afternoon in Brooklyn on October 30",
+  "neighborhood": "Downtown Brooklyn-DUMBO-Boerum Hill",
+  "price": null,
+  "start_time": "4:00 PM",
+  "end_time": "7:00 PM",
+  "url": "https://www.eventbrite.com/e/tarot-at-the-vintage-shop-a-little-magic-after-dark-tickets-2003375647491",
+  "venue": "Unearth Vintage",
+  "lat": 40.6863005,
+  "lng": -73.99051469999999,
+  "audience": null,
+  "availability": null,
+  "series": "5d731af890",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "tarot",
+   "vintage shopping",
+   "halloween"
+  ],
+  "flags": [],
+  "family": "unearth vintage: tarot reading"
  },
  {
   "name": "Phone-Free Friday",
@@ -6566,7 +8139,10 @@
    "retro screening"
   ],
   "flags": [],
-  "subject": "Goodbye, Dragon Inn"
+  "subject": "Goodbye, Dragon Inn",
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Sneak Preview: The Meltdown (El deshielo)",
@@ -6590,7 +8166,10 @@
    "chilean cinema",
    "new release"
   ],
-  "flags": []
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Nosferatu (with Live Piano Accompaniment)",
@@ -6615,6 +8194,9 @@
    "live music"
   ],
   "flags": [],
-  "subject": "Nosferatu"
+  "subject": "Nosferatu",
+  "date": "special",
+  "singles": false,
+  "ages": ""
  }
 ]
