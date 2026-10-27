@@ -96,6 +96,7 @@ padding:6px 14px;border-radius:999px;border:1px solid transparent;}
 .topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
 .topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
 .topnav .browselink:hover{text-decoration:underline;}
+.topnav .datelink{margin-right:14px;}
 .topnav .tastelinks{display:flex;gap:14px;align-items:center;}
 .topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
 .topnav .tastelink:hover{text-decoration:underline;}
@@ -143,6 +144,8 @@ a{text-decoration-skip-ink:none;}
 :root[data-layout="lineup"] .hero h1,:root[data-layout="lineup"] .bhero h1,:root[data-layout="lineup"] .lhero h1,:root[data-layout="lineup"] .cc-top,:root[data-layout="lineup"] .how h2,:root[data-layout="lineup"] footer .serif,:root[data-layout="lineup"] .sdone h2,:root[data-layout="lineup"] .quiz-card h2,
 :root[data-layout="lineup"] #sgCard h2,:root[data-layout="lineup"] #rpCard h2,:root[data-layout="lineup"] .tn-head b,:root[data-layout="lineup"] .tsec-head h2,:root[data-layout="lineup"] .shead h2,:root[data-layout="lineup"] .picks strong,:root[data-layout="lineup"] .step .n,:root[data-layout="lineup"] .snum,
 :root[data-layout="lineup"] #dayLead .dl-h,:root[data-layout="lineup"] .legal h2,:root[data-layout="lineup"] .st-card h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;}
+
+:root[data-layout="lineup"] .occ-strip .os-h,:root[data-layout="lineup"] .op-hero h1,:root[data-layout="lineup"] .op-day h2,:root[data-layout="lineup"] .op-pic .op-word{font-family:var(--lu-d)!important;font-weight:400!important;}
 
 :root[data-layout="lineup"] #topTonight h2 *,:root[data-layout="lineup"] .cat h2 *,:root[data-layout="lineup"] .hero h1 *,:root[data-layout="lineup"] .bhero h1 *,:root[data-layout="lineup"] .lhero h1 *,:root[data-layout="lineup"] .wm-lu *,:root[data-layout="lineup"] .cc-top *,:root[data-layout="lineup"] footer .serif *,
 :root[data-layout="lineup"] .tsec-head h2 *,:root[data-layout="lineup"] .shead h2 *,:root[data-layout="lineup"] .picks strong *,:root[data-layout="lineup"] .sdone h2 *,:root[data-layout="lineup"] .tonight-head h2 *{font-family:var(--lu-d)!important;font-weight:400!important;}
@@ -2006,6 +2009,43 @@ font:800 13px 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;p
 .tt-why{font-size:13.5px;}
 }
 </style><style>
+.occ-strip{max-width:1040px;margin:14px auto 0;box-sizing:border-box;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:10px;color:var(--ink);}
+.occ-strip.os-date{background:color-mix(in srgb,#ff6fa8 16%,var(--card,#fff));border:2px solid #ff6fa8;}
+.occ-strip.os-meet{background:color-mix(in srgb,#2f6bff 12%,var(--card,#fff));border:2px solid #2f6bff;}
+:root.fs-on #fsCol > .occ-strip{max-width:none;margin-left:0;margin-right:0;}
+.os-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.os-h{margin:0;font:400 22px/1.1 'Anton',Impact,'Arial Narrow Bold',sans-serif!important;text-transform:uppercase;letter-spacing:.01em;}
+.os-all{font-weight:700;color:var(--ink);text-underline-offset:3px;text-decoration-color:color-mix(in srgb,var(--ink) 35%,transparent);white-space:nowrap;}
+.os-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+.os-card{display:flex;flex-direction:column;gap:4px;font-size:13.5px;color:var(--ink);text-decoration:none;min-width:0;}
+.os-card:hover .os-name{text-decoration:underline;text-underline-offset:3px;}
+.os-card small{color:color-mix(in srgb,var(--ink) 64%,transparent);font-size:12.5px;}
+.os-name{line-height:1.25;overflow-wrap:anywhere;}
+.os-mini{display:flex;flex-direction:column;justify-content:flex-end;border-radius:12px;color:#fff;font-weight:700;font-size:12.5px;
+padding:10px 10px 8px;min-height:64px;box-sizing:border-box;}
+.os-mini .os-v{font-weight:500;opacity:.88;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+@media (max-width:520px){.os-row{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.t-jazz{background:linear-gradient(135deg,#2f6bff,#151515);}
+.t-comedy{background:linear-gradient(135deg,#ff4f2e,#ffc21a);}
+.t-tour{background:linear-gradient(135deg,#3b2a5c,#151515);}
+.t-film{background:linear-gradient(135deg,#19b38a,#151515);}
+.t-show{background:linear-gradient(135deg,#ff6fa8,#ff4f2e);}
+.t-meet{background:linear-gradient(135deg,#2f6bff,#8a6cff);}
+.t-drink{background:linear-gradient(135deg,#ffc21a,#ff6fa8);}
+/* the vibe pill on a date idea's card, the age pill on a singles event's */
+.occtag{display:inline-block;margin-left:6px;padding:1px 8px;font-size:11.5px;font-weight:700;line-height:1.45;color:#151515;
+border:1.5px solid #151515;border-radius:999px;vertical-align:1px;white-space:nowrap;}
+.occtag.occ-first{background:#ffe1ec;}.occtag.occ-out{background:#fff1c2;}.occtag.occ-special{background:#e3ebff;}
+.occtag.occ-age{background:transparent;color:var(--ink);border-color:var(--ink);}
+/* the vibe buttons, while Date ideas is on */
+#filterBar .occ-vibes{display:flex;gap:6px;flex-wrap:wrap;}
+#filterBar .occ-vibes[hidden]{display:none!important;}
+#filterBar .occ-vibes button{font:600 13px inherit;font-family:inherit;padding:6px 12px;border-radius:999px;cursor:pointer;color:var(--ink);
+border:2px solid color-mix(in srgb,var(--ink) 25%,transparent);background:transparent;}
+#filterBar .occ-vibes button.on{border-color:var(--ink);background:#ffc21a;color:#151515;}
+.fs-chip.fs-chip-date.on{background:#ff6fa8;color:#151515;}
+.fs-chip.fs-chip-meet.on{background:#2f6bff;color:#fff;}
+</style><style>
 .rep-link{background:none;border:0;padding:4px 0;margin-left:auto;font:600 11.5px/1.2 'Inter',sans-serif;color:var(--ink,#14201A);
 opacity:.5;text-decoration:underline;text-underline-offset:2px;cursor:pointer;}
 .rep-link:hover,.rep-link:focus-visible{opacity:.9;}
@@ -2071,6 +2111,7 @@ font-size:19px;line-height:1;padding:10px 4px;text-align:center;}
 .tn-modes button.on{background:var(--ink);color:var(--paper);}
 .tn-dist{font-size:12.5px;font-weight:600;margin:2px 0 4px;opacity:.8;}
 .tn-all-row .v + .d,.tn-all-row .d{grid-column:2;font-size:12px;opacity:.65;}
+.tn-seeall{display:inline-block;margin:8px 0 2px;font-weight:700;color:var(--ink);text-underline-offset:3px;}
 .tn-all{margin:10px 0 4px;border:2px solid var(--ink);border-radius:12px;background:var(--card,#fff);}
 .tn-all summary{cursor:pointer;padding:10px 12px;font-weight:800;list-style:none;}
 .tn-all summary::-webkit-details-marker{display:none;}
@@ -3179,7 +3220,7 @@ document.addEventListener("DOMContentLoaded", function(){
   if (window.TonightPage && TonightPage.init) TonightPage.init();
 });
 })();
-</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Preferences</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="../account.html">Account</a></span><span class="citylinks"><a class="cur" href="../nyc/2026-10-31.html">NYC</a> <a class="" href="../london/2026-10-31.html">London</a> <a class="" href="../la/2026-10-31.html">LA</a></span><a class="browselink" href="../browse-nyc-2026-10-31.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="../" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
+</script><nav class="topnav"><a class="brand" href="../"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="../taste.html">Preferences</a><a class="tastelink" href="../signup.html">Sign up</a><a class="tastelink" href="../account.html">Account</a></span><span class="citylinks"><a class="cur" href="../nyc/2026-10-31.html">NYC</a> <a class="" href="../london/2026-10-31.html">London</a> <a class="" href="../la/2026-10-31.html">LA</a></span><a class="browselink datelink" href="../nyc/date-ideas.html">♥ Date ideas</a><a class="browselink" href="../browse-nyc-2026-10-31.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="../" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
 <header class="hero dayhero">
 <div class="eyebrow">Saturday, October 31 · New York City</div>
 <h1><span class="h-city">New York City</span><span class="h-date"> — Saturday, October 31</span></h1>
@@ -3193,7 +3234,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 </details>
 </div>
-</header><section id="dayLead" aria-label="The best things to do in New York on Saturday."><h2 class="dl-h">The best things to do in New York on Saturday.</h2><p class="dl-p">Picked from 346 events on Saturday.</p></section><nav class="daystrip open" aria-label="Pick a day"><a class="ds" href="2026-10-26.html"><b>Today</b><span>Mon 26</span></a><a class="ds" href="2026-10-27.html"><b>Tomorrow</b><span>Tue 27</span></a><a class="ds" href="2026-10-28.html"><b>Wed</b><span>28</span></a><a class="ds" href="2026-10-29.html"><b>Thu</b><span>29</span></a><a class="ds ds-x" href="2026-10-30.html"><b>Fri</b><span>30</span></a><a class="ds cur ds-x" href="2026-10-31.html" aria-current="page"><b>Sat</b><span>31</span></a><a class="ds ds-x" href="2026-11-01.html"><b>Sun</b><span>1</span></a><a class="ds wk" href="weekend-2026-10-30.html">This weekend →</a><button type="button" class="ds ds-more" aria-expanded="false" onclick="var s=this.parentNode;s.classList.toggle('open');this.setAttribute('aria-expanded',s.classList.contains('open'))">More ▾</button></nav><p class="ds-note">More gets added as the day gets closer (comedy lineups and some talks are posted a day or two ahead).</p><section id="luPoster" aria-labelledby="luDate"><span class="lu-blob lu-b1" aria-hidden="true"></span><span class="lu-blob lu-b2" aria-hidden="true"></span><span class="lu-blob lu-b3" aria-hidden="true"></span><span class="lu-blob lu-b4" aria-hidden="true"></span><div class="lu-eye"><span>Saturday&#x27;s lineup</span> · New York</div><h2 class="lu-date" id="luDate">Sat Oct 31</h2><p class="lu-from">Picked from 346 events on Saturday.</p><h3 class="sr-only">Headliners</h3><div class="lu-hls"></div><h3 class="sr-only">The undercard</h3><div class="lu-lines"></div><p class="lu-none" hidden>Quiet night so far. Everything that's on is below.</p><a class="lu-cta" href="#allEvents">See the full lineup →</a></section><div id="conciergeNote" aria-live="polite"></div>
+</header><section id="dayLead" aria-label="The best things to do in New York on Saturday."><h2 class="dl-h">The best things to do in New York on Saturday.</h2><p class="dl-p">Picked from 346 events on Saturday.</p></section><nav class="daystrip open" aria-label="Pick a day"><a class="ds" href="2026-10-27.html"><b>Today</b><span>Tue 27</span></a><a class="ds" href="2026-10-28.html"><b>Tomorrow</b><span>Wed 28</span></a><a class="ds" href="2026-10-29.html"><b>Thu</b><span>29</span></a><a class="ds" href="2026-10-30.html"><b>Fri</b><span>30</span></a><a class="ds cur ds-x" href="2026-10-31.html" aria-current="page"><b>Sat</b><span>31</span></a><a class="ds ds-x" href="2026-11-01.html"><b>Sun</b><span>1</span></a><a class="ds wk" href="weekend-2026-10-30.html">This weekend →</a><button type="button" class="ds ds-more" aria-expanded="false" onclick="var s=this.parentNode;s.classList.toggle('open');this.setAttribute('aria-expanded',s.classList.contains('open'))">More ▾</button></nav><p class="ds-note">More gets added as the day gets closer (comedy lineups and some talks are posted a day or two ahead).</p><section id="luPoster" aria-labelledby="luDate"><span class="lu-blob lu-b1" aria-hidden="true"></span><span class="lu-blob lu-b2" aria-hidden="true"></span><span class="lu-blob lu-b3" aria-hidden="true"></span><span class="lu-blob lu-b4" aria-hidden="true"></span><div class="lu-eye"><span>Saturday&#x27;s lineup</span> · New York</div><h2 class="lu-date" id="luDate">Sat Oct 31</h2><p class="lu-from">Picked from 346 events on Saturday.</p><h3 class="sr-only">Headliners</h3><div class="lu-hls"></div><h3 class="sr-only">The undercard</h3><div class="lu-lines"></div><p class="lu-none" hidden>Quiet night so far. Everything that's on is below.</p><a class="lu-cta" href="#allEvents">See the full lineup →</a></section><div id="conciergeNote" aria-live="polite"></div>
 
 <div id="fsLayout"><aside id="fside" aria-label="Filters"></aside><div id="fsCol"><div class="filters" id="filterBar">
 <div class="frow fchips">
@@ -3212,6 +3253,9 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="frow fextra" id="fextra" hidden>
 <select id="fafter" autocomplete="off" aria-label="Starts after"><option value="">Starts after…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select><select id="fbefore" autocomplete="off" aria-label="Starts before"><option value="">Starts before…</option><option value="540">9 AM</option><option value="720">12 PM</option><option value="900">3 PM</option><option value="1020">5 PM</option><option value="1080">6 PM</option><option value="1140">7 PM</option><option value="1200">8 PM</option><option value="1260">9 PM</option><option value="1320">10 PM</option><option value="1380">11 PM</option></select>
 </div>
+<div class="frow occ-vibes" id="occVibes" role="group" aria-label="Vibe" hidden>
+<button type="button" data-v="" class="on">Any vibe</button><button type="button" data-v="first">First date</button><button type="button" data-v="out">Going out</button><button type="button" data-v="special">Something special</button>
+</div>
 <div class="frow fmeta">
 <span id="resCount"></span>
 <span id="hiddenBar"><span id="hiddenN">0</span> hidden · <button id="unhide">show them</button></span>
@@ -3219,7 +3263,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="fclear" id="fclear" type="button" hidden>Clear all</button>
 </div>
 </div>
-<section id="topTonight" aria-labelledby="ttHead"><h2 id="ttHead"><span class="tt-hd">Top picks Saturday</span><span class="tt-hl">Pick your night</span></h2><ol class="tt-list"></ol><p class="tt-empty" hidden>Nothing to single out with these filters. Everything is below.</p><a class="tt-all" href="#allEvents">See all 193 events →</a></section><div class="picks" id="picksBar"><strong>★ My picks: <span id="pickCount">0</span></strong><br>
+<section id="topTonight" aria-labelledby="ttHead"><h2 id="ttHead"><span class="tt-hd">Top picks Saturday</span><span class="tt-hl">Pick your night</span></h2><ol class="tt-list"></ol><p class="tt-empty" hidden>Nothing to single out with these filters. Everything is below.</p><a class="tt-all" href="#allEvents">See all 193 events →</a></section><section class="occ-strip os-date" id="occDate" aria-label="♥ Date ideas on Saturday"><div class="os-top"><h2 class="os-h">♥ Date ideas on Saturday</h2><a class="os-all" href="date-ideas.html">See all 17 →</a></div><div class="os-row"><a class="os-card" href="#e-620702bb" data-occ="date"><span class="os-mini t-drink"><span>2:00 PM</span><span class="os-v">The Met Cloisters</span></span><b class="os-name">Philosophy at the Museum: Medieval Art at The Met Cloisters</b><small>Great first date · ≈ $18 for two</small></a><a class="os-card" href="#e-4132b1c2" data-occ="date"><span class="os-mini t-jazz" style="background-image:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.72)),url(&quot;https://s1.ticketm.net/dam/a/2c8/8b6d9420-66c7-4bcb-877b-0ff0238da2c8_TABLET_LANDSCAPE_16_9.jpg&quot;);background-size:cover;background-position:center"><span>8:00 PM</span><span class="os-v">Madison Square Garden</span></span><b class="os-name">Harry Styles: Together, Together. Harryween.</b><small>Going out</small></a><a class="os-card" href="#e-7fe7434f" data-occ="date"><span class="os-mini t-jazz" style="background-image:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.72)),url(&quot;https://s1.ticketm.net/dam/a/a32/f53c453d-a40b-419f-b6c3-ca16d6454a32_TABLET_LANDSCAPE_16_9.jpg&quot;);background-size:cover;background-position:center"><span>8:00 PM</span><span class="os-v">Blue Note Jazz Club</span></span><b class="os-name">Robert Glasper</b><small>Something special · ≈ $178 for two</small></a><a class="os-card" href="#e-3fdd6e88" data-occ="date"><span class="os-mini t-jazz" style="background-image:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.72)),url(&quot;https://s1.ticketm.net/dam/a/dcf/c828ce8e-c1f0-450d-82a3-8874cf64adcf_1755271_TABLET_LANDSCAPE_16_9.jpg&quot;);background-size:cover;background-position:center"><span>8:30 PM</span><span class="os-v">Birdland Jazz Club</span></span><b class="os-name">Ron Carter&#x27;s Foursight Quartet</b><small>Something special · ≈ $92 for two</small></a></div></section><section class="occ-strip os-meet" id="occMeet" aria-label="Meet someone this weekend"><div class="os-top"><h2 class="os-h">Meet someone this weekend</h2><a class="os-all" href="singles.html">See all 4 →</a></div><div class="os-row"><a class="os-card" href="2026-11-01.html#e-b434f3ba" data-occ="singles"><span class="os-mini t-meet"><span>Sun · 5:00 PM</span><span class="os-v">Dear Irving on Broadway</span></span><b class="os-name">Elegantly Curated Singles Mixer</b><small>Dear Irving on Broadway</small></a></div></section><div class="picks" id="picksBar"><strong>★ My picks: <span id="pickCount">0</span></strong><br>
 <span style="font-size:13px;color:#6b6b6b;">Ticks save automatically and shape tomorrow's picks. Going with friends? Send them your list.</span><br><br>
 <button class="btn btn-gold" id="textGroupBtn">💬 Text the group →</button>
 <div id="shareMsg" style="font-size:13px;margin-top:10px;min-height:18px;"></div>
@@ -5054,7 +5098,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">✦</span></div>
 <div class="event-body">
 <h3><a href="https://luma.com/157thqlu">Philosophy at the Museum: Medieval Art at The Met Cloisters</a></h3>
-<div class="meta">2:00 PM – 4:00 PM · The Met Cloisters, Washington Heights (North) · $9.00</div>
+<div class="meta">2:00 PM – 4:00 PM · The Met Cloisters, Washington Heights (North) · $9.00 <span class="occtag occ-first">Great first date</span></div>
 <p>Pursuing wisdom, together.</p>
 <a class="tickets" href="https://luma.com/157thqlu">Tickets &amp; info →</a>
 
@@ -5130,7 +5174,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/ab2/33d20555-639a-40c0-8f99-4a67dcd55ab2_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/the-lost-boys-new-york-new-york-10-31-2026/event/Z1r9uZrrZbpZ1AvOAbf">Lost Boys Musical w/ Unknown Mortal Orchestra</a></h3>
-<div class="meta">2:00 PM · Palace Theatre-NY, Hell&#x27;s Kitchen · ↻ Also on other days</div>
+<div class="meta">2:00 PM · Palace Theatre-NY, Hell&#x27;s Kitchen · ↻ Also on other days <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/the-lost-boys-new-york-new-york-10-31-2026/event/Z1r9uZrrZbpZ1AvOAbf">Tickets &amp; info →</a>
 
@@ -5166,7 +5210,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/f52/5f3274be-be3f-4e37-9fc4-55ac9c470f52_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/lawrence-staycation-brooklyn-new-york-10-31-2026/event/000064410842ECEE">Lawrence - Staycation</a></h3>
-<div class="meta">5:00 PM · Brooklyn Paramount, Fort Greene</div>
+<div class="meta">5:00 PM · Brooklyn Paramount, Fort Greene <span class="occtag occ-out">Going out</span></div>
 <p>Doors: 5:00PM Show: 6:00PM Lawrence presents Staycation: Coast-to-Coast! A 3-night headline run in Brooklyn at Brooklyn Paramount! Each night will have its own theme and its own surprise special guests, all of which will be announced soon. Our headline sets each night will feature almost entirely non-repeating sets, meaning that over the course of the weekend, we will play most of the songs from our discography. Buy a single show ticket or save money on a full weekend pass! $1 per ticket is added to support Save The Music, helping to provide instruments and music education to public schools. All set times and opening acts are subject to change without notice. For accessible seating inquiries, please email us directly at Info@BrooklynParamount.com to reserve accommodations. Balcony Includes: Exclusive Entrance via Dekalb Ave.</p>
 <a class="tickets" href="https://www.ticketmaster.com/lawrence-staycation-brooklyn-new-york-10-31-2026/event/000064410842ECEE">Tickets &amp; info →</a>
 
@@ -5202,7 +5246,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://i.ticketweb.com/i/00/13/51/19/83_Edp.jpg?v=3" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/pasquale-grasso-trio-birdland-jazz-club-tickets/14916043">Pasquale Grasso Trio</a></h3>
-<div class="meta">5:30 PM · Birdland Jazz Club, Hell&#x27;s Kitchen · $35.46 · ↻ Every Saturday</div>
+<div class="meta">5:30 PM · Birdland Jazz Club, Hell&#x27;s Kitchen · $35.46 · ↻ Every Saturday <span class="occtag occ-special">Something special</span></div>
 <p>It was the kind of endorsement most rising guitarists can only dream of, and then some. In his interview for Vintage Guitar magazines February 2016 cover story, Pat Metheny was asked to name some younger musicians whod impressed him. The best guitar player Ive heard in maybe my entire life is floating around now, Pasquale Grasso, said the jazz-guitar icon and NEA Jazz Master. This guy is doing something so amazingly musical and so difficult.Mostly what I hear now are guitar players who sound a little bit like me mixed with a little bit of [John Scofield] and a little bit of [Bill Frisell], he continued. Whats interesting about Pasquale is that he doesnt sound anything like that at all. In a way, it is a little bit of a throwback, because his modelwhich is an incredible model to haveis Bud Powell. He has somehow captured the essence of that language from piano onto guitar in a way that almost nobody has ever addressed. Hes the most significant new guy Ive heard in many, many years.As hes done with many rising jazz stars, Metheny later invited Grasso over to his New York pad to jam and share some wisdom. Hes since become a generous presence in Grassos life, and his assessment of Grassos playing isno surprisespot-on. Born in Italy and now based in New York City, the 30-year- old guitarist has developed an astounding technique and concept informed not by jazz guitarists so much as by bebop pioneers like Powell, Charlie Parker and Dizzy Gillespie and the classical-guitar tradition. His new digital-only EP series, available beginning in June from Sony Masterworks, showcases Grasso in the solo-guitar format, where his intensive studies of both midcentury jazz and classical meld into a signature mastery that is, remarkably, at once unprecedented and evocative.</p>
 <a class="tickets" href="https://www.ticketweb.com/event/pasquale-grasso-trio-birdland-jazz-club-tickets/14916043">Tickets &amp; info →</a>
 
@@ -5238,7 +5282,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/835/4f10fc68-3512-4e7c-a365-726dce835835_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/cypress-hill-haunted-hill-new-york-new-york-10-31-2026/event/00006515B92CB624">Cypress Hill - Haunted Hill</a></h3>
-<div class="meta">6:30 PM · Irving Plaza Powered By Verizon 5G, Gramercy</div>
+<div class="meta">6:30 PM · Irving Plaza Powered By Verizon 5G, Gramercy <span class="occtag occ-out">Going out</span></div>
 <p>Accessible accommodations should purchase a General Admission ticket and will be taken care of at the venue day of event.</p>
 <a class="tickets" href="https://www.ticketmaster.com/cypress-hill-haunted-hill-new-york-new-york-10-31-2026/event/00006515B92CB624">Tickets &amp; info →</a>
 
@@ -5310,7 +5354,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/5be/17d2b26c-8427-4dc5-8d1f-55c7d7a595be_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/neurosis-brooklyn-new-york-10-31-2026/event/00006523B6434638">Neurosis</a></h3>
-<div class="meta">7:00 PM · Warsaw, Greenpoint</div>
+<div class="meta">7:00 PM · Warsaw, Greenpoint <span class="occtag occ-out">Going out</span></div>
 <p>Doors: 7:00pm Show: 8:00pm All Ages</p>
 <a class="tickets" href="https://www.ticketmaster.com/neurosis-brooklyn-new-york-10-31-2026/event/00006523B6434638">Tickets &amp; info →</a>
 
@@ -5328,7 +5372,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://i.ticketweb.com/i/00/13/58/36/93_Edp.jpg?v=6" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/senri-oe-trio-birdland-theater-tickets/14979673">Senri Oe Trio</a></h3>
-<div class="meta">7:00 PM · Birdland Theater, Hell&#x27;s Kitchen · $35.46</div>
+<div class="meta">7:00 PM · Birdland Theater, Hell&#x27;s Kitchen · $35.46 <span class="occtag occ-special">Something special</span></div>
 <p>Halloween night at Birdland. Expect the unexpected. On the most magical night of the year, something extraordinary is about to happen at New York City&#x27;s legendary Birdland Theater. The music will cast its own spell --- and once it does, you won&#x27;t want to break free. Senri Oe Trio takes the stage for two extraordinary nights --- four sets of music that defy category, blur boundaries, and just might bewitch you. Senri Oe is one of the most remarkable reinventions in contemporary music. Beginning classical piano at age three and discovering jazz at fifteen, he first rose to extraordinary heights in Japan: a multi-platinum recording artist, Japanese Grammy winner, actor, television anchor, and author --- a cultural icon whose name defined an era. At forty-seven, at the peak of his fame, Senri made a bold and deeply personal choice. He walked away from stardom, moved to New York City with his beloved dachshund, Peace, and enrolled in The New School for Jazz and Contemporary Music. Under the mentorship of masters including Junior Mance and Aaron Goldberg, he reinvented himself from scratch. It was not a retreat. It was a return to his first love. Since his 2012 jazz debut, Boys Mature Slow, Senri has built a powerful international presence --- performing at the Atlanta and Detroit Jazz Festivals, headlining SummerFest for two consecutive years, and charting at #24 on JazzWeek in 2023 with his album Class of &#x27;88. These Birdland performances celebrate the worldwide release of his latest album, HOMEWORK (Global release: September 4, 2026) --- conceived in his Brooklyn living room and recorded at The Bunker Studio with bassist Matt Clohesy and drummer Ross Pederson, with mixing by Aaron Nevezie. HOMEWORK fuses digital and acoustic worlds into a soundtrack without visuals: brilliant, edgy, and profoundly human. Don&#x27;t miss your chance to be part of something unforgettable. This Halloween, let the music haunt you.</p>
 <a class="tickets" href="https://www.ticketweb.com/event/senri-oe-trio-birdland-theater-tickets/14979673">Tickets &amp; info →</a>
 
@@ -5346,7 +5390,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dbimages/41046a" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7x4q7">Christine Ebersole</a></h3>
-<div class="meta">7:00 PM · 54 Below, Hell&#x27;s Kitchen</div>
+<div class="meta">7:00 PM · 54 Below, Hell&#x27;s Kitchen <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A7x4q7">Tickets &amp; info →</a>
 
@@ -5418,7 +5462,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/0c7/c28ccd67-14a5-40f6-9c2b-7da57f8ac0c7_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAZ-3e">New York Philharmonic: Get Out in Concert</a></h3>
-<div class="meta">7:30 PM · David Geffen Hall, Upper West Side-Lincoln Square</div>
+<div class="meta">7:30 PM · David Geffen Hall, Upper West Side-Lincoln Square <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZ-3e">Tickets &amp; info →</a>
 
@@ -5436,7 +5480,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/a32/f53c453d-a40b-419f-b6c3-ca16d6454a32_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/robert-glasper-x-halloween-with-blue-note-jazz-club-tickets/15019023">Robert Glasper</a></h3>
-<div class="meta">8:00 PM · Blue Note Jazz Club - NY, SoHo · $88.98 · ↻ Every Saturday</div>
+<div class="meta">8:00 PM · Blue Note Jazz Club - NY, SoHo · $88.98 · ↻ Every Saturday <span class="occtag occ-special">Something special</span></div>
 <p>$20 Minimum Per Person Full Bar &amp; Dinner Menu NO REFUNDS OR EXCHANGES. All seating is first come, first served. Bar Area seating is limited and first come first served. When all available seats are occupied, the remaining bar area is standing room only. Table Seating is all ages, Bar Area is 21+. Bar Area tickets for patrons under 21 will not be honored. Group Reservations: Groups larger than 8 must purchase a group package at club@bluenote.net, or by calling 212.475.8592. Groups larger than 8 without a group package will be subject to group surcharges added to your bill. Groups arriving late or separately are not guaranteed to be seated together. All seating is first come, first served. Arrive early for best seats. We are not affiliated with any third-party ticket sellers. Tickets purchased directly through our official website or TicketWeb are the only authorized sources. We cannot guarantee the validity of tickets purchased through unauthorized sources. To protect against fraud and unauthorized ticket sales, management may require verification of the original purchase method, including presenting the credit card used for purchase and matching photo identification upon entry.</p>
 <a class="tickets" href="https://www.ticketweb.com/event/robert-glasper-x-halloween-with-blue-note-jazz-club-tickets/15019023">Tickets &amp; info →</a>
 
@@ -5526,7 +5570,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/2c8/8b6d9420-66c7-4bcb-877b-0ff0238da2c8_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/harry-styles-together-together-harryween-new-york-new-york-10-31-2026/event/3B00643506DA83DE">Harry Styles: Together, Together. Harryween.</a></h3>
-<div class="meta">8:00 PM · Madison Square Garden, Midtown South</div>
+<div class="meta">8:00 PM · Madison Square Garden, Midtown South <span class="occtag occ-out">Going out</span></div>
 <p>PLEASE NOTE: Pricing is all-in and includes fees (before taxes if applicable). By purchasing tickets to this event, you agree to abide by the health and safety measures in effect at the time of the event. Government mandates, venue protocols, and event requirements are subject to change. For more information, please search your event on msg.com. This event may have immersive elements, which may include flashing or strobe lights, intense lighting, visual effects, loud noises, smoke and/or fog. Such elements may aggravate certain medical or physical conditions, and guests should take this into consideration if they have a history of discomfort or physical symptoms when experiencing these elements.</p>
 <a class="tickets" href="https://www.ticketmaster.com/harry-styles-together-together-harryween-new-york-new-york-10-31-2026/event/3B00643506DA83DE">Tickets &amp; info →</a>
 
@@ -5544,7 +5588,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/dcf/c828ce8e-c1f0-450d-82a3-8874cf64adcf_1755271_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/ron-carters-foursight-quartet-birdland-jazz-club-tickets/14223964">Ron Carter&#x27;s Foursight Quartet</a></h3>
-<div class="meta">8:30 PM · Birdland Jazz Club, Hell&#x27;s Kitchen · $45.76</div>
+<div class="meta">8:30 PM · Birdland Jazz Club, Hell&#x27;s Kitchen · $45.76 <span class="occtag occ-special">Something special</span></div>
 <p>Ron Carters Foursight with Renee Rosnes, Jimmy Greene &amp; Payton CrossleyRon Carter is among the most original, prolific and influential bassists in jazz with more than 2,000 albums to his credit. Beginning his career in the 1960s with Jaki Byard and Eric Dolphy, Cannonball Adderley, and a five year stint with the Miles Davis Quintet, Ron also performed and recorded with notables including Bill Evans, B.B. King, and Dexter Gordon. Ron Carters various ensembles, big band to trio, feature a whos who of the finest players on the NYC scene with, an absolute commitment to musical sublimity [that] exudes refined elegance and sonic power. (amazon.com)</p>
 <a class="tickets" href="https://www.ticketweb.com/event/ron-carters-foursight-quartet-birdland-jazz-club-tickets/14223964">Tickets &amp; info →</a>
 
@@ -5562,7 +5606,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://i.ticketweb.com/i/00/12/86/78/64_Edp.jpg?v=9" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/oz-noy-and-dave-weckl-iridium-tickets/14147914">Oz Noy and Dave Weckl</a></h3>
-<div class="meta">8:30 PM · Iridium, Midtown-Times Square · $51.06</div>
+<div class="meta">8:30 PM · Iridium, Midtown-Times Square · $51.06 <span class="occtag occ-out">Going out</span></div>
 <p>All Iridium policies are featured on our FAQ page. By purchasing tickets you are agreeing to follow all rules the venue has in place. The Iridium is a paperless venue and does not give out physical tickets at the box office. If you selected &quot;Will Call&quot; as your ticket delivery method, please bring a valid ID to show the host upon arrival. Seating and entrance is not guaranteed after the show has begun. All sales are final.</p>
 <a class="tickets" href="https://www.ticketweb.com/event/oz-noy-and-dave-weckl-iridium-tickets/14147914">Tickets &amp; info →</a>
 
@@ -5998,7 +6042,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">🎭</span><img src="https://s1.ticketm.net/dam/a/873/3beee4d4-f31e-47cd-bf42-ad8b54ba2873_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7PNvP">Other Desert Cities</a></h3>
-<div class="meta">2:00 PM · Hudson Theatre -NY, Hell&#x27;s Kitchen · ↻ Also on other days</div>
+<div class="meta">2:00 PM · Hudson Theatre -NY, Hell&#x27;s Kitchen · ↻ Also on other days <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A7PNvP">Tickets &amp; info →</a>
 
@@ -6340,7 +6384,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">🎭</span><img src="https://s1.ticketm.net/dam/a/c76/4dab6007-4109-4503-840f-59b485273c76_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/much-ado-about-nothing-new-york-new-york-10-31-2026/event/Z1r9uZruZqGZ17JbQ7">Much Ado About Nothing</a></h3>
-<div class="meta">8:00 PM · Winter Garden Theatre, Midtown-Times Square</div>
+<div class="meta">8:00 PM · Winter Garden Theatre, Midtown-Times Square <span class="occtag occ-out">Going out</span></div>
 <p>(1) Children under 4 years old will not be admitted. (2) Dress up in pink! Audiences are invited to break out their festive attire in every shade of pink fo r the first preview. (3) Herbal cigarettes are used on stage. (4) No weapons permitted on the premises. No outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your lap or completely under your seat without blocking any aisles. Avoid bringing packages, luggage, and backpacks. Some items must be checked. (5) Strobe or flashing lights are used in this production. (6) This production contains scenes of a sexual nature. (7) This production uses loud music. (8) This production uses loud sound effects. (9) This production uses theatrical haze and smoke. (10) Tickets are on a delayed delivery.</p>
 <a class="tickets" href="https://www.ticketmaster.com/much-ado-about-nothing-new-york-new-york-10-31-2026/event/Z1r9uZruZqGZ17JbQ7">Tickets &amp; info →</a>
 
@@ -6358,7 +6402,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🎭</span></div>
 <div class="event-body">
 <h3><a href="https://www.metopera.org/">Metropolitan Opera presents Lincoln in the Bardo</a></h3>
-<div class="meta">8:00 PM · Metropolitan Opera House, Upper West Side-Lincoln Square · ↻ Every Saturday</div>
+<div class="meta">8:00 PM · Metropolitan Opera House, Upper West Side-Lincoln Square · ↻ Every Saturday <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.metopera.org/">Tickets &amp; info →</a>
 
@@ -6690,7 +6734,7 @@ Elsewhere Halloween - Major League DJz, SAIDAH, D Stone + more - 21+</a></h3>
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">☺</span><img src="https://s1.ticketm.net/dam/a/c62/07c4d381-2d68-4131-a0e4-8ab076046c62_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/nasser-alrayess-new-york-new-york-10-31-2026/event/00006556166F7AEC">Nasser Al-Rayess</a></h3>
-<div class="meta">7:00 PM · Gramercy Theatre, Gramercy</div>
+<div class="meta">7:00 PM · Gramercy Theatre, Gramercy <span class="occtag occ-out">Going out</span></div>
 <p>DOORS - 6:00 PM SHOW - 7:00 PM Showtime is subject to change **Will Call tickets cannot be picked up before the doors open on the night of the show** Age Restriction: 16+ Unless Accompanied by a…</p>
 <a class="tickets" href="https://www.ticketmaster.com/nasser-alrayess-new-york-new-york-10-31-2026/event/00006556166F7AEC">Tickets &amp; info →</a>
 
@@ -9532,6 +9576,8 @@ const IMGS = ["https://images.universe.com/87c12cd6-3143-4efa-9b0f-29b4ebc9321d/
 const ICREDIT = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, {"by": "Copyrighted by Paramount Pictures. Artists(s) not known.", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:The_Trouble_with_Harry.jpg"}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, {"by": "Photographer: Sonya Sones", "license": "Attribution", "url": "https://commons.wikimedia.org/wiki/File:Marilyn_Singer.png"}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
 const CAT_ICON = {"Music": "♪", "Comedy": "☺", "Talks": "❝", "Theater": "🎭", "Film": "🎬", "Arts & Play": "✦", "Food & Drink": "🍷", "Classes & Workshops": "✎", "Tours": "➜", "Meetups & Mixers": "☕", "Tech": "⌘", "Fitness & Outdoors": "☀", "Trivia & Games": "?", "Sports": "⚑"};
 const CURRENCY_SIGN = "$";
+const DATEV = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "out", "", "out", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "out", "", "", "", "", "special", "", "out", "", "", "", "", "out", "", "", "out", "special", "out", "", "", "", "", "out", "", "special", "", "", "", "", "out", "out", "", "out", "special", "", "out", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "first", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];  // date idea: "first" / "out" / "special" / "" (ingest/occasion.py)
+const SINGLE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];  // a singles event (Meet someone)
 // a photo's credit: the tiny i on a picture opens "Photo: <by> · <licence>", linked to its file page
 document.addEventListener("click", e => {
   const b = e.target.closest && e.target.closest(".ph-cr"), old = document.getElementById("phPop");
@@ -10004,7 +10050,8 @@ window.__applyFilters = (function () {
   // you: "For you" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "My neighbourhoods" (Preferences)
   // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false,
+  // occ: "date" / "singles" / "date|singles" (Occasion: ♥ Date ideas, Meet someone); vibe: "first" / "out" / "special" / ""
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", occ: "", vibe: "", only: null, you: true, near: false, low: false,
     nearby: (function(){ try { return localStorage.getItem("tonight-nearby") === "1"; } catch (e) { return false; } })()};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
@@ -10030,6 +10077,7 @@ window.__applyFilters = (function () {
   function everything() { return !F.you && !!(window.Tonight && Tonight.hasProfile && Tonight.hasProfile()); }
   window.__isLow = isLow;
   const hay = {};  // search text per card, read once
+  function occMatch(i, k) { return k === "date" ? !!DATEV[i] && (!F.vibe || DATEV[i] === F.vibe) : k === "singles" ? !!SINGLE[i] : false; }
   // each filter on its own (the sidebar counts what each box would show with all the others)
   function dims(i, a) {
     let base = !hidden.has(String(i)) && !(window.TonightHide && TonightHide.hides(i));  // today, or for good
@@ -10041,7 +10089,9 @@ window.__applyFilters = (function () {
       if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (SRC_LABEL[SRCS[i]] || "") + " " + (a ? a.textContent : "")).toLowerCase();
       if (!hay[i].includes(F.q)) base = false;
     }
-    const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
+    // asking for an occasion shows its events however they're rated (singles mixers score low for everyone else)
+    const occAsked = !!F.occ && F.occ.split("|").some(k => occMatch(i, k));
+    const lowOut = base && !F.low && !F.q && isLow(i) && !everything() && !occAsked;
     const nearOut = base && !lowOut && NEARBY[i] && !F.nearby;  // nearby towns, behind "Include nearby areas"
     return {base: base && !lowOut && !nearOut, lowOut: lowOut, nearOut: nearOut,
       cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
@@ -10049,17 +10099,19 @@ window.__applyFilters = (function () {
       tod: todOk(i),
       hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
       src: !F.src || F.src.split("|").includes(SRCS[i]),  // one or several sources (Eventbrite, Luma ...)
+      occ: !F.occ || F.occ.split("|").some(k => occMatch(i, k)),  // Date ideas / Meet someone
       you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []) ||
         ((F.low || F.q) && Tonight.excluded && Tonight.excluded(i) === "junk"),
       near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
   }
-  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0, apply: () => applyFilters()};
+  window.__facet = {F: F, dims: dims, todMatch: todMatch, occMatch: occMatch, TOD0: () => TOD0, apply: () => applyFilters(),
+    setOcc: (o, v) => setOcc(o, v)};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
     let n = 0, nLow = 0, nNearby = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near;
+      const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near && d.occ;
       const ok = d.base && rest;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
@@ -10098,12 +10150,27 @@ window.__applyFilters = (function () {
       fh.textContent = F.cat ? "✨ Free · " + F.cat.split(",").map(opt).join(" + ") : fh.dataset.orig;
     }
     document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
+    const vb = document.getElementById("occVibes");  // the vibe buttons, while Date ideas is on
+    if (vb) {
+      vb.hidden = !F.occ.split("|").includes("date");
+      vb.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.v === F.vibe));
+    }
     window.__clamp && window.__clamp();
     document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
     document.getElementById("hiddenN").textContent = hidden.size;
     if (window.__topTonight) window.__topTonight();
     if (window.__fside) window.__fside();
   }
+  // Occasion: ♥ Date ideas / Meet someone (the sidebar, the phone chips, the strips' "See all", ?occ= links, Toni)
+  function setOcc(occ, vibe) {
+    F.occ = (occ || "").split("|").filter(k => k === "date" || k === "singles").join("|");
+    if (vibe != null) F.vibe = ["first", "out", "special"].includes(vibe) ? vibe : "";
+    if (!F.occ.split("|").includes("date")) F.vibe = "";
+    applyFilters();
+    try { syncFilterUI(); } catch (e) {}  // not wired yet while the address is being read
+  }
+  window.__setOcc = setOcc;
+  document.querySelectorAll("#occVibes button").forEach(b => b.addEventListener("click", () => setOcc(F.occ, b.dataset.v)));
   const _ns = document.getElementById("nearShow");
   if (_ns) _ns.addEventListener("click", () => {
     F.nearby = !F.nearby;
@@ -10244,7 +10311,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.near;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.near || F.occ;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -10281,6 +10348,7 @@ window.__applyFilters = (function () {
     if (q.get("free") === "1") document.getElementById("ffree").click();
     setv("fafter", q.get("after")); setv("fbefore", q.get("before"));
     setv("fcat", q.get("cat")); setv("fhood", q.get("hood")); setv("fsrc", q.get("src"));
+    if (q.get("occ")) setOcc(q.get("occ"), q.get("vibe") || "");  // ?occ=date (&vibe=first) / ?occ=singles
     const only = (q.get("only") || "").split(",").filter(x => /^[0-9a-f]{8,10}$/.test(x));
     if (only.length) {
       F.only = new Set(only);
@@ -10297,7 +10365,7 @@ window.__applyFilters = (function () {
   function syncFilterUI() {
     ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.occ);
     if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
     if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
@@ -10309,6 +10377,7 @@ window.__applyFilters = (function () {
     ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") { el.value = ""; el.dispatchEvent(new Event("change")); } });
     if (F.free) document.getElementById("ffree").click();
+    if (F.occ) setOcc("", "");
     const all = document.querySelector('#ftod button[data-t="all"]'); if (all) all.click();
   });
   syncFilterUI();
@@ -10527,7 +10596,7 @@ function setNextHour(on, quiet) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i))) return;
-    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.src || !d.you || !d.near) return; }  // other filters still apply
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.src || !d.you || !d.near || !d.occ) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     const kind = soonKind(i, now);
@@ -12045,8 +12114,35 @@ function seeAll(){
 function href(i){ return EIDS[i] ? "#e-" + EIDS[i] : "#event-" + i; }
 // the Lineup poster: the same ranked picks, the top 3 as headliners, the next 9 as the undercard
 var poster = document.getElementById("luPoster");
+// the editor's approved picks (GET /api/picks, by "editor"): their top 3 headline the poster
+var ED = [];
+function edKey(t){ return (t || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
+(function loadEd(tries){
+  if (!poster || EDAYS || typeof CITY === "undefined") return;
+  var api = window.__tonight_api;
+  if (!api) { if (tries < 20) setTimeout(function(){ loadEd(tries + 1); }, 150); return; }
+  fetch(api + "/picks?city=" + encodeURIComponent(CITY) + "&date=" + encodeURIComponent(DATE))
+    .then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+      if (!d || d.by !== "editor" || !d.items) return;
+      d.items.forEach(function(it){
+        for (var i = 0; i < NAMES.length; i++) {
+          if (edKey(NAMES[i]) === edKey(it.name) && (!it.venue || edKey(VENUES[i]) === edKey(it.venue))) { if (ED.indexOf(i) < 0) ED.push(i); break; }
+        }
+      });
+      if (ED.length) window.__topTonight();
+    }).catch(function(){});
+})(0);
+function edTop(){
+  var today = typeof cityToday === "function" && DATE === cityToday(), now = today ? cityNowMinutes() : 0;
+  return ED.filter(function(i){ return !(today && STARTS[i] != null && now - STARTS[i] > 60); }).slice(0, 3);
+}
 function drawPoster(ids){
   if (!poster) return;
+  var top = edTop();
+  if (top.length) ids = top.concat(ids.filter(function(i){ return top.indexOf(i) < 0; }));
+  var from = poster.querySelector(".lu-from");
+  if (from) { if (from.dataset.orig == null) from.dataset.orig = from.textContent;
+    from.textContent = top.length ? (ES ? "Elegidos a mano por Lineup" : "Hand-picked by Lineup") : from.dataset.orig; }
   var hls = poster.querySelector(".lu-hls"), lines = poster.querySelector(".lu-lines"), none = poster.querySelector(".lu-none");
   var f1 = document.createDocumentFragment(), f2 = document.createDocumentFragment();
   ids.slice(0, 3).forEach(function(i){
@@ -12089,6 +12185,29 @@ if (all) all.addEventListener("click", function(e){
 });
 document.addEventListener("DOMContentLoaded", window.__topTonight);
 setInterval(window.__topTonight, 5 * 60 * 1000);  // today: what's started drops off
+})();
+</script><script>
+(function(){
+// the strips: "See all" turns on the Date ideas filter and goes to the list; a card whose event the
+// filters hide brings it back (Date ideas or Meet someone on, any time of day) and goes to it
+function go(occ){
+  if (window.__setOcc) window.__setOcc(occ, "");
+  var m = document.getElementById("allEvents"); if (m) m.scrollIntoView({block: "start"});
+}
+document.addEventListener("click", function(e){
+  var a = e.target.closest && e.target.closest(".occ-strip a"); if (!a) return;
+  var h = a.getAttribute("href") || "";
+  if (h === "#allEvents" && a.dataset.occ) { e.preventDefault(); go(a.dataset.occ); return; }
+  if (h.indexOf("#e-") === 0 && typeof cardFor === "function") {
+    var art = cardFor(h); if (!art) return;
+    if (art.style.display === "none" && !art.dataset.clamped) {
+      if (window.__setOcc) window.__setOcc(a.dataset.occ || "date", "");
+      var any = document.querySelector('#ftod button[data-t="all"]'); if (any && art.style.display === "none") any.click();
+      e.preventDefault();
+      if (typeof revealCard === "function" && revealCard(art)) history.replaceState(null, "", h);
+    }
+  }
+});
 })();
 </script><script>
 (function(){
@@ -12398,7 +12517,7 @@ function loadHistory(){
   restoredCount = history.length;
 }
 loadHistory();
-var SUGGEST = ["Something free tonight", "Low-key, not too loud", "Plan my night", "What starts in the next hour?"];
+var SUGGEST = window.TONI_SUGGEST || ["Something free tonight", "Low-key, not too loud", "Plan my night", "What starts in the next hour?"];
 function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
 function waitForBase(n){
   var b = window.__tonight_api || null;
@@ -12466,7 +12585,7 @@ function card(c){
   if (c.reason) body.appendChild(el("div", "r", c.reason));
   var a = el("div", "a");
   // a pick from another day (Toni looked ahead): no tick here, and "See it" opens that day's page
-  var other = !!(c.date && c.date !== cur.date), here = onPage && !other;
+  var other = !!(c.date && c.date !== cur.date), here = onPage && !other && !window.TONI_NO_TICK;
   if (here) {
     var tick = el("button", "", "Tick it"); tick.type = "button";
     var pageBox = function(){ return document.querySelector('.toggle[data-idx="' + c.id + '"]'); };
@@ -12569,6 +12688,7 @@ function filterUrl(f){
   if (f.category) q.push("cat=" + encodeURIComponent(f.category));
   if (f.neighborhood) q.push("hood=" + encodeURIComponent(f.neighborhood));
   if (f.source) q.push("src=" + encodeURIComponent(f.source));
+  if (f.occasion) q.push("occ=" + encodeURIComponent(f.occasion));
   return q.length ? "?" + q.join("&") : "";
 }
 // "Show me everything that's free before 7": Toni sets the page's own filters instead of a long list
@@ -12579,6 +12699,7 @@ function applyPageFilters(f){
   var free = document.getElementById("ffree");
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
   set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || ""); set("fsrc", f.source || "");
+  if (window.__setOcc) window.__setOcc(f.occasion || "", "");  // Date ideas / Meet someone
   var n = 0;
   document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;
@@ -12664,6 +12785,11 @@ function render(){
       blk.appendChild(list);
     }
     if (m.all && m.all.length) blk.appendChild(allList(m));
+    if (m.see_all) {  // date ideas / singles: their own page, every one grouped by day
+      var sa2 = el("a", "tn-seeall", m.see_all === "singles.html" ? "See every singles event this week →" : "See every date idea this weekend →");
+      sa2.href = (onPage ? "" : cur.slug + "/") + m.see_all;
+      blk.appendChild(sa2);
+    }
     if (m.outro) blk.appendChild(el("p", "tn-text small", m.outro));
     if (m.seeAll && m.fullCount) {
       var sa = el("div", "tn-shown");
@@ -12813,7 +12939,8 @@ function ask(q, display){
     else {
       var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || [], plan: !!d.plan,
                  context: d.context && d.context.days ? d.context : null,
-                 all: d.all || null, all_count: d.all_count || 0, mode: d.mode || null, need_here: !!d.need_here};
+                 all: d.all || null, all_count: d.all_count || 0, mode: d.mode || null, need_here: !!d.need_here,
+                 see_all: d.see_all || null};
       if (d.mode === "near" && toniMode !== "near") { toniMode = "near"; try { sessionStorage.setItem("tonight-toni-mode", "near"); } catch (e) {} }
       // the server works out when and where dinner fits the plan
       if (d.dinner && d.dinner.venue) msg.dinner = d.dinner;
@@ -12899,7 +13026,8 @@ var L = {when: "When", evening: "Evening 5pm+", day: "Daytime", any: "Any", soon
   more: "Show all {n}", fewer: "Show fewer", close: "Close",
   forYou: "For you", everything: "Everything", muted: "muted", setting: "your setting", budget: "Budget: up to {b}",
   budgetFree: "Budget: free only", freeChip: "Free", myHoods: "My neighbourhoods", near: "Near me", late: "Late",
-  mutedNote: "You\u2019ve muted {c} \u00b7 showing it anyway \u00b7 ", hideAgain: "Hide again", likedMark: "You like this"};
+  mutedNote: "You\u2019ve muted {c} \u00b7 showing it anyway \u00b7 ", hideAgain: "Hide again", likedMark: "You like this",
+  occasion: "Occasion", dateIdeas: "\u2665 Date ideas", meet: "Meet someone"};
 var T = function(){ return window.Tonight || {}; };
 function prof(){ return T().profile ? T().profile() : null; }
 function hasProf(){ return !!(T().hasProfile && T().hasProfile()); }
@@ -12993,6 +13121,15 @@ times.appendChild(tsum); times.appendChild(tbox);
 });
 if (tbox.children.length) when.s.appendChild(times);
 
+// Occasion: ♥ Date ideas / Meet someone (ingest/occasion.py tags, build.py DATEV / SINGLE); several = either
+var hasOcc = typeof DATEV !== "undefined" && typeof SINGLE !== "undefined" && !!FX.setOcc;
+function occVals(){ return FX.F.occ ? FX.F.occ.split("|") : []; }
+function occSet(k, on){ FX.setOcc(toggle(occVals(), k, on).join("|")); }
+var occSec = hasOcc ? section(L.occasion, function(){ FX.setOcc(""); }) : null;
+var occDate = occSec ? row(occSec.s, "checkbox", null, L.dateIdeas, function(on){ occSet("date", on); }) : null;
+var occMeet = occSec ? row(occSec.s, "checkbox", null, L.meet, function(on){ occSet("singles", on); }) : null;
+if (occDate) { occDate.r.classList.add("fs-occ-date"); occMeet.r.classList.add("fs-occ-meet"); }
+
 // Price
 var price = section(L.price, null), freeBtn = $("ffree");
 var free = row(price.s, "checkbox", null, L.free, function(on){ if (freeBtn && FX.F.free !== on) freeBtn.click(); });
@@ -13072,6 +13209,7 @@ if (srcSel && typeof SRCS !== "undefined") {
 clearAll.addEventListener("click", function(){
   var fc = $("fclear"); if (fc) fc.click();
   if (FX.F.near) setNear(false);
+  if (FX.F.occ && FX.setOcc) FX.setOcc("");
   if (soonOn()) soonBtn.click();
   var b = todBtn(FX.TOD0()); if (b) b.click();  // back to the page's default (Evening after noon today)
   setTimeout(draw, 0);
@@ -13111,6 +13249,9 @@ function chip(key, label, onClick){ var b = el("button", "fs-chip", label); b.ty
   b.addEventListener("click", function(){ onClick(); window.__fside(); }); chips.appendChild(b); return b; }
 var chipYou = chip("you", L.forYou, function(){ setYou(!FX.F.you); });
 var chipFree = chip("free", L.freeChip, function(){ if (freeBtn) freeBtn.click(); });
+var chipDate = hasOcc ? chip("date", L.dateIdeas, function(){ occSet("date", occVals().indexOf("date") < 0); }) : null;
+var chipMeet = hasOcc ? chip("meet", L.meet, function(){ occSet("singles", occVals().indexOf("singles") < 0); }) : null;
+if (chipDate) { chipDate.classList.add("fs-chip-date"); chipMeet.classList.add("fs-chip-meet"); }
 var chipSoon = soonShown() ? chip("soon", L.soon, function(){
   if (soonOn()) { soonBtn.click(); return; }
   var any = todBtn("all"); if (any && FX.F.tod !== "all") any.click();  // "soon" sets its own window
@@ -13136,6 +13277,11 @@ function paintChips(p, liked){
   var on = function(b, v){ if (b) b.classList.toggle("on", !!v); };
   chipYou.hidden = !hasProf(); on(chipYou, FX.F.you);
   on(chipFree, FX.F.free); on(chipSoon, soonOn()); on(chipLate, FX.F.after === LATE);
+  on(chipDate, occVals().indexOf("date") >= 0); on(chipMeet, occVals().indexOf("singles") >= 0);
+  if (chipDate) {  // a day with none of them at all: no chip
+    chipDate.hidden = !DATEV.some(Boolean) && !chipDate.classList.contains("on");
+    chipMeet.hidden = !SINGLE.some(Boolean) && !chipMeet.classList.contains("on");
+  }
   chipNear.hidden = !(p && p.areas.length); on(chipNear, FX.F.near);
   var cats = vals(catSel, ",");
   catChips.forEach(function(b){ on(b, cats.indexOf(b.dataset.c) >= 0); });
@@ -13146,18 +13292,25 @@ function draw(){
   var F = FX.F, cats = vals(catSel, ","), hoods = vals(hoodSel, "|"), srcs = vals(srcSel, "|"), p = prof(), you = hasProf();
   var likes = you ? p.likes : [], mutes = you ? p.mutes : [], forYou = you && F.you;
   var cc = {}, ca = {}, hc = {}, gc = {}, sc = {}, tc = {evening: 0, day: 0, all: 0, soon: 0}, fr = 0, total = 0, nYou = 0, nAll = 0, nNear = 0;
+  var oc = {date: 0, singles: 0};
   for (var i = 0; i < N; i++) {
     var a = cardOf[i]; if (!a) continue;
-    var d = FX.dims(i, a); if (!d.base) continue;
-    var rest = d.you && d.near, srcOk = d.src;
+    var d = FX.dims(i, a);
+    var occOk = d.occ !== false;  // Occasion (Date ideas / Meet someone): a low-rated one counts too (ticking shows it)
+    if (hasOcc && (d.base || (d.lowOut && !(NEARBY[i] && !F.nearby))) && d.cat && d.free && d.tod && d.hood && d.you && d.near && d.src) {
+      if (FX.occMatch(i, "date")) oc.date++;
+      if (FX.occMatch(i, "singles")) oc.singles++;
+    }
+    if (!d.base) continue;
+    var rest = d.you && d.near && occOk, srcOk = d.src;
     if (d.cat && d.free && d.tod && d.hood && rest) sc[SRCS[i]] = (sc[SRCS[i]] || 0) + 1;
     rest = rest && srcOk;  // every other box counts with the Source filter as it is
     if (d.cat && d.free && d.tod && d.hood && rest) total++;
-    if (d.cat && d.free && d.tod && d.hood && d.near && srcOk) { nAll++;
+    if (d.cat && d.free && d.tod && d.hood && d.near && srcOk && occOk) { nAll++;
       if (!(T().forYouOut && T().forYouOut(i, cats))) nYou++; }
-    if (d.cat && d.free && d.tod && d.hood && d.you && srcOk && T().inArea && T().inArea(i)) nNear++;
+    if (d.cat && d.free && d.tod && d.hood && d.you && srcOk && occOk && T().inArea && T().inArea(i)) nNear++;
     if (d.hood && d.free && d.tod && rest) cc[CATS[i]] = (cc[CATS[i]] || 0) + 1;
-    if (d.hood && d.free && d.tod && d.near && srcOk) ca[CATS[i]] = (ca[CATS[i]] || 0) + 1;  // ... whatever For you says
+    if (d.hood && d.free && d.tod && d.near && srcOk && occOk) ca[CATS[i]] = (ca[CATS[i]] || 0) + 1;  // ... whatever For you says
     if (d.cat && d.free && d.tod && rest && HOODS[i]) { hc[HOODS[i]] = (hc[HOODS[i]] || 0) + 1; var g = hoodGroup[HOODS[i]]; gc[g] = (gc[g] || 0) + 1; }
     if (d.cat && d.hood && d.tod && rest && FREE[i]) fr++;
     if (d.cat && d.hood && d.free && rest) { if (FX.todMatch(i, "evening")) tc.evening++; if (FX.todMatch(i, "day")) tc.day++; tc.all++;
@@ -13209,6 +13362,11 @@ function draw(){
   setRow(free, fr, !!F.free);
   hoodRows.forEach(function(r){ setRow(r.o, hc[r.v] || 0, hoods.indexOf(r.v) >= 0); });
   srcRows.forEach(function(r){ setRow(r.o, sc[r.v] || 0, srcs.indexOf(r.v) >= 0); });
+  if (occSec) {
+    var ov = occVals();
+    setRow(occDate, oc.date, ov.indexOf("date") >= 0); setRow(occMeet, oc.singles, ov.indexOf("singles") >= 0);
+    occSec.clear.hidden = !ov.length;
+  }
   grpBoxes.forEach(function(b){
     var sel = hoods.some(function(h){ return hoodGroup[h] === b.g; });
     b.n.textContent = gc[b.g] || 0; b.dot.hidden = !sel;
@@ -13217,7 +13375,7 @@ function draw(){
     b.d.dataset.seen = sel ? "1" : "";
   });
   var nOn = cats.length + hoods.length + srcs.length + (F.free ? 1 : 0) + (F.near ? 1 : 0) + (F.tod !== FX.TOD0() ? 1 : 0) +
-    (F.after != null ? 1 : 0) + (F.before != null ? 1 : 0) + (soonOn() ? 1 : 0);
+    (F.after != null ? 1 : 0) + (F.before != null ? 1 : 0) + (soonOn() ? 1 : 0) + (F.occ ? F.occ.split("|").length : 0);
   var any = nOn > 0 || !!F.q;
   clearAll.hidden = !any;
   if (when.clear) when.clear.hidden = !(F.tod !== FX.TOD0() || tOn || soonOn());

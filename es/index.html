@@ -27,6 +27,9 @@ padding:26px 24px;text-decoration:none;color:var(--ink);}
 .cc-top{font-family:Georgia, 'Times New Roman', serif;font-size:26px;}
 .cc-meta{font-size:13px;color:#6b6b6b;margin-top:6px;}
 .cc-cta{margin-top:14px;color:var(--ink);font-weight:bold;font-size:14px;}
+.ccwrap{display:flex;flex-direction:column;gap:8px;min-width:0;}
+.cc-occ{font-size:13px;font-weight:700;padding:0 6px;}
+.cc-occ a{color:var(--ink);text-underline-offset:3px;text-decoration-color:color-mix(in srgb,var(--ink) 35%,transparent);}
 .how{max-width:720px;margin:0 auto;padding:30px 20px 50px;}
 .how h2{font-family:Georgia, 'Times New Roman', serif;font-size:30px;font-weight:normal;text-align:center;margin-bottom:26px;}
 .step{display:flex;gap:16px;margin-bottom:20px;}
@@ -81,6 +84,8 @@ a{text-decoration-skip-ink:none;}
 :root[data-layout="lineup"] .hero h1,:root[data-layout="lineup"] .bhero h1,:root[data-layout="lineup"] .lhero h1,:root[data-layout="lineup"] .cc-top,:root[data-layout="lineup"] .how h2,:root[data-layout="lineup"] footer .serif,:root[data-layout="lineup"] .sdone h2,:root[data-layout="lineup"] .quiz-card h2,
 :root[data-layout="lineup"] #sgCard h2,:root[data-layout="lineup"] #rpCard h2,:root[data-layout="lineup"] .tn-head b,:root[data-layout="lineup"] .tsec-head h2,:root[data-layout="lineup"] .shead h2,:root[data-layout="lineup"] .picks strong,:root[data-layout="lineup"] .step .n,:root[data-layout="lineup"] .snum,
 :root[data-layout="lineup"] #dayLead .dl-h,:root[data-layout="lineup"] .legal h2,:root[data-layout="lineup"] .st-card h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;}
+
+:root[data-layout="lineup"] .occ-strip .os-h,:root[data-layout="lineup"] .op-hero h1,:root[data-layout="lineup"] .op-day h2,:root[data-layout="lineup"] .op-pic .op-word{font-family:var(--lu-d)!important;font-weight:400!important;}
 
 :root[data-layout="lineup"] #topTonight h2 *,:root[data-layout="lineup"] .cat h2 *,:root[data-layout="lineup"] .hero h1 *,:root[data-layout="lineup"] .bhero h1 *,:root[data-layout="lineup"] .lhero h1 *,:root[data-layout="lineup"] .wm-lu *,:root[data-layout="lineup"] .cc-top *,:root[data-layout="lineup"] footer .serif *,
 :root[data-layout="lineup"] .tsec-head h2 *,:root[data-layout="lineup"] .shead h2 *,:root[data-layout="lineup"] .picks strong *,:root[data-layout="lineup"] .sdone h2 *,:root[data-layout="lineup"] .tonight-head h2 *{font-family:var(--lu-d)!important;font-weight:400!important;}
@@ -438,6 +443,7 @@ padding:6px 14px;border-radius:999px;border:1px solid transparent;}
 .topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
 .topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
 .topnav .browselink:hover{text-decoration:underline;}
+.topnav .datelink{margin-right:14px;}
 .topnav .tastelinks{display:flex;gap:14px;align-items:center;}
 .topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
 .topnav .tastelink:hover{text-decoration:underline;}
@@ -577,6 +583,7 @@ font-size:19px;line-height:1;padding:10px 4px;text-align:center;}
 .tn-modes button.on{background:var(--ink);color:var(--paper);}
 .tn-dist{font-size:12.5px;font-weight:600;margin:2px 0 4px;opacity:.8;}
 .tn-all-row .v + .d,.tn-all-row .d{grid-column:2;font-size:12px;opacity:.65;}
+.tn-seeall{display:inline-block;margin:8px 0 2px;font-weight:700;color:var(--ink);text-underline-offset:3px;}
 .tn-all{margin:10px 0 4px;border:2px solid var(--ink);border-radius:12px;background:var(--card,#fff);}
 .tn-all summary{cursor:pointer;padding:10px 12px;font-weight:800;list-style:none;}
 .tn-all summary::-webkit-details-marker{display:none;}
@@ -1533,7 +1540,7 @@ document.addEventListener("DOMContentLoaded", function(){
   if (window.TonightPage && TonightPage.init) TonightPage.init();
 });
 })();
-</script><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferencias</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-26.html">NYC</a> <a class="" href="./london/2026-10-26.html">Londres</a> <a class="" href="./la/2026-10-26.html">LA</a></span><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Pronto</i></span><span class="soon" lang="pt">Português <i>Pronto</i></span><span class="soon" lang="de">Deutsch <i>Pronto</i></span><span class="soon" lang="it">Italiano <i>Pronto</i></span><span class="soon" lang="ja">日本語 <i>Pronto</i></span></div></details></nav>
+</script><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferencias</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-27.html">NYC</a> <a class="" href="./london/2026-10-27.html">Londres</a> <a class="" href="./la/2026-10-27.html">LA</a></span><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Pronto</i></span><span class="soon" lang="pt">Português <i>Pronto</i></span><span class="soon" lang="de">Deutsch <i>Pronto</i></span><span class="soon" lang="it">Italiano <i>Pronto</i></span><span class="soon" lang="ja">日本語 <i>Pronto</i></span></div></details></nav>
 <header class="hero">
 <div class="eyebrow">Cada ciudad · Cada noche</div>
 <h1><span class="wm">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu">Tonight<b>.</b></span></h1>
@@ -1541,31 +1548,37 @@ document.addEventListener("DOMContentLoaded", function(){
 <b>⚡ Esta noche</b> to see what's on right now, and tap the boxes —
 your picks train tomorrow's recommendations.</p>
 <div class="cta-row">
-<a class="btn btn-gold" href="nyc/2026-10-26.html#tonight">⚡ Qué hay esta noche</a>
+<a class="btn btn-gold" href="nyc/2026-10-27.html#tonight">⚡ Qué hay esta noche</a>
 <a class="btn btn-ghost" href="signup.html" data-save-flow>Recibe el correo diario</a>
 <a class="btn btn-ghost" href="#cities">Elige una ciudad</a>
 </div>
 </header>
 <main id="cities" class="cities">
-
-<a class="citycard" href="nyc/2026-10-26.html" data-tz="America/New_York">
+<div class="ccwrap">
+<a class="citycard" href="nyc/2026-10-27.html" data-tz="America/New_York">
 <div class="cc-top">Nueva York</div>
-<div class="cc-meta">Lunes, 26 de octubre</div>
-<div class="cc-meta">333 eventos · 45 gratis</div>
+<div class="cc-meta">Martes, 27 de octubre</div>
+<div class="cc-meta">295 eventos · 63 gratis</div>
 <div class="cc-cta">Ver esta noche →</div>
 </a>
-<a class="citycard" href="london/2026-10-26.html" data-tz="Europe/London">
+<div class="cc-occ"><a href="nyc/date-ideas.html">♥ Ideas para una cita</a> · <a href="nyc/singles.html">Solteros</a></div>
+</div><div class="ccwrap">
+<a class="citycard" href="london/2026-10-27.html" data-tz="Europe/London">
 <div class="cc-top">Londres</div>
-<div class="cc-meta">Lunes, 26 de octubre</div>
-<div class="cc-meta">172 eventos · 12 gratis</div>
+<div class="cc-meta">Martes, 27 de octubre</div>
+<div class="cc-meta">232 eventos · 31 gratis</div>
 <div class="cc-cta">Ver esta noche →</div>
 </a>
+<div class="cc-occ"><a href="london/date-ideas.html">♥ Ideas para una cita</a> · <a href="london/singles.html">Solteros</a></div>
+</div><div class="ccwrap">
 <a class="citycard" href="la/2026-10-26.html" data-tz="America/Los_Angeles">
 <div class="cc-top">Los Ángeles</div>
 <div class="cc-meta">Lunes, 26 de octubre</div>
 <div class="cc-meta">104 eventos · 9 gratis</div>
 <div class="cc-cta">Ver esta noche →</div>
 </a>
+<div class="cc-occ"><a href="la/date-ideas.html">♥ Ideas para una cita</a> · <a href="la/singles.html">Solteros</a></div>
+</div>
 </main>
 <section class="how">
 <h2>Cómo funciona</h2>
@@ -2078,7 +2091,7 @@ function loadHistory(){
   restoredCount = history.length;
 }
 loadHistory();
-var SUGGEST = ["Algo gratis esta noche", "Tranqui, sin tanto ruido", "Planea mi noche", "¿Qué empieza en la próxima hora?"];
+var SUGGEST = window.TONI_SUGGEST || ["Algo gratis esta noche", "Tranqui, sin tanto ruido", "Planea mi noche", "¿Qué empieza en la próxima hora?"];
 function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
 function waitForBase(n){
   var b = window.__tonight_api || null;
@@ -2146,7 +2159,7 @@ function card(c){
   if (c.reason) body.appendChild(el("div", "r", c.reason));
   var a = el("div", "a");
   // a pick from another day (Toni looked ahead): no tick here, and "Ver" opens that day's page
-  var other = !!(c.date && c.date !== cur.date), here = onPage && !other;
+  var other = !!(c.date && c.date !== cur.date), here = onPage && !other && !window.TONI_NO_TICK;
   if (here) {
     var tick = el("button", "", "Marcar"); tick.type = "button";
     var pageBox = function(){ return document.querySelector('.toggle[data-idx="' + c.id + '"]'); };
@@ -2249,6 +2262,7 @@ function filterUrl(f){
   if (f.category) q.push("cat=" + encodeURIComponent(f.category));
   if (f.neighborhood) q.push("hood=" + encodeURIComponent(f.neighborhood));
   if (f.source) q.push("src=" + encodeURIComponent(f.source));
+  if (f.occasion) q.push("occ=" + encodeURIComponent(f.occasion));
   return q.length ? "?" + q.join("&") : "";
 }
 // "Show me everything that's free before 7": Toni sets the page's own filters instead of a long list
@@ -2259,6 +2273,7 @@ function applyPageFilters(f){
   var free = document.getElementById("ffree");
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
   set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || ""); set("fsrc", f.source || "");
+  if (window.__setOcc) window.__setOcc(f.occasion || "", "");  // Date ideas / Meet someone
   var n = 0;
   document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;
@@ -2344,6 +2359,11 @@ function render(){
       blk.appendChild(list);
     }
     if (m.all && m.all.length) blk.appendChild(allList(m));
+    if (m.see_all) {  // date ideas / singles: their own page, every one grouped by day
+      var sa2 = el("a", "tn-seeall", m.see_all === "singles.html" ? "Ver todos los eventos para solteros de la semana →" : "Ver todas las ideas para citas del fin de semana →");
+      sa2.href = (onPage ? "" : cur.slug + "/") + m.see_all;
+      blk.appendChild(sa2);
+    }
     if (m.outro) blk.appendChild(el("p", "tn-text small", m.outro));
     if (m.seeAll && m.fullCount) {
       var sa = el("div", "tn-shown");
@@ -2493,7 +2513,8 @@ function ask(q, display){
     else {
       var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || [], plan: !!d.plan,
                  context: d.context && d.context.days ? d.context : null,
-                 all: d.all || null, all_count: d.all_count || 0, mode: d.mode || null, need_here: !!d.need_here};
+                 all: d.all || null, all_count: d.all_count || 0, mode: d.mode || null, need_here: !!d.need_here,
+                 see_all: d.see_all || null};
       if (d.mode === "near" && toniMode !== "near") { toniMode = "near"; try { sessionStorage.setItem("tonight-toni-mode", "near"); } catch (e) {} }
       // the server works out when and where dinner fits the plan
       if (d.dinner && d.dinner.venue) msg.dinner = d.dinner;

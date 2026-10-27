@@ -15,6 +15,7 @@ padding:6px 14px;border-radius:999px;border:1px solid transparent;}
 .topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
 .topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
 .topnav .browselink:hover{text-decoration:underline;}
+.topnav .datelink{margin-right:14px;}
 .topnav .tastelinks{display:flex;gap:14px;align-items:center;}
 .topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
 .topnav .tastelink:hover{text-decoration:underline;}
@@ -120,6 +121,8 @@ a{text-decoration-skip-ink:none;}
 :root[data-layout="lineup"] .hero h1,:root[data-layout="lineup"] .bhero h1,:root[data-layout="lineup"] .lhero h1,:root[data-layout="lineup"] .cc-top,:root[data-layout="lineup"] .how h2,:root[data-layout="lineup"] footer .serif,:root[data-layout="lineup"] .sdone h2,:root[data-layout="lineup"] .quiz-card h2,
 :root[data-layout="lineup"] #sgCard h2,:root[data-layout="lineup"] #rpCard h2,:root[data-layout="lineup"] .tn-head b,:root[data-layout="lineup"] .tsec-head h2,:root[data-layout="lineup"] .shead h2,:root[data-layout="lineup"] .picks strong,:root[data-layout="lineup"] .step .n,:root[data-layout="lineup"] .snum,
 :root[data-layout="lineup"] #dayLead .dl-h,:root[data-layout="lineup"] .legal h2,:root[data-layout="lineup"] .st-card h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;}
+
+:root[data-layout="lineup"] .occ-strip .os-h,:root[data-layout="lineup"] .op-hero h1,:root[data-layout="lineup"] .op-day h2,:root[data-layout="lineup"] .op-pic .op-word{font-family:var(--lu-d)!important;font-weight:400!important;}
 
 :root[data-layout="lineup"] #topTonight h2 *,:root[data-layout="lineup"] .cat h2 *,:root[data-layout="lineup"] .hero h1 *,:root[data-layout="lineup"] .bhero h1 *,:root[data-layout="lineup"] .lhero h1 *,:root[data-layout="lineup"] .wm-lu *,:root[data-layout="lineup"] .cc-top *,:root[data-layout="lineup"] footer .serif *,
 :root[data-layout="lineup"] .tsec-head h2 *,:root[data-layout="lineup"] .shead h2 *,:root[data-layout="lineup"] .picks strong *,:root[data-layout="lineup"] .sdone h2 *,:root[data-layout="lineup"] .tonight-head h2 *{font-family:var(--lu-d)!important;font-weight:400!important;}
@@ -600,6 +603,7 @@ font-size:19px;line-height:1;padding:10px 4px;text-align:center;}
 .tn-modes button.on{background:var(--ink);color:var(--paper);}
 .tn-dist{font-size:12.5px;font-weight:600;margin:2px 0 4px;opacity:.8;}
 .tn-all-row .v + .d,.tn-all-row .d{grid-column:2;font-size:12px;opacity:.65;}
+.tn-seeall{display:inline-block;margin:8px 0 2px;font-weight:700;color:var(--ink);text-underline-offset:3px;}
 .tn-all{margin:10px 0 4px;border:2px solid var(--ink);border-radius:12px;background:var(--card,#fff);}
 .tn-all summary{cursor:pointer;padding:10px 12px;font-weight:800;list-style:none;}
 .tn-all summary::-webkit-details-marker{display:none;}
@@ -1557,7 +1561,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 })();
 </script>
-<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferences</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="cur" href="./nyc/2026-10-28.html">NYC</a> <a class="" href="./london/2026-10-28.html">London</a> <a class="" href="./la/2026-10-28.html">LA</a></span><a class="browselink" href="./browse-nyc-2026-10-28.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferences</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="cur" href="./nyc/2026-10-28.html">NYC</a> <a class="" href="./london/2026-10-28.html">London</a> <a class="" href="./la/2026-10-28.html">LA</a></span><a class="browselink datelink" href="./nyc/date-ideas.html">♥ Date ideas</a><a class="browselink" href="./browse-nyc-2026-10-28.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
 <header class="bhero">
 <div class="eyebrow">Wednesday, October 28 · New York City</div>
 <h1>Browse everything</h1>
@@ -1699,7 +1703,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">🎭</span><img src="https://s1.ticketm.net/dam/a/873/3beee4d4-f31e-47cd-bf42-ad8b54ba2873_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A7PNv-">Other Desert Cities</a></h3>
-<div class="meta">1:00 PM · Hudson Theatre -NY, Hell&#x27;s Kitchen · ↻ Most days</div>
+<div class="meta">1:00 PM · Hudson Theatre -NY, Hell&#x27;s Kitchen · ↻ Most days <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A7PNv-">Tickets &amp; info →</a>
 
@@ -1897,7 +1901,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/ab2/33d20555-639a-40c0-8f99-4a67dcd55ab2_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/the-lost-boys-new-york-new-york-10-28-2026/event/Z1r9uZrrZbpZ1AvOAoU">Lost Boys Musical w/ Unknown Mortal Orchestra</a></h3>
-<div class="meta">2:00 PM · Palace Theatre-NY, Hell&#x27;s Kitchen · ↻ Most days</div>
+<div class="meta">2:00 PM · Palace Theatre-NY, Hell&#x27;s Kitchen · ↻ Most days <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/the-lost-boys-new-york-new-york-10-28-2026/event/Z1r9uZrrZbpZ1AvOAoU">Tickets &amp; info →</a>
 
@@ -2095,7 +2099,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/34f/a626acd4-990a-4b4b-829f-0556f230234f_33431_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/francisco-pancho-cespedes-live-in-concert-new-york-new-york-10-28-2026/event/0000652CB1E7DFF6">Francisco &quot;Pancho&quot; Cespedes Live in concert</a></h3>
-<div class="meta">6:00 PM · S.O.B.&#x27;s, SoHo</div>
+<div class="meta">6:00 PM · S.O.B.&#x27;s, SoHo <span class="occtag occ-out">Going out</span></div>
 <p>Francisco &quot; Pancho &quot; Cespedes, regresa a su casa despues de 25 años de ausencia en el escenario del Downtown NYC, El legendario e iconico SOB&#x27;s de Varick St. Manhattan, NYC. Pancho Cespedes, el mejor artista del Bolero contemporanio se presenta el Miercoles 28 de Octubre, apartir de las 7pm.</p>
 <a class="tickets" href="https://www.ticketmaster.com/francisco-pancho-cespedes-live-in-concert-new-york-new-york-10-28-2026/event/0000652CB1E7DFF6">Tickets &amp; info →</a>
 
@@ -2671,7 +2675,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">☺</span><img src="https://s1.ticketm.net/dam/a/122/f981ddc4-a193-4485-8334-f8fea14f3122_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/michelle-buteau-brooklyn-new-york-10-28-2026/event/300064BAD3758F79">Michelle Buteau</a></h3>
-<div class="meta">7:30 PM · The Bell House, Carroll Gardens</div>
+<div class="meta">7:30 PM · The Bell House, Carroll Gardens <span class="occtag occ-out">Going out</span></div>
 <p>Door Time: 6:30pm. Show Time: 7:30pm. Front Bar opens 1 hour prior to door time. 21 &amp; over w/ valid, government-issued photo ID. General Admission standing &amp; seating. Seating is 1st come 1st served &amp; not guaranteed. Arrive early for best selection. If you have an accessibility request, please email thebellhouse@livenation.com prior. No outside food, drink permitted. $.25 per each ticket sold for a majority of events at The Bell House benefits Comedy Gives Back, a safety net for the comedy community. IG: @comedygivesback.</p>
 <a class="tickets" href="https://www.ticketmaster.com/michelle-buteau-brooklyn-new-york-10-28-2026/event/300064BAD3758F79">Tickets &amp; info →</a>
 
@@ -2707,7 +2711,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/0c7/c28ccd67-14a5-40f6-9c2b-7da57f8ac0c7_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAZ-oy">New York Philharmonic: Get Out in Concert</a></h3>
-<div class="meta">7:30 PM · David Geffen Hall, Upper West Side-Lincoln Square</div>
+<div class="meta">7:30 PM · David Geffen Hall, Upper West Side-Lincoln Square <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZ-oy">Tickets &amp; info →</a>
 
@@ -2743,7 +2747,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/a32/f53c453d-a40b-419f-b6c3-ca16d6454a32_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/robert-glasper-feat-derrick-hodge-blue-note-jazz-club-tickets/15018973">Robert Glasper</a></h3>
-<div class="meta">8:00 PM · Blue Note Jazz Club - NY, SoHo · $77.79</div>
+<div class="meta">8:00 PM · Blue Note Jazz Club - NY, SoHo · $77.79 <span class="occtag occ-special">Something special</span></div>
 <p>$20 Minimum Per Person Full Bar &amp; Dinner Menu NO REFUNDS OR EXCHANGES. All seating is first come, first served. Bar Area seating is limited and first come first served. When all available seats are occupied, the remaining bar area is standing room only. Table Seating is all ages, Bar Area is 21+. Bar Area tickets for patrons under 21 will not be honored. Group Reservations: Groups larger than 8 must purchase a group package at club@bluenote.net, or by calling 212.475.8592. Groups larger than 8 without a group package will be subject to group surcharges added to your bill. Groups arriving late or separately are not guaranteed to be seated together. All seating is first come, first served. Arrive early for best seats. We are not affiliated with any third-party ticket sellers. Tickets purchased directly through our official website or TicketWeb are the only authorized sources. We cannot guarantee the validity of tickets purchased through unauthorized sources. To protect against fraud and unauthorized ticket sales, management may require verification of the original purchase method, including presenting the credit card used for purchase and matching photo identification upon entry.</p>
 <a class="tickets" href="https://www.ticketweb.com/event/robert-glasper-feat-derrick-hodge-blue-note-jazz-club-tickets/15018973">Tickets &amp; info →</a>
 
@@ -2851,7 +2855,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/f72/4c583e8a-6739-4fb2-9861-e73978841f72_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/rod-wave-dont-look-down-tour-brooklyn-new-york-10-28-2026/event/300064D6DF405755">Rod Wave: Don&#x27;t Look Down Tour</a></h3>
-<div class="meta">8:00 PM · Barclays Center, Park Slope</div>
+<div class="meta">8:00 PM · Barclays Center, Park Slope <span class="occtag occ-out">Going out</span></div>
 <p>Tickets are not available at the box office on the first day of the public on sale. Visit Barclays Center&#x27;s A-Z Center Info Guide for venue information and frequently asked questions. SHOW: 8:30 PM ALL AGES EVENT BAG POLICY: Any bags larger than 10&quot; x 6&quot; x 2&quot; are not permitted inside Barclays Center.</p>
 <a class="tickets" href="https://www.ticketmaster.com/rod-wave-dont-look-down-tour-brooklyn-new-york-10-28-2026/event/300064D6DF405755">Tickets &amp; info →</a>
 
@@ -2887,7 +2891,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/2c8/8b6d9420-66c7-4bcb-877b-0ff0238da2c8_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/harry-styles-together-together-new-york-new-york-10-28-2026/event/3B00643506BF83B6">Harry Styles: Together, Together</a></h3>
-<div class="meta">8:00 PM · Madison Square Garden, Midtown South · ↻ Also on other days</div>
+<div class="meta">8:00 PM · Madison Square Garden, Midtown South · ↻ Also on other days <span class="occtag occ-out">Going out</span></div>
 <p>PLEASE NOTE: Pricing is all-in and includes fees (before taxes if applicable). By purchasing tickets to this event, you agree to abide by the health and safety measures in effect at the time of the event. Government mandates, venue protocols, and event requirements are subject to change. For more information, please search your event on msg.com. This event may have immersive elements, which may include flashing or strobe lights, intense lighting, visual effects, loud noises, smoke and/or fog. Such elements may aggravate certain medical or physical conditions, and guests should take this into consideration if they have a history of discomfort or physical symptoms when experiencing these elements.</p>
 <a class="tickets" href="https://www.ticketmaster.com/harry-styles-together-together-new-york-new-york-10-28-2026/event/3B00643506BF83B6">Tickets &amp; info →</a>
 
@@ -2905,7 +2909,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/eb7/1ee82edd-1502-4c13-849c-bff095700eb7_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/jeff-tweedy-solo-new-york-new-york-10-28-2026/event/030064C7177526DF">Jeff Tweedy Solo</a></h3>
-<div class="meta">8:00 PM · Town Hall, Midtown-Times Square</div>
+<div class="meta">8:00 PM · Town Hall, Midtown-Times Square <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/jeff-tweedy-solo-new-york-new-york-10-28-2026/event/030064C7177526DF">Tickets &amp; info →</a>
 
@@ -2977,7 +2981,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://i.ticketweb.com/i/00/12/99/02/44_Edp.jpg?v=2" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/frank-vignolas-guitar-night-with-birdland-theater-tickets/14916423">Frank Vignola&#x27;s Guitar Night with Scott Robinson and Pasquale Grasso</a></h3>
-<div class="meta">8:30 PM · Birdland Theater, Hell&#x27;s Kitchen · $35.46</div>
+<div class="meta">8:30 PM · Birdland Theater, Hell&#x27;s Kitchen · $35.46 <span class="occtag occ-special">Something special</span></div>
 <p>Its the best jazz guitar lovers show in the world, celebrating all facets of the guitar in jazz. Frank Vignolas virtuosity has made him the guitarist of choice for many of the worlds top musicians, including Ringo Starr, Madonna, Donald Fagen, Tommy Emmanuel, the Boston and New York Pops, and more. Every Wednesday at The Birdland Theater, Frank leads Frank Vignolas Guitar Night. Inspired by journeyman jazz guitarist John Pisanos now famous Los Angeles Guitar Night, Frank Vignola and friends will perform tunes from the standard repertoire and welcome weekly guest artists.</p>
 <a class="tickets" href="https://www.ticketweb.com/event/frank-vignolas-guitar-night-with-birdland-theater-tickets/14916423">Tickets &amp; info →</a>
 
@@ -3031,7 +3035,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/dcf/c828ce8e-c1f0-450d-82a3-8874cf64adcf_1755271_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/ron-carters-foursight-quartet-birdland-jazz-club-tickets/14223994">Ron Carter&#x27;s Foursight Quartet</a></h3>
-<div class="meta">9:30 PM · Birdland Jazz Club, Hell&#x27;s Kitchen · $45.76</div>
+<div class="meta">9:30 PM · Birdland Jazz Club, Hell&#x27;s Kitchen · $45.76 <span class="occtag occ-special">Something special</span></div>
 <p>Ron Carters Foursight with Renee Rosnes, Jimmy Greene &amp; Payton CrossleyRon Carter is among the most original, prolific and influential bassists in jazz with more than 2,000 albums to his credit. Beginning his career in the 1960s with Jaki Byard and Eric Dolphy, Cannonball Adderley, and a five year stint with the Miles Davis Quintet, Ron also performed and recorded with notables including Bill Evans, B.B. King, and Dexter Gordon. Ron Carters various ensembles, big band to trio, feature a whos who of the finest players on the NYC scene with, an absolute commitment to musical sublimity [that] exudes refined elegance and sonic power. (amazon.com)</p>
 <a class="tickets" href="https://www.ticketweb.com/event/ron-carters-foursight-quartet-birdland-jazz-club-tickets/14223994">Tickets &amp; info →</a>
 
@@ -3493,7 +3497,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://newyorkcomedyclub.com/events/mark-normand-emma-willmann-amos-gill-gary-vider-matt-ruby-meghan-hanley">Good Eggs ft: Mark Normand, Emma Willmann, Amos Gill, Gary Vider, Matt Ruby, Meghan Hanley</a></h3>
-<div class="meta">8:00 PM · New York Comedy Club on 4th Street · $25.00</div>
+<div class="meta">8:00 PM · New York Comedy Club on 4th Street · $25.00 <span class="occtag occ-out">Going out</span></div>
 <p>It&#x27;s time for GOOD EGGS! Time Out NY called it &quot;one of the best weekly shows in the city&quot; and Thrillist said it&#x27;s &quot;one of the best underground comedy shows in NYC.&quot; Presented by Mark Normand, Gary Vider, and Matt Ruby - who often perform in the lineup - it&#x27;s an unmissable NYC comedy-scene staple…</p>
 <a class="tickets" href="https://newyorkcomedyclub.com/events/mark-normand-emma-willmann-amos-gill-gary-vider-matt-ruby-meghan-hanley">Tickets &amp; info →</a>
 
@@ -3601,7 +3605,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">☺</span><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Aziz_Ansari_at_TIFF_2025_02.jpg/960px-Aziz_Ansari_at_TIFF_2025_02.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><button type="button" class="ph-cr" data-idx="113" aria-label="Photo: Gabriel Hutchinson · CC BY-SA 4.0" title="Photo: Gabriel Hutchinson · CC BY-SA 4.0">ⓘ</button></div>
 <div class="event-body">
 <h3><a href="https://www.comedycellar.com/reservations-newyork/?showid=1793037600">Aziz Ansari In The Village Underground at Comedy Cellar</a></h3>
-<div class="meta">6:00 PM · Comedy Cellar, Greenwich Village</div>
+<div class="meta">6:00 PM · Comedy Cellar, Greenwich Village <span class="occtag occ-out">Going out</span></div>
 <p>Tonight&#x27;s lineup: Aziz Ansari. Lineups change; check before you go.</p>
 <a class="tickets" href="https://www.comedycellar.com/reservations-newyork/?showid=1793037600">Tickets &amp; info →</a>
 
@@ -3619,7 +3623,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.comedycellar.com/reservations-newyork/?showid=1793041200">An Hour with Jim Norton at Comedy Cellar</a></h3>
-<div class="meta">7:00 PM · Comedy Cellar, Greenwich Village · ↻ Also on other days</div>
+<div class="meta">7:00 PM · Comedy Cellar, Greenwich Village · ↻ Also on other days <span class="occtag occ-out">Going out</span></div>
 <p>Tonight&#x27;s lineup: Jim Norton. Lineups change; check before you go.</p>
 <a class="tickets" href="https://www.comedycellar.com/reservations-newyork/?showid=1793041200">Tickets &amp; info →</a>
 
@@ -3637,7 +3641,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.comedycellar.com/reservations-newyork/?showid=1793043000">Stand-up at Comedy Cellar (MacDougal Street): Jon Laster, Erin Maguire, Ryan Hamilton, Dan Docimo &amp; more</a></h3>
-<div class="meta">7:30 PM · Comedy Cellar (MacDougal Street), Greenwich Village</div>
+<div class="meta">7:30 PM · Comedy Cellar (MacDougal Street), Greenwich Village <span class="occtag occ-out">Going out</span></div>
 <p>Tonight&#x27;s lineup: Jon Laster, Erin Maguire, Ryan Hamilton, Dan Docimo, Ethan Simmons-Patterson, Jeff Bailey. Lineups change; check before you go.</p>
 <a class="tickets" href="https://www.comedycellar.com/reservations-newyork/?showid=1793043000">Tickets &amp; info →</a>
 
@@ -3673,7 +3677,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.comedycellar.com/reservations-newyork/?showid=1793044800">The Kickback! With Chris Redd at Comedy Cellar</a></h3>
-<div class="meta">8:00 PM · Comedy Cellar, Greenwich Village</div>
+<div class="meta">8:00 PM · Comedy Cellar, Greenwich Village <span class="occtag occ-out">Going out</span></div>
 <p>Tonight&#x27;s lineup: Chris Redd, Roy Wood jr, Andre D Thompson, Elle Orlando, Greer Barnes, Rachel Feinstein. Lineups change; check before you go.</p>
 <a class="tickets" href="https://www.comedycellar.com/reservations-newyork/?showid=1793044800">Tickets &amp; info →</a>
 
@@ -3691,7 +3695,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.comedycellar.com/reservations-newyork/?showid=1793046600">Stand-up at Comedy Cellar (Fat Black Pussycat): Ophira Eisenberg, Alex Kumin, Ethan Simmons-Patterson, Greer Barnes &amp; more</a></h3>
-<div class="meta">8:30 PM · Comedy Cellar (Fat Black Pussycat), Greenwich Village</div>
+<div class="meta">8:30 PM · Comedy Cellar (Fat Black Pussycat), Greenwich Village <span class="occtag occ-out">Going out</span></div>
 <p>Tonight&#x27;s lineup: Ophira Eisenberg, Alex Kumin, Ethan Simmons-Patterson, Greer Barnes, Dov Davidoff, Jeff Bailey, Derrick Stroup. Lineups change; check before you go.</p>
 <a class="tickets" href="https://www.comedycellar.com/reservations-newyork/?showid=1793046600">Tickets &amp; info →</a>
 
@@ -3709,7 +3713,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.comedycellar.com/reservations-newyork/?showid=1793050200">Stand-up at Comedy Cellar (MacDougal Street): Jon Laster, Ryan Hamilton, Amos Gill, Peter Revello &amp; more</a></h3>
-<div class="meta">9:30 PM · Comedy Cellar (MacDougal Street), Greenwich Village</div>
+<div class="meta">9:30 PM · Comedy Cellar (MacDougal Street), Greenwich Village <span class="occtag occ-out">Going out</span></div>
 <p>Tonight&#x27;s lineup: Jon Laster, Ryan Hamilton, Amos Gill, Peter Revello, Gina Brillon, Derrick Stroup. Lineups change; check before you go.</p>
 <a class="tickets" href="https://www.comedycellar.com/reservations-newyork/?showid=1793050200">Tickets &amp; info →</a>
 
@@ -3727,7 +3731,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.comedycellar.com/reservations-newyork/?showid=1793050500">Stand-up at Comedy Cellar (Fat Black Pussycat): Andrew Fiori, Jourdain Fisher, Andre De Freitas, Ryan Hamilton &amp; more</a></h3>
-<div class="meta">9:35 PM · Comedy Cellar (Fat Black Pussycat), Greenwich Village</div>
+<div class="meta">9:35 PM · Comedy Cellar (Fat Black Pussycat), Greenwich Village <span class="occtag occ-out">Going out</span></div>
 <p>Tonight&#x27;s lineup: Andrew Fiori, Jourdain Fisher, Andre De Freitas, Ryan Hamilton, Caitlin Peluffo, Daniel Simonsen, Brendan Sagalow. Lineups change; check before you go.</p>
 <a class="tickets" href="https://www.comedycellar.com/reservations-newyork/?showid=1793050500">Tickets &amp; info →</a>
 
@@ -3745,7 +3749,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://www.comedycellar.com/reservations-newyork/?showid=1793052000">Stand-up at Comedy Cellar (Village Underground): Ardie Fuqua, Dov Davidoff, Gregg Rogell, Lucas Zelnick &amp; more</a></h3>
-<div class="meta">10:00 PM · Comedy Cellar (Village Underground), Greenwich Village</div>
+<div class="meta">10:00 PM · Comedy Cellar (Village Underground), Greenwich Village <span class="occtag occ-out">Going out</span></div>
 <p>Tonight&#x27;s lineup: Ardie Fuqua, Dov Davidoff, Gregg Rogell, Lucas Zelnick, Peter Revello, Derrick Stroup, Caitlin Peluffo. Lineups change; check before you go.</p>
 <a class="tickets" href="https://www.comedycellar.com/reservations-newyork/?showid=1793052000">Tickets &amp; info →</a>
 
@@ -7116,6 +7120,8 @@ const IMGS = ["https://images.universe.com/87c12cd6-3143-4efa-9b0f-29b4ebc9321d/
 const ICREDIT = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, {"by": "Gabriel Hutchinson", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Aziz_Ansari_at_TIFF_2025_02.jpg"}, null, null, null, null, null, null, null, null, null, null, {"by": "PopTech", "license": "CC BY-SA 2.0", "url": "https://commons.wikimedia.org/wiki/File:Anand_Giridharadas_-_PopTech_2011_-_Camden_Maine_USA.jpg"}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, {"by": "Unknown author Unknown author ; Restored by Yann Forget and Adam Cuerden", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Edgar_Allan_Poe,_circa_1849,_restored,_squared_off.jpg"}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, {"by": "Larry D. Moore", "license": "CC BY 4.0", "url": "https://commons.wikimedia.org/wiki/File:Maira_kalman_2010.jpg"}, null, null, null, null, null, null, null, {"by": "PhilipRomanoPhoto", "license": "CC BY 4.0", "url": "https://commons.wikimedia.org/wiki/File:JulioTorres2-byPhilipRomano.jpg"}, null, null, {"by": "Library of Congress Life", "license": "CC0", "url": "https://commons.wikimedia.org/wiki/File:Barbara_Kingsolver_(48684513758)_(cropped).jpg"}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
 const CAT_ICON = {"Music": "♪", "Comedy": "☺", "Talks": "❝", "Theater": "🎭", "Film": "🎬", "Arts & Play": "✦", "Food & Drink": "🍷", "Classes & Workshops": "✎", "Tours": "➜", "Meetups & Mixers": "☕", "Tech": "⌘", "Fitness & Outdoors": "☀", "Trivia & Games": "?", "Sports": "⚑"};
 const CURRENCY_SIGN = "$";
+const DATEV = ["", "", "", "", "", "", "out", "", "", "", "", "", "", "", "", "", "", "out", "", "", "", "", "", "", "", "", "", "", "out", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "out", "", "out", "", "special", "", "", "", "", "", "out", "", "out", "out", "", "", "", "special", "", "", "special", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "out", "", "", "", "", "", "out", "out", "out", "", "out", "out", "out", "out", "out", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];  // date idea: "first" / "out" / "special" / "" (ingest/occasion.py)
+const SINGLE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];  // a singles event (Meet someone)
 // a photo's credit: the tiny i on a picture opens "Photo: <by> · <licence>", linked to its file page
 document.addEventListener("click", e => {
   const b = e.target.closest && e.target.closest(".ph-cr"), old = document.getElementById("phPop");
@@ -7588,7 +7594,8 @@ window.__applyFilters = (function () {
   // you: "For you" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "My neighbourhoods" (Preferences)
   // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false,
+  // occ: "date" / "singles" / "date|singles" (Occasion: ♥ Date ideas, Meet someone); vibe: "first" / "out" / "special" / ""
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", occ: "", vibe: "", only: null, you: true, near: false, low: false,
     nearby: (function(){ try { return localStorage.getItem("tonight-nearby") === "1"; } catch (e) { return false; } })()};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
@@ -7614,6 +7621,7 @@ window.__applyFilters = (function () {
   function everything() { return !F.you && !!(window.Tonight && Tonight.hasProfile && Tonight.hasProfile()); }
   window.__isLow = isLow;
   const hay = {};  // search text per card, read once
+  function occMatch(i, k) { return k === "date" ? !!DATEV[i] && (!F.vibe || DATEV[i] === F.vibe) : k === "singles" ? !!SINGLE[i] : false; }
   // each filter on its own (the sidebar counts what each box would show with all the others)
   function dims(i, a) {
     let base = !hidden.has(String(i)) && !(window.TonightHide && TonightHide.hides(i));  // today, or for good
@@ -7625,7 +7633,9 @@ window.__applyFilters = (function () {
       if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (SRC_LABEL[SRCS[i]] || "") + " " + (a ? a.textContent : "")).toLowerCase();
       if (!hay[i].includes(F.q)) base = false;
     }
-    const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
+    // asking for an occasion shows its events however they're rated (singles mixers score low for everyone else)
+    const occAsked = !!F.occ && F.occ.split("|").some(k => occMatch(i, k));
+    const lowOut = base && !F.low && !F.q && isLow(i) && !everything() && !occAsked;
     const nearOut = base && !lowOut && NEARBY[i] && !F.nearby;  // nearby towns, behind "Include nearby areas"
     return {base: base && !lowOut && !nearOut, lowOut: lowOut, nearOut: nearOut,
       cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
@@ -7633,17 +7643,19 @@ window.__applyFilters = (function () {
       tod: todOk(i),
       hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
       src: !F.src || F.src.split("|").includes(SRCS[i]),  // one or several sources (Eventbrite, Luma ...)
+      occ: !F.occ || F.occ.split("|").some(k => occMatch(i, k)),  // Date ideas / Meet someone
       you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []) ||
         ((F.low || F.q) && Tonight.excluded && Tonight.excluded(i) === "junk"),
       near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
   }
-  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0, apply: () => applyFilters()};
+  window.__facet = {F: F, dims: dims, todMatch: todMatch, occMatch: occMatch, TOD0: () => TOD0, apply: () => applyFilters(),
+    setOcc: (o, v) => setOcc(o, v)};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
     let n = 0, nLow = 0, nNearby = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near;
+      const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near && d.occ;
       const ok = d.base && rest;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
@@ -7682,12 +7694,27 @@ window.__applyFilters = (function () {
       fh.textContent = F.cat ? "✨ Free · " + F.cat.split(",").map(opt).join(" + ") : fh.dataset.orig;
     }
     document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
+    const vb = document.getElementById("occVibes");  // the vibe buttons, while Date ideas is on
+    if (vb) {
+      vb.hidden = !F.occ.split("|").includes("date");
+      vb.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.v === F.vibe));
+    }
     window.__clamp && window.__clamp();
     document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
     document.getElementById("hiddenN").textContent = hidden.size;
     if (window.__topTonight) window.__topTonight();
     if (window.__fside) window.__fside();
   }
+  // Occasion: ♥ Date ideas / Meet someone (the sidebar, the phone chips, the strips' "See all", ?occ= links, Toni)
+  function setOcc(occ, vibe) {
+    F.occ = (occ || "").split("|").filter(k => k === "date" || k === "singles").join("|");
+    if (vibe != null) F.vibe = ["first", "out", "special"].includes(vibe) ? vibe : "";
+    if (!F.occ.split("|").includes("date")) F.vibe = "";
+    applyFilters();
+    try { syncFilterUI(); } catch (e) {}  // not wired yet while the address is being read
+  }
+  window.__setOcc = setOcc;
+  document.querySelectorAll("#occVibes button").forEach(b => b.addEventListener("click", () => setOcc(F.occ, b.dataset.v)));
   const _ns = document.getElementById("nearShow");
   if (_ns) _ns.addEventListener("click", () => {
     F.nearby = !F.nearby;
@@ -7828,7 +7855,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.near;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.near || F.occ;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -7865,6 +7892,7 @@ window.__applyFilters = (function () {
     if (q.get("free") === "1") document.getElementById("ffree").click();
     setv("fafter", q.get("after")); setv("fbefore", q.get("before"));
     setv("fcat", q.get("cat")); setv("fhood", q.get("hood")); setv("fsrc", q.get("src"));
+    if (q.get("occ")) setOcc(q.get("occ"), q.get("vibe") || "");  // ?occ=date (&vibe=first) / ?occ=singles
     const only = (q.get("only") || "").split(",").filter(x => /^[0-9a-f]{8,10}$/.test(x));
     if (only.length) {
       F.only = new Set(only);
@@ -7881,7 +7909,7 @@ window.__applyFilters = (function () {
   function syncFilterUI() {
     ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.occ);
     if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
     if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
@@ -7893,6 +7921,7 @@ window.__applyFilters = (function () {
     ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") { el.value = ""; el.dispatchEvent(new Event("change")); } });
     if (F.free) document.getElementById("ffree").click();
+    if (F.occ) setOcc("", "");
     const all = document.querySelector('#ftod button[data-t="all"]'); if (all) all.click();
   });
   syncFilterUI();
@@ -8111,7 +8140,7 @@ function setNextHour(on, quiet) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i))) return;
-    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.src || !d.you || !d.near) return; }  // other filters still apply
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.src || !d.you || !d.near || !d.occ) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     const kind = soonKind(i, now);
@@ -8728,7 +8757,7 @@ function loadHistory(){
   restoredCount = history.length;
 }
 loadHistory();
-var SUGGEST = ["Something free tonight", "Low-key, not too loud", "Plan my night", "What starts in the next hour?"];
+var SUGGEST = window.TONI_SUGGEST || ["Something free tonight", "Low-key, not too loud", "Plan my night", "What starts in the next hour?"];
 function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
 function waitForBase(n){
   var b = window.__tonight_api || null;
@@ -8796,7 +8825,7 @@ function card(c){
   if (c.reason) body.appendChild(el("div", "r", c.reason));
   var a = el("div", "a");
   // a pick from another day (Toni looked ahead): no tick here, and "See it" opens that day's page
-  var other = !!(c.date && c.date !== cur.date), here = onPage && !other;
+  var other = !!(c.date && c.date !== cur.date), here = onPage && !other && !window.TONI_NO_TICK;
   if (here) {
     var tick = el("button", "", "Tick it"); tick.type = "button";
     var pageBox = function(){ return document.querySelector('.toggle[data-idx="' + c.id + '"]'); };
@@ -8899,6 +8928,7 @@ function filterUrl(f){
   if (f.category) q.push("cat=" + encodeURIComponent(f.category));
   if (f.neighborhood) q.push("hood=" + encodeURIComponent(f.neighborhood));
   if (f.source) q.push("src=" + encodeURIComponent(f.source));
+  if (f.occasion) q.push("occ=" + encodeURIComponent(f.occasion));
   return q.length ? "?" + q.join("&") : "";
 }
 // "Show me everything that's free before 7": Toni sets the page's own filters instead of a long list
@@ -8909,6 +8939,7 @@ function applyPageFilters(f){
   var free = document.getElementById("ffree");
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
   set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || ""); set("fsrc", f.source || "");
+  if (window.__setOcc) window.__setOcc(f.occasion || "", "");  // Date ideas / Meet someone
   var n = 0;
   document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;
@@ -8994,6 +9025,11 @@ function render(){
       blk.appendChild(list);
     }
     if (m.all && m.all.length) blk.appendChild(allList(m));
+    if (m.see_all) {  // date ideas / singles: their own page, every one grouped by day
+      var sa2 = el("a", "tn-seeall", m.see_all === "singles.html" ? "See every singles event this week →" : "See every date idea this weekend →");
+      sa2.href = (onPage ? "" : cur.slug + "/") + m.see_all;
+      blk.appendChild(sa2);
+    }
     if (m.outro) blk.appendChild(el("p", "tn-text small", m.outro));
     if (m.seeAll && m.fullCount) {
       var sa = el("div", "tn-shown");
@@ -9143,7 +9179,8 @@ function ask(q, display){
     else {
       var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || [], plan: !!d.plan,
                  context: d.context && d.context.days ? d.context : null,
-                 all: d.all || null, all_count: d.all_count || 0, mode: d.mode || null, need_here: !!d.need_here};
+                 all: d.all || null, all_count: d.all_count || 0, mode: d.mode || null, need_here: !!d.need_here,
+                 see_all: d.see_all || null};
       if (d.mode === "near" && toniMode !== "near") { toniMode = "near"; try { sessionStorage.setItem("tonight-toni-mode", "near"); } catch (e) {} }
       // the server works out when and where dinner fits the plan
       if (d.dinner && d.dinner.venue) msg.dinner = d.dinner;

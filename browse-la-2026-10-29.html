@@ -15,6 +15,7 @@ padding:6px 14px;border-radius:999px;border:1px solid transparent;}
 .topnav .citylinks a:not(.cur):hover{border-color:#E39A2D;opacity:1;}
 .topnav .browselink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
 .topnav .browselink:hover{text-decoration:underline;}
+.topnav .datelink{margin-right:14px;}
 .topnav .tastelinks{display:flex;gap:14px;align-items:center;}
 .topnav .tastelink{color:#E39A2D;text-decoration:none;font-size:13.5px;white-space:nowrap;}
 .topnav .tastelink:hover{text-decoration:underline;}
@@ -120,6 +121,8 @@ a{text-decoration-skip-ink:none;}
 :root[data-layout="lineup"] .hero h1,:root[data-layout="lineup"] .bhero h1,:root[data-layout="lineup"] .lhero h1,:root[data-layout="lineup"] .cc-top,:root[data-layout="lineup"] .how h2,:root[data-layout="lineup"] footer .serif,:root[data-layout="lineup"] .sdone h2,:root[data-layout="lineup"] .quiz-card h2,
 :root[data-layout="lineup"] #sgCard h2,:root[data-layout="lineup"] #rpCard h2,:root[data-layout="lineup"] .tn-head b,:root[data-layout="lineup"] .tsec-head h2,:root[data-layout="lineup"] .shead h2,:root[data-layout="lineup"] .picks strong,:root[data-layout="lineup"] .step .n,:root[data-layout="lineup"] .snum,
 :root[data-layout="lineup"] #dayLead .dl-h,:root[data-layout="lineup"] .legal h2,:root[data-layout="lineup"] .st-card h2{font-family:var(--lu-d)!important;font-weight:400!important;letter-spacing:.01em;}
+
+:root[data-layout="lineup"] .occ-strip .os-h,:root[data-layout="lineup"] .op-hero h1,:root[data-layout="lineup"] .op-day h2,:root[data-layout="lineup"] .op-pic .op-word{font-family:var(--lu-d)!important;font-weight:400!important;}
 
 :root[data-layout="lineup"] #topTonight h2 *,:root[data-layout="lineup"] .cat h2 *,:root[data-layout="lineup"] .hero h1 *,:root[data-layout="lineup"] .bhero h1 *,:root[data-layout="lineup"] .lhero h1 *,:root[data-layout="lineup"] .wm-lu *,:root[data-layout="lineup"] .cc-top *,:root[data-layout="lineup"] footer .serif *,
 :root[data-layout="lineup"] .tsec-head h2 *,:root[data-layout="lineup"] .shead h2 *,:root[data-layout="lineup"] .picks strong *,:root[data-layout="lineup"] .sdone h2 *,:root[data-layout="lineup"] .tonight-head h2 *{font-family:var(--lu-d)!important;font-weight:400!important;}
@@ -600,6 +603,7 @@ font-size:19px;line-height:1;padding:10px 4px;text-align:center;}
 .tn-modes button.on{background:var(--ink);color:var(--paper);}
 .tn-dist{font-size:12.5px;font-weight:600;margin:2px 0 4px;opacity:.8;}
 .tn-all-row .v + .d,.tn-all-row .d{grid-column:2;font-size:12px;opacity:.65;}
+.tn-seeall{display:inline-block;margin:8px 0 2px;font-weight:700;color:var(--ink);text-underline-offset:3px;}
 .tn-all{margin:10px 0 4px;border:2px solid var(--ink);border-radius:12px;background:var(--card,#fff);}
 .tn-all summary{cursor:pointer;padding:10px 12px;font-weight:800;list-style:none;}
 .tn-all summary::-webkit-details-marker{display:none;}
@@ -1557,7 +1561,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 })();
 </script>
-<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferences</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-29.html">NYC</a> <a class="" href="./london/2026-10-29.html">London</a> <a class="cur" href="./la/2026-10-29.html">LA</a></span><a class="browselink" href="./browse-la-2026-10-29.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferences</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="" href="./nyc/2026-10-29.html">NYC</a> <a class="" href="./london/2026-10-29.html">London</a> <a class="cur" href="./la/2026-10-29.html">LA</a></span><a class="browselink datelink" href="./la/date-ideas.html">♥ Date ideas</a><a class="browselink" href="./browse-la-2026-10-29.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
 <header class="bhero">
 <div class="eyebrow">Thursday, October 29 · Los Angeles</div>
 <h1>Browse everything</h1>
@@ -1735,7 +1739,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/b0a/7b2fc4c9-d154-43a8-b2b7-c00bf2e17b0a_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1A70yjs">Knocked Loose w/ Denzel Curry</a></h3>
-<div class="meta">7:00 PM · Shrine LA Outdoors, University Park</div>
+<div class="meta">7:00 PM · Shrine LA Outdoors, University Park <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1A70yjs">Tickets &amp; info →</a>
 
@@ -1771,7 +1775,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/934/2f00353f-861d-4597-ad01-946567afc934_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/goapele-blue-note-los-angeles-tickets/15032153">Goapele</a></h3>
-<div class="meta">7:00 PM · Blue Note Los Angeles, Hollywood · $18.80</div>
+<div class="meta">7:00 PM · Blue Note Los Angeles, Hollywood · $18.80 <span class="occtag occ-special">Something special</span></div>
 <p>$20 Minimum Per PersonFull Bar &amp; Dinner MenuNO REFUNDS OR EXCHANGES.All seating is first come, first served. Bar Area seating is limited and first come first served. When all available seats are occupied, the remaining bar area is standing room only.Table Seating is all ages, Bar Area is 21+. Bar Area tickets for patrons under 21 will not be honored. Group Reservations:Parties of 10 or more please contact us at events@bluenotela.com or (310) 855-3750. We are not affiliated with any third-party ticket sellers. Tickets purchased directly through our official website or TicketWeb are the only authorized sources. We cannot guarantee the validity of tickets purchased through unauthorized sources. To protect against fraud and unauthorized ticket sales, management may require verification of the original purchase method, including presenting the credit card used for purchase and matching photo identification upon entry.</p>
 <a class="tickets" href="https://www.ticketweb.com/event/goapele-blue-note-los-angeles-tickets/15032153">Tickets &amp; info →</a>
 
@@ -1789,7 +1793,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/e/1a0/5367e18c-e5c0-46f0-af7f-b9c2b9f8e1a0_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/california-dream-on-aerosmith-friends-hollywood-california-10-29-2026/event/0B00653E2B28C4E7">California Dream On: Aerosmith &amp; Friends</a></h3>
-<div class="meta">7:00 PM · Hollywood Bowl, Hollywood Hills</div>
+<div class="meta">7:00 PM · Hollywood Bowl, Hollywood Hills <span class="occtag occ-out">Going out</span></div>
 <p>NO REFUNDS, EXCHANGES OR CANCELATIONS. Support acts subject to change. [Click here for Park and Ride or Shuttle tickets.](//www.ticketmaster.com/hollywood-bowl-transportation-tickets-los-angeles/venue/90243?tab=addOns) A portion of each ticket will support the LA County Parks Foundation in restoring damage to parks from the recent Los Angeles wildfires.</p>
 <a class="tickets" href="https://www.ticketmaster.com/california-dream-on-aerosmith-friends-hollywood-california-10-29-2026/event/0B00653E2B28C4E7">Tickets &amp; info →</a>
 
@@ -1825,7 +1829,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/4da/8a560086-9fb3-4792-b8a1-f1ed67b054da_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/orville-peck-man-turned-mule-tour-anaheim-california-10-29-2026/event/090064F0AAA995A1">Orville Peck - Man Turned Mule Tour</a></h3>
-<div class="meta">7:00 PM · House of Blues Anaheim, Anaheim</div>
+<div class="meta">7:00 PM · House of Blues Anaheim, Anaheim <span class="occtag occ-out">Going out</span></div>
 <p>General Admission Standing Only. Age Restriction: This is an all-ages event. All guests, regardless of age, are required to have a ticket for entry. Doors: 7pm Support: Abbie Callahan Live Nation and Orville Peck will donate $1 from every ticket sold on the North American Man Turned Mule Tour to The Trevor Project, supporting its mission to provide crisis intervention and suicide prevention services for LGBTQ+ young people. For more information, visit www.thetrevorproject.org. No portion of the ticket purchase is tax-deductible. All acts subject to change.</p>
 <a class="tickets" href="https://www.ticketmaster.com/orville-peck-man-turned-mule-tour-anaheim-california-10-29-2026/event/090064F0AAA995A1">Tickets &amp; info →</a>
 
@@ -1879,7 +1883,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">☺</span><img src="https://s1.ticketm.net/dam/a/0fb/e3cfa95f-c1b5-4075-8362-1bcdcdb730fb_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://improv.com/hollywood/event/tonight+at+the+improv+ft.+sarah+silverman%2c+chelsea+handler%2c+anthony+jeselnik%2c+brian+monarch%2c+jeanne+whitney+and+very+special+guests/14301274/">Tonight at the Improv ft. Sarah Silverman, Chelsea Handler, Anthony Jeselnik, Brian Monarch, Jeanne Whitney and Very Special Guests</a></h3>
-<div class="meta">7:30 PM · Hollywood Improv (The Main Room) , Beverly Grove · $60.24</div>
+<div class="meta">7:30 PM · Hollywood Improv (The Main Room) , Beverly Grove · $60.24 <span class="occtag occ-out">Going out</span></div>
 <p>This show will be a phone-free experience. Use of cellphones, smart watches, smart accessories, cameras and recording devices will not be permitted in the performance space. Upon arrival at the venue, all phones and smart watches will be secured in Yondr cases that will be opened at the end of the event. Guests maintain possession of their phones at all times, and can access their phones throughout the show at designated Phone Use Areas in the venue. All phones will be re-secured in Yondr cases before returning to the performance space. Anyone seen using a cellphone during the performance will be escorted out of the venue. We appreciate your cooperation in creating a phone-free viewing experience. DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE HOLLYWOOD IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Hollywood Improv.</p>
 <a class="tickets" href="https://improv.com/hollywood/event/tonight+at+the+improv+ft.+sarah+silverman%2c+chelsea+handler%2c+anthony+jeselnik%2c+brian+monarch%2c+jeanne+whitney+and+very+special+guests/14301274/">Tickets &amp; info →</a>
 
@@ -1969,7 +1973,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Shyne_profile_%28cropped%29.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><button type="button" class="ph-cr" data-idx="21" aria-label="Photo: U.S. Embassy Belize · Public domain" title="Photo: U.S. Embassy Belize · Public domain">ⓘ</button></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAZp7x">Shyne w/ Barrington Levy</a></h3>
-<div class="meta">8:00 PM · The Novo by Microsoft, Downtown</div>
+<div class="meta">8:00 PM · The Novo by Microsoft, Downtown <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZp7x">Tickets &amp; info →</a>
 
@@ -2095,7 +2099,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/a/246/749a2e58-bec4-4fda-96a5-76d30700e246_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/event/Z7r9jZ1AAZUbg">Majo Aguilar con Mariachi y Banda</a></h3>
-<div class="meta">8:00 PM · The Soraya, Northridge</div>
+<div class="meta">8:00 PM · The Soraya, Northridge <span class="occtag occ-out">Going out</span></div>
 <p></p>
 <a class="tickets" href="https://www.ticketmaster.com/event/Z7r9jZ1AAZUbg">Tickets &amp; info →</a>
 
@@ -2131,7 +2135,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://s1.ticketm.net/dam/e/d35/ce7ba8e2-40fd-4ffd-bea9-ef7bcfadcd35_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketmaster.com/john-scofields-electrospective-los-angeles-california-10-29-2026/event/09006477F526C078">JOHN SCOFIELD&#x27;S &quot;ELECTROSPECTIVE&quot;</a></h3>
-<div class="meta">8:30 PM · The Regent Theater, Downtown</div>
+<div class="meta">8:30 PM · The Regent Theater, Downtown <span class="occtag occ-out">Going out</span></div>
 <p>Doors: 7:30pm Show: 8:30pm 18+ Only JOHN SCOFIELD&#x27;S &quot;ELECTROSPECTIVE&quot; featuring: Oteil Burbridge, Larry Goldings &amp; Adam Deitch.</p>
 <a class="tickets" href="https://www.ticketmaster.com/john-scofields-electrospective-los-angeles-california-10-29-2026/event/09006477F526C078">Tickets &amp; info →</a>
 
@@ -2167,7 +2171,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://i.ticketweb.com/i/00/12/95/14/54_Edp.jpg?v=8" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://www.ticketweb.com/event/led-zeppelin-in-jazz-with-catalina-jazz-club-tickets/14235044">Led Zeppelin in Jazz with Whole Lotta Swing</a></h3>
-<div class="meta">8:30 PM · Catalina Jazz Club, Hollywood · $41.05</div>
+<div class="meta">8:30 PM · Catalina Jazz Club, Hollywood · $41.05 <span class="occtag occ-special">Something special</span></div>
 <p>🔥 LOS ANGELES PREMIERE --- LED ZEPPELIN LIKE YOU&#x27;VE NEVER HEARD IT BEFORE! For the first time in Los Angeles, Whole Lotta Swing brings the power, attitude and legendary music of Led Zeppelin into the world of jazz. Hear classics including , &quot;rdquo&quot; -&gt; Stairway to Heaven,&quot; , &quot;rdquo&quot; -&gt; Black Dog&quot; and , &quot;rdquo&quot; -&gt; Moby Dick&quot; transformed through bold arrangements, improvisation and explosive live musicianship---one night only at Catalina Jazz Club on Thursday, October 29 at 8:30 PM. Be among the first to witness Led Zeppelin in Jazz---secure your seats now! Catalina Jazz Club 6725 West Sunset Blvd. Hollywood, CA 90028 *Tickets purchased online receive priority seating.</p>
 <a class="tickets" href="https://www.ticketweb.com/event/led-zeppelin-in-jazz-with-catalina-jazz-club-tickets/14235044">Tickets &amp; info →</a>
 
@@ -2239,7 +2243,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">☺</span><img src="https://s1.ticketm.net/dam/a/8dc/8dc028fe-86e3-406d-888b-f0213de3b8dc_TABLET_LANDSCAPE_16_9.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
 <div class="event-body">
 <h3><a href="https://improv.com/hollywood/event/queer+roast+for+the+straight+host+ft.+andrew+stier%2c+joel+kim+booster%2c+adam+conover%2c+antonio+rosello%2c+paige+gallagher%2c+charlie+james%2c+dylan+guerra%2c+sophia+sherman+and+more+tba/14356864/">Queer Roast for the Straight Host ft. Andrew Stier, Joel Kim Booster, Adam Conover, Antonio Rosello, Paige Gallagher, Charlie James, Dylan Guerra, Sophia Sherman and more TBA</a></h3>
-<div class="meta">9:30 PM · Hollywood Improv (The Lab), Beverly Grove · $16.47</div>
+<div class="meta">9:30 PM · Hollywood Improv (The Lab), Beverly Grove · $16.47 <span class="occtag occ-out">Going out</span></div>
 <p>Queer Roast Comedy delivers a one-of-a-kind experience every time, and was just featured in the LA Times! LGBTQ+ comedians are redefining roasts as an art form in West Hollywood - Los Angeles Times Step into the arena of laughter, dares, and unforgettable third-degree burns! In this live comedy format queer comics take the stage to roast straight comics, and no punchline is off-limits! Between sets, the straight comics face outrageous challenges and/or dares, and one fearless audience volunteer gets thrust into the hot seat 🔥 Hosted by the mischievous Andrew Stier, this show is sharp, hilarious, and unapologetically queer. Come for the roasts. Stay for the dares. Leave with sore cheeks (from laughing ofc...get your mind out of the gutter). DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION OF THE HOLLYWOOD IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all guests. Seating is general admission, first-come, first-served, with the exception of groups and premium booths. No cell phone use, photography or video recording is permitted during performances. All sales are final. MISCELLANOUS: For group sales info, e-mail our Events Manager to learn about special menu options and reserved seating. Additional questions may be addressed in our Frequently Asked Questions. For further assistance, contact Hollywood Improv.</p>
 <a class="tickets" href="https://improv.com/hollywood/event/queer+roast+for+the+straight+host+ft.+andrew+stier%2c+joel+kim+booster%2c+adam+conover%2c+antonio+rosello%2c+paige+gallagher%2c+charlie+james%2c+dylan+guerra%2c+sophia+sherman+and+more+tba/14356864/">Tickets &amp; info →</a>
 
@@ -2737,7 +2741,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/4291/2026-10-29t200000-0700-filth-with-steph-tolev">Steph Tolev</a></h3>
-<div class="meta">8:00 PM · The Comedy Store (Main Room), West Hollywood</div>
+<div class="meta">8:00 PM · The Comedy Store (Main Room), West Hollywood <span class="occtag occ-out">Going out</span></div>
 <p>Lineup: Steph Tolev. Lineups change; check before you go.</p>
 <a class="tickets" href="https://thecomedystore.com/calendar/show/4291/2026-10-29t200000-0700-filth-with-steph-tolev">Tickets &amp; info →</a>
 
@@ -2755,7 +2759,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">☺</span></div>
 <div class="event-body">
 <h3><a href="https://thecomedystore.com/calendar/show/3855/2026-10-29t210000-0700-the-originals">The Originals</a></h3>
-<div class="meta">9:00 PM · The Comedy Store (Original Room), West Hollywood · ↻ Every Thursday</div>
+<div class="meta">9:00 PM · The Comedy Store (Original Room), West Hollywood · ↻ Every Thursday <span class="occtag occ-out">Going out</span></div>
 <p>Lineup: Orny Adams, Vicki Barbolak, Asif Ali. Lineups change; check before you go.</p>
 <a class="tickets" href="https://thecomedystore.com/calendar/show/3855/2026-10-29t210000-0700-the-originals">Tickets &amp; info →</a>
 
@@ -2899,7 +2903,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">♪</span><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Paul_Thorn.jpg/960px-Paul_Thorn.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><button type="button" class="ph-cr" data-idx="73" aria-label="Photo: Kurt &quot;Doc&quot; Huot · CC BY-SA 2.0" title="Photo: Kurt &quot;Doc&quot; Huot · CC BY-SA 2.0">ⓘ</button></div>
 <div class="event-body">
 <h3><a href="https://dice.fm/event/6a283b40bd01160001815ba4">Paul Thorn, Ryan Hahn</a></h3>
-<div class="meta">7:15 PM – 11:15 PM · The Mint, Mid-City</div>
+<div class="meta">7:15 PM – 11:15 PM · The Mint, Mid-City <span class="occtag occ-out">Going out</span></div>
 <p>At The Mint. Tickets on DICE.</p>
 <a class="tickets" href="https://dice.fm/event/6a283b40bd01160001815ba4">Tickets &amp; info →</a>
 
@@ -3061,7 +3065,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th"><span class="ev-ic" aria-hidden="true">☺</span><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Tig_Notaro_Come_See_Me_In_The_Good_Light-12.jpg/960px-Tig_Notaro_Come_See_Me_In_The_Good_Light-12.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('ph');this.remove()"><button type="button" class="ph-cr" data-idx="82" aria-label="Photo: Bryan Berlin · CC BY-SA 4.0" title="Photo: Bryan Berlin · CC BY-SA 4.0">ⓘ</button></div>
 <div class="event-body">
 <h3><a href="https://calendar.dynastytypewriter.com/shows/tig-notaro-29-oct">Tig Notaro</a></h3>
-<div class="meta">7:00 PM · Dynasty Typewriter, Westlake</div>
+<div class="meta">7:00 PM · Dynasty Typewriter, Westlake <span class="occtag occ-out">Going out</span></div>
 <p>Doors 6:00 pm, show 7:00 PM.</p>
 <a class="tickets" href="https://calendar.dynastytypewriter.com/shows/tig-notaro-29-oct">Tickets &amp; info →</a>
 
@@ -3241,7 +3245,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="ev-th ph" aria-hidden="true"><span class="ev-ic">🍷</span></div>
 <div class="event-body">
 <h3><a href="https://www.eventbrite.com/e/intelligent-singles-mixer-in-beverly-hills-tickets-2002893981816">Intelligent Singles Mixer in Beverly Hills!</a></h3>
-<div class="meta">7:00 PM – 10:00 PM · The London Hotel Beverly Hills, West Hollywood</div>
+<div class="meta">7:00 PM – 10:00 PM · The London Hotel Beverly Hills, West Hollywood <span class="occtag occ-age">Singles</span></div>
 <p>Meet sharp minds and spark connections at the coolest singles hangout around!</p>
 <a class="tickets" href="https://www.eventbrite.com/e/intelligent-singles-mixer-in-beverly-hills-tickets-2002893981816">Tickets &amp; info →</a>
 
@@ -4062,6 +4066,8 @@ const IMGS = ["", "https://s1.ticketm.net/dam/a/ee3/afc9b1bf-f5a4-49b8-9514-ceb1
 const ICREDIT = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, {"by": "U.S. Embassy Belize", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Shyne_profile_(cropped).jpg"}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, {"by": "Kurt \"Doc\" Huot", "license": "CC BY-SA 2.0", "url": "https://commons.wikimedia.org/wiki/File:Paul_Thorn.jpg"}, null, {"by": "Bert Parry", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Monroecirca1953.jpg"}, null, null, null, null, null, null, {"by": "Bryan Berlin", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Tig_Notaro_Come_See_Me_In_The_Good_Light-12.jpg"}, null, {"by": "Atlantic Records", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Led_Zeppelin_-_promotional_image_(1971).jpg"}, {"by": "Foundations World Economic Forum", "license": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Adam_Grant_at_the_2023_World_Economic_Forum_(52693537938).jpg"}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, {"by": "Philip Romano", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:ChristopherLloyd2022.jpg"}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, {"by": "LucaFazPhoto", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Daniel_Hendler_at_82nd_Venice_International_Film_Festival-3.jpg"}, null];
 const CAT_ICON = {"Music": "♪", "Comedy": "☺", "Talks": "❝", "Theater": "🎭", "Film": "🎬", "Arts & Play": "✦", "Food & Drink": "🍷", "Classes & Workshops": "✎", "Tours": "➜", "Meetups & Mixers": "☕", "Tech": "⌘", "Fitness & Outdoors": "☀", "Trivia & Games": "?", "Sports": "⚑"};
 const CURRENCY_SIGN = "$";
+const DATEV = ["", "", "", "", "", "", "", "", "out", "", "special", "out", "", "out", "", "", "out", "", "", "", "", "out", "", "", "", "", "", "", "out", "", "out", "", "special", "", "", "", "out", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "out", "out", "", "", "", "", "", "", "", "out", "", "", "", "", "", "", "", "", "out", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];  // date idea: "first" / "out" / "special" / "" (ingest/occasion.py)
+const SINGLE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];  // a singles event (Meet someone)
 // a photo's credit: the tiny i on a picture opens "Photo: <by> · <licence>", linked to its file page
 document.addEventListener("click", e => {
   const b = e.target.closest && e.target.closest(".ph-cr"), old = document.getElementById("phPop");
@@ -4534,7 +4540,8 @@ window.__applyFilters = (function () {
   // you: "For you" (a person with settings or ticks: their hard excludes are out; Tonight.forYouOut);
   // near: "My neighbourhoods" (Preferences)
   // low: "N low-rated hidden · show" at the foot of the list was pressed (low-scored or flagged listings in)
-  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", only: null, you: true, near: false, low: false,
+  // occ: "date" / "singles" / "date|singles" (Occasion: ♥ Date ideas, Meet someone); vibe: "first" / "out" / "special" / ""
+  const F = {q: "", cat: "", free: false, tod: "all", after: null, before: null, hood: "", src: "", occ: "", vibe: "", only: null, you: true, near: false, low: false,
     nearby: (function(){ try { return localStorage.getItem("tonight-nearby") === "1"; } catch (e) { return false; } })()};
   const HIDE_KEY = "tonight-hidden-" + CITY + "-" + DATE;
   let hidden = new Set(loadIds(HIDE_KEY));
@@ -4560,6 +4567,7 @@ window.__applyFilters = (function () {
   function everything() { return !F.you && !!(window.Tonight && Tonight.hasProfile && Tonight.hasProfile()); }
   window.__isLow = isLow;
   const hay = {};  // search text per card, read once
+  function occMatch(i, k) { return k === "date" ? !!DATEV[i] && (!F.vibe || DATEV[i] === F.vibe) : k === "singles" ? !!SINGLE[i] : false; }
   // each filter on its own (the sidebar counts what each box would show with all the others)
   function dims(i, a) {
     let base = !hidden.has(String(i)) && !(window.TonightHide && TonightHide.hides(i));  // today, or for good
@@ -4571,7 +4579,9 @@ window.__applyFilters = (function () {
       if (hay[i] == null) hay[i] = (NAMES[i] + " " + CATS[i] + " " + (SRC_LABEL[SRCS[i]] || "") + " " + (a ? a.textContent : "")).toLowerCase();
       if (!hay[i].includes(F.q)) base = false;
     }
-    const lowOut = base && !F.low && !F.q && isLow(i) && !everything();
+    // asking for an occasion shows its events however they're rated (singles mixers score low for everyone else)
+    const occAsked = !!F.occ && F.occ.split("|").some(k => occMatch(i, k));
+    const lowOut = base && !F.low && !F.q && isLow(i) && !everything() && !occAsked;
     const nearOut = base && !lowOut && NEARBY[i] && !F.nearby;  // nearby towns, behind "Include nearby areas"
     return {base: base && !lowOut && !nearOut, lowOut: lowOut, nearOut: nearOut,
       cat: !F.cat || F.cat.split(",").includes(CATS[i]),  // one or several categories
@@ -4579,17 +4589,19 @@ window.__applyFilters = (function () {
       tod: todOk(i),
       hood: !F.hood || F.hood.split("|").includes(HOODS[i]),  // one or several neighbourhoods
       src: !F.src || F.src.split("|").includes(SRCS[i]),  // one or several sources (Eventbrite, Luma ...)
+      occ: !F.occ || F.occ.split("|").some(k => occMatch(i, k)),  // Date ideas / Meet someone
       you: !F.you || !window.Tonight || !Tonight.forYouOut || !Tonight.forYouOut(i, F.cat ? F.cat.split(",") : []) ||
         ((F.low || F.q) && Tonight.excluded && Tonight.excluded(i) === "junk"),
       near: !F.near || !window.Tonight || !Tonight.inArea || Tonight.inArea(i)};
   }
-  window.__facet = {F: F, dims: dims, todMatch: todMatch, TOD0: () => TOD0, apply: () => applyFilters()};
+  window.__facet = {F: F, dims: dims, todMatch: todMatch, occMatch: occMatch, TOD0: () => TOD0, apply: () => applyFilters(),
+    setOcc: (o, v) => setOcc(o, v)};
   function applyFilters() {
     const cards = document.querySelectorAll("article.event");
     let n = 0, nLow = 0, nNearby = 0;
     cards.forEach(a => {
       const i = a.dataset.idx, d = dims(+i, a);
-      const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near;
+      const rest = d.cat && d.free && d.tod && d.hood && d.src && d.you && d.near && d.occ;
       const ok = d.base && rest;
       a.style.display = ok ? "" : "none";
       delete a.dataset.clamped;  // the filter decides first; collapsing re-applies after
@@ -4628,12 +4640,27 @@ window.__applyFilters = (function () {
       fh.textContent = F.cat ? "✨ Free · " + F.cat.split(",").map(opt).join(" + ") : fh.dataset.orig;
     }
     document.getElementById("resCount").textContent = n + " of " + cards.length + " events";
+    const vb = document.getElementById("occVibes");  // the vibe buttons, while Date ideas is on
+    if (vb) {
+      vb.hidden = !F.occ.split("|").includes("date");
+      vb.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.v === F.vibe));
+    }
     window.__clamp && window.__clamp();
     document.getElementById("hiddenBar").style.display = hidden.size ? "inline" : "none";
     document.getElementById("hiddenN").textContent = hidden.size;
     if (window.__topTonight) window.__topTonight();
     if (window.__fside) window.__fside();
   }
+  // Occasion: ♥ Date ideas / Meet someone (the sidebar, the phone chips, the strips' "See all", ?occ= links, Toni)
+  function setOcc(occ, vibe) {
+    F.occ = (occ || "").split("|").filter(k => k === "date" || k === "singles").join("|");
+    if (vibe != null) F.vibe = ["first", "out", "special"].includes(vibe) ? vibe : "";
+    if (!F.occ.split("|").includes("date")) F.vibe = "";
+    applyFilters();
+    try { syncFilterUI(); } catch (e) {}  // not wired yet while the address is being read
+  }
+  window.__setOcc = setOcc;
+  document.querySelectorAll("#occVibes button").forEach(b => b.addEventListener("click", () => setOcc(F.occ, b.dataset.v)));
   const _ns = document.getElementById("nearShow");
   if (_ns) _ns.addEventListener("click", () => {
     F.nearby = !F.nearby;
@@ -4774,7 +4801,7 @@ window.__applyFilters = (function () {
     if (art.dataset.clamped === "1" && h) { opened.add(h.textContent); window.__clamp(); }
   };
   window.__clamp = function () {
-    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.near;
+    const filtering = F.only || F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.near || F.occ;
     document.querySelectorAll("main.wrap > section.cat").forEach(sec => {
       const key = sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
       const vis = [...sec.querySelectorAll(":scope > article.event")].filter(a => !hidden.has(a.dataset.idx) &&
@@ -4811,6 +4838,7 @@ window.__applyFilters = (function () {
     if (q.get("free") === "1") document.getElementById("ffree").click();
     setv("fafter", q.get("after")); setv("fbefore", q.get("before"));
     setv("fcat", q.get("cat")); setv("fhood", q.get("hood")); setv("fsrc", q.get("src"));
+    if (q.get("occ")) setOcc(q.get("occ"), q.get("vibe") || "");  // ?occ=date (&vibe=first) / ?occ=singles
     const only = (q.get("only") || "").split(",").filter(x => /^[0-9a-f]{8,10}$/.test(x));
     if (only.length) {
       F.only = new Set(only);
@@ -4827,7 +4855,7 @@ window.__applyFilters = (function () {
   function syncFilterUI() {
     ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el) el.classList.toggle("on", el.value !== ""); });
-    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src);
+    if (_fc) _fc.hidden = !(F.q || F.cat || F.free || (F.tod !== "all" && F.tod !== TOD0) || F.after != null || F.before != null || F.hood || F.src || F.occ);
     if (F.after != null || F.before != null) showExtra(true);  // set by Toni or a link: show where
     if (_fm) _fm.classList.toggle("on", F.after != null || F.before != null);
   }
@@ -4839,6 +4867,7 @@ window.__applyFilters = (function () {
     ["fcat", "fafter", "fbefore", "fhood", "fsrc"].forEach(id => { const el = document.getElementById(id);
       if (el && el.value !== "") { el.value = ""; el.dispatchEvent(new Event("change")); } });
     if (F.free) document.getElementById("ffree").click();
+    if (F.occ) setOcc("", "");
     const all = document.querySelector('#ftod button[data-t="all"]'); if (all) all.click();
   });
   syncFilterUI();
@@ -5057,7 +5086,7 @@ function setNextHour(on, quiet) {
     const i = +art.dataset.idx, s = STARTS[i];
     if (!homeSpot.has(i)) homeSpot.set(i, {parent: art.parentNode, next: art.nextSibling});
     if (DATE !== today || s == null || hiddenByYou.has(String(i))) return;
-    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.src || !d.you || !d.near) return; }  // other filters still apply
+    if (window.__facet) { const d = window.__facet.dims(i, art); if (!d.base || !d.cat || !d.free || !d.hood || !d.src || !d.you || !d.near || !d.occ) return; }  // other filters still apply
     const end = ENDS[i] != null && ENDS[i] > s ? ENDS[i] : null;
     const tr = travel(milesTo(art));
     const kind = soonKind(i, now);
@@ -5674,7 +5703,7 @@ function loadHistory(){
   restoredCount = history.length;
 }
 loadHistory();
-var SUGGEST = ["Something free tonight", "Low-key, not too loud", "Plan my night", "What starts in the next hour?"];
+var SUGGEST = window.TONI_SUGGEST || ["Something free tonight", "Low-key, not too loud", "Plan my night", "What starts in the next hour?"];
 function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
 function waitForBase(n){
   var b = window.__tonight_api || null;
@@ -5742,7 +5771,7 @@ function card(c){
   if (c.reason) body.appendChild(el("div", "r", c.reason));
   var a = el("div", "a");
   // a pick from another day (Toni looked ahead): no tick here, and "See it" opens that day's page
-  var other = !!(c.date && c.date !== cur.date), here = onPage && !other;
+  var other = !!(c.date && c.date !== cur.date), here = onPage && !other && !window.TONI_NO_TICK;
   if (here) {
     var tick = el("button", "", "Tick it"); tick.type = "button";
     var pageBox = function(){ return document.querySelector('.toggle[data-idx="' + c.id + '"]'); };
@@ -5845,6 +5874,7 @@ function filterUrl(f){
   if (f.category) q.push("cat=" + encodeURIComponent(f.category));
   if (f.neighborhood) q.push("hood=" + encodeURIComponent(f.neighborhood));
   if (f.source) q.push("src=" + encodeURIComponent(f.source));
+  if (f.occasion) q.push("occ=" + encodeURIComponent(f.occasion));
   return q.length ? "?" + q.join("&") : "";
 }
 // "Show me everything that's free before 7": Toni sets the page's own filters instead of a long list
@@ -5855,6 +5885,7 @@ function applyPageFilters(f){
   var free = document.getElementById("ffree");
   if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
   set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || ""); set("fsrc", f.source || "");
+  if (window.__setOcc) window.__setOcc(f.occasion || "", "");  // Date ideas / Meet someone
   var n = 0;
   document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
   return n;
@@ -5940,6 +5971,11 @@ function render(){
       blk.appendChild(list);
     }
     if (m.all && m.all.length) blk.appendChild(allList(m));
+    if (m.see_all) {  // date ideas / singles: their own page, every one grouped by day
+      var sa2 = el("a", "tn-seeall", m.see_all === "singles.html" ? "See every singles event this week →" : "See every date idea this weekend →");
+      sa2.href = (onPage ? "" : cur.slug + "/") + m.see_all;
+      blk.appendChild(sa2);
+    }
     if (m.outro) blk.appendChild(el("p", "tn-text small", m.outro));
     if (m.seeAll && m.fullCount) {
       var sa = el("div", "tn-shown");
@@ -6089,7 +6125,8 @@ function ask(q, display){
     else {
       var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || [], plan: !!d.plan,
                  context: d.context && d.context.days ? d.context : null,
-                 all: d.all || null, all_count: d.all_count || 0, mode: d.mode || null, need_here: !!d.need_here};
+                 all: d.all || null, all_count: d.all_count || 0, mode: d.mode || null, need_here: !!d.need_here,
+                 see_all: d.see_all || null};
       if (d.mode === "near" && toniMode !== "near") { toniMode = "near"; try { sessionStorage.setItem("tonight-toni-mode", "near"); } catch (e) {} }
       // the server works out when and where dinner fits the plan
       if (d.dinner && d.dinner.venue) msg.dinner = d.dinner;
