@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#fff7ec">
+<title>Plan your night — Lineup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff7ec;--ink:#151515;--hot:#ff4f2e;--sun:#ffc21a;--sky:#2f6bff;--mint:#19b38a;--card:#fff;
+  --soft:color-mix(in srgb,var(--ink) 62%,var(--paper));--d:'Anton',Impact,'Arial Narrow Bold',sans-serif;
+  --t:'Space Grotesk',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+*{box-sizing:border-box;}
+html,body{margin:0;background:var(--paper);color:var(--ink);}
+body{font-family:var(--t);-webkit-font-smoothing:antialiased;}
+a{color:inherit;}
+button{font-family:var(--t);}
+.pl-top{display:flex;justify-content:space-between;align-items:center;max-width:1040px;margin:0 auto;padding:16px;}
+.pl-wm{font-family:var(--d);font-size:28px;text-decoration:none;letter-spacing:.01em;} .pl-wm b{color:var(--hot);font-weight:400;}
+.pl-link{border:2px solid var(--ink);border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px;text-decoration:none;background:var(--card);box-shadow:0 2px 0 var(--ink);}
+.pl-ask{max-width:1040px;margin:0 auto;padding:28px 16px 8px;}
+.pl-kick{font-weight:700;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--hot);margin:0 0 14px;}
+.pl-sent{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:clamp(34px,min(6vw,8.5vh),64px);line-height:1.08;margin:0;letter-spacing:.005em;}
+.pl-blank{font:inherit;text-transform:inherit;color:var(--ink);background:none;border:0;padding:0 .08em;margin:0;cursor:pointer;
+  border-bottom:.09em solid var(--hot);line-height:1;transition:background .15s;}
+.pl-blank:hover{background:color-mix(in srgb,var(--sun) 55%,transparent);}
+.pl-blank[aria-expanded="true"]{background:var(--sun);}
+.pl-blank:focus-visible,.pl-chip:focus-visible,.pl-make:focus-visible,.pl-sw:focus-visible{outline:3px solid var(--sky);outline-offset:3px;}
+/* the choices float over the bottom of the screen and scroll on their own, so the sentence and the
+   button stay in view however many choices there are */
+.pl-choices{display:none;position:fixed;z-index:30;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+  width:min(1008px,calc(100% - 32px));align-content:flex-start;max-height:min(62vh,520px);overflow-y:auto;overscroll-behavior:contain;
+  flex-wrap:wrap;gap:4px;padding:0 16px 12px;border:2px solid var(--ink);border-radius:20px;background:var(--card);
+  box-shadow:0 3px 0 var(--ink),0 18px 50px rgba(21,21,21,.22);}
+.pl-chead{position:sticky;top:0;z-index:1;flex-basis:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;
+  background:var(--card);padding:10px 0 4px;margin:0;font-weight:700;font-size:14px;}
+.pl-gr{flex-basis:100%;display:grid;grid-template-columns:118px 1fr;gap:6px 12px;align-items:center;padding:3px 0;}
+.pl-gl{display:flex;flex-wrap:wrap;gap:6px;}
+.pl-gr .pl-grp{margin:0;flex-basis:auto;}
+@media (max-width:640px){.pl-gr{grid-template-columns:1fr;gap:4px;}}
+.pl-x{border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:999px;width:34px;height:34px;font:700 15px var(--t);cursor:pointer;flex:none;}
+.pl-x:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+.pl-choices.open{display:flex;}
+.pl-grp{flex-basis:100%;margin:6px 0 0;font-weight:700;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);}
+.pl-grp:first-child{margin-top:0;}
+.pl-nw{white-space:nowrap;}
+.pl-own{margin-top:2px;}
+.pl-own .pl-ow{display:flex;gap:6px;flex-wrap:wrap;}
+.pl-own input{flex:1 1 220px;min-width:0;border:2px solid var(--ink);border-radius:999px;padding:5px 12px;font:500 15px var(--t);background:var(--paper);color:var(--ink);}
+.pl-own input:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+.pl-chip{border:2px solid var(--ink);border-radius:999px;padding:5px 11px;background:var(--paper);color:var(--ink);font-weight:600;font-size:13.5px;cursor:pointer;line-height:1.25;}
+.pl-chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
+.pl-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:26px 0 0;}
+.pl-make{border:2px solid var(--ink);border-radius:999px;background:var(--sun);color:#151515;font-weight:700;font-size:17px;padding:14px 24px;cursor:pointer;box-shadow:0 3px 0 var(--ink);}
+.pl-make:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink);}
+.pl-hint{font-size:13.5px;color:var(--soft);}
+.pl-out{max-width:1040px;margin:0 auto;padding:22px 16px 70px;}
+.pl-poster{position:relative;overflow:hidden;background:var(--ink);color:var(--paper);border-radius:22px;padding:30px 28px 26px;text-align:center;}
+.pl-blob{position:absolute;border-radius:50%;pointer-events:none;}
+.pl-b1{width:400px;height:400px;background:var(--hot);left:-170px;top:-200px;opacity:.9;}
+.pl-b2{width:300px;height:300px;background:var(--sky);right:-170px;bottom:-220px;opacity:.85;}
+.pl-b3{width:110px;height:110px;background:var(--sun);right:-30px;top:-36px;}
+.pl-b4{width:84px;height:84px;background:var(--mint);left:-26px;bottom:-30px;}
+.pl-poster > :not(.pl-blob){position:relative;z-index:1;}
+.pl-eye{font-weight:700;letter-spacing:.3em;font-size:12px;color:var(--sun);text-transform:uppercase;margin:0;}
+.pl-date{font-family:var(--d);font-weight:400;font-size:clamp(34px,5vw,56px);line-height:.95;text-transform:uppercase;margin:8px 0 0;}
+.pl-act{margin:26px auto 0;max-width:820px;}
+.pl-role{display:block;font-weight:700;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--sun);margin:0 0 6px;}
+.pl-nm{font-family:var(--d);font-weight:400;text-transform:uppercase;line-height:1.02;margin:0;overflow-wrap:anywhere;}
+.pl-nm a{text-decoration:none;color:var(--paper);} .pl-nm a:hover{color:var(--sun);}
+.pl-head .pl-nm{font-size:clamp(40px,7vw,80px);}
+.pl-sup .pl-nm{font-size:clamp(24px,3.4vw,38px);}
+.pl-info{margin:8px 0 0;font-weight:600;font-size:14px;opacity:.8;}
+.pl-why{margin:6px auto 0;max-width:620px;font-size:15px;line-height:1.45;opacity:.92;}
+.pl-pic{display:block;width:min(340px,80%);aspect-ratio:16/10;object-fit:cover;margin:0 auto 16px;border-radius:14px;border:3px solid var(--paper);transform:rotate(-1.5deg);}
+.pl-sw{margin:10px 0 0;border:1.5px solid color-mix(in srgb,var(--paper) 55%,transparent);background:transparent;color:var(--paper);border-radius:999px;padding:5px 12px;font-weight:600;font-size:12.5px;cursor:pointer;}
+.pl-sw:hover{border-color:var(--sun);color:var(--sun);}
+.pl-sups{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 36px;max-width:900px;margin:8px auto 0;}
+.pl-star{color:var(--hot);margin:0 10px;}
+.pl-foot{margin:28px auto 0;padding-top:14px;border-top:2px solid color-mix(in srgb,var(--paper) 22%,transparent);
+  font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;line-height:1.8;max-width:900px;}
+.pl-empty{font-family:var(--d);font-size:30px;text-transform:uppercase;margin:24px 0 8px;}
+.pl-more{max-width:820px;margin:18px auto 0;}
+.pl-note2{margin:0 0 10px;font-size:14.5px;color:var(--soft);text-align:center;}
+.pl-mh{font-family:var(--d);font-weight:400;font-size:24px;text-transform:uppercase;margin:6px 0 8px;}
+.pl-ml{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;}
+.pl-ml li{display:grid;grid-template-columns:70px 1fr;gap:2px 12px;padding:9px 0;border-top:1.5px solid color-mix(in srgb,var(--ink) 14%,transparent);}
+.pl-ml b{font-family:var(--d);font-weight:400;font-size:17px;grid-row:span 2;white-space:nowrap;}
+.pl-ml a{font-weight:700;text-decoration:none;overflow-wrap:anywhere;} .pl-ml a:hover{text-decoration:underline;}
+.pl-ml span{font-size:13px;color:var(--soft);}
+.pl-after{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0 0;}
+.pl-after a,.pl-after button{border:2px solid var(--ink);border-radius:999px;padding:11px 18px;font-weight:700;font-size:14.5px;background:var(--card);color:var(--ink);text-decoration:none;cursor:pointer;box-shadow:0 2px 0 var(--ink);}
+.pl-friends{max-width:1040px;margin:30px auto 0;padding:0 16px;}
+.pl-fh{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:clamp(26px,4vw,36px);margin:0 0 12px;}
+.pl-fgrid{display:grid;grid-template-columns:1fr 1.4fr;gap:18px 28px;}
+.pl-fs{font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin:0 0 8px;}
+.pl-fl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;}
+.pl-fc{width:100%;height:100%;text-align:left;display:flex;flex-direction:column;gap:4px;padding:12px 14px;border:2px solid var(--ink);border-radius:16px;background:var(--card);color:var(--ink);cursor:pointer;box-shadow:0 2px 0 var(--ink);font:inherit;}
+.pl-fc:hover{transform:translateY(-1px);} .pl-fc:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+.pl-fc b{font-size:15.5px;line-height:1.25;overflow-wrap:anywhere;} .pl-fc span{font-size:13px;color:var(--soft);}
+.pl-fc .pl-ft{font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--hot);}
+.pl-fc .pl-fgo{margin-top:auto;padding-top:4px;font-weight:700;color:var(--ink);}
+.pl-fe{font-size:14px;color:var(--soft);padding:12px 14px;border:2px dashed color-mix(in srgb,var(--ink) 30%,transparent);border-radius:16px;}
+.pl-fe a{color:var(--ink);font-weight:700;}
+@media (max-width:760px){.pl-fgrid{grid-template-columns:1fr;}}
+.pl-bring{max-width:820px;margin:22px auto 0;padding:18px 20px;border:2px solid var(--ink);border-radius:20px;background:var(--card);box-shadow:0 3px 0 var(--ink);}
+.pl-bh{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:28px;margin:0 0 6px;}
+.pl-bp{margin:0 0 12px;font-size:14.5px;color:var(--soft);}
+.pl-bf{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0 0;}
+.pl-bf label{flex-basis:100%;font-weight:700;font-size:13px;}
+.pl-bf input,.pl-link-row input{flex:1 1 220px;min-width:0;border:2px solid var(--ink);border-radius:999px;padding:10px 14px;font:500 15px var(--t);background:var(--paper);color:var(--ink);}
+.pl-bf input:focus-visible,.pl-link-row input:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+.pl-bm{margin:10px 0 0;font-size:14px;font-weight:600;}
+.pl-link-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 10px;}
+.pl-whoh{font-weight:700;margin:8px 0 6px;}
+.pl-whol{list-style:none;margin:0;padding:0;}
+.pl-whol li{display:flex;flex-wrap:wrap;gap:4px 10px;padding:7px 0;border-top:1.5px solid color-mix(in srgb,var(--ink) 14%,transparent);font-size:14.5px;}
+.pl-whol li b{font-family:var(--d);font-weight:400;} .pl-whol li span{flex-basis:100%;color:var(--soft);font-size:13px;}
+.pl-inv{display:flex;flex-direction:column;gap:14px;}
+.pl-in{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:700;font-size:14px;cursor:pointer;}
+.pl-in input{width:20px;height:20px;accent-color:var(--hot);}
+.pl-after .pl-lock{background:var(--sun);box-shadow:0 3px 0 var(--ink);}
+.pl-done{max-width:780px;margin:0 auto;padding:24px 16px 70px;}
+.pl-done-h{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:clamp(38px,7vw,68px);line-height:1;margin:0;}
+.pl-acts{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;align-items:center;}
+.pl-acts button:not(.pl-make){border:2px solid var(--ink);border-radius:999px;padding:10px 16px;font-weight:700;font-size:14px;background:var(--card);color:var(--ink);cursor:pointer;box-shadow:0 2px 0 var(--ink);}
+.pl-tl{list-style:none;margin:26px 0 0;padding:0;position:relative;}
+.pl-tl::before{content:"";position:absolute;left:83px;top:8px;bottom:8px;border-left:3px dotted var(--ink);opacity:.35;}
+.pl-stop{display:grid;grid-template-columns:70px 1fr;gap:28px;align-items:start;position:relative;}
+.pl-stop::before{content:"";position:absolute;left:76px;top:10px;width:14px;height:14px;border-radius:50%;background:var(--hot);border:2px solid var(--ink);}
+.pl-when{text-align:right;padding-top:4px;} .pl-when b{display:block;font-family:var(--d);font-weight:400;font-size:22px;line-height:1;white-space:nowrap;}
+.pl-when span{white-space:nowrap;}
+.pl-when span{font-size:12px;color:var(--soft);}
+.pl-sc{background:var(--card);border:2px solid var(--ink);border-radius:18px;box-shadow:0 2px 0 var(--ink);padding:16px 18px;}
+.pl-tag{display:inline-block;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hot);}
+.pl-sc h3{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:26px;line-height:1.05;margin:4px 0 6px;overflow-wrap:anywhere;}
+.pl-sc h3 a{text-decoration:none;} .pl-sc h3 a:hover{text-decoration:underline;}
+.pl-where{margin:0;font-weight:600;font-size:14px;} .pl-say{margin:6px 0 0;font-size:14.5px;line-height:1.45;color:var(--soft);}
+.pl-tix{display:inline-block;margin-top:12px;border:2px solid var(--ink);border-radius:999px;padding:7px 14px;font-weight:700;font-size:13.5px;text-decoration:none;background:var(--sun);color:#151515;}
+.pl-move{margin:0 0 0 98px;padding:14px 0;font-size:13.5px;font-weight:600;color:var(--soft);}
+.pl-move span{display:inline-block;background:var(--paper);border:1.5px dashed color-mix(in srgb,var(--ink) 35%,transparent);border-radius:999px;padding:5px 12px;}
+.pl-move.tight span{border-color:var(--hot);color:var(--hot);}
+.pl-remind{display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:center;margin:36px 0 0;background:var(--ink);color:var(--paper);border-radius:22px;padding:24px;}
+.pl-remind h2{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:30px;line-height:1.05;margin:0 0 8px;}
+.pl-remind p{margin:0 0 16px;font-size:14.5px;line-height:1.45;opacity:.85;} .pl-remind .pl-kick{color:var(--sun);opacity:1;margin:0 0 8px;}
+.pl-remind .pl-make{display:inline-block;text-decoration:none;font-size:15px;padding:11px 18px;box-shadow:0 3px 0 var(--paper);}
+.pl-phone{background:var(--paper);color:var(--ink);border-radius:26px;padding:16px;border:3px solid var(--paper);box-shadow:inset 0 0 0 2px var(--ink);}
+.pl-phone p{margin:6px 0 0;background:#e9e1d3;border-radius:16px 16px 16px 4px;padding:10px 12px;font-size:13.5px;line-height:1.4;opacity:1;}
+.pl-from{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);}
+@media (max-width:640px){.pl-remind{grid-template-columns:1fr;}.pl-tl::before{left:63px;}.pl-stop{grid-template-columns:52px 1fr;gap:22px;}
+  .pl-stop::before{left:56px;}.pl-move{margin-left:74px;}.pl-when b{font-size:19px;}}
+@media (max-width:560px){.pl-poster{padding:24px 18px 22px;}.pl-sent{line-height:1.12;}}
+</style></head>
+<body>
+<header class="pl-top"><a class="pl-wm" href="./">Lineup<b>.</b></a><a class="pl-link" id="plTopAll" href="./">All events</a></header>
+<main>
+<section class="pl-ask" id="plAsk" aria-labelledby="plSent">
+  <p class="pl-kick">Plan your night</p>
+  <h1 class="pl-sent" id="plSent"></h1>
+  <div class="pl-choices" id="plChoices"></div>
+  <div class="pl-row"><button type="button" class="pl-make" id="plMake">Make my lineup →</button>
+    <span class="pl-hint">Tap any underlined word to change it.</span></div>
+</section>
+<section class="pl-out" id="plOut" hidden aria-live="polite">
+  <div class="pl-poster" id="plPoster"></div>
+  <div class="pl-more" id="plMore"></div>
+  <div class="pl-bring" id="plBring" hidden aria-live="polite"></div>
+  <div class="pl-after"><button type="button" class="pl-lock" id="plBringBtn">Bring people →</button><button type="button" id="plLock">Lock in my night →</button><button type="button" id="plShuffle">Shuffle the bill</button><a id="plAll" href="./">Everything on →</a></div>
+</section>
+<section class="pl-friends" id="plFriends" hidden></section>
+<section class="pl-done" id="plDone" hidden aria-live="polite"></section>
+<section class="pl-done" id="plInvite" hidden aria-live="polite"></section>
+</main>
+<script>
+(function(){
+var CITIES = {"nyc": {"name": "New York City", "short": "NYC", "tz": "America/New_York", "cur": "$", "ride": "subway"}, "london": {"name": "London", "short": "London", "tz": "Europe/London", "cur": "\u00a3", "ride": "Tube"}, "la": {"name": "Los Angeles", "short": "LA", "tz": "America/Los_Angeles", "cur": "$", "ride": "car"}};
+var SKIP = ["networking", "sales", "spam", "service", "internal", "members_only", "online", "class_slot"];  /* as Top tonight */
+/* what you're up for: every category on the site, plus occasions and keywords (q = words to look for in
+   the name / why / topics / description). g = the group it's shown under. */
+var VIBES = [
+ {g:"Shows", t:"comedy & live music", cats:["Comedy","Music"]},
+ {g:"Shows", t:"stand-up comedy", cats:["Comedy"]},
+ {g:"Shows", t:"live music", cats:["Music"]},
+ {g:"Shows", t:"jazz", q:["jazz"]},
+ {g:"Shows", t:"a play or a musical", cats:["Theater"]},
+ {g:"Shows", t:"a film", cats:["Film"]},
+ {g:"Ideas & art", t:"a great talk", cats:["Talks"]},
+ {g:"Ideas & art", t:"art & galleries", cats:["Arts & Play"], q:["art","galler","exhibit","museum","opening","artist","painting","sculpt","photograph","studio","print","drawing","installation"]},
+ {g:"Ideas & art", t:"books & poetry", q:["book","author","reading","poetry","poet","novel","literary"]},
+ {g:"People", t:"a date night", cats:["Music","Comedy","Theater","Film","Arts & Play","Food & Drink","Tours"], minq:6},
+ {g:"People", t:"meeting new people", cats:["Meetups & Mixers","Trivia & Games","Food & Drink"]},
+ {g:"People", t:"a singles event", singles:true},
+ {g:"People", t:"trivia & games", cats:["Trivia & Games"]},
+ {g:"Do something", t:"food & drink", cats:["Food & Drink"]},
+ {g:"Do something", t:"a class or workshop", cats:["Classes & Workshops"]},
+ {g:"Do something", t:"a tour or a walk", cats:["Tours"]},
+ {g:"Do something", t:"getting active", cats:["Fitness & Outdoors"]},
+ {g:"Do something", t:"a game to watch", cats:["Sports"]},
+ {g:"Do something", t:"tech & startups", cats:["Tech"]},
+ {g:"Anything", t:"anything free", free:true},
+ {g:"Anything", t:"something for the kids", kids:true, from:9*60},
+ {g:"Anything", t:"whatever's best"}
+];
+/* who with: tilts the picks (a bonus per category) and what comes next (bring people) */
+var WITH = [
+ {k:"me", t:"on my own", b:{}},
+ {k:"date", t:"a date", b:{"Music":1,"Comedy":1,"Theater":1.2,"Film":0.8,"Arts & Play":1,"Food & Drink":1,"Tours":0.6,"Talks":-1,"Meetups & Mixers":-1.5,"Tech":-2,"Classes & Workshops":-0.5}},
+ {k:"friends", t:"friends", b:{"Comedy":1,"Music":1,"Trivia & Games":1.2,"Food & Drink":1,"Sports":1,"Meetups & Mixers":0.3,"Talks":-0.5,"Tech":-1}},
+ {k:"group", t:"a big group", b:{"Trivia & Games":1.5,"Comedy":1,"Sports":1.2,"Food & Drink":1,"Music":0.8,"Tours":0.5,"Talks":-1,"Classes & Workshops":-0.5,"Tech":-1}},
+ {k:"new", t:"new people", b:{"Meetups & Mixers":2,"Trivia & Games":1.2,"Classes & Workshops":1,"Tours":0.6,"Food & Drink":0.5}}
+];
+var SINGLES = /\bspeed[\s-]?dating\b|\bsingles?\s+(?:mixer|night|party|event|social|meet)|\bmatch[\s-]?mak(?:ing|er)\b|\bdating\s+(?:mixer|party|night|event|social)\b/i;
+function words(e){ return [e.name, e.why, (e.topics||[]).join(" "), e.description, e.category, e.venue, e.neighborhood, e.url].join(" ").toLowerCase(); }
+var early = false;  /* a thin evening: let earlier events in (from noon) */
+var $ = function(id){ return document.getElementById(id); };
+var st = {city:Object.keys(CITIES)[0], day:0, vibe:0, area:"", with:2}, open = null, data = {}, made = false, pin = null;
+/* which city: #nyc in the link, else the signed-in account's home city, else the last city used here */
+function mem(k, v){ try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch(e){ return null; } }
+(function(){ var acct = null; try { acct = JSON.parse(mem("tonight-account") || "null"); } catch(e){}
+  var h = (location.hash||"").slice(1), pick = [h, acct && acct.home_city, mem("tonight-city")].filter(function(c){ return c && CITIES[c]; })[0];
+  if (pick) st.city = pick;
+  var w = mem("tonight-with"); WITH.forEach(function(x, i){ if (x.k === w) st.with = i; }); })();
+
+function localNow(tz){ var p = new Intl.DateTimeFormat("en-CA",{timeZone:tz,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date()), o={};
+  p.forEach(function(x){ o[x.type]=x.value; }); return {date:o.year+"-"+o.month+"-"+o.day, mins:(+o.hour)*60+(+o.minute)}; }
+function addDays(iso,n){ var d=new Date(iso+"T12:00:00Z"); d.setUTCDate(d.getUTCDate()+n); return d.toISOString().slice(0,10); }
+function iso(){ return addDays(localNow(CITIES[st.city].tz).date, st.day); }
+function wk(d,o){ return new Date(d+"T12:00:00Z").toLocaleDateString("en-US",Object.assign({timeZone:"UTC"},o)); }
+function dayWord(n){ return n===0 ? "tonight" : n===1 ? "tomorrow night" : wk(addDays(localNow(CITIES[st.city].tz).date,n),{weekday:"long"}) + " night"; }
+function mins(t){ var m=/^(\d{1,2}):(\d{2})\s*([AP]M)$/i.exec(t||""); if(!m) return null; var h=(+m[1])%12; if(/p/i.test(m[3])) h+=12; return h*60+(+m[2]); }
+function fmt(m){ var h=Math.floor(m/60), mm=m%60; return ((h+11)%12+1)+(mm?":"+(mm<10?"0":"")+mm:"")+(h<12?" am":" pm"); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function load(){ var k = st.city+"-"+iso(); if (!data[k]) data[k] = fetch("data/"+k+".json").then(function(r){ if(!r.ok) throw 0; return r.json(); })
+  .then(function(evs){ evs.forEach(function(e, i){ e._i = i; }); return evs; }).catch(function(){ return null; }); return data[k]; }
+
+/* the evening that fits the sentence (before the neighbourhood is applied) */
+function fits(evs){
+  var v = VIBES[st.vibe], now = localNow(CITIES[st.city].tz);
+  return (evs||[]).filter(function(e){ var m = mins(e.start_time), kid = e.audience==="kids" || e.audience==="Kids" || e.category==="Kids";
+    if (m==null || m < (v.from || (early ? 12*60 : 17*60))) return false;
+    if (st.day===0 && m < now.mins - 60) return false;
+    if (v.kids ? !kid : kid) return false;
+    if (v.minq && (e.quality||0) < v.minq) return false;
+    if (v.singles && !SINGLES.test(e.name + " " + (e.description||""))) return false;
+    if (v.q && !v.q.some(function(w){ return words(e).indexOf(w) >= 0; })) return false;
+    if ((e.flags||[]).some(function(f){ return SKIP.indexOf(f) >= 0; }) || e.link_ok===false || e.reported) return false;
+    if (v.cats && v.cats.indexOf(e.category) < 0) return false;
+    if (v.free && e.price !== 0) return false;
+    return true; });
+}
+function areas(evs){ var c={}; fits(evs).forEach(function(e){ if(e.neighborhood) c[e.neighborhood]=(c[e.neighborhood]||0)+1; });
+  return Object.keys(c).sort(function(a,b){ return c[b]-c[a]; }).slice(0,9); }
+
+function blank(id, text){ return '<button type="button" class="pl-blank" id="'+id+'" aria-expanded="'+(open===id)+'">'+esc(text)+'</button>'; }
+function drawAsk(){
+  var top = $("plTopAll"); if (top) top.href = st.city + "/" + iso() + ".html";
+  $("plSent").innerHTML = blank("bDay", dayWord(st.day)) + " in " + blank("bCity", CITIES[st.city].short) +
+    ", I'm up for " + blank("bVibe", VIBES[st.vibe].t) + " around " + blank("bArea", st.area || "anywhere") + ' <span class="pl-nw">with ' + blank("bWith", WITH[st.with].t) + ".</span>";
+  ["bDay","bCity","bVibe","bArea","bWith"].forEach(function(id){ $(id).onclick = function(ev){ ev.stopPropagation(); open = open===id ? null : id; drawAsk(); }; });
+  var box = $("plChoices"); box.innerHTML = ""; box.className = "pl-choices";
+  if (!open) return;
+  box.className = "pl-choices open";
+  var head = document.createElement("p"); head.className = "pl-chead";
+  head.innerHTML = "<span>" + {bDay:"Which night?", bCity:"Which city?", bVibe:"What are you up for?", bArea:"Which neighbourhood?", bWith:"Who's coming?"}[open] +
+    '</span><button type="button" class="pl-x" aria-label="Close">✕</button>';
+  head.querySelector(".pl-x").onclick = function(){ open = null; drawAsk(); };
+  box.appendChild(head);
+  /* sit under the sentence and use the rest of the screen; on a short screen cover the button instead */
+  var below = $("plSent").getBoundingClientRect().bottom + 12, room = window.innerHeight - below - 14;
+  box.style.top = room >= 240 ? below + "px" : ""; box.style.bottom = room >= 240 ? "auto" : "";
+  box.style.maxHeight = room >= 240 ? room + "px" : "";  /* as tall as its choices, scrolling only if the screen is short */
+  function chips(list, into){ list.forEach(function(it){ var b=document.createElement("button"); b.type="button"; b.className="pl-chip"; b.textContent=it.t; b.setAttribute("aria-pressed", !!it.on);
+    b.onclick=function(){ it.f(); open=null; drawAsk(); if (made) make(); }; (into || box).appendChild(b); }); }
+  if (open==="bWith") chips(WITH.map(function(w, i){ return {t:w.t, on:i===st.with, f:function(){ st.with=i; mem("tonight-with", w.k); }}; }));
+  if (open==="bDay") chips([0,1,2,3,4,5].map(function(n){ return {t:dayWord(n), on:n===st.day, f:function(){ st.day=n; st.area=""; }}; }));
+  if (open==="bCity") chips(Object.keys(CITIES).map(function(s){ return {t:CITIES[s].name, on:s===st.city, f:function(){ st.city=s; st.area=""; st.day=0; mem("tonight-city", s); }}; }));
+  if (open==="bVibe") {
+    /* typed words aren't a group of their own: they stay in the box below, ready to edit */
+    var groups = VIBES.map(function(v){ return v.g; }).filter(function(g,i,a){ return g !== "Yours" && a.indexOf(g)===i; });
+    groups.forEach(function(g){
+      /* one row per group: its label, then its choices */
+      var row = document.createElement("div"); row.className = "pl-gr";
+      var h = document.createElement("span"); h.className = "pl-grp"; h.textContent = g; row.appendChild(h);
+      var list = document.createElement("div"); list.className = "pl-gl"; row.appendChild(list); box.appendChild(row);
+      chips(VIBES.map(function(v,i){ return {v:v, i:i}; }).filter(function(x){ return x.v.g===g; })
+        .map(function(x){ return {t:x.v.t, on:x.i===st.vibe, f:function(){ st.vibe=x.i; st.area=""; }}; }), list);
+    });
+    /* or say it in your own words: matched against names, descriptions and topics */
+    var f = document.createElement("form"); f.className = "pl-own";
+    f.className = "pl-own pl-gr";
+    f.innerHTML = '<label class="pl-grp" for="plOwn">Or type it</label><div class="pl-ow"><input id="plOwn" type="text" placeholder="jazz, drag, halloween, poetry…" autocomplete="off"><button type="submit" class="pl-chip">Use this</button></div>';
+    f.onsubmit = function(ev){ ev.preventDefault(); var t = f.querySelector("input").value.trim().toLowerCase();
+      if (!t) return;
+      var own = {g:"Yours", t:t, q:t.split(/[\s,]+/).filter(function(w){ return w.length > 1; }), own:true};
+      if (VIBES[VIBES.length-1].own) VIBES[VIBES.length-1] = own; else VIBES.push(own);
+      st.vibe = VIBES.length-1; st.area=""; open=null; drawAsk(); if (made) make(); };
+    box.appendChild(f);
+    if (VIBES[st.vibe].own) f.querySelector("input").value = VIBES[st.vibe].t;
+  }
+  if (open==="bArea") { box.textContent = "Finding neighbourhoods…"; load().then(function(evs){ if (open!=="bArea") return; box.textContent="";
+    chips([{t:"anywhere", on:!st.area, f:function(){ st.area=""; }}].concat(areas(evs).map(function(a){ return {t:a, on:a===st.area, f:function(){ st.area=a; }}; }))); }); }
+}
+
+var pool = [], acts = [], total = 0;
+function score(e){ return (e.quality||0) + (e.image?0.5:0) + (e.why?0.3:0) + (WITH[st.with].b[e.category] || 0); }
+/* how long things run, and getting between them, so the bill is a night you can actually do */
+function dur(e){ var a = mins(e.start_time), b = mins(e.end_time); if (b != null && b > a) return b - a;
+  return {Theater:150, Film:120, Music:120, Comedy:90}[e.category] || 90; }
+function endOf(e){ return mins(e.start_time) + dur(e); }
+function km(a,b){ if (a.lat==null || b.lat==null) return null; var r = Math.PI/180, x = (b.lng-a.lng)*r*Math.cos((a.lat+b.lat)*r/2), y = (b.lat-a.lat)*r; return Math.sqrt(x*x+y*y)*6371; }
+function travel(a,b){ var k = km(a,b), mode = CITIES[st.city].ride;
+  if (k == null) return {m:20, how:"to get there"};
+  if (a.venue === b.venue || k < 0.15) return {m:0, how:"same place"};
+  if (k < 1.3) return {m:Math.max(4, Math.round(k*13)), how:"walk"};
+  return mode === "car" ? {m:Math.round(8+k*2), how:"drive"} : {m:Math.round(12+k*3), how:"by "+mode}; }
+function fitsWith(set, e){ var all = set.concat([e]).sort(function(a,b){ return mins(a.start_time)-mins(b.start_time); });
+  for (var i=1;i<all.length;i++) if (mins(all[i].start_time) < endOf(all[i-1]) + travel(all[i-1],all[i]).m - 10) return false;
+  return true; }
+function place(e){ return String(e.venue||"").replace(/\s*\(.*?\)\s*/g," ").split(" / ")[0].trim().toLowerCase(); }
+function bill(){
+  var out = [], seen = {};
+  for (var pass=0; pass<2 && out.length<3; pass++) pool.forEach(function(e){
+    if (out.length>=3 || out.indexOf(e)>=0 || seen[place(e)] || e._used || !fitsWith(out, e)) return;
+    if (pass===0 && out.length===1 && out[0].category===e.category) return;  /* a mix first time round */
+    out.push(e); seen[place(e)]=1; });
+  return out;
+}
+/* complete a bill: kept acts first, then the first events in order that fit with them (one per venue) */
+function fill(kept, order){
+  var out = kept.slice(), seen = {};
+  out.forEach(function(e){ seen[place(e)] = 1; });
+  order.forEach(function(e){ if (out.length >= 3 || out.indexOf(e) >= 0 || seen[place(e)] || !fitsWith(out, e)) return;
+    out.push(e); seen[place(e)] = 1; });
+  return out;
+}
+function role(e, head){ if (e===head) return "Headliner"; var m = mins(e.start_time);
+  return m >= 21*60+30 ? "Late set" : m < mins(head.start_time) ? "Opener" : "Then"; }
+function title(e){ return String(e.name||"").replace(/^\d{1,2}(:\d\d)?\s*(am|pm)\s*[-–:·]?\s*/i,""); }
+function shortVenue(v){ return String(v||"").split(" / ")[0]; }
+function info(e){ var c = CITIES[st.city].cur, p = e.price===0 ? "free" : e.price==null ? "" : c+Math.round(e.price);
+  return [fmt(mins(e.start_time)), e.venue, e.neighborhood, p].filter(Boolean).map(esc).join(" · "); }
+function act(e, head, i){
+  var big = e===head, a = '<div class="pl-act '+(big?"pl-head":"pl-sup")+'">';
+  if (big && e.image) a += '<img class="pl-pic" alt="" referrerpolicy="no-referrer" src="'+esc(e.image)+'">';
+  a += '<span class="pl-role">'+role(e,head)+'</span><h3 class="pl-nm"><a href="'+esc(e.url||"#")+'" target="_blank" rel="noopener">'+esc(title(e))+'</a></h3>'+
+    '<p class="pl-info">'+info(e)+'</p>' + (big && e.why ? '<p class="pl-why">'+esc(e.why)+'</p>' : '') +
+    '<button type="button" class="pl-sw" data-i="'+i+'">Swap</button></div>';
+  return a;
+}
+function drawPoster(){
+  var d = iso(), p = $("plPoster"), blobs = '<span class="pl-blob pl-b1"></span><span class="pl-blob pl-b2"></span><span class="pl-blob pl-b3"></span><span class="pl-blob pl-b4"></span>';
+  var head = acts.slice().sort(function(a,b){ return score(b)-score(a); })[0];
+  var top = blobs + '<p class="pl-eye">Your lineup · '+esc(CITIES[st.city].name)+(st.area?" · "+esc(st.area):"")+(WITH[st.with].k!=="me"?" · with "+esc(WITH[st.with].t):"")+'</p>'+
+    '<h2 class="pl-date">'+esc(wk(d,{weekday:"short",day:"numeric",month:"short"}))+'</h2>';
+  if (!acts.length) { p.innerHTML = top + '<p class="pl-empty">Nothing fits that one</p><p class="pl-info">Try another night, vibe or neighbourhood.</p>'; return; }
+  var sups = acts.filter(function(e){ return e!==head; }).sort(function(a,b){ return mins(a.start_time)-mins(b.start_time); });
+  p.innerHTML = top + act(head, head, acts.indexOf(head)) +
+    (sups.length ? '<div class="pl-sups">' + sups.map(function(e){ return act(e, head, acts.indexOf(e)); }).join("") + '</div>' : '') +
+    '<div class="pl-foot">' + acts.slice().sort(function(a,b){ return mins(a.start_time)-mins(b.start_time); })
+      .map(function(e){ return esc(fmt(mins(e.start_time))+" "+shortVenue(e.venue)); }).join('<span class="pl-star">✱</span>') + '<span class="pl-star">✱</span>lineup.city</div>';
+  var im = p.querySelector(".pl-pic"); if (im) im.onerror = function(){ im.remove(); };
+  drawMore();
+  p.querySelectorAll(".pl-sw").forEach(function(b){ b.onclick = function(){
+    /* the best event not on the bill (not shown before, if possible); if it clashes with another act,
+       that act gives way and the bill is refilled around it, so it stays a night you can do */
+    var i = +b.getAttribute("data-i"), others = acts.filter(function(x,k){ return k !== i; });
+    var cands = pool.filter(function(x){ return acts.indexOf(x) < 0 && others.every(function(o){ return place(o) !== place(x); }); });
+    var fresh = cands.filter(function(x){ return !x._used; }), list = fresh.length ? fresh : cands;
+    if (!list.length) { b.textContent = "That's all that fits"; b.disabled = true; return; }
+    var next = list.filter(function(x){ return fitsWith(others, x); })[0], gone = acts[i];
+    if (next) acts[i] = next;
+    else {  /* nothing fits the gap: the first candidate that still makes a full night, the rest rearranged around it */
+      var best = [];
+      for (var c = 0; c < Math.min(list.length, 15) && best.length < Math.max(3, acts.length); c++) {
+        var keep = [list[c]].concat(others.filter(function(o){ return fitsWith([list[c]], o); }));
+        var a = fill(keep, pool.filter(function(x){ return x !== gone; }));
+        if (a.length > best.length) best = a;
+      }
+      acts = best;
+    }
+    acts.forEach(function(e){ e._used = 1; }); drawPoster(); }; });
+}
+/* everything else that matches, under the poster: the poster holds 3 acts that fit together in one night */
+function drawMore(){
+  var box = $("plMore"), rest = pool.filter(function(e){ return acts.indexOf(e) < 0; })
+    .sort(function(a,b){ return mins(a.start_time)-mins(b.start_time); });
+  box.innerHTML = "";
+  var note = acts.length >= 3 ? (early ? "A quiet evening for this, so it starts earlier in the day." : "")
+    : acts.length ? "Only " + acts.length + " " + (acts.length === 1 ? "event fits" : "events fit") + (early ? ", counting from noon" : "") + ". Try another night, or change what you're up for."
+    : "";
+  if (note) { var p = document.createElement("p"); p.className = "pl-note2"; p.textContent = note; box.appendChild(p); }
+  if (!rest.length) return;
+  var h = document.createElement("h3"); h.className = "pl-mh"; h.textContent = rest.length + " more that fit"; box.appendChild(h);
+  var ul = document.createElement("ul"); ul.className = "pl-ml";
+  rest.slice(0, 12).forEach(function(e){
+    var li = document.createElement("li"), a = document.createElement("a");
+    a.href = e.url || "#"; a.target = "_blank"; a.rel = "noopener"; a.textContent = title(e);
+    var t = document.createElement("b"); t.textContent = fmt(mins(e.start_time));
+    var m = document.createElement("span"); m.textContent = [shortVenue(e.venue), e.neighborhood].filter(Boolean).join(" · ");
+    li.appendChild(t); li.appendChild(a); li.appendChild(m); ul.appendChild(li); });
+  box.appendChild(ul);
+}
+function make(pinned){
+  made = true; open = null; drawAsk(); hideBring();
+  $("plOut").hidden = false; $("plPoster").innerHTML = '<p class="pl-eye">Making your lineup…</p>';
+  var d = iso(); $("plAll").href = st.city+"/"+d+".html";
+  load().then(function(evs){
+    if (!evs) { acts = []; total = 0; drawPoster(); $("plAll").textContent = "See the day →"; return; }
+    total = evs.length;
+    var near = function(list){ return list.filter(function(e){ return !st.area || e.neighborhood===st.area; }); };
+    early = false; pool = near(fits(evs));
+    if (pool.length < 3 && !VIBES[st.vibe].from) { early = true; pool = near(fits(evs)); }  /* thin evening: from noon */
+    pool.sort(function(a,b){ return score(b)-score(a) || mins(a.start_time)-mins(b.start_time); });
+    pool.forEach(function(e){ e._used = 0; });
+    if (pinned) { pool = [pinned].concat(pool.filter(function(e){ return e !== pinned; })); acts = fill([pinned], pool); }
+    else acts = bill();
+    acts.forEach(function(e){ e._used = 1; });
+    drawPoster();
+    $("plAll").textContent = "Everything on " + (st.day===0 ? "tonight" : wk(d,{weekday:"long"})) + " (" + total + ") →";
+    $("plOut").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+}
+
+/* ---- bring people: a group plan friends answer with just their name (the /api/plans vote) ---- */
+var API = "https://tonight-api-2169.onrender.com/api";
+function api(path, body, auth){ var h = {"Content-Type":"application/json"}, t = mem("tonight-session");
+  if (auth && t) h["Authorization"] = "Bearer " + t;
+  return fetch(API + path, body ? {method:"POST", headers:h, body:JSON.stringify(body)} : {headers:h}).then(function(r){ return r.json(); }); }
+function rid(n){ var a = new Uint8Array(n), c = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789", o = "";
+  crypto.getRandomValues(a); for (var i=0;i<n;i++) o += c[a[i] % c.length]; return o; }
+function myName(){ var a = null; try { a = JSON.parse(mem("tonight-account") || "null"); } catch(e){}
+  return mem("tonight-name") || (a && a.name) || ""; }
+function hideBring(){ var b = $("plBring"); if (b) { b.hidden = true; b.innerHTML = ""; } }
+function bring(){
+  var box = $("plBring"); box.hidden = false;
+  box.innerHTML = '<h3 class="pl-bh">Bring people</h3><p class="pl-bp">We make a link to this lineup. Friends open it, say which acts they\'re in for, and you see who\'s coming. No account needed.</p>'+
+    '<form class="pl-bf" id="plBf"><label for="plHost">Your name</label><input id="plHost" autocomplete="given-name" maxlength="40" required placeholder="So friends know it\'s from you"><button type="submit" class="pl-make">Make the invite →</button></form><p class="pl-bm" id="plBm" role="status"></p>';
+  $("plHost").value = myName();
+  box.scrollIntoView({behavior:"smooth", block:"nearest"});
+  $("plBf").onsubmit = function(ev){ ev.preventDefault();
+    var name = $("plHost").value.trim(); if (!name) return; mem("tonight-name", name);
+    var id = rid(12), key = rid(28);
+    $("plBm").textContent = "Making your invite…";
+    api("/plans", {id:id, key:key, city:st.city, date:iso(), host:name, ids:ordered().map(function(e){ return e._i; })}).then(function(d){
+      if (!d.ok) { $("plBm").textContent = d.error ? "Couldn't make the invite: " + d.error + "." : "Couldn't make the invite. Try again."; return; }
+      mem("tonight-plan-" + id, key); invited(d, true);
+    }).catch(function(){ $("plBm").textContent = "Couldn't reach Lineup. Try again in a minute."; });
+  };
+}
+function inviteUrl(id){ return location.origin + location.pathname + "#p=" + id; }
+function invited(plan, fresh){
+  var box = $("plBring"), url = inviteUrl(plan.id), when = st.day===0 ? "tonight" : wk(iso(),{weekday:"long"});
+  box.hidden = false;
+  box.innerHTML = '<h3 class="pl-bh">'+(fresh ? "Your invite is ready" : "Your invite")+'</h3>'+
+    '<div class="pl-link-row"><input id="plUrl" readonly value="'+esc(url)+'" aria-label="Invite link"><button type="button" class="pl-make" id="plCopy">Copy link</button>'+
+    (navigator.share ? '<button type="button" class="pl-chip" id="plShare">Share…</button>' : '')+'</div>'+
+    '<p class="pl-bp">Send it in your group chat. Each friend picks the acts they\'re in for.</p><div id="plWho"></div>';
+  $("plCopy").onclick = function(){ var b = this; (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function(){ b.textContent = "Copied"; },
+    function(){ $("plUrl").select(); b.textContent = "Press ⌘C"; }); };
+  if ($("plShare")) $("plShare").onclick = function(){ navigator.share({title:"Out " + when + "?", text:"I'm planning " + when + " on Lineup. Are you in?", url:url}).catch(function(){}); };
+  who(plan); clearInterval(window.__plPoll);
+  window.__plPoll = setInterval(function(){ if (!document.hidden && !box.hidden) api("/plans/" + plan.id).then(function(d){ if (d.ok) who(d); }).catch(function(){}); }, 15000);
+}
+function who(plan){
+  var el = $("plWho"); if (!el) return;
+  var n = (plan.votes || []).filter(function(v){ return v.choices.length; }).length, out = (plan.votes || []).filter(function(v){ return !v.choices.length; });
+  var h = '<p class="pl-whoh">' + (n ? n + (n === 1 ? " friend is" : " friends are") + " in" : "No one has answered yet") + (out.length ? " · " + out.length + " can't make it" : "") + '</p><ul class="pl-whol">';
+  plan.options.forEach(function(o){ h += '<li><b>'+esc(fmt(mins(o.start_time)))+'</b> '+esc(title(o))+'<span>'+(o.in.length ? esc(o.in.join(", ")) : "nobody yet")+'</span></li>'; });
+  el.innerHTML = h + '</ul>';
+}
+
+/* ---- the friend's side: #p=<id> opens the invite ---- */
+function invitePage(id){
+  $("plAsk").hidden = true; $("plFriends").hidden = true; var box = $("plInvite"); box.hidden = false;
+  box.innerHTML = '<p class="pl-kick">Loading the invite…</p>';
+  api("/plans/" + id).then(function(plan){
+    if (!plan.ok) { box.innerHTML = '<p class="pl-kick">Invite</p><h1 class="pl-done-h">That invite has gone.</h1><div class="pl-acts"><a class="pl-make" href="'+location.pathname+'">Make my own lineup →</a></div>'; return; }
+    var mine = mem("tonight-plan-" + id), host = plan.host || "A friend", d = plan.date;
+    var when = new Date(d+"T12:00:00Z").toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric", timeZone:"UTC"});
+    var city = (CITIES[plan.city] || {}).name || plan.city;
+    var h = '<p class="pl-kick">'+(mine ? "Your invite" : "You're invited")+' · '+esc(city)+' · '+esc(when)+'</p>'+
+      '<h1 class="pl-done-h">'+(mine ? "Who's coming?" : esc(host)+"'s lineup. Are you in?")+'</h1>';
+    if (mine) h += '<div class="pl-link-row"><input readonly value="'+esc(inviteUrl(id))+'" aria-label="Invite link" id="plUrl2"><button type="button" class="pl-make" id="plCopy2">Copy link</button></div>';
+    h += '<ol class="pl-tl pl-inv">';
+    plan.options.forEach(function(o, k){
+      h += '<li class="pl-stop"><div class="pl-when"><b>'+esc(fmt(mins(o.start_time)))+'</b></div><div class="pl-sc">'+
+        '<span class="pl-tag">'+esc(o.category||"")+'</span><h3><a href="'+esc(o.url||"#")+'" target="_blank" rel="noopener">'+esc(title(o))+'</a></h3>'+
+        '<p class="pl-where">'+esc(o.venue||"")+(o.neighborhood ? ' · '+esc(o.neighborhood) : '')+(o.price && !/unknown/i.test(o.price) ? ' · '+esc(o.price) : '')+'</p>'+
+        '<p class="pl-say">'+(o.in.length ? "In: " + esc(o.in.join(", ")) : "Nobody yet")+'</p>'+
+        (mine ? '' : '<label class="pl-in"><input type="checkbox" data-k="'+k+'" checked> I\'m in for this</label>')+'</div></li>';
+    });
+    h += '</ol>';
+    if (!mine) h += '<form class="pl-bf" id="plVote"><label for="plMe">Your name</label><input id="plMe" maxlength="40" required autocomplete="given-name" placeholder="So '+esc(host)+' knows who\'s coming">'+
+      '<button type="submit" class="pl-make">Send my answer →</button><button type="button" class="pl-chip" id="plCant">Can\'t make it</button></form><p class="pl-bm" id="plVm" role="status"></p>';
+    h += '<div class="pl-after"><a href="'+location.pathname+'">Make my own lineup →</a></div>';
+    box.innerHTML = h;
+    if (mine) $("plCopy2").onclick = function(){ var b = this; (navigator.clipboard ? navigator.clipboard.writeText(inviteUrl(id)) : Promise.reject()).then(function(){ b.textContent = "Copied"; }, function(){ $("plUrl2").select(); }); };
+    if (!mine) {
+      $("plMe").value = myName();
+      var voter = mem("tonight-voter") || rid(16); mem("tonight-voter", voter);
+      var send = function(choices){ var name = $("plMe").value.trim(); if (!name) { $("plVm").textContent = "Add your name first."; $("plMe").focus(); return; }
+        mem("tonight-name", name); $("plVm").textContent = "Sending…";
+        api("/plans/" + id + "/vote", {voter:voter, name:name, choices:choices}).then(function(d){
+          if (!d.ok) { $("plVm").textContent = d.error || "That didn't work. Try again."; return; }
+          $("plVm").textContent = choices.length ? "Sent. " + host + " can see you're in." : "Sent. " + host + " knows you can't make it.";
+          d.options.forEach(function(o, k){ var p = box.querySelectorAll(".pl-say")[k]; if (p) p.textContent = o.in.length ? "In: " + o.in.join(", ") : "Nobody yet"; });
+        }).catch(function(){ $("plVm").textContent = "Couldn't reach Lineup. Try again in a minute."; }); };
+      $("plVote").onsubmit = function(ev){ ev.preventDefault();
+        send([].slice.call(box.querySelectorAll(".pl-in input")).filter(function(c){ return c.checked; }).map(function(c){ return +c.getAttribute("data-k"); })); };
+      $("plCant").onclick = function(){ send([]); };
+    }
+  }).catch(function(){ box.innerHTML = '<p class="pl-kick">Couldn\'t reach Lineup. Reload to try again.</p>'; });
+}
+
+/* ---- nights with friends: where your friends are going, and nights that are good with a group ---- */
+function eidOf(e, d){ var n = function(s){ return String(s||"").toLowerCase().replace(/[^a-z0-9]/g, ""); };
+  var key = [d, n(e.name), n(e.venue), n(e.start_time)].join("|");
+  return crypto.subtle.digest("SHA-1", new TextEncoder().encode(key)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b), function(x){ return ("0" + x.toString(16)).slice(-2); }).join("").slice(0, 8); }); }
+function drawFriends(){
+  var box = $("plFriends"); if (!box) return;
+  var d = iso(), city = st.city;
+  load().then(function(evs){
+    if (!evs || city !== st.city || d !== iso()) return;
+    var now = localNow(CITIES[city].tz), signed = !!mem("tonight-session");
+    var later = evs.filter(function(e){ var m = mins(e.start_time); return m != null && m >= 17*60 && !(st.day === 0 && m < now.mins - 60)
+      && !(e.flags||[]).some(function(f){ return SKIP.indexOf(f) >= 0; }) && e.link_ok !== false; });
+    var gb = WITH[3].b, seen = {}, group = later.filter(function(e){ return (gb[e.category] || 0) >= 1 && (e.quality || 0) >= 6; })
+      .sort(function(a,b){ return ((b.quality||0) + (gb[b.category]||0)) - ((a.quality||0) + (gb[a.category]||0)); })
+      .filter(function(e){ var k = place(e); if (seen[k]) return false; seen[k] = 1; return true; }).slice(0, 4);
+    var card = function(e, tag){ return '<li><button type="button" class="pl-fc" data-i="'+e._i+'"><span class="pl-ft">'+esc(tag)+'</span><b>'+esc(title(e))+'</b>'+
+      '<span>'+esc(fmt(mins(e.start_time)))+' · '+esc(shortVenue(e.venue))+'</span><span class="pl-fgo">Plan it with friends →</span></button></li>'; };
+    var h = '<h2 class="pl-fh">Nights with friends</h2><div class="pl-fgrid"><div><h3 class="pl-fs">Where your friends are going</h3><ul class="pl-fl" id="plFriendsGoing">'+
+      (signed ? '<li class="pl-fe">Checking…</li>' : '<li class="pl-fe"><a href="account.html">Sign in</a> to see where your friends are going '+(st.day===0?"tonight":"that night")+', and join them.</li>')+
+      '</ul></div><div><h3 class="pl-fs">Good with a group '+(st.day===0?"tonight":"that night")+'</h3><ul class="pl-fl">'+
+      (group.length ? group.map(function(e){ return card(e, e.category); }).join("") : '<li class="pl-fe">Nothing stands out for a group yet.</li>')+'</ul></div></div>';
+    box.innerHTML = h; box.hidden = false;
+    var hook = function(){ box.querySelectorAll(".pl-fc").forEach(function(b){ b.onclick = function(){
+      var e = evs[+b.getAttribute("data-i")]; if (!e) return; if (WITH[st.with].k === "me") st.with = 2;
+      st.vibe = VIBES.length - 1; while (VIBES[st.vibe].own) st.vibe--; /* whatever's best around it */
+      make(e); }; }); };
+    hook();
+    /* real headcounts and friends' plans (friends who share what they're going to) */
+    Promise.all(later.map(function(e){ return eidOf(e, d).then(function(x){ e._eid = x; }); })).then(function(){
+      return api("/going/" + city + "/" + d + "?user_id=" + encodeURIComponent(mem("tonight-user-id") || ""), null, true);
+    }).then(function(g){
+      if (!g || !g.ok || city !== st.city) return;
+      var byId = {}; later.forEach(function(e){ byId[e._eid] = e; });
+      var mineF = Object.keys(g.friends || {}).filter(function(k){ return byId[k]; });
+      var list = $("plFriendsGoing");
+      if (signed && list) list.innerHTML = mineF.length ? mineF.slice(0, 4).map(function(k){
+          return card(byId[k], g.friends[k].join(", ") + (g.friends[k].length === 1 ? " is going" : " are going")); }).join("")
+        : '<li class="pl-fe">None of your friends have said they\'re going '+(st.day===0?"tonight":"that night")+' yet. Make a lineup and bring them.</li>';
+      Object.keys(g.counts || {}).forEach(function(k){ var b = box.querySelector('.pl-fc[data-i="'+(byId[k]||{})._i+'"] .pl-ft'); if (b) b.textContent += " · " + g.counts[k] + " going"; });
+      hook();
+    }).catch(function(){ var list = $("plFriendsGoing"); if (signed && list) list.innerHTML = '<li class="pl-fe">Couldn\'t load your friends\' plans right now.</li>'; });
+  });
+}
+/* ---- locked in: the night as a plan you can follow ---- */
+function hsh(e){ var s = (e.name||"")+"|"+(e.venue||""), h = 5381; for (var i=0;i<s.length;i++) h = ((h<<5)+h+s.charCodeAt(i))|0; return (h>>>0).toString(36).slice(0,6); }
+function ordered(){ return acts.slice().sort(function(a,b){ return mins(a.start_time)-mins(b.start_time); }); }
+function shareUrl(){ return location.origin + location.pathname + "#n=" + st.city + "." + iso() + "." + ordered().map(hsh).join("."); }
+function toUTC(d, m, tz){ var y=+d.slice(0,4), mo=+d.slice(5,7)-1, dd=+d.slice(8,10), g = Date.UTC(y,mo,dd,0,m);
+  var p = new Intl.DateTimeFormat("en-CA",{timeZone:tz,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date(g)), o={};
+  p.forEach(function(x){ o[x.type]=x.value; }); var asLocal = Date.UTC(+o.year,+o.month-1,+o.day,+o.hour,+o.minute); return new Date(g - (asLocal - g)); }
+function icsT(dt){ return dt.toISOString().replace(/[-:]/g,"").slice(0,15)+"Z"; }
+function icsE(s){ return String(s||"").replace(/\\/g,"\\\\").replace(/[,;]/g,function(c){ return "\\"+c; }).replace(/\n/g,"\\n"); }
+function calendar(){
+  var d = iso(), tz = CITIES[st.city].tz, L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Lineup//Plan your night//EN"];
+  ordered().forEach(function(e){ var a = toUTC(d, mins(e.start_time), tz), b = toUTC(d, endOf(e), tz);
+    L.push("BEGIN:VEVENT","UID:"+hsh(e)+"-"+d+"@lineup.city","DTSTAMP:"+icsT(new Date()),"DTSTART:"+icsT(a),"DTEND:"+icsT(b),
+      "SUMMARY:"+icsE(e.name),"LOCATION:"+icsE(e.venue),"URL:"+(e.url||""),"DESCRIPTION:"+icsE((e.why||"")+(e.url?"\n"+e.url:"")),"END:VEVENT"); });
+  L.push("END:VCALENDAR");
+  var a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([L.join("\r\n")],{type:"text/calendar"}));
+  a.download = "my-lineup-"+d+".ics"; document.body.appendChild(a); a.click(); a.remove();
+}
+function flash(b, t){ var o = b.textContent; b.textContent = t; setTimeout(function(){ b.textContent = o; }, 1800); }
+function share(b, invite){
+  var url = shareUrl(), first = ordered()[0], text = invite ? "Come out with me? " + fmt(mins(first.start_time)) + " " + first.name + ", then more." : "My night out, planned on Lineup";
+  if (navigator.share) { navigator.share({title:"My lineup", text:text, url:url}).catch(function(){}); return; }
+  (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function(){ flash(b, "Link copied"); }, function(){ flash(b, "Copy: "+url); });
+}
+function ticket(e){ var c = CITIES[st.city].cur;
+  return e.price===0 ? "Free · details" : e.price ? "Tickets · "+c+Math.round(e.price) : "Details & tickets"; }
+function drawDone(shared){
+  var list = ordered(), d = iso(), when = st.day===0 ? "tonight" : wk(d,{weekday:"long"})+" night";
+  var h = '<p class="pl-kick">'+(shared ? "A night out · " : "Your night · ")+esc(CITIES[st.city].name)+'</p>'+
+    '<h1 class="pl-done-h">'+(shared ? "Someone's planned "+esc(when)+"." : "You're set for "+esc(when)+".")+'</h1>'+
+    '<div class="pl-acts">'+(shared ? '<button type="button" class="pl-make" id="dMine">Make my own lineup →</button>' : '')+
+    '<button type="button" id="dCal">Add to calendar</button><button type="button" id="dShare">Share my night</button>'+
+    (shared ? '' : '<button type="button" id="dInvite">Invite a friend</button>')+'</div><ol class="pl-tl">';
+  list.forEach(function(e, i){
+    var s = mins(e.start_time), en = endOf(e);
+    if (i) { var prev = list[i-1], t = travel(prev, e), gap = s - endOf(prev) - t.m;
+      h += '<li class="pl-move'+(gap < 0 ? ' tight' : '')+'"><span>'+(t.m ? t.m+" min "+esc(t.how)+" to "+esc(shortVenue(e.venue)) : "Stay put: it\'s the same place")+
+        (gap < 0 ? ' · <b>tight</b>: '+esc(shortVenue(prev.venue))+' runs to about '+fmt(endOf(prev)) : gap >= 45 ? ' · '+Math.round(gap/5)*5+' min free for a bite' : '')+'</span></li>'; }
+    h += '<li class="pl-stop"><div class="pl-when"><b>'+fmt(s)+'</b><span>to ~'+fmt(en)+'</span></div><div class="pl-sc">'+
+      '<span class="pl-tag">'+esc(e.category)+'</span><h3><a href="'+esc(e.url||"#")+'" target="_blank" rel="noopener">'+esc(title(e))+'</a></h3>'+
+      '<p class="pl-where">'+esc(e.venue)+(e.neighborhood ? ' · '+esc(e.neighborhood) : '')+'</p>'+(e.why ? '<p class="pl-say">'+esc(e.why)+'</p>' : '')+
+      '<a class="pl-tix" href="'+esc(e.url||"#")+'" target="_blank" rel="noopener">'+esc(ticket(e))+' →</a></div></li>';
+  });
+  h += '</ol>';
+  if (!shared) {
+    var f = list[0], txt = "Lineup: "+when.charAt(0).toUpperCase()+when.slice(1)+" starts "+fmt(mins(f.start_time))+" with "+title(f)+" at "+shortVenue(f.venue)+".";
+    if (list[1]) txt += " Then "+title(list[1])+", "+fmt(mins(list[1].start_time))+" ("+(travel(f,list[1]).m ? travel(f,list[1]).m+" min "+travel(f,list[1]).how : "same place")+").";
+    txt += " Reply SWAP to change one.";
+    h += '<div class="pl-remind"><div><p class="pl-kick">Reminders</p><h2>We\'ll text you before each one.</h2>'+
+      '<p>An hour before you head out, then when it\'s time to move on. Reply to change anything.</p>'+
+      '<a class="pl-make" href="account.html">Sign in to turn on texts →</a></div>'+
+      '<div class="pl-phone" aria-label="Example text"><span class="pl-from">Lineup · '+fmt(mins(f.start_time)-60)+'</span><p>'+esc(txt)+'</p></div></div>';
+  }
+  h += '<div class="pl-after">'+(shared ? '' : '<button type="button" id="dBack">← Change my lineup</button>')+
+    '<a href="'+esc(st.city+"/"+d+".html")+'">Everything on '+esc(st.day===0 ? "tonight" : wk(d,{weekday:"long"}))+' →</a></div>';
+  $("plDone").innerHTML = h;
+  $("plAsk").hidden = true; $("plOut").hidden = true; $("plFriends").hidden = true; $("plDone").hidden = false; window.scrollTo(0,0);
+  $("dCal").onclick = calendar;
+  $("dShare").onclick = function(){ share($("dShare"), false); };
+  if ($("dInvite")) $("dInvite").onclick = function(){ share($("dInvite"), true); };
+  if ($("dBack")) $("dBack").onclick = function(){ $("plDone").hidden = true; $("plAsk").hidden = false; $("plOut").hidden = false; $("plFriends").hidden = false; history.replaceState(null, "", location.pathname); };
+  if ($("dMine")) $("dMine").onclick = function(){ location.href = location.pathname; };
+}
+$("plLock").onclick = function(){ if (!acts.length) return; history.replaceState(null, "", "#n=" + shareUrl().split("#n=")[1]); drawDone(false); };
+/* a shared night: #n=city.date.h1.h2.h3 */
+(function(){ var m = /^#n=([a-z]+)\.(\d{4}-\d{2}-\d{2})\.([a-z0-9.]+)$/.exec(location.hash||""); if (!m || !CITIES[m[1]]) return;
+  st.city = m[1]; var base = localNow(CITIES[st.city].tz).date, n = Math.round((Date.parse(m[2]) - Date.parse(base))/864e5); st.day = Math.max(0, n);
+  $("plAsk").hidden = true;
+  fetch("data/"+m[1]+"-"+m[2]+".json").then(function(r){ return r.ok ? r.json() : null; }).then(function(evs){
+    var want = m[3].split("."); acts = (evs||[]).filter(function(e){ return want.indexOf(hsh(e)) >= 0; });
+    if (!acts.length) { $("plAsk").hidden = false; return; }
+    drawDone(true); }).catch(function(){ $("plAsk").hidden = false; }); })();
+$("plMake").onclick = function(){ make(); };
+$("plBringBtn").onclick = function(){ if (acts.length) bring(); };
+(function(){ var m = /^#p=([A-Za-z0-9_-]{8,24})$/.exec(location.hash || ""); if (m) invitePage(m[1]); })();
+/* shuffle: a new headliner from the top dozen not on the bill now, and a fresh mix around it (still good,
+   still a night that fits together: two random picks used to leave no room for a third) */
+$("plShuffle").onclick = function(){ if (!pool.length) return make();
+  var cur = acts.slice(), others = pool.filter(function(e){ return cur.indexOf(e) < 0; });
+  if (!others.length) return;
+  var top = others.slice(0, 12).map(function(e){ return {e:e, k:Math.random()}; }).sort(function(a,b){ return a.k - b.k; }).map(function(x){ return x.e; });
+  var jitter = others.map(function(e){ return {e:e, k:score(e) + Math.random() * 2.5}; })
+    .sort(function(a,b){ return b.k - a.k; }).map(function(x){ return x.e; });
+  /* try headliners in random order until one makes a full three-act night (a 7:30 show often leaves room only for one more) */
+  var best = [];
+  for (var t = 0; t < top.length && best.length < 3; t++) {
+    var a = fill([top[t]], jitter);
+    if (a.length < 3) a = fill([top[t]], pool);
+    if (a.length > best.length) best = a;
+  }
+  acts = best; acts.forEach(function(e){ e._used = 1; }); drawPoster(); };
+/* close the choices with Esc or a tap outside them */
+document.addEventListener("keydown", function(ev){ if (ev.key === "Escape" && open) { open = null; drawAsk(); } });
+document.addEventListener("click", function(ev){ if (!open) return; var t = ev.target;
+  if (!document.contains(t) || $("plChoices").contains(t) || (t.closest && t.closest(".pl-blank"))) return; open = null; drawAsk(); });
+drawAsk(); load();
+if (!/^#[pn]=/.test(location.hash || "")) drawFriends();
+var _da = drawAsk; drawAsk = function(){ _da(); if (!$("plAsk").hidden) drawFriends(); };
+})();
+</script>
+</body></html>

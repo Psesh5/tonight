@@ -614,7 +614,7 @@ document.querySelectorAll('a.tastelink[href$="account.html"]').forEach(function(
 <p><a href="https://psesh5.github.io/tonight/privacy.html">Aviso de privacidad</a> · <a href="https://psesh5.github.io/tonight/terms.html">Términos y condiciones</a></p>
 </footer>
 <script>
-var CATS = ["Music", "Comedy", "Tours", "Arts & Play", "Trivia & Games", "Talks", "Food & Drink", "Meetups & Mixers", "Film", "Classes & Workshops", "Fitness & Outdoors", "Sports", "Theater", "Tech"], CITIES = ["nyc", "london", "la"];
+var CATS = ["Music", "Sports", "Theater", "Comedy", "Film", "Tours", "Talks", "Arts & Play", "Meetups & Mixers", "Trivia & Games", "Food & Drink", "Fitness & Outdoors", "Classes & Workshops", "Tech"], CITIES = ["nyc", "london", "la"];
 var state = {likes: [], mutes: [], free_only: false, surprise: "med",
              daily_email: true, sms_opt_in: false, times: [], kids: false};
 function apiBase(){ return window.__tonight_api || null; }
@@ -777,7 +777,7 @@ document.getElementById("subForm").addEventListener("submit", function(e){
 });
 paintCats();
 </script>
-<script>window.__tonight_api="https://tonight-api-2169.onrender.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://psesh5.github.io/tonight/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script>
+<script>window.__tonight_api="https://tonight-api-2169.onrender.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://lineup.city/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script>
 <style>
 #sgVeil{position:fixed;inset:0;z-index:210;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:16px;}
 #sgVeil[hidden]{display:none;}
