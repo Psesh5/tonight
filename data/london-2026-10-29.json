@@ -152,10 +152,10 @@
    "gardens"
   ],
   "flags": [],
-  "family": "historic royal palaces: palace admission",
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "historic royal palaces: palace admission"
  },
  {
   "name": "The Tower of London - Standard All Day Entry",
@@ -184,10 +184,10 @@
    "architecture"
   ],
   "flags": [],
-  "family": "tower of london: attraction admission",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "tower of london: attraction admission"
  },
  {
   "name": "Kensington Palace - Standard Admission",
@@ -216,10 +216,10 @@
    "architecture"
   ],
   "flags": [],
-  "family": "historic royal palaces: palace admission",
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "historic royal palaces: palace admission"
  },
  {
   "name": "The Paddington Bear Experience",
@@ -526,7 +526,7 @@
   "attraction": "K8vZ917LFZ7",
   "tm_id": "17uOv0G65Ltz7Hh",
   "series": "9bdf829e2f",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "Sinatra biomusical at the Aldwych Theatre.",
   "topics": [
@@ -589,7 +589,7 @@
   "attraction": "K8vZ917G7jf",
   "tm_id": "17uYv0G659aswmu",
   "series": "86a5465a09",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 3,
   "why": "",
   "topics": [
@@ -1247,7 +1247,6 @@
   "attraction": "K8vZ9172V_V",
   "tm_id": "LvZ18QIRBtgUNw6J52M-V",
   "series": "196b4d7180",
-  "recurring": "Every Thursday",
   "quality": 5,
   "why": "",
   "topics": [
@@ -1336,7 +1335,7 @@
   "attraction": "K8vZ917KI1V",
   "tm_id": "1AdfZ_eGkzZCFUm",
   "series": "ed7a6a4218",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 4,
   "why": "",
   "topics": [
@@ -1987,10 +1986,10 @@
    "thursday night"
   ],
   "flags": [],
-  "family": "big belly comedy: stand-up night",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "big belly comedy: stand-up night"
  },
  {
   "name": "Ella Thompson",
@@ -2615,6 +2614,7 @@
   "lng": -0.131441,
   "audience": null,
   "availability": null,
+  "image": "https://images.universe.com/78542e2c-90dc-4320-bc87-7b9ed0db1451/-/format/jpeg/-/scale_crop/1024x576/center/-/progressive/yes/-/inline/yes/",
   "attraction": "K8vZ917LqFV",
   "tm_id": "LvZ18QnnjC93uAxxOTnOh",
   "series": "249830464d",
@@ -2711,7 +2711,7 @@
   "attraction": "K8vZ917uRy0",
   "tm_id": "Z3r9uZKbZL4Ze3x4uZek",
   "series": "fd5099d5e0",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 6,
   "why": "Chekhov's classic play at the Harold Pinter Theatre.",
   "topics": [
@@ -2824,9 +2824,9 @@
   "category": "Theater",
   "description": "",
   "neighborhood": "Strand, St James & Mayfair",
-  "price": 25.0,
+  "price": null,
   "start_time": "7:30 PM",
-  "end_time": "4:00 PM",
+  "end_time": null,
   "url": "https://www.ticketmaster.co.uk/rent-london-29-10-2026/event/Zor9uZKbZL4Zef7u5ZN",
   "venue": "Tom Stoppard Theatre",
   "lat": 51.510174,
@@ -2835,6 +2835,7 @@
   "availability": null,
   "image": "https://s1.ticketm.net/dam/a/991/a909b679-302c-4075-bc5f-d0cd0ff67991_TABLET_LANDSCAPE_16_9.jpg",
   "attraction": "K8vZ917p6sV",
+  "tm_id": "Zor9uZKbZL4Zef7u5ZN",
   "series": "00204212a3",
   "recurring": "Most days",
   "quality": 5,
@@ -2994,10 +2995,10 @@
    "thursday night"
   ],
   "flags": [],
-  "family": "comedy carnival: comedy club night",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "comedy carnival: comedy club night"
  },
  {
   "name": "International Stand Up Comedy, Covent Garden",
@@ -3191,7 +3192,8 @@
   "subject": "The Terminator",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/ae/5c9c9fc7-7cdb-4cec-afcc-750fd248f0a9.png"
  },
  {
   "name": "Artist Talk: Pocko After Hours w/ Nomoco at Pocko Gallery",
@@ -3218,7 +3220,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/5c/ee707099-344f-4ce1-84a8-28a726253c6f.png"
  },
  {
   "name": "Demos Anon #7",
@@ -3378,6 +3381,62 @@
    "networking"
   ],
   "family": "people leaders: leadership meetup"
+ },
+ {
+  "name": "Halloween Wax Melt Workshop",
+  "category": "Classes & Workshops",
+  "description": "",
+  "neighborhood": "Old Oak & Wormwood",
+  "price": 0.0,
+  "start_time": "12:00 PM",
+  "end_time": "1:00 PM",
+  "url": "https://luma.com/qptw0t4k",
+  "venue": "Kindling with Oneder",
+  "lat": 51.5133084,
+  "lng": -0.227978,
+  "audience": null,
+  "availability": null,
+  "series": "ecda8c2546",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "craft",
+   "wax melts",
+   "halloween"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "kindling: craft workshop"
+ },
+ {
+  "name": "Lost&Found- Hire Me If You Can",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "City of London",
+  "price": 0.0,
+  "start_time": "12:00 PM",
+  "end_time": "2:00 PM",
+  "url": "https://luma.com/fcd7jy0o",
+  "venue": "Santander Work Cafe",
+  "lat": 51.51374570000001,
+  "lng": -0.0925141,
+  "audience": null,
+  "availability": null,
+  "series": "fb149f527a",
+  "recurring": "Every Thursday",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "careers",
+   "job hunting",
+   "networking"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "family": "santander work cafe: careers networking"
  },
  {
   "name": "CARNIVAL COSTUME DESIGN & CREATIVE WORKSHOP",
@@ -3616,31 +3675,6 @@
   "family": "rev/tech ops: industry meetup"
  },
  {
-  "name": "The Forge Salon 001",
-  "category": "Meetups & Mixers",
-  "description": "",
-  "neighborhood": "Somers Town",
-  "price": 5.0,
-  "start_time": "5:30 PM",
-  "end_time": "9:30 PM",
-  "url": "https://luma.com/h69ui33m",
-  "venue": "Mare Street Market King's Cross",
-  "lat": 51.536983199999995,
-  "lng": -0.12627539999999998,
-  "audience": null,
-  "availability": null,
-  "series": "d359a1a1ce",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "salon",
-   "community",
-   "talks"
-  ],
-  "flags": [],
-  "family": "the forge: salon"
- },
- {
   "name": "Scientific and Financial Computing Mixer",
   "category": "Meetups & Mixers",
   "description": "",
@@ -3669,6 +3703,90 @@
   "date": "",
   "singles": false,
   "ages": ""
+ },
+ {
+  "name": "The Forge Salon 001",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "Somers Town",
+  "price": 5.0,
+  "start_time": "5:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://luma.com/h69ui33m",
+  "venue": "Mare Street Market King's Cross",
+  "lat": 51.536983199999995,
+  "lng": -0.12627539999999998,
+  "audience": null,
+  "availability": null,
+  "series": "d359a1a1ce",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "salon",
+   "community",
+   "talks"
+  ],
+  "flags": [],
+  "family": "the forge: salon"
+ },
+ {
+  "name": "Commit & AWS | Halloween Party",
+  "category": "Meetups & Mixers",
+  "description": "",
+  "neighborhood": "City of London",
+  "price": 0.0,
+  "start_time": "6:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://luma.com/4juxjdc0",
+  "venue": "Madison",
+  "lat": 51.5138713,
+  "lng": -0.0954593,
+  "audience": null,
+  "availability": null,
+  "series": "93fd9bcf09",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "halloween",
+   "tech party",
+   "aws"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "family": "commit: tech party"
+ },
+ {
+  "name": "Pub Club: Round 05",
+  "category": "Meetups & Mixers",
+  "description": "london's ai, crypto + startup lot, down the pub every single week\ud83c\udf7a subscribe for first dibs. events are for members only. for sponsorship inquiries hello@pubclub.london",
+  "neighborhood": "Shoreditch",
+  "price": 0.0,
+  "start_time": "6:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://luma.com/jjmp4neq",
+  "venue": "",
+  "lat": 51.52922530034669,
+  "lng": -0.07739070429795268,
+  "audience": null,
+  "availability": null,
+  "series": "2855f75b2b",
+  "quality": 1,
+  "why": "",
+  "topics": [
+   "startups",
+   "pub meetup",
+   "crypto"
+  ],
+  "flags": [
+   "members_only",
+   "networking"
+  ],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "pub club: startup pub meetup",
+  "access_why": "listing says: for members only"
  },
  {
   "name": "build night #3",
@@ -3701,33 +3819,6 @@
   "family": "build night: community meetup"
  },
  {
-  "name": "Commit & AWS | Halloween Party",
-  "category": "Meetups & Mixers",
-  "description": "",
-  "neighborhood": "City of London",
-  "price": 0.0,
-  "start_time": "6:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://luma.com/4juxjdc0",
-  "venue": "Madison",
-  "lat": 51.5138713,
-  "lng": -0.0954593,
-  "audience": null,
-  "availability": null,
-  "series": "93fd9bcf09",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "halloween",
-   "tech party",
-   "aws"
-  ],
-  "flags": [
-   "networking"
-  ],
-  "family": "commit: tech party"
- },
- {
   "name": "Diaspora Dialogues",
   "category": "Talks",
   "description": "",
@@ -3750,10 +3841,10 @@
    "community"
   ],
   "flags": [],
-  "family": "diaspora dialogues: discussion",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "diaspora dialogues: discussion"
  },
  {
   "name": "Halloween at Panda's for Game Devs and Sustainability friends",
@@ -3858,8 +3949,38 @@
    "photography"
   ],
   "flags": [],
-  "family": "arc space london: exhibition",
   "date": "first",
+  "singles": false,
+  "ages": "",
+  "family": "arc space london: exhibition",
+  "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/ru/9946442f-698f-4e79-8e74-9af80d3347c0.png"
+ },
+ {
+  "name": "The Inner Game of Being a Founder",
+  "category": "Talks",
+  "description": "The launchpad for the next generation of disruptive technology entrepreneurs in London",
+  "neighborhood": "Knightsbridge, Belgravia & Hyde Park",
+  "price": 0.0,
+  "start_time": "6:00 PM",
+  "end_time": "7:30 PM",
+  "url": "https://luma.com/6ytwulp8",
+  "venue": "Imperial College London",
+  "lat": 51.498822200000006,
+  "lng": -0.1748735,
+  "audience": null,
+  "availability": null,
+  "series": "4ddd58877f",
+  "quality": 2,
+  "why": "",
+  "topics": [
+   "founders",
+   "entrepreneurship",
+   "startups"
+  ],
+  "flags": [
+   "networking"
+  ],
+  "date": "",
   "singles": false,
   "ages": ""
  },
@@ -3887,10 +4008,11 @@
   ],
   "flags": [],
   "subject": "Bahadur Shah Zafar",
-  "family": "potato pottery: workshop",
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "potato pottery: workshop",
+  "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/l1/56d878b7-156e-47a9-b2d5-7a1f57d56931.png"
  },
  {
   "name": "Women in AI Safety and Ethics (WISE) London - Women in Responsible AI Halloween Meet-up \ud83c\udf83",
@@ -4026,7 +4148,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/hr/cef66990-8f0b-4bc6-814a-2d9bf15a035e.png"
  },
  {
   "name": "Supper Club in London featuring Michelle Pham",
@@ -4270,36 +4393,10 @@
    "pub party"
   ],
   "flags": [],
-  "family": "the boardgays: board game night",
   "date": "",
   "singles": false,
-  "ages": ""
- },
- {
-  "name": "Mazal Nights",
-  "category": "Meetups & Mixers",
-  "description": "",
-  "neighborhood": "Primrose Hill",
-  "price": 0.0,
-  "start_time": "7:30 PM",
-  "end_time": null,
-  "url": "https://luma.com/du6547mg",
-  "venue": "MAZAL London",
-  "lat": 51.5417287,
-  "lng": -0.14508179999999998,
-  "audience": null,
-  "availability": null,
-  "series": "e38050b5a5",
-  "recurring": "Every Thursday",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "social",
-   "community",
-   "nightlife"
-  ],
-  "flags": [],
-  "family": "mazal london: social night"
+  "ages": "",
+  "family": "the boardgays: board game night"
  },
  {
   "name": "\"88\"",
@@ -4378,10 +4475,10 @@
    "cinema"
   ],
   "flags": [],
-  "family": "barbican centre: film preview",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "barbican centre: film preview"
  },
  {
   "name": "FFW: Howl's Moving Castle",
@@ -4577,10 +4674,10 @@
    "performance"
   ],
   "flags": [],
-  "family": "barbican centre: youth arts event",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "barbican centre: youth arts event"
  },
  {
   "name": "Ringdown",
@@ -4624,7 +4721,7 @@
   "audience": null,
   "availability": null,
   "series": "061c78f1d9",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 6,
   "why": "Barbican film screening; title and director not described.",
   "topics": [
@@ -4708,7 +4805,7 @@
   "audience": null,
   "availability": null,
   "series": "6ed117d16a",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 7,
   "why": "New Dardenne brothers film, Case 137, at the ICA.",
   "topics": [
@@ -4736,7 +4833,7 @@
   "audience": null,
   "availability": null,
   "series": "86fedbaa2b",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 7,
   "why": "Pawlikowski's Berlin 1964 drama with Sandra H\u00fcller, at the ICA.",
   "topics": [
@@ -4764,7 +4861,7 @@
   "audience": null,
   "availability": null,
   "series": "72af6e8f6d",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 7,
   "why": "Lee Chang-dong's new 164-minute drama starring Jeon Do-yeon.",
   "topics": [
@@ -4874,7 +4971,7 @@
   "audience": null,
   "availability": null,
   "series": "78061eecb3",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 5,
   "why": "",
   "topics": [
@@ -5040,6 +5137,7 @@
   "audience": null,
   "availability": null,
   "series": "7b8d66a7c9",
+  "recurring": "Also on other days",
   "quality": 8,
   "why": "Taskmaster champion Sophie Duker's brand-new stand-up tour hour.",
   "topics": [
@@ -5135,7 +5233,7 @@
   "audience": null,
   "availability": null,
   "series": "085bfee64e",
-  "recurring": "Also on other days",
+  "recurring": "Most days",
   "quality": 8,
   "why": "Pawlikowski's Thomas Mann road-trip drama starring Sandra H\u00fcller, at Rio.",
   "topics": [
@@ -5147,7 +5245,8 @@
   "subject": "Fatherland (2024 film)",
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/RIL/2951337.jpg"
  },
  {
   "name": "Hackney Children's Film Fest: Maya, Give Me A Title!",
@@ -5177,34 +5276,6 @@
   "family": "rio cinema: children's film festival"
  },
  {
-  "name": "Pink Palace: ARIA",
-  "category": "Film",
-  "description": "Pink Palace presents this operatic anthology of ten shorts films by ten directors interpreting their favourite aria\u2019s which become the soundtrack to their segments. Rarely\u2026. Dir. Robert Altman, Derek Jarman, Ken Russell, Jean-Luc Godard, Nicolas Roeg, Julien Temple, Charles Sturridge, 88 min.",
-  "neighborhood": "Dalston Kingsland",
-  "price": null,
-  "start_time": "7:30 PM",
-  "end_time": null,
-  "url": "https://riocinema.org.uk/Rio.dll/WhatsOn?f=2881306",
-  "venue": "Rio Cinema",
-  "lat": 51.5496,
-  "lng": -0.0756,
-  "audience": null,
-  "availability": null,
-  "series": "4e8631267f",
-  "quality": 9,
-  "why": "Rare anthology of ten opera-aria shorts by Jarman, Godard, Russell.",
-  "topics": [
-   "cult cinema",
-   "opera",
-   "anthology film"
-  ],
-  "flags": [],
-  "subject": "Aria (1987 film)",
-  "date": "out",
-  "singles": false,
-  "ages": ""
- },
- {
   "name": "Doc N' Roll: Punk Brighton + Q&A",
   "category": "Film",
   "description": "Beneath Brighton\u2019s waves, a punk revolution erupted. The Piranhas, The Depressions and Peter & The Test Tube Babies turned humour, mischief and music into a fiercely communal\u2026. Dir. Kevin Wright, 90 min.",
@@ -5229,35 +5300,8 @@
   "flags": [],
   "date": "first",
   "singles": false,
-  "ages": ""
- },
- {
-  "name": "Winter of the Crow",
-  "category": "Film",
-  "description": "This gripping Soviet-era thriller features a mesmerising performance by Lesley Manville (Phantom Thread). Warsaw, 1981. Martial law shuts down the country. Overnight, a country\u2026. Dir. Kasia Adamik, 112 min.",
-  "neighborhood": "East Finchley",
-  "price": null,
-  "start_time": "5:30 PM",
-  "end_time": null,
-  "url": "https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=771172",
-  "venue": "Phoenix Cinema",
-  "lat": 51.5885,
-  "lng": -0.1637,
-  "audience": null,
-  "availability": null,
-  "series": "a6768c5281",
-  "recurring": "Every Thursday",
-  "quality": 6,
-  "why": "Lesley Manville leads this 1981 Warsaw martial-law thriller.",
-  "topics": [
-   "film",
-   "thriller",
-   "history"
-  ],
-  "flags": [],
-  "date": "",
-  "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/RIL/2886421.png"
  },
  {
   "name": "Fatherland",
@@ -5286,7 +5330,8 @@
   "subject": "Fatherland (2024 film)",
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/PXL/771259.jpg"
  },
  {
   "name": "Com\u00e9die-Fran\u00e7aise",
@@ -5313,7 +5358,37 @@
   "flags": [],
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/PXL/759793.jpg"
+ },
+ {
+  "name": "Winter of the Crow",
+  "category": "Film",
+  "description": "This gripping Soviet-era thriller features a mesmerising performance by Lesley Manville (Phantom Thread). Warsaw, 1981. Martial law shuts down the country. Overnight, a country\u2026. Dir. Kasia Adamik, 112 min.",
+  "neighborhood": "East Finchley",
+  "price": null,
+  "start_time": "5:30 PM",
+  "end_time": null,
+  "url": "https://www.phoenixcinema.co.uk/PhoenixCinemaLondon.dll/WhatsOn?f=771172",
+  "venue": "Phoenix Cinema",
+  "lat": 51.5885,
+  "lng": -0.1637,
+  "audience": null,
+  "availability": null,
+  "series": "a6768c5281",
+  "recurring": "Also on other days",
+  "quality": 6,
+  "why": "Lesley Manville leads this 1981 Warsaw martial-law thriller.",
+  "topics": [
+   "film",
+   "thriller",
+   "history"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/PXL/771171.jpg"
  },
  {
   "name": "The Yellow Tie",
@@ -5341,7 +5416,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/PXL/759885.jpg"
  },
  {
   "name": "Forgotten Island",
@@ -5384,6 +5460,7 @@
   "audience": null,
   "availability": null,
   "series": "a71bcc525e",
+  "recurring": "Also on other days",
   "quality": 3,
   "why": "",
   "topics": [
@@ -5394,6 +5471,35 @@
   "flags": [
    "kids"
   ]
+ },
+ {
+  "name": "Naza",
+  "category": "Film",
+  "description": "For the screening on Saturday 17th October, there will be a Q&A with the film's producer, James Wilson. Shot at night on the rooftops of Tel Aviv, the film reveals in detail the\u2026. Dir. Yuval Abraham, Rachel Szor, 80 min.",
+  "neighborhood": "Brondesbury Park",
+  "price": null,
+  "start_time": "6:10 PM",
+  "end_time": null,
+  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10216488",
+  "venue": "The Lexi Cinema",
+  "lat": 51.5375,
+  "lng": -0.2225,
+  "audience": null,
+  "availability": null,
+  "series": "2fa74dad50",
+  "recurring": "Most days",
+  "quality": 6,
+  "why": "Night-shot Tel Aviv rooftop documentary, with producer James Wilson Q&A.",
+  "topics": [
+   "film",
+   "documentary",
+   "q&a"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/TLC/10232095.png"
  },
  {
   "name": "Ghosts: The Possession of Button House",
@@ -5422,7 +5528,8 @@
   "subject": "Ghosts (British TV series)",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/TLC/10229647.png"
  },
  {
   "name": "The Cycle of Love",
@@ -5449,35 +5556,8 @@
   "flags": [],
   "date": "first",
   "singles": false,
-  "ages": ""
- },
- {
-  "name": "Naza",
-  "category": "Film",
-  "description": "For the screening on Saturday 17th October, there will be a Q&A with the film's producer, James Wilson. Shot at night on the rooftops of Tel Aviv, the film reveals in detail the\u2026. Dir. Yuval Abraham, Rachel Szor, 80 min.",
-  "neighborhood": "Brondesbury Park",
-  "price": null,
-  "start_time": "6:10 PM",
-  "end_time": null,
-  "url": "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10216488",
-  "venue": "The Lexi Cinema",
-  "lat": 51.5375,
-  "lng": -0.2225,
-  "audience": null,
-  "availability": null,
-  "series": "2fa74dad50",
-  "recurring": "Most days",
-  "quality": 6,
-  "why": "Night-shot Tel Aviv rooftop documentary, with producer James Wilson Q&A.",
-  "topics": [
-   "film",
-   "documentary",
-   "q&a"
-  ],
-  "flags": [],
-  "date": "",
-  "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/TLC/10145311.png"
  },
  {
   "name": "Interview With The Vampire",
@@ -5505,7 +5585,8 @@
   "subject": "Interview with the Vampire (film)",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://posters-uk.s3.eu-west-2.amazonaws.com/PRILON/1257190.jpg"
  },
  {
   "name": "From Dusk Till Dawn",
@@ -5533,7 +5614,8 @@
   "subject": "From Dusk till Dawn",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://cdn.taposapp.com/poster/600x900/S2P-wwOMcql8mwRzcpQZoy_ekzjbddb76eaOAlYFRwM.jpg"
  },
  {
   "name": "Bram Stoker's Dracula",
@@ -5561,7 +5643,8 @@
   "subject": "Bram Stoker's Dracula (film)",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://posters-uk.s3.eu-west-2.amazonaws.com/PRILON/3221048.jpg"
  },
  {
   "name": "Sinners",
@@ -5589,7 +5672,8 @@
   "subject": "Sinners (2025 film)",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://posters-uk.s3.eu-west-2.amazonaws.com/PRILON/31617113.jpg"
  },
  {
   "name": "Nosferatu with Live Score",
@@ -5617,7 +5701,8 @@
   "subject": "Nosferatu",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://posters-uk.s3.eu-west-2.amazonaws.com/PRILON/17198089.jpg"
  },
  {
   "name": "The Lost Boys",
@@ -5645,7 +5730,8 @@
   "subject": "The Lost Boys",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://posters-uk.s3.eu-west-2.amazonaws.com/PRILON/3645767.jpg"
  },
  {
   "name": "Naza",
@@ -5673,7 +5759,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/GCL/6325090.jpg"
  },
  {
   "name": "Fatherland",
@@ -5702,7 +5789,8 @@
   "subject": "Fatherland (2024 film)",
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/GCL/6266170.jpg"
  },
  {
   "name": "Sense and Sensibility",
@@ -5731,7 +5819,8 @@
   "subject": "Sense and Sensibility",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/GCL/6098266.jpg"
  },
  {
   "name": "Possible Love",
@@ -5759,7 +5848,8 @@
   "flags": [],
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/GCL/6270890.jpg"
  },
  {
   "name": "The Others - 25th anniversary",
@@ -5787,7 +5877,8 @@
   "subject": "The Others (film)",
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://images.savoysystems.co.uk/GCL/6188463.jpg"
  },
  {
   "name": "Wildwood",
@@ -5902,6 +5993,61 @@
   "ages": ""
  },
  {
+  "name": "William Thompson: Touch Grass",
+  "category": "Comedy",
+  "description": "Stand-up at the Top Secret Comedy Club (170 Drury Lane (ground floor)).",
+  "neighborhood": "Holborn, St Giles & Bloomsbury South",
+  "price": 18.0,
+  "start_time": "6:00 PM",
+  "end_time": null,
+  "url": "https://thetopsecretcomedyclub.co.uk/events-listings/william-thompson-touch-grass/#2026-10-29-1800",
+  "venue": "The Top Secret Comedy Club",
+  "lat": 51.5154,
+  "lng": -0.123,
+  "audience": null,
+  "availability": null,
+  "series": "12590de563",
+  "quality": 6,
+  "why": "Named stand-up show, Touch Grass, by William Thompson.",
+  "topics": [
+   "comedy",
+   "stand-up",
+   "comedy club"
+  ],
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": ""
+ },
+ {
+  "name": "Thursday Stand Up Comedy Show",
+  "category": "Comedy",
+  "description": "Stand-up at the Top Secret Comedy Club (170 Drury Lane).",
+  "neighborhood": "Holborn, St Giles & Bloomsbury South",
+  "price": 14.0,
+  "start_time": "8:00 PM",
+  "end_time": null,
+  "url": "https://thetopsecretcomedyclub.co.uk/events-listings/thursday-drury-43/#2026-10-29-2000",
+  "venue": "The Top Secret Comedy Club",
+  "lat": 51.5154,
+  "lng": -0.123,
+  "audience": null,
+  "availability": null,
+  "series": "c280a6b9b6",
+  "quality": 5,
+  "why": "Regular Thursday stand-up lineup at a Drury Lane club.",
+  "topics": [
+   "stand-up",
+   "comedy",
+   "weekly"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "the top secret comedy club: stand-up night"
+ },
+ {
   "name": "Chloe Petts - Work in Progress",
   "category": "Comedy",
   "description": "Stand-up from Angel Comedy at The Bill Murray.",
@@ -5929,32 +6075,33 @@
   "ages": ""
  },
  {
-  "name": "Angel Comedy RAW Thursdays (Free)",
+  "name": "Angel Comedy Thursdays @ 8pm",
   "category": "Comedy",
-  "description": "Stand-up from Angel Comedy at The Camden Head.",
+  "description": "Stand-up from Angel Comedy at The Bill Murray.",
   "neighborhood": "Angel",
-  "price": 0.0,
-  "start_time": "7:30 PM",
+  "price": null,
+  "start_time": "8:00 PM",
   "end_time": null,
-  "url": "https://www.angelcomedy.co.uk/event-detail/angel-comedy-raw-thursdays-free-thu-29th-oct-the-camden-head-london-tickets-202610291930",
-  "venue": "The Camden Head (Angel Comedy)",
-  "lat": 51.5356,
-  "lng": -0.1029,
+  "url": "https://www.angelcomedy.co.uk/event-detail/angel-comedy-thursdays-8pm-thu-29th-oct-the-bill-murray-london-tickets-202610292000",
+  "venue": "The Bill Murray (Angel Comedy)",
+  "lat": 51.5363,
+  "lng": -0.0988,
   "audience": null,
   "availability": null,
-  "series": "9cfa053636",
+  "series": "987bbacfcd",
   "recurring": "Every Thursday",
   "quality": 5,
-  "why": "Free weekly stand-up from Angel Comedy's RAW night.",
+  "why": "Weekly Thursday stand-up lineup from Angel Comedy.",
   "topics": [
+   "stand-up",
    "comedy",
-   "free night",
-   "stand-up"
+   "weekly night"
   ],
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://dice-media.imgix.net/attachments/2023-08-02/611fc413-d236-449a-8d76-e62c33ff17f7.jpg?rect=0%2C173%2C5184%2C3110&w=1200"
  },
  {
   "name": "Tim Key: Halloweeny WIP",
@@ -5983,12 +6130,36 @@
   "date": "out",
   "singles": false,
   "ages": "",
-  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/2025_01_25_Sundance_Film_Festival-41_Full_%28cropped%29.jpg/960px-2025_01_25_Sundance_Film_Festival-41_Full_%28cropped%29.jpg",
-  "image_credit": {
-   "by": "Everwest",
-   "license": "CC BY 4.0",
-   "url": "https://commons.wikimedia.org/wiki/File:2025_01_25_Sundance_Film_Festival-41_Full_(cropped).jpg"
-  }
+  "image": "https://dice-media.imgix.net/attachments/2025-10-27/046cefe1-a9b9-4fc5-be98-d0a7234b93af.jpg?rect=0%2C440%2C1200%2C720&w=1200"
+ },
+ {
+  "name": "Angel Comedy RAW Thursdays (Free)",
+  "category": "Comedy",
+  "description": "Stand-up from Angel Comedy at The Camden Head.",
+  "neighborhood": "Angel",
+  "price": 0.0,
+  "start_time": "7:30 PM",
+  "end_time": null,
+  "url": "https://www.angelcomedy.co.uk/event-detail/angel-comedy-raw-thursdays-free-thu-29th-oct-the-camden-head-london-tickets-202610291930",
+  "venue": "The Camden Head (Angel Comedy)",
+  "lat": 51.5356,
+  "lng": -0.1029,
+  "audience": null,
+  "availability": null,
+  "series": "9cfa053636",
+  "recurring": "Every Thursday",
+  "quality": 5,
+  "why": "Free weekly stand-up from Angel Comedy's RAW night.",
+  "topics": [
+   "comedy",
+   "free night",
+   "stand-up"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "image": "https://dice-media.imgix.net/attachments/2025-10-17/83f3f65b-0169-483b-82cb-5d7068729206.jpg?rect=0%2C240%2C1200%2C720&w=1200"
  },
  {
   "name": "Manor Mantra Music",
@@ -6016,7 +6187,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1173447914%252F578417365123%252F1%252Foriginal.20251223-123524%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.653%26fp-y%3D0.265%26s%3D89c587e06b11d174ac94ccc6bfe49195&w=940&q=75"
  },
  {
   "name": "Gozadera UK Events",
@@ -6070,12 +6242,35 @@
   "date": "",
   "singles": false,
   "ages": "",
-  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Hayfestival-2016-Caitlin-Moran-cu-profile.jpg/960px-Hayfestival-2016-Caitlin-Moran-cu-profile.jpg",
-  "image_credit": {
-   "by": "Andrew Lih (User:Fuzheado)",
-   "license": "CC BY-SA 3.0",
-   "url": "https://commons.wikimedia.org/wiki/File:Hayfestival-2016-Caitlin-Moran-cu-profile.jpg"
-  }
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1192486939%252F82303117%252F1%252Foriginal.20260902-161714%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.059%26fp-y%3D0.603%26s%3D510505493c2142c9d4194d3060d3209b&w=940&q=75"
+ },
+ {
+  "name": "V60 '26 Championships - London",
+  "category": "Food & Drink",
+  "description": "From passionate home brewers to seasoned professionals, this competition is open to anyone ready to showcase their pour-over skills .",
+  "neighborhood": "Dalston East",
+  "price": null,
+  "start_time": "5:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/v60-26-championships-london-tickets-1999535844537",
+  "venue": "Allpress Espresso Roastery and Cafe",
+  "lat": 51.54646019999999,
+  "lng": -0.07060709999999999,
+  "audience": null,
+  "availability": null,
+  "series": "12c5c6df9a",
+  "quality": 5,
+  "why": "London round of the V60 pour-over brewing championship.",
+  "topics": [
+   "coffee",
+   "pour-over",
+   "competition"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1192475484%252F49841706680%252F1%252Foriginal.20260902-143529%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.915%26fp-y%3D0.575%26s%3D0a48d31d21af9dd7ae6c3ca4f47eab80&w=940&q=75"
  },
  {
   "name": "London's unique monthly party for gay professionals",
@@ -6105,31 +6300,6 @@
   "family": "farmers and fletchers: networking mixer"
  },
  {
-  "name": "A Cultured Mosaics Charity Dinner",
-  "category": "Food & Drink",
-  "description": "Join us for A Cultured Mosaics Charity Dinner, a night of great food and good vibes for a cause!",
-  "neighborhood": "Yeading West",
-  "price": null,
-  "start_time": "6:30 PM",
-  "end_time": "10:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/a-cultured-mosaics-charity-dinner-tickets-1992649615641",
-  "venue": "Aroma",
-  "lat": 51.5241298,
-  "lng": -0.3999452,
-  "audience": null,
-  "availability": null,
-  "series": "4681211289",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "charity",
-   "dinner",
-   "food"
-  ],
-  "flags": [],
-  "family": "cultured mosaics: charity dinner"
- },
- {
   "name": "Eataly Wine Festival 2026",
   "category": "Food & Drink",
   "description": "Wine Festival is back - and you're invited!",
@@ -6152,10 +6322,11 @@
    "italian food"
   ],
   "flags": [],
-  "family": "eataly: wine festival",
   "date": "special",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "eataly: wine festival",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1195268599%252F521373630695%252F1%252Foriginal.20261007-120046%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D047d728a7f1d9e69a1c078c57871e33a&w=940&q=75"
  },
  {
   "name": "GET THE KIDS IN THE KITCHEN: HALLOWEEN SPECIAL",
@@ -6186,90 +6357,6 @@
   "family": "boxpark croydon: kids workshop"
  },
  {
-  "name": "Wines of the Asia's Tasting, Elephant & Castle.",
-  "category": "Food & Drink",
-  "description": "Sip and savour unique Asian ap\u00e9ritifs & wines at Diogenes the Dog in Elephant & Castle \u2013 a tasting adventure you don't wanna miss!",
-  "neighborhood": "Walworth North",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "8:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/wines-of-the-asias-tasting-elephant-castle-tickets-1997140526075",
-  "venue": "Diogenes The Dog",
-  "lat": 51.4915238,
-  "lng": -0.09104169999999999,
-  "audience": null,
-  "availability": null,
-  "series": "6f062b124a",
-  "quality": 4,
-  "why": "A tasting of Asian ap\u00e9ritifs and wines.",
-  "topics": [
-   "wine",
-   "asian drinks",
-   "tasting"
-  ],
-  "flags": [],
-  "family": "diogenes the dog: wine tasting",
-  "date": "special",
-  "singles": false,
-  "ages": ""
- },
- {
-  "name": "Freaking Delicious: Magical Wines for Halloween",
-  "category": "Food & Drink",
-  "description": "Hosted wine tasting. Expand below for full details.",
-  "neighborhood": "Archway West",
-  "price": null,
-  "start_time": "7:30 PM",
-  "end_time": "9:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/freaking-delicious-magical-wines-for-halloween-tickets-2000725674350",
-  "venue": "Theatre of Wine",
-  "lat": 51.56071439999999,
-  "lng": -0.1373243,
-  "audience": null,
-  "availability": null,
-  "series": "fbaceca9fa",
-  "quality": 4,
-  "why": "A hosted Halloween-themed wine tasting.",
-  "topics": [
-   "wine",
-   "halloween",
-   "tasting"
-  ],
-  "flags": [],
-  "family": "theatre of wine: wine tasting",
-  "date": "special",
-  "singles": false,
-  "ages": ""
- },
- {
-  "name": "Vintage Ale Tasting Event",
-  "category": "Food & Drink",
-  "description": "Join us to sample the newest Vintage Ale, plus some other special Fuller's beers. Head Brewer, Guy Stewart will be leading the evening.",
-  "neighborhood": "Chiswick North East",
-  "price": null,
-  "start_time": "6:00 PM",
-  "end_time": "8:00 PM",
-  "url": "https://www.eventbrite.com/e/vintage-ale-tasting-event-tickets-2002614858952",
-  "venue": "Fuller's Brewery Shop & Tours",
-  "lat": 51.48772289999999,
-  "lng": -0.2491826,
-  "audience": null,
-  "availability": null,
-  "series": "025083e561",
-  "quality": 5,
-  "why": "Newest Vintage Ale tasting led by Fuller's head brewer Guy Stewart.",
-  "topics": [
-   "beer",
-   "brewing",
-   "tasting"
-  ],
-  "flags": [],
-  "family": "fuller's brewery shop & tours: beer tasting",
-  "date": "special",
-  "singles": false,
-  "ages": ""
- },
- {
   "name": "Kaffeine Coffee Classes",
   "category": "Classes & Workshops",
   "description": "A fantastic way to get behind a professional coffee machine and be taught how to make espresso and coffee art in London at an iconic cafe!",
@@ -6298,90 +6385,172 @@
   "family": "kaffeine: coffee class"
  },
  {
-  "name": "Rioja Reloaded : edition 1",
+  "name": "Limited Unlimited Cocktail Brunch Experience",
   "category": "Food & Drink",
-  "description": "Rioja is more than just a trad wine, this year we have been introduced to several new school Rioja styles that are worth celebrating.",
-  "neighborhood": "Clapham North",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/rioja-reloaded-edition-1-tickets-1996124516162",
-  "venue": "D Vine Cellars",
-  "lat": 51.4646354,
-  "lng": -0.1312888,
-  "audience": null,
-  "availability": null,
-  "series": "436d8de0e9",
-  "quality": 4,
-  "why": "Newer-style Riojas showcased in the first Rioja Reloaded edition.",
-  "topics": [
-   "wine",
-   "rioja",
-   "tasting"
-  ],
-  "flags": [],
-  "family": "d vine cellars: wine tasting",
-  "date": "special",
-  "singles": false,
-  "ages": ""
- },
- {
-  "name": "Woodford Reserve Bourbon and Diplom\u00e1tico Rum Tasting Workshop",
-  "category": "Food & Drink",
-  "description": "Celebrate Old Fashioned Month at sketch with a guided tasting journey through the rich character of Woodford Reserve and Diplom\u00e1tico.",
-  "neighborhood": "Fitzrovia West & Soho",
+  "description": "Join us for a playful brunch experience at La Biblioth\u00e8que in London",
+  "neighborhood": "Haggerston West & Kingsland Basin",
   "price": null,
   "start_time": "6:00 PM",
   "end_time": "8:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/woodford-reserve-bourbon-and-diplomatico-rum-tasting-workshop-tickets-2003051123832",
-  "venue": "sketch",
-  "lat": 51.5127667,
-  "lng": -0.1415637,
+  "url": "https://www.eventbrite.co.uk/e/limited-unlimited-cocktail-brunch-experience-tickets-1993528998900",
+  "venue": "La Biblioth\u00e8que",
+  "lat": 51.5387679,
+  "lng": -0.07685820000000002,
   "audience": null,
   "availability": null,
-  "series": "1baa9db184",
-  "quality": 4,
-  "why": "Guided bourbon and rum tasting tied to Old Fashioned Month at sketch.",
+  "series": "3a4321b0f9",
+  "recurring": "Every Thursday",
+  "quality": 3,
+  "why": "",
   "topics": [
-   "whisky and rum",
-   "tasting",
+   "brunch",
    "cocktails"
   ],
-  "flags": [
-   "sales"
+  "flags": []
+ },
+ {
+  "name": "Wines of the Asia's Tasting, Elephant & Castle.",
+  "category": "Food & Drink",
+  "description": "Sip and savour unique Asian ap\u00e9ritifs & wines at Diogenes the Dog in Elephant & Castle \u2013 a tasting adventure you don't wanna miss!",
+  "neighborhood": "Walworth North",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "8:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/wines-of-the-asias-tasting-elephant-castle-tickets-1997140526075",
+  "venue": "Diogenes The Dog",
+  "lat": 51.4915238,
+  "lng": -0.09104169999999999,
+  "audience": null,
+  "availability": null,
+  "series": "6f062b124a",
+  "quality": 4,
+  "why": "A tasting of Asian ap\u00e9ritifs and wines.",
+  "topics": [
+   "wine",
+   "asian drinks",
+   "tasting"
   ],
-  "family": "sketch: tasting workshop",
+  "flags": [],
   "date": "special",
+  "singles": false,
+  "ages": "",
+  "family": "diogenes the dog: wine tasting"
+ },
+ {
+  "name": "Freaking Delicious: Magical Wines for Halloween",
+  "category": "Food & Drink",
+  "description": "Hosted wine tasting. Expand below for full details.",
+  "neighborhood": "Archway West",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/freaking-delicious-magical-wines-for-halloween-tickets-2000725674350",
+  "venue": "Theatre of Wine",
+  "lat": 51.56071439999999,
+  "lng": -0.1373243,
+  "audience": null,
+  "availability": null,
+  "series": "fbaceca9fa",
+  "quality": 4,
+  "why": "A hosted Halloween-themed wine tasting.",
+  "topics": [
+   "wine",
+   "halloween",
+   "tasting"
+  ],
+  "flags": [],
+  "date": "special",
+  "singles": false,
+  "ages": "",
+  "family": "theatre of wine: wine tasting"
+ },
+ {
+  "name": "Traditional Tea Tasting Experience",
+  "category": "Food & Drink",
+  "description": "Discover the world of tea in London. Taste unique varieties, learn tea history, and master the perfect brew.",
+  "neighborhood": "South Bermondsey Central",
+  "price": null,
+  "start_time": "11:00 AM",
+  "end_time": "12:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/traditional-tea-tasting-experience-tickets-1990967781229",
+  "venue": "Tea2you | Spa Terminus",
+  "lat": 51.49604129999999,
+  "lng": -0.0693798,
+  "audience": null,
+  "availability": null,
+  "series": "1015bfe6dd",
+  "recurring": "Every Thursday",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "tea",
+   "tasting",
+   "food and drink"
+  ],
+  "flags": [
+   "class_slot"
+  ],
+  "family": "tea2you: tea tasting"
+ },
+ {
+  "name": "Matcha Making Experience",
+  "category": "Food & Drink",
+  "description": "Immerse yourself in the world of matcha with a hands-on experience in London. Learn all about authentic matcha preparation and tasting.",
+  "neighborhood": "South Bermondsey Central",
+  "price": null,
+  "start_time": "11:00 AM",
+  "end_time": "12:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/matcha-making-experience-tickets-1991187659892",
+  "venue": "Tea2you | Spa Terminus",
+  "lat": 51.49604129999999,
+  "lng": -0.0693798,
+  "audience": null,
+  "availability": null,
+  "series": "9762748fe0",
+  "recurring": "Every Thursday",
+  "quality": 3,
+  "why": "",
+  "topics": [
+   "matcha",
+   "tea",
+   "food and drink"
+  ],
+  "flags": [
+   "class_slot"
+  ],
+  "family": "tea2you: matcha workshop",
+  "date": "",
   "singles": false,
   "ages": ""
  },
  {
-  "name": "Kabab Klub by sogoldarya",
+  "name": "Vintage Ale Tasting Event",
   "category": "Food & Drink",
-  "description": "Join us for Kabab and Conversation at Chelo (Maida Vale) on October 29th, hosted by sogoldarya.",
-  "neighborhood": "Little Venice",
+  "description": "Join us to sample the newest Vintage Ale, plus some other special Fuller's beers. Head Brewer, Guy Stewart will be leading the evening.",
+  "neighborhood": "Chiswick North East",
   "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "9:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/kabab-klub-by-sogoldarya-tickets-2003826389673",
-  "venue": "Chelo",
-  "lat": 51.52599319999999,
-  "lng": -0.178708,
+  "start_time": "6:00 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.com/e/vintage-ale-tasting-event-tickets-2002614858952",
+  "venue": "Fuller's Brewery Shop & Tours",
+  "lat": 51.48772289999999,
+  "lng": -0.2491826,
   "audience": null,
   "availability": null,
-  "series": "cd5e543ec2",
-  "quality": 4,
-  "why": "Kabab and conversation dinner at Chelo, hosted by sogoldarya.",
+  "series": "025083e561",
+  "quality": 5,
+  "why": "Newest Vintage Ale tasting led by Fuller's head brewer Guy Stewart.",
   "topics": [
-   "kebab",
-   "dinner",
-   "conversation"
+   "beer",
+   "brewing",
+   "tasting"
   ],
   "flags": [],
-  "date": "",
+  "date": "special",
   "singles": false,
   "ages": "",
-  "family": "sogoldarya: kabab klub dinner"
+  "family": "fuller's brewery shop & tours: beer tasting",
+  "image": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194706472%252F3015890559539%252F1%252Foriginal.20260930-092907%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D083d784b3a0bb4e58bc440f66b4d6025&w=940&q=75"
  },
  {
   "name": "Earthworm Identification",
@@ -6489,6 +6658,64 @@
   ]
  },
  {
+  "name": "Imperial Lates: Robots",
+  "category": "Tech",
+  "description": "Step into the world of tomorrow and meet the robots of the future.",
+  "neighborhood": "Knightsbridge, Belgravia & Hyde Park",
+  "price": null,
+  "start_time": "6:00 PM",
+  "end_time": "9:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/imperial-lates-robots-tickets-2002038938358",
+  "venue": "Imperial College London",
+  "lat": 51.4988661,
+  "lng": -0.17457839999997304,
+  "audience": null,
+  "availability": null,
+  "series": "0a79f330d6",
+  "quality": 6,
+  "why": "Meet the robots of the future at Imperial's evening science late.",
+  "topics": [
+   "robotics",
+   "science",
+   "late opening"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
+  "family": "imperial college london: science late",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194082140%252F266720376184%252F1%252Foriginal.20260922-085136%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.475%26fp-y%3D0.365%26s%3D1713d065746ebcc1914f160a93aa56aa&w=940&q=75"
+ },
+ {
+  "name": "Messy Jobs: The Work That AI Cannot Reach",
+  "category": "Talks",
+  "description": "Join Professor Luis Garicano, co-author of Messy Jobs, for a discussion of how AI is reshaping work, careers and the economy.",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "6:30 PM",
+  "end_time": "8:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/messy-jobs-the-work-that-ai-cannot-reach-tickets-2002056290258",
+  "venue": "MAR.2.04, London School of Economics and Political Science",
+  "lat": 51.5136857,
+  "lng": -0.1167011,
+  "audience": null,
+  "availability": null,
+  "series": "a2ef04ab29",
+  "quality": 6,
+  "why": "Co-author Luis Garicano discusses how AI reshapes jobs.",
+  "topics": [
+   "ai",
+   "work",
+   "economics"
+  ],
+  "flags": [],
+  "subject": "Luis Garicano",
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194090178%252F397791640185%252F1%252Foriginal.20260922-111740%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3Db91b4f18ce93a0ca46ea7618c6fdd70c&w=940&q=75"
+ },
+ {
   "name": "The Model is the Message",
   "category": "Talks",
   "description": "A free talk by Marcel Top and Tessa Edwards on Machine Learning and AI as both the instrument and subject of societal critique.",
@@ -6513,7 +6740,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1196352213%252F1153837719%252F1%252Foriginal.20261022-104508%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D8939a2d873ec403be65455be3c8201ac&w=940&q=75"
  },
  {
   "name": "Domestic violence and human rights",
@@ -6540,7 +6768,41 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194111442%252F77451675981%252F1%252Foriginal.20260922-154458%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.686%26fp-y%3D0.419%26s%3D6d2033a965144bf4e54fa924f312b818&w=940&q=75"
+ },
+ {
+  "name": "Code Ninjas Camden - Free Coding Session for Kids",
+  "category": "Classes & Workshops",
+  "description": "Join us for a fun-filled coding trial session where kids will learn the basics of programming and create their own digital masterpieces!",
+  "neighborhood": "Fitzjohns & Royal Free",
+  "price": null,
+  "start_time": "5:00 PM",
+  "end_time": "6:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/code-ninjas-camden-free-coding-session-for-kids-tickets-1978975308420",
+  "venue": "South Hampstead High School",
+  "lat": 51.5461891,
+  "lng": -0.1769548,
+  "audience": "kids",
+  "availability": null,
+  "series": "8be5cc00cd",
+  "recurring": "Every Thursday",
+  "quality": 1,
+  "why": "",
+  "topics": [
+   "coding",
+   "kids",
+   "trial"
+  ],
+  "flags": [
+   "kids",
+   "service",
+   "sales"
+  ],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "code ninjas: kids coding trial"
  },
  {
   "name": "Women\u2019s Strength & Functional Fitness Class",
@@ -6568,10 +6830,10 @@
   "flags": [
    "class_slot"
   ],
-  "family": "all saints hatcham community centre: fitness class",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "all saints hatcham community centre: fitness class"
  },
  {
   "name": "LIFE DRAWING | Muswell Hill",
@@ -6599,7 +6861,8 @@
   "date": "",
   "singles": false,
   "ages": "",
-  "family": "muswell hill bowling club: life drawing night"
+  "family": "muswell hill bowling club: life drawing night",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1195257680%252F3015882404853%252F1%252Foriginal.20261007-084241%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D6f6b0a9d8c007a8db18843cf2c702840&w=940&q=75"
  },
  {
   "name": "Salsa Class London | Beginners Welcome | 1.5h Class + Social Dancing | Soho",
@@ -6655,35 +6918,63 @@
   ]
  },
  {
-  "name": "MarkMakerz IRL: Alternative Life Drawing Q2",
+  "name": "Chill Out London VR/Digital Asset Creation Workshop",
   "category": "Classes & Workshops",
-  "description": "Every two Weeks: Life Drawing classes with a twist. Hosted by Wumzum of the Markmakerz.LDN Collective.",
-  "neighborhood": "Bethnal Green Central",
+  "description": "Join Us a in unique virtual reality world building experience in a chilled relaxing environment in London",
+  "neighborhood": "Camberwell North",
   "price": null,
-  "start_time": "6:30 PM",
-  "end_time": "8:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/markmakerz-irl-alternative-life-drawing-q2-tickets-1998262909153",
-  "venue": "proposition studios",
-  "lat": 51.5267584,
-  "lng": -0.0557441,
+  "start_time": "6:00 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/chill-out-london-vrdigital-asset-creation-workshop-tickets-1977784162671",
+  "venue": "Camberwell Library",
+  "lat": 51.47570469999999,
+  "lng": -0.0920588,
   "audience": null,
   "availability": null,
-  "series": "5a81df64c3",
+  "series": "54c2e1d3b1",
   "recurring": "Every Thursday",
   "quality": 4,
-  "why": "Fortnightly life drawing session with a twist, run by a drawing collective.",
+  "why": "Hands-on VR world-building in a relaxed library session.",
   "topics": [
-   "life drawing",
-   "art",
-   "figure drawing"
+   "vr",
+   "world building",
+   "library"
+  ],
+  "flags": [],
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "family": "chill out london: vr workshop"
+ },
+ {
+  "name": "Earl\u2019s Court Salsa & Bachata Club - every Thursday",
+  "category": "Classes & Workshops",
+  "description": "Salsa & Bachata classes and club for all levels Only 2 min walk from Earl\u2019s Court Station",
+  "neighborhood": "Kensington Abingdon",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "11:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/earls-court-salsa-bachata-club-every-thursday-tickets-1279157517569",
+  "venue": "Earl's Court Salsa & Bachata Club",
+  "lat": 51.4957806,
+  "lng": -0.1960124,
+  "audience": null,
+  "availability": null,
+  "series": "81f7347549",
+  "quality": 4,
+  "why": "Weekly salsa and bachata classes followed by social dancing.",
+  "topics": [
+   "salsa",
+   "bachata",
+   "dancing"
   ],
   "flags": [
    "class_slot"
   ],
-  "family": "markmakerz: life drawing class",
-  "date": "first",
+  "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "earl's court salsa & bachata club: dance night"
  },
  {
   "name": "Icons of Black History \u2013 creative collage at Kensal Library",
@@ -6711,117 +7002,32 @@
   "family": "kensal library: collage workshop"
  },
  {
-  "name": "OCTOBER HALF TERM WORKSHOPS",
-  "category": "Classes & Workshops",
-  "description": "3 hours of practical workshops for young people aged 10 to 16, living in South East London.",
-  "neighborhood": "Forest Hill East",
+  "name": "African drum circle",
+  "category": "Music",
+  "description": "Get ready to feel the rhythm and connect with the beats at our African drum circle - an experience that will make your heart dance!",
+  "neighborhood": "Purley North",
   "price": null,
-  "start_time": "10:30 AM",
-  "end_time": "1:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/october-half-term-workshops-tickets-2002434007019",
-  "venue": "Young Lewisham Project",
-  "lat": 51.4376282,
-  "lng": -0.041197,
+  "start_time": "6:30 PM",
+  "end_time": "7:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/african-drum-circle-tickets-1993844615919",
+  "venue": "St. Augustine's Centre, St. Augustines Ave, South Croydon CR2 6BA",
+  "lat": 51.35296289999999,
+  "lng": -0.100093,
   "audience": null,
   "availability": null,
-  "series": "a162135beb",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "youth",
-   "workshops",
-   "half term"
-  ],
-  "flags": [
-   "kids",
-   "service"
-  ],
-  "family": "young lewisham project: youth workshops"
- },
- {
-  "name": "My Special Meeting with Allah",
-  "category": "Classes & Workshops",
-  "description": "Salah is something children see around them every day, and this session helps them begin to understand it for themselves.",
-  "neighborhood": "Shadwell Basin & Ratcliffe",
-  "price": null,
-  "start_time": "4:00 PM",
-  "end_time": "6:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/my-special-meeting-with-allah-tickets-2003467183277",
-  "venue": "Shadwell Jame Masjid",
-  "lat": 51.511974,
-  "lng": -0.0556363,
-  "audience": null,
-  "availability": null,
-  "series": "e6e7162b9e",
-  "quality": 2,
-  "why": "",
-  "topics": [
-   "religion",
-   "children",
-   "prayer"
-  ],
-  "flags": [
-   "kids",
-   "service"
-  ],
-  "date": "",
-  "singles": false,
-  "ages": "",
-  "family": "shadwell jame masjid: children's religious session"
- },
- {
-  "name": "VOLTA Contemporary Dance Class",
-  "category": "Classes & Workshops",
-  "description": "VOLTA is a new contemporary dance class for teen girls aged 12\u201314. A space to move, create, experiment and express yourself through dance.",
-  "neighborhood": "Corbett Estate",
-  "price": null,
-  "start_time": "6:00 PM",
-  "end_time": "7:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/volta-contemporary-dance-class-tickets-2000289841763",
-  "venue": "Corbett Community Library",
-  "lat": 51.44235159999999,
-  "lng": -0.0016221,
-  "audience": null,
-  "availability": null,
-  "series": "399c24467f",
+  "series": "13f7ffabba",
   "recurring": "Every Thursday",
-  "quality": 1,
-  "why": "",
+  "quality": 4,
+  "why": "Participatory African drum circle at a South Croydon centre.",
   "topics": [
-   "dance",
-   "teens",
-   "class"
-  ],
-  "flags": [
-   "kids",
-   "class_slot"
-  ],
-  "family": "volta: dance class"
- },
- {
-  "name": "Pumpkin Carving @frothycoffeeriverside",
-  "category": "Classes & Workshops",
-  "description": "Pick your perfect pumpkin and get carving! Create your own spooky masterpiece to take home in our fun Halloween carving session.",
-  "neighborhood": "Downham West",
-  "price": null,
-  "start_time": "11:00 AM",
-  "end_time": "12:30 PM",
-  "url": "https://www.eventbrite.com/e/pumpkin-carving-frothycoffeeriverside-tickets-2000965937985",
-  "venue": "118 Old Bromley Rd",
-  "lat": 51.4223211,
-  "lng": -0.0051941,
-  "audience": null,
-  "availability": null,
-  "series": "64bc41e0e9",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "pumpkin carving",
-   "halloween",
-   "coffee"
+   "drumming",
+   "percussion",
+   "community"
   ],
   "flags": [],
-  "family": "frothy coffee: pumpkin carving"
+  "date": "",
+  "singles": false,
+  "ages": ""
  },
  {
   "name": "Suffragettes Walking Tour",
@@ -6848,7 +7054,8 @@
   "flags": [],
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1187545280%252F2763311613251%252F1%252Foriginal.20260624-083853%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D7196089beaddfe17bb241afa4b03acaf&w=940&q=75"
  },
  {
   "name": "Walking Tour - The Route of the Condemned through Holborn\u2026 via its Pubs.",
@@ -6875,34 +7082,8 @@
   "flags": [],
   "date": "first",
   "singles": false,
-  "ages": ""
- },
- {
-  "name": "Walking Tour - Bloomsbury Ghost Stories",
-  "category": "Tours",
-  "description": "Georgian London loved a ghost story, this walk visits places in Bloomsbury where ghosts were alleged to have been seen",
-  "neighborhood": "Holborn, St Giles & Bloomsbury South",
-  "price": null,
-  "start_time": "4:00 PM",
-  "end_time": "5:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/walking-tour-bloomsbury-ghost-stories-tickets-2003172618225",
-  "venue": "Russell Square Underground Station",
-  "lat": 51.523098,
-  "lng": -0.12498740000000907,
-  "audience": null,
-  "availability": null,
-  "series": "595fbda0ac",
-  "quality": 5,
-  "why": "Georgian ghost stories and reported sightings across Bloomsbury.",
-  "topics": [
-   "ghost stories",
-   "bloomsbury",
-   "history"
-  ],
-  "flags": [],
-  "date": "first",
-  "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F865918949%252F301523834880%252F1%252Foriginal.20241003-162838%3Fw%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26rect%3D1%252C125%252C714%252C357%26s%3D0a4bcddf7410d21c233378050b69a8ef&w=940&q=75"
  },
  {
   "name": "Guided Tours of Smithfield Market",
@@ -6957,7 +7138,8 @@
   "flags": [],
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F873857609%252F142914672568%252F1%252Foriginal.20241014-114155%3Fw%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26rect%3D0%252C140%252C960%252C480%26s%3Dab839bb8b01564a0ee787ced4cc96c12&w=940&q=75"
  },
  {
   "name": "Whitechapel Women: Beyond the Jack the Ripper Tour",
@@ -6984,7 +7166,8 @@
   "flags": [],
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F657217379%252F137038010891%252F1%252Foriginal.20231212-102519%3Fw%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26rect%3D0%252C0%252C2160%252C1080%26s%3Dea619d2ce0609f25335f53a6a58b2e87&w=940&q=75"
  },
  {
   "name": "Spooky and Grim Tales in the Culture Mile - A Walking Tour",
@@ -7040,6 +7223,36 @@
   "family": "pottering around london: walking tour"
  },
  {
+  "name": "Griot of London Talks",
+  "category": "Talks",
+  "description": "This is the story of John Edmonstone \u2014 a man born into enslavement in Demerara, who carved a path to freedom in Scotland.",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "4:30 PM",
+  "end_time": "5:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/griot-of-london-talks-tickets-2002789511342",
+  "venue": "National Portrait Gallery",
+  "lat": 51.5094236,
+  "lng": -0.1281216,
+  "audience": null,
+  "availability": null,
+  "series": "cc98ac0c6d",
+  "recurring": "Also on other days",
+  "quality": 7,
+  "why": "John Edmonstone's escape from slavery, told at the National Portrait Gallery.",
+  "topics": [
+   "history",
+   "slavery",
+   "scotland"
+  ],
+  "flags": [],
+  "subject": "John Edmonstone",
+  "date": "",
+  "singles": false,
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194968064%252F3016264755704%252F1%252Foriginal.20261003-115643%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D72f89f6b2a8f8005e0e17aa1c10b10ac&w=940&q=75"
+ },
+ {
   "name": "Book Talk: In Search of the Perfect Romanian",
   "category": "Talks",
   "description": "Professor Marius Turda in Conversation with Professor Dan Stone",
@@ -7064,7 +7277,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1189462595%252F40250438508%252F1%252Foriginal.20260723-105949%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3Dc785f167cfb864d0c7f8874a7faa25c6&w=940&q=75"
  },
  {
   "name": "Walk John Constable's Hampstead London walk & talk art & art history tour",
@@ -7094,12 +7308,7 @@
   "date": "first",
   "singles": false,
   "ages": "",
-  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/John_Constable_by_Ramsay_Richard_Reinagle.jpg/960px-John_Constable_by_Ramsay_Richard_Reinagle.jpg",
-  "image_credit": {
-   "by": "Ramsay Richard Reinagle",
-   "license": "Public domain",
-   "url": "https://commons.wikimedia.org/wiki/File:John_Constable_by_Ramsay_Richard_Reinagle.jpg"
-  }
+  "image": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F718002049%252F75334341669%252F1%252Foriginal.20240312-220312%3Fw%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26rect%3D0%252C291%252C3500%252C1750%26s%3D83bca5065aad749e14a5693909d72053&w=940&q=75"
  },
  {
   "name": "Artist Talk: Gabriella Presnal",
@@ -7124,10 +7333,10 @@
    "contemporary art"
   ],
   "flags": [],
-  "family": "arebyte digital art centre: artist talk",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "arebyte digital art centre: artist talk"
  },
  {
   "name": "TURKEN ISLAMIC TALKS",
@@ -7180,7 +7389,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1193638362%252F2958748471421%252F1%252Foriginal.20260916-101301%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.767%26fp-y%3D0.689%26s%3D55f02349c67bcf12600aae28f2679d3b&w=940&q=75"
  },
  {
   "name": "Alison Hills: Are children creative?",
@@ -7261,7 +7471,8 @@
   "subject": "Michael Pawlyn",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1195382659%252F158269671395%252F1%252Foriginal.20261008-164448%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3Dd3e586762a6b6a8a6e66fa69ff29e7c4&w=940&q=75"
  },
  {
   "name": "The Science of Close Relationships",
@@ -7286,10 +7497,39 @@
    "pub talk"
   ],
   "flags": [],
-  "family": "pubtalks: pub talk",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "pubtalks: pub talk",
+  "image": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194934946%252F2781949008131%252F1%252Foriginal.20261002-193401%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D8a49019405ddaaebdd97876280a5ce91&w=940&q=75"
+ },
+ {
+  "name": "Museum Lates at Dr Johnson's House",
+  "category": "Arts & Play",
+  "description": "Enjoy sparkling drinks and discover one of London's best-kept secrets!",
+  "neighborhood": "City of London",
+  "price": null,
+  "start_time": "5:30 PM",
+  "end_time": "7:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/museum-lates-at-dr-johnsons-house-tickets-2000395596077",
+  "venue": "Dr Johnson's House",
+  "lat": 51.5150642,
+  "lng": -0.1082067,
+  "audience": null,
+  "availability": null,
+  "series": "2c624897f7",
+  "quality": 6,
+  "why": "Late opening of Samuel Johnson's historic house, with drinks and talks.",
+  "topics": [
+   "museums",
+   "talks",
+   "literature"
+  ],
+  "flags": [],
+  "date": "first",
+  "singles": false,
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1177839224%252F2584597228691%252F1%252Foriginal.20260218-155932%3Fw%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26rect%3D0%252C250%252C3000%252C1500%26s%3Df29ac0bfbf613d0e64ebec1b628e1ea6&w=940&q=75"
  },
  {
   "name": "Abdul White's Comedy Night - Autumnal hijinks at Kismet!",
@@ -7319,6 +7559,34 @@
   "ages": ""
  },
  {
+  "name": "AFTER HOURS COMEDY - LATE NIGHT STAND UP COMEDY",
+  "category": "Comedy",
+  "description": "LATE NIGHT STAND UP COMEDY SHOWS EVERY WEEKEND. AGE 18+",
+  "neighborhood": "King's Cross & Bloomsbury North",
+  "price": null,
+  "start_time": "10:00 PM",
+  "end_time": null,
+  "url": "https://www.eventbrite.com/e/after-hours-comedy-late-night-stand-up-comedy-tickets-2002463033839",
+  "venue": "Big Chill King's Cross",
+  "lat": 51.5308181,
+  "lng": -0.119925,
+  "audience": null,
+  "availability": null,
+  "series": "caffa68160",
+  "quality": 5,
+  "why": "",
+  "topics": [
+   "late night comedy",
+   "stand-up",
+   "weekend comedy"
+  ],
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": "18+",
+  "image": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194423757%252F3015593144103%252F1%252Foriginal.20260926-164407%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.479%26fp-y%3D0.426%26s%3D1ad054fe59fea58f5fb174db2f552b51&w=940&q=75"
+ },
+ {
   "name": "GETAWAY COMEDY - SOHO",
   "category": "Comedy",
   "description": "Comedy in London Thursday, Friday & Saturday. Expect a delicious mix of playful, unapologetic, dark, punchy stand-up in an intimate setting.",
@@ -7344,7 +7612,8 @@
   "flags": [],
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1180371381%252F261881968766%252F1%252Foriginal.20260321-130204%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3Dd595fdc9b1744bc97ce86231cd3f1f5c&w=940&q=75"
  },
  {
   "name": "Stand Up at Sir!",
@@ -7369,10 +7638,11 @@
    "hotel events"
   ],
   "flags": [],
-  "family": "stand up at sir!: comedy night",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "stand up at sir!: comedy night",
+  "image": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1193739319%252F2947460535131%252F1%252Foriginal.20260917-114531%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D8e2717801c678e70d448660b96e1533e&w=940&q=75"
  },
  {
   "name": "Your Friend & Mine Comedy New Cross",
@@ -7397,10 +7667,97 @@
    "pubs"
   ],
   "flags": [],
-  "family": "your friend & mine comedy: comedy night",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "your friend & mine comedy: comedy night"
+ },
+ {
+  "name": "Thursday Comedy (with a FREE DRINK)",
+  "category": "Comedy",
+  "description": "Watch Some Comedy this Thursday!!!!",
+  "neighborhood": "Shoreditch",
+  "price": null,
+  "start_time": "7:30 PM",
+  "end_time": "9:30 PM",
+  "url": "https://www.eventbrite.co.uk/e/thursday-comedy-with-a-free-drink-tickets-1982155215608",
+  "venue": "City Comedy Club",
+  "lat": 51.5256992,
+  "lng": -0.0833529,
+  "audience": null,
+  "availability": null,
+  "series": "55b9b2e4f5",
+  "recurring": "Every Thursday",
+  "quality": 5,
+  "why": "",
+  "topics": [
+   "comedy",
+   "live comedy",
+   "drinks"
+  ],
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F764171149%252F253763745229%252F1%252Foriginal.20240509-224727%3Fw%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26rect%3D0%252C84%252C680%252C340%26s%3Db2e9d0fd76c4de8cf5f80ddde1fca3ed&w=940&q=75"
+ },
+ {
+  "name": "Thursday Night at Backyard Comedy Club",
+  "category": "Comedy",
+  "description": "It's the perfect opportunity to see established acts trying out fresh content and big TV names warming up for their national tours.",
+  "neighborhood": "Bethnal Green Central",
+  "price": null,
+  "start_time": "7:00 PM",
+  "end_time": "10:00 PM",
+  "url": "https://www.eventbrite.co.uk/e/thursday-night-at-backyard-comedy-club-tickets-1993132697552",
+  "venue": "Backyard Comedy Club",
+  "lat": 51.525396,
+  "lng": -0.05531490000000001,
+  "audience": null,
+  "availability": null,
+  "series": "3cb5f7ba24",
+  "recurring": "Every Thursday",
+  "quality": 7,
+  "why": "Established acts and TV names trying new material before national tours.",
+  "topics": [
+   "comedy",
+   "new material",
+   "touring acts"
+  ],
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F821526299%252F230688699728%252F1%252Foriginal.20240806-150945%3Fw%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26rect%3D0%252C19%252C600%252C300%26s%3D028fa83f7453818c224daf32b7cef666&w=940&q=75"
+ },
+ {
+  "name": "Strong Woman - A Comedy Show by Monica Hsueh (West End)",
+  "category": "Comedy",
+  "description": "As seen on BBC and Instagram. Expect big laughs, dating misadventures & witty wisdom - a feel-good comedy night out in London.",
+  "neighborhood": "Strand, St James & Mayfair",
+  "price": null,
+  "start_time": "7:15 PM",
+  "end_time": "8:15 PM",
+  "url": "https://www.eventbrite.com/e/strong-woman-a-comedy-show-by-monica-hsueh-west-end-tickets-2001420566792",
+  "venue": "The Coach House Piccadilly",
+  "lat": 51.5097294,
+  "lng": -0.1319878,
+  "audience": null,
+  "availability": null,
+  "series": "ed0c12e88c",
+  "recurring": "Every Thursday",
+  "quality": 5,
+  "why": "Monica Hsueh's stand-up show, previously featured on BBC and Instagram.",
+  "topics": [
+   "comedy",
+   "stand-up",
+   "dating"
+  ],
+  "flags": [],
+  "date": "out",
+  "singles": false,
+  "ages": "",
+  "image": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1173942263%252F2813238330871%252F1%252Foriginal.20260104-154846%3Fw%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26rect%3D0%252C34%252C1664%252C832%26s%3De8be7eeace71cd7c552e7db51771bfaa&w=940&q=75"
  },
  {
   "name": "Thursday London Comedy Show",
@@ -7430,142 +7787,33 @@
   "ages": ""
  },
  {
-  "name": "Comedy Night with Unlimited Pizza and a Drink",
+  "name": "Comedy Live at The White Hart Southwark with Tony Law",
   "category": "Comedy",
-  "description": "Comedy Night for Two with Unlimited Pizza and a Drink!",
-  "neighborhood": "Shoreditch",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/comedy-night-with-unlimited-pizza-and-a-drink-tickets-1980256686055",
-  "venue": "City Comedy Club",
-  "lat": 51.5256992,
-  "lng": -0.0833529,
-  "audience": null,
-  "availability": null,
-  "series": "7f516816d2",
-  "recurring": "Every Thursday",
-  "quality": 3,
-  "why": "",
-  "topics": [
-   "comedy",
-   "pizza",
-   "dinner deal"
-  ],
-  "flags": [],
-  "family": "city comedy club: dinner and comedy deal"
- },
- {
-  "name": "Thursday Comedy (with a FREE DRINK)",
-  "category": "Comedy",
-  "description": "Watch Some Comedy this Thursday!!!!",
-  "neighborhood": "Shoreditch",
+  "description": "A top night of comedy headlined by Tony Law",
+  "neighborhood": "Borough & Southwark Street",
   "price": null,
   "start_time": "7:30 PM",
   "end_time": "9:30 PM",
-  "url": "https://www.eventbrite.co.uk/e/thursday-comedy-with-a-free-drink-tickets-1982155215608",
-  "venue": "City Comedy Club",
-  "lat": 51.5256992,
-  "lng": -0.0833529,
+  "url": "https://www.eventbrite.co.uk/e/comedy-live-at-the-white-hart-southwark-with-tony-law-tickets-1989904017483",
+  "venue": "The White Hart",
+  "lat": 51.505025,
+  "lng": -0.10156529999994746,
   "audience": null,
   "availability": null,
-  "series": "55b9b2e4f5",
-  "recurring": "Every Thursday",
-  "quality": 5,
-  "why": "",
-  "topics": [
-   "comedy",
-   "live comedy",
-   "drinks"
-  ],
-  "flags": [],
-  "date": "out",
-  "singles": false,
-  "ages": ""
- },
- {
-  "name": "Thursday Night at Backyard Comedy Club",
-  "category": "Comedy",
-  "description": "It's the perfect opportunity to see established acts trying out fresh content and big TV names warming up for their national tours.",
-  "neighborhood": "Bethnal Green Central",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/thursday-night-at-backyard-comedy-club-tickets-1993132697552",
-  "venue": "Backyard Comedy Club",
-  "lat": 51.525396,
-  "lng": -0.05531490000000001,
-  "audience": null,
-  "availability": null,
-  "series": "3cb5f7ba24",
-  "recurring": "Every Thursday",
+  "series": "e64df38d64",
   "quality": 7,
-  "why": "Established acts and TV names trying new material before national tours.",
+  "why": "Tony Law headlines a stand-up night in Southwark.",
   "topics": [
-   "comedy",
-   "new material",
-   "touring acts"
-  ],
-  "flags": [],
-  "date": "out",
-  "singles": false,
-  "ages": ""
- },
- {
-  "name": "Unlimited Pizza, a Drink & Comedy Show for 2!",
-  "category": "Comedy",
-  "description": "Comedy Night for Two with Unlimited Pizza and a Drink!",
-  "neighborhood": "Shoreditch",
-  "price": null,
-  "start_time": "7:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/unlimited-pizza-a-drink-comedy-show-for-2-tickets-1980256523569",
-  "venue": "City Comedy Club",
-  "lat": 51.5256992,
-  "lng": -0.0833529,
-  "audience": null,
-  "availability": null,
-  "series": "fce5af606d",
-  "recurring": "Every Thursday",
-  "quality": 5,
-  "why": "Comedy show with unlimited pizza and a drink for two.",
-  "topics": [
-   "comedy",
-   "pizza",
-   "date night"
-  ],
-  "flags": [],
-  "date": "out",
-  "singles": false,
-  "ages": ""
- },
- {
-  "name": "Strong Woman - A Comedy Show by Monica Hsueh (West End)",
-  "category": "Comedy",
-  "description": "As seen on BBC and Instagram. Expect big laughs, dating misadventures & witty wisdom - a feel-good comedy night out in London.",
-  "neighborhood": "Strand, St James & Mayfair",
-  "price": null,
-  "start_time": "7:15 PM",
-  "end_time": "8:15 PM",
-  "url": "https://www.eventbrite.com/e/strong-woman-a-comedy-show-by-monica-hsueh-west-end-tickets-2001420566792",
-  "venue": "The Coach House Piccadilly",
-  "lat": 51.5097294,
-  "lng": -0.1319878,
-  "audience": null,
-  "availability": null,
-  "series": "ed0c12e88c",
-  "recurring": "Every Thursday",
-  "quality": 5,
-  "why": "Monica Hsueh's stand-up show, previously featured on BBC and Instagram.",
-  "topics": [
-   "comedy",
    "stand-up",
-   "dating"
+   "comedy",
+   "headliner"
   ],
   "flags": [],
+  "subject": "Tony Law",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1184930634%252F151054430800%252F1%252Foriginal.20260519-111834%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D951c22d6c6f0fb0d3e99cd1cd82a0f35&w=940&q=75"
  },
  {
   "name": "TNB BHM 2026: YOU, ME & TUSCANY SCREENING + PANEL",
@@ -7593,7 +7841,8 @@
   "subject": "You, Me & Tuscany",
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1195055833%252F544889809665%252F1%252Foriginal.20261005-085827%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.471%26fp-y%3D0.523%26s%3D222772e9b6936f656df133bedbb91eee&w=940&q=75"
  },
  {
   "name": "Double Edge - Feature Film Premiere",
@@ -7620,7 +7869,8 @@
   "flags": [],
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1190374023%252F3010020140255%252F1%252Foriginal.20260805-142046%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D334a3e3d746408de668fb5a55fb97745&w=940&q=75"
  },
  {
   "name": "NOW SCREENING: A BHM Short Film Night by LOWAA",
@@ -7647,7 +7897,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1195867559%252F2746383328981%252F1%252Foriginal.20261015-142805%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3Deb821de772c4a800418e8b2fa6ff4afc&w=940&q=75"
  },
  {
   "name": "The Legend of the Looms",
@@ -7674,7 +7925,8 @@
   "flags": [],
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194909559%252F159843716116%252F1%252Foriginal.20261002-142835%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.477%26fp-y%3D0.779%26s%3D9fee6fc369d483932fcb72ec47ad4fb0&w=940&q=75"
  },
  {
   "name": "Celebrating British Black History Month Film Night: Cimarons Story (1967)",
@@ -7701,7 +7953,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194361581%252F1117514150503%252F1%252Foriginal.20260925-141907%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.482%26fp-y%3D0.146%26s%3Daf65f2d43c770a31d5fae2070b3cd853&w=940&q=75"
  },
  {
   "name": "Burnt Toast with Marmite: Short Film Premiere",
@@ -7757,12 +8010,7 @@
   "date": "first",
   "singles": false,
   "ages": "",
-  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Frankenstein_poster_1931.jpg/960px-Frankenstein_poster_1931.jpg",
-  "image_credit": {
-   "by": "Karoly Grosz",
-   "license": "Public domain",
-   "url": "https://commons.wikimedia.org/wiki/File:Frankenstein_poster_1931.jpg"
-  }
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1196427401%252F765499275203%252F1%252Foriginal.20261023-085416%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.5%26s%3D7832b7a7942ad5970320de16e51cccfa&w=940&q=75"
  },
  {
   "name": "Film Club",
@@ -7816,7 +8064,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194358247%252F140424702941%252F1%252Foriginal.20260925-133023%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.444%26s%3D7bd07cb4d408b1c07e280d4d2ff7b600&w=940&q=75"
  },
  {
   "name": "Film Club | Quatermass and the Pit (1968)",
@@ -7842,10 +8091,11 @@
   ],
   "flags": [],
   "subject": "Quatermass and the Pit (1967 film)",
-  "family": "rons coffee house: film club",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "family": "rons coffee house: film club",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194100041%252F2791235441291%252F1%252Foriginal.20260922-134410%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.5%26fp-y%3D0.158%26s%3Dc9af6bb946374c89c8078a81ba2f9c11&w=940&q=75"
  },
  {
   "name": "The Lost Boys @ The Leyton Engineer",
@@ -7873,7 +8123,8 @@
   "subject": "The Lost Boys",
   "date": "first",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1195778081%252F328189421455%252F1%252Foriginal.20261014-134028%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.478%26fp-y%3D0.425%26s%3D05ffd646c9c17b52e6afd5351f595f29&w=940&q=75"
  },
  {
   "name": "Mongolian Cultural Club: The Pasture /2022/ - Horror, thriller",
@@ -7900,35 +8151,8 @@
   "flags": [],
   "date": "",
   "singles": false,
-  "ages": ""
- },
- {
-  "name": "Train to Busan Film Screening",
-  "category": "Film",
-  "description": "Get ready for a pre Halloween thrilling zombie ride with Train to Busan on the big screen\u2014perfect for fans of intense action and scares!",
-  "neighborhood": "Brick Lane North",
-  "price": null,
-  "start_time": "8:00 PM",
-  "end_time": "10:00 PM",
-  "url": "https://www.eventbrite.co.uk/e/train-to-busan-film-screening-tickets-1998553349869",
-  "venue": "Close-Up Cinema",
-  "lat": 51.5236256,
-  "lng": -0.0720474,
-  "audience": null,
-  "availability": null,
-  "series": "d0829118c4",
-  "quality": 6,
-  "why": "Korean zombie thriller Train to Busan on the big screen.",
-  "topics": [
-   "zombie films",
-   "korean cinema",
-   "halloween"
-  ],
-  "flags": [],
-  "subject": "Train to Busan",
-  "date": "",
-  "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1196286760%252F1581573213113%252F1%252Foriginal.20261021-153957%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.567%26fp-y%3D0.546%26s%3D87dbd77c96382ed2028b079630e84e46&w=940&q=75"
  },
  {
   "name": "The Rocky Horror Picture Show (Jim Sharman, 1975, Cert 15, 96mins) | London",
@@ -7956,7 +8180,8 @@
   "subject": "The Rocky Horror Picture Show",
   "date": "out",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1194284025%252F2903006258311%252F1%252Foriginal.20260924-143527%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.019%26fp-y%3D0.534%26s%3Dfbe3f65ce8bfd4a0876853edf7b22f31&w=940&q=75"
  },
  {
   "name": "Charity Film Night | Charity Week 2026",
@@ -7984,6 +8209,7 @@
   "subject": "The President's Cake",
   "date": "",
   "singles": false,
-  "ages": ""
+  "ages": "",
+  "image": "https://www.eventbrite.co.uk/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1196448557%252F3018888289783%252F1%252Foriginal.20261023-152426%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D940%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.408%26fp-y%3D0.535%26s%3D38a5d1807ff718508010eac32bbca2f3&w=940&q=75"
  }
 ]
