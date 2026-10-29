@@ -3,13 +3,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#fff7ec">
+<script>(function(){try{var t=localStorage.getItem("tonight-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>Plan your night — Lineup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#fff7ec;--ink:#151515;--hot:#ff4f2e;--sun:#ffc21a;--sky:#2f6bff;--mint:#19b38a;--card:#fff;
+:root{--poster:#151515;--on-poster:#fff7ec;--poster-edge:none;--land:#fff7ec;--border:#e3d3bd;--maplabel:#5f574c;--water:#1d3557;--park:#cfe8c3;--accent:#ff4f2e;--on-accent:#151515;--danger:#d7261e;--paper:#fff7ec;--ink:#151515;--hot:#ff4f2e;--sun:#ffc21a;--sky:#2f6bff;--mint:#19b38a;--card:#fff;
   --soft:color-mix(in srgb,var(--ink) 62%,var(--paper));--d:'Anton',Impact,'Arial Narrow Bold',sans-serif;
   --t:'Space Grotesk',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#14120f;--card:#1e1b17;--ink:#f4ece0;--soft:#b4aa99;--accent:#ff4f2e;--on-accent:#151515;--danger:#ff6a4d;--poster:#0b0a09;--on-poster:#f4ece0;--poster-edge:inset 0 0 0 1.5px #352e25;--land:#2a251f;--border:#3d352c;--maplabel:#b4aa99;--water:#0f1c2e;--park:#1f3324;color-scheme:dark;}}
+:root[data-theme="dark"]{--paper:#14120f;--card:#1e1b17;--ink:#f4ece0;--soft:#b4aa99;--accent:#ff4f2e;--on-accent:#151515;--danger:#ff6a4d;--poster:#0b0a09;--on-poster:#f4ece0;--poster-edge:inset 0 0 0 1.5px #352e25;--land:#2a251f;--border:#3d352c;--maplabel:#b4aa99;--water:#0f1c2e;--park:#1f3324;color-scheme:dark;}
+.pl-theme{border:0;background:transparent;color:var(--ink);font:700 18px var(--t);cursor:pointer;width:36px;height:36px;border-radius:999px;}
+.pl-theme:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+
 *{box-sizing:border-box;}
 html,body{margin:0;background:var(--paper);color:var(--ink);}
 body{font-family:var(--t);-webkit-font-smoothing:antialiased;}
@@ -17,6 +23,9 @@ a{color:inherit;}
 button{font-family:var(--t);}
 .pl-top{display:flex;justify-content:space-between;align-items:center;max-width:1040px;margin:0 auto;padding:16px;}
 .pl-wm{font-family:var(--d);font-size:28px;text-decoration:none;letter-spacing:.01em;} .pl-wm b{color:var(--hot);font-weight:400;}
+body.pl-choosing #toniBtn{display:none;}
+.pl-nav{display:flex;gap:8px;align-items:center;}
+.pl-ghost{background:transparent!important;box-shadow:none!important;border-color:transparent!important;text-decoration:underline;text-underline-offset:3px;}
 .pl-link{border:2px solid var(--ink);border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px;text-decoration:none;background:var(--card);box-shadow:0 2px 0 var(--ink);}
 .pl-ask{max-width:1040px;margin:0 auto;padding:28px 16px 8px;}
 .pl-kick{font-weight:700;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--hot);margin:0 0 14px;}
@@ -55,32 +64,37 @@ button{font-family:var(--t);}
 .pl-make:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink);}
 .pl-hint{font-size:13.5px;color:var(--soft);}
 .pl-out{max-width:1040px;margin:0 auto;padding:22px 16px 70px;}
-.pl-poster{position:relative;overflow:hidden;background:var(--ink);color:var(--paper);border-radius:22px;padding:30px 28px 26px;text-align:center;}
+.pl-poster{position:relative;overflow:hidden;background:var(--poster);color:var(--on-poster);box-shadow:var(--poster-edge);border-radius:22px;padding:30px 28px 26px;text-align:center;}
 .pl-blob{position:absolute;border-radius:50%;pointer-events:none;}
 .pl-b1{width:400px;height:400px;background:var(--hot);left:-170px;top:-200px;opacity:.9;}
 .pl-b2{width:300px;height:300px;background:var(--sky);right:-170px;bottom:-220px;opacity:.85;}
 .pl-b3{width:110px;height:110px;background:var(--sun);right:-30px;top:-36px;}
 .pl-b4{width:84px;height:84px;background:var(--mint);left:-26px;bottom:-30px;}
+@media (max-width:520px){.pl-b3{width:70px;height:70px;right:-28px;top:-30px;}.pl-eye{letter-spacing:.18em;padding:0 34px;}}
 .pl-poster > :not(.pl-blob){position:relative;z-index:1;}
 .pl-eye{font-weight:700;letter-spacing:.3em;font-size:12px;color:var(--sun);text-transform:uppercase;margin:0;}
 .pl-date{font-family:var(--d);font-weight:400;font-size:clamp(34px,5vw,56px);line-height:.95;text-transform:uppercase;margin:8px 0 0;}
 .pl-act{margin:26px auto 0;max-width:820px;}
 .pl-role{display:block;font-weight:700;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--sun);margin:0 0 6px;}
 .pl-nm{font-family:var(--d);font-weight:400;text-transform:uppercase;line-height:1.02;margin:0;overflow-wrap:anywhere;}
-.pl-nm a{text-decoration:none;color:var(--paper);} .pl-nm a:hover{color:var(--sun);}
+.pl-nm a{text-decoration:none;color:var(--on-poster);} .pl-nm a:hover{color:var(--sun);}
 .pl-head .pl-nm{font-size:clamp(40px,7vw,80px);}
 .pl-sup .pl-nm{font-size:clamp(24px,3.4vw,38px);}
 .pl-info{margin:8px 0 0;font-weight:600;font-size:14px;opacity:.8;}
 .pl-why{margin:6px auto 0;max-width:620px;font-size:15px;line-height:1.45;opacity:.92;}
 .pl-pic{display:block;width:min(340px,80%);aspect-ratio:16/10;object-fit:cover;margin:0 auto 16px;border-radius:14px;border:3px solid var(--paper);transform:rotate(-1.5deg);}
-.pl-sw{margin:10px 0 0;border:1.5px solid color-mix(in srgb,var(--paper) 55%,transparent);background:transparent;color:var(--paper);border-radius:999px;padding:5px 12px;font-weight:600;font-size:12.5px;cursor:pointer;}
+.pl-sw{margin:10px 0 0;border:1.5px solid color-mix(in srgb,var(--on-poster) 55%,transparent);background:transparent;color:var(--on-poster);border-radius:999px;padding:5px 12px;font-weight:600;font-size:12.5px;cursor:pointer;}
 .pl-sw:hover{border-color:var(--sun);color:var(--sun);}
 .pl-sups{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 36px;max-width:900px;margin:8px auto 0;}
 .pl-star{color:var(--hot);margin:0 10px;}
-.pl-foot{margin:28px auto 0;padding-top:14px;border-top:2px solid color-mix(in srgb,var(--paper) 22%,transparent);
+.pl-foot{margin:28px auto 0;padding-top:14px;border-top:2px solid color-mix(in srgb,var(--on-poster) 22%,transparent);
   font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;line-height:1.8;max-width:900px;}
 .pl-empty{font-family:var(--d);font-size:30px;text-transform:uppercase;margin:24px 0 8px;}
-.pl-more{max-width:820px;margin:18px auto 0;}
+.pl-more{max-width:820px;margin:26px auto 0;}
+.pl-one{max-width:620px;margin:-4px 0 14px;color:var(--soft);font-size:15px;line-height:1.45;}
+.pl-allbig{display:block;max-width:820px;margin:14px auto 34px;padding:14px 18px;border:2px solid var(--ink);border-radius:14px;text-align:center;font:700 16px var(--t);color:var(--ink);text-decoration:none;}
+.pl-allbig:hover{background:var(--ink);color:var(--paper);}
+.pl-acts1{margin-top:18px;}
 .pl-note2{margin:0 0 10px;font-size:14.5px;color:var(--soft);text-align:center;}
 .pl-mh{font-family:var(--d);font-weight:400;font-size:24px;text-transform:uppercase;margin:6px 0 8px;}
 .pl-ml{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;}
@@ -90,6 +104,100 @@ button{font-family:var(--t);}
 .pl-ml span{font-size:13px;color:var(--soft);}
 .pl-after{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0 0;}
 .pl-after a,.pl-after button{border:2px solid var(--ink);border-radius:999px;padding:11px 18px;font-weight:700;font-size:14.5px;background:var(--card);color:var(--ink);text-decoration:none;cursor:pointer;box-shadow:0 2px 0 var(--ink);}
+.pl-picks{margin:0;}
+.pl-stepk{margin:0 0 10px!important;}
+.pl-out .pl-stepk{max-width:1040px;margin:0 auto 10px!important;}
+.pl-tools{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin:14px 0 0;color:var(--soft);font-size:14px;}
+.pl-tools button,.pl-tools a{border:0;background:none;color:var(--soft);font:600 14px var(--t);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:4px;}
+.pl-step3{max-width:1040px;margin:30px auto 0;}
+.pl-who{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.pl-whob{display:flex;flex-direction:column;gap:4px;text-align:left;border:2px solid var(--ink);border-radius:18px;padding:16px 18px;background:var(--card);color:var(--ink);cursor:pointer;box-shadow:0 3px 0 var(--ink);font:inherit;}
+.pl-whob b{font-family:var(--d);font-weight:400;font-size:26px;text-transform:uppercase;line-height:1;}
+.pl-whob span{font-size:13.5px;color:var(--soft);}
+.pl-whob.y{background:var(--sun);color:#151515;} .pl-whob.y span{color:#3a3328;}
+.pl-whob:hover{transform:translateY(-1px);} .pl-whob:focus-visible{outline:3px solid var(--sky);outline-offset:3px;}
+.pl-whob[hidden]{display:none;}
+.pl-tuned{margin:0 0 10px;font-weight:700;font-size:14px;color:var(--hot);}
+.pl-tabs{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:30px 0 12px;}
+.pl-tab{border:2px solid var(--ink);border-radius:999px;padding:7px 15px;background:transparent;color:var(--ink);font:700 14px var(--t);cursor:pointer;}
+.pl-tab[aria-selected="true"]{background:var(--ink);color:var(--paper);}
+.pl-tab:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+.pl-tabs .pl-every{margin:0 0 0 auto;}
+body.pl-made .pl-tabs,body.pl-made #plPicks,body.pl-made #plMap,body.pl-made #plMine,body.pl-made .pl-hint,body.pl-made #plMoreBtn,body.pl-made #plFriends{display:none!important;}
+.pl-back{display:inline-block;margin:0 0 14px;border:0;background:none;color:var(--ink);font:700 14.5px var(--t);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:4px 0;}
+.pl-hop + .pl-act{margin-top:6px;}
+.pl-mapbtn{border:2px solid var(--ink);border-radius:999px;padding:8px 16px;background:var(--card);color:var(--ink);font:700 14.5px var(--t);cursor:pointer;box-shadow:0 2px 0 var(--ink);}
+.pl-mapbtn[aria-expanded="true"]{background:var(--ink);color:var(--paper);}
+.pl-mapbtn:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+.pl-map{display:flex;flex-direction:column;gap:10px;}
+.pl-map[hidden],.pl-picks[hidden]{display:none!important;}
+.mp-head{display:flex;justify-content:space-between;align-items:center;}
+.mp-h{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:clamp(26px,4vw,38px);margin:0;}
+.mp-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.mp-act{background:var(--sun)!important;color:#151515!important;box-shadow:0 2px 0 var(--ink);}
+.mp-act[aria-pressed="true"]{background:var(--ink)!important;color:var(--paper)!important;}
+.mp-msg{font-size:13.5px;color:var(--soft);}
+.mp-grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start;}
+@media (max-width:900px){.mp-grid{grid-template-columns:1fr;}}
+.mp-box{position:relative;border:2px solid var(--ink);border-radius:20px;overflow:hidden;background:var(--water);height:min(70vh,660px);min-height:400px;touch-action:pan-x pan-y;box-shadow:var(--poster-edge),0 3px 0 var(--ink);}
+#mpSvg{width:100%;height:100%;display:block;cursor:grab;} #mpSvg.drag{cursor:grabbing;}
+.mp-land{fill:var(--land);stroke:var(--land);stroke-width:2.5;stroke-linejoin:round;vector-effect:non-scaling-stroke;}
+.mp-line{fill:none;stroke:var(--border);stroke-width:1;vector-effect:non-scaling-stroke;pointer-events:none;}
+.mp-land.park{fill:var(--park);stroke:var(--park);}
+.mp-hl{font-family:var(--d);text-transform:uppercase;fill:var(--maplabel);letter-spacing:.04em;pointer-events:none;paint-order:stroke;stroke:var(--land);stroke-linejoin:round;}
+.mp-pin{stroke:#151515;cursor:pointer;vector-effect:non-scaling-stroke;} .mp-pin.dim{opacity:.16;} .mp-pin.sel{stroke-width:3;}
+.mp-pin:focus-visible{outline:none;stroke:var(--sky);stroke-width:4;}
+.mp-route{fill:none;stroke:var(--sun);stroke-dasharray:6 6;stroke-width:3;vector-effect:non-scaling-stroke;}
+.mp-stop{fill:var(--sun);stroke:#151515;stroke-width:2;vector-effect:non-scaling-stroke;}
+.mp-stopn{font-family:var(--d);fill:#151515;text-anchor:middle;pointer-events:none;}
+.mp-me{fill:var(--sky);stroke:#fff;stroke-width:3;vector-effect:non-scaling-stroke;}
+.mp-ring{fill:rgba(47,107,255,.14);stroke:var(--sky);stroke-dasharray:5 5;vector-effect:non-scaling-stroke;}
+.mp-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(21,21,21,.82);color:#fff7ec;font:700 15px var(--t);padding:10px 16px;border-radius:999px;pointer-events:none;}
+.mp-hint[hidden]{display:none;}
+.mp-zoom{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px;}
+.mp-zb{width:38px;height:38px;border-radius:12px;border:2px solid #151515;background:#fff7ec;color:#151515;font:700 18px var(--t);cursor:pointer;box-shadow:0 2px 0 #151515;}
+.mp-card{position:absolute;left:12px;right:12px;bottom:12px;max-width:480px;background:#fff7ec;color:#151515;border:2px solid #151515;border-radius:18px;padding:14px 16px;box-shadow:0 3px 0 #151515;}
+.mp-ct{font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#ff4f2e;}
+.mp-card h3{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:24px;line-height:1.05;margin:3px 0 4px;overflow-wrap:anywhere;}
+.mp-cm{font-size:13.5px;font-weight:600;color:#5f574c;margin:0;} .mp-cw{font-size:14px;margin:6px 0 0;}
+.mp-cbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.mp-cb{border:2px solid #151515;border-radius:999px;padding:7px 13px;font:700 13.5px var(--t);background:#fff;color:#151515;cursor:pointer;text-decoration:none;}
+.mp-cb.y{background:#ffc21a;box-shadow:0 2px 0 #151515;}
+.mp-x{position:absolute;right:10px;top:8px;border:0;background:none;font-size:20px;cursor:pointer;color:#151515;}
+.mp-side{border:2px solid var(--ink);border-radius:20px;background:var(--card);box-shadow:0 3px 0 var(--ink);display:flex;flex-direction:column;max-height:min(70vh,660px);min-height:400px;}
+.mp-side h3{margin:0;padding:12px 16px 8px;font-family:var(--d);font-weight:400;font-size:22px;text-transform:uppercase;border-bottom:2px solid color-mix(in srgb,var(--ink) 14%,transparent);}
+.mp-side h3 small{font:600 12.5px var(--t);color:var(--soft);margin-left:6px;}
+.mp-list{overflow-y:auto;padding:4px 8px 10px;}
+.mp-row{display:grid;grid-template-columns:58px 1fr;gap:2px 10px;padding:9px 8px;border-radius:12px;cursor:pointer;border:0;background:none;width:100%;text-align:left;color:var(--ink);font:inherit;}
+.mp-row:hover,.mp-row.on{background:color-mix(in srgb,var(--sun) 35%,transparent);}
+.mp-row b{font-family:var(--d);font-weight:400;font-size:16px;grid-row:span 2;white-space:nowrap;}
+.mp-row span{font-weight:700;font-size:13.5px;line-height:1.25;overflow-wrap:anywhere;display:flex;gap:6px;align-items:baseline;}
+.mp-row span i{flex:none;width:9px;height:9px;border-radius:50%;border:1.5px solid #151515;display:inline-block;}
+.mp-row em{font-style:normal;font-size:12px;color:var(--soft);}
+.mp-note{font-size:13px;color:var(--soft);padding:10px;}
+body.calm .pl-acts1 #plShuffle,body.calm .pl-acts1 #plToni,body.calm .pl-acts1 #plAll{border:0!important;box-shadow:none!important;background:transparent!important;padding:6px 4px!important;
+  text-decoration:underline;text-underline-offset:3px;font-size:13.5px!important;font-weight:600!important;color:var(--soft)!important;}
+body.calm .pl-acts1 #plShuffle{margin-left:8px;}
+body.calm .pl-acts1 #plBringBtn,body.calm .pl-acts1 #plLock{font-size:16px!important;padding:13px 22px!important;}
+body.calm .pl-every{font-size:13.5px;font-weight:600;color:var(--soft);}
+body.calm .pl-picks{margin-top:34px;}
+.pl-unfurl{display:block;margin:18px 0 0;border:2px solid var(--ink);border-radius:999px;padding:9px 18px;background:var(--card);color:var(--ink);font:700 14.5px var(--t);cursor:pointer;box-shadow:0 2px 0 var(--ink);}
+.pl-unfurl[hidden]{display:none;}
+.pl-unfurl:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+.pl-friends{transition:opacity .25s ease;}
+.pl-friends.pl-fold{display:none;}
+@media (prefers-reduced-motion:reduce){.pl-friends{transition:none;}}
+.pl-hop{margin:18px auto 0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--on-poster) 60%,transparent);}
+.pl-picked{display:inline-block;margin:8px 0 0;background:var(--sun);color:#151515;font-weight:700;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:999px;}
+.pl-pk{font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--hot);margin:0 0 8px;}
+.pl-pl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;}
+.pl-pc{width:100%;height:100%;text-align:left;display:flex;flex-direction:column;gap:4px;padding:12px 14px;border:2px solid var(--ink);border-radius:16px;background:var(--card);color:var(--ink);cursor:pointer;box-shadow:0 2px 0 var(--ink);font:inherit;}
+.pl-pc:hover{transform:translateY(-1px);} .pl-pc:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+.pl-pc b{font-size:16px;line-height:1.25;overflow-wrap:anywhere;} .pl-pc span{font-size:13px;color:var(--soft);} .pl-pc em{font-style:normal;font-size:13.5px;line-height:1.4;}
+.pl-pc i{margin-top:auto;padding-top:4px;font-style:normal;font-weight:700;font-size:13px;}
+.pl-mine[hidden]{display:none;}
+.pl-mine{display:block;margin:16px 0 0;border:2px solid var(--ink);border-radius:999px;padding:9px 16px;background:var(--card);color:var(--ink);font:700 14.5px var(--t);cursor:pointer;box-shadow:0 2px 0 var(--ink);}
+.pl-every{display:inline-block;margin:16px 0 0;font-weight:700;font-size:14.5px;color:var(--ink);}
 .pl-friends{max-width:1040px;margin:30px auto 0;padding:0 16px;}
 .pl-fh{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:clamp(26px,4vw,36px);margin:0 0 12px;}
 .pl-fgrid{display:grid;grid-template-columns:1fr 1.4fr;gap:18px 28px;}
@@ -116,6 +224,8 @@ button{font-family:var(--t);}
 .pl-whol{list-style:none;margin:0;padding:0;}
 .pl-whol li{display:flex;flex-wrap:wrap;gap:4px 10px;padding:7px 0;border-top:1.5px solid color-mix(in srgb,var(--ink) 14%,transparent);font-size:14.5px;}
 .pl-whol li b{font-family:var(--d);font-weight:400;} .pl-whol li span{flex-basis:100%;color:var(--soft);font-size:13px;}
+.pl-on{margin:4px 0 16px;padding:12px 16px;border:2px solid var(--ink);border-radius:16px;background:var(--sun);color:#151515;font-size:15px;box-shadow:0 2px 0 var(--ink);}
+.pl-on b{font-family:var(--d);font-weight:400;font-size:20px;text-transform:uppercase;margin-right:6px;}
 .pl-inv{display:flex;flex-direction:column;gap:14px;}
 .pl-in{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:700;font-size:14px;cursor:pointer;}
 .pl-in input{width:20px;height:20px;accent-color:var(--hot);}
@@ -140,32 +250,199 @@ button{font-family:var(--t);}
 .pl-move{margin:0 0 0 98px;padding:14px 0;font-size:13.5px;font-weight:600;color:var(--soft);}
 .pl-move span{display:inline-block;background:var(--paper);border:1.5px dashed color-mix(in srgb,var(--ink) 35%,transparent);border-radius:999px;padding:5px 12px;}
 .pl-move.tight span{border-color:var(--hot);color:var(--hot);}
-.pl-remind{display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:center;margin:36px 0 0;background:var(--ink);color:var(--paper);border-radius:22px;padding:24px;}
+.pl-remind{display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:center;margin:36px 0 0;background:var(--poster);color:var(--on-poster);box-shadow:var(--poster-edge);border-radius:22px;padding:24px;}
 .pl-remind h2{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:30px;line-height:1.05;margin:0 0 8px;}
 .pl-remind p{margin:0 0 16px;font-size:14.5px;line-height:1.45;opacity:.85;} .pl-remind .pl-kick{color:var(--sun);opacity:1;margin:0 0 8px;}
-.pl-remind .pl-make{display:inline-block;text-decoration:none;font-size:15px;padding:11px 18px;box-shadow:0 3px 0 var(--paper);}
-.pl-phone{background:var(--paper);color:var(--ink);border-radius:26px;padding:16px;border:3px solid var(--paper);box-shadow:inset 0 0 0 2px var(--ink);}
+.pl-remind .pl-make{display:inline-block;text-decoration:none;font-size:15px;padding:11px 18px;box-shadow:0 3px 0 var(--on-poster);}
+.pl-phone{background:#fff7ec;color:#151515;border-radius:26px;padding:16px;border:3px solid #fff7ec;box-shadow:inset 0 0 0 2px #151515;}
 .pl-phone p{margin:6px 0 0;background:#e9e1d3;border-radius:16px 16px 16px 4px;padding:10px 12px;font-size:13.5px;line-height:1.4;opacity:1;}
 .pl-from{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);}
 @media (max-width:640px){.pl-remind{grid-template-columns:1fr;}.pl-tl::before{left:63px;}.pl-stop{grid-template-columns:52px 1fr;gap:22px;}
   .pl-stop::before{left:56px;}.pl-move{margin-left:74px;}.pl-when b{font-size:19px;}}
 @media (max-width:560px){.pl-poster{padding:24px 18px 22px;}.pl-sent{line-height:1.12;}}
+</style><style>
+#toniBtn{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:120;
+background:var(--accent);color:var(--on-accent,var(--ink));border:3px solid var(--ink);
+box-shadow:4px 4px 0 var(--ink);font:800 14px/1 'Inter',sans-serif;letter-spacing:1px;text-transform:uppercase;
+padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:8px;}
+#toniBtn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
+#toniPanel{position:fixed;z-index:130;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));
+width:min(420px,calc(100vw - 36px));height:min(660px,calc(100vh - 100px));display:flex;flex-direction:column;
+background:var(--paper);color:var(--ink);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);
+font-family:'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+#toniPanel[hidden]{display:none;}
+.tn-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;
+background:var(--accent);color:var(--on-accent,var(--ink));border-bottom:3px solid var(--ink);}
+.tn-head b{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:900;}
+.tn-head span{font-size:12px;font-weight:600;opacity:.85;display:block;}
+.tn-close{background:none;border:none;font-size:26px;line-height:1;cursor:pointer;color:inherit;padding:2px 6px;}
+.tn-log{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:16px;}
+.tn-you{align-self:flex-end;max-width:82%;background:var(--ink);color:var(--paper);padding:9px 12px;
+font-size:14px;line-height:1.45;}
+.tn-toni{display:flex;flex-direction:column;gap:10px;}
+.tn-who{font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink);opacity:.6;}
+.tn-text{margin:0;font-size:15px;line-height:1.5;}
+.tn-text.small{font-size:13.5px;opacity:.8;}
+.tn-text.err{color:var(--danger,#c0392b);font-weight:600;}
+.tn-picks{display:flex;flex-direction:column;gap:10px;position:relative;}
+.tn-picks.plan::before{content:"";position:absolute;left:31px;top:18px;bottom:18px;width:3px;background:var(--ink);}
+.tn-gap{position:relative;z-index:1;align-self:flex-start;margin:-4px 0 -4px 12px;font:700 12px 'Inter',sans-serif;
+background:var(--paper);color:var(--ink);border:2px solid var(--ink);padding:3px 9px;}
+.tn-card{position:relative;display:grid;grid-template-columns:64px minmax(0,1fr);background:var(--card);
+border:2px solid var(--ink);}
+.tn-time{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+background:var(--ink);color:var(--paper);font-family:'Fraunces',Georgia,serif;font-weight:900;
+font-size:19px;line-height:1;padding:10px 4px;text-align:center;}
+.tn-time small{font:800 10px 'Inter',sans-serif;letter-spacing:1px;}
+#conciergeNote.cn-busy{opacity:.55;transition:opacity .15s;pointer-events:none;}
+.tn-modes{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 10px;}
+.tn-modes button{font:700 12.5px inherit;padding:6px 12px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;}
+.tn-modes button.on{background:var(--ink);color:var(--paper);}
+.tn-dist{font-size:12.5px;font-weight:600;margin:2px 0 4px;opacity:.8;}
+.tn-all-row .v + .d,.tn-all-row .d{grid-column:2;font-size:12px;opacity:.65;}
+.tn-seeall{display:inline-block;margin:8px 0 2px;font-weight:700;color:var(--ink);text-underline-offset:3px;}
+.tn-all{margin:10px 0 4px;border:2px solid var(--ink);border-radius:12px;background:var(--card,#fff);}
+.tn-all summary{cursor:pointer;padding:10px 12px;font-weight:800;list-style:none;}
+.tn-all summary::-webkit-details-marker{display:none;}
+.tn-all[open] summary{border-bottom:1px solid color-mix(in srgb,var(--ink) 15%,transparent);}
+.tn-all-day{padding:8px 12px 2px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.7;}
+.tn-all-row{display:grid;grid-template-columns:62px 1fr;gap:0 8px;padding:6px 12px;color:inherit;text-decoration:none;font-size:14px;line-height:1.3;}
+.tn-all-row:hover{background:color-mix(in srgb,var(--ink) 6%,transparent);}
+.tn-all-row .t{font-weight:700;white-space:nowrap;}
+.tn-all-row .v{grid-column:2;font-size:12px;opacity:.65;}
+.tn-time.tba{font:800 11px 'Inter',sans-serif;letter-spacing:1px;}
+.tn-body{padding:10px 12px;min-width:0;}
+.tn-body .n{font-weight:800;font-size:14.5px;line-height:1.3;}
+.tn-body .m{font-size:12.5px;opacity:.8;margin-top:3px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;}
+.tn-free{font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;background:var(--accent);
+color:var(--on-accent,var(--ink));padding:2px 6px;opacity:1;}
+.tn-body .r{font-size:13.5px;line-height:1.45;margin-top:6px;}
+.tn-body .a{display:flex;gap:14px;align-items:center;margin-top:9px;flex-wrap:wrap;}
+.tn-body .a button{font:700 12px 'Inter',sans-serif;border:2px solid var(--ink);padding:5px 10px;
+background:var(--paper);color:var(--ink);cursor:pointer;}
+.tn-body .a button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent,var(--ink));}
+.tn-body .a a{font:700 12.5px 'Inter',sans-serif;color:var(--ink);text-decoration:underline;
+text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;}
+.tn-dine{border:2px dashed var(--ink);padding:10px 12px;background:var(--paper);}
+.tn-dine .t{font-weight:800;font-size:14px;}
+.tn-dine .s{font-size:12.5px;opacity:.75;margin:2px 0 8px;}
+.tn-dine .b{display:flex;flex-wrap:wrap;gap:8px;}
+.tn-rest{border-top:2px solid var(--muted);padding:9px 0;}
+.tn-rest .rn{font-weight:800;font-size:14.5px;}
+.tn-rest .rm{font-size:12.5px;opacity:.8;margin-top:2px;}
+.tn-rest .rl{display:flex;gap:14px;margin-top:6px;}
+.tn-rest .rl a{font:700 12.5px 'Inter',sans-serif;color:var(--ink);text-decoration:underline;
+text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;}
+.tn-src{font-size:11px;opacity:.6;margin:2px 0 8px;}
+.tn-dine .t2{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.7;margin-bottom:6px;}
+.tn-dine .b a{font:800 12.5px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent,var(--ink));
+border:2px solid var(--ink);padding:7px 10px;text-decoration:none;box-shadow:2px 2px 0 var(--ink);}
+.tn-hbtns{display:flex;align-items:center;gap:6px;}
+.tn-new{font:800 11.5px 'Inter',sans-serif;text-transform:uppercase;letter-spacing:1px;background:none;
+color:inherit;border:2px solid currentColor;padding:4px 8px;cursor:pointer;}
+.tn-earlier{align-self:center;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.55;}
+.tn-shown{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:2px solid var(--ink);padding:9px 12px;
+background:var(--card);font-weight:700;font-size:14px;}
+.tn-party{display:inline-flex;align-items:center;gap:6px;}
+.tn-party button{width:24px;height:24px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);font:800 14px/1 'Inter',sans-serif;cursor:pointer;padding:0;}
+.tn-send{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:12px;}
+.tn-send button:not(.tn-linkish){font:800 12.5px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent,var(--ink));
+border:2px solid var(--ink);padding:8px 12px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);}
+.tn-send button:disabled{opacity:.6;cursor:wait;}
+.tn-send-msg{font-size:12.5px;font-weight:600;}
+.tn-send-msg a,.tn-linkish{font:inherit;font-weight:800;color:var(--ink);background:none;border:0;padding:0;cursor:pointer;
+text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;}
+.tn-shown a{font:800 12.5px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent,var(--ink));
+border:2px solid var(--ink);padding:6px 10px;text-decoration:none;}
+.tn-shown button{font:800 12.5px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent,var(--ink));
+border:2px solid var(--ink);padding:6px 10px;cursor:pointer;}
+.tn-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.tn-chips button{font:600 13px 'Inter',sans-serif;border:2px solid var(--ink);background:var(--card);color:var(--ink);
+padding:7px 10px;cursor:pointer;}
+.tn-chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
+.tn-city{padding:10px 14px 0;}
+.tn-form{display:flex;gap:8px;padding:10px;border-top:3px solid var(--ink);}
+.tn-form input{flex:1;min-width:0;border:2px solid var(--ink);padding:10px 12px;font:16px 'Inter',sans-serif;
+background:var(--field,#fff);color:var(--ink);}
+.tn-form button{background:var(--ink);color:var(--paper);border:2px solid var(--ink);font:800 13px 'Inter',sans-serif;
+text-transform:uppercase;padding:0 14px;cursor:pointer;}
+.tn-form button:disabled{opacity:.5;cursor:wait;}
+@media(max-width:560px){#toniPanel{right:0;left:0;bottom:0;width:100%;height:85vh;border-width:3px 0 0;box-shadow:none;}}
+
+#staleBar{background:var(--accent);color:var(--on-accent,var(--ink));border-bottom:3px solid var(--ink);
+font:700 14.5px 'Inter',sans-serif;padding:11px 16px;text-align:center;}
+#staleBar a{color:inherit;font-weight:800;text-decoration:underline;text-decoration-thickness:2px;margin-left:6px;}
+
+.dn-panel{border:2px solid var(--ink);background:var(--paper);color:var(--ink);padding:10px 12px;margin:8px 0 4px;
+font:500 13px/1.4 'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
+.dn-panel .dn-h{font-weight:800;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:6px;}
+.dn-panel .dn-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;padding:5px 0;border-top:1px solid var(--muted);}
+.dn-panel .dn-row > span{font-weight:700;min-width:118px;}
+.dn-panel .dn-opts{display:flex;flex-wrap:wrap;gap:5px;}
+.dn-panel .dn-opts button{font:600 12.5px 'Inter',sans-serif;border:1.5px solid var(--ink);background:var(--card,#fff);color:var(--ink);
+padding:4px 10px;border-radius:999px;cursor:pointer;}
+.dn-panel .dn-opts button[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
+.dn-panel .dn-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:8px;}
+.dn-panel .dn-go{font:800 12.5px 'Inter',sans-serif;background:var(--accent);color:var(--on-accent,var(--ink));border:2px solid var(--ink);
+padding:6px 12px;cursor:pointer;}
+.dn-panel .dn-act a,.dn-panel .dn-act .dn-close{font:600 12.5px 'Inter',sans-serif;color:var(--ink);background:none;border:0;
+text-decoration:underline;cursor:pointer;padding:0;}
+.dn-panel .dn-note{font-size:12px;opacity:.7;}
+.dn-x{font:700 12px/1 'Inter',sans-serif;background:none;border:1.5px solid currentColor;color:inherit;opacity:.6;cursor:pointer;
+padding:1px 5px;margin-left:4px;vertical-align:1px;}
+.dn-x:hover{opacity:1;}
+.dn-btn{font:700 12px 'Inter',sans-serif;background:none;border:1.5px solid var(--ink);color:var(--ink);cursor:pointer;
+padding:1px 7px;margin-left:6px;vertical-align:1px;white-space:nowrap;}
+#dnToast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,160%);z-index:140;display:flex;gap:14px;align-items:center;
+background:var(--ink);color:var(--paper);padding:11px 16px;font:600 14px 'Inter',sans-serif;border:2px solid var(--ink);
+box-shadow:4px 4px 0 var(--accent);transition:transform .2s ease;max-width:calc(100vw - 32px);box-sizing:border-box;}
+#dnToast.on{transform:translate(-50%,0);}
+#dnToast button{background:var(--accent);color:var(--on-accent,var(--ink));border:0;padding:5px 11px;font-weight:800;cursor:pointer;font-size:13px;}
+@media (prefers-reduced-motion: reduce){#dnToast{transition:none;}}
 </style></head>
-<body>
-<header class="pl-top"><a class="pl-wm" href="./">Lineup<b>.</b></a><a class="pl-link" id="plTopAll" href="./">All events</a></header>
+<body class="calm">
+<header class="pl-top"><a class="pl-wm" href="./">Lineup<b>.</b></a><nav class="pl-nav"><button type="button" class="pl-theme" id="plTheme" aria-label="Switch light or dark">◐</button><a class="pl-link pl-ghost" id="plSignIn" href="account.html">Sign in</a><a class="pl-link" id="plTopAll" href="./">All events</a></nav></header>
+<nav hidden aria-hidden="true"><a class="citycard" href="nyc/2026-10-29.html"><span class="cc-top">New York City</span></a><a class="citycard" href="london/2026-10-29.html"><span class="cc-top">London</span></a><a class="citycard" href="la/2026-10-28.html"><span class="cc-top">Los Angeles</span></a></nav>
 <main>
 <section class="pl-ask" id="plAsk" aria-labelledby="plSent">
-  <p class="pl-kick">Plan your night</p>
+  <p class="pl-kick">① What are you up for?</p>
   <h1 class="pl-sent" id="plSent"></h1>
   <div class="pl-choices" id="plChoices"></div>
   <div class="pl-row"><button type="button" class="pl-make" id="plMake">Make my lineup →</button>
     <span class="pl-hint">Tap any underlined word to change it.</span></div>
+  <div class="pl-tabs" role="tablist" aria-label="See tonight as"><button type="button" role="tab" class="pl-tab" id="tabPicks" aria-selected="true" aria-controls="plPicks">Tonight’s picks</button><button type="button" role="tab" class="pl-tab" id="plMapBtn" aria-selected="false" aria-controls="plMap">◉ Map</button><a class="pl-every" id="plEvery" href="./">Everything on tonight →</a></div>
+  <div class="pl-picks" id="plPicks" hidden role="tabpanel"></div>
+  <div class="pl-map" id="plMap" hidden role="tabpanel" aria-label="Map of tonight">
+  <button type="button" id="mpClose" hidden></button>
+  <div class="mp-bar" id="mpChips" role="group" aria-label="Show on the map"></div>
+  <div class="mp-bar"><button type="button" class="pl-chip mp-act" id="mpNear" aria-pressed="false">📍 Near me</button><button type="button" class="pl-chip mp-act" id="mpNight" aria-pressed="false">★ Show my night</button><span class="mp-msg" id="mpMsg" role="status"></span></div>
+  <div class="mp-grid"><div class="mp-box"><svg id="mpSvg" role="img" aria-label="Map of tonight's events"></svg>
+    <div class="mp-zoom"><button type="button" class="mp-zb" id="mpIn" aria-label="Zoom in">+</button><button type="button" class="mp-zb" id="mpOut" aria-label="Zoom out">−</button><button type="button" class="mp-zb" id="mpAll" aria-label="Back to all" style="font-size:12px">All</button></div>
+    <div class="mp-card" id="mpCard" hidden></div><div class="mp-hint" id="mpHint" hidden></div></div>
+    <aside class="mp-side"><h3 id="mpLh">In view</h3><div class="mp-list" id="mpList"></div></aside></div>
+</div>
+  <button type="button" class="pl-mine" id="plMine" hidden></button>
+  <button type="button" class="pl-unfurl" id="plMoreBtn" aria-expanded="false" aria-controls="plFriends" hidden>More for tonight <span aria-hidden="true">▾</span></button>
 </section>
+
 <section class="pl-out" id="plOut" hidden aria-live="polite">
+  <button type="button" class="pl-back" id="plBack">← Back to tonight’s picks</button>
+  <p class="pl-kick pl-stepk">② Your night: one way to do it</p>
+  <p class="pl-one" id="plOne">Three things that fit together in one night. Not quite it? Shuffle for another, swap any stop, or pick your own below.</p>
   <div class="pl-poster" id="plPoster"></div>
+  <div class="pl-tools"><button type="button" id="plShuffle">Shuffle for another night</button><span aria-hidden="true">·</span><button type="button" id="plToni">Ask Toni to tune it</button></div>
   <div class="pl-more" id="plMore"></div>
+  <a class="pl-allbig" id="plAll" href="./">Everything on →</a>
+  <div class="pl-step3" id="plStep3">
+    <p class="pl-kick pl-stepk">③ Who’s coming?</p>
+    <p class="pl-tuned" id="plTuned" hidden>Tuned for two: date-friendly picks, room to talk.</p>
+    <div class="pl-who">
+      <button type="button" class="pl-whob" id="plLock"><b>Just me</b><span>Lock it in: the timeline, tickets, add to calendar</span></button>
+      <button type="button" class="pl-whob" id="plDate"><b>With a date</b><span>We’ll tune the night for two</span></button>
+      <button type="button" class="pl-whob y" id="plBringBtn"><b>Bring friends</b><span>An invite link for the group chat; friends say who’s in</span></button>
+    </div>
+  </div>
   <div class="pl-bring" id="plBring" hidden aria-live="polite"></div>
-  <div class="pl-after"><button type="button" class="pl-lock" id="plBringBtn">Bring people →</button><button type="button" id="plLock">Lock in my night →</button><button type="button" id="plShuffle">Shuffle the bill</button><a id="plAll" href="./">Everything on →</a></div>
 </section>
 <section class="pl-friends" id="plFriends" hidden></section>
 <section class="pl-done" id="plDone" hidden aria-live="polite"></section>
@@ -173,7 +450,7 @@ button{font-family:var(--t);}
 </main>
 <script>
 (function(){
-var CITIES = {"nyc": {"name": "New York City", "short": "NYC", "tz": "America/New_York", "cur": "$", "ride": "subway"}, "london": {"name": "London", "short": "London", "tz": "Europe/London", "cur": "\u00a3", "ride": "Tube"}, "la": {"name": "Los Angeles", "short": "LA", "tz": "America/Los_Angeles", "cur": "$", "ride": "car"}};
+var CITIES = {"nyc": {"name": "New York City", "short": "NYC", "tz": "America/New_York", "cur": "$", "ride": "subway"}, "london": {"name": "London", "short": "London", "tz": "Europe/London", "cur": "\u00a3", "ride": "Tube"}, "la": {"name": "Los Angeles", "short": "LA", "tz": "America/Los_Angeles", "cur": "$", "ride": "car"}}, CALM = true;  /* CALM: the quieter home page (calm.html) */
 var SKIP = ["networking", "sales", "spam", "service", "internal", "members_only", "online", "class_slot"];  /* as Top tonight */
 /* what you're up for: every category on the site, plus occasions and keywords (q = words to look for in
    the name / why / topics / description). g = the group it's shown under. */
@@ -189,7 +466,6 @@ var VIBES = [
  {g:"Ideas & art", t:"books & poetry", q:["book","author","reading","poetry","poet","novel","literary"]},
  {g:"People", t:"a date night", cats:["Music","Comedy","Theater","Film","Arts & Play","Food & Drink","Tours"], minq:6},
  {g:"People", t:"meeting new people", cats:["Meetups & Mixers","Trivia & Games","Food & Drink"]},
- {g:"People", t:"a singles event", singles:true},
  {g:"People", t:"trivia & games", cats:["Trivia & Games"]},
  {g:"Do something", t:"food & drink", cats:["Food & Drink"]},
  {g:"Do something", t:"a class or workshop", cats:["Classes & Workshops"]},
@@ -198,7 +474,6 @@ var VIBES = [
  {g:"Do something", t:"a game to watch", cats:["Sports"]},
  {g:"Do something", t:"tech & startups", cats:["Tech"]},
  {g:"Anything", t:"anything free", free:true},
- {g:"Anything", t:"something for the kids", kids:true, from:9*60},
  {g:"Anything", t:"whatever's best"}
 ];
 /* who with: tilts the picks (a bonus per category) and what comes next (bring people) */
@@ -207,19 +482,20 @@ var WITH = [
  {k:"date", t:"a date", b:{"Music":1,"Comedy":1,"Theater":1.2,"Film":0.8,"Arts & Play":1,"Food & Drink":1,"Tours":0.6,"Talks":-1,"Meetups & Mixers":-1.5,"Tech":-2,"Classes & Workshops":-0.5}},
  {k:"friends", t:"friends", b:{"Comedy":1,"Music":1,"Trivia & Games":1.2,"Food & Drink":1,"Sports":1,"Meetups & Mixers":0.3,"Talks":-0.5,"Tech":-1}},
  {k:"group", t:"a big group", b:{"Trivia & Games":1.5,"Comedy":1,"Sports":1.2,"Food & Drink":1,"Music":0.8,"Tours":0.5,"Talks":-1,"Classes & Workshops":-0.5,"Tech":-1}},
- {k:"new", t:"new people", b:{"Meetups & Mixers":2,"Trivia & Games":1.2,"Classes & Workshops":1,"Tours":0.6,"Food & Drink":0.5}}
-];
+];  /* "new people" is parked until the test says friends works (ROADMAP: A + B) */
 var SINGLES = /\bspeed[\s-]?dating\b|\bsingles?\s+(?:mixer|night|party|event|social|meet)|\bmatch[\s-]?mak(?:ing|er)\b|\bdating\s+(?:mixer|party|night|event|social)\b/i;
 function words(e){ return [e.name, e.why, (e.topics||[]).join(" "), e.description, e.category, e.venue, e.neighborhood, e.url].join(" ").toLowerCase(); }
 var early = false;  /* a thin evening: let earlier events in (from noon) */
 var $ = function(id){ return document.getElementById(id); };
-var st = {city:Object.keys(CITIES)[0], day:0, vibe:0, area:"", with:2}, open = null, data = {}, made = false, pin = null;
+var st = {city:Object.keys(CITIES)[0], day:0, vibe:0, area:"", with:0}, open = null, data = {}, made = false, pin = null, CREW = false;  /* CREW: arrived from the email's "Send to my crew" */
 /* which city: #nyc in the link, else the signed-in account's home city, else the last city used here */
 function mem(k, v){ try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch(e){ return null; } }
 (function(){ var acct = null; try { acct = JSON.parse(mem("tonight-account") || "null"); } catch(e){}
-  var h = (location.hash||"").slice(1), pick = [h, acct && acct.home_city, mem("tonight-city")].filter(function(c){ return c && CITIES[c]; })[0];
+  var h = (location.hash||"").slice(1), cr = /^crew-([a-z]+)$/.exec(h);
+  if (cr) { h = cr[1]; CREW = true; history.replaceState(null, "", location.pathname); }  /* from the email: "Send to my crew" */
+  var pick = [h, acct && acct.home_city, mem("tonight-city")].filter(function(c){ return c && CITIES[c]; })[0];
   if (pick) st.city = pick;
-  var w = mem("tonight-with"); WITH.forEach(function(x, i){ if (x.k === w) st.with = i; }); })();
+})();
 
 function localNow(tz){ var p = new Intl.DateTimeFormat("en-CA",{timeZone:tz,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date()), o={};
   p.forEach(function(x){ o[x.type]=x.value; }); return {date:o.year+"-"+o.month+"-"+o.day, mins:(+o.hour)*60+(+o.minute)}; }
@@ -245,6 +521,7 @@ function fits(evs){
     if (v.q && !v.q.some(function(w){ return words(e).indexOf(w) >= 0; })) return false;
     if ((e.flags||[]).some(function(f){ return SKIP.indexOf(f) >= 0; }) || e.link_ok===false || e.reported) return false;
     if (v.cats && v.cats.indexOf(e.category) < 0) return false;
+    if (!v.cats && TASTE.mutes.indexOf(e.category) >= 0) return false;  /* muted, unless asked for by name */
     if (v.free && e.price !== 0) return false;
     return true; });
 }
@@ -255,9 +532,10 @@ function blank(id, text){ return '<button type="button" class="pl-blank" id="'+i
 function drawAsk(){
   var top = $("plTopAll"); if (top) top.href = st.city + "/" + iso() + ".html";
   $("plSent").innerHTML = blank("bDay", dayWord(st.day)) + " in " + blank("bCity", CITIES[st.city].short) +
-    ", I'm up for " + blank("bVibe", VIBES[st.vibe].t) + " around " + blank("bArea", st.area || "anywhere") + ' <span class="pl-nw">with ' + blank("bWith", WITH[st.with].t) + ".</span>";
-  ["bDay","bCity","bVibe","bArea","bWith"].forEach(function(id){ $(id).onclick = function(ev){ ev.stopPropagation(); open = open===id ? null : id; drawAsk(); }; });
+    ": " + blank("bVibe", VIBES[st.vibe].t) + ", " + '<span class="pl-nw">' + blank("bArea", st.area || "anywhere") + ".</span>";
+  ["bDay","bCity","bVibe","bArea"].forEach(function(id){ $(id).onclick = function(ev){ ev.stopPropagation(); open = open===id ? null : id; drawAsk(); }; });
   var box = $("plChoices"); box.innerHTML = ""; box.className = "pl-choices";
+  document.body.classList.toggle("pl-choosing", !!open);  /* the Ask Toni button steps aside meanwhile */
   if (!open) return;
   box.className = "pl-choices open";
   var head = document.createElement("p"); head.className = "pl-chead";
@@ -302,7 +580,10 @@ function drawAsk(){
 }
 
 var pool = [], acts = [], total = 0;
-function score(e){ return (e.quality||0) + (e.image?0.5:0) + (e.why?0.3:0) + (WITH[st.with].b[e.category] || 0); }
+var TASTE = (function(){ try { var t = JSON.parse(mem("tonight-taste") || "null") || {}; return {likes:t.likes||[], mutes:t.mutes||[]}; } catch(e){ return {likes:[], mutes:[]}; } })();
+var pickEvents = [], pickLabel = "", afterMake = null, unfurled = false;  /* tonight's picks, matched to the day's events (drawPicks) */
+function score(e){ return (e.quality||0) + (e.image?0.5:0) + (e.why?0.3:0) + (WITH[st.with].b[e.category] || 0)
+  + (TASTE.likes.indexOf(e.category) >= 0 ? 1.5 : 0) + (e._picked ? 3 : 0); }
 /* how long things run, and getting between them, so the bill is a night you can actually do */
 function dur(e){ var a = mins(e.start_time), b = mins(e.end_time); if (b != null && b > a) return b - a;
   return {Theater:150, Film:120, Music:120, Comedy:90}[e.category] || 90; }
@@ -313,8 +594,13 @@ function travel(a,b){ var k = km(a,b), mode = CITIES[st.city].ride;
   if (a.venue === b.venue || k < 0.15) return {m:0, how:"same place"};
   if (k < 1.3) return {m:Math.max(4, Math.round(k*13)), how:"walk"};
   return mode === "car" ? {m:Math.round(8+k*2), how:"drive"} : {m:Math.round(12+k*3), how:"by "+mode}; }
-function fitsWith(set, e){ var all = set.concat([e]).sort(function(a,b){ return mins(a.start_time)-mins(b.start_time); });
-  for (var i=1;i<all.length;i++) if (mins(all[i].start_time) < endOf(all[i-1]) + travel(all[i-1],all[i]).m - 10) return false;
+var MAX_HOP = 35;  /* minutes between stops: further than this isn't one night out */
+function fitsWith(set, e){
+  if (set.length && e.lat == null) return false;  /* a location we don't know can't be paired */
+  var all = set.concat([e]).sort(function(a,b){ return mins(a.start_time)-mins(b.start_time); });
+  for (var i=1;i<all.length;i++) { var t = travel(all[i-1], all[i]);
+    if (all[i-1].lat == null || all[i].lat == null) return false;
+    if (t.m > MAX_HOP || mins(all[i].start_time) < endOf(all[i-1]) + t.m - 10) return false; }
   return true; }
 function place(e){ return String(e.venue||"").replace(/\s*\(.*?\)\s*/g," ").split(" / ")[0].trim().toLowerCase(); }
 function bill(){
@@ -340,10 +626,16 @@ function shortVenue(v){ return String(v||"").split(" / ")[0]; }
 function info(e){ var c = CITIES[st.city].cur, p = e.price===0 ? "free" : e.price==null ? "" : c+Math.round(e.price);
   return [fmt(mins(e.start_time)), e.venue, e.neighborhood, p].filter(Boolean).map(esc).join(" · "); }
 function act(e, head, i){
+  var k = ordered().indexOf(e), prev = k > 0 ? ordered()[k-1] : null, t = prev ? travel(prev, e) : null;
+  return (t ? '<p class="pl-hop">' + (t.m ? t.m + " min " + esc(t.how) : "same place") + ' \u2193</p>' : '') + act0(e, head, i);
+}
+function act0(e, head, i){
   var big = e===head, a = '<div class="pl-act '+(big?"pl-head":"pl-sup")+'">';
   if (big && e.image) a += '<img class="pl-pic" alt="" referrerpolicy="no-referrer" src="'+esc(e.image)+'">';
   a += '<span class="pl-role">'+role(e,head)+'</span><h3 class="pl-nm"><a href="'+esc(e.url||"#")+'" target="_blank" rel="noopener">'+esc(title(e))+'</a></h3>'+
     '<p class="pl-info">'+info(e)+'</p>' + (big && e.why ? '<p class="pl-why">'+esc(e.why)+'</p>' : '') +
+    (e._mine ? '<p class="pl-picked">You ticked this</p>' : '') +
+    (e._picked ? '<p class="pl-picked">'+esc(/^Hand-picked/.test(pickLabel) ? "Hand-picked by Lineup" : "One of Toni\u2019s picks")+'</p>' : '') +
     '<button type="button" class="pl-sw" data-i="'+i+'">Swap</button></div>';
   return a;
 }
@@ -353,9 +645,8 @@ function drawPoster(){
   var top = blobs + '<p class="pl-eye">Your lineup · '+esc(CITIES[st.city].name)+(st.area?" · "+esc(st.area):"")+(WITH[st.with].k!=="me"?" · with "+esc(WITH[st.with].t):"")+'</p>'+
     '<h2 class="pl-date">'+esc(wk(d,{weekday:"short",day:"numeric",month:"short"}))+'</h2>';
   if (!acts.length) { p.innerHTML = top + '<p class="pl-empty">Nothing fits that one</p><p class="pl-info">Try another night, vibe or neighbourhood.</p>'; return; }
-  var sups = acts.filter(function(e){ return e!==head; }).sort(function(a,b){ return mins(a.start_time)-mins(b.start_time); });
-  p.innerHTML = top + act(head, head, acts.indexOf(head)) +
-    (sups.length ? '<div class="pl-sups">' + sups.map(function(e){ return act(e, head, acts.indexOf(e)); }).join("") + '</div>' : '') +
+  var inOrder = acts.slice().sort(function(a,b){ return mins(a.start_time)-mins(b.start_time); });
+  p.innerHTML = top + inOrder.map(function(e){ return act(e, head, acts.indexOf(e)); }).join("") +
     '<div class="pl-foot">' + acts.slice().sort(function(a,b){ return mins(a.start_time)-mins(b.start_time); })
       .map(function(e){ return esc(fmt(mins(e.start_time))+" "+shortVenue(e.venue)); }).join('<span class="pl-star">✱</span>') + '<span class="pl-star">✱</span>lineup.city</div>';
   var im = p.querySelector(".pl-pic"); if (im) im.onerror = function(){ im.remove(); };
@@ -390,18 +681,25 @@ function drawMore(){
     : "";
   if (note) { var p = document.createElement("p"); p.className = "pl-note2"; p.textContent = note; box.appendChild(p); }
   if (!rest.length) return;
-  var h = document.createElement("h3"); h.className = "pl-mh"; h.textContent = rest.length + " more that fit"; box.appendChild(h);
+  var h = document.createElement("h3"); h.className = "pl-mh"; h.textContent = "Or pick your own: " + rest.length + " more that fit"; box.appendChild(h);
   var ul = document.createElement("ul"); ul.className = "pl-ml";
-  rest.slice(0, 12).forEach(function(e){
+  var all = rest.length > 5 && !box._open;
+  (all ? rest.slice(0, 5) : rest.slice(0, 40)).forEach(function(e){
     var li = document.createElement("li"), a = document.createElement("a");
     a.href = e.url || "#"; a.target = "_blank"; a.rel = "noopener"; a.textContent = title(e);
     var t = document.createElement("b"); t.textContent = fmt(mins(e.start_time));
     var m = document.createElement("span"); m.textContent = [shortVenue(e.venue), e.neighborhood].filter(Boolean).join(" · ");
     li.appendChild(t); li.appendChild(a); li.appendChild(m); ul.appendChild(li); });
   box.appendChild(ul);
+  if (all) { var more = document.createElement("button"); more.type = "button"; more.className = "pl-chip"; more.textContent = "Show all " + rest.length;
+    more.onclick = function(){ box._open = true; drawMore(); }; box.appendChild(more); }
 }
 function make(pinned){
-  made = true; open = null; drawAsk(); hideBring();
+  made = true; open = null; drawAsk(); hideBring(); use("make"); $("plMore")._open = false;
+  document.body.classList.add("pl-made");
+  if (WITH[st.with].k !== "date") { $("plTuned").hidden = true; $("plDate").hidden = false;
+    $("plLock").querySelector("b").textContent = "Just me"; $("plBringBtn").querySelector("b").textContent = "Bring friends";
+    $("plBringBtn").querySelector("span").textContent = "An invite link for the group chat; friends say who\u2019s in"; }
   $("plOut").hidden = false; $("plPoster").innerHTML = '<p class="pl-eye">Making your lineup…</p>';
   var d = iso(); $("plAll").href = st.city+"/"+d+".html";
   load().then(function(evs){
@@ -412,11 +710,26 @@ function make(pinned){
     if (pool.length < 3 && !VIBES[st.vibe].from) { early = true; pool = near(fits(evs)); }  /* thin evening: from noon */
     pool.sort(function(a,b){ return score(b)-score(a) || mins(a.start_time)-mins(b.start_time); });
     pool.forEach(function(e){ e._used = 0; });
+    if (Array.isArray(pinned)) {  /* events ticked on the city page: as many as fit together, best first, then fill */
+      var mine = pinned.slice().sort(function(a,b){ return score(b) - score(a); }), keep = [];
+      mine.forEach(function(e){ if (keep.length < 3 && fitsWith(keep, e)) keep.push(e); });
+      pool = keep.concat(pool.filter(function(e){ return keep.indexOf(e) < 0; }));
+      acts = fill(keep, pool); acts.forEach(function(e){ e._used = 1; e._mine = keep.indexOf(e) >= 0; });
+      drawPoster();
+      $("plAll").textContent = "Browse all " + total + " things on " + (st.day===0 ? "tonight" : wk(d,{weekday:"long"})) + " →";
+      $("plOut").scrollIntoView({behavior:"smooth", block:"start"});
+      return;
+    }
+    if (!pinned) {  /* the first of tonight's picks that fits what you asked for becomes the headliner */
+      pinned = pickEvents.filter(function(e){ return pool.indexOf(e) >= 0; })[0] || null;
+      if (pinned) pinned._picked = 1;
+    }
     if (pinned) { pool = [pinned].concat(pool.filter(function(e){ return e !== pinned; })); acts = fill([pinned], pool); }
     else acts = bill();
     acts.forEach(function(e){ e._used = 1; });
     drawPoster();
-    $("plAll").textContent = "Everything on " + (st.day===0 ? "tonight" : wk(d,{weekday:"long"})) + " (" + total + ") →";
+    if (afterMake) { var then = afterMake; afterMake = null; setTimeout(then, 400); }
+    $("plAll").textContent = "Browse all " + total + " things on " + (st.day===0 ? "tonight" : wk(d,{weekday:"long"})) + " →";
     $("plOut").scrollIntoView({behavior:"smooth", block:"start"});
   });
 }
@@ -426,6 +739,12 @@ var API = "https://tonight-api-2169.onrender.com/api";
 function api(path, body, auth){ var h = {"Content-Type":"application/json"}, t = mem("tonight-session");
   if (auth && t) h["Authorization"] = "Bearer " + t;
   return fetch(API + path, body ? {method:"POST", headers:h, body:JSON.stringify(body)} : {headers:h}).then(function(r){ return r.json(); }); }
+/* the 20-person test: anonymous actions per device; ?ref=<name> from a personal test link is kept */
+function use(kind){ try {
+  var dev = mem("tonight-device") || rid(16); mem("tonight-device", dev);
+  fetch(API + "/use", {method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({device:dev, kind:kind, ref:mem("tonight-ref") || "", city:st.city})}).catch(function(){});
+} catch(e){} }
 function rid(n){ var a = new Uint8Array(n), c = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789", o = "";
   crypto.getRandomValues(a); for (var i=0;i<n;i++) o += c[a[i] % c.length]; return o; }
 function myName(){ var a = null; try { a = JSON.parse(mem("tonight-account") || "null"); } catch(e){}
@@ -434,27 +753,28 @@ function hideBring(){ var b = $("plBring"); if (b) { b.hidden = true; b.innerHTM
 function bring(){
   var box = $("plBring"); box.hidden = false;
   box.innerHTML = '<h3 class="pl-bh">Bring people</h3><p class="pl-bp">We make a link to this lineup. Friends open it, say which acts they\'re in for, and you see who\'s coming. No account needed.</p>'+
-    '<form class="pl-bf" id="plBf"><label for="plHost">Your name</label><input id="plHost" autocomplete="given-name" maxlength="40" required placeholder="So friends know it\'s from you"><button type="submit" class="pl-make">Make the invite →</button></form><p class="pl-bm" id="plBm" role="status"></p>';
-  $("plHost").value = myName();
+    '<form class="pl-bf" id="plBf"><label for="plHost">Your name</label><input id="plHost" autocomplete="given-name" maxlength="40" required placeholder="So friends know it\'s from you"><label for="plHostEmail">Your email (optional: get the plan when you lock it)</label><input id="plHostEmail" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com"><button type="submit" class="pl-make">Make the invite →</button></form><p class="pl-bm" id="plBm" role="status"></p>';
+  $("plHost").value = myName(); $("plHostEmail").value = mem("tonight-email") || "";
   box.scrollIntoView({behavior:"smooth", block:"nearest"});
   $("plBf").onsubmit = function(ev){ ev.preventDefault();
     var name = $("plHost").value.trim(); if (!name) return; mem("tonight-name", name);
     var id = rid(12), key = rid(28);
     $("plBm").textContent = "Making your invite…";
-    api("/plans", {id:id, key:key, city:st.city, date:iso(), host:name, ids:ordered().map(function(e){ return e._i; })}).then(function(d){
+    var hm = ($("plHostEmail").value || "").trim(); if (hm) mem("tonight-email", hm);
+    api("/plans", {id:id, key:key, city:st.city, date:iso(), host:name, host_email:hm, ids:ordered().map(function(e){ return e._i; })}).then(function(d){
       if (!d.ok) { $("plBm").textContent = d.error ? "Couldn't make the invite: " + d.error + "." : "Couldn't make the invite. Try again."; return; }
-      mem("tonight-plan-" + id, key); invited(d, true);
+      mem("tonight-plan-" + id, key); invited(d, true); use("invite");
     }).catch(function(){ $("plBm").textContent = "Couldn't reach Lineup. Try again in a minute."; });
   };
 }
-function inviteUrl(id){ return location.origin + location.pathname + "#p=" + id; }
+function inviteUrl(id){ return location.origin + "/i/" + id; }  /* previews in group chats; opens #p=<id> here */
 function invited(plan, fresh){
   var box = $("plBring"), url = inviteUrl(plan.id), when = st.day===0 ? "tonight" : wk(iso(),{weekday:"long"});
   box.hidden = false;
   box.innerHTML = '<h3 class="pl-bh">'+(fresh ? "Your invite is ready" : "Your invite")+'</h3>'+
     '<div class="pl-link-row"><input id="plUrl" readonly value="'+esc(url)+'" aria-label="Invite link"><button type="button" class="pl-make" id="plCopy">Copy link</button>'+
     (navigator.share ? '<button type="button" class="pl-chip" id="plShare">Share…</button>' : '')+'</div>'+
-    '<p class="pl-bp">Send it in your group chat. Each friend picks the acts they\'re in for.</p><div id="plWho"></div>';
+    '<p class="pl-bp">Send it in your group chat. Each friend picks the acts they\'re in for. When you\'re ready, <a href="'+esc(url)+'">open your invite</a> to lock the night for everyone.</p><div id="plWho"></div>';
   $("plCopy").onclick = function(){ var b = this; (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function(){ b.textContent = "Copied"; },
     function(){ $("plUrl").select(); b.textContent = "Press ⌘C"; }); };
   if ($("plShare")) $("plShare").onclick = function(){ navigator.share({title:"Out " + when + "?", text:"I'm planning " + when + " on Lineup. Are you in?", url:url}).catch(function(){}); };
@@ -481,27 +801,46 @@ function invitePage(id){
     var h = '<p class="pl-kick">'+(mine ? "Your invite" : "You're invited")+' · '+esc(city)+' · '+esc(when)+'</p>'+
       '<h1 class="pl-done-h">'+(mine ? "Who's coming?" : esc(host)+"'s lineup. Are you in?")+'</h1>';
     if (mine) h += '<div class="pl-link-row"><input readonly value="'+esc(inviteUrl(id))+'" aria-label="Invite link" id="plUrl2"><button type="button" class="pl-make" id="plCopy2">Copy link</button></div>';
+    if (plan.final) {
+      var kept = plan.final.keep.map(function(k){ return plan.options[k]; });
+      h += '<div class="pl-on"><b>It\u2019s on.</b> ' + esc(host) + ' locked ' + kept.map(function(o){ return esc(fmt(mins(o.start_time)) + " " + title(o)); }).join(", then ") + '.</div>';
+    }
     h += '<ol class="pl-tl pl-inv">';
     plan.options.forEach(function(o, k){
       h += '<li class="pl-stop"><div class="pl-when"><b>'+esc(fmt(mins(o.start_time)))+'</b></div><div class="pl-sc">'+
         '<span class="pl-tag">'+esc(o.category||"")+'</span><h3><a href="'+esc(o.url||"#")+'" target="_blank" rel="noopener">'+esc(title(o))+'</a></h3>'+
         '<p class="pl-where">'+esc(o.venue||"")+(o.neighborhood ? ' · '+esc(o.neighborhood) : '')+(o.price && !/unknown/i.test(o.price) ? ' · '+esc(o.price) : '')+'</p>'+
         '<p class="pl-say">'+(o.in.length ? "In: " + esc(o.in.join(", ")) : "Nobody yet")+'</p>'+
-        (mine ? '' : '<label class="pl-in"><input type="checkbox" data-k="'+k+'" checked> I\'m in for this</label>')+'</div></li>';
+        (mine ? (plan.final ? '' : '<label class="pl-in"><input type="checkbox" class="pl-keep" data-k="'+k+'"'+(o.in.length || !plan.votes.length ? ' checked' : '')+'> Keep in the night</label>')
+              : '<label class="pl-in"><input type="checkbox" data-k="'+k+'" checked> I\'m in for this</label>')+'</div></li>';
     });
     h += '</ol>';
+    if (mine && !plan.final) h += '<div class="pl-bring"><h3 class="pl-bh">Lock the night</h3><p class="pl-bp">Untick anything nobody wants. Everyone who\u2019s in and left an email gets the plan, with tickets.</p>'+
+      '<button type="button" class="pl-make" id="plLockAll">Lock it & tell everyone →</button><p class="pl-bm" id="plLm" role="status"></p></div>';
+    if (mine && plan.final) h += '<p class="pl-bm">Locked. ' + (plan.final.sent ? "Emailed " + plan.final.sent + (plan.final.sent === 1 ? " person" : " people") + ". " : "") +
+      (plan.final.no_email ? plan.final.no_email + (plan.final.no_email === 1 ? " person" : " people") + " didn\u2019t leave an email: tell them in the chat." : "") + '</p>';
     if (!mine) h += '<form class="pl-bf" id="plVote"><label for="plMe">Your name</label><input id="plMe" maxlength="40" required autocomplete="given-name" placeholder="So '+esc(host)+' knows who\'s coming">'+
+      '<label for="plMail">Email (optional: get the plan if it\u2019s on)</label><input id="plMail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com">'+
       '<button type="submit" class="pl-make">Send my answer →</button><button type="button" class="pl-chip" id="plCant">Can\'t make it</button></form><p class="pl-bm" id="plVm" role="status"></p>';
     h += '<div class="pl-after"><a href="'+location.pathname+'">Make my own lineup →</a></div>';
     box.innerHTML = h;
+    if ($("plLockAll")) $("plLockAll").onclick = function(){
+      var keep = [].slice.call(box.querySelectorAll(".pl-keep")).filter(function(c){ return c.checked; }).map(function(c){ return +c.getAttribute("data-k"); });
+      if (!keep.length) { $("plLm").textContent = "Keep at least one act."; return; }
+      $("plLm").textContent = "Locking…"; this.disabled = true;
+      api("/plans/" + id + "/final", {key:mine, keep:keep}).then(function(d){
+        if (!d.ok) { $("plLm").textContent = d.error || "That didn\u2019t work. Try again."; $("plLockAll").disabled = false; return; }
+        use("lock"); invitePage(id); }).catch(function(){ $("plLm").textContent = "Couldn\u2019t reach Lineup. Try again."; $("plLockAll").disabled = false; }); };
     if (mine) $("plCopy2").onclick = function(){ var b = this; (navigator.clipboard ? navigator.clipboard.writeText(inviteUrl(id)) : Promise.reject()).then(function(){ b.textContent = "Copied"; }, function(){ $("plUrl2").select(); }); };
     if (!mine) {
-      $("plMe").value = myName();
+      $("plMe").value = myName(); $("plMail").value = mem("tonight-email") || "";
       var voter = mem("tonight-voter") || rid(16); mem("tonight-voter", voter);
       var send = function(choices){ var name = $("plMe").value.trim(); if (!name) { $("plVm").textContent = "Add your name first."; $("plMe").focus(); return; }
         mem("tonight-name", name); $("plVm").textContent = "Sending…";
-        api("/plans/" + id + "/vote", {voter:voter, name:name, choices:choices}).then(function(d){
+        var em = ($("plMail").value || "").trim(); if (em) mem("tonight-email", em);
+        api("/plans/" + id + "/vote", {voter:voter, name:name, choices:choices, email:em}).then(function(d){
           if (!d.ok) { $("plVm").textContent = d.error || "That didn't work. Try again."; return; }
+          use("answer");
           $("plVm").textContent = choices.length ? "Sent. " + host + " can see you're in." : "Sent. " + host + " knows you can't make it.";
           d.options.forEach(function(o, k){ var p = box.querySelectorAll(".pl-say")[k]; if (p) p.textContent = o.in.length ? "In: " + o.in.join(", ") : "Nobody yet"; });
         }).catch(function(){ $("plVm").textContent = "Couldn't reach Lineup. Try again in a minute."; }); };
@@ -517,6 +856,54 @@ function eidOf(e, d){ var n = function(s){ return String(s||"").toLowerCase().re
   var key = [d, n(e.name), n(e.venue), n(e.start_time)].join("|");
   return crypto.subtle.digest("SHA-1", new TextEncoder().encode(key)).then(function(b){
     return Array.prototype.map.call(new Uint8Array(b), function(x){ return ("0" + x.toString(16)).slice(-2); }).join("").slice(0, 8); }); }
+/* events ticked on the city page (tonight-picks-<city>-<date>, saved as permanent ids) */
+function ticked(evs, d){
+  var ids = []; try { ids = JSON.parse(mem("tonight-picks-" + st.city + "-" + d) || "[]"); } catch(e){}
+  if (!ids.length) return Promise.resolve([]);
+  return Promise.all(evs.map(function(e){ return e._eid ? e._eid : eidOf(e, d).then(function(x){ e._eid = x; return x; }); }))
+    .then(function(){ return evs.filter(function(e){ return ids.indexOf(e._eid) >= 0; }); });
+}
+/* hand-picked tonight: your approved picks, else Toni's draft, else the day's best; each builds a night around it */
+function drawPicks(){
+  var box = $("plPicks"), d = iso(), city = st.city;
+  load().then(function(evs){
+    if (!evs || city !== st.city || d !== iso()) return;
+    $("plEvery").textContent = "Everything on " + (st.day===0 ? "tonight" : wk(d,{weekday:"long"})) + " (" + evs.length + ") →";
+    $("plEvery").href = city + "/" + d + ".html";
+    ticked(evs, d).then(function(mine){  /* "Make a night of these" from the city page, or a nudge if ticks exist */
+      var nudge = $("plMine");
+      if (!mine.length) { if (nudge) nudge.hidden = true; return; }
+      if (/^#mine$/.test(location.hash)) { history.replaceState(null, "", location.pathname); make(mine); }
+      if (nudge) { nudge.hidden = false; nudge.textContent = "\u2605 Make a night of the " + mine.length + " you ticked →"; nudge.onclick = function(){ make(mine); }; }
+    });
+    var now = localNow(CITIES[city].tz), later = function(e){ var m = mins(e.start_time); return m != null && !(st.day === 0 && m < now.mins - 30); };
+    var find = function(it){ return evs.filter(function(e){ return (it.url && e.url === it.url) || (title(e) === title(it) && (e.venue||"") === (it.venue||"")); })[0]; };
+    var show = function(label, list){
+      list = list.filter(function(x){ return x.e && later(x.e); });
+      pickEvents.forEach(function(e){ e._picked = 0; });
+      pickEvents = /best$/.test(label) ? [] : list.map(function(x){ return x.e; }); pickLabel = label;
+      if (CREW && list.length) { CREW = false; afterMake = bring; make(list[0].e); }  /* tonight around the top pick, then the invite */
+      list = list.slice(0, 3);
+      if (!list.length) { box.hidden = true; return; }
+      box.innerHTML = '<p class="pl-pk">' + esc(label) + '</p><ul class="pl-pl">' + list.map(function(x){
+        return '<li><button type="button" class="pl-pc" data-i="'+x.e._i+'"><b>'+esc(title(x.e))+'</b><span>'+esc(fmt(mins(x.e.start_time)))+' · '+esc(shortVenue(x.e.venue))+
+          (x.e.price===0 ? ' · free' : '')+'</span>'+(x.why ? '<em>'+esc(x.why)+'</em>' : '')+'<i>Build my night around this →</i></button></li>'; }).join("") + '</ul>';
+      box.hidden = $("plMapBtn").getAttribute("aria-selected") === "true";
+      box.querySelectorAll(".pl-pc").forEach(function(b){ b.onclick = function(){ var e = evs[+b.getAttribute("data-i")]; if (e) make(e); }; });
+    };
+    var best = function(){ var seen = {}; return evs.filter(function(e){ var m = mins(e.start_time);
+        return m != null && m >= 17*60 && (e.quality||0) >= 7 && !(e.flags||[]).some(function(f){ return SKIP.indexOf(f) >= 0; }) && e.link_ok !== false; })
+      .sort(function(a,b){ return score(b) - score(a); })
+      .filter(function(e){ var k = place(e); if (seen[k]) return false; seen[k] = 1; return true; })
+      .map(function(e){ return {e:e, why:e.why}; }); };
+    api("/picks?city=" + city + "&date=" + d).then(function(p){
+      var items = (p && p.items) || [];
+      if (items.length) show(p.by === "editor" ? "Hand-picked by Lineup" : "Toni's picks " + (st.day===0 ? "tonight" : "for " + wk(d,{weekday:"long"})),
+        items.map(function(it){ var first = String(it.text||"").split(/(?<=[.!?])\s/)[0]; return {e:find(it), why:first.length < 140 ? first : ""}; }));
+      else show(st.day===0 ? "Tonight's best" : wk(d,{weekday:"long"}) + "'s best", best());
+    }).catch(function(){ show(st.day===0 ? "Tonight's best" : wk(d,{weekday:"long"}) + "'s best", best()); });
+  });
+}
 function drawFriends(){
   var box = $("plFriends"); if (!box) return;
   var d = iso(), city = st.city;
@@ -535,6 +922,7 @@ function drawFriends(){
       '</ul></div><div><h3 class="pl-fs">Good with a group '+(st.day===0?"tonight":"that night")+'</h3><ul class="pl-fl">'+
       (group.length ? group.map(function(e){ return card(e, e.category); }).join("") : '<li class="pl-fe">Nothing stands out for a group yet.</li>')+'</ul></div></div>';
     box.innerHTML = h; box.hidden = false;
+    if (CALM) { box.classList.toggle("pl-fold", !unfurled); $("plMoreBtn").hidden = false; }  /* calm: folded until "More for tonight" */
     var hook = function(){ box.querySelectorAll(".pl-fc").forEach(function(b){ b.onclick = function(){
       var e = evs[+b.getAttribute("data-i")]; if (!e) return; if (WITH[st.with].k === "me") st.with = 2;
       st.vibe = VIBES.length - 1; while (VIBES[st.vibe].own) st.vibe--; /* whatever's best around it */
@@ -544,7 +932,11 @@ function drawFriends(){
     Promise.all(later.map(function(e){ return eidOf(e, d).then(function(x){ e._eid = x; }); })).then(function(){
       return api("/going/" + city + "/" + d + "?user_id=" + encodeURIComponent(mem("tonight-user-id") || ""), null, true);
     }).then(function(g){
-      if (!g || !g.ok || city !== st.city) return;
+      if (city !== st.city) return;
+      if (!g || !g.ok) {  /* an expired sign-in: say so instead of "Checking…" forever */
+        var l0 = $("plFriendsGoing");
+        if (signed && l0) l0.innerHTML = '<li class="pl-fe"><a href="account.html">Sign in again</a> to see where your friends are going.</li>';
+        return; }
       var byId = {}; later.forEach(function(e){ byId[e._eid] = e; });
       var mineF = Object.keys(g.friends || {}).filter(function(k){ return byId[k]; });
       var list = $("plFriendsGoing");
@@ -619,7 +1011,7 @@ function drawDone(shared){
   if ($("dBack")) $("dBack").onclick = function(){ $("plDone").hidden = true; $("plAsk").hidden = false; $("plOut").hidden = false; $("plFriends").hidden = false; history.replaceState(null, "", location.pathname); };
   if ($("dMine")) $("dMine").onclick = function(){ location.href = location.pathname; };
 }
-$("plLock").onclick = function(){ if (!acts.length) return; history.replaceState(null, "", "#n=" + shareUrl().split("#n=")[1]); drawDone(false); };
+$("plLock").onclick = function(){ if (!acts.length) return; use("lock"); history.replaceState(null, "", "#n=" + shareUrl().split("#n=")[1]); drawDone(false); };
 /* a shared night: #n=city.date.h1.h2.h3 */
 (function(){ var m = /^#n=([a-z]+)\.(\d{4}-\d{2}-\d{2})\.([a-z0-9.]+)$/.exec(location.hash||""); if (!m || !CITIES[m[1]]) return;
   st.city = m[1]; var base = localNow(CITIES[st.city].tz).date, n = Math.round((Date.parse(m[2]) - Date.parse(base))/864e5); st.day = Math.max(0, n);
@@ -629,7 +1021,33 @@ $("plLock").onclick = function(){ if (!acts.length) return; history.replaceState
     if (!acts.length) { $("plAsk").hidden = false; return; }
     drawDone(true); }).catch(function(){ $("plAsk").hidden = false; }); })();
 $("plMake").onclick = function(){ make(); };
+/* ◐: light or dark (follows the device until you choose; the choice is kept on this device) */
+$("plTheme").onclick = function(){
+  var r = document.documentElement, cur = r.getAttribute("data-theme") || (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  var next = cur === "dark" ? "light" : "dark"; r.setAttribute("data-theme", next); mem("tonight-theme", next);
+  mem("tonight-palette", next === "dark" ? "night" : "lineup");  /* the city pages follow the same choice */
+};
+$("plMoreBtn").onclick = function(){  /* calm: unfold friends + good-with-a-group, or fold them away */
+  unfurled = !unfurled; this.setAttribute("aria-expanded", unfurled);
+  this.innerHTML = (unfurled ? "Less" : "More for tonight") + ' <span aria-hidden="true">' + (unfurled ? "▴" : "▾") + '</span>';
+  $("plFriends").classList.toggle("pl-fold", !unfurled);
+  if (unfurled) $("plFriends").scrollIntoView({behavior:"smooth", block:"nearest"}); };
 $("plBringBtn").onclick = function(){ if (acts.length) bring(); };
+$("plDate").onclick = function(){
+  var di = 0; WITH.forEach(function(w, i){ if (w.k === "date") di = i; });
+  var head = acts.slice().sort(function(a,b){ return score(b) - score(a); })[0];
+  st.with = di; afterMake = function(){
+    $("plTuned").hidden = false; $("plDate").hidden = true;
+    $("plLock").querySelector("b").textContent = "Lock in our night";
+    $("plBringBtn").querySelector("b").textContent = "Send it to my date";
+    $("plBringBtn").querySelector("span").textContent = "A link they open in one tap; they say they\u2019re in";
+    $("plStep3").scrollIntoView({behavior:"smooth", block:"nearest"}); };
+  make(head && fits([head]).length ? head : undefined); };
+$("plToni").onclick = function(){
+  if (!window.TonightToni || !acts.length) return;
+  var night = ordered().map(function(e){ return fmt(mins(e.start_time)) + " " + title(e) + " at " + shortVenue(e.venue); }).join(", then ");
+  TonightToni.ask("Plan my night " + (st.day===0 ? "tonight" : wk(iso(),{weekday:"long"})) + ": " + VIBES[st.vibe].t + (st.area ? " around " + st.area : "") +
+    ", with " + WITH[st.with].t + ". I have " + night + ". Can you make it better for me?"); };
 (function(){ var m = /^#p=([A-Za-z0-9_-]{8,24})$/.exec(location.hash || ""); if (m) invitePage(m[1]); })();
 /* shuffle: a new headliner from the top dozen not on the bill now, and a fresh mix around it (still good,
    still a night that fits together: two random picks used to leave no room for a third) */
@@ -651,9 +1069,829 @@ $("plShuffle").onclick = function(){ if (!pool.length) return make();
 document.addEventListener("keydown", function(ev){ if (ev.key === "Escape" && open) { open = null; drawAsk(); } });
 document.addEventListener("click", function(ev){ if (!open) return; var t = ev.target;
   if (!document.contains(t) || $("plChoices").contains(t) || (t.closest && t.closest(".pl-blank"))) return; open = null; drawAsk(); });
+/* ---- the map: tonight's events on the city, drawn in Lineup's style from neighbourhood outlines ---- */
+var MAPCOL = {"Comedy":"#ff4f2e","Music":"#2f6bff","Theater":"#19b38a","Film":"#a259ff","Talks":"#ffc21a","Arts & Play":"#ff8fc7","Tours":"#7fd1ff","Classes & Workshops":"#c7a46b","Food & Drink":"#ff9f43","Meetups & Mixers":"#b5e655","Trivia & Games":"#b5e655","Sports":"#9aa0a6","Tech":"#9aa0a6","Fitness & Outdoors":"#7ccf8a"};
+var MP = null;  /* the open map's state */
+function openMap(){
+  var box = $("plMap"); box.hidden = false;
+  var city = st.city, d = iso();
+  if (MP && MP.city === city && MP.date === d && $("mpSvg").childNodes.length) return;
+  $("mpSvg").innerHTML = ""; $("mpList").innerHTML = '<p class="mp-note">Drawing the map…</p>'; $("mpCard").hidden = true;
+  $("mpLh").textContent = "In view"; $("mpChips").innerHTML = "";
+  var fail = function(why){ MP = null;
+    $("mpList").innerHTML = '<p class="mp-note">' + why + '</p><button type="button" class="pl-chip" id="mpRetry">Try again</button>';
+    $("mpRetry").onclick = function(){ data[st.city + "-" + iso()] = null; openMap(); }; };
+  var timer = setTimeout(function(){ fail("The map is taking too long to load."); }, 15000);
+  Promise.all([load(), fetch("maps/" + city + ".json", {cache: "no-cache"}).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })]).then(function(res){
+    clearTimeout(timer);
+    if (city !== st.city || d !== iso()) return;
+    if (!res[0]) { fail("Couldn\u2019t load " + (st.day === 0 ? "tonight\u2019s" : "that day\u2019s") + " events."); return; }
+    try { drawMap(city, d, res[0], res[1] || []); }
+    catch (err) { fail("Couldn\u2019t draw the map (" + esc(err && err.message || "error") + ")."); }
+  }).catch(function(){ clearTimeout(timer); fail("Couldn\u2019t load the map."); });
+}
+function drawMap(city, d, evs, hoods){
+  var NS = "http://www.w3.org/2000/svg", svg = $("mpSvg");
+  function el(n, a, p){ var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+  var now = localNow(CITIES[city].tz);
+  var list = evs.filter(function(e){ var m = mins(e.start_time); return e.lat != null && e.lng != null && m != null && !(st.day === 0 && m < now.mins - 60)
+    && !(e.flags||[]).some(function(f){ return SKIP.indexOf(f) >= 0; }) && e.link_ok !== false && (e.quality || 0) >= 4; });
+  var lats = list.map(function(e){ return e.lat; }).sort(function(a,b){ return a-b; });
+  var lat0 = lats.length ? lats[Math.floor(lats.length/2)] : 40.7, cs = Math.cos(lat0 * Math.PI / 180), K = 1000;
+  var lon0 = Math.min.apply(0, list.map(function(e){ return e.lng; }).concat([0])) - 0.5, latT = Math.max.apply(0, list.map(function(e){ return e.lat; }).concat([lat0])) + 0.5;
+  function P(lo, la){ return [(lo - lon0) * cs * K, (latT - la) * K]; }
+  var gLand = el("g", {}, svg), gLines = el("g", {}, svg), gLab = el("g", {}, svg), gX = el("g", {}, svg), gPins = el("g", {}, svg), gTop = el("g", {}, svg);
+  var LB = [], seen = {}, minx = 1e9, miny = 1e9, maxx = -1e9, maxy = -1e9;
+  hoods.forEach(function(h){
+    var dd = "", cx = 0, cy = 0, n = 0;
+    h.r.forEach(function(ring){ ring.forEach(function(p, k){ var q = P(p[0], p[1]); dd += (k ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1); cx += q[0]; cy += q[1]; n++;
+      minx = Math.min(minx, q[0]); maxx = Math.max(maxx, q[0]); miny = Math.min(miny, q[1]); maxy = Math.max(maxy, q[1]); }); dd += "Z"; });
+    el("path", {d: dd, class: "mp-land" + (/\b(park|cemetery|gardens?|green|common|heath|wood|marshes|zoo|golf|beach)\b/i.test(h.n) ? " park" : "")}, gLand);
+    el("path", {d: dd, class: "mp-line"}, gLines);
+    var t = h.n.split(/\s+-\s+|-(?=[A-Z])/)[0].replace(/\s*\(.*\)/, "");
+    if (n && !seen[t]) { seen[t] = 1; var lab = el("text", {x: cx/n, y: cy/n, class: "mp-hl", "text-anchor": "middle"}, gLab); lab.textContent = t; LB.push(lab); }
+  });
+  /* busy neighbourhoods get their names first */
+  var busy = {}; list.forEach(function(e){ if (e.neighborhood) busy[e.neighborhood.split(/\s+-\s+|-(?=[A-Z])/)[0]] = (busy[e.neighborhood.split(/\s+-\s+|-(?=[A-Z])/)[0]] || 0) + 1; });
+  LB.forEach(function(l){ l._big = (busy[l.textContent] || 0) >= 3; });
+  var PINS = [], STOPS = [], ME = null, sel = null, filt = "all", V = {x:0,y:0,w:1,h:1}, FIT = 1, Z = 1;
+  list.sort(function(a,b){ return (a.quality||0) - (b.quality||0); }).forEach(function(e){
+    var q = P(e.lng, e.lat), c = el("circle", {cx: q[0], cy: q[1], r: 5, fill: MAPCOL[e.category] || "#9aa0a6", class: "mp-pin", tabindex: 0, role: "button", "aria-label": title(e)}, gPins);
+    var p = {e: e, c: c, x: q[0], y: q[1]}; PINS.push(p);
+    c.addEventListener("click", function(ev){ ev.stopPropagation(); pick(p, false); });
+    c.addEventListener("keydown", function(ev){ if (ev.key === "Enter") pick(p, false); });
+  });
+  if (!hoods.length && PINS.length) PINS.forEach(function(p){ minx = Math.min(minx, p.x); maxx = Math.max(maxx, p.x); miny = Math.min(miny, p.y); maxy = Math.max(maxy, p.y); });
+  function sz(){ var r = svg.getBoundingClientRect(); return {w: r.width || 800, h: r.height || 600}; }
+  function fit(x0, y0, x1, y1, pad){ var s = sz(), ar = s.w / s.h, w = Math.max(x1 - x0, 1) * (1 + pad), h = Math.max(y1 - y0, 1) * (1 + pad);
+    if (w / h > ar) h = w / ar; else w = h * ar; V = {x: (x0 + x1)/2 - w/2, y: (y0 + y1)/2 - h/2, w: w, h: h}; apply(); }
+  function apply(){ svg.setAttribute("viewBox", V.x + " " + V.y + " " + V.w + " " + V.h); Z = FIT / V.w; style(); side(); }
+  function style(){ var u = V.w / sz().w;
+    LB.forEach(function(t){ var show = t._big ? Z > 1.3 : Z > 5; t.style.display = show ? "" : "none"; t.setAttribute("font-size", (t._big ? 13 : 11) * u); t.setAttribute("stroke-width", 3 * u); });
+    PINS.forEach(function(p){ p.c.setAttribute("r", (p === sel ? 9 : 4 + (p.e.quality || 4) * 0.45) * u); });
+    STOPS.forEach(function(s){ s.c.setAttribute("r", 13 * u); s.t.setAttribute("font-size", 15 * u); s.t.setAttribute("dy", 5 * u); });
+    if (ME && ME.dot) ME.dot.setAttribute("r", 7 * u); }
+  function ok(e){ var m = mins(e.start_time);
+    return filt === "all" ? true : filt === "free" ? e.price === 0 : filt === "soon" ? m <= 20 * 60 : filt === "mine" ? fits([e]).length > 0 : e.category === filt; }
+  function refilter(){ PINS.forEach(function(p){ p.c.classList.toggle("dim", !ok(p.e)); }); side(); }
+  function walk(e){ if (!ME) return ""; var dx = (e.lng - ME.lo) * cs * 111, dy = (e.lat - ME.la) * 111, k = Math.sqrt(dx*dx + dy*dy);
+    return k < 1.4 ? Math.max(3, Math.round(k * 13)) + " min walk" : CITIES[city].ride === "car" ? Math.round(8 + k * 2) + " min drive" : Math.round(12 + k * 3) + " min by " + CITIES[city].ride; }
+  function dist(e){ var dx = (e.lng - ME.lo) * cs, dy = e.lat - ME.la; return dx*dx + dy*dy; }
+  function pick(p, pan){
+    if (sel) sel.c.classList.remove("sel");
+    sel = p; p.c.classList.add("sel"); gPins.appendChild(p.c);
+    var e = p.e, card = $("mpCard"), price = e.price === 0 ? "free" : e.price ? CITIES[city].cur + Math.round(e.price) : "";
+    card.innerHTML = '<button type="button" class="mp-x" aria-label="Close">×</button><div class="mp-ct">' + esc(e.category) + (walk(e) ? " · " + esc(walk(e)) : "") + '</div><h3>' + esc(title(e)) + '</h3>' +
+      '<p class="mp-cm">' + [fmt(mins(e.start_time)), e.venue, e.neighborhood, price].filter(Boolean).map(esc).join(" · ") + '</p>' + (e.why ? '<p class="mp-cw">' + esc(e.why) + '</p>' : '') +
+      '<div class="mp-cbs"><button type="button" class="mp-cb y" id="mpBuild">Build my night around this →</button>' + (e.url ? '<a class="mp-cb" href="' + esc(e.url) + '" target="_blank" rel="noopener">Tickets & details</a>' : '') + '</div>';
+    card.hidden = false;
+    card.querySelector(".mp-x").onclick = function(){ card.hidden = true; if (sel) sel.c.classList.remove("sel"); sel = null; style(); side(); };
+    $("mpBuild").onclick = function(){ make(e); };
+    if (pan) { V.x = p.x - V.w / 2; V.y = p.y - V.h * 0.42; apply(); } else { style(); side(); }
+  }
+  function side(){
+    var L = $("mpList"), inV = PINS.filter(function(p){ return ok(p.e) && p.x >= V.x && p.x <= V.x + V.w && p.y >= V.y && p.y <= V.y + V.h; });
+    inV.sort(ME ? function(a,b){ return dist(a.e) - dist(b.e); } : function(a,b){ return mins(a.e.start_time) - mins(b.e.start_time) || (b.e.quality||0) - (a.e.quality||0); });
+    $("mpLh").innerHTML = (ME ? "Closest to you" : "In view") + ' <small>' + inV.length + '</small>';
+    L.innerHTML = "";
+    inV.slice(0, 60).forEach(function(p){ var b = document.createElement("button"); b.type = "button"; b.className = "mp-row" + (p === sel ? " on" : "");
+      b.innerHTML = '<b>' + esc(fmt(mins(p.e.start_time))) + '</b><span><i style="background:' + (MAPCOL[p.e.category] || "#9aa0a6") + '"></i>' + esc(title(p.e)) + '</span><em>' + esc(shortVenue(p.e.venue)) + (ME ? " · " + esc(walk(p.e)) : (p.e.neighborhood ? " · " + esc(p.e.neighborhood) : "")) + '</em>';
+      b.onclick = function(){ pick(p, true); }; L.appendChild(b); });
+    if (!inV.length) L.innerHTML = '<p class="mp-note">Nothing here with this filter. Zoom out or pick another.</p>';
+  }
+  /* filters */
+  var chips = $("mpChips"); chips.innerHTML = "";
+  [["all","Everything"],["mine",(function(){ var t = VIBES[st.vibe].t; return "★ " + t.charAt(0).toUpperCase() + t.slice(1) + (st.area ? " · " + st.area : ""); })()],["Comedy","Comedy"],["Music","Live music"],["Theater","Theater"],["Film","Film"],["Talks","Talks"],["free","Free"],["soon","Before 8 pm"]].forEach(function(c){
+    var b = document.createElement("button"); b.type = "button"; b.className = "pl-chip"; b.textContent = c[1]; b.setAttribute("aria-pressed", c[0] === filt);
+    b.onclick = function(){ filt = c[0]; [].forEach.call(chips.children, function(x){ x.setAttribute("aria-pressed", x === b); }); refilter(); }; chips.appendChild(b); });
+  /* near me: the device's location, asked once */
+  $("mpNear").setAttribute("aria-pressed", "false");
+  $("mpNear").onclick = function(){
+    var btn = this;
+    if (btn.getAttribute("aria-pressed") === "true") { btn.setAttribute("aria-pressed", "false"); gTop.querySelectorAll(".mp-me,.mp-ring").forEach(function(x){ x.remove(); }); ME = null; apply(); return; }
+    if (!navigator.geolocation) { $("mpMsg").textContent = "This browser can’t share a location."; return; }
+    $("mpMsg").textContent = "Finding you…";
+    navigator.geolocation.getCurrentPosition(function(pos){
+      $("mpMsg").textContent = ""; btn.setAttribute("aria-pressed", "true");
+      ME = {la: pos.coords.latitude, lo: pos.coords.longitude}; var q = P(ME.lo, ME.la);
+      el("circle", {cx: q[0], cy: q[1], r: 1.25 * K / 111, class: "mp-ring"}, gTop); ME.dot = el("circle", {cx: q[0], cy: q[1], r: 6, class: "mp-me"}, gTop);
+      var r = 1.8 * K / 111; fit(q[0] - r, q[1] - r, q[0] + r, q[1] + r, 0.1);
+    }, function(){ $("mpMsg").textContent = "Location is off, so the map can’t show what’s near you. Pick a neighbourhood in the sentence instead."; }, {timeout: 10000, maximumAge: 300000});
+  };
+  /* my night: the poster you made, as numbered stops with the route */
+  $("mpNight").setAttribute("aria-pressed", "false");
+  $("mpNight").onclick = function(){
+    var btn = this, on = btn.getAttribute("aria-pressed") !== "true";
+    gX.innerHTML = ""; STOPS.forEach(function(s){ s.c.remove(); s.t.remove(); }); STOPS = [];
+    if (!on) { btn.setAttribute("aria-pressed", "false"); apply(); return; }
+    var stops = ordered().map(function(a){ return PINS.filter(function(p){ return p.e === a || (title(p.e) === title(a) && p.e.venue === a.venue); })[0]; }).filter(Boolean);
+    if (!stops.length) { $("mpMsg").textContent = "Make a lineup first, then it shows here as your route."; return; }
+    btn.setAttribute("aria-pressed", "true"); $("mpMsg").textContent = "";
+    el("path", {d: stops.map(function(p, k){ return (k ? "L" : "M") + p.x + " " + p.y; }).join(""), class: "mp-route"}, gX);
+    stops.forEach(function(p, k){ var c = el("circle", {cx: p.x, cy: p.y, class: "mp-stop"}, gTop), t = el("text", {x: p.x, y: p.y, class: "mp-stopn"}, gTop); t.textContent = k + 1; STOPS.push({c: c, t: t}); });
+    var xs = stops.map(function(p){ return p.x; }), ys = stops.map(function(p){ return p.y; });
+    fit(Math.min.apply(0, xs), Math.min.apply(0, ys), Math.max.apply(0, xs), Math.max.apply(0, ys), 1.2);
+  };
+  /* pan + zoom */
+  var ptrs = {}, last = null, pinch = null;
+  function toSvg(cx, cy){ var r = svg.getBoundingClientRect(); return [V.x + (cx - r.left) / r.width * V.w, V.y + (cy - r.top) / r.height * V.h]; }
+  function zoomAt(f, cx, cy){ var p = toSvg(cx, cy), nw = Math.max(FIT / 60, Math.min(FIT * 1.3, V.w / f)), k = nw / V.w;
+    V = {x: p[0] - (p[0] - V.x) * k, y: p[1] - (p[1] - V.y) * k, w: nw, h: V.h * k}; apply(); }
+  /* scrolling over the map scrolls the page; ⌘/Ctrl + scroll or a trackpad pinch (ctrlKey) zooms. On touch,
+     one finger scrolls the page and two fingers move / zoom the map. A hint says so, briefly. */
+  var hintT = null;
+  function hint(t){ var h = $("mpHint"); h.textContent = t; h.hidden = false; clearTimeout(hintT); hintT = setTimeout(function(){ h.hidden = true; }, 1600); }
+  svg.onwheel = function(e){
+    if (!(e.ctrlKey || e.metaKey)) { hint(/Mac|iPhone|iPad/.test(navigator.platform) ? "Hold \u2318 and scroll to zoom the map" : "Hold Ctrl and scroll to zoom the map"); return; }
+    e.preventDefault(); zoomAt(Math.exp(-e.deltaY * (e.ctrlKey && !e.metaKey ? 0.01 : 0.0015)), e.clientX, e.clientY); };
+  svg.onpointerdown = function(e){ ptrs[e.pointerId] = [e.clientX, e.clientY, e.pointerType];
+    if (e.pointerType === "touch" && Object.keys(ptrs).length < 2) { hint("Use two fingers to move the map"); return; }
+    try { svg.setPointerCapture(e.pointerId); } catch(x){} svg.classList.add("drag"); last = [e.clientX, e.clientY];
+    var ks = Object.keys(ptrs); if (ks.length === 2) { var a = ptrs[ks[0]], b = ptrs[ks[1]]; pinch = Math.hypot(a[0]-b[0], a[1]-b[1]); last = [(a[0]+b[0])/2, (a[1]+b[1])/2]; $("mpHint").hidden = true; } };
+  svg.onpointermove = function(e){ if (!ptrs[e.pointerId]) return; ptrs[e.pointerId] = [e.clientX, e.clientY, e.pointerType]; var ks = Object.keys(ptrs);
+    if (e.pointerType === "touch" && ks.length < 2) return;  /* one finger: the page scrolls */
+    var r = svg.getBoundingClientRect();
+    if (ks.length === 2 && pinch) { var a = ptrs[ks[0]], b = ptrs[ks[1]], dd = Math.hypot(a[0]-b[0], a[1]-b[1]), mx = (a[0]+b[0])/2, my = (a[1]+b[1])/2;
+      V.x -= (mx - last[0]) / r.width * V.w; V.y -= (my - last[1]) / r.height * V.h; last = [mx, my]; zoomAt(dd / pinch, mx, my); pinch = dd; return; }
+    V.x -= (e.clientX - last[0]) / r.width * V.w; V.y -= (e.clientY - last[1]) / r.height * V.h; last = [e.clientX, e.clientY]; apply(); };
+  svg.onpointerup = svg.onpointercancel = function(e){ delete ptrs[e.pointerId]; if (Object.keys(ptrs).length < 2) pinch = null; if (!Object.keys(ptrs).length) svg.classList.remove("drag"); var k = Object.keys(ptrs); if (k.length) last = ptrs[k[0]]; };
+  $("mpIn").onclick = function(){ var r = svg.getBoundingClientRect(); zoomAt(1.6, r.left + r.width/2, r.top + r.height/2); };
+  $("mpOut").onclick = function(){ var r = svg.getBoundingClientRect(); zoomAt(1/1.6, r.left + r.width/2, r.top + r.height/2); };
+  /* open on where most of tonight is: the middle 80% of the pins */
+  function start(){ var xs = PINS.map(function(p){ return p.x; }).sort(function(a,b){ return a-b; }), ys = PINS.map(function(p){ return p.y; }).sort(function(a,b){ return a-b; });
+    if (!xs.length) { fit(minx, miny, maxx, maxy, 0); return; }
+    var q = function(a, f){ return a[Math.min(a.length - 1, Math.floor(a.length * f))]; }; fit(q(xs, .1), q(ys, .1), q(xs, .9), q(ys, .9), 0.15); }
+  $("mpAll").onclick = start;
+  fit(minx, miny, maxx, maxy, 0); FIT = V.w; start(); refilter();
+  MP = {city: city, date: d};
+}
+function tab(which){  /* "Tonight's picks" or the map, in the same place */
+  var map = which === "map";
+  $("tabPicks").setAttribute("aria-selected", !map); $("plMapBtn").setAttribute("aria-selected", map);
+  $("plPicks").hidden = map || !$("plPicks").innerHTML; if (map) openMap(); else $("plMap").hidden = true; mem("tonight-view", which);
+}
+$("tabPicks").onclick = function(){ tab("picks"); };
+$("plMapBtn").onclick = function(){ tab("map"); };
+$("mpClose").onclick = function(){ tab("picks"); };
+$("plBack").onclick = function(){ document.body.classList.remove("pl-made"); st.with = 0; $("plOut").hidden = true; window.scrollTo({top:0, behavior:"smooth"}); };
+(function(){ var m = /[?&]ref=([a-z0-9-]{2,24})/i.exec(location.search); if (m && !mem("tonight-ref")) mem("tonight-ref", m[1].toLowerCase()); })();
+use("visit");
+if (CALM) { if (mem("tonight-hint-seen")) { var hn = document.querySelector(".pl-hint"); if (hn) hn.hidden = true; } mem("tonight-hint-seen", "1"); }
 drawAsk(); load();
-if (!/^#[pn]=/.test(location.hash || "")) drawFriends();
-var _da = drawAsk; drawAsk = function(){ _da(); if (!$("plAsk").hidden) drawFriends(); };
+(function(){ var a = null; try { a = JSON.parse(mem("tonight-account") || "null"); } catch(e){}
+  if (a && mem("tonight-session")) { var first = String(a.name || "").trim().split(/\s+/)[0];
+    $("plSignIn").textContent = first ? "Hi, " + first : "Your account"; } })();
+if (!/^#[pn]=/.test(location.hash || "")) { drawPicks(); }  /* Nights with friends: off the home page (2026-10-28) */
+var _da = drawAsk, _sig = "";
+drawAsk = function(){ _da(); if (!$("plAsk").hidden) { drawPicks(); }
+  /* the map follows the sentence while it's open */
+  var sig = st.city + iso() + st.vibe + st.area;
+  if (sig !== _sig) { _sig = sig; if (!$("plMap").hidden && !open) { MP = null; openMap(); } } };
 })();
 </script>
-</body></html>
+<script>
+(function(){
+// An older day's page: go to today's page for the same city (keeping filters), unless this is a
+// shared link to one event (#e-...) or Toni is open mid-conversation; then just say so.
+function today(tz){ try { return new Intl.DateTimeFormat("en-CA", {timeZone: tz}).format(new Date()); } catch (e) { return null; } }
+var checking = false;
+function bar(text, href){
+  var b = document.getElementById("staleBar");
+  if (!b) {
+    b = document.createElement("div"); b.id = "staleBar"; b.setAttribute("role", "status");
+    var nav = document.querySelector(".topnav");
+    if (nav && nav.parentNode) nav.parentNode.insertBefore(b, nav.nextSibling);
+    else document.body.insertBefore(b, document.body.firstChild);
+  }
+  b.textContent = text;
+  if (href) { var a = document.createElement("a"); a.href = href; a.textContent = "Go to today \u2192"; b.appendChild(a); }
+}
+function check(){
+  if (checking) return;
+  if (typeof DATE !== "undefined" && typeof TZ !== "undefined") {
+    var t = today(TZ);
+    var last = typeof DATE_END !== "undefined" ? DATE_END : DATE;  // the weekend page lasts through Sunday
+    if (!t || last >= t) { var old = document.getElementById("staleBar"); if (old) old.remove(); return; }
+    var target = location.pathname.replace(DATE, t) + location.search;
+    var day = new Date(DATE + "T12:00:00").toLocaleDateString(document.documentElement.lang || "en", {weekday: "long"});
+    checking = true;
+    fetch(target, {method: "HEAD", cache: "no-store"}).then(function(r){
+      checking = false;
+      if (!r.ok) { bar("These are " + day + "'s picks. Today's list comes out early each morning."); return; }
+      var panel = document.getElementById("toniPanel");
+      var busy = /^#e-/.test(location.hash) || /[?&]only=/.test(location.search) || (panel && !panel.hidden);
+      if (busy) bar("These are " + day + "'s picks.", target);
+      else location.replace(target);
+    }).catch(function(){ checking = false; });
+  } else {
+    // home page: the city cards are rebuilt every morning; an old copy just needs a fresh load
+    var stale = false;
+    document.querySelectorAll("a.citycard[data-tz]").forEach(function(a){
+      var d = ((a.getAttribute("href") || "").match(/(\d{4}-\d{2}-\d{2})/) || [])[1], t = today(a.getAttribute("data-tz"));
+      if (d && t && d < t) stale = true;
+    });
+    if (stale && !/[?&]fresh=/.test(location.search)) location.replace(location.pathname + "?fresh=" + Date.now());
+  }
+}
+document.addEventListener("DOMContentLoaded", check);
+document.addEventListener("visibilitychange", function(){ if (!document.hidden) check(); });
+setInterval(check, 10 * 60 * 1000);
+})();
+</script><script>
+(function(){
+"use strict";
+if (window.TonightDinner) return;
+var MOOD = ["Italian", "Japanese", "Mexican", "Thai", "Indian", "Chinese", "Korean", "Mediterranean", "American", "Seafood"];
+function base(){ return window.__tonight_api || null; }
+function hdr(){ var h = {"Content-Type": "application/json"}; return window.TonightAuth ? TonightAuth.headers(h) : h; }
+function anon(){
+  var u = null; try { u = localStorage.getItem("tonight-user-id"); } catch (e) {}
+  if (!u) { u = "dev-" + Math.random().toString(36).slice(2, 10); try { localStorage.setItem("tonight-user-id", u); } catch (e) {} }
+  return u;
+}
+function read(k, d){ try { var v = JSON.parse(localStorage.getItem(k) || "null"); return v && typeof v === "object" ? v : d; } catch (e) { return d; } }
+function usual(){ return read("tonight-dinner", {}); }
+function dayKey(c, d){ return "tonight-dinner-day-" + c + "-" + d; }
+function day(c, d){ return read(dayKey(c, d), {}); }
+function setDay(c, d, o, from){
+  var clean = {}; Object.keys(o || {}).forEach(function(k){ var v = o[k]; if (v != null && v !== "" && !(Array.isArray(v) && !v.length)) clean[k] = v; });
+  try { if (Object.keys(clean).length) localStorage.setItem(dayKey(c, d), JSON.stringify(clean)); else localStorage.removeItem(dayKey(c, d)); } catch (e) {}
+  try { window.dispatchEvent(new CustomEvent("tonight-dinner-day", {detail: {city: c, date: d, from: from || ""}})); } catch (e) {}
+}
+function rkey(r){ return r.src === "google" ? "g:" + r.id : "n:" + (r.name || "").toLowerCase(); }
+function nevers(){ var a = read("tonight-dinner-never", []); return Array.isArray(a) ? a : []; }
+function hidden(r){ return nevers().indexOf(rkey(r)) >= 0; }
+function setNever(r, on){
+  var a = nevers().filter(function(k){ return k !== rkey(r); }); if (on) a.push(rkey(r));
+  try { localStorage.setItem("tonight-dinner-never", JSON.stringify(a.slice(-300))); } catch (e) {}
+}
+function tap(r, kind){
+  var b = base(); if (!b) return Promise.resolve(null);
+  var g = r.src === "google";
+  return fetch(b + "/restaurant_tap", {method: "POST", headers: hdr(), body: JSON.stringify({user_id: anon(), src: g ? "google" : "osm",
+    place_id: g ? r.id : null, name: g ? "" : r.name, type: r.type || "", price: r.price || "", kind: kind})}).catch(function(){ return null; });
+}
+var toastTimer = null;
+function toast(msg, undo){
+  var t = document.getElementById("dnToast");
+  if (!t) { t = document.createElement("div"); t.id = "dnToast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+  t.innerHTML = ""; var s = document.createElement("span"); s.textContent = msg; t.appendChild(s);
+  if (undo) { var u = document.createElement("button"); u.type = "button"; u.textContent = "Undo";
+    u.addEventListener("click", function(){ t.classList.remove("on"); undo(); }); t.appendChild(u); }
+  t.classList.add("on"); clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.classList.remove("on"); }, 6000);
+}
+// "Not this place": never suggested to this person again (Undo puts it back). after(): redraw.
+function notThis(r, after){
+  setNever(r, true);
+  tap(r, "never").then(function(){ if (after) after(); });
+  toast("Not this place. Toni won't suggest it again.", function(){
+    setNever(r, false); tap(r, "undo").then(function(){ if (after) after(); });
+  });
+}
+function label(c){ return (window.CAT_LABELS && CAT_LABELS[c]) || c; }
+// The per-day panel: changes for this day only, over the usual settings. onApply() re-asks Toni.
+function panel(c, d, onApply){
+  var u = usual(), cur = day(c, d), box = document.createElement("div"); box.className = "dn-panel";
+  var sel = {timing: cur.timing || u.timing || "either", budget: String(cur.budget || u.budget || ""), vibe: cur.vibe || u.vibe || "",
+             mood: (cur.mood || []).slice()};
+  var h = document.createElement("div"); h.className = "dn-h"; h.textContent = "Dinner, this day only"; box.appendChild(h);
+  function row(title, key, opts, multi){
+    var r = document.createElement("div"); r.className = "dn-row";
+    var s = document.createElement("span"); s.textContent = title; r.appendChild(s);
+    var g = document.createElement("div"); g.className = "dn-opts"; r.appendChild(g);
+    opts.forEach(function(o){
+      var b = document.createElement("button"); b.type = "button"; b.textContent = o[1]; b.setAttribute("data-v", o[0]);
+      var on = function(){ return multi ? sel[key].indexOf(o[0]) >= 0 : sel[key] === o[0]; };
+      b.setAttribute("aria-pressed", on() ? "true" : "false");
+      b.addEventListener("click", function(){
+        if (multi) { var i = sel[key].indexOf(o[0]); if (i >= 0) sel[key].splice(i, 1); else sel[key].push(o[0]); }
+        else sel[key] = sel[key] === o[0] && key !== "timing" ? "" : o[0];
+        g.querySelectorAll("button").forEach(function(x){ var v = x.getAttribute("data-v");
+          x.setAttribute("aria-pressed", (multi ? sel[key].indexOf(v) >= 0 : sel[key] === v) ? "true" : "false"); });
+      });
+      g.appendChild(b);
+    });
+    box.appendChild(r);
+  }
+  row("When tonight", "timing", [["skip", "Skip dinner tonight"], ["before", "Before the show"], ["after", "After the show"], ["either", "Either"]]);
+  row("Budget tonight", "budget", [["1", "$"], ["2", "$$"], ["3", "$$$"], ["4", "$$$$"]]);
+  row("In the mood for", "mood", MOOD.map(function(m){ return [m, label(m)]; }), true);
+  row("Vibe tonight", "vibe", [["casual", "Casual"], ["relaxed", "Relaxed-nice"], ["upscale", "Upscale"]]);
+  var act = document.createElement("div"); act.className = "dn-act";
+  var go = document.createElement("button"); go.type = "button"; go.className = "dn-go"; go.textContent = "Update dinner";
+  var reset = document.createElement("a"); reset.href = "#"; reset.textContent = "Reset to my usual";
+  var close = document.createElement("button"); close.type = "button"; close.className = "dn-close"; close.textContent = "Close";
+  var note = document.createElement("span"); note.className = "dn-note";
+  act.appendChild(go); act.appendChild(reset); act.appendChild(close); act.appendChild(note); box.appendChild(act);
+  go.addEventListener("click", function(){
+    // keep only what differs from the usual settings
+    var o = {};
+    if (sel.timing !== (u.timing || "either")) o.timing = sel.timing;
+    if (sel.budget !== String(u.budget || "")) o.budget = sel.budget ? +sel.budget : 0;  // 0: no limit tonight
+    if (sel.vibe !== (u.vibe || "")) o.vibe = sel.vibe || "any";
+    if (sel.mood.length) o.mood = sel.mood;
+    setDay(c, d, o); note.textContent = "Updating dinner\u2026"; if (onApply) onApply();
+  });
+  reset.addEventListener("click", function(ev){ ev.preventDefault(); setDay(c, d, {}); note.textContent = "Updating dinner\u2026"; if (onApply) onApply(); });
+  close.addEventListener("click", function(){ box.remove(); });
+  return box;
+}
+// One line for a day's changes ("tonight: $$ · Thai"), or "".
+function summary(c, d){
+  var o = day(c, d), bits = [];
+  if (o.timing === "skip") return "Skipping dinner tonight";
+  if (o.timing === "before") bits.push("before the show");
+  if (o.timing === "after") bits.push("after the show");
+  if (o.budget) bits.push("up to " + "$$$$".slice(0, +o.budget));
+  if (o.mood && o.mood.length) bits.push(o.mood.map(label).join(", "));
+  if (o.vibe && o.vibe !== "any") bits.push({casual: "Casual", relaxed: "Relaxed-nice", upscale: "Upscale"}[o.vibe] || o.vibe);
+  return bits.length ? "Tonight: " + bits.join(" \u00b7 ") : "";
+}
+window.TonightDinner = {usual: usual, day: day, setDay: setDay, tap: tap, notThis: notThis, hidden: hidden, panel: panel,
+  summary: summary, toast: toast};
+})();
+</script><script>
+(function(){
+"use strict";
+// Where are we? A city/browse page has CITY + DATE; the home page has city cards.
+var onPage = typeof CITY !== "undefined" && typeof DATE !== "undefined";
+var homeCities = [];   // [{slug, name, date, href}] on the home page
+if (!onPage) {
+  document.querySelectorAll("a.citycard").forEach(function(a){
+    var href = a.getAttribute("href") || "", m = href.match(/^([a-z]+)\/(\d{4}-\d{2}-\d{2})\.html/);
+    if (m) homeCities.push({slug: m[1], date: m[2], href: href,
+      name: ((a.querySelector(".cc-top") || a).textContent || m[1]).trim()});
+  });
+  if (!homeCities.length) return;
+}
+var CITY_LABEL = (document.querySelector(".hero .eyebrow, .bhero .eyebrow") || {textContent: ""}).textContent.split("·").pop().trim();
+var cur = onPage ? {slug: CITY, date: DATE, href: "", name: CITY_LABEL} : (function(){
+  var saved = null; try { saved = localStorage.getItem("tonight-city"); } catch (e) {}
+  return homeCities.filter(function(c){ return c.slug === saved; })[0] || homeCities[0];
+})();
+var KEY, history = [];
+var FRESH_MS = 2 * 3600 * 1000;  // older conversations start fresh when the panel opens
+var restoredCount = 0;           // messages restored from earlier (drawn as "Earlier")
+function loadHistory(){
+  KEY = "tonight-toni-" + cur.slug + "-" + cur.date; history = [];
+  var saved = null;
+  try { saved = JSON.parse(sessionStorage.getItem(KEY) || "null"); } catch (e) {}
+  // old format was a bare list with no time: treat as stale
+  if (saved && !Array.isArray(saved) && Date.now() - (saved.at || 0) < FRESH_MS) history = saved.messages || [];
+  restoredCount = history.length;
+}
+loadHistory();
+var SUGGEST = window.TONI_SUGGEST || ["Something free tonight", "Low-key, not too loud", "Plan my night", "What starts in the next hour?"];
+function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+function waitForBase(n){
+  var b = window.__tonight_api || null;
+  if (b || n <= 0) return Promise.resolve(b);
+  return new Promise(function(r){ setTimeout(r, 100); }).then(function(){ return waitForBase(n - 1); });
+}
+var btn = el("button", "", null); btn.id = "toniBtn"; btn.type = "button";
+btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.2-4.6A8 8 0 1 1 21 12z"/></svg>';
+btn.appendChild(document.createTextNode("Ask Toni"));
+var panel = el("div"); panel.id = "toniPanel"; panel.hidden = true;
+panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Ask Toni");
+var head = el("div", "tn-head"), hl = el("div");
+hl.appendChild(el("b", "", "Ask Toni")); hl.appendChild(el("span", "", "Your concierge for tonight and the week ahead"));
+var close = el("button", "tn-close", "\u00d7"); close.type = "button"; close.setAttribute("aria-label", "Close");
+var fresh = el("button", "tn-new", "New chat"); fresh.type = "button";
+var hbtns = el("div", "tn-hbtns"); hbtns.appendChild(fresh); hbtns.appendChild(close);
+head.appendChild(hl); head.appendChild(hbtns);
+var log = el("div", "tn-log"); log.setAttribute("aria-live", "polite");
+var form = el("form", "tn-form"), input = el("input"); input.id = "toniInput";
+input.placeholder = "e.g. something free after 7"; input.autocomplete = "off"; input.setAttribute("aria-label", "Ask Toni");
+var send = el("button", "", "Ask"); send.type = "submit";
+form.appendChild(input); form.appendChild(send);
+panel.appendChild(head);
+if (!onPage) {
+  var sw = el("div", "tn-chips tn-city");
+  homeCities.forEach(function(c){
+    var b = el("button", "", c.name); b.type = "button";
+    b.setAttribute("aria-pressed", c.slug === cur.slug ? "true" : "false");
+    b.addEventListener("click", function(){
+      cur = c; try { localStorage.setItem("tonight-city", c.slug); } catch (e) {}
+      sw.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      loadHistory(); render();
+    });
+    sw.appendChild(b);
+  });
+  panel.appendChild(sw);
+}
+panel.appendChild(log); panel.appendChild(form);
+
+function cleanText(text){
+  // older replies (and models that ignore the format) may carry markers or markdown
+  return (text || "").replace(/\[\[\d+\]\]/g, "")
+    .replace(/^[ \t]*[*\-][ \t]+/gm, "\u2022 ")
+    .replace(/\*\*([^*]+)\*\*/g, "$1").replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s.,;:!?)]|$)/g, "$1$2")
+    .replace(/[ \t]+([.,;:!?])/g, "$1").trim();
+}
+function timeCell(t){
+  var box = el("div", "tn-time"), m = /^(\d{1,2}:\d{2})\s*([AP]M)$/i.exec(t || "");
+  if (m) { box.appendChild(document.createTextNode(m[1].replace(/:00$/, ""))); box.appendChild(el("small", "", m[2].toUpperCase())); }
+  else { box.className += " tba"; box.textContent = "TIME TBA"; }
+  return box;
+}
+function card(c){
+  var box = el("div", "tn-card"), body = el("div", "tn-body");
+  var tc = timeCell(c.start_time);
+  if (c.day) tc.insertBefore(el("small", "tn-day", c.day), tc.firstChild);  // a pick from another day: "Fri 23"
+  box.appendChild(tc);
+  body.appendChild(el("div", "n", c.name));
+  var meta = el("div", "m");
+  if (c.venue) meta.appendChild(el("span", "", c.venue));
+  if (c.price === "free") meta.appendChild(el("span", "tn-free", "Free"));
+  else if (c.price && c.price !== "price unknown") meta.appendChild(el("span", "", c.price));
+  body.appendChild(meta);
+  if (c.dist) body.appendChild(el("div", "tn-dist", "📍 " + c.dist));  // Near me: how far from you
+  if (c.reason) body.appendChild(el("div", "r", c.reason));
+  var a = el("div", "a");
+  // a pick from another day (Toni looked ahead): no tick here, and "See it" opens that day's page
+  var other = !!(c.date && c.date !== cur.date), here = onPage && !other && !window.TONI_NO_TICK;
+  if (here) {
+    var tick = el("button", "", "Tick it"); tick.type = "button";
+    var pageBox = function(){ return document.querySelector('.toggle[data-idx="' + c.id + '"]'); };
+    var sync = function(){ var t = pageBox(); var on = !!t && t.getAttribute("aria-pressed") === "true";
+      tick.setAttribute("aria-pressed", on ? "true" : "false"); tick.textContent = on ? "Ticked \u2713" : "Tick it"; };
+    tick.addEventListener("click", function(){ var t = pageBox(); if (t) { t.click(); setTimeout(sync, 50); } });
+    sync(); a.appendChild(tick);
+  }
+  var dayName = other ? new Date(c.date + "T12:00:00").toLocaleDateString(document.documentElement.lang || "en", {weekday: "long"}) : "";
+  var see = el("a", "", other ? "See it on " + dayName : (onPage ? "See it" : "See it on " + (cur.name || "the city page")));
+  see.href = other ? (onPage ? "" : cur.slug + "/") + c.date + ".html" + (c.eid ? "#e-" + c.eid : "")
+                   : (onPage ? "" : cur.href) + (c.eid ? "#e-" + c.eid : "#event-" + c.id);
+  see.addEventListener("click", function(){ if (window.innerWidth < 560) panel.hidden = true; });
+  a.appendChild(see);
+  if (c.url) {
+    var tk = el("a", "", (c.price === "free" ? "RSVP / details" : "Tickets") + " \u2192");
+    tk.href = c.url; tk.target = "_blank"; tk.rel = "noopener"; a.appendChild(tk);
+  }
+  body.appendChild(a);
+  box.appendChild(body);
+  return box;
+}
+// Booking links (checked 2026-09-29): OpenTable takes date, time, party size and a
+// map point; Resy takes date + party size for the whole city. No working Resy London link.
+var BOOKING = {
+  nyc: {ot: "https://www.opentable.com", resy: "new-york-ny"},
+  la: {ot: "https://www.opentable.com", resy: "los-angeles-ca"},
+  london: {ot: "https://www.opentable.co.uk", resy: null}
+};
+function dinnerTime(start){
+  // about 90 minutes before the plan, on the half hour, between 5:00 and 9:30 PM
+  var m = /^(\d{1,2}):(\d{2})\s*([AP])M$/i.exec(start || ""), mins = 19 * 60;
+  if (m) mins = (+m[1] % 12 + (m[3].toUpperCase() === "P" ? 12 : 0)) * 60 + +m[2] - 90;
+  mins = Math.min(Math.max(Math.floor(mins / 30) * 30, 17 * 60), 21 * 60 + 30);
+  return mins;
+}
+function dinnerBlock(d){
+  var cfg = BOOKING[cur.slug] || {}, mins = d.mins != null ? d.mins : dinnerTime(d.start), party = 2;
+  try { party = Math.min(12, Math.max(1, +localStorage.getItem("tonight-party") || 2)); } catch (e) {}
+  var hh = String(Math.floor(mins / 60)).padStart(2, "0"), mm = String(mins % 60).padStart(2, "0");
+  var h12 = (Math.floor(mins / 60) % 12 || 12) + (mins % 60 ? ":" + mm : "") + (mins >= 720 ? " PM" : " AM");
+  var box = el("div", "tn-dine");
+  box.appendChild(el("div", "t", "Dinner near " + d.venue));
+  var sub = el("div", "s", h12 + (d.why ? ", " + d.why : "") + " \u00b7 ");
+  var ps = el("span", "tn-party"), minus = el("button", "", "\u2212"), cnt = el("b", "", party + (party === 1 ? " person" : " people")), plus = el("button", "", "+");
+  minus.type = plus.type = "button"; minus.setAttribute("aria-label", "Fewer people"); plus.setAttribute("aria-label", "More people");
+  function setParty(n){ n = Math.min(12, Math.max(1, n)); try { localStorage.setItem("tonight-party", String(n)); } catch (e) {}
+    var nb = dinnerBlock(d); box.replaceWith(nb); }
+  minus.addEventListener("click", function(){ setParty(party - 1); });
+  plus.addEventListener("click", function(){ setParty(party + 1); });
+  ps.appendChild(minus); ps.appendChild(cnt); ps.appendChild(plus); sub.appendChild(ps);
+  box.appendChild(sub);
+  // named picks from the dinner engine (OpenStreetMap data), then the general booking links
+  var dt = cur.date + "T" + hh + ":" + mm;
+  var TD = window.TonightDinner;
+  (d.restaurants || []).filter(function(r){ return !(TD && TD.hidden(r)); }).forEach(function(r){
+    var it = el("div", "tn-rest");
+    it.appendChild(el("div", "rn", r.name + (r.match ? "  ★" : "")));
+    var stars = r.rating ? "\u2605 " + r.rating.toFixed(1) + (r.reviews ? " (" + r.reviews.toLocaleString() + ")" : "") : "";
+    it.appendChild(el("div", "rm", [stars, r.price, r.cuisine, r.walk, r.hours].filter(Boolean).join(" \u00b7 ")));
+    var ln = el("div", "rl");
+    function link(label, href){ var a = el("a", "", label); a.href = href; a.target = "_blank"; a.rel = "noopener";
+      if (TD) a.addEventListener("click", function(){ TD.tap(r, "pick"); });  // learning: what they look at
+      ln.appendChild(a); }
+    if (r.reservable === false) ln.appendChild(el("span", "", "Walk-in"));
+    else if (cfg.ot && (r.reservable || r.src !== "google")) link("Book \u2192", cfg.ot + "/s?dateTime=" + encodeURIComponent(dt) + "&covers=" + party + "&term=" + encodeURIComponent(r.name));
+    if (r.website) link("Website \u2192", r.website);
+    link("Map \u2192", r.maps_url || ("https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(r.name + " " + (cur.name || ""))));
+    if (TD) {
+      var x = el("button", "dn-x", "\u2715 Not this place"); x.type = "button";
+      x.addEventListener("click", function(){ it.style.display = "none"; TD.notThis(r, function(){ if (!TD.hidden(r)) it.style.display = ""; }); });
+      ln.appendChild(x);
+    }
+    it.appendChild(ln);
+    box.appendChild(it);
+  });
+  if ((d.restaurants || []).length) {
+    box.appendChild(el("div", "tn-src", (d.restaurants || []).some(function(r){ return r.src === "google"; })
+      ? "Restaurant info: Google Maps" : "Restaurant data \u00a9 OpenStreetMap contributors. Hours can be out of date; check before you go."));
+    box.appendChild(el("div", "t2", "More options"));
+  }
+  var row = el("div", "b");
+  function add(label, href){ var a = el("a", "", label); a.href = href; a.target = "_blank"; a.rel = "noopener"; row.appendChild(a); }
+  if (cfg.ot) {
+    var ot = cfg.ot + "/s?dateTime=" + encodeURIComponent(cur.date + "T" + hh + ":" + mm) + "&covers=" + party;
+    if (d.area || d.venue) ot += "&term=" + encodeURIComponent(d.area || d.venue);  // OpenTable ignores lat/lng
+    add("OpenTable \u2192", ot);
+  }
+  if (cfg.resy) add("Resy \u2192", "https://resy.com/cities/" + cfg.resy + "?date=" + cur.date + "&seats=" + party);
+  add("Map \u2192", "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent("restaurants near " + d.venue + (cur.name ? ", " + cur.name : "")));
+  box.appendChild(row);
+  return box;
+}
+function filterUrl(f){
+  var q = [];
+  if (f.free) q.push("free=1");
+  if (f.after != null) q.push("after=" + f.after);
+  if (f.before != null) q.push("before=" + f.before);
+  if (f.category) q.push("cat=" + encodeURIComponent(f.category));
+  if (f.neighborhood) q.push("hood=" + encodeURIComponent(f.neighborhood));
+  if (f.source) q.push("src=" + encodeURIComponent(f.source));
+  if (f.occasion) q.push("occ=" + encodeURIComponent(f.occasion));
+  return q.length ? "?" + q.join("&") : "";
+}
+// "Show me everything that's free before 7": Toni sets the page's own filters instead of a long list
+function applyPageFilters(f){
+  var set = function(id, v){ var el = document.getElementById(id); if (!el) return;
+    if (el.tagName === "SELECT" && v != null && v !== "" && !el.querySelector('option[value="' + v + '"]')) { var o = document.createElement("option"); o.value = v; var h = Math.floor(v / 60), m = v % 60; o.textContent = (h % 12 || 12) + (m ? ":" + String(m).padStart(2, "0") : "") + (h >= 12 ? " PM" : " AM"); el.appendChild(o); } 
+    el.value = v == null ? "" : String(v); el.dispatchEvent(new Event("change")); };
+  var free = document.getElementById("ffree");
+  if (free && !!f.free !== (free.getAttribute("aria-pressed") === "true")) free.click();
+  set("fafter", f.after); set("fbefore", f.before); set("fcat", f.category || ""); set("fhood", f.neighborhood || ""); set("fsrc", f.source || "");
+  if (window.__setOcc) window.__setOcc(f.occasion || "", "");  // Date ideas / Meet someone
+  var n = 0;
+  document.querySelectorAll("article.event").forEach(function(a){ if (a.style.display !== "none") n++; });
+  return n;
+}
+// "Send to friends": a plan becomes one "are you in?" vote, a list becomes a pick-one vote.
+// The link goes to the group chat (phone share sheet, or copied on a laptop).
+// "Text the group": a ready-to-send message (plan or picks) with a link to just those events.
+// The decision happens in the group chat; nothing to vote on here.
+function sendRow(m){
+  var row = el("div", "tn-send"), b = el("button", "", "💬 Text the group →");
+  b.type = "button"; var st = el("span", "tn-send-msg"); row.appendChild(b); row.appendChild(st);
+  b.addEventListener("click", function(){ textGroup(m, st); });
+  return row;
+}
+function toMins(t){ var x = /(\d{1,2})(?::(\d{2}))?\s*([AP])M/i.exec(t || ""); if (!x) return 9999;
+  return (+x[1] % 12 + (x[3].toUpperCase() === "P" ? 12 : 0)) * 60 + (+x[2] || 0); }
+function textGroup(m, st){
+  var cards = (m.cards || []).slice(0, 6);
+  var brand = document.querySelector(".topnav .brand");
+  var page = onPage ? location.origin + location.pathname : new URL(cur.slug + "/" + cur.date + ".html", brand ? brand.href : location.href).href;
+  var ids = cards.map(function(c){ return c.eid; }).filter(Boolean);
+  var url = page + (ids.length ? "?only=" + ids.join(",") : "");
+  var stops = cards.map(function(c){ return {t: c.start_time || "", line: c.name + (c.venue ? " · " + c.venue : "") +
+    (c.price === "free" || c.price === "gratis" ? " · free" : "")}; });
+  var text;
+  if (m.plan) {
+    if (m.dinner && m.dinner.time) {
+      var rs = (m.dinner.restaurants || []).slice(0, 2).map(function(r){ return r.name; });
+      stops.push({t: m.dinner.time, line: "Dinner" + (rs.length ? " at " + rs.join(" or ") : m.dinner.venue ? " near " + m.dinner.venue : "")});
+    }
+    stops.sort(function(a, b){ return toMins(a.t) - toMins(b.t); });
+    text = "Tonight's plan 👇\n" + stops.map(function(x){ return (x.t ? x.t + " " : "") + x.line; }).join("\n") + "\nYou in? " + url;
+  } else {
+    text = (cards.length > 1 ? "Thinking about tonight 👇\n" : "Thinking about this tonight 👇\n") +
+      stops.map(function(x, k){ return (cards.length > 1 ? (k + 1) + ". " : "") + x.line + (x.t ? ", " + x.t : ""); }).join("\n") +
+      "\n" + (cards.length > 1 ? "Which one? " : "You in? ") + url;
+  }
+  if (navigator.share && matchMedia("(pointer: coarse)").matches) { navigator.share({text: text}).catch(function(){}); return; }
+  navigator.clipboard.writeText(text).then(function(){ st.textContent = "Message copied. Paste it into your group chat."; },
+    function(){ st.textContent = "Couldn't copy on this device."; });
+}
+function toniBlock(){
+  var wrap = el("div", "tn-toni"); wrap.appendChild(el("div", "tn-who", "Toni")); return wrap;
+}
+function render(){
+  log.innerHTML = "";
+  if (!history.length) {
+    var hi = toniBlock();
+    var acct = window.TonightAuth && TonightAuth.token() && TonightAuth.account();
+    var fn = acct && acct.name ? String(acct.name).trim().split(/\s+/)[0].slice(0, 30) : "";
+    hi.appendChild(el("p", "tn-text", (fn ? "Hi, " + fn + ". I'm Toni." : "Hi, I'm Toni.") +
+      " Tell me your mood, budget or when you're free, and I'll pick from today's list."));
+    hi.appendChild(el("p", "tn-text small", "I only suggest events that are really on today. Tickets are bought on each event's own site."));
+    var chips = el("div", "tn-chips");
+    SUGGEST.forEach(function(s){ var b = el("button", "", s); b.type = "button";
+      b.addEventListener("click", function(){ ask(s); }); chips.appendChild(b); });
+    hi.appendChild(chips);
+    log.appendChild(hi);
+  }
+  if (restoredCount) log.appendChild(el("div", "tn-earlier", "Earlier today"));
+  var lastYou = null;
+  history.forEach(function(m, k){
+    if (restoredCount && k === restoredCount) log.appendChild(el("div", "tn-earlier", "Now"));
+    if (m.role === "user") { lastYou = el("div", "tn-you", m.display || m.content); log.appendChild(lastYou); return; }
+    var blk = toniBlock();
+    if (m.error) { blk.appendChild(el("p", "tn-text err", m.content)); log.appendChild(blk); return; }
+    var cards = m.cards || [];
+    var intro = m.intro != null ? m.intro : (cards.length ? "" : cleanText(m.content));
+    // answers saved before the shape check could hold leaked reasoning: keep only a short last sentence
+    if (intro && intro.split(/\s+/).length > 40) {
+      var last = intro.split(/(?<=[.!?])\s*(?=[A-Z])/).pop();
+      intro = last && last.split(/\s+/).length <= 25 ? last : "";
+    }
+    if (m.intro == null && cards.length) intro = cleanText(m.content).split(/\n/)[0];
+    if (intro) blk.appendChild(el("p", "tn-text", intro));
+    if (k === history.length - 1 && (cards.length >= 2 || m.need_here)) blk.appendChild(modeRow(m));
+    if (cards.length) {
+      var list = el("div", "tn-picks" + (cards.length > 1 ? " plan" : ""));
+      cards.forEach(function(c, k){
+        list.appendChild(card(c));
+        if (c.gap_after && k < cards.length - 1) list.appendChild(el("div", "tn-gap", c.gap_after));
+      });
+      blk.appendChild(list);
+    }
+    if (m.all && m.all.length) blk.appendChild(allList(m));
+    if (m.see_all) {  // date ideas / singles: their own page, every one grouped by day
+      var sa2 = el("a", "tn-seeall", m.see_all === "singles.html" ? "See every singles event this week →" : "See every date idea this weekend →");
+      sa2.href = (onPage ? "" : cur.slug + "/") + m.see_all;
+      blk.appendChild(sa2);
+    }
+    if (m.outro) blk.appendChild(el("p", "tn-text small", m.outro));
+    if (m.seeAll && m.fullCount) {
+      var sa = el("div", "tn-shown");
+      sa.appendChild(el("span", "", m.fullCount + " match in all"));
+      var link = el("a", "", "See the full list →"); link.href = m.seeAll;
+      sa.appendChild(link); blk.appendChild(sa);
+    }
+    if (m.shown != null) {
+      var sh = el("div", "tn-shown");
+      sh.appendChild(el("span", "", "Showing all " + m.shown + " on the page"));
+      var go = el("button", "", "Show me →"); go.type = "button";
+      go.addEventListener("click", function(){
+        panel.hidden = true;
+        var bar = document.getElementById("filterBar") || document.querySelector(".filters");
+        if (bar) bar.scrollIntoView({behavior: "smooth", block: "start"});
+      });
+      sh.appendChild(go); blk.appendChild(sh);
+    }
+    if (m.dinner) blk.appendChild(dinnerBlock(m.dinner));
+    if (cards.length && !m.error) blk.appendChild(sendRow(m));
+    log.appendChild(blk);
+  });
+  // a new answer opens at its top (the question, then "53 university talks…"), not the bottom of a long list
+  var last = history[history.length - 1];
+  if (last && last.role === "assistant" && lastYou)
+    log.scrollTop += lastYou.getBoundingClientRect().top - log.getBoundingClientRect().top - 8;
+  else log.scrollTop = log.scrollHeight;
+}
+function dinnerPrefs(){
+  try { return JSON.parse(localStorage.getItem("tonight-dinner") || "{}"); } catch (e) { return {}; }
+}
+function recentVenues(){
+  // venues the note featured on earlier days + venues Toni itself suggested lately
+  var f = [], t = [];
+  try { f = JSON.parse(localStorage.getItem("tonight-featured-" + cur.slug) || "[]"); } catch (e) {}
+  try { t = JSON.parse(localStorage.getItem("tonight-toni-seen-" + cur.slug) || "[]"); } catch (e) {}
+  var cutoff = new Date(new Date(cur.date) - 3 * 86400000).toISOString().slice(0, 10);
+  var out = [];
+  f.filter(function(x){ return x.date < cur.date; }).concat(t.filter(function(x){ return x.date >= cutoff; }))
+    .forEach(function(x){ if (x.venue && out.indexOf(x.venue) < 0) out.push(x.venue); });
+  return out.slice(-8);
+}
+function rememberVenues(cards){
+  var t = []; try { t = JSON.parse(localStorage.getItem("tonight-toni-seen-" + cur.slug) || "[]"); } catch (e) {}
+  (cards || []).forEach(function(c){
+    var v = (c.venue || "").toLowerCase();
+    if (v && !t.some(function(x){ return x.venue === v && x.date === cur.date; })) t.push({date: cur.date, venue: v});
+  });
+  try { localStorage.setItem("tonight-toni-seen-" + cur.slug, JSON.stringify(t.slice(-30))); } catch (e) {}
+}
+function save(){ try { sessionStorage.setItem(KEY, JSON.stringify({at: Date.now(), messages: history.slice(-24)})); } catch (e) {} }
+function newChat(){
+  history = []; restoredCount = 0;
+  try { sessionStorage.removeItem(KEY); } catch (e) {}
+  render(); input.focus();
+}
+// For you / Near me / Best overall: how Toni chooses its top picks (kept for this visit)
+var toniMode = null, herePos = null;
+try { toniMode = sessionStorage.getItem("tonight-toni-mode"); herePos = JSON.parse(sessionStorage.getItem("tonight-here") || "null"); } catch (e) {}
+function modeRow(m){
+  var row = el("div", "tn-modes"), cur = m.mode || "you";
+  [["you", "For you"], ["near", "Near me"], ["best", "Best overall"]].forEach(function(o){
+    var b = el("button", cur === o[0] ? "on" : "", o[1]); b.type = "button";
+    b.setAttribute("aria-pressed", cur === o[0] ? "true" : "false");
+    b.addEventListener("click", function(){ if (!busy && o[0] !== cur) setMode(o[0]); });
+    row.appendChild(b);
+  });
+  return row;
+}
+function setMode(mode){
+  var go = function(){
+    toniMode = mode; try { sessionStorage.setItem("tonight-toni-mode", mode); } catch (e) {}
+    // ask the same question again in the new mode, replacing the last answer
+    var lastQ = null;
+    while (history.length && history[history.length - 1].role !== "user") history.pop();
+    if (history.length) { lastQ = history.pop(); }
+    if (lastQ) ask(lastQ.content, lastQ.display);
+  };
+  if (mode === "near" && !herePos && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(p){
+      herePos = {lat: +p.coords.latitude.toFixed(4), lng: +p.coords.longitude.toFixed(4)};  // ~10 m, this visit only
+      try { sessionStorage.setItem("tonight-here", JSON.stringify(herePos)); } catch (e) {}
+      go();
+    }, function(){ go(); }, {maximumAge: 600000, timeout: 8000});  // no location: Toni uses your home neighbourhood
+  } else go();
+}
+// "All 62 ▾": every match of a list question, one compact row each, grouped by day (the best few are cards above)
+function allList(m){
+  var box = document.createElement("details"); box.className = "tn-all";
+  var sum = document.createElement("summary"); sum.textContent = "All " + (m.all_count || m.all.length) + " ▾";
+  box.appendChild(sum);
+  var lastDay = null;
+  m.all.forEach(function(r){
+    var other = !!(r.date && r.date !== cur.date);
+    if (r.day && r.day !== lastDay) { box.appendChild(el("div", "tn-all-day", r.day)); lastDay = r.day; }
+    var row = el("a", "tn-all-row");
+    row.href = other ? (onPage ? "" : cur.slug + "/") + r.date + ".html" + (r.eid ? "#e-" + r.eid : "")
+                     : (onPage ? "" : cur.href) + (r.eid ? "#e-" + r.eid : "#event-" + r.id);
+    row.appendChild(el("span", "t", r.start_time || ""));
+    var main = el("span", "n", r.name || ""); row.appendChild(main);
+    if (r.venue) row.appendChild(el("span", "v", r.venue + (r.dist ? " · " + r.dist : "")));
+    box.appendChild(row);
+  });
+  return box;
+}
+var busy = false;
+// questions that look past today (mirrors AHEAD_RE in app/server.py), for the "Looking across…" wait message
+var AHEAD_JS = /(next (few|couple|\d+|two|three|four|five|six|seven) days|(this|next|the) week|coming (days|week|up)|upcoming|weekend|tomorrow|tmrw|monday|tuesday|wednesday|thursday|friday|saturday|sunday)/i;
+var excludeNext = null;  // hard venue exclusions for the next question (e.g. "change the plan")
+function ask(q, display){
+  q = (q || "").trim(); if (!q || busy) return;
+  busy = true; send.disabled = true; input.value = "";
+  history.push(display ? {role: "user", content: q, display: display} : {role: "user", content: q}); render();
+  var thinking = toniBlock(); thinking.appendChild(el("p", "tn-text small", AHEAD_JS.test(q) || (function(){ for (var k = history.length - 2; k >= 0; k--) { var m = history[k]; if (m.role === "assistant" && !m.error) return !!(m.context && m.context.days && m.context.days.length > 1); } return false; })()
+      ? "Looking across the next few days\u2026" : "Looking through today's list\u2026"));
+  log.appendChild(thinking); log.scrollTop = log.scrollHeight;
+  var taste = (window.Tonight && Tonight.taste) || {};
+  var anon = null; try { anon = localStorage.getItem("tonight-user-id"); } catch (e) {}
+  waitForBase(30).then(function(base){
+    if (!base) throw new Error("offline");
+    var headers = {"Content-Type": "application/json"};
+    if (window.TonightAuth) headers = TonightAuth.headers(headers);
+    return fetch(base + "/toni", {method: "POST", headers: headers, body: JSON.stringify({
+      city: cur.slug, date: cur.date, lang: document.documentElement.lang || "en", anon_id: anon, avoid_venues: recentVenues(), dinner_prefs: dinnerPrefs(),
+      dinner_day: window.TonightDinner ? TonightDinner.day(cur.slug, cur.date) : {},
+      hidden: window.TonightHide && typeof CITY !== "undefined" && CITY === cur.slug ? TonightHide.list() : [],
+      exclude_venues: (function(){ var x = excludeNext || []; excludeNext = null; return x; })(),
+      can_filter: !!document.getElementById("fq"),
+      taste: {likes: taste.likes || [], mutes: taste.mutes || [], free_only: !!taste.free_only,
+        budget: taste.budget == null ? null : taste.budget, areas: (taste.areas && taste.areas[CITY]) || [],
+        kids: (function(){ try { return localStorage.getItem("tonight-kids") === "1"; } catch (e) { return false; } })()},
+      current_plan: (function(){  // the latest plan, so "swap the show" / "cheaper" edits it
+        for (var k = history.length - 1; k >= 0; k--) { var m = history[k];
+          if (m.role === "assistant" && !m.error) return m.plan && m.cards && m.cards.length ?
+            {ids: m.cards.map(function(c){ return c.id; }), roles: m.cards.map(function(c){ return c.role || ""; }),
+             dinner: m.dinner && m.dinner.time ? m.dinner.time : null} : null; }
+        return null; })(),
+      mode: toniMode || undefined, here: toniMode === "near" && herePos ? herePos : undefined,
+      nearby: (function(){ try { return localStorage.getItem("tonight-nearby") === "1"; } catch (e) { return false; } })(),
+      // what the conversation is about so far (days, the list being narrowed): the latest answer's, until New chat
+      context: (function(){ for (var k = history.length - 1; k >= 0; k--) { var m = history[k];
+        if (m.role === "assistant" && !m.error) return m.context || null; } return null; })(),
+      messages: history.filter(function(m){ return !m.error; }).map(function(m){ return {role: m.role, content: m.content}; })
+    })}).then(function(r){ return r.json(); });
+  }).then(function(d){
+    if (!d.ok) history.push({role: "assistant", content: d.error || "Toni can't answer right now.", error: true});
+    else {
+      var msg = {role: "assistant", content: d.reply, intro: d.intro || "", outro: d.outro || "", cards: d.cards || [], plan: !!d.plan,
+                 context: d.context && d.context.days ? d.context : null,
+                 all: d.all || null, all_count: d.all_count || 0, mode: d.mode || null, need_here: !!d.need_here,
+                 see_all: d.see_all || null};
+      if (d.mode === "near" && toniMode !== "near") { toniMode = "near"; try { sessionStorage.setItem("tonight-toni-mode", "near"); } catch (e) {} }
+      // the server works out when and where dinner fits the plan
+      if (d.dinner && d.dinner.venue) msg.dinner = d.dinner;
+      // "cheap dinner tonight": keep it for this day (Toni's plan box redraws with it)
+      if (d.dinner_day && window.TonightDinner) {
+        var dd = TonightDinner.day(cur.slug, cur.date); Object.keys(d.dinner_day).forEach(function(k){ dd[k] = d.dinner_day[k]; });
+        TonightDinner.setDay(cur.slug, cur.date, dd, "chat");
+      }
+      rememberVenues(msg.cards);
+      if (d.filters) {
+        msg.fullCount = d.filters.count;
+        // on a city page, set its filters now; elsewhere, link to the city page with them applied
+        if (document.getElementById("fq")) msg.shown = applyPageFilters(d.filters);
+        else msg.seeAll = (cur.href || (cur.slug + "/" + cur.date + ".html")) + filterUrl(d.filters);
+      }
+      history.push(msg);
+    }
+  }).catch(function(){
+    history.push({role: "assistant", content: "Couldn't reach Toni. Check your connection and try again.", error: true});
+  }).then(function(){ busy = false; send.disabled = false; save(); render(); input.focus(); });
+}
+btn.addEventListener("click", function(){ panel.hidden = !panel.hidden; if (!panel.hidden) { render(); input.focus(); } });
+close.addEventListener("click", function(){ panel.hidden = true; btn.focus(); });
+fresh.addEventListener("click", newChat);
+panel.addEventListener("keydown", function(e){ if (e.key === "Escape") { panel.hidden = true; btn.focus(); } });
+form.addEventListener("submit", function(e){ e.preventDefault(); ask(input.value); });
+document.addEventListener("DOMContentLoaded", function(){ document.body.appendChild(btn); document.body.appendChild(panel); });
+window.TonightToni = {ask: function(q, display, exclude){ excludeNext = exclude || null; panel.hidden = false; render(); ask(q, display); }};
+})();
+</script><script>window.__tonight_api="https://tonight-api-2169.onrender.com/api"||null;(function(){try{if(/^https?:\/\/(localhost|127\.0\.0\.1)[:/]/.test(window.__tonight_api||""))return;fetch("https://lineup.city/api.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.api)window.__tonight_api=d.api;}).catch(function(){});}catch(e){}})();</script></body></html>

@@ -1,6 +1,16 @@
 {
-  "rewrites": [
-    { "source": "/tonight", "destination": "/" },
-    { "source": "/tonight/:path*", "destination": "/:path*" }
-  ]
+ "rewrites": [
+  {
+   "source": "/tonight",
+   "destination": "/"
+  },
+  {
+   "source": "/tonight/:path*",
+   "destination": "/:path*"
+  },
+  {
+   "source": "/i/:path*",
+   "destination": "https://tonight-api-2169.onrender.com/i/:path*"
+  }
+ ]
 }
