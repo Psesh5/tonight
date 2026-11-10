@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Review suggestions, reports and feeds — Tonight</title>
+<title>Review suggestions, reports and feeds — lineup.city</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -637,7 +637,7 @@ function load(){
       });
       card.appendChild(f); host.appendChild(card);
     });
-  }).catch(function(){ $("rvList").textContent = "Couldn't reach Tonight."; });
+  }).catch(function(){ $("rvList").textContent = "Couldn't reach lineup.city."; });
 }
 $("rvSave").addEventListener("click", function(){ try { localStorage.setItem(KEY, $("rvKey").value.trim()); } catch (e) {} load(); });
 $("rvKeyBox").hidden = !!key();
@@ -689,7 +689,7 @@ function load(){
       no.addEventListener("click", function(){ act("dismiss"); });
       host.appendChild(card);
     });
-  }).catch(function(){ host.textContent = "Couldn't reach Tonight."; });
+  }).catch(function(){ host.textContent = "Couldn't reach lineup.city."; });
 }
 $("rpStatus").addEventListener("change", load);
 $("rvSave").addEventListener("click", function(){ setTimeout(load, 50); });

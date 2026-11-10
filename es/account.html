@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tu cuenta — Tonight</title>
+<title>Tu cuenta — lineup.city</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -569,11 +569,11 @@ clear:function(){try{["tonight-session","tonight-account","tonight-user-id","ton
 document.addEventListener("DOMContentLoaded",function(){if(TonightAuth.token())return;var es=(document.documentElement.lang||"").slice(0,2)==="es";
 document.querySelectorAll('a.tastelink[href$="account.html"]').forEach(function(a){a.textContent=es?"Iniciar sesión":"Sign in";});});</script><script>window.CAT_LABELS={"Music": "Música", "Comedy": "Comedia", "Arts & Play": "Arte y juego", "Talks": "Charlas", "Tech": "Tecnología", "Meetups & Mixers": "Encuentros", "Food & Drink": "Comida y bebida", "Trivia & Games": "Trivia y juegos", "Sports": "Deportes", "Theater": "Teatro", "Fitness & Outdoors": "Ejercicio y aire libre", "Classes & Workshops": "Clases y talleres", "Film": "Cine", "Tours": "Recorridos", "Italian": "Italiana", "Japanese": "Japonesa", "Chinese": "China", "Mexican": "Mexicana", "Indian": "India", "Thai": "Tailandesa", "Korean": "Coreana", "French": "Francesa", "American": "Estadounidense", "Mediterranean": "Mediterránea", "Vegetarian / vegan": "Vegetariana / vegana", "Seafood": "Mariscos", "Vietnamese": "Vietnamita", "Spanish / tapas": "Española / tapas", "Latin American": "Latinoamericana"};</script></head>
 <body>
-<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">lineup.city</span><span class="wm" aria-hidden="true">lineup<b>.</b>city</span><span class="wm-lu" aria-hidden="true">lineup<i>.</i>city</span></a>
 <span class="tastelinks"><a class="tastelink" href="./taste.html">Preferencias</a><a class="tastelink" href="./signup.html">Suscríbete</a><a class="tastelink" href="./account.html">Cuenta</a></span>
 <span class="citylinks"><a href="./">Inicio</a></span></nav>
 <header class="bhero">
-<div class="eyebrow">Cuenta de Tonight</div>
+<div class="eyebrow">Cuenta de lineup.city</div>
 <h1 id="heroTitle">INICIAR SESIÓN</h1>
 <p id="heroSub">Sin contraseña. Te mandamos un código por correo. Tu gusto, tus planes y tus ajustes te siguen a cualquier dispositivo.</p>
 </header>
@@ -656,7 +656,7 @@ document.querySelectorAll('a.tastelink[href$="account.html"]').forEach(function(
 </main>
 
 <footer>
-<div class="serif">Tonight: cada ciudad, cada noche.</div>
+<div class="serif">lineup.city: cada ciudad, cada noche.</div>
 <p><a href="./privacy.html">Aviso de privacidad</a> · <a href="./terms.html">Términos y condiciones</a></p>
 </footer>
 <script>
@@ -789,7 +789,7 @@ $("inviteBtn").addEventListener("click", function(){
   api("/friends/invite", {method: "POST"}).then(function(d){
     if (!d.ok) { say("acctMsg", d.error || "Couldn't make an invite.", "err"); return; }
     $("inviteBox").hidden = false; $("inviteUrl").value = d.url; $("inviteMsg").textContent = "Sirve una vez, por 14 días.";
-    if (navigator.share) navigator.share({text: d.from + " invited you to be friends on Tonight", url: d.url}).catch(function(){});
+    if (navigator.share) navigator.share({text: d.from + " invited you to be friends on lineup.city", url: d.url}).catch(function(){});
   }).catch(function(){ say("acctMsg", "No pudimos conectar con el servidor. Inténtalo en un rato.", "err"); });
 });
 $("inviteCopy").addEventListener("click", function(){
@@ -919,7 +919,7 @@ function build(){
     var msg = document.getElementById("sgMsg"), url = u.value.trim();
     if (!/^https?:\/\/\S+\.\S+/.test(url)) { msg.textContent = "Pega un enlace que empiece con http."; return; }
     var base = window.__tonight_api;
-    if (!base) { msg.textContent = "No pudimos conectar con Tonight. Inténtalo en un rato."; return; }
+    if (!base) { msg.textContent = "No pudimos conectar con lineup.city. Inténtalo en un rato."; return; }
     var city = (typeof CITY !== "undefined" && CITY) || (function(){ try { return localStorage.getItem("tonight-city"); } catch (e) { return null; } })() || "nyc";
     go.disabled = true; msg.textContent = "Enviando…";
     fetch(base + "/suggest", {method: "POST", headers: {"Content-Type": "application/json"},
@@ -931,7 +931,7 @@ function build(){
         msg.textContent = "¡Gracias! Lo revisaremos."; u.value = ""; n.value = "";
         setTimeout(close, 1600);
       })
-      .catch(function(){ go.disabled = false; msg.textContent = "No pudimos conectar con Tonight. Inténtalo en un rato."; });
+      .catch(function(){ go.disabled = false; msg.textContent = "No pudimos conectar con lineup.city. Inténtalo en un rato."; });
   });
 }
 function open(e){ if (e) e.preventDefault(); if (!veil) build(); veil.hidden = false; document.getElementById("sgMsg").textContent = ""; setTimeout(function(){ document.getElementById("sgUrl").focus(); }, 50); }

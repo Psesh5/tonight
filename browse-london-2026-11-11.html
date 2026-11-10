@@ -1517,7 +1517,7 @@ function describe(){
   if (taste.mutes.length) parts.push("not into " + joinList(taste.mutes));
   var s = parts.length
     ? "You're " + parts.join(", ") + "."
-    : "You haven't told Tonight what you like yet.";
+    : "You haven't told lineup.city what you like yet.";
   var prefs = [];
   if (taste.free_only) prefs.push("you'd rather keep it free");
   prefs.push(taste.surprise === "low" ? "no surprises, just your thing" :
@@ -1565,7 +1565,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 })();
 </script>
-<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferences</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="" href="./nyc/2026-11-11.html">NYC</a> <a class="cur" href="./london/2026-11-11.html">London</a> <a class="" href="./la/2026-11-11.html">LA</a></span><a class="browselink datelink" href="./london/date-ideas.html">♥ Date ideas</a><a class="browselink" href="./browse-london-2026-11-11.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
+<nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">lineup.city</span><span class="wm" aria-hidden="true">lineup<b>.</b>city</span><span class="wm-lu" aria-hidden="true">lineup<i>.</i>city</span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferences</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="" href="./nyc/2026-11-11.html">NYC</a> <a class="cur" href="./london/2026-11-11.html">London</a> <a class="" href="./la/2026-11-11.html">LA</a></span><a class="browselink datelink" href="./london/date-ideas.html">♥ Date ideas</a><a class="browselink" href="./browse-london-2026-11-11.html">Browse all →</a><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
 <header class="bhero">
 <div class="eyebrow">Wednesday, November 11 · London</div>
 <h1>Browse everything</h1>
@@ -5801,7 +5801,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="mlt"><span>More like this:</span><a href="#e-628ed001">WOMEN IN AI FILM AT BFI</a> <a href="#e-0d8ea072">Wild Horse Nine</a> <a href="#e-a1149119">In the Company of Men + The Deep North</a></div></article>
 </main>
 <footer>
-<div class="serif">Hand-picked for you by Tonight.</div>
+<div class="serif">Hand-picked for you by lineup.city.</div>
 <p>Every tick is saved —<br>tomorrow's picks learn what you love.</p>
 </footer>
 <script>
@@ -6209,7 +6209,7 @@ async function shareOrCopy(text, url) {
 }
 const _shareBtn = document.getElementById("shareBtn");
 if (_shareBtn) _shareBtn.addEventListener("click", async () => {
-  const r = await shareOrCopy("Things to do today in London, hand-picked by Tonight:", location.href.split("#")[0]);
+  const r = await shareOrCopy("Things to do today in London, hand-picked by lineup.city:", location.href.split("#")[0]);
   if (r === "copied") shareMsg("Link copied — paste it anywhere.");
 });
 // the header's ⋯ menu closes once something in it is picked, or on a click elsewhere
@@ -6276,7 +6276,7 @@ document.querySelectorAll(".ics-btn").forEach(btn => {
     const a = btn.closest(".event");
     const d = a.dataset;
     const stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Tonight//Event//EN",
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//lineup.city//Event//EN",
       "BEGIN:VEVENT",
       "UID:" + CITY + "-" + DATE + "-" + btn.dataset.idx + "@tonight",
       "DTSTAMP:" + stamp,
@@ -7156,7 +7156,7 @@ function sendCode(){
       : "We sent a 6-digit code to " + email + ". It works for 10 minutes.";
     document.getElementById("svCode").value = d.dev_code || "";
     show("code");
-  }).catch(function(){ say("svMsg1", "Couldn't reach Tonight. Try again in a bit.", "err"); });
+  }).catch(function(){ say("svMsg1", "Couldn't reach lineup.city. Try again in a bit.", "err"); });
 }
 function tasteNow(){
   var t = (window.Tonight && Tonight.taste) || {};
@@ -7177,7 +7177,7 @@ function verify(){
     }
     steps.push(api("/subscriptions"));
     return Promise.all(steps).then(function(res){ authed = d; existing = res[res.length - 1] || {}; showPrefs(); });
-  }).catch(function(){ say("svMsg2", "Couldn't reach Tonight. Try again in a bit.", "err"); });
+  }).catch(function(){ say("svMsg2", "Couldn't reach lineup.city. Try again in a bit.", "err"); });
 }
 var authed = null, existing = {};
 function localTimes(){ try { return JSON.parse(ls("tonight-times") || "[]"); } catch (e) { return []; } }
@@ -7215,11 +7215,11 @@ function savePrefs(){
       .then(function(r){ subscribedNow = !!r.ok; return r.ok ? {found: true, daily_email: true} : null; });
   } else job = Promise.resolve(null);
   job.then(function(sub){ say("svMsgP", ""); afterSignIn(authed, sub); })
-     .catch(function(){ say("svMsgP", "Couldn't reach Tonight. Try again in a bit.", "err"); });
+     .catch(function(){ say("svMsgP", "Couldn't reach lineup.city. Try again in a bit.", "err"); });
 }
 function afterSignIn(d, sub){
   var name = CITY_NAMES[city()] || "your city";
-  document.getElementById("svHello").textContent = d.new_account ? "Saved. Welcome to Tonight." : "Welcome back.";
+  document.getElementById("svHello").textContent = d.new_account ? "Saved. Welcome to lineup.city." : "Welcome back.";
   document.getElementById("svSummary").textContent =
     subscribedNow ? "Your picks and taste are saved. Your first email for " + name + " arrives tomorrow morning."
     : (sub && sub.found ? "Your picks and taste are saved. Your email follows your new settings from tomorrow."
@@ -7249,7 +7249,7 @@ function textAlerts(){
     if (!r.ok) { say("svMsg3", r.error || "Couldn't set up texts.", "err"); return; }
     say("svMsg3", "We just texted you. Reply YES to turn alerts on.", "ok");
     document.getElementById("svTextBtn").hidden = true;
-  }).catch(function(){ say("svMsg3", "Couldn't reach Tonight. Try again in a bit.", "err"); });
+  }).catch(function(){ say("svMsg3", "Couldn't reach lineup.city. Try again in a bit.", "err"); });
 }
 
 // When to ask: after a couple of ticks, unless signed in or recently told "not now".
@@ -8038,7 +8038,7 @@ function build(){
     var msg = document.getElementById("sgMsg"), url = u.value.trim();
     if (!/^https?:\/\/\S+\.\S+/.test(url)) { msg.textContent = "Paste a link that starts with http."; return; }
     var base = window.__tonight_api;
-    if (!base) { msg.textContent = "Couldn't reach Tonight. Try again in a bit."; return; }
+    if (!base) { msg.textContent = "Couldn't reach lineup.city. Try again in a bit."; return; }
     var city = (typeof CITY !== "undefined" && CITY) || (function(){ try { return localStorage.getItem("tonight-city"); } catch (e) { return null; } })() || "nyc";
     go.disabled = true; msg.textContent = "Sending…";
     fetch(base + "/suggest", {method: "POST", headers: {"Content-Type": "application/json"},
@@ -8050,7 +8050,7 @@ function build(){
         msg.textContent = "Thanks! We'll take a look."; u.value = ""; n.value = "";
         setTimeout(close, 1600);
       })
-      .catch(function(){ go.disabled = false; msg.textContent = "Couldn't reach Tonight. Try again in a bit."; });
+      .catch(function(){ go.disabled = false; msg.textContent = "Couldn't reach lineup.city. Try again in a bit."; });
   });
 }
 function open(e){ if (e) e.preventDefault(); if (!veil) build(); veil.hidden = false; document.getElementById("sgMsg").textContent = ""; setTimeout(function(){ document.getElementById("sgUrl").focus(); }, 50); }

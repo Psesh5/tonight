@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Friend invite — Tonight</title>
+<title>Friend invite — lineup.city</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -570,10 +570,10 @@ function start(){
   if (!code) { $("frHead").textContent = "No invite here"; say("Open the link a friend sent you."); return; }
   api("/friends/invite/" + encodeURIComponent(code)).then(function(d){
     if (!d.ok) { $("frHead").textContent = "This link didn't work"; say(d.error || ""); done(); return; }
-    $("frHead").textContent = d.from + " invited you to be friends on Tonight";
+    $("frHead").textContent = d.from + " invited you to be friends on lineup.city";
     var signed = window.TonightAuth && TonightAuth.token();
     $("frSign").hidden = !!signed; $("frAccept").hidden = !signed;
-  }).catch(function(){ say("Couldn't reach Tonight. Try again in a bit."); });
+  }).catch(function(){ say("Couldn't reach lineup.city. Try again in a bit."); });
 }
 $("frAccept").addEventListener("click", function(){
   api("/friends/accept", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({code: code})}).then(function(d){

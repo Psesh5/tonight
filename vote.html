@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Who's in? — Tonight</title>
+<title>Who's in? — lineup.city</title>
 <meta property="og:title" content="Who's in tonight?">
 <meta property="og:description" content="Tap what you're up for. No app, no account.">
-<meta property="og:site_name" content="Tonight">
+<meta property="og:site_name" content="lineup.city">
 <style>
 .topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
 background:var(--banner,#14201A);color:#F7F2E9;padding:12px 20px;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}
@@ -743,9 +743,9 @@ body{overflow-x:hidden;}
 .wrap{padding-left:16px;padding-right:16px;}
 }
 </style></head>
-<body><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">Tonight</span><span class="wm" aria-hidden="true">Ton<span class="iw">ı<span class="im">☾</span></span>ght<b>.</b></span><span class="wm-lu" aria-hidden="true">Tonight<i>.</i></span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferences</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="" href="./nyc/2026-11-10.html">NYC</a> <a class="" href="./london/2026-11-10.html">London</a> <a class="" href="./la/2026-11-10.html">LA</a></span><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
+<body><nav class="topnav"><a class="brand" href="./"><img src="/tonight/assets/favicon-32.png" alt="" onerror="this.remove()"><span class="sr-only">lineup.city</span><span class="wm" aria-hidden="true">lineup<b>.</b>city</span><span class="wm-lu" aria-hidden="true">lineup<i>.</i>city</span></a><span class="tastelinks"><a class="tastelink" href="./taste.html">Preferences</a><a class="tastelink" href="./signup.html">Sign up</a><a class="tastelink" href="./account.html">Account</a></span><span class="citylinks"><a class="" href="./nyc/2026-11-10.html">NYC</a> <a class="" href="./london/2026-11-10.html">London</a> <a class="" href="./la/2026-11-10.html">LA</a></span><details class="langmenu"><summary aria-label="Language"><span aria-hidden="true">🌐</span> <b id="langCur">EN</b></summary><div class="langlist"><a id="langSwitch" href="./" data-lang="other">Español</a><span class="soon" lang="fr">Français <i>Soon</i></span><span class="soon" lang="pt">Português <i>Soon</i></span><span class="soon" lang="de">Deutsch <i>Soon</i></span><span class="soon" lang="it">Italiano <i>Soon</i></span><span class="soon" lang="ja">日本語 <i>Soon</i></span></div></details></nav>
 <header class="hero dayhero">
-<div class="eyebrow">Tonight</div>
+<div class="eyebrow">lineup.city</div>
 <h1>Who's in?</h1>
 <p>Tick what you're up for tonight.</p>
 </header>
@@ -904,7 +904,7 @@ function vote(choices, msg){
   api("/plans/" + pid + "/vote", {voter: voter, name: name, choices: choices}).then(function(d){
     if (d.ok) { plan = d; mine = choices.slice(); render(); root.querySelector(".vmsg").textContent = choices.length ? "Saved. You're in." : "Saved. Maybe next time."; }
     else msg.textContent = d.error || "Couldn't save. Try again.";
-  }).catch(function(){ msg.textContent = "Couldn't reach Tonight. Try again in a minute."; })
+  }).catch(function(){ msg.textContent = "Couldn't reach lineup.city. Try again in a minute."; })
     .then(function(){ busy = false; });
 }
 function lock(k){
@@ -916,7 +916,7 @@ function load(){
     if (!d.ok) { root.innerHTML = ""; root.appendChild(el("p", "vmsg", "This vote doesn't exist or has expired.")); return; }
     var typing = document.activeElement && document.activeElement.id === "vName";
     plan = d; if (!typing) render();
-  }).catch(function(){ if (!plan) { root.innerHTML = ""; root.appendChild(el("p", "vmsg", "Couldn't reach Tonight. Try again in a minute.")); } });
+  }).catch(function(){ if (!plan) { root.innerHTML = ""; root.appendChild(el("p", "vmsg", "Couldn't reach lineup.city. Try again in a minute.")); } });
 }
 load();
 setInterval(function(){ if (!document.hidden && !busy) load(); }, 20000);
@@ -991,7 +991,7 @@ function build(){
     var msg = document.getElementById("sgMsg"), url = u.value.trim();
     if (!/^https?:\/\/\S+\.\S+/.test(url)) { msg.textContent = "Paste a link that starts with http."; return; }
     var base = window.__tonight_api;
-    if (!base) { msg.textContent = "Couldn't reach Tonight. Try again in a bit."; return; }
+    if (!base) { msg.textContent = "Couldn't reach lineup.city. Try again in a bit."; return; }
     var city = (typeof CITY !== "undefined" && CITY) || (function(){ try { return localStorage.getItem("tonight-city"); } catch (e) { return null; } })() || "nyc";
     go.disabled = true; msg.textContent = "Sending…";
     fetch(base + "/suggest", {method: "POST", headers: {"Content-Type": "application/json"},
@@ -1003,7 +1003,7 @@ function build(){
         msg.textContent = "Thanks! We'll take a look."; u.value = ""; n.value = "";
         setTimeout(close, 1600);
       })
-      .catch(function(){ go.disabled = false; msg.textContent = "Couldn't reach Tonight. Try again in a bit."; });
+      .catch(function(){ go.disabled = false; msg.textContent = "Couldn't reach lineup.city. Try again in a bit."; });
   });
 }
 function open(e){ if (e) e.preventDefault(); if (!veil) build(); veil.hidden = false; document.getElementById("sgMsg").textContent = ""; setTimeout(function(){ document.getElementById("sgUrl").focus(); }, 50); }

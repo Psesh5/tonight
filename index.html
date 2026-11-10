@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex">
+<meta name="description" content="Plan your night in New York, London or Los Angeles: hand-picked things to do tonight, a ready-made night out, and an invite your friends can vote on."><link rel="canonical" href="https://lineup.city/"><meta property="og:title" content="lineup.city — plan your night"><meta property="og:description" content="Plan your night in New York, London or Los Angeles: hand-picked things to do tonight, a ready-made night out, and an invite your friends can vote on."><meta property="og:type" content="website"><meta property="og:url" content="https://lineup.city/"><meta property="og:site_name" content="lineup.city"><meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#fff7ec">
 <script>(function(){try{var t=localStorage.getItem("tonight-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
-<title>Plan your night — Lineup</title>
+<title>Plan your night — lineup.city</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -401,7 +401,7 @@ box-shadow:4px 4px 0 var(--accent);transition:transform .2s ease;max-width:calc(
 @media (prefers-reduced-motion: reduce){#dnToast{transition:none;}}
 </style></head>
 <body class="calm">
-<header class="pl-top"><a class="pl-wm" href="./">Lineup<b>.</b></a><nav class="pl-nav"><button type="button" class="pl-theme" id="plTheme" aria-label="Switch light or dark">◐</button><a class="pl-link pl-ghost" id="plSignIn" href="account.html">Sign in</a><a class="pl-link" id="plTopAll" href="cities.html">All events</a></nav></header>
+<header class="pl-top"><a class="pl-wm" href="./">lineup<b>.</b>city</a><nav class="pl-nav"><button type="button" class="pl-theme" id="plTheme" aria-label="Switch light or dark">◐</button><a class="pl-link pl-ghost" id="plSignIn" href="account.html">Sign in</a><a class="pl-link" id="plTopAll" href="cities.html">All events</a></nav></header>
 <nav hidden aria-hidden="true"><a class="citycard" href="nyc/2026-11-10.html"><span class="cc-top">New York City</span></a><a class="citycard" href="london/2026-11-10.html"><span class="cc-top">London</span></a><a class="citycard" href="la/2026-11-10.html"><span class="cc-top">Los Angeles</span></a></nav>
 <main>
 <section class="pl-ask" id="plAsk" aria-labelledby="plSent">
@@ -635,7 +635,7 @@ function act0(e, head, i){
   a += '<span class="pl-role">'+role(e,head)+'</span><h3 class="pl-nm"><a href="'+esc(e.url||"#")+'" target="_blank" rel="noopener">'+esc(title(e))+'</a></h3>'+
     '<p class="pl-info">'+info(e)+'</p>' + (big && e.why ? '<p class="pl-why">'+esc(e.why)+'</p>' : '') +
     (e._mine ? '<p class="pl-picked">You ticked this</p>' : '') +
-    (e._picked ? '<p class="pl-picked">'+esc(/^Hand-picked/.test(pickLabel) ? "Hand-picked by Lineup" : "One of Toni\u2019s picks")+'</p>' : '') +
+    (e._picked ? '<p class="pl-picked">'+esc(/^Hand-picked/.test(pickLabel) ? "Hand-picked by lineup.city" : "One of Toni\u2019s picks")+'</p>' : '') +
     '<button type="button" class="pl-sw" data-i="'+i+'">Swap</button></div>';
   return a;
 }
@@ -764,7 +764,7 @@ function bring(){
     api("/plans", {id:id, key:key, city:st.city, date:iso(), host:name, host_email:hm, ids:ordered().map(function(e){ return e._i; })}).then(function(d){
       if (!d.ok) { $("plBm").textContent = d.error ? "Couldn't make the invite: " + d.error + "." : "Couldn't make the invite. Try again."; return; }
       mem("tonight-plan-" + id, key); invited(d, true); use("invite");
-    }).catch(function(){ $("plBm").textContent = "Couldn't reach Lineup. Try again in a minute."; });
+    }).catch(function(){ $("plBm").textContent = "Couldn't reach lineup.city. Try again in a minute."; });
   };
 }
 function inviteUrl(id){ return location.origin + "/i/" + id; }  /* previews in group chats; opens #p=<id> here */
@@ -777,7 +777,7 @@ function invited(plan, fresh){
     '<p class="pl-bp">Send it in your group chat. Each friend picks the acts they\'re in for. When you\'re ready, <a href="'+esc(url)+'">open your invite</a> to lock the night for everyone.</p><div id="plWho"></div>';
   $("plCopy").onclick = function(){ var b = this; (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function(){ b.textContent = "Copied"; },
     function(){ $("plUrl").select(); b.textContent = "Press ⌘C"; }); };
-  if ($("plShare")) $("plShare").onclick = function(){ navigator.share({title:"Out " + when + "?", text:"I'm planning " + when + " on Lineup. Are you in?", url:url}).catch(function(){}); };
+  if ($("plShare")) $("plShare").onclick = function(){ navigator.share({title:"Out " + when + "?", text:"I'm planning " + when + " on lineup.city. Are you in?", url:url}).catch(function(){}); };
   who(plan); clearInterval(window.__plPoll);
   window.__plPoll = setInterval(function(){ if (!document.hidden && !box.hidden) api("/plans/" + plan.id).then(function(d){ if (d.ok) who(d); }).catch(function(){}); }, 15000);
 }
@@ -830,7 +830,7 @@ function invitePage(id){
       $("plLm").textContent = "Locking…"; this.disabled = true;
       api("/plans/" + id + "/final", {key:mine, keep:keep}).then(function(d){
         if (!d.ok) { $("plLm").textContent = d.error || "That didn\u2019t work. Try again."; $("plLockAll").disabled = false; return; }
-        use("lock"); invitePage(id); }).catch(function(){ $("plLm").textContent = "Couldn\u2019t reach Lineup. Try again."; $("plLockAll").disabled = false; }); };
+        use("lock"); invitePage(id); }).catch(function(){ $("plLm").textContent = "Couldn\u2019t reach lineup.city. Try again."; $("plLockAll").disabled = false; }); };
     if (mine) $("plCopy2").onclick = function(){ var b = this; (navigator.clipboard ? navigator.clipboard.writeText(inviteUrl(id)) : Promise.reject()).then(function(){ b.textContent = "Copied"; }, function(){ $("plUrl2").select(); }); };
     if (!mine) {
       $("plMe").value = myName(); $("plMail").value = mem("tonight-email") || "";
@@ -843,12 +843,12 @@ function invitePage(id){
           use("answer");
           $("plVm").textContent = choices.length ? "Sent. " + host + " can see you're in." : "Sent. " + host + " knows you can't make it.";
           d.options.forEach(function(o, k){ var p = box.querySelectorAll(".pl-say")[k]; if (p) p.textContent = o.in.length ? "In: " + o.in.join(", ") : "Nobody yet"; });
-        }).catch(function(){ $("plVm").textContent = "Couldn't reach Lineup. Try again in a minute."; }); };
+        }).catch(function(){ $("plVm").textContent = "Couldn't reach lineup.city. Try again in a minute."; }); };
       $("plVote").onsubmit = function(ev){ ev.preventDefault();
         send([].slice.call(box.querySelectorAll(".pl-in input")).filter(function(c){ return c.checked; }).map(function(c){ return +c.getAttribute("data-k"); })); };
       $("plCant").onclick = function(){ send([]); };
     }
-  }).catch(function(){ box.innerHTML = '<p class="pl-kick">Couldn\'t reach Lineup. Reload to try again.</p>'; });
+  }).catch(function(){ box.innerHTML = '<p class="pl-kick">Couldn\'t reach lineup.city. Reload to try again.</p>'; });
 }
 
 /* ---- nights with friends: where your friends are going, and nights that are good with a group ---- */
@@ -898,7 +898,7 @@ function drawPicks(){
       .map(function(e){ return {e:e, why:e.why}; }); };
     api("/picks?city=" + city + "&date=" + d).then(function(p){
       var items = (p && p.items) || [];
-      if (items.length) show(p.by === "editor" ? "Hand-picked by Lineup" : "Toni's picks " + (st.day===0 ? "tonight" : "for " + wk(d,{weekday:"long"})),
+      if (items.length) show(p.by === "editor" ? "Hand-picked by lineup.city" : "Toni's picks " + (st.day===0 ? "tonight" : "for " + wk(d,{weekday:"long"})),
         items.map(function(it){ var first = String(it.text||"").split(/(?<=[.!?])\s/)[0]; return {e:find(it), why:first.length < 140 ? first : ""}; }));
       else show(st.day===0 ? "Tonight's best" : wk(d,{weekday:"long"}) + "'s best", best());
     }).catch(function(){ show(st.day===0 ? "Tonight's best" : wk(d,{weekday:"long"}) + "'s best", best()); });
@@ -958,7 +958,7 @@ function toUTC(d, m, tz){ var y=+d.slice(0,4), mo=+d.slice(5,7)-1, dd=+d.slice(8
 function icsT(dt){ return dt.toISOString().replace(/[-:]/g,"").slice(0,15)+"Z"; }
 function icsE(s){ return String(s||"").replace(/\\/g,"\\\\").replace(/[,;]/g,function(c){ return "\\"+c; }).replace(/\n/g,"\\n"); }
 function calendar(){
-  var d = iso(), tz = CITIES[st.city].tz, L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Lineup//Plan your night//EN"];
+  var d = iso(), tz = CITIES[st.city].tz, L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//lineup.city//Plan your night//EN"];
   ordered().forEach(function(e){ var a = toUTC(d, mins(e.start_time), tz), b = toUTC(d, endOf(e), tz);
     L.push("BEGIN:VEVENT","UID:"+hsh(e)+"-"+d+"@lineup.city","DTSTAMP:"+icsT(new Date()),"DTSTART:"+icsT(a),"DTEND:"+icsT(b),
       "SUMMARY:"+icsE(e.name),"LOCATION:"+icsE(e.venue),"URL:"+(e.url||""),"DESCRIPTION:"+icsE((e.why||"")+(e.url?"\n"+e.url:"")),"END:VEVENT"); });
@@ -968,7 +968,7 @@ function calendar(){
 }
 function flash(b, t){ var o = b.textContent; b.textContent = t; setTimeout(function(){ b.textContent = o; }, 1800); }
 function share(b, invite){
-  var url = shareUrl(), first = ordered()[0], text = invite ? "Come out with me? " + fmt(mins(first.start_time)) + " " + first.name + ", then more." : "My night out, planned on Lineup";
+  var url = shareUrl(), first = ordered()[0], text = invite ? "Come out with me? " + fmt(mins(first.start_time)) + " " + first.name + ", then more." : "My night out, planned on lineup.city";
   if (navigator.share) { navigator.share({title:"My lineup", text:text, url:url}).catch(function(){}); return; }
   (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function(){ flash(b, "Link copied"); }, function(){ flash(b, "Copy: "+url); });
 }
@@ -993,13 +993,13 @@ function drawDone(shared){
   });
   h += '</ol>';
   if (!shared) {
-    var f = list[0], txt = "Lineup: "+when.charAt(0).toUpperCase()+when.slice(1)+" starts "+fmt(mins(f.start_time))+" with "+title(f)+" at "+shortVenue(f.venue)+".";
+    var f = list[0], txt = "lineup.city: "+when.charAt(0).toUpperCase()+when.slice(1)+" starts "+fmt(mins(f.start_time))+" with "+title(f)+" at "+shortVenue(f.venue)+".";
     if (list[1]) txt += " Then "+title(list[1])+", "+fmt(mins(list[1].start_time))+" ("+(travel(f,list[1]).m ? travel(f,list[1]).m+" min "+travel(f,list[1]).how : "same place")+").";
     txt += " Reply SWAP to change one.";
     h += '<div class="pl-remind"><div><p class="pl-kick">Reminders</p><h2>We\'ll text you before each one.</h2>'+
       '<p>An hour before you head out, then when it\'s time to move on. Reply to change anything.</p>'+
       '<a class="pl-make" href="account.html">Sign in to turn on texts →</a></div>'+
-      '<div class="pl-phone" aria-label="Example text"><span class="pl-from">Lineup · '+fmt(mins(f.start_time)-60)+'</span><p>'+esc(txt)+'</p></div></div>';
+      '<div class="pl-phone" aria-label="Example text"><span class="pl-from">lineup.city · '+fmt(mins(f.start_time)-60)+'</span><p>'+esc(txt)+'</p></div></div>';
   }
   h += '<div class="pl-after">'+(shared ? '' : '<button type="button" id="dBack">← Change my lineup</button>')+
     '<a href="'+esc(st.city+"/"+d+".html")+'">Everything on '+esc(st.day===0 ? "tonight" : wk(d,{weekday:"long"}))+' →</a></div>';

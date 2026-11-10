@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex">
-<title>The test — Lineup</title>
+<title>The test — lineup.city</title>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--paper:#fff7ec;--ink:#151515;--soft:#5f574c;--hot:#ff4f2e;--sun:#ffc21a;--ok:#13996f;--no:#b8321b;}
@@ -21,7 +21,7 @@ table{border-collapse:collapse;width:100%;background:#fff;border:2px solid var(-
 th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #e8dac6;font-size:14px;} th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);}
 .tw{overflow-x:auto;} .msg{color:var(--soft);}
 </style></head><body><div class="w">
-<div class="k">Lineup · the 20-person test</div><h1>Is it working?</h1>
+<div class="k">lineup.city · the 20-person test</div><h1>Is it working?</h1>
 <p class="msg">Give each person a link like <b>lineup.city/?ref=maya</b> (letters, numbers, dashes). Everything here is anonymous counts per device; no names or emails.</p>
 <div class="row"><label>Admin key<input id="key" type="password" autocomplete="off"></label><label>Test started<input id="start" type="date"></label><button id="go">Show the numbers</button></div>
 <p class="msg" id="msg"></p><div class="grid" id="nums"></div><div class="tw" id="ppl"></div></div>
@@ -51,7 +51,7 @@ $("go").onclick = function(){
   $("msg").textContent = "Loading…";
   fetch(API + "/admin/test?start=" + $("start").value, {headers: {"X-Admin-Key": $("key").value.trim()}}).then(function(r){ return r.json(); })
     .then(function(d){ if (!d.ok) { $("msg").textContent = d.error || "That didn't work."; return; } show(d); })
-    .catch(function(){ $("msg").textContent = "Couldn't reach Lineup."; });
+    .catch(function(){ $("msg").textContent = "Couldn't reach lineup.city."; });
 };
 if ($("key").value) $("go").click();
 })();
